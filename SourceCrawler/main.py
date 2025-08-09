@@ -4,5 +4,12 @@ from CrawlerFactory import CrawlerFactory
 # GuanYu.crawl(False)
 # Mazu = CrawlerFactory.create_crawler("Mazu")
 # Mazu.crawl(False)
-YueLao = CrawlerFactory.create_crawler("YueLao")
+# YueLao = CrawlerFactory.create_crawler("YueLao")
+# YueLao.crawl(False)
+# YueLao = CrawlerFactory.create_crawler("GuanYin100")
+# YueLao.crawl(False)
+# YueLao = CrawlerFactory.create_crawler("Tianhou")
+# YueLao.crawl(False)
+
+YueLao = CrawlerFactory.create_crawler("Asakusa")
 YueLao.crawl(False)

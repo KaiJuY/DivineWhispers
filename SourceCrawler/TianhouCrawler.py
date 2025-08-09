@@ -1,8 +1,8 @@
 import urllib.request as REQ
 import bs4 as BS
 import json
-'''六十甲子籤'''
-class MazuCrawler:
+
+class TianhouCrawler:
     def __init__(self):
         self.id = ""
         self.title = ""
@@ -17,7 +17,7 @@ class MazuCrawler:
         }
 
     def crawl(self, export_json: bool = False):
-        Baseurl = "https://qiangua.temple01.com/qianshi.php?t=fs60"
+        Baseurl = "https://qiangua.temple01.com/qianshi.php?t=fs_mz100"
         pages = list(range(1, 2))
         for page in pages:
             str_page = f"&s={page}"
@@ -58,24 +58,27 @@ class MazuCrawler:
         clean_text = poem_div.text.strip()
         lines = clean_text.splitlines()
         clean_lines = [line.strip() for line in lines if line.strip()]
-        line_count = 0        
+        line_count = 0
+        poem = ""
         for line in clean_lines:
             # print(f'{line_count} / {len(clean_lines)}: {line}')
             if line_count == 0:
                 self.title = line
             elif line_count == 1:
-                self.fortune = line                
-            elif line_count == 2:                
-                self.subtitle = line
-            elif line_count == 3:
-                line = line.replace("、", " ").replace("。", "")
-                self.poem = line.split(" ")
+                poem += line
+                # stf = line.split('。')
+                # self.fortune = stf[0]
+                # self.subtitle = stf[1] if len(stf) > 1 else ""
+            # elif line_count == 2:
             line_count+=1
+        self.poem = poem
 
     def get_analysis_info(self, bs):
+        """觀音100籤沒有英文日文與典故，英文日文可以由AI生成翻譯"""
         # 分析
         P_analyse_div = bs.find("div", class_="qianshi_view_sidebox_right")
-        s_analyse = P_analyse_div.find_all("div", class_="fs_box fs_left")
+        # print(f'P_analyse_div: {P_analyse_div}')
+        s_analyse = P_analyse_div.find_all("div", class_="fs_box fs_left fs_solve fs_lang")
         sub_line_count = 0
         zh=""
         jp=""
@@ -103,10 +106,13 @@ class MazuCrawler:
         self.analysis["zh"] = zh.replace("\n", "").replace("\r", "")
         self.analysis["en"] = en.replace("\n", "").replace("\r", "")
         self.analysis["jp"] = jp.replace("\n", "").replace("\r", "")
-        ref_div = bs.find("div", class_="fs_box fs_left fs_lang")
-        ref_text = ref_div.text.strip() if ref_div else ""
-        reference += "\n" + ref_text
-        ref_div = bs.find("div", class_="fs_box fs_left fs_solve fs_lang")
-        ref_text = ref_div.text.strip() if ref_div else ""
-        reference += "\n" + ref_text
-        self.analysis["reference"] = reference.replace("\n", "").replace("\r", "")
+        # ref_div = bs.find_all("div", class_="fs_box fs_left fs_lang")
+        # ref_line = 0
+        # for ref in ref_div:
+        #     print(f'{ref_line} / {len(ref_div)}: {ref}')
+
+        #     if ref_line >= 1:
+        #         ref_text = ref.text.strip() if ref else ""
+        #         reference += "\n" + ref_text
+        #     ref_line += 1
+        # self.analysis["reference"] = reference.replace("\n", "").replace("\r", "")
