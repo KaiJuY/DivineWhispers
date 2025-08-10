@@ -5,6 +5,8 @@ from YueLaoCrawler import YueLaoCrawler
 from GuanYin100Crawler import GuanYin100Crawler
 from TianhouCrawler import TianhouCrawler
 from AsakusaCrawler import AsakusaCrawler
+from ErawanShrineCrawler import ErawanShrineCrawler
+from ZhushengCrawler import ZhushengCrawler
 
 class CrawlerFactory:
     @staticmethod
@@ -21,4 +23,8 @@ class CrawlerFactory:
             return TianhouCrawler()
         elif crawler_type == "Asakusa":
             return AsakusaCrawler()
+        elif crawler_type == "ErawanShrine":
+            return ErawanShrineCrawler()
+        elif crawler_type == "Zhusheng":
+            return ZhushengCrawler()
         raise ValueError(f"Unknown crawler type: {crawler_type}")

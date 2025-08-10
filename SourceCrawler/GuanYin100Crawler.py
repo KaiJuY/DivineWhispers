@@ -1,6 +1,7 @@
 import urllib.request as REQ
 import bs4 as BS
 import json
+from pathlib import Path
 
 class GuanYin100Crawler:
     def __init__(self):
@@ -18,7 +19,7 @@ class GuanYin100Crawler:
 
     def crawl(self, export_json: bool = False):
         Baseurl = "https://qiangua.temple01.com/qianshi.php?t=fs_yin100"
-        pages = list(range(1, 2))
+        pages = list(range(1, 101))
         for page in pages:
             str_page = f"&s={page}"
             url = Baseurl + str_page
@@ -35,10 +36,14 @@ class GuanYin100Crawler:
             self.get_basic_info(bs)
             self.get_analysis_info(bs)
 
-            if export_json:                
-                with open(f"GuanYu\\chuck_{self.id}.json", "w", encoding="utf-8") as f:
+            if export_json:
+                # 建立資料夾路徑
+                folder_path = Path("GuanYin100")
+                folder_path.mkdir(exist_ok=True)
+
+                file_path = folder_path / f"chuck_{self.id}.json"
+                with open(file_path, "w", encoding="utf-8") as f:
                     f.write(self.get_RAG_Json())
-                    f.close()
             else:
                 print(self.get_RAG_Json())
 
