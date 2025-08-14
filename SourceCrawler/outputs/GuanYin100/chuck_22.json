@@ -1,0 +1,20 @@
+{
+  "id": 22,
+  "title": "觀音一百籤第二十二籤",
+  "subtitle": "巳宮",
+  "fortune": "上籤",
+  "poem": "四郊田畝皆枯竭、久旱俄然三日霖、花果草芽俱潤澤、始知一雨值千金。",
+  "analysis": {
+    "zh": "此卦描述乾旱後突如其來的甘雨，象徵在艱難時刻仍有救助之機。田蠶更易成熟，說明命運逐漸到來；疾病得以良藥；行人行路不便（此處的「不便」原本意為便捷）。",
+    "en": "This hexagram portrays a sudden, sweet rain that follows a prolonged drought, symbolizing that even in hardship there is a chance of rescue. The doubled maturation of silkworms indicates a gradual arrival of fortune; ailments find effective remedies; and travelers experience inconvenience (the word \"不便\" originally meant convenience).",
+    "jp": "この卦は、長い干ばつの後に突如として訪れる甘い雨を描き、困難な状況でも救いの機会があることを象徴しています。絹の虫の熟成が倍増し、運命がゆっくりと到来することを示します。病気には効果的な薬が見つかり、旅人は不便を経験します（\"不便\"は本来便利を意味していました）。",
+    "reference": "家宅　祈保。自身　安。求財　頗有。交易　遲。婚姻　合。六甲　女。行人　有阻。田蠶　利。六畜　利。尋人　難。公訟　虧。移徙　守舊。失物　西方(註：北方屬水。西方屬金）。疾病　設送（必癒）。山墳　安吉。1.六郎逢救楊延昭為楊業之六子。稱六郎。楊業統率三軍。被番邦圍困。楊業頭撞李陵碑而亡。楊七郎討救兵被箭射死。六郎撤退至葫蘆谷。得五台山和尚(楊五郎)相救出險。和尚相救。喻及時雨也。2.王孝先為民祈禱宋。王曾。字孝先。益都人。自少穎悟。善為文辭。咸平中三元及第。累官石僕。財乎章事。封沂國公。諡文正。居官之日。偶偵乾旱。輒竭誠禱。必沛自霖。乃止。其在明廷。正色危言。進退士人。莫有知者。嘗曰。夫執政者。恩欲歸己。怨欲歸誰。范仲淹深服其言。資料來源：籤詩網‧雷雨師一百籤__第070籤"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a sudden rain after a prolonged drought can bring unexpected relief and abundance.\n- The imagery of dry farmlands (四郊田畝皆枯竭) sets a scene of hardship and scarcity.\n- The sudden three-day downpour (久旱俄然三日霖) symbolizes an abrupt change or intervention, often perceived as a blessing.\n- The flourishing of flowers, fruits, and new growth (花果草芽俱潤澤) illustrates how nourishment and renewal follow the relief.\n- The concluding reflection (始知一雨值千金) highlights the profound appreciation of a single act of generosity or relief, equating it to immense value.\n- Overall, the poem conveys that even in dire circumstances, timely help or change can dramatically alter outcomes, and such help is to be treasured as priceless.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:52:47",
+    "source_file": "chuck_22.json",
+    "raw_llm_response_preview": "{\n  \"id\": 22,\n  \"title\": \"觀音一百籤第二十二籤\",\n  \"subtitle\": \"巳宮\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"四郊田畝皆枯竭、久旱俄然三日霖、花果草芽俱潤澤、始知一雨值千金。\",\n  \"analysis\": {\n    \"zh\": \"此卦描述乾旱後突如其來的甘雨，象徵在艱難時刻仍有救助之機。田蠶更易成熟，說明命運逐漸到來；疾病得以良藥；行人行路不便（此處的「不便」原本意為便捷）。\",\n    \"en\": \"This hexagram portrays a sudden, sweet rain that follows a pr"
+  }
+}

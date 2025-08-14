@@ -1,0 +1,25 @@
+{
+  "id": 48,
+  "title": "關聖帝君一百籤第四十八籤",
+  "subtitle": "趙五娘尋夫戊辛",
+  "fortune": "中平",
+  "poem": [
+    "登山涉水正天寒",
+    "兄弟姻親那得安",
+    "幸遇虎頭人一喚",
+    "全家遂保汝重歡"
+  ],
+  "analysis": {
+    "zh": "在極寒的天氣裡，艱難地爬山涉水，整個家庭都經歷了各種坎坷。兄弟姻親都難以安寧，直到遇見一位虎頭人相助，才得以安定，整個家團聚歡樂。抽此籤顯示，家道目前不安，須謹慎對待外來的義務與財產，避免分離與損失。",
+    "en": "The poem portrays a harsh winter journey—climbing mountains and crossing waters—while the whole family faces hardship and uncertainty. Only after a fortuitous encounter with a \"tiger‑headed\" person does the family find safety and reunite in joy. The fortune therefore warns of a fragile household, urging caution against burdens, loss, and separation.",
+    "jp": "詩は厳しい冬の中、山を登り水を渡る苦難の旅を描き、家族全体が困難と不安に直面している様子を示しています。『虎頭人』と運命的に出会うことで家族は安全を取り戻し、再び喜びを分かち合うと告げています。したがって、家の安定は脆弱であることを警告し、負担や損失、分離に注意するよう促しています。",
+    "reference": "趙五娘。漢。蔡伯階之妻也。伯階仕為議郎。在京別立家室。久羈不歸。父母死。妻為治喪。訖乃進京尋夫。事見琵琶曲。與史稱蔡邕。字伯階。陳留園。入健寧。三年辟司徒橋玄府。拜郎中校書柬。觀遷議郎。其事親以至孝。聞啟出兩人歟。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a family endures severe hardships—symbolized by cold weather and arduous travel—but a timely, unexpected help (the \"tiger‑headed\" person) brings relief and restores harmony. The verses highlight the fragility of domestic stability, the possibility of separation or loss, and the value of assistance that can rescue the household from misfortune.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:46:02",
+    "source_file": "chuck_48.json",
+    "raw_llm_response_preview": "{\"id\":48,\"title\":\"關聖帝君一百籤第四十八籤\",\"subtitle\":\"趙五娘尋夫戊辛\",\"fortune\":\"中平\",\"poem\":[\"登山涉水正天寒\",\"兄弟姻親那得安\",\"幸遇虎頭人一喚\",\"全家遂保汝重歡\"],\"analysis\":{\"zh\":\"在極寒的天氣裡，艱難地爬山涉水，整個家庭都經歷了各種坎坷。兄弟姻親都難以安寧，直到遇見一位虎頭人相助，才得以安定，整個家團聚歡樂。抽此籤顯示，家道目前不安，須謹慎對待外來的義務與財產，避免分離與損失。\",\"en\":\"The poem portrays a harsh winter journey—climbing mountai"
+  }
+}

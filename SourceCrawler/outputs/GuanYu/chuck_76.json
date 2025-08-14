@@ -1,0 +1,25 @@
+{
+  "id": 76,
+  "title": "關聖帝君一百籤第七十六籤",
+  "subtitle": "蕭何註律辛己",
+  "fortune": "中平",
+  "poem": [
+    "三千法律八千文",
+    "此事如何說與君",
+    "善惡兩途君自作",
+    "一生禍福此中分"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是個人善惡與禍福之因果關係。詩中說：「三千法律八千文，這事如何說與君，善惡兩途君自作，一生禍福此中分。」意即所有法律文字、規章僅供參考，最終決定人生命運的是個人行為。善行會招福，惡行會招禍，這是一種因果律。",
+    "en": "Lot No. 76 (Medium‑Ordinary Fortune). The poem reminds that although there are thousands of laws and regulations, the final judgment lies in one's own conduct. It emphasizes that each person chooses between good and evil, and that a life of blessings or misfortunes is determined by those choices. The core message is that good deeds bring blessings while bad deeds invite misfortune, encouraging self‑reflection and mindful action in matters such as wealth, marriage, and health.",
+    "jp": "第七十六本のみくじの神は「法律や規範は道具にすぎず、最終的に自らの行いが運命を決める」と告げています。詩は善行は福報、悪行は禍報を招く因果律を示し、行動前に自己反省と慎重な判断を促しています。",
+    "reference": "漢。蕭何。沛郡。豊人。微時。嘗為刀筆史。後佐漢高帝定天下。為宰相。以功封酇侯。漢既一統。以三章之約。非可長治天下。乃命蕭何註律。使民知所守法焉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A reminder that the vast number of laws and regulations exist to guide, but the ultimate judgement lies in one's personal conduct.\n- The verse highlights the dual paths of good and evil, emphasizing that each individual chooses their own route.\n- It portrays a clear cause‑and‑effect relationship:善行 brings blessings; 悪行 brings misfortune.\n- The poem encourages self‑reflection and careful deliberation before actions, especially in matters of wealth, marriage, or health.\n- It reflects the traditional belief that destiny is shaped by one's deeds, not merely by external statutes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:01:31",
+    "source_file": "chuck_76.json",
+    "raw_llm_response_preview": "{\n  \"id\": 76,\n  \"title\": \"關聖帝君一百籤第七十六籤\",\n  \"subtitle\": \"蕭何註律辛己\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"三千法律八千文\",\n    \"此事如何說與君\",\n    \"善惡兩途君自作\",\n    \"一生禍福此中分\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是個人善惡與禍福之因果關係。詩中說：「三千法律八千文，這事如何說與君，善惡兩途君自作，一生禍福此中分。」意即所有法律文字、規章僅供參考，最終決定人生命運的是個人行為。善行會招福，惡行會招禍，這是一種因果律。\",\n "
+  }
+}

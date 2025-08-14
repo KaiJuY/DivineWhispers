@@ -1,0 +1,25 @@
+{
+  "id": 24,
+  "title": "關聖帝君一百籤第二十四籤",
+  "subtitle": "張騫誤入斗牛宮丙丁",
+  "fortune": "中平",
+  "poem": [
+    "一春萬事苦憂煎",
+    "夏裏營求始帖然",
+    "更遇秋成冬至後",
+    "恰如騎鶴與腰纏"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是春季的困苦、夏季的逐步安定、秋冬之後的收穫與最終的富足。詩中以四季為時間軸，描寫了事物從起初的艱辛，經過努力與調整，最終達到成功與滿足的過程；最後一句「恰如騎鶴與腰纏」則以騎鹽的形象比喻富貴，象徵終於收穫滿滿、腰間纏繞著財富。",
+    "en": "This poem’s theme is the cycle of hardship, gradual stability, and eventual abundance. It uses the four seasons as a framework: spring represents difficulties and worries; summer signals the beginning of steady progress; autumn and the winter solstice mark the fruition of effort; the final line likens the outcome to riding a crane with a belt of wealth, illustrating the attainment of prosperity.",
+    "jp": "この詩のテーマは、春の苦難、夏の着実な安定、秋冬の収穫と最終的な豊かさを描いていることです。四季を時間軸に使い、始まりの困難から努力と調整を経て、最終的に成功と満足を得る過程を示しています。最後の「騎鶴と腰纏」の比喩は、豊かさを象徴し、腰に富が纏わる様子を表現しています。",
+    "reference": "漢。張騫。城固人。武帝時。奉命使大月氏。開西南夷。嘗乘槎。直上天河。入斗牛宮。見一女子。手弄金梭。傍有一石。問之不答。惟云可問嚴君平便知。君平蜀人。精天文術數。往詢之。云此天孫(仙)織女也。石名支磯石。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The progression of fortunes mirrors the natural cycle of seasons, starting with hardship in spring.\n- Summer marks the beginning of steady improvement, suggesting that effort is beginning to pay off.\n- Autumn and the winter solstice signify the culmination of effort, a harvest of success.\n- The image of riding a crane with a belt of wealth personifies ultimate prosperity, portraying the attainment of material abundance after perseverance.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:33:20",
+    "source_file": "chuck_24.json",
+    "raw_llm_response_preview": "{\"id\":24,\"title\":\"關聖帝君一百籤第二十四籤\",\"subtitle\":\"張騫誤入斗牛宮丙丁\",\"fortune\":\"中平\",\"poem\":[\"一春萬事苦憂煎\",\"夏裏營求始帖然\",\"更遇秋成冬至後\",\"恰如騎鶴與腰纏\"],\"analysis\":{\"zh\":\"這首詩的主題是春季的困苦、夏季的逐步安定、秋冬之後的收穫與最終的富足。詩中以四季為時間軸，描寫了事物從起初的艱辛，經過努力與調整，最終達到成功與滿足的過程；最後一句「恰如騎鶴與腰纏」則以騎鹽的形象比喻富貴，象徵終於收穫滿滿、腰間纏繞著財富。\",\"en\":\"This poem’s theme is the cycle of h"
+  }
+}

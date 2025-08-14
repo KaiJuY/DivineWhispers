@@ -1,0 +1,25 @@
+{
+  "id": 36,
+  "title": "六十甲子籤第三十六籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "己亥 ○●○　○●○",
+  "poem": [
+    "福如東海壽如山",
+    "君爾何須嘆苦難",
+    "命內自然逢大吉",
+    "祈保分明自平安"
+  ],
+  "analysis": {
+    "zh": "詩句將福壽比作東海的寬廣與山峰的高大，表明命運中充滿了厚重的祝福。它提醒你不必為當前的困難懊惱，因為命中已有吉運，誠心祈禱神明保佑即可將禍轉為福，帶來平安與安心。",
+    "en": "The poem likens fortune and longevity to the vastness of the East Sea and the height of a mountain, indicating that auspicious blessings abound in one’s destiny. It urges you not to lament present hardships, for your fate already contains good fortune. By earnestly praying for divine protection, misfortunes can be turned into blessings, leading to peace and safety.",
+    "jp": "詩は、福が東海のように広大で寿が山のように高いと語り、現在の苦難を嘆く必要はないと告げています。運命の中に幸運が宿っており、神に誠実に祈れば、禍を福に変え、平安が訪れると示唆しています。",
+    "reference": "1.薛仁貴救駕2.李世民落海灘凡事　亨通得自安。作事　成者甚好。家事　光輝門庭。家運　吉星拱照。婚姻　美滿大吉求兒　好。六甲　得添弄璋。(生男)求財　黃金萬貫。功名　祝神求佛可進。歲君　平安。治病　少者不畏。老險。出外　不可。(滿載榮歸)經商　萬商雲集。來人　月光即到。行舟　大好居中。移居　兄弟和合者吉。失物　尋在。求雨　及時。官事　了錢過後完局。六畜　興旺。耕作　早晚有收。築室　福雙全。子孫旺墳墓　地勢套當。討海　有大財。作塭　神指示得大財。魚苗　大利。月令　不遂。尋人　得至。遠信　速報佳音。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The comparison of fortune and longevity to the vastness of the East Sea and the height of a mountain signifies abundant blessings and lasting vitality.\n- The poem encourages acceptance of present difficulties without lamentation, as one’s destiny already carries auspiciousness.\n- By sincerely invoking divine protection, misfortunes can be transformed into blessings, leading to peace and safety.\n- Overall, the message is one of confidence, gratitude, and the power of faith to turn adversity into advantage.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:28:38",
+    "source_file": "chuck_36.json",
+    "raw_llm_response_preview": "{\"id\":36,\"title\":\"六十甲子籤第三十六籤\",\"subtitle\":\"屬木利春　宜其東方\",\"fortune\":\"己亥 ○●○　○●○\",\"poem\":[\"福如東海壽如山\",\"君爾何須嘆苦難\",\"命內自然逢大吉\",\"祈保分明自平安\"],\"analysis\":{\"zh\":\"詩句將福壽比作東海的寬廣與山峰的高大，表明命運中充滿了厚重的祝福。它提醒你不必為當前的困難懊惱，因為命中已有吉運，誠心祈禱神明保佑即可將禍轉為福，帶來平安與安心。\",\"en\":\"The poem likens fortune and longevity to the vastness of the East Se"
+  }
+}

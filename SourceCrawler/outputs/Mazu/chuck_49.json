@@ -1,0 +1,25 @@
+{
+  "id": 49,
+  "title": "六十甲子籤第四十九籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "壬子○○○　○●●",
+  "poem": [
+    "言語雖多不可從",
+    "風雲靜處未行龍",
+    "暗中終得明消息",
+    "君爾何須問重重"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是提醒人們：不要輕易相信他人所說的話，等待合適的時機才是行動的最佳時刻。雖然現在仍處於黑暗或不確定之中，但已經得到明確的訊息，這份訊息足以告訴你該如何行事，因此不必再多次詢問神明或他人的指示。",
+    "en": "This poem’s theme is to remind readers not to trust easily what others say, to wait for the right moment to act. Although you may still be in a dark or uncertain situation, you have already received a clear message that tells you what to do, so there is no need to repeatedly ask for divine or external guidance.",
+    "jp": "この詩のテーマは、他人の言葉を軽率に信じず、適切な時期を待つことが行動のベストタイミングであると読者に思い起こさせることです。暗闇や不確かな状態にいるかもしれませんが、すでに明確なメッセージを受け取り、それに従えば何をすべきかがわかるため、神や他人に再度尋ねる必要はありません。",
+    "reference": "1.佛印稍婆答歌詩2.蘇小妹答佛印(禪師)凡事　不和。有鬼作祟。作事　未日辰日成好。家事　門第大益。家運　平常。婚姻　口舌多難成。(成者允吉)求兒　不好。有呆人。六甲　生男。(後女)求財　輕淡有利益。功名　未遂。不可。歲君　浮沉。治病　老不好。少不畏。出外　不可。經商　夥不和者。無利。來人　未日(半月)到。行舟　先凶後吉。移居　不可望。失物　無。求雨　尚未。官事　平後。拖尾。了錢。六畜　不好。耕作　早好。築室　好。墳墓　地氣漸發吉。討海　春夏不佳。冬平。作塭　先無利。後有望。魚苗　有利入手。月令　有口舌。尋人　慢回。遠信　音信慢至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that one should not be easily swayed by others’ words; patience and waiting for the right “wind” or opportunity is key. The dragon symbolizes the person’s potential or decisive action, which is not yet ready to manifest. Darkness represents current uncertainty, but the subtle message received is enough to guide the next steps, negating the need to seek further divine or external counsel. The poem encourages self‑trust and decisive action once the inner signal is clear.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:35:11",
+    "source_file": "chuck_49.json",
+    "raw_llm_response_preview": "{\"id\":49,\"title\":\"六十甲子籤第四十九籤\",\"subtitle\":\"屬木利春　宜其東方\",\"fortune\":\"壬子○○○　○●●\",\"poem\":[\"言語雖多不可從\",\"風雲靜處未行龍\",\"暗中終得明消息\",\"君爾何須問重重\"],\"analysis\":{\"zh\":\"這首詩的主題是提醒人們：不要輕易相信他人所說的話，等待合適的時機才是行動的最佳時刻。雖然現在仍處於黑暗或不確定之中，但已經得到明確的訊息，這份訊息足以告訴你該如何行事，因此不必再多次詢問神明或他人的指示。\",\"en\":\"This poem’s theme is to remind readers not to tr"
+  }
+}

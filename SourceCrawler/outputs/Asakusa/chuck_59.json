@@ -1,0 +1,20 @@
+{
+  "id": 59,
+  "title": "日本淺草觀音寺一百籤第五十九籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "去住心無定,行藏亦未寧,一輪清皎潔,却被黑雲乘",
+  "analysis": {
+    "zh": "這首詩的主題是對心境不定與希望被遮蔽的描寫。作者以「去住心無定」說明內心浮動、缺乏定力；「行藏亦未寧」指出外在行動與隱居皆難以安寧。接著以「一輪清皎潔」形容心中如月般純澈、光明；但「却被黑雲乘」則暗示黑暗或雲障阻擋了光亮，未來不明朗。整體寓意為：若不消除迷惘與雲障，心中明亮仍會被遮蔽，建議儘速尋回安定與清晰。",
+    "en": "This poem's theme is the depiction of an unsettled heart and the obscuring of hope. The lines “去住心無定” describe a mind that drifts and lacks steadiness; “行藏亦未寧” points to the difficulty of finding calm in both action and retreat. The image of a “clear, bright moon” symbolizes a pure, shining inner light, yet the following “yet it is taken by black clouds” suggests that darkness or doubts shroud that light, leaving the future uncertain. In short, the poem urges the reader to dispel confusion and cloudiness to recover inner stability and clarity.",
+    "jp": "この詩のテーマは、揺れ動く心と光が遮られる様子を描いていることです。『去住心無定』は心が漂い、安定を欠く様子を示し、『行藏亦未寧』は行動と隠居の両方で平静を保つことが難しいことを指摘しています。『一輪清皎潔』という月のイメージは、内なる純粋で光り輝く精神を象徴しますが、続く『却被黑雲乘』は、闇や疑念がその光を覆い、未来が不透明であることを示しています。全体として、混乱と雲を払拭し、内なる安定と明晰さを取り戻すよう促しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- An unsettled heart that lacks determination.\n- A sense that both action and retreat fail to bring peace.\n- A symbol of a clear, bright moon representing inner purity and hope.\n- The presence of black clouds that obscure the light, indicating doubt, fear, or misfortune.\n- A warning that unless the obstacles are removed, the hopeful future remains hidden.\n- Implicit suggestion to seek clarity and stability to regain the inner light.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:10:30",
+    "source_file": "chuck_59.json",
+    "raw_llm_response_preview": "{\n  \"id\": 59,\n  \"title\": \"日本淺草觀音寺一百籤第五十九籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"凶\",\n  \"poem\": \"去住心無定,行藏亦未寧,一輪清皎潔,却被黑雲乘\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對心境不定與希望被遮蔽的描寫。作者以「去住心無定」說明內心浮動、缺乏定力；「行藏亦未寧」指出外在行動與隱居皆難以安寧。接著以「一輪清皎潔」形容心中如月般純澈、光明；但「却被黑雲乘」則暗示黑暗或雲障阻擋了光亮，未來不明朗。整體寓意為：若不消除迷惘與雲障，心中明亮仍會被遮蔽，建議儘速尋回安定與清晰。\""
+  }
+}

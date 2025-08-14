@@ -1,0 +1,25 @@
+{
+  "id": 36,
+  "title": "關聖帝君一百籤第三十六籤",
+  "subtitle": "羅隱求官丁己",
+  "fortune": "上吉",
+  "poem": [
+    "功名富貴自能為",
+    "偶著仙鞭莫問伊",
+    "萬里鵬程君有分",
+    "吳山頂上好鑽龜"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：透過自身的修養與行為，功名富貴將自然而然地到來，人生中偶然的機會不必多問，只要誠實待人，未來的遠大抱負也將由你掌握。最後一句以「吳山頂」比喻堅韌不拔、如鑽龜般的長期努力，提醒人們持續耕耘、耐心等待，方能收穫長遠成果。",
+    "en": "This poem's theme is: through one's cultivation and conduct, fame and fortune will come naturally; the chances that arise by chance need not be questioned—simply act with integrity, and your lofty ambitions will be within your grasp. The final line likens the summit of Wu Mountain to a tortoise, symbolizing steadfast perseverance; it urges sustained effort and patient waiting to reap lasting rewards.",
+    "jp": "この詩のテーマは、自己の修養と行いによって名誉と富が自然にやってくるということである。偶然の機会は多くの疑問を抱く必要はなく、誠実に行動すれば遠大な抱負も自分の手に入るというメッセージである。最後の行は「吳山頂」を亀に例え、長期にわたる堅実な努力を示唆し、忍耐と継続的な取り組みが持続的な成果をもたらすことを促している。",
+    "reference": "唐。羅隱。字昭諫。錢塘人。工詩。稱為羅江東。吳越錢鏐辟為徒。事節度判官副使。嘗說。討朱溫縱無功。猶可保杭越。奈何交臂事賊。圖謀顯達為終。古之羞乎。著作甚多。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that:\n- Personal cultivation and integrity naturally attract fame and wealth.\n- Fortune may appear unexpectedly; there is no need to overthink it.\n- You possess the capacity to realize great ambitions (the \"萬里鵬程\").\n- The final line uses Wu Mountain’s peak and the image of a tortoise to emphasize steady, long‑term perseverance.\n- The poem encourages patience, seizing opportunities when they arise, and persistent effort to achieve lasting success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:39:37",
+    "source_file": "chuck_36.json",
+    "raw_llm_response_preview": "{\"id\":36,\"title\":\"關聖帝君一百籤第三十六籤\",\"subtitle\":\"羅隱求官丁己\",\"fortune\":\"上吉\",\"poem\":[\"功名富貴自能為\",\"偶著仙鞭莫問伊\",\"萬里鵬程君有分\",\"吳山頂上好鑽龜\"],\"analysis\":{\"zh\":\"這首詩的主題是：透過自身的修養與行為，功名富貴將自然而然地到來，人生中偶然的機會不必多問，只要誠實待人，未來的遠大抱負也將由你掌握。最後一句以「吳山頂」比喻堅韌不拔、如鑽龜般的長期努力，提醒人們持續耕耘、耐心等待，方能收穫長遠成果。\",\"en\":\"This poem's theme is: through one's cultiv"
+  }
+}

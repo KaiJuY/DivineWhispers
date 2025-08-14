@@ -1,0 +1,20 @@
+{
+  "id": 77,
+  "title": "日本淺草觀音寺一百籤第七十七籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "累滯未能穌,求名莫遠圖,登舟波浪急,咫尺隔天衢",
+  "analysis": {
+    "zh": "這首詩的主題是描述當前情勢充斥著困難與阻礙，導致計畫無法順利推進。詩中提到『累滯未能穌』，象徵萬事被阻塞；『求名莫遠圖』則表明此刻不宜追逐名利；『登舟波浪急』警示冒險會遇到艱難；『咫尺隔天衢』雖近在咫尺，但仍被天際之隔阻礙。整體訊息是：保持冷靜、守住自我，等待更好的機會。",
+    "en": "This poem's theme is a reflection on the present filled with obstacles that hinder plans from moving smoothly. The line \"累滯未能穌\" symbolizes a stagnation that blocks everything, while \"求名莫遠圖\" advises against chasing fame or fortune at this time. \"登舟波浪急\" warns that embarking on a venture will meet harsh waves, and \"咫尺隔天衢\" indicates that even though a goal seems close, it remains separated by a sky‑earth barrier. The overall message encourages self‑respect, patience, and waiting for a better moment.",
+    "jp": "この詩のテーマは、現在の状況が困難と妨げで満ちており、計画がスムーズに進まないということです。\"累滯未能穌\"はすべてが停滞している様子を象徴し、\"求名莫遠図\"は今は名声や富を追わずにいるべきだと示しています。\"登舟波浪急\"は冒険を試みると激しい波に直面することを警告し、\"咫尺隔天衢\"は目標が近いように見えても天と地の間に障害があることを示唆しています。全体としては、自己を大切にし、状況がよくなるまで待つことを勧めています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- **Stagnation and difficulty**: The phrase \"累滯未能穌\" signals that progress is blocked and events unfold slowly.\n- **Caution against ambition**: \"求名莫遠圖\" advises against seeking fame or distant goals at this time.\n- **Risk of undertaking**: \"登舟波浪急\" warns that a new venture will face turbulent conditions.\n- **Near but unattainable goal**: \"咫尺隔天衢\" shows that even a seemingly close objective is separated by a barrier, symbolizing an insurmountable obstacle.\n- **Practical advice**: The overall message is to maintain self‑respect, avoid rash action, and wait for a more favorable moment before proceeding.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:19:03",
+    "source_file": "chuck_77.json",
+    "raw_llm_response_preview": "{\"id\":77,\"title\":\"日本淺草觀音寺一百籤第七十七籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"累滯未能穌,求名莫遠圖,登舟波浪急,咫尺隔天衢\",\"analysis\":{\"zh\":\"這首詩的主題是描述當前情勢充斥著困難與阻礙，導致計畫無法順利推進。詩中提到『累滯未能穌』，象徵萬事被阻塞；『求名莫遠圖』則表明此刻不宜追逐名利；『登舟波浪急』警示冒險會遇到艱難；『咫尺隔天衢』雖近在咫尺，但仍被天際之隔阻礙。整體訊息是：保持冷靜、守住自我，等待更好的機會。\",\"en\":\"This poem's theme is a reflection on the p"
+  }
+}

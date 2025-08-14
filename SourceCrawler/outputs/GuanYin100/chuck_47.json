@@ -1,0 +1,20 @@
+{
+  "id": 47,
+  "title": "觀音一百籤第四十七籤",
+  "subtitle": "亥宮",
+  "fortune": "上籤",
+  "poem": "錦上添花色更鮮、運來祿馬喜雙全、時人莫訝功名晚、一舉登科四海傳。",
+  "analysis": {
+    "zh": "這首詩的主題是錦上添花的吉祥象徵，描寫事業順利、運勢旺盛，並指出即使功名來得較晚，也能一舉登科，名聲傳四海。詩中「錦上添花色更鮮」寓意成就更加鮮豔，「運來祿馬喜雙全」象徵財運與吉祥並存，「時人莫訝功名晚」提醒人們不要為遲來的成功感到驚訝，「一舉登科四海傳」則強調成功後名聲四方傳播。",
+    "en": "This poem's theme is the auspicious symbolism of 'adding flowers to a brocade,' portraying smooth progress, heightened fortune, and the notion that even a late rise to prominence can culminate in a single successful examination and spread one's renown across the world.",
+    "jp": "この詩のテーマは『錦上添花』という吉兆で、事業の順調さや運勢の向上、そして功名が遅くても一挙に登科し、名声が四海に広がるという内容を描いています。",
+    "reference": "家宅　祈保（吉）。自身　安。求財　利。交易　阻。婚姻　合。六甲　生男。行人　遲。田蠶　八分。六畜　平。尋人　至。公訟　宜和。移徙　吉。失物　西北。疾病　作福。山墳　利。1.梁灝登科宋朝。書生梁灝字太素。山東人氏。雍熙年間。十八歲考得進士。繼續投考未遂。至老年(八十)才一舉登科。狀元及第。2.高達夫五十得名高適，字達夫，渤海蓨人。其父在高適幼年己經去世，因而生活貧困，但他仍然孜孜不倦於學。他懷著遠大抱負與為國家建功立業的思想，從家鄉宋中赴長安。以為以自己的才具不難取得一官半職。但可惜未被任用，只怏怏然回到宋中。開元十八年，東北邊境爆發了唐與契丹、奚的戰爭。高適懷著愛國安邊的願望，想從軍邊塞尋，求立功的機會。但他也觀察到軍中的黑暗，而這次戰爭又失利。他悲憤地回到宋中。歸宋中後，他仍然一邊務農耕作，一邊潛心讀書，逐漸有了詩名。天寶八年，高適以五十高齡登有道科試，得到封丘縣尉的官職。但他對官職感到十分委屈，不久即棄官。天寶十二載，高適由節度判官田丘推薦入河西節度使哥舒翰幕府。被表為在驍衛兵曹，充掌書記。安史之亂起，十二月陷洛陽。高適由河西回到長安，佐哥舒翰守潼關，任左拾遺轉監察御史。哥舒翰敗降，高適赴陝西鳳翔向皇帝直陳兵敗原因，被擢侍御史，諫議大夫。永王璘起兵，肅宗任他為揚州大都督府長史，淮南節度使兼採訪使。永王璘亂平，高適有功。廣德元年，擢劍南西川節度使，又攝東川節度使，在這些官任上，高適顯示了他的政治、軍事才能和對人民的關懷體恤。廣德二年，吐蕃兵陷松、維、保三州，高適被召還京，任刑部侍郎，散騎常侍，加銀青光祿大夫，進封渤海縣侯。次年，逝世。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The poem celebrates the concept of 'adding flowers to a brocade,' a symbol of enhancement and beauty.\n- It describes fortune arriving in abundance, bringing both wealth and joy (the horse of good luck and the auspicious seal).\n- The narrator advises not to be surprised by a late rise to fame; success may come later but is still profound.\n- A single successful examination can lead to a reputation that spreads across the world, illustrating that hard work and perseverance ultimately pay off.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:18:27",
+    "source_file": "chuck_47.json",
+    "raw_llm_response_preview": "{\"id\":47,\"title\":\"觀音一百籤第四十七籤\",\"subtitle\":\"亥宮\",\"fortune\":\"上籤\",\"poem\":\"錦上添花色更鮮、運來祿馬喜雙全、時人莫訝功名晚、一舉登科四海傳。\",\"analysis\":{\"zh\":\"這首詩的主題是錦上添花的吉祥象徵，描寫事業順利、運勢旺盛，並指出即使功名來得較晚，也能一舉登科，名聲傳四海。詩中「錦上添花色更鮮」寓意成就更加鮮豔，「運來祿馬喜雙全」象徵財運與吉祥並存，「時人莫訝功名晚」提醒人們不要為遲來的成功感到驚訝，「一舉登科四海傳」則強調成功後名聲四方傳播。\",\"en\":\"This poem's theme is the auspi"
+  }
+}

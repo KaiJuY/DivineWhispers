@@ -1,0 +1,20 @@
+{
+  "id": 84,
+  "title": "觀音一百籤第八十四籤",
+  "subtitle": "未宮",
+  "fortune": "下籤",
+  "poem": "因名喪德不和同、切忌忙中變作凶、醉後不知何處去、青松影裡睡矇矓。",
+  "analysis": {
+    "zh": "這首詩的主題是關於『寒魚離水』的象徵，提醒凡事不可輕易改動，應踏實穩重。詩中提及敗德招凶，顯示不利之風；若問營謀，則建議不應起此籤，因六甲煞旺，萬事不利，宜以禳災保安之策化解。",
+    "en": "This poem deals with the symbol of the \"cold fish away from water,\" warning against hasty changes and urging a steady, grounded approach. It points out that loss of virtue brings misfortune; when considering plans, it advises against drawing this fate because the six‑Jia doom is strong, leading to general adversity. To mitigate the negativity, one should adopt the protective measure of \"clearing disaster and maintaining safety.\"",
+    "jp": "この詩は『寒魚離水』の象徴を扱っており、無理に動かすべきではないこと、堅実で地に足のついた姿勢を取るべきだと警告しています。詩の中で、徳を失うと災いが訪れると示され、計画を立てる際にはこの籤を引かない方が良いと助言しています。六甲煞旺の影響で多くの事柄が不利になるため、災を祓い安全を守る策を取るべきです。",
+    "reference": "1.莊子試妻周朝。姓莊名周。字子休。宋國蒙邑人。仕周為漆園吏。莊子假死試妻。其妻田氏守孝。七天後有一楚國王孫公子到訪。自稱莊子之徒。願執百日之喪。田氏愛公子俊美。不足廿日成婚。公子叫心疼。曰腦髓(人心)可治。田氏往劈莊子棺以取腦髓(人心)。莊子破棺而出。後田氏羞愧自殺。2.李廣灞陵夜獵李廣與匈奴作戰失敗，被漢武帝貶為平民，過著隱居的生活，一天遇朋友來訪興起，乘著黑夜出外至灞陵打獵，看見一隻老虎便射箭，結果發現是石頭，而箭射入石中，只有箭羽（箭尾）流在石外，李廣知道是石頭後，再怎麼射也射不進去。後來被灞陵的官員制止李廣和朋友的打獵，出言羞辱了昔日的李廣將軍，結果李廣記恨在心，後來李廣重新被漢武帝起用，就將灞陵的官員叫來藉故殺了。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The symbol of \"cold fish away from water\" represents immobility and the danger of abrupt change.\n- It warns that loss of virtue brings misfortune; therefore steadiness and groundedness are advised.\n- The text suggests not to activate this fate during planning; the \"six Jia doom\" makes all affairs unfavorable.\n- A protective measure is mentioned: \"clearing disaster and maintaining safety\" (禳災保安) to mitigate the negativity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:40:45",
+    "source_file": "chuck_84.json",
+    "raw_llm_response_preview": "{\n  \"id\": 84,\n  \"title\": \"觀音一百籤第八十四籤\",\n  \"subtitle\": \"未宮\",\n  \"fortune\": \"下籤\",\n  \"poem\": \"因名喪德不和同、切忌忙中變作凶、醉後不知何處去、青松影裡睡矇矓。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於『寒魚離水』的象徵，提醒凡事不可輕易改動，應踏實穩重。詩中提及敗德招凶，顯示不利之風；若問營謀，則建議不應起此籤，因六甲煞旺，萬事不利，宜以禳災保安之策化解。\",\n    \"en\": \"This poem deals with the symbol of the \\\"cold f"
+  }
+}

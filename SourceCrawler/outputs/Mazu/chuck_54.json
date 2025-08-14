@@ -1,0 +1,25 @@
+{
+  "id": 54,
+  "title": "六十甲子籤第五十四籤",
+  "subtitle": "屬土利年　四方皆宜",
+  "fortune": "壬戌○○●　○○●",
+  "poem": [
+    "孤燈寂寂夜沉沉",
+    "萬事清吉萬事成",
+    "若逢陰中有善果",
+    "燒得好香達神明"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是孤獨的燈火，象徵在寧靜黑夜中仍有微光閃爍。詩中提到，即使身處孤單的黑暗，祈願仍會被聽見，且不會有不幸降臨。成就與順遂依靠不懈的努力與行善，善因累積後能通往神明，從而得到庇佑。",
+    "en": "This poem's theme is the solitary lamp in a quiet night, symbolizing a single light shining in darkness. The verses state that even when alone, one's prayers will be heard and misfortune will not occur. Success and prosperity arise from persistent effort and good deeds, accumulating virtue that reaches the divine, offering protection.",
+    "jp": "この詩のテーマは、静かな夜に灯る一灯の孤独であり、暗闇の中でも微かな光が存在することを象徴しています。詩は、孤独にあっても祈りが届き、災いが起こらないことを示唆しています。成功は、継続的な努力と善行により善因が蓄えられ、神に届くことで守られると述べています。",
+    "reference": "1.念月英相國寺2.念月英求佛嫁良緣故事來源：郭華買胭脂（即南管樂曲之《念月英》）　http://taipedia.cca.gov.tw/Entry/EntryDetail.aspx?EntryId=23662&o=0&u=-1作者不詳，本事源於《幽冥錄‧買粉兒》（見《太平廣記》卷兩百七十四）及《綠窗新話》。與此同題材有金院本《憨郭郎》、元曾瑞卿雜劇《王月英元夜留鞋記》、明童養中《胭脂記》傳奇等。本事為長安人郭華汴京春闈會試後，與王月英相遇，郭見其姿色豔麗，乃留在京中數月不歸。王自與郭邂逅後，也鍾情於他。郭華藉買胭脂之名到店中與月英眼波傳情，王叫丫環前去送信，約郭在正月十五觀燈之夜相會於相國寺。元宵夜，王前往赴約，見郭於該處橫臥，酒氣沖天，爛醉不醒，便將香羅帕與繡鞋留其身旁離去。郭醒後，見帕與鞋悔恨羞慚，竟將手帕吞入咽喉而噎死。相國寺僧人見郭屍，大駭，到開封府出首。包公斷此案時，以繡鞋為證，傳王月英到郭華棺槨處詢問，王至，見郭華啣手帕於口中，乃以手拽出羅帕，郭復甦醒，包公遂判兩人結為夫妻。以上劇本中關於郭華死因的重要情節，都是郭華吞半幅羅帕而死，惟梨園戲與莆仙戲是吞弓鞋而死的。凡事　清吉。不用財。作事　難成。(必成)家事　望神保佑。家運　門庭興旺。婚姻　大吉。求兒　成好。六甲　弄璋之慶。(生男)求財　先無後有。功名　善心有。歲君　淡淡。治病　不畏。拖尾。祈神。出外　須靠自己。經商　勿與人合夥。來人　月尾到。行舟　小利。移居　好。(不可)失物　緊尋在。求雨　必來。官事　和好。(拖尾。得勝)六畜　小利。耕作　允好。築室　大吉。墳墓　地運(氣)亨通。討海　小利。作塭　小得微利。魚苗　自己有小利。月令　平平。求神庇佑。尋人　祈求。自回。遠信　音信急至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A lone lamp shining in a quiet night symbolizes an individual in solitude.\n- The faint glow represents hope and guidance amid darkness.\n- The verses assure that prayers will be heard and no misfortune will arise.\n- Success depends on persistent effort and virtuous deeds, which accumulate good karma.\n- Accumulated virtue reaches the divine, offering protection and blessing.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:38:18",
+    "source_file": "chuck_54.json",
+    "raw_llm_response_preview": "{\"id\":54,\"title\":\"六十甲子籤第五十四籤\",\"subtitle\":\"屬土利年　四方皆宜\",\"fortune\":\"壬戌○○●　○○●\",\"poem\":[\"孤燈寂寂夜沉沉\",\"萬事清吉萬事成\",\"若逢陰中有善果\",\"燒得好香達神明\"],\"analysis\":{\"zh\":\"這首詩的主題是孤獨的燈火，象徵在寧靜黑夜中仍有微光閃爍。詩中提到，即使身處孤單的黑暗，祈願仍會被聽見，且不會有不幸降臨。成就與順遂依靠不懈的努力與行善，善因累積後能通往神明，從而得到庇佑。\",\"en\":\"This poem's theme is the solitary lamp in a quiet night,"
+  }
+}

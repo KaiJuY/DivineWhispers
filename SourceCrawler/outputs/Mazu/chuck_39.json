@@ -1,0 +1,25 @@
+{
+  "id": 39,
+  "title": "六十甲子籤第三十九籤",
+  "subtitle": "屬金利秋　宜其西方",
+  "fortune": "庚辰○○●　●● ●",
+  "poem": [
+    "意中若問神仙路",
+    "勸爾且退望高樓",
+    "寬心且守寬心坐",
+    "必然遇得貴人扶"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於尋求指引時，應以平和的心態等待，並以寬闊的視野觀察周遭，從而自然而然地得到貴人的扶持。",
+    "en": "This poem centers on the idea that when one seeks guidance, one should adopt a calm, detached stance, look beyond immediate desires, and patiently await help, trusting that benevolent forces will eventually assist.",
+    "jp": "この詩は、道を尋ねるときに、静かな心で一歩引いて高いものを眺め、広い視野を保ちつつ待つことで、やがて貴人の支援を受けるという教えを表しています。",
+    "reference": "1.楊文廣被困柳州城宋朝元帥狄青征南蠻。困于蒙雲關。楊文廣往救。南蠻女將段紅玉施邪術圍困楊文廣。柳州城是否指蒙雲關不明。2.孔夫子小兒答孔子于魯西設教。御車出遊。遇一童子阻路。小兒與孔子互相問答。孔子窮詞。曰後生可畏。登車而去。三字經有。昔仲尼。師項橐(項托)。即此兒也。凡事　漸應。作事　有貴人。好到尾家事　永獲吉慶。家運　漸漸平安。婚姻　成好。(二次者成好)求兒　不可。有事。六甲　男女貴氣。(子媳晚。得弄璋)求財　漸有。功名　望後科。歲君　淡安。治病　少貴人。老拖運出外　遇貴人經商　先平後利。來人　難在。行舟　先不利。後小利移居　平平失物　尋在。求雨　未有。官事　後有貴人。六畜　不可。耕作　照舊種。可收成。築室　後好墳墓　地勢允好討海　先不利後小利。作塭　先失利後有利。魚苗　失在前利在後。月令　不遂了財。尋人　難在。遠信　緩緩就至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the seeker should step back, look from a higher perspective, and remain calm, thereby naturally attracting the support of benevolent people. • Symbolism: \n- \"高樓\" (high tower) represents an elevated, clear view of the situation. \n- \"寬心\" (wide heart) conveys patience and openness. \n- \"貴人扶\" (benevolent support) signifies the eventual assistance of helpful figures. \n• Philosophy: It advocates letting go of immediate ambitions, adopting detachment, and trusting the process, rather than forcing outcomes. \n• Scenario: A person seeking guidance is encouraged to pause, keep a wide heart, and wait patiently, confident that timely help will arrive.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:29:56",
+    "source_file": "chuck_39.json",
+    "raw_llm_response_preview": "{\"id\":39,\"title\":\"六十甲子籤第三十九籤\",\"subtitle\":\"屬金利秋　宜其西方\",\"fortune\":\"庚辰○○●　●● ●\",\"poem\":[\"意中若問神仙路\",\"勸爾且退望高樓\",\"寬心且守寬心坐\",\"必然遇得貴人扶\"],\"analysis\":{\"zh\":\"這首詩的主題是關於尋求指引時，應以平和的心態等待，並以寬闊的視野觀察周遭，從而自然而然地得到貴人的扶持。\",\"en\":\"This poem centers on the idea that when one seeks guidance, one should adopt a calm, detached sta"
+  }
+}

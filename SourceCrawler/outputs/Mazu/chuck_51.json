@@ -1,0 +1,25 @@
+{
+  "id": 51,
+  "title": "六十甲子籤第五十一籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "壬辰●●○　●●○",
+  "poem": [
+    "東西南北不堪行",
+    "前途此事正可當",
+    "勸君把定莫煩惱",
+    "家門自有保安康"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是對於人生道路的困頓與內心安寧的呼喚。詩中說『東西南北不堪行』象徵目前無論往哪個方向都難以前進；『前途此事正可當』則提醒目前正處於抉擇或不順境境；『勸君把定莫煩惱』以勸慰方式告誡要保持鎮定、放下煩惱；最後『家門自有保安康』則帶來希望，說家中將得到安寧與保護。",
+    "en": "This poem's theme revolves around a sense of being stuck in life’s directions, the need for inner calm, and the reassurance that family safety will prevail. The opening line, 'East, west, south and north cannot be travelled,' signals that no direction seems viable at present. 'The future of this matter is indeed what it should be' acknowledges a difficult crossroads. 'I advise you to calm down and avoid worry' urges a steady mindset, and the closing line offers hope that one's home will remain safe and healthy.",
+    "jp": "この詩のテーマは、人生の行き先が見えず、心を落ち着けて家族の安寧を信じるということです。『東西南北不堪行』は、現在どの方向へ行っても難しいことを象徴し、『前途此事正可當』は今、選択の時期や困難な状況にあることを示しています。『勸君把定莫煩惱』は、落ち着き、悩みを手放すように勧め、最後の『家門自有保安康』で、家庭は安寧と保護を受けると安心させます。",
+    "reference": "1.趙玄郎河東大戰龍虎關2.宋朝趙匡胤困河東凡事　自守待運。作事　勤成。家事　門庭大益。家運　門庭永昌。婚姻　成好。求兒　平平。六甲　先男後女。貴氣。求財　冬天大吉。(依舊好)功名　後科。歲君　吉。治病　命拖尾。老少安。出外　不可。經商　小利。(在家好)來人　月光到。行舟　了本。移居　不可。失物　尋有。求雨　不日到。官事　萬和。六畜　有利。耕作　早平晚好。築室　平平。墳墓　地勢適宜。討海　無大財。作塭　自守可得。魚苗　小利益。月令　不遂。尋人　時到則回。遠信　音信緩至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the seeker feels trapped with no clear direction, is at a crossroads, and is encouraged to calm their mind and let go of worries; the verses suggest that although outward movement may be limited, inner peace and protection for the home will remain. The poem uses directional imagery to symbolize uncertainty, the middle line underscores the difficulty of current circumstances, the urging line stresses emotional restraint, and the final line offers reassurance that the household will be safe.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:37:00",
+    "source_file": "chuck_51.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 51,\n  \"title\": \"六十甲子籤第五十一籤\",\n  \"subtitle\": \"屬水利冬　宜其北方\",\n  \"fortune\": \"壬辰●●○　●●○\",\n  \"poem\": [\n    \"東西南北不堪行\",\n    \"前途此事正可當\",\n    \"勸君把定莫煩惱\",\n    \"家門自有保安康\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對於人生道路的困頓與內心安寧的呼喚。詩中說『東西南北不堪行』象徵目前無論往哪個方向都難以前進；『前途此事正可當』則提醒目前正處於抉擇或不順境境；『勸君把定莫煩惱』以勸慰方式告誡要保"
+  }
+}

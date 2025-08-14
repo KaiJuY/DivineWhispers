@@ -1,0 +1,20 @@
+{
+  "id": 100,
+  "title": "日本淺草觀音寺一百籤第一百籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "祿走白雲間,攜琴走遠山,不遇神仙面,空惹意闌珊",
+  "analysis": {
+    "zh": "這首詩的主題是描寫人追求理想、尋找指引，卻在雲間走遠山、無法遇見神仙，導致心中空虛與遺憾。",
+    "en": "This poem's theme is about the journey of seeking ideals and guidance, walking through clouds and distant mountains, yet never meeting immortals, resulting in feelings of emptiness and regret.",
+    "jp": "この詩のテーマは、理想を追い求め、導きを探す旅であり、白雲の間を歩き、遠い山へと向かうが、仙人に会えず、空虚さと後悔の感情に満ちていることです。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- It depicts a personal quest that moves between the realms of earthly wealth and the transcendent, yet remains unfulfilled without divine guidance.\n- The white clouds symbolize transient fortune, while the distant mountain represents the lofty, often unattainable, ideals one strives toward.\n- The absence of a divine encounter underscores a sense of isolation and a longing for spiritual insight.\n- The final line evokes a melancholy emptiness, suggesting that without a guiding presence, aspirations can become hollow and sorrowful.\n- Overall, the poem invites reflection on the importance of inner direction and the risk of chasing material or lofty goals without a deeper purpose.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:49:58",
+    "source_file": "chuck_100.json",
+    "raw_llm_response_preview": "{\"id\": 100, \"title\": \"日本淺草觀音寺一百籤第一百籤\", \"subtitle\": \"\", \"fortune\": \"凶\", \"poem\": \"祿走白雲間,攜琴走遠山,不遇神仙面,空惹意闌珊\", \"analysis\": {\"zh\": \"這首詩的主題是描寫人追求理想、尋找指引，卻在雲間走遠山、無法遇見神仙，導致心中空虛與遺憾。\", \"en\": \"This poem's theme is about the journey of seeking ideals and guidance, walking through clouds and distant mountains, ye"
+  }
+}

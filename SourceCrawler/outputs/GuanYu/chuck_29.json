@@ -1,0 +1,25 @@
+{
+  "id": 29,
+  "title": "關聖帝君一百籤第二十九籤",
+  "subtitle": "司馬溫公嗟困丙壬",
+  "fortune": "上上",
+  "poem": [
+    "祖宗積德幾多年",
+    "源遠流長慶自然",
+    "若更操修無倦已",
+    "天須還汝舊青氈"
+  ],
+  "analysis": {
+    "zh": "祖宗多年積累善德，子孫不斷延續，門戶因而繁榮昌盛，正如遠處的水源不斷流動。若自己持續修行，天將安排，使你再度保持光彩。此籤象徵「積善之家必有餘慶」，對於考生、官員或普通人皆代表大吉：考試必勝、升官、富足、疾病痊癒、婚姻順遂等皆可期待。",
+    "en": "The ancestors have long accumulated virtue, and the lineage continues prosperously, just as a distant source of water keeps flowing. If you continue to practice diligently, the heavens will arrange that you remain prosperous. This lot signifies that a house that cultivates virtue will inevitably enjoy great fortune. It indicates good fortune in examinations, promotions, wealth, recovery from illness, marriage, and so on, for scholars, officials, or ordinary people alike.",
+    "jp": "祖先が長年善を積み、子孫が継続し門戸が繁栄する様子を水の流れにたとえています。自らが継続して修行を積めば、天はそれを配慮し、あなたを華やかに保ってくださると示唆しています。この籤は、善を積む家は必ず余慶を得るという教えを示し、学問、昇進、財産、病の癒し、結婚など、学者・官僚・一般人を問わず吉とされる運勢を表しています。",
+    "reference": "宋。司馬光。夏縣人也。次子寶元初進士。累官端明殿學士。嗟歎民困。上疏極言新法不便。哲宗初立。召拜左僕射。罷青苗法。人謂元祐相(祖)業。有旋乾轉坤之功。卒贈太師。封溫公。諡文正。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that ancestral virtue, accumulated over many years, creates a continuous flow of blessings akin to a distant spring. The poem encourages ongoing personal cultivation, promising that such effort will restore the individual's original bright and lofty nature. Symbolically, the \"source of water\" represents ancestral virtue, while the \"old green cloth\" evokes the preservation of the family's original status. Philosophically, it conveys that a lineage devoted to virtue inevitably enjoys prosperity, implying that personal effort combined with ancestral heritage shapes one's destiny.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:35:35",
+    "source_file": "chuck_29.json",
+    "raw_llm_response_preview": "{\"id\":29,\"title\":\"關聖帝君一百籤第二十九籤\",\"subtitle\":\"司馬溫公嗟困丙壬\",\"fortune\":\"上上\",\"poem\":[\"祖宗積德幾多年\",\"源遠流長慶自然\",\"若更操修無倦已\",\"天須還汝舊青氈\"],\"analysis\":{\"zh\":\"祖宗多年積累善德，子孫不斷延續，門戶因而繁榮昌盛，正如遠處的水源不斷流動。若自己持續修行，天將安排，使你再度保持光彩。此籤象徵「積善之家必有餘慶」，對於考生、官員或普通人皆代表大吉：考試必勝、升官、富足、疾病痊癒、婚姻順遂等皆可期待。\",\"en\":\"The ancestors have long accumulated vir"
+  }
+}

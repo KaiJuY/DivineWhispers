@@ -1,0 +1,20 @@
+{
+  "id": 28,
+  "title": "觀音一百籤第二十八籤",
+  "subtitle": "午宮",
+  "fortune": "中籤",
+  "poem": "東方月上正蟬娟、頃刻雲遮月半邊、莫道圓時還又缺、須教缺處復重圓。",
+  "analysis": {
+    "zh": "此卦月被雲遮之象。凡事昏迷未定也。浮雲遮月。不須疑惑。等待雲收。便見明白。",
+    "en": "This riddle depicts the moon being obscured by clouds. All matters are clouded and undecided. The floating clouds block the moon. There is no need to doubt. Wait until the clouds part and then clarity will appear.",
+    "jp": "この詩は月が雲に覆われる姿を描いています。すべての事柄が曇って決定できない状態です。浮く雲が月を遮ります。疑う必要はありません。雲が去るのを待てば、明らかになります。",
+    "reference": "家宅　不安。自身　祈保。求財　阻。交易　吉。婚姻　不合。六甲　有驚。行人　滯。田蠶　不利。六畜　不利。尋人　難。公訟　虧。移徙　守舊。失物　西方。疾病　難痊。山墳　改。1.包公尋李后■朝野史。宋李后(妃)為奸佞郭槐所害。所懷太子生後被換貍貓。包公夜審郭槐。尋回李后。真相大白。■李后乃宋真宗妃。給劉妃陷害。把貍貓剝皮去尾。調換太子。李后被打入天牢十年。哭泣至失明。出獄後乞食。包公審此案。真相大白。2.孟嘗君雞鳴度關自古說孟嘗君養食客三千，雞鳴狗盜的多收拾在門下。后來被秦王拘留，無計得脫。秦王有個愛姬傳語道：“聞得孟嘗君有領狐白裘，价值千金。若將來送了我，我替他討個人情，放他歸去。”孟嘗君當時只有一領狐白裘，已送上秦王收藏內庫，那得再有？其時狗盜的便獻計道：“臣善狗偷，往內庫去偷將出來便是。”你道何為狗偷？乃是此人善做狗嗥。就假做了狗，爬牆越壁，快捷如飛，果然把狐白裘偷了出來，送与秦宮愛姬，才得善言放脫。連夜行到函谷關。孟嘗君恐怕秦王有悔，后面追來，急要出關。當得關上直等鳴鳴才開。孟嘗君著了急，那時食客道：“臣善雞鳴，此時正用得著。”就曳起聲音，學作雞啼起來，果然与真無二。啼得兩三聲，四下群雞皆啼，關吏听得，把關開了，孟嘗君才得脫去。孟嘗君平時養了許多客，今脫秦難，卻得此兩小人之力，可見天下寸長尺技，俱有用處。會抓老鼠的就是好貓，對於務實的人來說，人只有特點，沒有缺點。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that obstacles and uncertainties are temporary, and clarity will return after they pass. • The rising moon in the east symbolizes a new beginning or hope. • The sudden cloud covering the moon represents unexpected difficulties or doubts. • The line “莫道圓時還又缺” warns against prematurely judging a situation as lost; instead, it reminds that what is temporarily obscured may soon become clear again. • The concluding advice “須教缺處復重圓” encourages patience and the understanding that the missing part will be restored, reflecting a philosophical outlook of resilience and faith in time.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:55:40",
+    "source_file": "chuck_28.json",
+    "raw_llm_response_preview": "{\"id\":28,\"title\":\"觀音一百籤第二十八籤\",\"subtitle\":\"午宮\",\"fortune\":\"中籤\",\"poem\":\"東方月上正蟬娟、頃刻雲遮月半邊、莫道圓時還又缺、須教缺處復重圓。\",\"analysis\":{\"zh\":\"此卦月被雲遮之象。凡事昏迷未定也。浮雲遮月。不須疑惑。等待雲收。便見明白。\",\"en\":\"This riddle depicts the moon being obscured by clouds. All matters are clouded and undecided. The floating clouds block the moon. Ther"
+  }
+}

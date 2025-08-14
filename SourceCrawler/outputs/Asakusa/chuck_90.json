@@ -1,0 +1,20 @@
+{
+  "id": 90,
+  "title": "日本淺草觀音寺一百籤第九十籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "一信向天飛,秦川舟自歸,前途成好事,應得貴人推",
+  "analysis": {
+    "zh": "這首詩的主題是對未來的樂觀預期與期待有貴人相助，強調真誠的信念會被天命賞識，並以水舟自歸象徵順利回歸與財運的循環。詩中四句分別從「一信向天飛」表達信念的高飛，「秦川舟自歸」暗示水路帶來的順利與收穫，「前途成好事」預示未來將迎來順利與好運，以及「應得貴人推」說明因真誠與努力將得到貴人扶持。整體風格樂觀、帶有成就與人脈支持的正面期待。",
+    "en": "This poem's theme centers on an optimistic outlook for the future and the anticipation of support from benevolent figures. It emphasizes that sincere faith will be rewarded by divine providence, with the image of a boat returning along the Qin River symbolizing a smooth journey home or the return of fortunes, hinting at prosperity and stability. The lines \"一信向天飛\" convey the elevation of honest intentions, \"秦川舟自歸\" suggests a successful voyage and gain, \"前途成好事\" forecasts a favorable trajectory, and \"應得貴人推\" highlights that such success will be accompanied by the assistance of influential benefactors. Overall, the poem presents a hopeful perspective blending spiritual aspiration with practical expectations of aid and prosperity.",
+    "jp": "この詩のテーマは、将来に対する楽観的な期待と恩師の支援を望むことである。真摯な信念が天命によって報われると強調し、秦川の舟が自ら帰るというイメージは、順調に帰還することや財運の循環を象徴している。\"一信向天飛\"は誠実な意志の高揚を表し、\"秦川舟自歸\"は水路を通じた成功と得物を示唆し、\"前途成好事\"は将来が好転する予感を、\"応得貴人推\"は真摯な努力が貴人の助力を得られることを強調している。全体として、精神的な願望と実際の援助・繁栄の期待が調和した楽観的な視点を示している。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A single act of sincere faith is elevated to the heavens, symbolizing that honest intentions will be rewarded.\n- The image of a boat returning along the Qin River represents a smooth journey back home or the return of fortunes, hinting at prosperity and stability.\n- The line \"前途成好事\" (the future will become good) forecasts a positive trajectory, suggesting that current efforts will soon yield favorable results.\n- \"應得貴人推\" emphasizes that such success will be accompanied by the support of influential benefactors, highlighting the importance of networking and goodwill.\nOverall, the poem conveys a hopeful outlook on the future, blending spiritual aspiration with practical expectations of assistance and prosperity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:25:17",
+    "source_file": "chuck_90.json",
+    "raw_llm_response_preview": "{\"id\": 90, \"title\": \"日本淺草觀音寺一百籤第九十籤\", \"subtitle\": \"\", \"fortune\": \"大吉\", \"poem\": \"一信向天飛,秦川舟自歸,前途成好事,應得貴人推\", \"analysis\": {\"zh\": \"這首詩的主題是對未來的樂觀預期與期待有貴人相助，強調真誠的信念會被天命賞識，並以水舟自歸象徵順利回歸與財運的循環。詩中四句分別從「一信向天飛」表達信念的高飛，「秦川舟自歸」暗示水路帶來的順利與收穫，「前途成好事」預示未來將迎來順利與好運，以及「應得貴人推」說明因真誠與努力將得到貴人扶持。整體風格樂觀、帶有成就與人脈支持的正面期待。\", \"en\":"
+  }
+}

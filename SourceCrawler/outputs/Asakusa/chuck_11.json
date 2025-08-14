@@ -1,0 +1,20 @@
+{
+  "id": 11,
+  "title": "日本淺草觀音寺一百籤第十一籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "有祿興家業,文華達帝都,雲中乘好箭,兼得貴人扶",
+  "analysis": {
+    "zh": "這首詩的主題是祝福與成就。詩中說「有祿興家業」寓意財運順利、家業興旺；「文華達帝都」象徵文才受到國內外的肯定，名聲遠播；「雲中乘好箭」比喻在天運順暢之際，任何努力都能順利達成；「兼得貴人扶」則表示得到了貴人相助，順遂無礙。整首詩充滿正面能量，預示一段順利且充實的時光。",
+    "en": "This poem's theme is prosperity and favorable influence. The line \"有祿興家業\" indicates a smooth financial flow and the flourishing of family business. \"文華達帝都\" symbolizes literary talent reaching the capital and gaining recognition beyond borders. \"雲中乘好箭\" is a metaphor for achieving goals effortlessly when destiny is aligned. \"兼得貴人扶\" signifies receiving the support of influential benefactors, leading to smooth progress. Overall, the poem conveys positive energy and promises a successful, fulfilling period.",
+    "jp": "この詩のテーマは繁栄と好運です。\"有祿興家業\"は財運が順調で家業が発展することを示し、\"文華達帝都\"は文才が首都に達し、国内外で高い評価を得ることを象徴します。\"雲中乘好箭\"は運が良いときに努力が順調に実を結ぶ比喩で、\"兼得貴人扶\"は貴人の助けを得て順調に進むことを意味します。全体として、ポジティブなエネルギーで成功と充実を約束する内容です。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A blessing of prosperity for the family business, suggesting financial growth and stability.\n- Recognition of literary or intellectual achievements, implying that talent will be acknowledged by influential circles.\n- The image of riding a good arrow in the clouds denotes swift, smooth progress when circumstances align.\n- Receiving the support of noble or influential figures, which will remove obstacles and facilitate success.\nThese elements together paint a picture of a period marked by positive fortune, influential backing, and effortless achievement.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:50:17",
+    "source_file": "chuck_11.json",
+    "raw_llm_response_preview": "{\"id\":11,\"title\":\"日本淺草觀音寺一百籤第十一籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"有祿興家業,文華達帝都,雲中乘好箭,兼得貴人扶\",\"analysis\":{\"zh\":\"這首詩的主題是祝福與成就。詩中說「有祿興家業」寓意財運順利、家業興旺；「文華達帝都」象徵文才受到國內外的肯定，名聲遠播；「雲中乘好箭」比喻在天運順暢之際，任何努力都能順利達成；「兼得貴人扶」則表示得到了貴人相助，順遂無礙。整首詩充滿正面能量，預示一段順利且充實的時光。\",\"en\":\"This poem's theme is prosperity and favorabl"
+  }
+}

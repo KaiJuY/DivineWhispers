@@ -1,0 +1,20 @@
+{
+  "id": 96,
+  "title": "日本淺草觀音寺一百籤第九十六籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "雞逐鳳同飛,高林整羽儀,棹舟須濟岸,寶貨滿船歸",
+  "analysis": {
+    "zh": "這首詩的主題是描述雞追隨鳳凰並肩飛行、在高林中整理羽毛、划船渡岸，以及滿載寶貨歸來的景象。它象徵著以追求更高理想為動力，保持自我整潔與環境的和諧，採取果斷行動以渡過難關，最終收穫豐厚的回報。",
+    "en": "This poem depicts a rooster chasing a phoenix and flying together, a tall forest arranging its feathers, a boat rowing toward the shore, and a vessel returning with a full cargo of treasure. It conveys the idea of pursuing loftier ideals while maintaining order and harmony with one’s surroundings, taking decisive action to cross obstacles, and ultimately reaping abundant rewards.",
+    "jp": "この詩は、鶏が鳳凰を追いかけて共に飛び、高い森で羽を整え、船を漕いで岸へ渡り、宝物で満ちた船を戻す様子を描いています。高い理想を追求しつつ、自らを整え、環境と調和を保ち、果断に行動して障害を乗り越え、最終的に豊かな報酬を得ることを象徴しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The rooster (ordinary bird) following the phoenix (noble ideal) and flying together symbolizes aspiring toward higher goals while maintaining companionship.\n- The tall forest arranging its feathers represents staying organized and disciplined amidst a grand environment.\n- Rowing a boat toward the shore indicates taking decisive action to reach safety and stability.\n- Returning with a ship full of treasure signals the fulfillment of ambitions and the attainment of material and spiritual rewards.\n- Overall, the poem encourages diligent effort, harmony with the environment, and perseverance to reap bountiful outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:27:20",
+    "source_file": "chuck_96.json",
+    "raw_llm_response_preview": "{\"id\":96,\"title\":\"日本淺草觀音寺一百籤第九十六籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"雞逐鳳同飛,高林整羽儀,棹舟須濟岸,寶貨滿船歸\",\"analysis\":{\"zh\":\"這首詩的主題是描述雞追隨鳳凰並肩飛行、在高林中整理羽毛、划船渡岸，以及滿載寶貨歸來的景象。它象徵著以追求更高理想為動力，保持自我整潔與環境的和諧，採取果斷行動以渡過難關，最終收穫豐厚的回報。\",\"en\":\"This poem depicts a rooster chasing a phoenix and flying together, a tall forest a"
+  }
+}

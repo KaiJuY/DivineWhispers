@@ -1,0 +1,20 @@
+{
+  "id": 52,
+  "title": "日本淺草觀音寺一百籤第五十二籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "有僭須惹訟,兼有事交加,門裡防人危,災臨莫嘆嗟",
+  "analysis": {
+    "zh": "這首詩的主題是關於身體內外的衝突與危險。詩中提到「有僭須惹訟」暗示自己容易因不當行為或失誤被人控訴，進而引發訴訟；「兼有事交加」則表示在訴訟之外還會遇到其他難以解決的紛爭。再說「門裡防人危」，警示門前家庭或親友間可能存在危險或背後的敵意，應保持警覺；最後「災臨莫嘆嗟」提醒即使災難降臨，也不要放任悲嘆，而是要堅持信心，並相信有援手會相助。整體而言，詩句勉勵人們避免無謂衝突、注意內部危機、保持冷靜以化解困境。",
+    "en": "This poem’s theme is the conflict and danger arising within one’s affairs. It warns that one may provoke disputes or be accused, that additional troublesome matters may pile up, that one must guard against hidden threats among family or close friends, and that when calamity strikes, one should not despair but remain resilient and trust that help will come. Overall, it urges avoidance of needless quarrels, vigilance against internal peril, and composure to navigate adversity.",
+    "jp": "この詩のテーマは、個人の内外で起こる衝突と危険です。詩は、無用な争いを起こしたり、訴えられやすい状況に陥る可能性があること、訴訟以外にも解決しにくい紛争が増えること、家族や親しい人々の中に潜む危険に注意を促し、災害が訪れてもため息をつかず、冷静に支援を信頼するよう勧めています。全体として、無駄な争いを避け、内部の危険に警戒し、困難を乗り越えるための冷静さを保つことを提案しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the seeker faces internal discord and external accusations, urging avoidance of unnecessary quarrels, vigilance against hidden threats within the household, and steadfastness in the face of impending disaster—suggesting that calm perseverance will bring assistance.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:07:44",
+    "source_file": "chuck_52.json",
+    "raw_llm_response_preview": "{\"id\":52,\"title\":\"日本淺草觀音寺一百籤第五十二籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"有僭須惹訟,兼有事交加,門裡防人危,災臨莫嘆嗟\",\"analysis\":{\"zh\":\"這首詩的主題是關於身體內外的衝突與危險。詩中提到「有僭須惹訟」暗示自己容易因不當行為或失誤被人控訴，進而引發訴訟；「兼有事交加」則表示在訴訟之外還會遇到其他難以解決的紛爭。再說「門裡防人危」，警示門前家庭或親友間可能存在危險或背後的敵意，應保持警覺；最後「災臨莫嘆嗟」提醒即使災難降臨，也不要放任悲嘆，而是要堅持信心，並相信有援手會相助。整體而言，詩句勉勵人們避免無謂衝突"
+  }
+}

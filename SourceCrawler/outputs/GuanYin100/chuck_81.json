@@ -1,0 +1,20 @@
+{
+  "id": 81,
+  "title": "觀音一百籤第八十一籤",
+  "subtitle": "未宮",
+  "fortune": "上籤",
+  "poem": "庭前葉落暮秋時、行客奔程勢若飛、謝得天公輕着力、順風相送寶船歸。",
+  "analysis": {
+    "zh": "這首詩的主題是描寫暮秋時節庭前落葉與行客奔走的景象，並以天公輕風送寶船歸來，表達順風順水、順應天意、行善收福的寓意。",
+    "en": "This poem's theme is a depiction of autumn leaves falling in the courtyard at dusk, the hurried journey of travelers, and the gratitude toward the heavens for a light breeze that sends a precious vessel home, conveying the idea of going with the wind, following destiny, and reaping blessings.",
+    "jp": "この詩のテーマは、夕暮れの秋、庭前で落ち葉が舞い、旅人が急ぎ足で走る様子を描き、天の恩恵で軽やかな風が宝船を帰港させることに感謝し、風に身を任せ、運命に従い、福を得るという寓意を表現しています。",
+    "reference": "家宅　祈保。自身　許經。求財　遂意。交易　成。婚姻　和合。六甲　虛驚。行人　動。田蠶　晚勝。六畜　穩。尋人　至。公訟　勝。移徙　隨意。失物　疾病　喜。山墳　擇地。1.風送滕王閣（兩版故事皆同） 唐朝咸淳年。南昌滕王閣重建成。王勃欲往。睡夢中水神曰送君一帆。醒來至江邊。果見一船。上船後不久。即至滕王閣(離家七百里)。書滕王閣序王勃乃唐高宗朝間一秀士。姓王名勃字子安。祖貫山西晉州龍門人氏。善詩。有頌曰從來才子是神仙。風送南昌豈偶然。賦就滕王高閣句。便隨仙仗伴中源。(中源指水神稱中源水君。暗喻王勃成仙也)"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The fleeting autumn leaves symbolize the transience of life and the inevitability of change.\n- The hurried travelers, moving like flying figures, represent human aspirations and the urgency to seize opportunities.\n- Gratitude toward the heavens for a gentle wind highlights humility and reliance on a higher force to provide support.\n- The gentle wind carrying the treasure boat home signifies the rewarding outcome of aligning with favorable circumstances and acting with earnestness.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:39:09",
+    "source_file": "chuck_81.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 81,\n  \"title\": \"觀音一百籤第八十一籤\",\n  \"subtitle\": \"未宮\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"庭前葉落暮秋時、行客奔程勢若飛、謝得天公輕着力、順風相送寶船歸。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是描寫暮秋時節庭前落葉與行客奔走的景象，並以天公輕風送寶船歸來，表達順風順水、順應天意、行善收福的寓意。\",\n    \"en\": \"This poem's theme is a depiction of autumn leaves falling in the cour"
+  }
+}

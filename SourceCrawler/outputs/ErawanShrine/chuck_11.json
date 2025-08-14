@@ -1,0 +1,20 @@
+{
+  "id": 11,
+  "title": "四面佛三十籤第十一籤",
+  "subtitle": "",
+  "fortune": "中籤",
+  "poem": "數年垂釣在渭邊,受盡風霜有誰憐,得遇文王識賢士,風雲際會自適然。",
+  "analysis": {
+    "zh": "多年在渭水之畔垂釣，經歷風霜苦痛，卻沒有人能給予憐憫。最終卻遇上識別賢才的文王，於風雲之際得以自得其樂。",
+    "en": "For years I cast my line by the banks of the Wei River, enduring wind and frost without anyone to sympathize. Yet, a wise king who recognizes talent appears at a pivotal moment, allowing me to find peace and ease.",
+    "jp": "数年間、渭川沿いで釣りをし続け、風霜に苦しみ、慰めてくれる人はいませんでした。やがて、賢人を見抜く文王に出会い、風雲の中で自らの道を見いだすことができました。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A prolonged period of hardship and patience, symbolized by years of fishing on the Wei River.\n- The lack of compassion or support during this struggle.\n- The unexpected encounter with a wise and discerning ruler (文王), who recognizes the narrator’s worth.\n- This recognition marks a turning point where circumstances ease and the narrator can enjoy a tranquil life.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:29:45",
+    "source_file": "chuck_11.json",
+    "raw_llm_response_preview": "{\"id\": 11, \"title\": \"四面佛三十籤第十一籤\", \"subtitle\": \"\", \"fortune\": \"中籤\", \"poem\": \"數年垂釣在渭邊,受盡風霜有誰憐,得遇文王識賢士,風雲際會自適然。\", \"analysis\": {\"zh\": \"多年在渭水之畔垂釣，經歷風霜苦痛，卻沒有人能給予憐憫。最終卻遇上識別賢才的文王，於風雲之際得以自得其樂。\", \"en\": \"For years I cast my line by the banks of the Wei River, enduring wind and frost without anyone to sympathiz"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 25,
+  "title": "日本淺草觀音寺一百籤第二十五籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "枯木逢春生,前途必利亨,亦得佳人箭,乘車祿自行",
+  "analysis": {
+    "zh": "這首詩的主題是：以春天的生命力喚醒枯木，象徵重新開始與蓬勃發展。詩中說前途必利亨，暗示未來會順利且富貴；亦得佳人箭，表示將遇到理想的伴侶或良師益友；乘車祿自行則是指靠自己的努力與選擇，自然而然得到財富或提升。整體呈現正面向前、積極奮鬥的吉祥寓意。",
+    "en": "這首詩的主題是：It uses the image of a dead tree meeting spring to symbolize renewal and vigorous growth. The line 前途必利亨 indicates that the future will be prosperous and fortunate; 亦得佳人箭 suggests the speaker will encounter a desirable partner or a valuable mentor; 乘車祿自行 implies that through one’s own efforts and choices, wealth or advancement will come naturally. Overall, the poem conveys a positive, forward‑moving, and auspicious message.",
+    "jp": "この詩のテーマは：枯れ木が春を迎えて再び生を取り戻すイメージを用い、再出発と旺盛な発展を象徴しています。前途必利亨は将来が順調で富裕になることを示し、亦得佳人箭は理想的な伴侶や貴重な師を得ることを意味します。乗車祿自行は自らの努力と選択によって自然に富や昇進を得られることを示しています。全体として前向きで積極的な吉祥のメッセージを伝えています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A rebirth theme: a dead tree coming to life in spring, representing renewal.\n- Positive outlook on the future: 前途必利亨 signals prosperity and favorable outcomes.\n- Personal connections: 亦得佳人箭 hints at meeting a desirable partner or mentor.\n- Self‑directed growth: 乘車祿自行 conveys that fortune comes through one’s own efforts and choices.\n- Overall, the poem conveys an auspicious, forward‑moving spirit encouraging active pursuit of success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:55:59",
+    "source_file": "chuck_25.json",
+    "raw_llm_response_preview": "{\n  \"id\": 25,\n  \"title\": \"日本淺草觀音寺一百籤第二十五籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"吉\",\n  \"poem\": \"枯木逢春生,前途必利亨,亦得佳人箭,乘車祿自行\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：以春天的生命力喚醒枯木，象徵重新開始與蓬勃發展。詩中說前途必利亨，暗示未來會順利且富貴；亦得佳人箭，表示將遇到理想的伴侶或良師益友；乘車祿自行則是指靠自己的努力與選擇，自然而然得到財富或提升。整體呈現正面向前、積極奮鬥的吉祥寓意。\",\n    \"en\": \"這首詩的主題是：It uses the"
+  }
+}

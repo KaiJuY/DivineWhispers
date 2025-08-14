@@ -1,0 +1,25 @@
+{
+  "id": 51,
+  "title": "關聖帝君一百籤第五十一籤",
+  "subtitle": "御溝流紅葉己甲",
+  "fortune": "上吉",
+  "poem": [
+    "君今百事且隨緣",
+    "水到渠成聽自然",
+    "莫嘆年來不如意",
+    "喜逢新運稱心田"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是隨緣而行、順其自然，並以此迎來新的順遂。詩中說「君今百事且隨緣」提醒人們把各種事務交給命運安排，既不強求也不抱怨；「水到渠成聽自然」則比喻事物在適當時機會自然而然地成就；「莫嘆年來不如意」告誡不要對過去的不順心抱怨，因為往事已成過去；最後「喜逢新運稱心田」則表達在隨緣後會迎來符合心願的新機運，並能得到滿足。",
+    "en": "這首詩的主題是隨緣而行、順其自然，並以此迎來新的順遂。詩中說 \"君今百事且隨緣\" 提醒人們把各種事務交給命運安排，既不強求也不抱怨； \"水到渠成聽自然\" 則比喻事物在適當時機會自然而然地成就； \"莫嘆年來不如意\" 告誡不要對過去的不順心抱怨，因為往事已成過去；最後 \"喜逢新運稱心田\" 表達在隨緣後會迎來符合心願的新機運，並能得到滿足。",
+    "jp": "この詩のテーマは、運勢に身を任せて自然体で進むこと、そしてその結果として新たな順調が訪れることです。詩は \"君今百事且隨緣\" と語り、あらゆる事を運命に委ね、無理強いも怨みもせないように促します。\"水到渠成聽自然\" は、適切な時に水が通るように、物事は自然に成就するという比喩です。\"莫嘆年來不如意\" は、過去の不運を嘆かずに受け入れることを示し、\"喜逢新運稱心田\" は、運を受け入れた結果、心に合った新たな運が訪れることを表します。",
+    "reference": "唐朝。宣宗宮內。韓夫人不蒙寵辛。偶向紅葉題詩一首。流出御溝。一應試官人。顧況(于佑)於御溝邊。拾得紅葉。上題詩云。流水何太急。深宮盡日閒。殷勤謝紅葉。好去到人間。況亦拾紅葉。戲和之云。愁見鶯啼柳絮飛。上陽宮女斷腸時。君恩不禁東流水。葉上題詩寄與誰。也從御溝中流將進去。天子知此事。卻把韓夫人嫁與于佑。夫婦百年偕老。(按御題葉名有田。姑錄其一)。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: * The speaker urges the reader to let affairs follow destiny, avoiding forceful attempts or complaints. * When conditions are right, success flows naturally, symbolized by water that finds its own path. * Past misfortunes should not be lamented; the focus shifts to embracing a new favorable turn that aligns with personal wishes. * The poem celebrates a transition from hardship to a satisfying new phase, emphasizing the virtues of patience, acceptance, and open-mindedness.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:47:54",
+    "source_file": "chuck_51.json",
+    "raw_llm_response_preview": "{\n  \"id\": 51,\n  \"title\": \"關聖帝君一百籤第五十一籤\",\n  \"subtitle\": \"御溝流紅葉己甲\",\n  \"fortune\": \"上吉\",\n  \"poem\": [\n    \"君今百事且隨緣\",\n    \"水到渠成聽自然\",\n    \"莫嘆年來不如意\",\n    \"喜逢新運稱心田\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是隨緣而行、順其自然，並以此迎來新的順遂。詩中說「君今百事且隨緣」提醒人們把各種事務交給命運安排，既不強求也不抱怨；「水到渠成聽自然」則比喻事物在適當時機會自然而然地成就；「莫嘆年來不如意」告誡不要對過去的不順心"
+  }
+}

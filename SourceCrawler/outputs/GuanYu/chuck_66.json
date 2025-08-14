@@ -1,0 +1,25 @@
+{
+  "id": 66,
+  "title": "關聖帝君一百籤第六十六籤",
+  "subtitle": "杜甫遊春庚己",
+  "fortune": "上上",
+  "poem": [
+    "耕耘只可在鄉邦",
+    "何用求謀向外方",
+    "見說今年新運好",
+    "門闌喜氣事雙雙"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是耕耘與在地發展。詩中說「耕耘只可在鄉邦，何用求謀向外方」告誡人們不必遠行，應在本土努力耕作；「見說今年新運好，門闌喜氣事雙雙」預示今年有好運，門庭喜氣雙重。此籤適合求婚、婚姻、或在家鄉事業之事。",
+    "en": "這首詩的主題是 cultivation and staying close to home. The verse states, '耕耘只可在鄉邦, 何用求謀向外方', urging that one need not venture far but should cultivate diligently in one's own hometown; '見說今年新運好, 門闌喜氣事雙雙' predicts favorable winds for the year, with joy and double blessings at one's doorstep. This slip is suitable for marriage, local business, or matters that remain near home.",
+    "jp": "この詩のテーマは耕作と故郷での成長です。『耕耘只可在鄉邦、何用求謀向外方』という行文は、遠くへ行く必要はなく、自分の土地で一生懸命耕すべきだと示唆しています。『見說今年新運好、門闌喜氣事雙雙』は今年の良い運気を予示し、門戸に喜びと二重の祝福が訪れることを示しています。結婚や地元での事業に適した一枚です。",
+    "reference": "唐。杜甫。字子美。杜陵人。玄宗朝獻賦。命待詔集賢院。後轉檢校工部員外。卻甫覽君書。善為詩歌。涵渾汪洋。千態萬狀。陳時事。確切精深。世號詩史。元禎謂。詩人以來。未有如子美者。惟好賞春山。故每當春晴。必遊郊外。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The most dependable prosperity is cultivated within one's own homeland rather than by venturing abroad.\n- The plow and the local field symbolize practical, steady effort and a focus on the familiar environment.\n- The mention of a \"new wind\" for the year indicates a favorable shift in circumstances, while \"joy at the gate\" evokes a welcoming homecoming and the arrival of double blessings.\n- Together, the verse encourages a focus on local, steady growth and signals that marriage or local endeavors are especially auspicious.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:56:29",
+    "source_file": "chuck_66.json",
+    "raw_llm_response_preview": "{\n  \"id\": 66,\n  \"title\": \"關聖帝君一百籤第六十六籤\",\n  \"subtitle\": \"杜甫遊春庚己\",\n  \"fortune\": \"上上\",\n  \"poem\": [\n    \"耕耘只可在鄉邦\",\n    \"何用求謀向外方\",\n    \"見說今年新運好\",\n    \"門闌喜氣事雙雙\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是耕耘與在地發展。詩中說「耕耘只可在鄉邦，何用求謀向外方」告誡人們不必遠行，應在本土努力耕作；「見說今年新運好，門闌喜氣事雙雙」預示今年有好運，門庭喜氣雙重。此籤適合求婚、婚姻、或在家鄉事業之事。\",\n    \"e"
+  }
+}

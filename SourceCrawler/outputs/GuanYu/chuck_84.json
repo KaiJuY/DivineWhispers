@@ -1,0 +1,25 @@
+{
+  "id": 84,
+  "title": "關聖帝君一百籤第八十四籤",
+  "subtitle": "須賈害范睢壬丁",
+  "fortune": "中平",
+  "poem": [
+    "箇中事緒更粉然",
+    "當局須知一著先",
+    "長舌婦人休酷聽",
+    "力行禮義要心堅"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於事務的變動與對策。第一句說明事態發展多變，像粉末般易碎；第二句提醒當局應先行觀察、先做準備；第三句警示長舌婦人不可信，要斷然不聽其言；第四句則強調以堅定之心實踐禮義，才能達成目標。整體指出：面對多變環境，應先見、先備、慎言、堅守禮義。",
+    "en": "This poem's theme is the volatile nature of situations and the importance of foresight, preparation, and unwavering adherence to propriety. The first line highlights how circumstances can shift like loose powder. The second reminds those in charge to anticipate and act in advance. The third warns against taking to heart the words of a talkative woman, suggesting that gossip should be disregarded. The fourth asserts that success is achieved only through steadfast practice of rites and righteousness. Overall, it emphasizes that in a world full of uncertainties, one must foresee, prepare, be cautious with words, and hold firmly to moral conduct.",
+    "jp": "この詩のテーマは、事象の変化の激しさと、先を見通し、準備し、戒めを守り、礼義を堅く守ることの重要性を語っています。第一行は、状況が粉のように崩れやすいことを示し、第二行は権力者が先に備えておくべきと指摘します。第三行は、舌の長い女性の言葉を耳に入れないように警告し、第四行では礼義を堅く守ることで成功が得られると語ります。",
+    "reference": "戰國。范睢。字叔。魏人。事須賈。使齊攘王賜金及牛酒。睢辭。賈知之。歸告魏杞。魏齊。齊怒答(笞)擊雎。折脅摺齒。雎佯死得脫。入秦說昭王。拜相。須賈使秦。睢敝衣微眼。至邸見賈。賈驚曰。范叔固無恙乎。何一寒至此。乃取綈袍贈馬。睢以賈有故人風。釋之。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- The unpredictable and fragile nature of situations, likened to loose powder. \n- The necessity for those in authority to anticipate and prepare ahead. \n- A warning against listening to gossip or the words of a talkative woman. \n- The assertion that steadfast adherence to propriety and righteousness leads to success. \n- The overall message emphasizes prudence, foresight, and moral steadfastness as keys to navigating change.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:05:33",
+    "source_file": "chuck_84.json",
+    "raw_llm_response_preview": "{\"id\": 84, \"title\": \"關聖帝君一百籤第八十四籤\", \"subtitle\": \"須賈害范睢壬丁\", \"fortune\": \"中平\", \"poem\": [\"箇中事緒更粉然\", \"當局須知一著先\", \"長舌婦人休酷聽\", \"力行禮義要心堅\"], \"analysis\": {\"zh\": \"這首詩的主題是關於事務的變動與對策。第一句說明事態發展多變，像粉末般易碎；第二句提醒當局應先行觀察、先做準備；第三句警示長舌婦人不可信，要斷然不聽其言；第四句則強調以堅定之心實踐禮義，才能達成目標。整體指出：面對多變環境，應先見、先備、慎言、堅守禮義。\", \"en\": \"This poem's th"
+  }
+}

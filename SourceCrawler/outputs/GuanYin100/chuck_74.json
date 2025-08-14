@@ -1,0 +1,20 @@
+{
+  "id": 74,
+  "title": "觀音一百籤第七十四籤",
+  "subtitle": "巳宮",
+  "fortune": "下籤",
+  "poem": "慵飛野鶴自投籠、欲舉鵬霄落陷中、南北東西混障碍、此身憔悴恨無窮。",
+  "analysis": {
+    "zh": "這首詩的主題是以投籠的野鶴比喻自身被束縛，暗示處境困頓且多虛無實。詩中描述野鶴慵懶飛行自投籠，欲舉鵬飛於高空卻被困於陷中；四面障碍混杂，身形憔悴，怨恨無窮。它告訴人們，往往在進退兩難、束縛重重之際，唯有低頭接受、靜心前行，命運才會在其中展現。",
+    "en": "This poem's theme is a metaphor of a wild crane trapped in a cage, illustrating how one can feel confined and caught in a futile situation. The verses describe the crane lazily flying into its own cage, yearning to lift a phoenix to the heavens but falling into a trap; obstacles from all directions, a weary figure, endless resentment. It suggests that when confronted with indecision, constraints, and futility, one must lower one's head, accept, and move forward calmly to find the unfolding of destiny.",
+    "jp": "この詩のテーマは、鶴が自ら籠に投げ込まれる様子を比喩し、束縛や無意味さを感じる状況を示しています。詩では、鶴がうっとりと飛び回り、鵬を高空へと昇ろうとするが、罠に落ちる様子、四方に混ざる障害、憔悴した姿、終わりなき恨みが描かれています。進退が難しく、束縛が多い状況では、頭を下げ、受け入れ、落ち着いて前へ進むことで、運命がそこに表れることを示唆しています。",
+    "reference": "家宅　不安。自身　困滯。求財　小人。交易　破耗。婚姻　刑傷。六甲　刑劫。行人　阻。田蠶　缺。六畜　瘟。尋人　杳。公訟　禍。移徙　不利。失物　凶。疾病　延。山墳　絕。1.秦敗擒三帥秦穆公不聽老臣蹇公之言。出師侵鄭。與晉人戰於殽。秦師給晉國誘入險谷。前路被堵塞。兩旁晉兵拋火種磺硝。後面晉兵殺聲震天。秦軍自相踐踏。死傷無數。不敵而至大敗。三個大元帥。俱皆被擒。2.韓非入秦被害秦王要攻打相鄰的韓國，韓王便派公子非（韓非）前往請秦王退兵，結果沒想到韓非反而成為秦王倚重的策士。秦大臣李斯是韓非的同學，見到韓非受秦王重視，自知才學不足的李斯一面勸秦王要善用客卿（上『諫逐客書』反對秦王的逐客令），一面卻嫉妒並害死投秦之客卿韓非 ；一面偽裝與韓非友好，一面又設計讓韓非入獄，探監時故意不慎遺落毒藥給求死不能的韓非（其實韓非可能將被秦王下令釋放），故韓非自盡。李斯害韓非有如龐涓害孫臏，這個故事的啟示是：您可能有個『很好的壞朋友』（夥伴），真是防人之心不可無。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the speaker feels trapped and confined, much like a crane that lazily flies into its own cage. The imagery of the crane’s yearning to lift a phoenix to the sky but falling into a pit highlights the futility of reaching for lofty goals when obstacles surround you from all directions. The poem conveys a sense of weariness, endless resentment, and the feeling that progress is blocked. The underlying lesson is that in such a constrained environment, one must lower their head, accept the situation, and calmly move forward to navigate the path that destiny has laid out. Key points: 1) Symbol of the trapped crane represents personal limitations; 2) The phoenix aspiration juxtaposed with a trap shows the contrast between ambition and reality; 3) Four‑directional obstacles illustrate pervasive hindrances; 4) Weariness and unending resentment portray emotional exhaustion; 5) The advice to lower the head and proceed calmly reflects a philosophy of acceptance and resilience.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:33:12",
+    "source_file": "chuck_74.json",
+    "raw_llm_response_preview": "{\"id\": 74, \"title\": \"觀音一百籤第七十四籤\", \"subtitle\": \"巳宮\", \"fortune\": \"下籤\", \"poem\": \"慵飛野鶴自投籠、欲舉鵬霄落陷中、南北東西混障碍、此身憔悴恨無窮。\", \"analysis\": {\"zh\": \"這首詩的主題是以投籠的野鶴比喻自身被束縛，暗示處境困頓且多虛無實。詩中描述野鶴慵懶飛行自投籠，欲舉鵬飛於高空卻被困於陷中；四面障碍混杂，身形憔悴，怨恨無窮。它告訴人們，往往在進退兩難、束縛重重之際，唯有低頭接受、靜心前行，命運才會在其中展現。\", \"en\": \"This poem's theme is a metaphor of a"
+  }
+}

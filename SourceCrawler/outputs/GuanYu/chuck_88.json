@@ -1,0 +1,25 @@
+{
+  "id": 88,
+  "title": "關聖帝君一百籤第八十八籤",
+  "subtitle": "高文定守困壬辛",
+  "fortune": "上吉",
+  "poem": [
+    "從前作事總徒勞",
+    "纔見新春時漸遭",
+    "百計營求都得意",
+    "更須守己莫心高"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：從往昔的無功而到新春的順利，提醒人們在得意時應謹慎自守。詩中以往凡事徒勞，直到新春之際，時運逐漸亨通，凡所謀求皆得意；然而更須守己，莫因得意而高傲。東坡解說：『平生勞苦，百事無成。時運將泰，謀望可喜。更宜謹守，貪心勿生。』碧仙補註：『貪心莫起，順應緣，勤謹營謀，必堅持心。若得時運亨泰，則富貴榮華萬事全。』占得此籤，上吉，名與利，且隨緣，婚姻合，病安痊，訟宜和，行人還，若謀望，在新年。",
+    "en": "According to this poem, the theme is the transition from past futility to newfound prosperity at the beginning of the new year, urging caution and self‑control when success arrives. The lines convey that previously one's endeavors seemed fruitless, but as the new year dawns, fortunes gradually rise and all plans come to fruition. Still, one must keep one’s guard and avoid becoming proud or overconfident. Dongpo’s commentary reads: ‘Life has been hard, and all attempts failed. Fortune will now be favorable, hopes are sweet. It is wiser to remain cautious and not let greed arise.’ Bi Xian’s note adds: ‘Do not let greed stir; go with the flow, work diligently and keep resolve. With favorable fortune, prosperity and honor will be attained.’ This talisman declares “upper‑good”, promising fame, wealth, harmony in marriage, healing, settlement of disputes, safe return of travelers, and advises that plans should be executed after the new year.",
+    "jp": "この詩のテーマは、昔の無駄な努力が新春の到来とともに順調に転じ、成功を得た際には慎重に自制することの重要性を示しています。詩では、かつての嘗ての努力は徒労に終わったと述べられますが、新春が近づくと運が少しずつ開き、企てたことすべてが成就する様子が語られます。だが、成功を享受した時に自らを守り、余計な高慢を戒めるべきだという戒めも込められています。荘子の語りとして『昔は苦労し、何事も成し遂げられなかった。今、運気が向上し、望みは実現できる。もっと慎重に守るべきで、貪欲を生じさせない』と解説され、碧仙の注釈では『貪欲を起こさず、流れに沿って、勤勉に謀るべきであり、心を固めるべきだ。運気が亨通すれば、富と栄光が全て達成される』と記されています。籤の結果は「上吉」とされ、名誉・利益を伴い、随緣、結婚の合意、病気の回復、訴訟の和解、旅人の無事な帰還、そして新年に計画を立てることが推奨されています。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A shift from long‑standing futility to newfound success as the new year arrives.\n- The new spring serves as a metaphor for renewal, marking a change in fortune.\n- Success is fleeting; one must remain vigilant and avoid pride.\n- Major plans are best postponed until after the new year.\n- The passage emphasizes humility, perseverance, and patience as the true keys to lasting prosperity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:07:49",
+    "source_file": "chuck_88.json",
+    "raw_llm_response_preview": "{\"id\":88,\"title\":\"關聖帝君一百籤第八十八籤\",\"subtitle\":\"高文定守困壬辛\",\"fortune\":\"上吉\",\"poem\":[\"從前作事總徒勞\",\"纔見新春時漸遭\",\"百計營求都得意\",\"更須守己莫心高\"],\"analysis\":{\"zh\":\"這首詩的主題是：從往昔的無功而到新春的順利，提醒人們在得意時應謹慎自守。詩中以往凡事徒勞，直到新春之際，時運逐漸亨通，凡所謀求皆得意；然而更須守己，莫因得意而高傲。東坡解說：『平生勞苦，百事無成。時運將泰，謀望可喜。更宜謹守，貪心勿生。』碧仙補註：『貪心莫起，順應緣，勤謹營謀，必堅持心。若得時運亨泰，則富貴榮華萬事全。』占得此籤"
+  }
+}

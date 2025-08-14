@@ -1,0 +1,25 @@
+{
+  "id": 35,
+  "title": "關聖帝君一百籤第三十五籤",
+  "subtitle": "王昭君和番丁戊",
+  "fortune": "下吉",
+  "poem": [
+    "一山如畫對清江",
+    "門裏團圓事事雙",
+    "誰料半途分析去",
+    "空幃無語對銀缸"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描繪山水如畫、家庭團圓與突如其來的失落對比。詩中先以「一山如畫對清江」呈現出壯麗的山水景象，接著「門裏團圓事事雙」暗示家中和樂、親人聚首。然後「誰料半途分析去」透露出意外的破壞或離散，最後「空幃無語對銀缸」則以空蕩的車軸與閃耀的銀器作為失落與寂寞的象徵，整體表達美好景象與突如其來的無奈衝突。",
+    "en": "The theme of this poem is the juxtaposition of picturesque mountain scenery, harmonious family reunion, and sudden loss. The opening line a mountain looks like a painting opposite a clear river presents a majestic landscape. The next line inside the gate, reunions come in pairs hints at familial harmony. The third line who can foresee the middle analysis going away suggests an unexpected disruption. The final line an empty carriage, silent before the silver basin uses emptiness and glittering silver as symbols of loss and loneliness, conveying the clash between beauty and abrupt sorrow.",
+    "jp": "この詩のテーマは、絵のような山水、和やかな家族の団らん、そして突如として訪れる喪失感の対比を描いています。冒頭の一山如画対清江は雄大な山水風景を表し、続く門裏団圓事事雙は家族の調和を示唆しています。第三行の誰料半途分析去は予期せぬ破壊や離散を暗示し、最後の空幃無語対銀缸は空っぽの車軸と輝く銀器を失落と寂寞の象徴として用い、全体として美しさと突発的な悲哀の衝突を表現しています。",
+    "reference": "昭君姓王。名嬙。字告月。歸州人。漢元帝宮女。得罪畫工。為點崩夫痣。致不見幸。昭君以才貌雙全。自傷不見知會。匈奴求婚。乃自上書請行。臨去步入掖庭。顧影徘徊。君臣相顧失色。然不能失信於單于。故遣其和番。而斬畫工毛延壽等二百餘人。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a contrast between picturesque landscape and domestic harmony against a backdrop of unexpected loss and emptiness. - The mountain \"like a painting\" against a clear river symbolizes ideal beauty and stability. - The \"gate interior reunions\" evoke family unity and dual blessings. - \"Who can foresee the middle analysis going away\" points to sudden disruption or separation in the midst of prosperity. - \"Empty carriage, silent before the silver basin\" uses imagery of an abandoned carriage and shining silver to represent loss, silence, and hollowness that follows prosperity. - The poem therefore conveys the fragile nature of joy and fortune, reminding the reader that beauty and abundance can be fleeting, and that one must remain mindful of potential misfortunes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:39:16",
+    "source_file": "chuck_35.json",
+    "raw_llm_response_preview": "{\n  \"id\": 35,\n  \"title\": \"關聖帝君一百籤第三十五籤\",\n  \"subtitle\": \"王昭君和番丁戊\",\n  \"fortune\": \"下吉\",\n  \"poem\": [\n    \"一山如畫對清江\",\n    \"門裏團圓事事雙\",\n    \"誰料半途分析去\",\n    \"空幃無語對銀缸\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是描繪山水如畫、家庭團圓與突如其來的失落對比。詩中先以「一山如畫對清江」呈現出壯麗的山水景象，接著「門裏團圓事事雙」暗示家中和樂、親人聚首。然後「誰料半途分析去」透露出意外的破壞或離散，最後「空幃無語對銀缸」則以"
+  }
+}

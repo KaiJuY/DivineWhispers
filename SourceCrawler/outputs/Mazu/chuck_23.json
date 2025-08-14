@@ -1,0 +1,25 @@
+{
+  "id": 23,
+  "title": "六十甲子籤第二十三籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "丁酉○○●　○●●",
+  "poem": [
+    "欲去長江水闊茫",
+    "前途未遂運未通",
+    "如今絲綸常在手",
+    "只恐魚水不相逢"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是對未能實現夢想的無奈與等待機會的焦慮。詩中描寫作者渴望踏上寬闊的長江，卻因道路阻塞、運勢不遂而無法前進；手中握著絲綿般的釣線，卻擔心魚與水難以相遇，暗示雖有才華與準備，卻缺乏合適的環境與時機。整體氛圍帶來對目前處境的反思與對未來可能性的遲疑。",
+    "en": "This poem's theme is the helplessness of unfulfilled aspirations and the anxiety of waiting for opportunity. It describes a longing to journey to the vast Yangtze River, but being blocked by a difficult path and poor fortune. Holding a fishing line like fine silk, the narrator fears that the fish will never meet the water, symbolizing that despite talent and readiness, there is no suitable environment or timing to act. The overall tone reflects introspection on the present situation and hesitation toward future possibilities.",
+    "jp": "この詩のテーマは、実現できない夢に対する無力感と、機会を待つ不安です。詩は、広大な長江へ旅立ちたいという切望を描きながら、道が塞がれ、運勢が通らないことを示しています。手に持つ繊細な釣り糸は魚が水に出会えない恐れを象徴し、才能や準備があっても適切な環境や時機がないことを暗示します。全体として、現在の状況を振り返り、未来への不確実性を思い悩む雰囲気を表しています。",
+    "reference": "1.鳳嬌觀音庵問籤中奸臣計2.胡鳳嬌觀音寺行香求懺凡事　不可作。和者吉。作事　遲緩。家事　門庭失運。了錢。家運　崎嶇不順。婚姻　大吉。求兒　不可。六甲　生男。(子虛。先女後男)求財　先失運。後有利。功名　無望。歲君　順利。治病　了錢。尾過漸好。出外　不可。經商　顛倒。來人　未日(半月)到。行舟　運途不佳。移居　不佳。等待。失物　尋不見。求雨　上下弦。官事　尾勝吉。(了錢完局)六畜　不可納。耕作　不合時運。微利。築室　不可。且慢。墳墓　地氣不佳。討海　運途不佳。作塭　防魚失。求微利。魚苗　後日可得小利。月令　不遂。尋人　緩。遠信　音信無到。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A yearning to reach the wide Yangtze River, symbolizing grand ambitions or opportunities.\n- The path is blocked and fortune is not flowing, indicating obstacles and lack of timing.\n- Holding a fishing line but fearing the fish will never find water, representing talent or effort that cannot be realized due to unsuitable conditions.\n- Overall, it reflects a state of waiting, introspection, and the uneasy realization that readiness alone is insufficient without the right circumstances.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:21:23",
+    "source_file": "chuck_23.json",
+    "raw_llm_response_preview": "{\n  \"id\": 23,\n  \"title\": \"六十甲子籤第二十三籤\",\n  \"subtitle\": \"屬火利夏　宜其南方\",\n  \"fortune\": \"丁酉○○●　○●●\",\n  \"poem\": [\n    \"欲去長江水闊茫\",\n    \"前途未遂運未通\",\n    \"如今絲綿常在手\",\n    \"只恐魚水不相逢\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對未能實現夢想的無奈與等待機會的焦慮。詩中描寫作者渴望踏上寬闊的長江，卻因道路阻塞、運勢不遂而無法前進；手中握著絲綿般的釣線，卻擔心魚與水難以相遇，暗示雖有才華與準備，卻缺乏合適的環境與時機。整體"
+  }
+}

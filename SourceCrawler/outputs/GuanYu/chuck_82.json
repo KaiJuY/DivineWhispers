@@ -1,0 +1,25 @@
+{
+  "id": 82,
+  "title": "關聖帝君一百籤第八十二籤",
+  "subtitle": "宋仁宗認母壬乙",
+  "fortune": "上吉",
+  "poem": [
+    "彼亦儔中一輩賢",
+    "勸君特達與周旋",
+    "此時賓主歡相會",
+    "他日王侯卻並肩"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是友誼與成就的相互促進。詩中說到「彼亦儔中一輩賢」即指出在同輩中有一位值得敬佩的賢者；「勸君特達與周旋」則勸諭諸人要主動接近、與他交往；「此時賓主歡相會」描繪現在兩者相聚歡樂的情景；最後一句「他日王侯卻並肩」預示將來他人將因與此賢者交往而獲得高位，並能並肩同行。",
+    "en": "This poem’s theme revolves around the mutual reinforcement of companionship and personal advancement. The lines declare that among peers there is a worthy sage—‘He is one of the wise in our cohort’—and advise the reader to deliberately engage with him. The poem then portrays a present scene of hosts and guests joyfully meeting, and concludes with a hopeful vision that in the future, through such association, the reader will rise to noble stature and stand side‑by‑side with that sage.",
+    "jp": "この詩のテーマは、友情と成就が互いに促し合う関係にあります。『彼亦儔中一輩賢』では、仲間の中に尊敬すべき賢者がいると示し、『勸君特達與周旋』で読者に積極的に彼と交流するよう促しています。『此時賓主歡相會』では、今現在、主客が喜び合う様子を描き、最後の『他日王侯卻並肩』で、将来彼と関わることで高位に上り、共に肩を並べる姿を予感させています。",
+    "reference": "宋史。仁宗。李娠妃所生。劉后抱養為己子。左右皆為畏后威。無敢言者。故帝不如也。及娠妃卒。后欲以婢禮葬之。宰相呂夷簡請厚葬。后怒曰。一宮人死。相公何 云云。欲離閒吾母子耶。夷簡對曰。太后不以劉氏念。臣不敢言。尚念劉氏。則禮宜從厚焉。后悟乃以一品禮。夷簡再請。以后服殮。水銀實棺。太后許之。迨后崩。有為帝言娠妃所生。及妃薄殮之事。帝號慟。即往祭。易梓官親啟視之。妃以水銀實棺。面色如生。冠服悉如皇后。帝歎曰。人言其可信哉。待劉氏加厚。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Recognition of a wise companion within one's circle.\n- A call to actively engage with this individual.\n- A present scene of joyful interaction between host and guest.\n- A hopeful projection that this connection will lead to elevated status, allowing the reader to stand beside the sage in the future.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:04:35",
+    "source_file": "chuck_82.json",
+    "raw_llm_response_preview": "{\"id\":82,\"title\":\"關聖帝君一百籤第八十二籤\",\"subtitle\":\"宋仁宗認母壬乙\",\"fortune\":\"上吉\",\"poem\":[\"彼亦儔中一輩賢\",\"勸君特達與周旋\",\"此時賓主歡相會\",\"他日王侯卻並肩\"],\"analysis\":{\"zh\":\"這首詩的主題是友誼與成就的相互促進。詩中說到「彼亦儔中一輩賢」即指出在同輩中有一位值得敬佩的賢者；「勸君特達與周旋」則勸諭諸人要主動接近、與他交往；「此時賓主歡相會」描繪現在兩者相聚歡樂的情景；最後一句「他日王侯卻並肩」預示將來他人將因與此賢者交往而獲得高位，並能並肩同行。\",\"en\":\"This poem’s theme re"
+  }
+}

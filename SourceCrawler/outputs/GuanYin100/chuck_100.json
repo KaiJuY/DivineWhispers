@@ -1,0 +1,20 @@
+{
+  "id": 100,
+  "title": "觀音一百籤第一百籤",
+  "subtitle": "亥宮",
+  "fortune": "下籤",
+  "poem": "欲就東兮欲就西、逢人說事轉痴迷、登山不見神仙面、莫若歸休更勿提。",
+  "analysis": {
+    "zh": "這首詩描繪了人們在欲望與迷惘中漂泊的情景：渴望東行又同時渴望西行，與他人相遇時話題越來越沉醉，卻於登山之際無法見到仙人，最後卻提議最好休息不再談此事，表現出對世事的淡泊與自我安慰。",
+    "en": "This poem portrays a scene of yearning and wandering: longing to head east yet also to head west, becoming absorbed in conversation when meeting others, and climbing a mountain only to find no divine presence. It concludes with the suggestion to retire and refrain from discussing the matter, conveying a sense of detachment and self‑consolation.",
+    "jp": "この詩は、東へ行きたく、また西へ行きたくという欲望と、出会い、話し合いに没頭する様子を描き、山に登っても仙人の姿が見えないことを示しています。結局は休息し、言及しない方がよいと語られ、世事への淡々とした姿勢と自らの慰めを示しています。",
+    "reference": "*(靈變即靈通;若求二 籤。肯定前籤。勿生惢心)此是滿籤，諸事不利，大作福力，可保平安。（港版本欄為空白）1.三教談道北周武帝時。三教(儒釋道)互相排斥。皇帝召集大會辯論。經過三次爭辯。沒得結論。喻道在我教。理存我方。爭執不止。痴事一樁。2.楚襄王陽臺夢醒戰國楚宋玉《高唐賦》記載：『楚襄王遊雲夢台館，望高唐宮觀』，言先王（懷王）夢與巫山神女相會。神女辭別時說：『妾在巫山之陽，高丘之徂。旦為朝雲，暮為行雨。朝朝暮暮，陽台之下』。後人附會，為之塑像立廟，號為朝雲。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• A depiction of conflicting desires—wanting to go east and west at once.\n• The tendency to become absorbed in conversation when encountering others.\n• The frustration of reaching a lofty goal (climbing a mountain) yet finding no divine encounter.\n• A practical conclusion that one should rest and not dwell on the unattainable.\n• Symbolically, it reflects the futility of chasing external signs of success and the wisdom of inner peace.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:46:28",
+    "source_file": "chuck_100.json",
+    "raw_llm_response_preview": "{\"id\":100,\"title\":\"觀音一百籤第一百籤\",\"subtitle\":\"亥宮\",\"fortune\":\"下籤\",\"poem\":\"欲就東兮欲就西、逢人說事轉痴迷、登山不見神仙面、莫若歸休更勿提。\",\"analysis\":{\"zh\":\"這首詩描繪了人們在欲望與迷惘中漂泊的情景：渴望東行又同時渴望西行，與他人相遇時話題越來越沉醉，卻於登山之際無法見到仙人，最後卻提議最好休息不再談此事，表現出對世事的淡泊與自我安慰。\",\"en\":\"This poem portrays a scene of yearning and wandering: longing to head east yet al"
+  }
+}

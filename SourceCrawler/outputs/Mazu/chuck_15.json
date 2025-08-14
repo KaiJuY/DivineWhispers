@@ -1,0 +1,25 @@
+{
+  "id": 15,
+  "title": "六十甲子籤第十五籤",
+  "subtitle": "屬土利年　四方皆宜",
+  "fortune": "丙辰○○●　○○●",
+  "poem": [
+    "八十原來是太公",
+    "看看晚景遇文王",
+    "目下緊事休相問",
+    "勸君且守待運通"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是對時間與耐心的體悟。第一句以「八十原來是太公」暗示年長者也能成就，提醒人不必急於求成。第二句「看看晚景遇文王」則說明成就往往在晚年得以顯現。第三句「目下緊事休相問」指出此刻不必對緊迫事務過度焦慮，應順其自然。最後一句「勸君且守待運通」則劝導讀者保持安定，等待運勢成熟。",
+    "en": "This poem's theme is a reflection on the value of time and patience. The first line, \"八十原来是太公\", suggests that even at an advanced age one can achieve greatness, urging the reader not to rush toward immediate success. The second line, \"看看晚景遇文王\", emphasizes that accomplishments often become apparent only in later years. The third line, \"目下緊事休相問\", advises against fretting over pressing matters in the present moment. The final line, \"勸君且守待運通\", counsels the reader to stay steady and wait for favorable circumstances to unfold.",
+    "jp": "この詩のテーマは、時間と忍耐の価値について語っています。最初の行「八十原来是太公」は、高齢でも偉業を成し遂げられることを示し、すぐに成功を求めるのではなく、忍耐するよう促します。第二行「看看晚景遇文王」は、成果が現れるのはやがての年齢であることを強調します。第三行「目下緊事休相問」は、今の急務について過度に心配せず、自然に任せるようにと言っています。最後の行「勸君且守待運通」は、安定して待つことで運勢が整うことを勧めています。",
+    "reference": "1.莊子破棺。(莊子試妻)周朝。姓莊名周。字子休。宋國蒙邑人。仕周為漆園吏。莊子假死試妻。其妻田氏守孝。七天後有一楚國王孫公子到訪。自稱莊子之徒。願執百日之喪。田氏愛公子俊美。不足廿日成婚。公子叫心疼。曰腦髓(人心)可治。田氏往劈莊子棺以取腦髓(人心)。莊子破棺而出。後田氏羞愧自殺。2.薛公大鬧花燈跌死太子驚死聖駕3.姜尚未卜吉凶事*目字，另有改作月字一說。凡事　大破財。求解和。作事　難成。家事　平平。家運　平平。婚姻　配偶慢成。求兒　不可。六甲　先女後男。(先男後女)求財　晚即發。功名　難就。歲君　先平後吉。治病　求平安。十日險。出外　慢日可行。經商　漸且候時。來人　月尾有。行舟　不如意。有事。移居　待時。失物　緊尋得。遲者無。求雨　不日到。官事　不吉。求貴人和。六畜　漸且退步。耕作　無收。築室　漸且退步。墳墓　遲必發。討海　無財和者吉作塭　無望魚苗　且守慢至。月令　不遂。尋人　不可急。遠信　遲延。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Time and patience are central to the message.\n- The image of an elderly figure (alluding to Jiang Ziya) illustrates that success can arrive later in life.\n- It advises against hastening over pressing matters and encourages staying calm and steady.\n- The lines combine age, late recognition, tranquility, and waiting as key symbols, emphasizing that favorable circumstances will unfold if one holds steady.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:16:51",
+    "source_file": "chuck_15.json",
+    "raw_llm_response_preview": "{\"id\":15,\"title\":\"六十甲子籤第十五籤\",\"subtitle\":\"屬土利年　四方皆宜\",\"fortune\":\"丙辰○○●　○○●\",\"poem\":[\"八十原來是太公\",\"看看晚景遇文王\",\"目下緊事休相問\",\"勸君且守待運通\"],\"analysis\":{\"zh\":\"這首詩的主題是對時間與耐心的體悟。第一句以「八十原來是太公」暗示年長者也能成就，提醒人不必急於求成。第二句「看看晚景遇文王」則說明成就往往在晚年得以顯現。第三句「目下緊事休相問」指出此刻不必對緊迫事務過度焦慮，應順其自然。最後一句「勸君且守待運通」則劝導讀者保持安定，等待運勢成熟。\",\"en\":\"This poem'"
+  }
+}

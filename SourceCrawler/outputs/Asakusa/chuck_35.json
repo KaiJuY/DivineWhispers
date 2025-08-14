@@ -1,0 +1,20 @@
+{
+  "id": 35,
+  "title": "日本淺草觀音寺一百籤第三十五籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "射鹿須乘箭,故僧引路歸,遇道同仙籍,光華映晚暉",
+  "analysis": {
+    "zh": "詩句以射鹿須乘箭作比，象徵只要把目標鎖定、矢志不移，便能如射中鹿般達成所願。故僧引路歸則說有良師善導，會得到上方人士的指引與協助。遇道同仙籍寓意遵從有智慧者之教，得以同道同行，心靈得以升華。光華映晚暉描寫光芒照耀夕陽之景，寓意你在他人眼中光彩越發燦爛，名望提升。籤意總結為：行動聚焦、得到引導、與智者同道、光芒四射。願望、身體、遺失物、他人、搬遷、旅行、感情等方面均呈現吉祥或順利的預示。",
+    "en": "Each line of the poem uses the image of shooting deer with an arrow to signify that by setting a clear goal and persisting, you can hit your target just as a deer would be hit. ‘Sage guides the way home’ indicates that with good mentorship and guidance, you will receive help and advice from higher‑level figures. ‘Meeting the Dao like a celestial’ means that following wise teachers leads to spiritual growth and shared path. ‘Radiance reflects in the evening glow’ portrays light shining on the setting sun, symbolizing that you shine brighter in others’ eyes and your reputation grows. In summary, the poem suggests focusing your actions, obtaining guidance, walking the same path as wise people, and radiating brilliance. The fortunes for wishes, health, lost items, acquaintances, relocation, travel, and relationships are all favorable or smooth.",
+    "jp": "この詩は『鹿を射るには矢を乗せる必要がある』というイメージを使い、明確な目標を設定し、粘り強く取り組めば、鹿を射るように望みを実現できることを示唆しています。『僧が道を示す』は、良い師匠や導師の助けを得ることで、上位者からの指導や助言を受けられることを意味します。『道に出会うと仙人のようになる』は、知恵ある者の教えに従うことで、精神が高まり共に歩む道が得られるということです。『光が夕暮れに映る』は、夕日の光に照らされる光景を描き、他者の目に映ってあなたの輝きが増し、名声が高まることを象徴しています。まとめると、詩は行動を集中させ、導きを得て、賢者と同じ道を歩み、輝きを放つことを示しています。願い、健康、失物、知人、引越し、旅行、恋愛・結婚などの運勢は、すべて好ましいか、スムーズに進むと示唆されています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is: - The opening line “射鹿須乘箭” metaphorically states that by setting a clear target and acting decisively, you can achieve what you desire, just as a hunter hits a deer with an arrow. - “故僧引路歸” implies that a wise teacher or mentor will guide you, providing support and advice from higher‑level figures. - “遇道同仙籍” suggests that following the Dao, or walking the path of wise people, will elevate your spirit and bring you into alignment with those who possess profound insight. - “光華映晚暉” paints a picture of light reflecting on the setting sun, symbolising your increasing brilliance in the eyes of others and an enhancement of your reputation. - The closing commentary reinforces these themes: focused action, guidance, companionship with enlightened beings, and radiant visibility. - The appended fortune notes indicate that wishes, health, lost items, acquaintances, moving, travel, marriage, and relationships will generally turn out favourably or smoothly.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:00:52",
+    "source_file": "chuck_35.json",
+    "raw_llm_response_preview": "{\"id\":35,\"title\":\"日本淺草觀音寺一百籤第三十五籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"射鹿須乘箭,故僧引路歸,遇道同仙籍,光華映晚暉\",\"analysis\":{\"zh\":\"詩句以射鹿須乘箭作比，象徵只要把目標鎖定、矢志不移，便能如射中鹿般達成所願。故僧引路歸則說有良師善導，會得到上方人士的指引與協助。遇道同仙籍寓意遵從有智慧者之教，得以同道同行，心靈得以升華。光華映晚暉描寫光芒照耀夕陽之景，寓意你在他人眼中光彩越發燦爛，名望提升。籤意總結為：行動聚焦、得到引導、與智者同道、光芒四射。願望、身體、遺失物、他人、搬遷、旅行、感情等方面均呈現吉"
+  }
+}

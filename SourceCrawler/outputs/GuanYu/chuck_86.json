@@ -1,0 +1,25 @@
+{
+  "id": 86,
+  "title": "關聖帝君一百籤第八十六籤",
+  "subtitle": "管飽為賈壬己",
+  "fortune": "上上",
+  "poem": [
+    "一舟行貨好招邀",
+    "積少成多自富饒",
+    "常把他人比自己",
+    "管須日後勝今朝"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於積少成多、與人為善，並藉此獲得持續的好運。詩中以一舟載貨作比，說明只要把小事積累，便能形成富足。然而，若只顧自己的利益，則易陷入矜誇。該詩提醒我們應常把他人放在心上，推己及人，確保未來比現在更為發達。如此，既能達到個人成功，也能為他人帶來福利，長久的好運自然不會消逝。",
+    "en": "這首詩的主題是關於在商業成功與人際關係和諧中保持謙遜與善行，藉此贏得長久之福。詩中描繪了經濟繁榮、法律勝訴、婚姻和諧、疾病消退、旅行歸來與傷害他人即傷害自己的因果關係，提醒人們以仁慈與自我修養為根基，才能持續獲得好運。",
+    "jp": "這首詩の主題は、商売の繁栄と人間関係の和睦を通じて、謙虚さと善意を保ち、長い幸運を得ることです。船を載せた貨物の比喩で、少しずつ積み重ねれば大きな富が生まれること、他人を想う姿勢が自己の未来を豊かにすると説いています。",
+    "reference": "春秋。管仲與鮑叔微時。曾同為賈。及分金管仲多自與。鮑叔知之不以為貪。知其貧也。後鮑叔為齊桓公大夫。薦仲為相。其善全交道。有如此者。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A single boat carrying goods represents humble beginnings that, when nurtured, yield abundance.\n- The phrase “積少成多自富饒” highlights the power of incremental effort and frugality as foundations of wealth.\n- Comparing oneself to others urges humility and altruism, ensuring future prosperity.\n- The closing line “管須日後勝今朝” stresses that true fortune grows through continued diligence and generosity, making current success a stepping‑stone to greater achievements.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:06:45",
+    "source_file": "chuck_86.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 86,\n  \"title\": \"關聖帝君一百籤第八十六籤\",\n  \"subtitle\": \"管飽為賈壬己\",\n  \"fortune\": \"上上\",\n  \"poem\": [\n    \"一舟行貨好招邀\",\n    \"積少成多自富饒\",\n    \"常把他人比自己\",\n    \"管須日後勝今朝\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於積少成多、與人為善，並藉此獲得持續的好運。詩中以一舟載貨作比，說明只要把小事積累，便能形成富足。然而，若只顧自己的利益，則易陷入矜誇。該詩提醒我們應常把他人放在心上，推己及人，確保未來比現在更"
+  }
+}

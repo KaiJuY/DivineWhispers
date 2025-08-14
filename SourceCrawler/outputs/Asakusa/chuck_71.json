@@ -1,0 +1,20 @@
+{
+  "id": 71,
+  "title": "日本淺草觀音寺一百籤第七十一籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "道業未成時,何期兩不宜,事煩心緒亂,飜做徘徊思",
+  "analysis": {
+    "zh": "這首詩的主題是，敘述個人尚未完成修行與事業發展，正處於學習與自我提升階段。心境雜亂、焦慮不安，因而產生種種煩惱與徬徨，提醒讀者須反省自我，努力穩定情緒與思維，才能順利邁向成長。",
+    "en": "This poem's theme is that the speaker, still unprepared in both spiritual cultivation and worldly affairs, is in a period of learning and self‑improvement. Their mind is chaotic, anxious, and restless, causing various troubles and wandering thoughts. The verse urges self‑reflection, emotional stability, and focused thinking as prerequisites for progress.",
+    "jp": "この詩のテーマは、精神修行と世俗的な事業の両方がまだ完成していない状態で、学びと自己改善の期間にあるということです。心は混乱し、不安で落ち着かず、さまざまな悩みや迷いが生じます。詩は自己反省と感情の安定、集中した思考が進歩の前提であると促しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the seeker is still in the early stage of life, both spiritually and in practical matters. The poem emphasizes the confusion and restlessness that accompany this stage, and warns that without inner calm and self‑reflection, one cannot move forward. The key symbols are: \n- 札 (the path, representing both personal development and career) \n- 工 (work, duties) \n- 未成 (incomplete) \n- 紹 (trouble) \n- 心約 (emotions) \n- 浮宺 (wandering) \nThe hidden philosophy is that growth requires patience, stability, and mindful effort rather than hasty action.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:16:28",
+    "source_file": "chuck_71.json",
+    "raw_llm_response_preview": "{\"id\":71,\"title\":\"日本淺草觀音寺一百籤第七十一籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"道業未成時,何期兩不宜,事煩心緒亂,飜做徘徊思\",\"analysis\":{\"zh\":\"這首詩的主題是，敘述個人尚未完成修行與事業發展，正處於學習與自我提升階段。心境雜亂、焦慮不安，因而產生種種煩惱與徬徨，提醒讀者須反省自我，努力穩定情緒與思維，才能順利邁向成長。\",\"en\":\"This poem's theme is that the speaker, still unprepared in both spiritual cultivation and "
+  }
+}

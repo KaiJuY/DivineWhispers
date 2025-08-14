@@ -1,0 +1,25 @@
+{
+  "id": 71,
+  "title": "關聖帝君一百籤第七十一籤",
+  "subtitle": "蘇武還鄉辛甲",
+  "fortune": "中平",
+  "poem": [
+    "喜鵲簷前報好音",
+    "知君千里欲歸心",
+    "繡幃重結鴛鴦帶",
+    "葉落霜飛寒色侵"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是喜訊與回歸的過渡，亦隱含季節的變換與人心的審視。喜鵲飛至簷前報好音，象徵喜訊與吉兆；「知君千里欲歸心」描繪遠行者即將回來的期盼；「繡幃重結鴛鴦帶」表現等待中的愛戀與期盼結緣，亦暗示關係的重新編織；最後的「葉落霜飛寒色侵」則提醒此喜訊隨之而來的寒霜與挑戰，提示人們在喜悅中亦須備戰寒冬的考驗。",
+    "en": "This poem’s theme is the transition of joyous news and return, intertwined with the shift of seasons and a reflection of one’s heart. The first line portrays the magpie’s arrival with good tidings; the second line reflects the long‑distance traveler’s yearning to come home; the third line describes the weaving of a double‑feathered ribbon, symbolizing awaited love or reunion and the weaving of new ties; the final line, with falling leaves and frost, warns that the joy will soon be accompanied by cold and challenge, urging readiness for the coming winter of trials.",
+    "jp": "この詩の主題は喜びの知らせと帰還の過渡期であり、季節の移ろいと心の振り返りを織り交ぜている。喜鵲が簷前に来て好音を届けることで吉兆を示し、遠く離れた旅人の帰路を切望する情景を描く。次に、織物に重ねられた鴛鴦の帯が、待ち続ける愛情や再結びを象徴し、新たな絆の編み直しを示唆する。最後の葉落霜飛寒色侵は喜びと同時に寒さと試練が訪れることを警告し、来る冬の試練への備えを促す。",
+    "reference": "漢。 蘇武。字子鄉。杜陵人。天漢初。中郎將奉命使匈奴。被留手時漢節。牧羊海上十九年。初單于留武。詐以死報漢。漠後漢使至匈奴。偵知武所在。乃請明寺放歸。 詐以應為傳書至。漢知正在海上牧羊。為請單于。驚為神。乃放歸。（昭帝始元年。漢和匈奴和親。獲釋回朝。封為典為屬國。後賜爵關內侯。）"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that hopeful news and a long‑awaited return are imminent, yet they arrive alongside the inevitable onset of winter’s hardships. • The magpie’s arrival at the eaves signals a positive turn of events. • The traveler’s longing to return from afar underscores the emotional relief of reunion. • The double‑feathered ribbon woven on the embroidered garment hints at rekindled or renewed relationships. • The falling leaves and frost emphasize the cyclical nature of joy followed by challenge, reminding readers to prepare for the coming cold season.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:59:26",
+    "source_file": "chuck_71.json",
+    "raw_llm_response_preview": "{\"id\":71,\"title\":\"關聖帝君一百籤第七十一籤\",\"subtitle\":\"蘇武還鄉辛甲\",\"fortune\":\"中平\",\"poem\":[\"喜鵲簷前報好音\",\"知君千里欲歸心\",\"繡幃重結鴛鴦帶\",\"葉落霜飛寒色侵\"],\"analysis\":{\"zh\":\"這首詩的主題是喜訊與回歸的過渡，亦隱含季節的變換與人心的審視。喜鵲飛至簷前報好音，象徵喜訊與吉兆；「知君千里欲歸心」描繪遠行者即將回來的期盼；「繡幃重結鴛鴦帶」表現等待中的愛戀與期盼結緣，亦暗示關係的重新編織；最後的「葉落霜飛寒色侵」則提醒此喜訊隨之而來的寒霜與挑戰，提示人們在喜悅中亦須備戰寒冬的考驗。\",\"en\":\"This p"
+  }
+}

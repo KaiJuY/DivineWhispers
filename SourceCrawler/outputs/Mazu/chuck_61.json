@@ -1,0 +1,25 @@
+{
+  "id": 61,
+  "title": "六十甲子籤頭籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "籤頭百事良  、添油大吉昌  、萬般皆如意  、富貴福壽長  。",
+  "poem": [
+    "月出光輝本清吉",
+    "浮雲總是蔽陰色",
+    "戶內用心再作福",
+    "當官分理便有益"
+  ],
+  "analysis": {
+    "zh": "本籤為頭籤，象徵拔得頭籌，處於風雲際會。詩中月光象徵純淨吉祥，雲覆暗色提示難題仍存。內心用心可造福，若處於公職則分掌業務能得益。總體來說，籤示百事良吉，萬般如意，並提醒仍須修身、積德，以持續獲得福祉。",
+    "en": "This fortune is a head drawing, indicating a leading position and a fortuitous moment. The poem portrays the moon as pure and auspicious, clouds as obstacles that can still bring shadows. By sincere effort within one’s home, one can create blessings, and if holding a public office, handling responsibilities will bring benefit. Overall, the drawing promises overall prosperity, wishes fulfilled, and urges continued cultivation of virtue to sustain fortune.",
+    "jp": "この札は頭札で、先頭を切り、運勢が良いことを示しています。詩の中では月が清らかで吉祥を表し、雲は陰影を遮る障害として描かれています。家庭で心を込めて努力すれば福がもたらされ、官職に就く場合は業務を分担することで利益が得られると示唆されています。全体として、百事が良く、願いが叶うことを約束しつつ、善行を続けることの重要性を示しています。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is that:\n- The bright moon rising symbolizes purity and inherent auspiciousness.\n- Drifting clouds represent obstacles or uncertainties that can cloud judgment.\n- With heartfelt effort at home, one can create blessings, highlighting the power of personal diligence.\n- In official duties, proper distribution of responsibilities leads to benefit, suggesting that cooperation and accountability yield success.\n- Overall, the poem encourages mindful action and collaborative management to harness favorable conditions.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:42:10",
+    "source_file": "chuck_61.json",
+    "raw_llm_response_preview": "{\"id\":61,\"title\":\"六十甲子籤頭籤\",\"subtitle\":\"屬水利冬　宜其北方\",\"fortune\":\"籤頭百事良  、添油大吉昌  、萬般皆如意  、富貴福壽長  。\",\"poem\":[\"月出光輝本清吉\",\"浮雲總是蔽陰色\",\"戶內用心再作福\",\"當官分理便有益\"],\"analysis\":{\"zh\":\"本籤為頭籤，象徵拔得頭籌，處於風雲際會。詩中月光象徵純淨吉祥，雲覆暗色提示難題仍存。內心用心可造福，若處於公職則分掌業務能得益。總體來說，籤示百事良吉，萬般如意，並提醒仍須修身、積德，以持續獲得福祉。\",\"en\":\"This fortune is a head drawing"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 80,
+  "title": "關聖帝君一百籤第八十籤",
+  "subtitle": "陶侃卜牛眠辛癸",
+  "fortune": "中平",
+  "poem": [
+    "一朝無事忽遭官",
+    "也是門衰墳未安",
+    "改換陰陽移禍福",
+    "勸君莫作等閒看"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描述一個人從平安突然遇到官司，情況因風水不佳或不合宜的方位所致。詩中說『一朝無事忽遭官』表示突發的官司；『也是門衰墳未安』表明家宅或墓地方位不利，影響人際與事業；『改換陰陽移禍福』建議調整方位或風水以化解禍福；『勸君莫作等閒看』告訴讀者不要掉以輕心，應積極處理。",
+    "en": "這首詩的主題是 about a sudden encounter with a legal dispute arising from an otherwise peaceful day, suggesting that unfavorable Feng‑Shui or improper orientation may have caused it. The line “一朝無事忽遭官” literally means that a quiet morning is abruptly interrupted by a lawsuit. The next line, “也是門衰墳未安,” points to the household or burial plot being in a bad position, which is believed to affect one’s fortunes. “改換陰陽移禍福” advises changing the yin‑yang arrangement or the direction of the house to shift the bad fate into a good one. Finally, “勸君莫作等閒看” warns the reader not to ignore the situation lightly and to take proactive steps.",
+    "jp": "這首詩のテーマは、平穏な日々が突如官司に巻き込まれることを示し、風水的な不備や方向性の問題が原因であると考えられます。『一朝無事忽遭官』は、静かな朝が急に訴訟で妨げられるという意味です。『也是門衰墳未安』は、家宅や墓所が不利な方位にあるため、運気に影響を及ぼすとされています。『改換陰陽移禍福』は、陰陽の配置や建物の向きを変えることで悪運を良運へと移すように促しています。最後に『勸君莫作等閒看』は、状況を軽視せずに積極的に対処するように勧めています。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A sudden legal dispute interrupts an otherwise uneventful day, hinting at an underlying unfavorable condition (e.g., Feng‑Shui or improper orientation).\n- The second line ties the trouble to the state of the home or burial site, suggesting that misaligned or \"unfavorable\" placement brings about misfortune.\n- The poem advises changing the yin‑yang arrangement (or the direction of the house) to transfer bad luck into good luck.\n- It concludes with a warning that the reader should not treat the situation lightly but act decisively to resolve the problem.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:03:34",
+    "source_file": "chuck_80.json",
+    "raw_llm_response_preview": "{\"id\":80,\"title\":\"關聖帝君一百籤第八十籤\",\"subtitle\":\"陶侃卜牛眠辛癸\",\"fortune\":\"中平\",\"poem\":[\"一朝無事忽遭官\",\"也是門衰墳未安\",\"改換陰陽移禍福\",\"勸君莫作等閒看\"],\"analysis\":{\"zh\":\"這首詩的主題是描述一個人從平安突然遇到官司，情況因風水不佳或不合宜的方位所致。詩中說『一朝無事忽遭官』表示突發的官司；『也是門衰墳未安』表明家宅或墓地方位不利，影響人際與事業；『改換陰陽移禍福』建議調整方位或風水以化解禍福；『勸君莫作等閒看』告訴讀者不要掉以輕心，應積極處理。\",\"en\":\"這首詩的主題是 about a sudd"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 89,
+  "title": "關聖帝君一百籤第八十九籤",
+  "subtitle": "班超歸玉門關壬壬",
+  "fortune": "中平",
+  "poem": [
+    "樽前無事且高歌",
+    "時未來時奈若何",
+    "白馬渡江嘶日暮",
+    "虎頭城裏看巍峨"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是時間與機遇的關係，提醒詩人當下無事可慮，應以樂觀姿態面對，等到適時機會到來時，仍能獲得成就。詩句暗示：白馬渡江象徵前進的勢頭，虎頭城裡看巍峨則表示在重要時刻展現英勇。",
+    "en": "This poem focuses on the relationship between time and opportunity. It advises the reader that when circumstances are calm, one should embrace a relaxed, cheerful attitude and not fret. When the right moment arrives, the speaker will cross the river on a white horse and stand proudly in the Tiger‑Head City, symbolizing eventual success and the fulfillment of ambitions.",
+    "jp": "この詩は時間と運気の関係をテーマにしています。現状が穏やかであれば、落ち着いて高らかに歌い、無理に心配する必要はありません。適切な時が来れば、白馬で川を渡り、虎頭城で堂々と立つことを示し、遅れた成就や成功を暗示しています。",
+    "reference": "漢。班超。安陵人。彪之子。少有大志。家貧。傭書養母。嘗投筆歎曰。大丈當立功異域。以取封侯。安能久事筆硯乎。明章兩朝征定五十餘國。封定遠侯。久鎮西域後。年老乞歸。帝便任尚代之。故超得歸入玉門關。至京未幾而卒。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The present situation is calm and free of urgent matters.\n- One should enjoy life and sing rather than worry.\n- The right time will eventually come.\n- When it does, a ‘white horse’ will cross the river, symbolising forward momentum.\n- In the ‘Tiger‑Head City’ one will look grand and resolute, indicating a bold stance at a critical moment.\n- Overall, the poem conveys a message of late blooming and eventual achievement, urging patience and a positive outlook.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:08:06",
+    "source_file": "chuck_89.json",
+    "raw_llm_response_preview": "{\"id\":89,\"title\":\"關聖帝君一百籤第八十九籤\",\"subtitle\":\"班超歸玉門關壬壬\",\"fortune\":\"中平\",\"poem\":[\"樽前無事且高歌\",\"時未來時奈若何\",\"白馬渡江嘶日暮\",\"虎頭城裏看巍峨\"],\"analysis\":{\"zh\":\"這首詩的主題是時間與機遇的關係，提醒詩人當下無事可慮，應以樂觀姿態面對，等到適時機會到來時，仍能獲得成就。詩句暗示：白馬渡江象徵前進的勢頭，虎頭城裡看巍峨則表示在重要時刻展現英勇。\",\"en\":\"This poem focuses on the relationship between time and opportunity"
+  }
+}

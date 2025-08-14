@@ -1,0 +1,20 @@
+{
+  "id": 34,
+  "title": "觀音一百籤第三十四籤",
+  "subtitle": "未宮",
+  "fortune": "中籤",
+  "poem": "出入行藏禮義恭、言必忠良聽必聰、心下了然俱洞徹、光明如日正當空。",
+  "analysis": {
+    "zh": "這首詩的主題是表達一種高潔、正直、明朗的心態與行為。詩中說「出入行藏禮義恭」提醒人們無論進退、行動或隱退，都應保持禮義和恭敬；「言必忠良聽必聰」則強調說話要忠實善良、聽話要聰明；「心下了然俱洞徹」形容內心清晰、洞察無遺；最後「光明如日正當空」把此種品格比作如日照光，照亮天空。",
+    "en": "這首詩のテーマは It depicts a person who, in all aspects of entering, leaving, traveling, and hiding, observes etiquette, righteousness, and reverence. Their words are loyal and virtuous, and they listen wisely. Their heart is clear and all understanding is penetrated, and they shine brightly like the sun in a clear sky.",
+    "jp": "この詩のテーマは 出入り・行動・隠れ場所でも礼儀と義を守り、敬意を払う。言葉は忠実で善良であり、耳を傾ける際は賢明である。心は澄んでおり、すべてを見抜く。光は太陽のように空を照らす。",
+    "reference": "*(從字，本作聰;言必忠良信必從一句，另有改作矢必忠良志必同一說;中字，另有改作空字一說)以下與籤詩有不合。（從籤詩來看實在無法理解怎麼會是這樣的意義）家宅　清吉。自身　安。求財　虛。交易　難。婚姻　合。六甲　有險。行人　阻。田蠶　不利。六畜　衰。尋人　滯。公訟　虧。移徙　守舊。失物　虛。疾病　設送。山墳　大吉。1.桃園結義大丈夫(關公)以四海為家。何患乎吾無兄弟。入桃園。睹兩人奇異。請問英雄何處。雄紏紏。朗曰張飛。貌堂堂。溫言劉備。出生投地今逢主。須待挽天河水來蕩滌。誠哉龍虎風雲會。宰牛馬昭告天地。結義匡扶漢室。2.文中子上太平策楊堅仁壽三年（西元603年），儒者王通（文中子）朝謁獻〈太平十二策〉；楊堅不能接受，王通「遂教授於河、汾之間，弟子自遠至者甚眾」（《資治通鑑˙卷第一七九》）。相傳他教授弟子數千，唐朝開國功臣房玄齡、魏徵、李靖等人均出其門。王通對儒學的傳承，自然不屬王朝官學體系，而是民間家學的延續。《全唐文˙卷第一三五》說王通家學淵源頗深：「以《春秋》、《周易》訓授鄉里，爲子孫資。」換句話說，儒學之再度萌芽，以禮失求諸野的方式出現了；當然，王通只是其中之一。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is the cultivation of a virtuous and luminous character.\n- The poem lists four pillars: courteous conduct (礼義恭), sincere speech and attentive listening (忠良・聰), clear understanding (了然・洞徹), and shining radiance (光明如日).\n- It emphasizes that these qualities are universal, applicable to all situations (出入行藏).\n- The imagery of light “like the sun” represents clarity, purity, and the natural fruition of righteous actions.\n- Overall, the poem encourages maintaining integrity, wisdom, and transparency, which naturally lead to harmony and success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 10:39:16",
+    "source_file": "chuck_34.json",
+    "raw_llm_response_preview": "{\n  \"id\": 34,\n  \"title\": \"觀音一百籤第三十四籤\",\n  \"subtitle\": \"未宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"出入行藏禮義恭、言必忠良聽必聰、心下了然俱洞徹、光明如日正當空。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是表達一種高潔、正直、明朗的心態與行為。詩中說「出入行藏禮義恭」提醒人們無論進退、行動或隱退，都應保持禮義和恭敬；「言必忠良聽必聰」則強調說話要忠實善良、聽話要聰明；「心下了然俱洞徹」形容內心清晰、洞察無遺；最後「光明如日正當空」把此種品格比作如日照光，照亮天空。\",\n    \"en\""
+  }
+}

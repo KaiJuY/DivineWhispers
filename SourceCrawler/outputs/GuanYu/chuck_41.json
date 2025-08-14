@@ -1,0 +1,25 @@
+{
+  "id": 41,
+  "title": "關聖帝君一百籤第四十一籤",
+  "subtitle": "劉文龍求官戊甲",
+  "fortune": "中吉",
+  "poem": [
+    "自南自北自東西",
+    "欲到天涯誰作梯",
+    "遇鼠逢牛三弄笛",
+    "好將名姓榜頭題"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是遠行與自我奮鬥的意象，強調在四面八方尋求成功，最終靠自己的努力與偶爾的運勢。詩中以南北東西作為旅程的方向，暗示尋求無所不在的機會；「欲到天涯誰作梯」則表明要到達極遠處，需要自己的腳步與毅力。接著以「鼠逢牛三弄笛」象徵遇到相互呼應的順利機遇，最後一句「好將名姓榜頭題」提醒人們當機遇來臨時，應把握時機，將自己的名字寫進名錄。整體而言，詩句勸人勇往直前，盡管途中可能有波折，但終將能收穫名聲與成就。",
+    "en": "This poem’s theme revolves around the idea of journeying far and self‑determination, stressing that while one seeks success in all directions, it ultimately depends on personal effort and the occasional stroke of luck. The verses start by pointing to the four cardinal directions—south, north, east, and west—to suggest an all‑encompassing quest for opportunity. The line “欲到天涯誰作梯” conveys that reaching the farthest horizon requires one’s own steps and perseverance. “遇鼠逘牛三弄笛” then portrays an auspicious encounter with complementary forces, while the final line “好將名姓榜頭題” reminds the reader to seize the moment when it comes and to put one’s name among the recognized ranks. Altogether, the poem encourages perseverance, acknowledging that although obstacles may arise, ultimate renown and achievement will follow.",
+    "jp": "この詩のテーマは遠方へ旅し、自ら努力しながら成功を求める姿勢で、四方八方に広がる機会を探しつつ、最終的には自分の力と偶発的な幸運に頼るというものです。詩は南北東西という四方を旅の方向とし、広い機会を探ることを暗示します。「欲到天涯誰作梯」は、遠い天涯にたどり着くためには自分の足取りと忍耐が必要であると語っています。「遇鼠逘牛三弄笛」では、互いに調和した運勢に出会う幸運を象徴し、最後の「好將名姓榜頭題」で、機会が訪れたときに自分の名を名簿に載せるべきだと促しています。全体として、試練があっても、粘り強く行動すれば名誉と成果を得られるという教訓を示しています.",
+    "reference": "野史。劉文龍。漢時人。學問極淵博。因求官而全王昭君出塞和番。與妻分別十八年。回時家中老幼俱不相識。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- **Geographical and symbolic motion**: The repeated “自南自北自東西” emphasizes a desire to explore every direction, symbolizing ambition that is not limited by geography. \n- **Personal agency**: The line “欲到天涯誰作梯” reminds the reader that reaching far horizons requires one’s own steps—no external ladder will carry them. \n- **Fortune through alignment**: “遇鼠逘牛三弄笛” pairs the mouse (beginnings) with the ox (stability), suggesting that when these forces align, success comes naturally. \n- **Recognition and legacy**: The concluding “好將名姓榜頭題” calls for seizing the moment to have one’s name listed among the distinguished, turning effort into lasting honor. \n- **Overall message**: The poem encourages perseverance and readiness to capture opportunities, asserting that while the journey may be challenging, the culmination will bring acknowledgment and acclaim.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:42:10",
+    "source_file": "chuck_41.json",
+    "raw_llm_response_preview": "{\"id\":41,\"title\":\"關聖帝君一百籤第四十一籤\",\"subtitle\":\"劉文龍求官戊甲\",\"fortune\":\"中吉\",\"poem\":[\"自南自北自東西\",\"欲到天涯誰作梯\",\"遇鼠逢牛三弄笛\",\"好將名姓榜頭題\"],\"analysis\":{\"zh\":\"這首詩的主題是遠行與自我奮鬥的意象，強調在四面八方尋求成功，最終靠自己的努力與偶爾的運勢。詩中以南北東西作為旅程的方向，暗示尋求無所不在的機會；「欲到天涯誰作梯」則表明要到達極遠處，需要自己的腳步與毅力。接著以「鼠逢牛三弄笛」象徵遇到相互呼應的順利機遇，最後一句「好將名姓榜頭題」提醒人們當機遇來臨時，應把握時機，將自己的名字寫進"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 17,
+  "title": "關聖帝君一百籤第十七籤",
+  "subtitle": "石崇被難乙庚",
+  "fortune": "下吉",
+  "poem": [
+    "田園價貫好商量",
+    "事到公庭彼此傷",
+    "縱使機關圖得勝",
+    "定為後世子孫殃"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於田園買賣糾紛，提醒人們以誠商談、以和解為主，避免訴訟帶來雙方損失；即使使用狡詐手段雖能當時得利，亦會為子孫帶來祸害。",
+    "en": "這首詩的主題是 about disputes over rural land sales, urging honesty and compromise, warning that litigation harms both parties; even cunning tactics may bring short‑term gains but long‑term harm to descendants.",
+    "jp": "這首詩の主題は この詩は農村の土地売買における紛争について語っており、正直な交渉と和解を勧め、訴訟は双方に損害を与えると警告しています。狡猾な策で一時的な利益が得られても、長期的には子孫に災いをもたらすと示唆しています。",
+    "reference": "晉。石崇字季倫。為城陰太守。伐吳有功。封安陽鄉侯。財業豊積。室宇宏麗。庖膳窮水陸之珍。與王愷以奢靡相尚。後為交趾採訪。此有美女。名綠珠。以珍珠十斛買之。藏於金谷。被趙王倫窺見。乃以計害崇。冀得綠珠。及崇被難。綠珠墜樓而死。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It depicts a dispute over the sale of rural land, where both parties bring the case to a court and both suffer loss.\n- Using cunning tactics to win a lawsuit may bring short‑term victory but causes long‑term harm to descendants.\n- The poem encourages honest negotiation and compromise, suggesting that fairness leads to a satisfactory resolution.\n- The underlying philosophy is that actions contrary to justice ultimately damage oneself and future generations.\n- The reference to the historical figure 石崇 provides a real‑life example of the consequences of wrongful conduct.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:30:16",
+    "source_file": "chuck_17.json",
+    "raw_llm_response_preview": "{\"id\":17,\"title\":\"關聖帝君一百籤第十七籤\",\"subtitle\":\"石崇被難乙庚\",\"fortune\":\"下吉\",\"poem\":[\"田園價貫好商量\",\"事到公庭彼此傷\",\"縱使機關圖得勝\",\"定為後世子孫殃\"],\"analysis\":{\"zh\":\"這首詩的主題是關於田園買賣糾紛，提醒人們以誠商談、以和解為主，避免訴訟帶來雙方損失；即使使用狡詐手段雖能當時得利，亦會為子孫帶來祸害。\",\"en\":\"這首詩的主題是 about disputes over rural land sales, urging honesty and compromise, warning that li"
+  }
+}

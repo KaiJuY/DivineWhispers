@@ -1,0 +1,20 @@
+{
+  "id": 48,
+  "title": "觀音一百籤第四十八籤",
+  "subtitle": "亥宮",
+  "fortune": "中籤",
+  "poem": "鵾鳥秋光化作鵬、遨翔得意盡飛騰、直沖萬里雲霄外、任是諸禽總不能。",
+  "analysis": {
+    "zh": "此卦象徵昆鵬的興變。凡事皆有變動，昆鵬化作鵬鳥，萬禽無法匹敵。桂香折折，福祿自增。",
+    "en": "The poem describes the Ku bird glinting in autumn light, transforming into a great Peng, soaring with confidence and flying far beyond a thousand miles of clouds; other birds cannot compare.",
+    "jp": "秋の光に輝く鵾鳥は鵬へと変わり、得意げに高く飛翔し、万里を越えて雲を直撃する。ほかの鳥は到底追いつけない。",
+    "reference": "*(鵾：音同昆)*(昆可作左昆右鳥。同鶤。鶤指三尺雞;有山雞變鳳凰或大器晚成之意;千字文欠鵬這常字。卻以鶤喻鵬;遊鶤獨運。凌摩絳霄)家宅 利。自身 吉。求財 秋旺。交易 遲。婚姻 不合。六甲 安。行人 阻滯。田蠶 中平。六畜 春利。尋人 見。公訟 勝。移徙 守舊。失物 西。疾病 祈保。山墳 安1.韓信掛帥韓信。淮陰人。時漢王燒絕棧道。部下將士逃亡甚多。其時。信歸漢逃去。何知之。連夜追信回。翌日王知。怒曰將士逃亡過半。不聞丞相有所追。獨追信。何也。何曰大王如無意東伐。固罷。若與楚爭天下。非信莫當其任。乃拜信為大將。佐漢高帝定天下。虜魏。破趙。降燕。下齊。滅楚。建十大功勳。初封楚王。2.班定遠投筆從軍《東觀漢記˙班超傳》東漢初年，有一個非常有名的歷史人物，他的名字叫做班超。班超小的時候家裡很貧窮，所以他常常要替官廳抄寫文件，來獲得一些微薄的酬勞維持家用，抄書的工作既無聊，而且也沒有什麼前途，時間久了以後班超開始感到非常疲累，所以常常嘆氣。有一天正在寫字的時候，他突然把筆丟在地上，嘆息著說：「大丈夫就算沒有別的志向，也應當仿效傅介子、張騫那樣的英雄，他們都是到遠地發展，立下了很大的功勞，最後得到了朝廷封賞的爵位，我又怎麼可以長久在筆墨間討生活呢？」他旁邊的人都取笑他不自量力，但他並不放在心上。後來，班超果然被派出使西域，他發揮了最大的智慧和勇敢，先後降服了西域五十多個國家，因為功勞很大而被封為定遠侯。今比喻有為者志在四方，勉勵人在時代需要時，棄文就武，建功疆場。雷雨師一百籤第四十二籤亦有『班定遠投筆從軍 』故事"
+  },
+  "rag_analysis": "According to the poem, the core meaning is the extraordinary transformation and boundless ambition of the Ku bird into a Peng. It highlights the theme of surpassing ordinary limits and achieving greatness. \n- The Ku bird represents a humble or modest beginning.\n- Its metamorphosis into Peng symbolizes elevation, freedom, and the breaking of ordinary constraints.\n- The soaring beyond ten thousand miles of clouds underscores limitless aspiration.\n- The line \"任是諸禽總不能\" serves as a metaphor for unparalleled excellence, indicating that no other being can match this elevated state.\n- The poem thus conveys a philosophy of striving for higher ideals, celebrating transformation, and embracing the extraordinary potential within.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:16:58",
+    "source_file": "chuck_48.json",
+    "raw_llm_response_preview": "{\n  \"id\": 48,\n  \"title\": \"觀音一百籤第四十八籤\",\n  \"subtitle\": \"亥宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"鵾鳥秋光化作鵬、遨翔得意盡飛騰、直沖萬里雲霄外、任是諸禽總不能。\",\n  \"analysis\": {\n    \"zh\": \"此卦象徵昆鵬的興變。凡事皆有變動，昆鵬化作鵬鳥，萬禽無法匹敵。桂香折折，福祿自增。\",\n    \"en\": \"The poem describes the Ku bird glinting in autumn light, transforming into a great Peng, soari"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 27,
+  "title": "六十甲子籤第二十七籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "戊辰○○○　●○○",
+  "poem": [
+    "君爾寬心且自由",
+    "門庭清吉家無憂",
+    "財寶自然終吉利",
+    "凡事無傷不用求"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是……鼓勵放寬心境，不要為家事、財務過度擔憂，因為一切都會在適時顯現。它主張順其自然，避免勉強或過度求助，保持安寧、平和的生活態度，將得到的結果視為天命，安心守住自己的分寸。",
+    "en": "這首詩的主題是...The poem encourages one to relax the heart, refrain from over‑worrying about family or finances, as everything will naturally come to pass. It advocates letting things unfold, avoiding force or excessive petitioning, and maintaining a calm, balanced way of living. The outcome is seen as destiny, so one should peacefully hold one’s own place and trust that what is meant to be will arrive.",
+    "jp": "這首詩の主題は…心を落ち着かせ、家族や財産について過度に心配せず、すべては自然に成り行くと歌われています。無理に押し付けたり、過度に祈願したりせず、落ち着いたバランスの取れた生活を送ることが勧められます。結果は運命として受け入れ、安らかに自分の役割を守るべきだと示唆されています。",
+    "reference": "1.胡完救文氏母女2.摧文德清胡鳳嬌凡事　有財允成。不畏。作事　成功。家事　團圓且喜。家運　可得興旺。婚姻　大吉。求兒　不可。六甲　添得弄璋之喜。求財　先輕後得。功名　晚到。歲君　淡淡。(未安)治病　得安。出外　先呆後好。經商　獲如意。後大利。來人　難在。行舟　先平安後大進。移居　慢即吉。失物　自回。求雨　尚未有。官事　有貴人。平安。六畜　興旺耕作　早冬微。晚冬好。築室　喜得瑞氣盈門。墳墓　地運大進益。討海　先無後有。作塭　免介意。有利得。魚苗　先微后有。月令　平安。尋人　不見。難尋。遠信　佳音速至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The central theme is to relax the mind and let go of unnecessary worry, especially regarding family safety and finances.\n- It stresses that everything will become clear and favorable when you allow things to unfold naturally.\n- The poem advises against forcing outcomes or over‑relying on prayer; instead, maintain a calm, balanced routine.\n- By accepting what is destined for you, you avoid harm and keep your life simple and peaceful.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:23:28",
+    "source_file": "chuck_27.json",
+    "raw_llm_response_preview": "{\"id\":27,\"title\":\"六十甲子籤第二十七籤\",\"subtitle\":\"屬木利春　宜其東方\",\"fortune\":\"戊辰○○○　●○○\",\"poem\":[\"君爾寬心且自由\",\"門庭清吉家無憂\",\"財寶自然終吉利\",\"凡事無傷不用求\"],\"analysis\":{\"zh\":\"這首詩的主題是……鼓勵放寬心境，不要為家事、財務過度擔憂，因為一切都會在適時顯現。它主張順其自然，避免勉強或過度求助，保持安寧、平和的生活態度，將得到的結果視為天命，安心守住自己的分寸。\",\"en\":\"這首詩的主題是...The poem encourages one to relax the heart, ref"
+  }
+}

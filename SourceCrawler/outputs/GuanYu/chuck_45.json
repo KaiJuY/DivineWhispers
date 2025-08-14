@@ -1,0 +1,25 @@
+{
+  "id": 45,
+  "title": "關聖帝君一百籤第四十五籤",
+  "subtitle": "高祖遇丁公戊戊",
+  "fortune": "中平",
+  "poem": [
+    "好將心地力耕耘",
+    "彼此山頭總是墳",
+    "陰地不如心地好",
+    "修為到底卻輸君"
+  ],
+  "analysis": {
+    "zh": "這首詩鼓勵人們以心田耕耘，並不需要外求。人生處處皆為山，山頭皆是好風水。比起追求風水，更應修養心地；凡事不必爭長競短，修為之人最終仍會得勝。抽此籤表示不宜妄求，應依循本分，方能得到天之保佑。若問地利，建議不宜遷改；若問人行，必定能到；若問疾病，則可安康。財富方面目前無法得到，宜守舊；訟案則必凶，宜和解。總之只要修積善心，便可免於災禍。",
+    "en": "This poem encourages cultivating one's inner field rather than seeking external help. Life is filled with mountains, and their peaks are seen as good feng‑shui. Rather than chasing external fortune, one should nurture the heart; those who focus on inner cultivation will ultimately prevail. Drawing this lot suggests avoiding baseless hopes and following one's proper path to receive divine protection. Regarding land, it advises against moving; concerning travelers, the answer is assured arrival; regarding illness, healing is expected. Wealth cannot be gained at present, so maintaining the status quo is wise. Litigation is likely unfavorable, so reconciliation is recommended. In short, cultivating good deeds protects one from calamity.",
+    "jp": "この詩は、心の内側を耕すことを勧め、外部への頼りを戒めます。人生は山に満ち、山頂は良い風水とされています。風水を求めるよりも心を養うことを優先すべきだと説いています。内面的な修養に専念すれば、最終的に勝利を得られると示唆しています。この籤を引くと、無用な妄想を避け、正しい道を歩むことで天の加護を受けることができると示唆されます。土地に関しては移動を控えるよう、旅人については必ず到着すると、病気については治ると示唆しています。現在は財を得られないため、既存の状態を維持する方が良いとされています。訴訟は不利とされ、和解が推奨されています。総じて、善行を積むことで災いを避けられると述べられています。",
+    "reference": "丁公為楚項籍將。逐窘漢高祖於彭城。西兵短接。高祖急顧曰。兩賢豈相厄哉。丁公乃還。及高祖即位來謁。帝曰丁公為臣不忠。使項王失天下者也。遂斬之。曰使後為人臣無傚丁公也。喻世明言第三十一卷載。閻王殿上。丁公訴曰。某在戰場圍漢皇。皇許平分天下故放皇。稱帝後反遭殺害。漢皇以丁公背項羽故誅之。事公辯曰。紀信替皇死。卻不封贈。項伯不忠。反賜封侯。雍齒為項將。後封什方侯。漢皇無言以對。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It emphasizes the importance of cultivating one’s inner self rather than chasing external fortune.\n- The first line urges diligent cultivation of the heart‑land and effort.\n- The second line reminds that even lofty ambitions (mountains) inevitably carry endings (graves), hinting at the fleeting nature of worldly pursuits.\n- The third line contrasts the unattractiveness of dark land with the value of a pure heart, asserting that inner virtue surpasses external conditions.\n- The last line warns that even with cultivation, ultimate outcomes may still be influenced by higher forces or destiny.\n- Together, the poem conveys that self‑discipline and virtue are the true sources of stability, while external pursuits are secondary and should be approached cautiously.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:44:41",
+    "source_file": "chuck_45.json",
+    "raw_llm_response_preview": "{\n  \"id\": 45,\n  \"title\": \"關聖帝君一百籤第四十五籤\",\n  \"subtitle\": \"高祖遇丁公戊戊\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"好將心地力耕耘\",\n    \"彼此山頭總是墳\",\n    \"陰地不如心地好\",\n    \"修為到底卻輸君\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩鼓勵人們以心田耕耘，並不需要外求。人生處處皆為山，山頭皆是好風水。比起追求風水，更應修養心地；凡事不必爭長競短，修為之人最終仍會得勝。抽此籤表示不宜妄求，應依循本分，方能得到天之保佑。若問地利，建議不宜遷改；若問人行，"
+  }
+}

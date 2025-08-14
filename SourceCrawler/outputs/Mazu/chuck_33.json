@@ -1,0 +1,25 @@
+{
+  "id": 33,
+  "title": "六十甲子籤第三十三籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "己巳○●●　○○●",
+  "poem": [
+    "欲去長江水闊茫",
+    "行舟把定未遭風",
+    "戶內用心再作福",
+    "看看魚水得相逢"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描寫一個渴望渡過寬闊長江的人，卻因風未起而無法出航，提醒他在家中用心準備、祈求神明，等待時機如魚遇水般順利渡船。詩中指出目前時運不佳，應先修身養性、反覆準備，待風起之時，帆船才能順利前進，願望得以實現。",
+    "en": "這首詩的主題是 about a person longing to cross the wide Yangtze River but finding that the wind has not yet blown, preventing the boat from setting sail. It advises staying at home, preparing earnestly, and praying to the divine for support, awaiting the right moment when the situation aligns, akin to a fish meeting water. The poem emphasizes that the present circumstances are unfavorable; one must first refine oneself and prepare thoroughly, and when the wind comes, the journey will succeed and the desire fulfilled.",
+    "jp": "この詩の主題は、広大な長江を渡りたがるものが、風がまだ吹かず船が出航できないことを示し、家で心を込めて準備し、神に祈り、時が来れば魚が水を得るように船が滑らかに進むことを待つよう促すことです。詩は現在の運勢が芳しくないことを指摘し、まず自らを磨き準備を怠らず、風が吹く時に帆が動き、願いが叶うというメッセージを含んでいます。",
+    "reference": "1.銅銀指私混銅之偽銀幣。紙靴指用紙代革所造之假鞋。意即使用偽幣卻買了假貨。想騙人自己也被騙。有害人終害己之意。故事出處未明。籤文新解欲去長江水闊茫。　有大水阻隔欲望。行舟把定未遭風。　欠佳運(風)而未能前進。戶內用心再作福。　內心須去惡從善。並求神明保佑。看看魚水得相逢。　如此才有風把帆吹。(魚水喻風帆)本籤之　解曰▼　29項多不合此意。因此讀者只能以　解曰(人意)▼　作參考。主看簽詩(神示)內容。反覆推敲及請教賢明(貴人)。2.劉備入東吳回荊州劉玄德。即西蜀先主也。為荊州牧時。甘夫人(劉備妻)新喪。東吳孫權聞知。詐以妹招贅欲賺(軟禁)其人。吳素討荊州。孔明料知。乃授趙雲錦囊計。保先主入吳。(東江招親)意弄假成真。娶孫夫人以歸焉。有曰周郎妙計高天下。賠了夫人又折兵。凡事　不可急進。作事　二次成功。家事　門庭缺。後團圓。家運　門庭興旺。婚姻　大吉。求兒　且慢。待後日。六甲　先男後女。求財　漸有。功名　望後科。歲君　平和。治病　拖尾。破財。不畏出外　平安。經商　安分待時。來人　辰未日(半月)到。行舟　恐防未日(半月)風波。移居　二次成吉。失物　用心再尋。求雨　緩有。官事　先呆後好。六畜　小吉。耕作　有收成。築室　要把定。待後日。墳墓　地運小吉討海　得財。作塭　漸漸得財。魚苗　好。月令　不安。尋人　未日(半月)在。遠信　音信遲延。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The central image is the vast Yangtze River and a boat awaiting wind.\n- \"Long river water wide\" symbolizes a grand ambition or goal.\n- \"Boat cannot set sail because wind not yet\" represents the lack of favorable timing or conditions.\n- \"Stay at home and prepare\" highlights the importance of self‑reflection, preparation, and patience.\n- \"Fish meeting water\" conveys the eventual harmony when intention meets opportunity.\n- The underlying philosophy is that success comes from aligning readiness with the right moment, rather than forcing action prematurely.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:27:13",
+    "source_file": "chuck_33.json",
+    "raw_llm_response_preview": "{\"id\":33,\"title\":\"六十甲子籤第三十三籤\",\"subtitle\":\"屬木利春　宜其東方\",\"fortune\":\"己巳○●●　○○●\",\"poem\":[\"欲去長江水闊茫\",\"行舟把定未遭風\",\"戶內用心再作福\",\"看看魚水得相逢\"],\"analysis\":{\"zh\":\"這首詩的主題是描寫一個渴望渡過寬闊長江的人，卻因風未起而無法出航，提醒他在家中用心準備、祈求神明，等待時機如魚遇水般順利渡船。詩中指出目前時運不佳，應先修身養性、反覆準備，待風起之時，帆船才能順利前進，願望得以實現。\",\"en\":\"這首詩的主題是 about a person longing to cross th"
+  }
+}

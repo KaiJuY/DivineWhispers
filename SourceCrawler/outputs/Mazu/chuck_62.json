@@ -1,0 +1,25 @@
+{
+  "id": 62,
+  "title": "六十甲子籤籤首",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "來意欲求天上福、誠心須點佛前燈、名利兩全皆大吉、平安酬謝油三斤。",
+  "poem": [
+    "月出光輝本清吉",
+    "浮雲總是蔽陰色",
+    "戶內用心再作福",
+    "當官分理便有益"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是說明天象與人心的相互關係。月光的光輝象徵純淨的吉祥，提醒人們應以正面之心迎接好運；浮雲遮蔽陰影則代表困難與阻礙，提醒人們不能被外界雜念所困；在屋內用心再造福，則強調內在修為與勤勉能帶來福祉；最後指出擔任官職時若能分理得當，便能獲得實際利益與好名聲。",
+    "en": "The theme of this poem is the interplay between celestial imagery and human intention. The radiant moon symbolizes pure auspiciousness, encouraging a positive mindset to welcome good fortune. The drifting clouds that mask the shadows represent obstacles and distractions, reminding us not to be swept away by external concerns. The line about cultivating blessings inside the home stresses that inner diligence and mindfulness bring prosperity. Finally, the poem suggests that a person in an official position who manages duties responsibly will reap tangible benefits and good reputation.",
+    "jp": "この詩の主題は、天体と人間の心の相互関係を示すことです。月の輝きは清らかな吉祥を象徴し、前向きな心で幸運を迎えるよう促します。浮動する雲が陰を覆うことは、困難や妨げを表し、外部の雑念に流されないよう警告します。室内で心を込めて福を創造することは、内面の修行と勤勉が繁栄をもたらすと強調しています。最後に、官職に就いて責任を果たせば、実際の利益と良い評判を得られると示唆しています。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The bright moon is a metaphor for pure auspiciousness and a call to embrace a positive mindset.\n- Floating clouds that obscure the shadows represent obstacles or distractions that can cloud one’s outlook.\n- Cultivating blessings within one’s own home through mindful effort highlights the importance of inner diligence.\n- Holding an official position with responsible governance yields tangible benefits and good reputation.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:42:26",
+    "source_file": "chuck_62.json",
+    "raw_llm_response_preview": "{\"id\":62,\"title\":\"六十甲子籤籤首\",\"subtitle\":\"屬水利冬　宜其北方\",\"fortune\":\"來意欲求天上福、誠心須點佛前燈、名利兩全皆大吉、平安酬謝油三斤。\",\"poem\":[\"月出光輝本清吉\",\"浮雲總是蔽陰色\",\"戶內用心再作福\",\"當官分理便有益\"],\"analysis\":{\"zh\":\"這首詩的主題是說明天象與人心的相互關係。月光的光輝象徵純淨的吉祥，提醒人們應以正面之心迎接好運；浮雲遮蔽陰影則代表困難與阻礙，提醒人們不能被外界雜念所困；在屋內用心再造福，則強調內在修為與勤勉能帶來福祉；最後指出擔任官職時若能分理得當，便能獲得實際利益與好名聲。\",\"en\":"
+  }
+}

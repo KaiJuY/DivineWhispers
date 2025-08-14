@@ -1,0 +1,20 @@
+{
+  "id": 82,
+  "title": "日本淺草觀音寺一百籤第八十二籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "火發應連天,新愁惹舊愆,欲求千里外,要渡更無船",
+  "analysis": {
+    "zh": "火發應連天象徵情緒失控，似火勢蔓延到天際；新愁惹舊愆則說明新悲傷會喚起舊怨；欲求千里外表達想遠離煩惱的願望；要渡更無船則表示前路艱難，缺乏足夠的資源或支持，難以實現逃離。整首詩呈現一種無法擺脫現實困境、內心焦慮與行動受限的情緒。\n",
+    "en": "Fire rises as if reaching the heavens, symbolizing an out‑of‑control blaze of desire or anger. New sorrow stirs old grievances, revealing that fresh grief can bring up long‑held resentment. The longing to escape a thousand miles away expresses a desire to flee from troubles, yet the river that must be crossed lacks a boat—an image of obstacles and a lack of means. The poem portrays a sense of frustration, a feeling of being trapped by circumstances, and an inner turmoil that hinders action.",
+    "jp": "火は天に連なるかのように燃え盛り、欲望や怒りが制御不能であることを象徴する。「新愁は旧愆を惹き起こす」は、古い恨みが新たな悲しみによって再び浮上する様子を示す。「千里離れたい」は遠くへ逃げたいという願望を表し、しかし「船が無い大河を渡る」という状況は、手段や支援が不足しているために障害があることを示している。全体として、現実の束縛や内面的な焦燥感、行動が阻まれる感覚を描いている。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is a portrayal of emotional turbulence and the difficulty of escaping it. • The fire that reaches the sky represents uncontrollable desire or anger that spreads beyond limits. • The new sorrow awakening old grievances illustrates how fresh pain can bring long‑held resentments to the surface. • The wish to flee a thousand miles away conveys a yearning to escape troubles, yet the river to cross lacks a boat, signifying lack of means or support. • The overall tone is one of frustration, feeling trapped by circumstances, and internal turmoil that hinders decisive action.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:21:16",
+    "source_file": "chuck_82.json",
+    "raw_llm_response_preview": "{\"id\":82,\"title\":\"日本淺草觀音寺一百籤第八十二籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"火發應連天,新愁惹舊愆,欲求千里外,要渡更無船\",\"analysis\":{\"zh\":\"火發應連天象徵情緒失控，似火勢蔓延到天際；新愁惹舊愆則說明新悲傷會喚起舊怨；欲求千里外表達想遠離煩惱的願望；要渡更無船則表示前路艱難，缺乏足夠的資源或支持，難以實現逃離。整首詩呈現一種無法擺脫現實困境、內心焦慮與行動受限的情緒。\\n\",\"en\":\"Fire rises as if reaching the heavens, symbolizing an out‑of‑c"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 88,
+  "title": "日本淺草觀音寺一百籤第八十八籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "作事不和同,臨危更主凶,佳人生苦根,閑慮兩三重",
+  "analysis": {
+    "zh": "這首詩的主題是關於行動與人際關係中的不和、危險帶來的惡運、善人所承受的苦楚以及無謂的心事會層層累積的警示。作事不和同提醒我們，行事往往會與他人產生衝突；臨危更主凶說明遇到危險時，風險更高，惡運更易發生；佳人生苦根則指出即使是善良、正直的人，生活中仍會有苦根，可能是與伴侶或家庭相關的痛苦；閑慮兩三重形容空閒時無端的煩惱會層層加深，最終造成更大的困擾。",
+    "en": "The theme of this poem concerns the discord that can arise in one's actions and relationships, the heightened danger and misfortune that accompany peril, the suffering endured even by virtuous people, and the way idle worries can pile up. '作事不和同' warns that one's deeds may clash with others; '臨危更主凶' indicates that danger brings even greater risk and misfortune; '佳人生苦根' points out that even a good person can harbor roots of suffering, perhaps tied to a spouse or family; and '閑慮兩三重' describes how idle concerns accumulate over time, leading to greater trouble.",
+    "jp": "この詩のテーマは、行動と人間関係の中に生じる不和、危険に伴う高まる不運、善人にも潜む苦しみ、そして無駄な心配が積み重なっていく様子を示しています。『作事不和同』は、行うことが他人と衝突する可能性があることを警告し、'臨危更主凶'は、危険に直面した際にさらに大きなリスクと不運が起こりやすいことを示します。『佳人生苦根』は、善良であっても苦しみの根源を抱えていること、たとえば配偶者や家族に関係する痛みを示唆しています。最後に『閑慮兩三重』は、無駄な心配が時間とともに重なり、より大きな問題へと発展することを表しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- **Discord in action**: one's efforts are likely to clash with others, causing friction.\n- **Escalated risk**: when danger arises, misfortune intensifies.\n- **Hidden suffering**: even virtuous people carry painful roots, often tied to close relationships.\n- **Accumulation of idle worry**: trivial concerns pile up, compounding problems over time.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:24:09",
+    "source_file": "chuck_88.json",
+    "raw_llm_response_preview": "{\"id\":88,\"title\":\"日本淺草觀音寺一百籤第八十八籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"作事不和同,臨危更主凶,佳人生苦根,閑慮兩三重\",\"analysis\":{\"zh\":\"這首詩的主題是關於行動與人際關係中的不和、危險帶來的惡運、善人所承受的苦楚以及無謂的心事會層層累積的警示。作事不和同提醒我們，行事往往會與他人產生衝突；臨危更主凶說明遇到危險時，風險更高，惡運更易發生；佳人生苦根則指出即使是善良、正直的人，生活中仍會有苦根，可能是與伴侶或家庭相關的痛苦；閑慮兩三重形容空閒時無端的煩惱會層層加深，最終造成更大的困擾。\",\"en\":\"The"
+  }
+}

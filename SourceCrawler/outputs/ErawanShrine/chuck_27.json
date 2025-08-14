@@ -1,0 +1,20 @@
+{
+  "id": 27,
+  "title": "四面佛三十籤第二十七籤",
+  "subtitle": "",
+  "fortune": "下籤",
+  "poem": "未曾祈禱有思款,所謀如今不及時,做事自身難解透,虔心明日未為遲。",
+  "analysis": {
+    "zh": "詩中暗示，身體較為虛弱，是因為先前未能好好照顧。雖然現在試圖臨時補救，但已稍晚。只要堅持恆心地照顧，身體就會恢復健康。財務方面亦如此，未曾好好規畫致富，臨時尋求財運的努力較為困難。虔誠自我反省後，便能化解財運上的阻礙。所有現有問題，都是過去疏失造成的。若在感情方面未能抓住時機，現在仍可以真誠了解對方為時不晚。事業發展需要長、中、短期計畫，一步步實踐。面對瓶頸並非偶然，既然已成事實，應先向神佛祈求協助，以化解困境。",
+    "en": "The poem suggests that your body is somewhat frail because you have not taken proper care of it in the past. Although you are now attempting a last‑minute remedy, it is already a little late. With steady dedication to care, your health will recover. The same holds for finances: you did not plan your wealth properly, so the effort to seek fortune at this moment is difficult. By earnestly reflecting on yourself, you can dispel the obstacles to prosperity. All present problems stem from earlier oversights. In matters of affection, if you missed the right moment, it is still possible to understand the other person sincerely and not be too late. Career development requires long‑, medium‑ and short‑term plans, executed step by step. Facing a bottleneck is no accident; since it has become reality, you should first seek help from gods and Buddha to overcome the predicament.",
+    "jp": [],
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the speaker faces setbacks caused by past neglect in health, finances, and relationships. The poem urges self‑reflection and perseverance as the key to overcoming these obstacles.\n\n- **Time and late intervention**: the poem highlights that attempts to remedy problems now are delayed, indicating that timing is crucial.\n- **Health and frailty**: the body’s weakness symbolizes the consequence of not caring for oneself.\n- **Wealth and unplanned fortune**: the difficulty of securing financial luck now reflects inadequate financial planning.\n- **Relationships and missed opportunities**: the poem reminds that even missed chances can still be salvaged through sincere understanding.\n- **Philosophical take**: reality cannot be altered retroactively, but mindful action and divine guidance can heal the damage. A step‑by‑step plan for career and personal growth is encouraged, while acknowledging that current challenges are natural results of earlier oversights.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:36:24",
+    "source_file": "chuck_27.json",
+    "raw_llm_response_preview": "{\n  \"id\": 27,\n  \"title\": \"四面佛三十籤第二十七籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"下籤\",\n  \"poem\": \"未曾祈禱有思款,所謀如今不及時,做事自身難解透,虔心明日未為遲。\",\n  \"analysis\": {\n    \"zh\": \"詩中暗示，身體較為虛弱，是因為先前未能好好照顧。雖然現在試圖臨時補救，但已稍晚。只要堅持恆心地照顧，身體就會恢復健康。財務方面亦如此，未曾好好規畫致富，臨時尋求財運的努力較為困難。虔誠自我反省後，便能化解財運上的阻礙。所有現有問題，都是過去疏失造成的。若在感情方面未能抓住時機，現在仍可以真誠了解對方"
+  }
+}

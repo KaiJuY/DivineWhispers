@@ -1,0 +1,20 @@
+{
+  "id": 64,
+  "title": "日本淺草觀音寺一百籤第六十四籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "安居且慮危,情深主別離,風飄波浪急,鴛鴦各自飛",
+  "analysis": {
+    "zh": "這首詩的主題是關於表面安寧卻隱藏危險、深厚情感中難免的別離、風浪的突變與鴛鴦各自飛向命運的隱喻。詩中「安居且慮危」說明雖身處平安之地，但心中仍有不安。接著「情深主別離」指出，關係再深也可能遭遇離別。\\n「風飄波浪急」則以風浪作比，形容突如其來的變故。最後「鴛鴦各自飛」用鴛鴦分飛的景象，暗示即使本來相伴，仍有各自命運的離散。整首詩暗示雖有平靜，仍需警惕未來的變化，並準備面對可能的分離。",
+    "en": "The theme of this poem is an exploration of outward tranquility hiding underlying peril, deep affection inevitably leading to separation, sudden turbulence, and the metaphor of a pair of mandarin ducks flying separately into their destinies. '安居且慮危' indicates that even though one resides in safety, there remains an inner unease. '情深主別離' points out that even a deeply rooted relationship can experience parting. '風飄波浪急' uses the image of wind and waves to represent abrupt changes. Finally, '鴛鴦各自飛' employs the image of a pair of mandarin ducks flying apart, implying that even if they once flew together, each will follow its own fate. Overall, the poem warns that while there may be calm, one must remain vigilant for future changes and be prepared for possible separation.",
+    "jp": "この詩のテーマは、表面上は安寧に包まれながらも内側に潜む危険、深い愛情がやがて別れへと導かれること、突如として起こる変化、そして鴛鴦（オオツシ）のようにそれぞれが別々に飛び去る運命という比喩を通じて語られることです。『安居且慮危』は、静かに暮らしているように見えても心の中に不安が残ることを示しています。『情深主別離』は、深い絆であっても別れが訪れる可能性があることを指摘しています。『風飄波浪急』は風と波のイメージで、突発的な変化を象徴しています。最後に『鴛鴦各自飛』は、かつては共に飛んでいた鴛鴦がそれぞれの運命へと飛び去る様子を描き、離れ離れになることを暗示しています。全体として、詩は平和を保ちながらも将来の変化に警戒し、別れに備えるべきだと警告しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A warning that seeming tranquility hides underlying risks; one should not be complacent.\n- Even deep, enduring affection can lead to parting; love does not guarantee permanence.\n- Sudden, violent changes (symbolized by wind and waves) can disrupt stability and force unexpected separation.\n- The image of mandarin ducks flying separately illustrates that relationships may dissolve into individual paths.\n- The overall lesson encourages vigilance, readiness to adapt, and acceptance of possible loss.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:12:53",
+    "source_file": "chuck_64.json",
+    "raw_llm_response_preview": "{\"id\":64,\"title\":\"日本淺草觀音寺一百籤第六十四籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"安居且慮危,情深主別離,風飄波浪急,鴛鴦各自飛\",\"analysis\":{\"zh\":\"這首詩的主題是關於表面安寧卻隱藏危險、深厚情感中難免的別離、風浪的突變與鴛鴦各自飛向命運的隱喻。詩中「安居且慮危」說明雖身處平安之地，但心中仍有不安。接著「情深主別離」指出，關係再深也可能遭遇離別。\\\\n「風飄波浪急」則以風浪作比，形容突如其來的變故。最後「鴛鴦各自飛」用鴛鴦分飛的景象，暗示即使本來相伴，仍有各自命運的離散。整首詩暗示雖有平靜，仍需警惕未來的變化，並準備"
+  }
+}

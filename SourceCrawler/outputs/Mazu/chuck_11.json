@@ -1,0 +1,25 @@
+{
+  "id": 11,
+  "title": "六十甲子籤第十一籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "乙酉●○●　●○●",
+  "poem": [
+    "靈雞漸漸見分明",
+    "凡事且看子丑寅",
+    "雲開月出照天下",
+    "郎君即便見太平"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是以靈雞的啼鳴象徵黎明的到來，暗示事情將在子丑寅時段（即早晨或月初）得到明朗。第一句說靈雞漸漸見分明，描繪鳥鳴逐漸清晰，象徵光明將降臨。第二句「凡事且看子丑寅」指出答案會在子、丑、寅三個時辰顯現。第三句「雲開月出照天下」比喻雲層散去，月光照耀，表示陰霾消散、光明回來。第四句「郎君即便見太平」說最終結果是平安順遂。整首詩傳遞的是「黎明前的黑暗即將散去，平安將到」的意象。",
+    "en": "This poem's theme is the use of a spiritual rooster’s crow to signify the approach of dawn, indicating that matters will become clear during the times of the 子, 丑, and 寅 hours. The opening line describes the rooster’s call growing clearer, symbolizing light coming forward. The second line notes that everything can be seen at 子、丑、寅, meaning the answer will appear in those hours. The third line speaks of clouds dispersing and the moon shining over the world, illustrating the clearing of gloom and return of brightness. The final line says that the gentleman will ultimately see peace. The poem conveys that the darkness before dawn will lift and tranquility will arrive.",
+    "jp": "この詩のテーマは、霊鶏の鳴き声で明け方を象徴し、子・丑・寅の時間帯に事柄が明らかになるというものです。最初の行で鶏の鳴き声が徐々に分かりやすくなる様子が描かれ、光が近づくことを表します。第二の行では「凡事且看子丑寅」とあり、すべてが子・丑・寅の時に見えることを示しています。第三の行は雲が開き、月が天下を照らすと語り、雲が散り、光が戻る様子を描いています。最後の行では「郎君即便見太平」とあり、最終的に平和を得られることを示しています。全体として、夜明け前の闇が消え、安らぎが訪れるというイメージを伝えています。",
+    "reference": "1.三藏被紅孩兒燒唐三藏及豬八戒被紅孩兒捉去。要蒸吃唐僧肉。壽延千紀。孫悟空救師不果。唐三藏九死一生。最後才得觀音解圍。2.撐渡伯行舟遇太歲凡事　作不和。子錢安。作事　子丑寅日必成。家事　平好。家運　漸漸得居春風。婚姻　終成。求兒　不可。(可也)六甲　先男。貴氣。(子媳缺)求財　漸漸有收。功名　費了工。八月好。歲君　順吉。治病　大命不好。子丑寅日過不畏。出外　子丑寅日可行。經商　不利。來人　近日到。行舟　不可。移居　平安。(子丑寅日抽好)失物　子丑寅日尋在。求雨　近有。官事　有人和吉。三月完局。六畜　可納。耕作　半收。築室　好。墳墓　平平。討海　前呆后微。作塭　小收微利。魚苗　小利。月令　不畏。尋人　牛虎日。遠信　牛虎日。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The gradual call of the spiritual rooster represents the approaching dawn, signaling a shift from darkness to light.\n- The reference to 子, 丑, and 寅 marks specific moments—early morning or early lunar days—when clarity and resolution will emerge.\n- The imagery of clouds dispersing and the moon shining over the world symbolizes the removal of obstacles and the reappearance of calm, steady illumination.\n- The final line’s promise of \"peace\" or \"tranquility\" indicates that the situation will ultimately be resolved favorably and peacefully.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:14:39",
+    "source_file": "chuck_11.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 11,\n  \"title\": \"六十甲子籤第十一籤\",\n  \"subtitle\": \"屬水利冬　宜其北方\",\n  \"fortune\": \"乙酉●○●　●○●\",\n  \"poem\": [\n    \"靈雞漸漸見分明\",\n    \"凡事且看子丑寅\",\n    \"雲開月出照天下\",\n    \"郎君即便見太平\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是以靈雞的啼鳴象徵黎明的到來，暗示事情將在子丑寅時段（即早晨或月初）得到明朗。第一句說靈雞漸漸見分明，描繪鳥鳴逐漸清晰，象徵光明將降臨。第二句「凡事且看子丑寅」指出答案會在子、丑、寅三"
+  }
+}

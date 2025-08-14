@@ -1,0 +1,25 @@
+{
+  "id": 75,
+  "title": "關聖帝君一百籤第七十五籤",
+  "subtitle": "劉小姐愛蒙正辛戊",
+  "fortune": "中吉",
+  "poem": [
+    "生前結得好緣姻",
+    "一笑相逢情自親",
+    "相當人物無高下",
+    "得意休論富與貧"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於前世緣分與今世相遇，強調人物品格高低不分貧富，提醒在得意時不應自以為富貴。",
+    "en": "This poem's theme is about the destiny forged in a previous life and the serendipitous meeting in this life, emphasizing that personal virtue transcends wealth or poverty, and that one should not take pride in fortune when things are going well.",
+    "jp": "この詩のテーマは、前世で結んだ縁と今世で出会う偶然に焦点を当て、人格が富貧を越えていることを強調し、物事がうまくいったときに自惚れずにあるべきだと説いています。",
+    "reference": "誌乘云。呂蒙正。妻劉氏。樞密文茂之女。蒙正未逢時。茂當輕之有悔意。劉小姐獨愛之。同居破窯。因見蒙正舉止不凡。知蛟龍非久困池中物也。後果大魁天下。三居相位受封蔭焉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A reunion of destined partners, irrespective of social rank, underscoring that character outweighs wealth.\n- The smiling encounter symbolizes mutual affection and the breaking of class distinctions.\n- The message advises humility during prosperous times and highlights the virtue of integrity as the true source of success.\n- It reflects a philosophy of meritocracy, where moral worth determines one's fate rather than material status.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:00:57",
+    "source_file": "chuck_75.json",
+    "raw_llm_response_preview": "{\"id\":75,\"title\":\"關聖帝君一百籤第七十五籤\",\"subtitle\":\"劉小姐愛蒙正辛戊\",\"fortune\":\"中吉\",\"poem\":[\"生前結得好緣姻\",\"一笑相逢情自親\",\"相當人物無高下\",\"得意休論富與貧\"],\"analysis\":{\"zh\":\"這首詩的主題是關於前世緣分與今世相遇，強調人物品格高低不分貧富，提醒在得意時不應自以為富貴。\",\"en\":\"This poem's theme is about the destiny forged in a previous life and the serendipitous meeting in this life, e"
+  }
+}

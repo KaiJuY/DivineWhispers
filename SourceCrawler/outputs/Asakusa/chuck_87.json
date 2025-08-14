@@ -1,0 +1,20 @@
+{
+  "id": 87,
+  "title": "日本淺草觀音寺一百籤第八十七籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "鑿石方逢玉,淘沙始見金,青霄終有路,只恐不堅心",
+  "analysis": {
+    "zh": "這首詩的主題是...鑿石方逢玉，偶然鑽出石中寶石象徵突如其來的驚喜與收穫。淘沙始見金，說明在持續的努力與細心篩選中，財富與機會逐漸浮現。青霄終有路，提醒人們只要堅持，雖然道路艱辛，終究會有突破。只恐不堅心，則警示若缺乏決心與毅力，任何企圖都難以成功。",
+    "en": "這首詩的主題是...The poem portrays how luck can surface unexpectedly, like finding a gem while chipping away at a stone. It reminds us that perseverance and careful selection—akin to sifting sand for gold—gradually bring wealth and opportunities. The line '青霄終有路' suggests that, though the path to the heavens may be steep, a steadfast heart will eventually find a way. Conversely, '只恐不堅心' warns that without resolve, all endeavors may fail.",
+    "jp": "この詩のテーマは…石を掘ると宝石が出るように、運は偶然の中に潜み、努力と忍耐があれば段々と金のような価値を見出せるということです。青霄終有路は、困難な道であっても堅い心を持てば道が開けると示し、只恐不堅心は、決意がなければ何をしても成功しないと警告しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is…\n- The opening line likens chance to discovering a gem in a stone, suggesting sudden, unexpected blessings.\n- The middle couplet compares diligent effort to sifting sand for gold, emphasizing that persistent work eventually reveals hidden value.\n- The phrase “青霄終有路” conveys that, even when the ascent seems impossible, a steady resolve will ultimately open a path.\n- The concluding warning, “只恐不堅心,” reminds that without unwavering determination, all attempts may fall short.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:23:29",
+    "source_file": "chuck_87.json",
+    "raw_llm_response_preview": "{\"id\":87,\"title\":\"日本淺草觀音寺一百籤第八十七籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"鑿石方逢玉,淘沙始見金,青霄終有路,只恐不堅心\",\"analysis\":{\"zh\":\"這首詩的主題是...鑿石方逢玉，偶然鑽出石中寶石象徵突如其來的驚喜與收穫。淘沙始見金，說明在持續的努力與細心篩選中，財富與機會逐漸浮現。青霄終有路，提醒人們只要堅持，雖然道路艱辛，終究會有突破。只恐不堅心，則警示若缺乏決心與毅力，任何企圖都難以成功。\",\"en\":\"這首詩的主題是...The poem portrays how luck can surface une"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 28,
+  "title": "關聖帝君一百籤第二十八籤",
+  "subtitle": "相如題橋丙辛",
+  "fortune": "上吉",
+  "poem": [
+    "公侯將相本無種",
+    "好把勤勞契上天",
+    "人事盡從天理見",
+    "才高豈得困林泉"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：命運並非血脈傳承，勤勞與天意相合，人的行為終究會得到天理的安排，而才華絕不會被限制於鄉野之間。詩句「公侯將相本無種」提醒我們，官位高低並非與生俱來；「好把勤勞契上天」則說明只要不懈努力，便能得到天意的眷顧；「人事盡從天理見」指出一切人事皆隨天道而定；「才高豈得困林泉」表明天賦卓越的人不應被局限於鄉下環境，反而能飛躍於更廣闊的天地。",
+    "en": "這首詩的主題是：The poem conveys that destiny is not inherited; hard work aligns with the heavens; human affairs are guided by divine principles; and great talent cannot be confined by humble surroundings. The lines ‘公侯將相本無種’ remind us that rank is not predetermined by birth, ‘好把勤勞契上天’ shows that diligent effort attracts heavenly favor, ‘人事盡從天理見’ indicates that all human matters ultimately follow a natural order, and ‘才高豈得困林泉’ suggests that true talent transcends the limits of rustic settings.",
+    "jp": "この詩のテーマは、運命は血統や世襲によって決まるものではなく、勤勉さと天意が結びつくことで人の行いは天の理に従って実を結び、天賦の才は小さな環境に縛られないということです。『公侯将相本無種』は身分が生まれながらに決まるものではないことを、『好把勤勞契上天』は勤勉さが天の恩恵を呼び込むことを、『人事盡從天理見』は人間の事柄が天の理に従うことを、『才高豈得困林泉』は真の才能は自然環境に縛られないことを示しています。",
+    "reference": "漢。司馬相如。成都人。未遇時。嘗遇橋。見貴者車馬喧騰。慨然曰。大丈夫當如是。因題橋以見志。作子虛上林賦。武帝讀而善之。召見以為郎。會唐蒙驚憂。巴蜀遣相如責之。上乃拜相如為中郎將。後有人上書告。相如使時受金。失官居歲餘。復召為郎。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- Destiny is not predetermined by birth or lineage.\n- Persistent hard work attracts divine favor and opens pathways.\n- Human affairs are ultimately governed by a higher, natural order.\n- Exceptional talent transcends humble environments and is not confined to rural settings.\n- The poem encourages perseverance and aligning personal effort with the natural course of things.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:35:11",
+    "source_file": "chuck_28.json",
+    "raw_llm_response_preview": "{\n  \"id\": 28,\n  \"title\": \"關聖帝君一百籤第二十八籤\",\n  \"subtitle\": \"相如題橋丙辛\",\n  \"fortune\": \"上吉\",\n  \"poem\": [\n    \"公侯將相本無種\",\n    \"好把勤勞契上天\",\n    \"人事盡從天理見\",\n    \"才高豈得困林泉\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：命運並非血脈傳承，勤勞與天意相合，人的行為終究會得到天理的安排，而才華絕不會被限制於鄉野之間。詩句「公侯將相本無種」提醒我們，官位高低並非與生俱來；「好把勤勞契上天」則說明只要不懈努力，便能得到天意的眷顧；「人"
+  }
+}

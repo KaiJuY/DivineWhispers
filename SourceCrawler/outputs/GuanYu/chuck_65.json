@@ -1,0 +1,25 @@
+{
+  "id": 65,
+  "title": "關聖帝君一百籤第六十五籤",
+  "subtitle": "蒙正木蘭和詩庚戊",
+  "fortune": "上上",
+  "poem": [
+    "朔風凜凜正窮冬",
+    "多羨門庭喜氣濃",
+    "更入新春人事後",
+    "衷言方得信先容"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是寒冬與春暖的轉化，表現了由嚴寒到溫暖、由困境到希望的過程。『朔風凜凜正窮冬』描繪寒風刺骨，處於困境；『多羨門庭喜氣濃』說明家門喜氣盈盈，外在環境充滿溫暖；『更入新春人事後』暗示春天的來臨和人事的順利；『衷言方得信先容』則強調心意與先行的誠意能帶來信任與支持。整首詩以四句概括了寒冬到春天、困難到順利的過渡，隱含「否極泰來」的吉祥寓意。",
+    "en": "This poem’s theme is the transition from the harsh cold of winter to the warmth of spring, depicting a shift from hardship to hope. The first line, \"The northern wind is fierce, it is a bitter winter,\" sets the scene of severe winter. The second line, \"Many admire the household filled with joy,\" contrasts the external warmth of the home. The third line, \"Entering the new spring after the people’s affairs,\" indicates the arrival of spring and smoother affairs. The final line, \"True words are only received after sincere offering,\" suggests that sincere intentions earn trust and acceptance. Overall, the poem presents a hopeful cycle from winter’s hardship to spring’s promise, echoing the auspicious idea that adversity is followed by prosperity.",
+    "jp": "この詩は、厳しい寒さから春の温もりへと移り変わる過程を描き、苦難から希望への転換を示しています。最初の行『北風が凜と吹き、凛とした寒冬が訪れる』は、過酷な冬を表現しています。第二行『門庭が喜びで満ち、多くの人々が羨む』は、家の中の温かな雰囲気を対照的に示しています。第三行『春が訪れ、人事も順調に進む』は、春の到来と人事の円滑さを示しています。最後の行『心からの言葉は真心を持って差し出せば信頼を得られる』は、誠意が信頼を呼び、承認されるというメッセージを伝えています。全体として、冬の困難から春の約束へと続く希望に満ちたサイクルを示し、逆境が繁栄へと転じるという吉祥のメッセージを体現しています。",
+    "reference": "宋。呂蒙正。字聖初。河南人。微時嘗在僧家別院。木蘭寺內和詩。其品迥異庸流。迨太宗時。果舉進士第一。後三居相位。引薦人材。使上下各稱其職。稱賢相焉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a hopeful cycle of transition from hardship to fortune. \n- The biting north wind and bitter winter symbolize adversity and stagnation. \n- The joyful household and abundant good fortune represent the warmth and prosperity that come after struggle. \n- The arrival of spring and smooth human affairs suggest renewal and successful resolution of issues. \n- The final line emphasizes that sincere intentions, when offered early, are rewarded with trust and support. \n- Together, the poem conveys the auspicious idea that severe difficulties ultimately give way to favorable outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:55:52",
+    "source_file": "chuck_65.json",
+    "raw_llm_response_preview": "{\n  \"id\": 65,\n  \"title\": \"關聖帝君一百籤第六十五籤\",\n  \"subtitle\": \"蒙正木蘭和詩庚戊\",\n  \"fortune\": \"上上\",\n  \"poem\": [\n    \"朔風凜凜正窮冬\",\n    \"多羨門庭喜氣濃\",\n    \"更入新春人事後\",\n    \"衷言方得信先容\"\n  ],\n  \"reference\": \"宋。呂蒙正。字聖初。河南人。微時嘗在僧家別院。木蘭寺內和詩。其品迥異庸流。迨太宗時。果舉進士第一。後三居相位。引薦人材。使上下各稱其職。稱賢相焉。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是寒冬與春暖的轉化，表現了"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 29,
+  "title": "六十甲子籤第二十九籤",
+  "subtitle": "屬土利年　四方皆宜",
+  "fortune": "戊申●●○　○●○",
+  "poem": [
+    "枯木可惜未逢春",
+    "如今反在暗中藏",
+    "寬心且守風霜退",
+    "還君依舊作乾坤"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是…以枯木象徵當下的停滯與等待，提醒人們在暗處仍有機會，只有保持寬心、守住風霜，等待退去，才能重返乾坤。",
+    "en": "這首詩的主題是…The poem uses a withered tree as a metaphor for current stagnation and the necessity of patience, urging that even in darkness there is still hope; only by staying calm, enduring the hardships, and waiting for them to pass can one regain control of the world.",
+    "jp": "この詩のテーマは…枯れ木を例えに、現在の停滞と忍耐、未来の可能性を示し、暗闇の中にも機会があると説く。寛容で風霜を耐え、退くのを待つことで、再び乾坤を掌握できるというメッセージ。",
+    "reference": "古城會關公斬蔡陽凡事　待時。作事　難成。家事　平安。家運　合家興旺。(運滯)婚姻　平平。求兒　不吉。六甲　先男後女。求財　新業差。舊業平。功名　不就。歲君　平正。治病　運暗。逢春出運。(老凶)出外　不可。經商　須守安命不可。來人　未日(半月)到。行舟　無利可得。移居　不吉。失物　援尋。(必在)求雨　久不至。官事　拖尾。六畜　不可。耕作　無利半收。築室　漸待開春。墳墓　地運後必發。討海　依舊吉。新不利。作塭　返原運。暗無利。魚苗　春有利。夏失時。月令　不遂。尋人　行人待。遠信　音信速至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A withered tree symbolizes a period of inactivity and a lack of growth before spring arrives.\n- The second line indicates that the truth or outcome is still hidden in darkness, not yet revealed.\n- The third line advises patience and resilience, staying calm while weathering hardships.\n- The final line reassures that once the storm subsides, one can once again shape or influence the world.\nOverall, the poem encourages enduring the present difficulties with patience, trusting that a better future will emerge when the time is right.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:24:18",
+    "source_file": "chuck_29.json",
+    "raw_llm_response_preview": "{\n  \"id\": 29,\n  \"title\": \"六十甲子籤第二十九籤\",\n  \"subtitle\": \"屬土利年　四方皆宜\",\n  \"fortune\": \"戊申●●○　○●○\",\n  \"poem\": [\n    \"枯木可惜未逢春\",\n    \"如今反在暗中藏\",\n    \"寬心且守風霜退\",\n    \"還君依舊作乾坤\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是…以枯木象徵當下的停滯與等待，提醒人們在暗處仍有機會，只有保持寬心、守住風霜，等待退去，才能重返乾坤。\",\n    \"en\": \"這首詩的主題是…The poem uses a withered "
+  }
+}

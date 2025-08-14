@@ -1,0 +1,25 @@
+{
+  "id": 20,
+  "title": "關聖帝君一百籤第二十籤",
+  "subtitle": "嚴子陵登釣臺乙癸",
+  "fortune": "下吉",
+  "poem": [
+    "一生心事向誰論",
+    "十八灘頭說與君",
+    "世事盡從流水去",
+    "功名富貴等浮雲"
+  ],
+  "analysis": {
+    "zh": "此籤詩以心事與世事的隨流水為主題，提醒當事人應放寬心胸，不必過於執著功名富貴，因為人生如流雲般無常。詩中指出，一生坎坷如十八灘頭，世事易如流水，唯有把不如意的過去留給流水，心境才能安定。對於旅行、訴訟、疾病、行人、婚姻等諮問，詩歌亦以隱喻方式提示需謹慎，並認為此籤總體較為不吉，宜保持謹慎。",
+    "en": "Lot No.20 offers guidance that litigation may be hazardous, so one should refrain from pursuing it. Fame and wealth are fleeting, much like clouds drifting away. Health concerns may require careful attention to a reputable physician. Travelers will be distant and delayed, while marriage may be postponed and fraught with uncertainty. In general, the poem advises caution and restraint, reminding the seeker that worldly pursuits are transient and that patience will help navigate life's currents.",
+    "jp": "第20号の籤は、先行きを困難とし、忍耐と修養、学び、機を待つよう告げている。訴訟は避けるべきで、名利を追わず、病は名医を選び、旅人は遠く離れ、縁結びは遅く進まない。事はほどほどに進めるべきである。",
+    "reference": "漢。嚴光字子陵。餘姚人。少有高名。與大武同遊學。及光武即位。遂變姓名。隱身不仕。帝令物母訪之。後齊國書云。有一男子。裘釣墨(墨左本有水)中。帝疑為光。遭使聘之。三反乃至。除諫議大夫不屈。耕富春山。帝遂其志。為建釣臺。東漢高士稱第一焉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is...\n- The verses liken life to a flowing river and ambitions to fleeting clouds, emphasizing the transient nature of worldly pursuits.\n- They urge the seeker to let go of attachment to fame, wealth, and past grievances, treating them as clouds that drift away.\n- Hardships are described as the “Eighteen Tides,” suggesting that challenges are inevitable but can be faced with calm endurance.\n- Practical matters such as travel, litigation, health, and marriage are warned to be approached with caution and patience, as delays or difficulties may arise.\n- Overall, the poem advocates acceptance and restraint, encouraging a softer mindset and vigilance to navigate life’s currents more peacefully.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:31:57",
+    "source_file": "chuck_20.json",
+    "raw_llm_response_preview": "{\"id\":20,\"title\":\"關聖帝君一百籤第二十籤\",\"subtitle\":\"嚴子陵登釣臺乙癸\",\"fortune\":\"下吉\",\"poem\":[\"一生心事向誰論\",\"十八灘頭說與君\",\"世事盡從流水去\",\"功名富貴等浮雲\"],\"analysis\":{\"zh\":\"此籤詩以心事與世事的隨流水為主題，提醒當事人應放寬心胸，不必過於執著功名富貴，因為人生如流雲般無常。詩中指出，一生坎坷如十八灘頭，世事易如流水，唯有把不如意的過去留給流水，心境才能安定。對於旅行、訴訟、疾病、行人、婚姻等諮問，詩歌亦以隱喻方式提示需謹慎，並認為此籤總體較為不吉，宜保持謹慎。\",\"en\":\"Lot No.20 of"
+  }
+}

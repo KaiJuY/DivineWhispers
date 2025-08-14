@@ -1,0 +1,25 @@
+{
+  "id": 20,
+  "title": "六十甲子籤第二十籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "丁卯●○○　●●○",
+  "poem": [
+    "前途功名未得意",
+    "只恐命內有交加",
+    "兩家必定防損失",
+    "勸君且退莫咨嗟"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於未來職業發展與內在衝突，以及對於選擇退一步的建議。詩中「前途功名未得意」暗示目前事業進展不順，「只恐命內有交加」表達對內心矛盾或障礙的憂慮，「兩家必定防損失」提醒可能因兩方關係產生損失，「勸君且退莫咨嗟」則建議先暫停追求，減少衝突。",
+    "en": "According to this poem, the theme centers on the uncertainties of future career prospects, inner conflict, and the counsel to withdraw temporarily. The opening line \"前途功名未得意\" signals a stalled professional path. The second line \"只恐命內有交加\" hints at internal turmoil or obstacles. The third line \"兩家必定防損失\" warns of conflict between two sides. Finally, \"勸君且退莫咨嗟\" urges a pause in pursuit to avoid further loss.",
+    "jp": "この詩のテーマは、将来の職業や名声がまだ達成できず、内部の葛藤を恐れ、二者間で損失を防ぐべきだという提言にあります。最初の行『前途功名未得意』は、未来の成果がまだ実現していないことを示し、二番目の行『只恐命內有交加』は、内側の対立や障害を恐れる気持ちを表しています。三番目の行『兩家必定防損失』は、二つの関係が損失を招く可能性があることを警告し、最後の行『勸君且退莫咨嗟』は、後退し、嘆きずに進むことを勧めています。",
+    "reference": "周文王為姜太公拖車:周文王夜夢飛熊(長翼之虎)。出賢士之兆。文王求賢出溪頭。不見賢人只見鉤。文王回宮傳旨令百官留殿齋戒三日。第四日沐浴更衣。出往磻溪迎姜子牙(道號飛熊)。數里前文王下馬步行。拜子牙為丞相。後文王乘輿。子牙乘馬回朝。(故事見封神榜。拖車一事未見)凡事　了錢。拖尾。不合。作事　無成。家事　恐生孽物。家運　防邪怪作之災。婚姻　難合。求兒　不可。六甲　臨產危險。求財　不得。功名　科運無。難進中。歲君　坎坷。治病　大命險。未日(半月)好。出外　無運。不可。經商　不就。來人　未日(半月)到。行舟　失利。移居　不可。失物　不得了工。求雨　無。官事　拖尾破財。六畜　不合。耕作　難收。築室　不得完美。墳墓　不可葬。地不合。討海　有陰公作祟。作塭　命運蹉跎。無望。魚苗　失了資本。月令　陰邪作病。難遂。尋人　延緩。遠信　音信沉沒。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- The poet conveys uncertainty about future professional success, suggesting a stalled trajectory. \n- There is a sense of impending internal conflict or obstacles that may hinder progress. \n- The presence of two opposing parties indicates that mutual loss is likely unless precautions are taken. \n- The advice is to withdraw or pause rather than press on, thereby reducing potential harm and avoiding lamentation. \n- Overall, the poem uses concise classical Chinese to issue a direct, practical recommendation for careful retreat in the face of uncertainty.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:19:45",
+    "source_file": "chuck_20.json",
+    "raw_llm_response_preview": "{\"id\": 20, \"title\": \"六十甲子籤第二十籤\", \"subtitle\": \"屬火利夏　宜其南方\", \"fortune\": \"丁卯●○○　●●○\", \"poem\": [\"前途功名未得意\", \"只恐命內有交加\", \"兩家必定防損失\", \"勸君且退莫咨嗟\"], \"analysis\": {\"zh\": \"這首詩的主題是關於未來職業發展與內在衝突，以及對於選擇退一步的建議。詩中「前途功名未得意」暗示目前事業進展不順，「只恐命內有交加」表達對內心矛盾或障礙的憂慮，「兩家必定防損失」提醒可能因兩方關係產生損失，「勸君且退莫咨嗟」則建議先暫停追求，減少衝突。\", \"en\": \"According"
+  }
+}

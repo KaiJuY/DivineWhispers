@@ -1,0 +1,20 @@
+{
+  "id": 99,
+  "title": "觀音一百籤第九十九籤",
+  "subtitle": "亥宮",
+  "fortune": "下籤",
+  "poem": "等閑騎馬着鞭來、半有憂危半有財、似火方燒頭上屋、天教一雨蕩殃災。",
+  "analysis": {
+    "zh": "此卦呈現半憂半喜之景象，提醒凡事宜以善為先，終生勤勞，勿涉爭端；時有枷鎖困頓，怨尤自生。",
+    "en": "This hexagram depicts a mixture of worry and happiness, urging one to act with good intentions in all matters. It advises lifelong diligence, avoiding disputes, and cautions that temporary restraints and self‑generated grievances may arise.",
+    "jp": "この卦は半分の憂いと喜びが混在した様子を示し、すべての事柄で善意を持って行動するよう促します。生涯を通じて勤勉であること、争いを避けること、そして一時的な束縛や自ら生じる恨みがある可能性を示唆します。",
+    "reference": "*(勒有作策)家宅　祈保。自身　守慎。求財　破。交易　阻。婚姻　刑剋。六甲　險。行人　困。田蠶　損。六畜　損。尋人　招非。公訟　虧。移徙　守舊。失物　凶。疾病　憂危。山墳　敗。1.陶三春掛帥宋朝。陶洪之女。陶三春與鄭恩比武成親。生子鄭印。娶妻王玉娥。皆習武。後聞鄭恩與趙匡胤出兵南唐被圍。陶三春帶同子媳攻打南唐。兩師會合。得勝而回。2.塞翁失馬古時候邊塞上有個老翁，丟了一匹馬。別人去安慰他，他卻說：「怎麼知道不是件好事呢？」過了幾個月，這匹馬果然帶著一匹好馬回來了。典出淮南子˙人間訓。比喻禍福時常互轉，不能以一時論定。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a vivid illustration of uncertain fortunes, where risk and reward coexist.\n- The rider on a horse with a whip represents the swift movement of circumstances, hinting that outcomes can change rapidly.\n- The half‑worry, half‑wealth line signals that prosperity may arrive amid danger, urging careful balance between ambition and caution.\n- The burning house fire suggests that success or wealth may come at the cost of personal or domestic hardship.\n- The rain that washes away the disaster reflects nature’s ability to cleanse and restore, reminding that calamity is temporary.\n- Overall, the poem conveys a philosophical lesson: fortune is unpredictable, and one should act wisely, maintain integrity, and remain resilient when facing adversity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:49:00",
+    "source_file": "chuck_99.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 99,\n  \"title\": \"觀音一百籤第九十九籤\",\n  \"subtitle\": \"亥宮\",\n  \"fortune\": \"下籤\",\n  \"poem\": \"等閑騎馬着鞭來、半有憂危半有財、似火方燒頭上屋、天教一雨蕩殃災。\",\n  \"analysis\": {\n    \"zh\": \"此卦呈現半憂半喜之景象，提醒凡事宜以善為先，終生勤勞，勿涉爭端；時有枷鎖困頓，怨尤自生。\",\n    \"en\": \"This hexagram depicts a mixture of worry and happiness, urging one to act with good"
+  }
+}

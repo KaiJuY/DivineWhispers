@@ -1,0 +1,20 @@
+{
+  "id": 13,
+  "title": "四面佛三十籤第十三籤",
+  "subtitle": "",
+  "fortune": "下籤",
+  "poem": "燕子逢春覓舊巢,無緣歸雁不相投,花開日暖黃鶯囀,柳浪西湖獨自豪。",
+  "analysis": {
+    "zh": "這首詩的主題是春天燕子尋回舊巢，卻無法與雁相投；花開日暖，黃鶯歌唱；柳浪在西湖輕輕蕩漾，獨自顯露出一種自豪的孤寂。",
+    "en": "The poem’s theme revolves around swallows returning to their old nest in spring, yet finding no companionship with the geese. Blossoming flowers bathe in warm sunshine, while yellow warblers sing. The willow waves gently along West Lake, alone yet proud.",
+    "jp": "この詩は春になると燕が古巣を求めて戻るが、雁とは相容れず、花が咲き、暖かな日で黄鶏が囀る、柳の波が西湖でひとり誇らしげに揺れるという内容です。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\\n- The swallows symbolize a longing for home and familiar comfort that arrives with spring.\\n- Their inability to align with the geese highlights a sense of isolation or incompatibility with larger social circles.\\n- The blooming flowers and the warm sun represent renewal and optimism.\\n- The yellow warblers’ song adds a layer of lively hope and joy.\\n- The lone willow by West Lake, waving alone yet proud, embodies solitary resilience and quiet confidence.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:30:22",
+    "source_file": "chuck_13.json",
+    "raw_llm_response_preview": "{\"id\":13,\"title\":\"四面佛三十籤第十三籤\",\"subtitle\":\"\",\"fortune\":\"下籤\",\"poem\":\"燕子逢春覓舊巢,無緣歸雁不相投,花開日暖黃鶯囀,柳浪西湖獨自豪。\",\"analysis\":{\"zh\":\"這首詩的主題是春天燕子尋回舊巢，卻無法與雁相投；花開日暖，黃鶯歌唱；柳浪在西湖輕輕蕩漾，獨自顯露出一種自豪的孤寂。\",\"en\":\"The poem’s theme revolves around swallows returning to their old nest in spring, yet finding no companionship with t"
+  }
+}

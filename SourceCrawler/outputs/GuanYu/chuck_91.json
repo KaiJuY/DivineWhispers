@@ -1,0 +1,25 @@
+{
+  "id": 91,
+  "title": "關聖帝君一百籤第九十一籤",
+  "subtitle": "趙子龍抱太子癸甲",
+  "fortune": "中吉",
+  "poem": [
+    "佛說淘沙始見金",
+    "只緣君子不勞心",
+    "榮華總得詩書效",
+    "妙裏工夫仔細尋"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於努力與學習帶來成功的道理，強調唯有投入心力、勤奮不懈才能獲得榮華富貴。佛言淘沙才能見金，象徵唯有不懈努力才能發現機會；君子不輕忽內心，奮發圖求；榮華由詩書累積，妙裡之工需仔細尋求。總之，勤奮與細心的耕耘是成功的關鍵。",
+    "en": "The theme of this poem is the idea that success and prosperity come through diligent effort and learning. Buddha's metaphor of sifting sand to find gold illustrates that only persistent work reveals opportunity; a gentleman does not neglect his mind, strives for achievement; glory comes from accumulated literature and the careful pursuit of hidden talents. In short, hard work and meticulous cultivation are the keys to success.",
+    "jp": "この詩のテーマは、努力と学びが成功や繁栄をもたらすという考えです。仏陀は砂を淘げて金を見つける比喩で、継続的な努力が機会を発見することを示しています。賢者は心を怠らず、達成を目指し、栄光は詩書の蓄積と隠れた才能を注意深く追求することから生まれます。結局のところ、勤勉と入念な耕作が成功の鍵となります。",
+    "reference": "三 國。趙雲。字子龍。常山人。初依袁紹。後從劉(備)先主。時曹操欲下江南。先攻先主於莘野。先主走樊城。復敗於當陽。家眷失散。雲於土墻下遇縻夫人。夫人 將子阿斗托雲。雲將馬授夫人。夫人不肯授。投井而死。雲哭埋畢。懷抱阿斗。殺出重圍。(阿斗乃劉備之子即劉禪)。殺出重圍。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that only persistent effort and careful cultivation can turn potential into tangible success. The core elements include:\n- The image of sifting sand for gold, symbolizing the search for opportunities through hard work.\n- The admonition that a gentleman must engage his mind and not waste effort, indicating inner diligence.\n- The acknowledgment that glory and wealth arise from literary study and the meticulous refinement of one’s skills.\n- The underlying philosophy that results are proportional to effort—\"you reap what you sow\".\nThese points together emphasize that true prosperity comes from sustained, intentional effort rather than luck or idle expectation.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:09:42",
+    "source_file": "chuck_91.json",
+    "raw_llm_response_preview": "{\"id\": 91, \"title\": \"關聖帝君一百籤第九十一籤\", \"subtitle\": \"趙子龍抱太子癸甲\", \"fortune\": \"中吉\", \"poem\": [\"佛說淘沙始見金\", \"只緣君子不勞心\", \"榮華總得詩書效\", \"妙裏工夫仔細尋\"], \"analysis\": {\"zh\": \"這首詩的主題是關於努力與學習帶來成功的道理，強調唯有投入心力、勤奮不懈才能獲得榮華富貴。佛言淘沙才能見金，象徵唯有不懈努力才能發現機會；君子不輕忽內心，奮發圖求；榮華由詩書累積，妙裡之工需仔細尋求。總之，勤奮與細心的耕耘是成功的關鍵。\", \"en\": \"The theme of this poem"
+  }
+}

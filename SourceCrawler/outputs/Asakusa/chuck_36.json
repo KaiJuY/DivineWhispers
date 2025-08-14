@@ -1,0 +1,20 @@
+{
+  "id": 36,
+  "title": "日本淺草觀音寺一百籤第三十六籤",
+  "subtitle": "",
+  "fortune": "末吉",
+  "poem": "先損後有益,如月之剝蝕,玉兔待重生,光華當滿室",
+  "analysis": {
+    "zh": "這首詩的主題是：先經歷損失，最終會收穫利益。月之剝蝕象徵短暫的暗淡與必然的復蘇，玉兔等待重生則暗示再生與耐心，而光華滿室則象徵希望與光明在困境後照進生活。",
+    "en": "First loss then gain, like the moon's eclipse, the jade rabbit waits for rebirth, the brilliance fills the room.",
+    "jp": "先に損失し、後に利益があるように、月の蚕食のように、玉兔が再生を待ち、光輝が部屋を満たす。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The experience of initial loss followed by eventual benefit.\n- The moon's eclipse symbolizes a temporary darkness that inevitably restores itself.\n- The jade rabbit represents rebirth and the value of patience.\n- The filling of the room with radiance signifies hope and illumination arriving after hardship.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:01:08",
+    "source_file": "chuck_36.json",
+    "raw_llm_response_preview": "{\n  \"id\": 36,\n  \"title\": \"日本淺草觀音寺一百籤第三十六籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"末吉\",\n  \"poem\": \"先損後有益,如月之剝蝕,玉兔待重生,光華當滿室\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：先經歷損失，最終會收穫利益。月之剝蝕象徵短暫的暗淡與必然的復蘇，玉兔等待重生則暗示再生與耐心，而光華滿室則象徵希望與光明在困境後照進生活。\",\n    \"en\": \"First loss then gain, like the moon's eclipse, the jade rabbit w"
+  }
+}

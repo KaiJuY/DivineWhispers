@@ -1,0 +1,20 @@
+{
+  "id": 8,
+  "title": "四面佛三十籤第八籤",
+  "subtitle": "",
+  "fortune": "中籤",
+  "poem": "修短窮通總由天,千謀百計亦枉然,不如行善修陰德,祈禱神明消災殃。",
+  "analysis": {
+    "zh": "這首詩的主題是關於人世間的因果與修行，提醒人們不應單靠智謀與計策，而應以善行與修德來化解病痛與煩惱。",
+    "en": "這首詩的主題是 the relationship between fate and personal cultivation, urging that intellect alone is insufficient; rather, good deeds and the cultivation of virtue can heal illness and ease misfortune.",
+    "jp": "這首詩のテーマは、人間の因果と修行に関するもので、知恵だけでは不十分であり、善行と徳の修養で病気や困難を和らげることができると説いています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The will of the heavens (天) determines success, health, and adversity.\n- Over‑thinking and elaborate plans (千謀百計) are futile when facing fate.\n- Genuine acts of kindness and the cultivation of virtue (行善修陰德) are presented as the true cure for illness and hardship.\n- The poem uses the imagery of prayer to deities and incense as symbolic gestures that mend one’s karmic debt.\n- The underlying philosophy is that inner virtue and compassionate action are the most reliable means to overcome misfortune.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:22:48",
+    "source_file": "chuck_8.json",
+    "raw_llm_response_preview": "{\n  \"id\": 8,\n  \"title\": \"四面佛三十籤第八籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"修短窮通總由天,千謀百計亦枉然,不如行善修陰德,祈禱神明消災殃。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於人世間的因果與修行，提醒人們不應單靠智謀與計策，而應以善行與修德來化解病痛與煩惱。\",\n    \"en\": \"這首詩的主題是 the relationship between fate and personal cultivation, urging that intellect alo"
+  }
+}

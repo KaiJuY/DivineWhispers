@@ -1,0 +1,25 @@
+{
+  "id": 13,
+  "title": "六十甲子籤第十三籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "丙子●●○　○○○",
+  "poem": [
+    "命中正逢羅孛關",
+    "用盡心機總未休",
+    "作福問神難得過",
+    "恰是行舟上高灘"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是命中注定的難關，描述了盡管竭盡全力、祈求神明，仍無法解決的困境。詩中將此情境比作「行舟上高灘」，暗示行動受到阻礙，難以順利推進。",
+    "en": "這首詩的主題是 a destined hardship that cannot be overcome even after exhaustive efforts and prayers. The verses liken the situation to a boat stranded on a high shore, indicating that progress is impeded and the journey cannot proceed smoothly.",
+    "jp": "この詩のテーマは、尽力し神に祈っても解決できない、運命に決まった難題を描いています。詩はこの状況を船が高い岸に止まるように例え、進展が妨げられ、スムーズに進むことができないことを示しています。",
+    "reference": "1.渭水河太公釣魚周。姜尚。字子牙。汲人。先世封於呂。亦曰呂望。避紂亂居東海之濱。釣於磻溪(渭水)。文王聞其賢。聘為師(丞相)。(其時年八十)後周伐紂。滅商興周。武王稱曰尚父。封其子丁公於齊。2.武吉挑柴打死人。(武吉遇師)武吉本是樵夫。姜子牙釣于磻溪。二人相遇。見子牙用直鉤釣魚大笑。子牙看武吉氣息斷曰。今日入城打死人。武吉怒別。擔柴入城。誤觸王相致死。文王畫地為牢。武吉後被暫釋。照顧老母至秋後正法。老母令其找姜子牙求救。太公收其為徒。授兵法。又令其挖坑施咒破解先天數。秋後不見武吉伏刑。文王演先天數。以為武吉已畏罪自殺。後文王碰見武吉。武吉引文王見姜太公。受封武德將軍。師徒二人為文王效力。(故事見于封神榜)*羅孛為凶星（彗星、掃把星）*高灘為擱淺之意凡事　不吉作事　先難後興。家事　門庭起風波。家運　人不安。邪作祟。婚姻　難合。求兒　不可。六甲　臨產危險。求財　犯活鬼。下年無。功名　費工。望後得進。歲君　淡淡。(凶事不美)治病　犯(太歲)必死。未不畏。出外　不可。經商　失運。來人　難望。行舟　不順。失利。移居　不可失物　錢難尋。未日(半月)在。求雨　近日無。官事　大呆。六畜　不吉。耕作　小收。不利。築室　犯災星。墳墓　地勢不吉。討海　不好。無財。失利。作塭　防風水。失。虧本。魚苗　待機可以。月令　正月至六月止。尋人　難。免望。遠信　音息魚沉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It portrays a situation where the seeker is facing a fate‑bound obstacle that cannot be removed by personal effort or divine intervention.\n- The image of a boat stuck on a high shore (“行舟上高灘”) symbolizes an effort halted by circumstances beyond control.\n- The poem emphasizes the inevitability of the problem, suggesting that trying to force a solution may be futile.\n- It hints at the need for acceptance or a change in approach rather than persistent struggle.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:15:45",
+    "source_file": "chuck_13.json",
+    "raw_llm_response_preview": "{\"id\":13,\"title\":\"六十甲子籤第十三籤\",\"subtitle\":\"屬水利冬　宜其北方\",\"fortune\":\"丙子●●○　○○○\",\"poem\":[\"命中正逢羅孛關\",\"用盡心機總未休\",\"作福問神難得過\",\"恰是行舟上高灘\"],\"analysis\":{\"zh\":\"這首詩的主題是命中注定的難關，描述了盡管竭盡全力、祈求神明，仍無法解決的困境。詩中將此情境比作「行舟上高灘」，暗示行動受到阻礙，難以順利推進。\",\"en\":\"這首詩的主題是 a destined hardship that cannot be overcome even after exhaustive effort"
+  }
+}

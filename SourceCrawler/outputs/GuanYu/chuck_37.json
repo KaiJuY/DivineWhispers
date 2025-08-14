@@ -1,0 +1,25 @@
+{
+  "id": 37,
+  "title": "關聖帝君一百籤第三十七籤",
+  "subtitle": "邵堯夫祝香丁庚",
+  "fortune": "中平",
+  "poem": [
+    "焚香來告復何辭",
+    "善惡平分汝自知",
+    "屏卻昧公心裏事",
+    "出門無礙是通時"
+  ],
+  "analysis": {
+    "zh": "燒香祈禱究竟有何意義？天地之道正義與邪惡並存，您心中已自有分別。只要以公平正直行事，避免暗中欺瞞他人，外出之際自然順遂，毫無阻礙。這首籤詩主張戒惡促善，惡有惡報，天網恢恢，疏而不漏。別以為惡事不被察知，至少心中自知，良心便不容忽視。因此，保持正直的心境，則事事吉祥，順利無阻。正如碧仙所言：「若你欲害人，終將自陷；欺瞞之心被鬼神洞悉；若能改正，求得天福，便能將禍轉為祥，萬事皆宜。」",
+    "en": "Burning incense and offering prayers—what purpose does it serve? The cosmic order balances good and evil, and you already discern the difference within yourself. If you act with fairness and honesty, refraining from deceitful schemes, any ventures you undertake will proceed smoothly, free of obstacles. This lot reminds us to reject evil and cultivate virtue; wrongdoing invites its own retribution, while the heavens, vast and meticulous, do not overlook a conscience. Therefore, by maintaining a righteous heart, every endeavor will be fortunate and unobstructed. As the wise remark, \"If you intend to harm others, you will ultimately harm yourself; a deceitful heart is seen by divine forces. When you amend your ways and seek heavenly blessings, calamities can be turned into blessings, making all affairs favorable.\"",
+    "jp": "第三十七番の籤詩は、香を焚いて祈ることの意味を示しています。善と悪は分かれ、あなた自身で判断できると教えているのです。正直に行動し、内心で不正を隠さないようにすれば、出かけるときに障害もなく、物事は順調に進みます。つまり、善を実践し、悪から遠ざかることで、天の秩序に沿って運勢が安定するというメッセージです。",
+    "reference": "宋。邵雍。字堯夫。年三十。從父徒居河南。於書無所不讀。精易理天文術數。居慎。凡所祝香。皆為國為親之事。未嘗私禱及己也。初除試。將作監主簿不起。繼除穎州團練推官不就。卒贈秘書省。著作郎元祐問。諡康節。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that true devotion lies in honest conduct rather than mere ritual. It stresses:\n• Fairness and self‑awareness: one’s own conscience already knows the division between good and evil.\n• Transparency over secrecy: hiding a deceitful intention within the heart invites divine notice.\n• Open‑door success: when you act justly and truthfully, the path becomes clear and unobstructed.\n• A moral reminder: evil will ultimately backfire, while righteousness is rewarded in a balanced, dependable way.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:40:07",
+    "source_file": "chuck_37.json",
+    "raw_llm_response_preview": "{\n  \"id\": 37,\n  \"title\": \"關聖帝君一百籤第三十七籤\",\n  \"subtitle\": \"邵堯夫祝香丁庚\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"焚香來告復何辭\",\n    \"善惡平分汝自知\",\n    \"屏卻昧公心裏事\",\n    \"出門無礙是通時\"\n  ],\n  \"analysis\": {\n    \"zh\": \"燒香祈禱究竟有何意義？天地之道正義與邪惡並存，您心中已自有分別。只要以公平正直行事，避免暗中欺瞞他人，外出之際自然順遂，毫無阻礙。這首籤詩主張戒惡促善，惡有惡報，天網恢恢，疏而不漏。別以為惡事不被察知，至少心中自知，良心便不"
+  }
+}

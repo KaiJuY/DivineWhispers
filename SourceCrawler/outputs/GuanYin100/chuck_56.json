@@ -1,0 +1,20 @@
+{
+  "id": 56,
+  "title": "觀音一百籤第五十六籤",
+  "subtitle": "丑宮",
+  "fortune": "中籤",
+  "poem": "澗小石粗流水響、力勞撐駕恐損傷、路須指出前江去、風靜潮平儘不妨。",
+  "analysis": {
+    "zh": "此卦象徵在艱難環境中行船，需要貴人幫助，亦提醒務必謹慎行事，勤奮努力，守舊待時，最終大吉。",
+    "en": "This riddle portrays a boat navigating a shallow stream with coarse stones and resonant water. It advises careful handling to avoid damage, seeking guidance before proceeding downstream, and indicates that calm wind and flat tide will not impede progress.",
+    "jp": "この詩は、細い小川で荒い石が並ぶ流れに船を漕ぎ、音を立てる水を描いている。船を持ち上げて運ぶと損傷の恐れがあるため、川に進む前に道を指示し、風が静かで潮が平らであれば障害にならないと示唆している。",
+    "reference": "*(莫本作管)家宅　安。自身　吉。求財　中平。交易　利。婚姻　遂（慎）。六甲　男。行人　至。田蠶　秋利。六畜　損。尋人　至。公訟　有理。移徙　吉。失物　帶。疾病　即安。山墳　宜修。1.祿山謀反營州柳城。胡人。本姓康。字軋犖山。後冒姓安。更名祿山。唐玄宗時。安祿山為節度使。與楊貴妃友好。與楊國忠有隙。于山西舉兵謀反。攻打洛陽。又陷潼關。改國號燕。皇帝西逃至四川(蜀)。安祿山于長安燒殺搶掠。後被自己之子所殺。2.范少伯泛舟五湖春秋戰國時期，吳越相爭，吳國兵強馬壯，很快打敗越國，把越王勾踐和宰相范蠡（字少伯）押作人質。越王為報滅國之仇，暫棲于吳王膝下，裝得十分老實忠誠。一次吳王肚子疼，請來郎中也沒有看出啥病。越王勾踐得知後就當著吳王夫差的面，親口嘗了他的糞便，說：“大王沒什麼病，是著了涼喝點熱酒暖暖就會好的。”吳王照勾踐說的，喝了點熱酒，果然好了。吳王看到勾踐這樣忠心，就將他放回越國。勾踐回國後接受了范蠡獻的復國三計；一是屯兵，加緊練武，二是屯田，發展農業，三是選美女送給吳王，作為內線。當時，有一個叫西施的，是個浣紗的女子，五官端正，粉面桃花，相貌過人。她在河邊浣紗時，清徹的河水映照她俊俏的身影，使他顯得更加美麗，這時，魚兒看見她的倒影，忘記了游水，漸漸地沉到河底。從此，西施這個“沉魚”的代稱，在附近流傳開來。西施被選送到吳國後，吳王一看西施長得如此漂亮，對西施百依百順，終日沉溺于遊樂，不理國事，國力耗費殆盡。越王勾踐乘虛而入，出兵攻打吳國，達到了復國報仇的目的，這裡邊有西施的很大功勞。 吳國終被勾踐所滅。傳說吳被滅後，西施與范蠡泛舟五湖，不知所終。一直受到後人的懷念。觀音一百籤第五十籤另有『陶朱歸五湖』故事可參考（范蠡即為後來之陶朱公）。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that navigating through difficult conditions requires caution, guidance, and perseverance.\n• The coarse stones and resonant water represent obstacles that can damage a vessel if handled recklessly.\n• It urges one to seek clear direction (the path before the river) before proceeding.\n• When wind is calm and tide is flat, even challenging waters become manageable, symbolizing that a steady environment eases effort.\n• The imagery emphasizes the importance of prudence, support, and determination in achieving success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:21:49",
+    "source_file": "chuck_56.json",
+    "raw_llm_response_preview": "{\"id\":56,\"title\":\"觀音一百籤第五十六籤\",\"subtitle\":\"丑宮\",\"fortune\":\"中籤\",\"poem\":\"澗小石粗流水響、力勞撐駕恐損傷、路須指出前江去、風靜潮平儘不妨。\",\"analysis\":{\"zh\":\"此卦象徵在艱難環境中行船，需要貴人幫助，亦提醒務必謹慎行事，勤奮努力，守舊待時，最終大吉。\",\"en\":\"This riddle portrays a boat navigating a shallow stream with coarse stones and resonant water. It advises careful handling to "
+  }
+}

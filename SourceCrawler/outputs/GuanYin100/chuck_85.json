@@ -1,0 +1,20 @@
+{
+  "id": 85,
+  "title": "觀音一百籤第八十五籤",
+  "subtitle": "申宮",
+  "fortune": "中籤",
+  "poem": "重開山後藏前事、萬寶園中可再團、醉詠新詩添逸興、貴人引接上雲衢。",
+  "analysis": {
+    "zh": "這首詩的主題是關於重新開啟一段旅程、尋回失落的機會與得到貴人的協助。詩中「重開山後藏前事」說明在經歷困難或改變之後，舊日的經驗已被抛在身後；「萬寶園中可再團」則暗示在豐富的環境裡仍有機會再度聚首；「醉詠新詩添逸興」表達創意與愉悅的氛圍；最後「貴人引接上雲衢」強調貴人或良師的指引能將人帶往更高層次。",
+    "en": "This poem is about opening a new chapter, reclaiming lost opportunities, and receiving guidance from a benevolent person. The line '重開山後藏前事' indicates that after overcoming obstacles or change, past experiences are left behind. '萬寶園中可再團' suggests that within a bountiful setting there is still a chance to reunite. '醉詠新詩添逸興' conveys a sense of creative joy, while '貴人引接上雲衢' emphasizes how a noble or helpful figure can lead one to higher aspirations.",
+    "jp": "この詩は、新しい旅路を切り開き、失われた機会を取り戻し、恩人の助けを得ることについて語っています。「重開山後藏前事」は、困難を乗り越えたり変化した後に、過去の経験が後ろに置かれることを示しています。「萬寶園中可再團」は、豊かな環境の中で再び集う機会があることを暗示しています。「醉詠新詩添逸興」は、創造性と喜びを表現し、最後の「貴人引接上雲衢」は、恩人や良師が人をより高い目標へ導くことを強調しています。",
+    "reference": "*(衢：音同渠（ㄑㄩˊ）)*(闇本作開。有作深;萬圓有作春殘花盡又再開;天臺指天宮或指天台山)家宅　欠利。自身　謹慎。求財　著力。交易　平。婚姻　遲。六甲　女。行人　阻。田蠶　好。六畜　好。尋人　難。公訟　反覆。移徙　更新。失物　凶病。疾病　延滯。山墳　宜改。1.韓文公遇雪韓愈。字退之。昌黎人。唐德宗貞元八年進士。諡文公。因諫迎佛骨。獨怒天子。貶至潮州刺史。途經藍關。大雪封山。韓嘆皇上不殺我。皇天亡我矣。事前其姪韓湘子曾曰。雲橫秦嶺家何在。雪擁藍關馬不前。此時韓文公才悟其意。後韓愈棄官。財產盡捐地方。入山修道成仙。2.蘇秦抵掌華屋蘇秦拜鬼谷子為師，出遊各國散盡錢財都沒有得到機會，所以妻子不願意為他煮飯，嫂子也嫌棄他。蘇秦又苦讀一年終獲燕王信賴，並說服各國聯合抗秦，並配六國相印。等到衣錦榮歸，看到家人恭敬的對待他，蘇秦感嘆世間冷暖，認為錢財是不祥之物，所以散盡錢財。這兩個故事都告訴我們一件事情，那就是有錢不是好事，小心錢財帶來的麻煩。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a new journey is opened after past hardships, wealth or people can reunite in a prosperous setting, creative joy fuels inspiration, and a benefactor’s guidance leads one to higher aspirations.\n\n- Turning a new page after overcoming obstacles (mountain reopened, old matters hidden).\n- Reuniting in a garden of treasures symbolizes the chance to gather wealth and companionship again.\n- The poetic drinking reflects a liberated, creative spirit that brings excitement.\n- A noble person’s assistance points to mentorship or support that elevates the seeker to a loftier path.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:41:21",
+    "source_file": "chuck_85.json",
+    "raw_llm_response_preview": "{\"id\":85,\"title\":\"觀音一百籤第八十五籤\",\"subtitle\":\"申宮\",\"fortune\":\"中籤\",\"poem\":\"重開山後藏前事、萬寶園中可再團、醉詠新詩添逸興、貴人引接上雲衢。\",\"analysis\":{\"zh\":\"這首詩的主題是關於重新開啟一段旅程、尋回失落的機會與得到貴人的協助。詩中「重開山後藏前事」說明在經歷困難或改變之後，舊日的經驗已被抛在身後；「萬寶園中可再團」則暗示在豐富的環境裡仍有機會再度聚首；「醉詠新詩添逸興」表達創意與愉悅的氛圍；最後「貴人引接上雲衢」強調貴人或良師的指引能將人帶往更高層次。\",\"en\":\"This poem is about ope"
+  }
+}

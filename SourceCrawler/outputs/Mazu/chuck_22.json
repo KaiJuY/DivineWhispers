@@ -1,0 +1,25 @@
+{
+  "id": 22,
+  "title": "六十甲子籤第二十二籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "丁未●●●　○○●",
+  "poem": [
+    "太公家業八十成",
+    "月出光輝四海明",
+    "命內自然逢大吉",
+    "茅屋中間百事亨"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於晚成與堅持，提醒人們即使成就遲來，仍能光耀四海。詩中姜太公八十歲才成就，月亮照耀四海，象徵命運與光明；茅屋象徵貧窮中仍有機會。",
+    "en": "This poem's theme is about late success and perseverance, encouraging that even if achievement comes late, one can still shine brightly. It references Jiang Ziya's accomplishment at age 80, the moon lighting the world, symbolizing destiny and illumination; the hut represents poverty yet potential.",
+    "jp": "この詩のテーマは、遅れた成功と粘り強さについてです。成就が遅れても、光輝く未来が待っていることを励ます内容です。姜太公が八十歳で成就し、月が四海を照らすことで運命と光を象徴しています。茅屋は貧困を示しつつ、まだ可能性があることを示唆します。",
+    "reference": "1.秦叔寶救李淵2.孟良焦讚救宗寶凡事　先呆。得貴人吉。作事　先呆後吉。家事　門庭吉慶。家運　安居春風。婚姻　和合。求兒　平正。六甲　生男。(子媳虛)求財　先微後進。功名　晚可有進。歲君　順利。治病　老不畏。少不好。出外　平平。(有貴人提攜。得利)經商　有利益。來人　月光到。行舟　晚運可通。移居　好。失物　月光在。月暗無。求雨　上下弦。官事　和合好。(貴人了錢。完局)六畜　納有利。耕作　允好。築室　百事吉慶。墳墓　有餘裕哉。討海　先無後利。作塭　晚者大利魚苗　有利可得。月令　不遂。尋人　慢至。遠信　音信慢至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that late achievement is still worthy of hope.  • Jiang Ziya’s success at eighty serves as a metaphor for patient timing and perseverance.  • The shining moon represents universal guidance and destiny, illuminating all directions.  • The humble hut signifies modest beginnings, reminding the seeker that even in poverty there is potential for progress.  • Overall, the poem encourages acceptance of slow progress while maintaining confidence that eventual success will bring brightness.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:20:43",
+    "source_file": "chuck_22.json",
+    "raw_llm_response_preview": "{\"id\":22,\"title\":\"六十甲子籤第二十二籤\",\"subtitle\":\"屬水利冬　宜其北方\",\"fortune\":\"丁未●●●　○○●\",\"poem\":[\"太公家業八十成\",\"月出光輝四海明\",\"命內自然逢大吉\",\"茅屋中間百事亨\"],\"analysis\":{\"zh\":\"這首詩的主題是關於晚成與堅持，提醒人們即使成就遲來，仍能光耀四海。詩中姜太公八十歲才成就，月亮照耀四海，象徵命運與光明；茅屋象徵貧窮中仍有機會。\",\"en\":\"This poem's theme is about late success and perseverance, encouraging that eve"
+  }
+}

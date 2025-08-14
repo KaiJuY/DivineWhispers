@@ -1,0 +1,20 @@
+{
+  "id": 26,
+  "title": "四面佛三十籤第二十六籤",
+  "subtitle": "",
+  "fortune": "中籤",
+  "poem": "自家有雪門前掃,休管他人瓦上霜,閑是閑非切要忌,自有神明來主張。",
+  "analysis": {
+    "zh": "這首詩的主題是自我照顧與不干涉他人。先說「自家有雪門前掃，休管他人瓦上霜」，意指先把自己的事情處理好，不必擔心他人的風霜。接著「閑是閑非切要忌」提醒人們不要把閒事當作要害，切勿過度擺脫。最後「自有神明來主張」則說明凡事終將有神明調節，保持自身安定即可。",
+    "en": "This poem is about self‑care and avoiding interference in others. The first couplet, \"自家有雪門前掃，休管他人瓦上霜\", means you should tidy up your own front door and need not worry about the frost on someone else’s roof. The next line, \"閑是閑非切要忌\", warns that idle matters are truly idle and should not be treated as a big problem. The final line, \"自有神明來主張\", says that ultimately the divine will intervene and keep things in order. Thus the poem advises focusing on one's own affairs and letting the higher power handle the rest.",
+    "jp": "この詩のテーマは「自分の事に専念し、他人のことは干渉しない」ことです。最初の句『自家有雪門前掃、休管他人瓦上霜』は、自分の家を掃除し、他人の屋根の霜のことは気にしないという意味です。次の句『閑是閑非切要忌』は、余計な心配をしないでほしいという警告で、余分な心配は大した問題ではありません。最後の句『自有神明来主张』は、神の意志で物事が整うということを示しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• Focus on your own responsibilities and self‑care, starting with tidying your own front door.\n• Do not interfere in others’ affairs; let their matters remain as they are.\n• Recognize that what truly matters is how you keep your own household in order.\n• Trust that a higher power or divine influence will resolve what is beyond your control.\n• The poem promotes a balanced approach: act where you can, and leave the rest to fate or spirituality.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:35:51",
+    "source_file": "chuck_26.json",
+    "raw_llm_response_preview": "{\"id\":26,\"title\":\"四面佛三十籤第二十六籤\",\"subtitle\":\"\",\"fortune\":\"中籤\",\"poem\":\"自家有雪門前掃,休管他人瓦上霜,閑是閑非切要忌,自有神明來主張。\",\"analysis\":{\"zh\":\"這首詩的主題是自我照顧與不干涉他人。先說「自家有雪門前掃，休管他人瓦上霜」，意指先把自己的事情處理好，不必擔心他人的風霜。接著「閑是閑非切要忌」提醒人們不要把閒事當作要害，切勿過度擺脫。最後「自有神明來主張」則說明凡事終將有神明調節，保持自身安定即可。\",\"en\":\"This poem is about self‑care and avoiding inte"
+  }
+}

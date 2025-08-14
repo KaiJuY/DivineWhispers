@@ -1,0 +1,25 @@
+{
+  "id": 13,
+  "title": "關聖帝君一百籤第十三籤",
+  "subtitle": "姜太公釣魚乙丙",
+  "fortune": "中平",
+  "poem": [
+    "君今庚甲未亨通",
+    "且向江頭作釣翁",
+    "玉兔重生應發跡",
+    "萬上頭上逞英雄"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：你現在的運勢像姜太公，時運未通，應在江邊靜候，等月亮重生之際，方能發揮潛力，成為萬人仰慕的英雄。詩中「庚甲未亨通」暗示在五年內未能取得突破；「玉兔重生」則提醒月圓時宜行動；「萬上頭上逞英雄」表明終將名列前茅。建議保持耐心、守舊不動，等時機成熟再行動。",
+    "en": "這首詩的主題是：Your current situation mirrors Jiang Taigong’s: fortune is not yet favorable, so remain patient and wait by the river. When the moon rises anew, you will rise to prominence and become a hero admired by many. The lines ‘庚甲未亨通’ indicate that progress may be stalled within five years; ‘玉兔重生’ signals a good time to act when the moon is full; ‘萬上頭上逞英雄’ promises eventual fame. It advises staying still and awaiting the right moment before taking action.",
+    "jp": "這首詩の主題は、あなたが現在姜太公のように運が整っていない状態で、河辺で釣りをし、月が再び満ちるときに成長し、万人から賞賛される英雄になるということです。『庚甲未亨通』は五年以内に進展がないことを示し、『玉兔重生』は満月の時に行動するのが吉と指示しています。『万上头上逞英雄』は最終的に名を上げることを示唆しています。忍耐し、適切な時を待つことが推奨されます。",
+    "reference": "周。姜尚。字子牙。汲人(東海許州人)。道號飛熊。先世封於呂。亦曰呂望。避紂亂居東海之濱。釣於磻溪(渭水)。其鉤為直。意不在魚。志在君相。文王聞其賢。聘為師(丞相)。(其時年八十)後周伐紂。滅商興周。武王稱曰尚父。封其子丁公於齊。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The speaker’s current fortune mirrors that of Jiang Taigong: progress is stalled (庚甲未亨通) and patience is advised.\n- The image of a fisherman at the riverbank emphasizes waiting for the right moment rather than forcing action.\n- “玉兔重生” (the rebirth of the jade rabbit) symbolizes a renewal at the full moon, a favorable time to act.\n- “萬上頭上逞英雄” foretells that, once the proper timing arrives, the speaker will rise above all others and become a celebrated hero.\n- Overall, the poem encourages enduring calm, guarding one’s position, and seizing opportunity when the stars align.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:28:12",
+    "source_file": "chuck_13.json",
+    "raw_llm_response_preview": "{\"id\":13,\"title\":\"關聖帝君一百籤第十三籤\",\"subtitle\":\"姜太公釣魚乙丙\",\"fortune\":\"中平\",\"poem\":[\"君今庚甲未亨通\",\"且向江頭作釣翁\",\"玉兔重生應發跡\",\"萬上頭上逞英雄\"],\"analysis\":{\"zh\":\"這首詩的主題是：你現在的運勢像姜太公，時運未通，應在江邊靜候，等月亮重生之際，方能發揮潛力，成為萬人仰慕的英雄。詩中「庚甲未亨通」暗示在五年內未能取得突破；「玉兔重生」則提醒月圓時宜行動；「萬上頭上逞英雄」表明終將名列前茅。建議保持耐心、守舊不動，等時機成熟再行動。\",\"en\":\"這首詩的主題是：Your current situ"
+  }
+}

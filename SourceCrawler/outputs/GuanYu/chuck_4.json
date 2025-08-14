@@ -1,0 +1,25 @@
+{
+  "id": 4,
+  "title": "關聖帝君一百籤第四籤",
+  "subtitle": "小秦王三跳澗甲丁",
+  "fortune": "下吉",
+  "poem": [
+    "去年百事頗相宜",
+    "若較今年時運衰",
+    "好把瓣香告神佛",
+    "莫教福謝悔無追"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是去年順遂，然而今年卻由好轉差，提醒人們要及早祭祀以化解災禍，否則後悔難以挽回。原有的意思已被保留，並以更通順一致的風格重述。",
+    "en": "This poem's theme is that last year brought many favorable outcomes, but this year those good fortunes are fading and misfortunes will soon arise. It urges early offerings to deities to transform danger into blessing, warning that delaying prayers will lead to regret that cannot be undone. The original meaning is preserved and rendered in a clearer, consistent style.",
+    "jp": "この詩のテーマは、去年は多くの喜事があったものの、今年はその好運が衰え、災いが現れ始めることを告げている。早く神仏に香を捧げて災を福に変えるよう促し、遅れれば悔いが残ると警告している。原意は保ちつつ、より流暢で統一感のある表現に改めた。",
+    "reference": "小秦王即唐太宗李世民。找劉武周時。被其部將尉遲恭所迫。三跳澗而逃。幾乎不免(難)。幸遇秦叔寶救之。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• The contrast between a prosperous past year and a declining fortune this year.\n• A warning that favorable events are ending and adverse circumstances will soon appear.\n• A call to perform early incense offerings to deities in order to convert potential misfortune into blessing.\n• A reminder that postponing such rituals will leave one with remorse that cannot be undone.\n• The underlying philosophical idea that one should anticipate challenges and act preemptively rather than react only when calamity has already struck.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:41:05",
+    "source_file": "chuck_4.json",
+    "raw_llm_response_preview": "{\"id\":4,\"title\":\"關聖帝君一百籤第四籤\",\"subtitle\":\"小秦王三跳澗甲丁\",\"fortune\":\"下吉\",\"poem\":[\"去年百事頗相宜\",\"若較今年時運衰\",\"好把瓣香告神佛\",\"莫教福謝悔無追\"],\"analysis\":{\"zh\":\"這首詩的主題是去年順遂，然而今年卻由好轉差，提醒人們要及早祭祀以化解災禍，否則後悔難以挽回。原有的意思已被保留，並以更通順一致的風格重述。\",\"en\":\"This poem's theme is that last year brought many favorable outcomes, but this year those g"
+  }
+}

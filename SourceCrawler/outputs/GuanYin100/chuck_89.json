@@ -1,0 +1,20 @@
+{
+  "id": 89,
+  "title": "觀音一百籤第八十九籤",
+  "subtitle": "酉宮",
+  "fortune": "上籤",
+  "poem": "出入營謀大吉昌、無瑕玉在石中藏、如今幸得高人指、獲寶從心喜不常。",
+  "analysis": {
+    "zh": "此卦象徵石中藏寶，暗示事事順心大吉。石藏瑤玉，象徵貴人指引得心所欲，喜悅常在。",
+    "en": "The poem describes how every entrance and exit, every grand plan, brings great fortune, like a flawless jade hidden within stone. It praises the fortunate guidance of a superior person and the joy that comes from acquiring treasures, though that joy is not always permanent.",
+    "jp": "詩は、出入りや計画が大吉であり、欠点のない玉が石の中に隠されていることを表しています。今、高人から導きを受け、宝を得る喜びはあるものの、常にではないということを示唆しています。",
+    "reference": "家宅　吉利。自身　康泰。求財　遂。交易　成。婚姻　成就。六甲　生男。行人　動。田蠶　著力。六畜　勤理。尋人　見。公訟　勝。移徙　吉。失物　在。疾病　安。山墳　吉。1.大看瑤花(瓊花/曇花)瓊花年開一次。且在晚間隋煬帝。聽得揚州有瓊花。即動用民工開鑿運河。南下揚州看花。被殺隋亡。註：大看瑤花。或指欣賞仙境之寶花。2.姜太公渭水遇文王西伯侯姬昌（後為周文王）見紂王無道，故求天下賢士以謀推翻之道，姜太公知道便在渭水旁以直鉤釣魚，這個消息引起姬昌的注意。姬昌與姜太公談論天下之事，覺得十分受用，便請回西歧城並拜為軍師。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- The stone symbolizes hidden wealth or opportunity that lies dormant until discovered.\n- The flawless jade represents purity, value, and the hidden potential within.\n- Great fortune is tied to deliberate planning and action, suggesting that success comes from careful preparation.\n- Guidance from a superior (a sage or mentor) leads to the acquisition of treasures, highlighting the importance of wise counsel.\n- The joy derived from obtaining treasure is fleeting, reminding the reader that material gains may bring temporary happiness but do not guarantee lasting contentment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:43:02",
+    "source_file": "chuck_89.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 89,\n  \"title\": \"觀音一百籤第八十九籤\",\n  \"subtitle\": \"酉宮\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"出入營謀大吉昌、無瑕玉在石中藏、如今幸得高人指、獲寶從心喜不常。\",\n  \"analysis\": {\n    \"zh\": \"此卦象徵石中藏寶，暗示事事順心大吉。石藏瑤玉，象徵貴人指引得心所欲，喜悅常在。\",\n    \"en\": \"The poem describes how every entrance and exit, every grand plan, brings great fortune, "
+  }
+}

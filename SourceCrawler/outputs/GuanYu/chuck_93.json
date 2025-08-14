@@ -1,0 +1,25 @@
+{
+  "id": 93,
+  "title": "關聖帝君一百籤第九十三籤",
+  "subtitle": "邵康節定陰陽癸丙",
+  "fortune": "中平",
+  "poem": [
+    "春來雨水太連綿",
+    "入夏晴乾雨又愆",
+    "節氣直交三伏始",
+    "喜逢滂沛足田園"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是春夏季節氣候的變遷與農田的收成。春天來臨時，雨水連綿不斷，滋養萬物；然而一進入夏季，天氣轉為乾燥，雨水短缺；隨著節氣的推移，直至三伏時節，乾旱終於得到緩解，降雨充沛，為田園帶來豐收。詩中以氣候變化作為景象，隱含對自然循環的認知與對收成的期待。",
+    "en": "This poem’s theme is the seasonal shift from spring to summer and its effect on the land. In spring, rain falls continuously, nourishing everything; as summer arrives, the weather turns dry and rainfall ceases. When the hottest period—three consecutive heat days—begins, rain finally returns in abundance, blessing the fields with a bountiful harvest. The poem uses weather patterns to portray nature’s cycle and the hopeful anticipation of a good yield.",
+    "jp": "この詩のテーマは春から夏へ移る気候の変化とそれが農園に与える影響です。春になると雨が連綿と降り、万物を育てます。夏に入ると天候は乾燥し、雨は止みます。三伏の時節になると、雨が豊かに降り、畑は豊作を迎えます。詩は気候の変遷を通じて自然の循環と収穫への期待を描いています。",
+    "reference": "宋。邵雍。字堯夫。諡康節。精先天河圖。術數。著太極圖說。祖方士陳博之學。復定陰陽。推八卦。著皇極經世。初王拱辰伊洛以雍應詔。除主簿不就。熙寧二年。呂誨吳充。復薦除推官。仍辭。年六十七卒。贈著作郎元祐中。韓維清再奏。請予諡康節。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• It illustrates the rhythm of seasonal weather: continuous spring rains, sudden summer drought, and eventual heavy rain after the third hot day.\n• The heavy rain after the hot period is symbolized as a blessing that nourishes the fields, signifying renewal and prosperity.\n• The poem subtly conveys the lesson that patience and waiting for the natural cycle can lead to favorable outcomes, especially in agricultural life.\n• It also hints at the inevitable transition of conditions—what follows a dry period is relief, reinforcing the idea of balance in nature.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:15:17",
+    "source_file": "chuck_93.json",
+    "raw_llm_response_preview": "{\"id\":93,\"title\":\"關聖帝君一百籤第九十三籤\",\"subtitle\":\"邵康節定陰陽癸丙\",\"fortune\":\"中平\",\"poem\":[\"春來雨水太連綿\",\"入夏晴乾雨又愆\",\"節氣直交三伏始\",\"喜逢滂沛足田園\"],\"analysis\":{\"zh\":\"這首詩的主題是春夏季節氣候的變遷與農田的收成。春天來臨時，雨水連綿不斷，滋養萬物；然而一進入夏季，天氣轉為乾燥，雨水短缺；隨著節氣的推移，直至三伏時節，乾旱終於得到緩解，降雨充沛，為田園帶來豐收。詩中以氣候變化作為景象，隱含對自然循環的認知與對收成的期待。\",\"en\":\"This poem’s theme is the sea"
+  }
+}

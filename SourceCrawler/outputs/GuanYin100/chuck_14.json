@@ -1,0 +1,20 @@
+{
+  "id": 14,
+  "title": "觀音一百籤第十四籤",
+  "subtitle": "卯宮",
+  "fortune": "中籤",
+  "poem": "宛如仙鶴出樊籠、脫却羈縻處處通、南北東西無障碍、任君直上九霄中。",
+  "analysis": {
+    "zh": "這首詩的主題是：描繪一隻仙鶴脫離籠子，徹底擺脫束縛，四面八方皆為自由之路。其意象表明，事先的困難已被克服，接下來道路通達，隨心所欲，逍遙自在。",
+    "en": "This poem's theme is the depiction of a celestial crane escaping its cage and freeing itself from all restraints. The imagery signifies that the initial obstacles have been overcome, and from this point onward the path is clear, allowing one to move freely, ascend effortlessly, and experience limitless possibilities.",
+    "jp": "この詩のテーマは、天鶴が檻から脱走し、すべての束縛を解き放つことです。象徴は、初めの障害が克服され、以降は道が開かれ、自由に進み、空へと高く昇ることができるという、無限の可能性と無邪気さを示しています。",
+    "reference": "*(凡字-另有作樊字一說)家宅　不安。自身　還願。求財　合。交易　合。婚姻　合。六甲　男。行人　見。田蠶　秋利。六畜　損。尋人　阻。公訟　宜和。移徙　吉。失物　東南。疾病　設送。山墳　吉。1.子牙棄官商朝紂王時。姜子牙火燒琵琶精後。獲司天監職。官拜下大夫。紂王建鹿臺。子牙諫王免勞民傷財。不果。逃回宋異人莊(宋家莊)上。欲與妻馬氏離朝歌(首府)往西岐(文王首府)。其妻不肯。子牙寫了休書。獨自往西岐去。(封神傳)2.管仲三薰三沐見齊桓三國吳‧韋昭注：「以香塗身曰釁，亦或為「『熏』。」齊桓公宣佈管仲為相國，命鮑叔牙親自督造拜相台，與隰朋親自商定了拜相的吉日良辰，宣布三天不上朝，不出門，不接見任何人，在寢宮用香料薰身，準備拜相之禮。拜相時，管仲叩首：「謝主公。」繼而起身道：「主公，臣有一事相求。」桓公：「相國請講。」「臣一貧如洗。俗話說，貧不能使富，相國之職，恐難負重任。」鮑叔牙一怔，忙扯管仲後衣角，管仲不理。桓公笑了：「寡人賜相國大齊一年市租，使相國成為齊國首富。」要成霸業，就要有忠心為主，又無野心的一流賢才，所謂良禽擇木而棲，君臣之間彼此考驗一下也是必要的。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that liberation from constraints leads to boundless opportunity. • The crane’s escape symbolizes personal emancipation and the removal of hindrances. • All directions (north, south, east, west) become unobstructed, emphasizing universal accessibility. • The imagery of soaring to the ninth heavens conveys ambition, spiritual elevation, and the fulfillment of aspirations. • Underlying philosophy: once obstacles are shed, one can progress unhindered toward higher goals, reflecting a transition from adversity to prosperity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:48:22",
+    "source_file": "chuck_14.json",
+    "raw_llm_response_preview": "{\"id\":14,\"title\":\"觀音一百籤第十四籤\",\"subtitle\":\"卯宮\",\"fortune\":\"中籤\",\"poem\":\"宛如仙鶴出樊籠、脫却羈縻處處通、南北東西無障碍、任君直上九霄中。\",\"analysis\":{\"zh\":\"這首詩的主題是：描繪一隻仙鶴脫離籠子，徹底擺脫束縛，四面八方皆為自由之路。其意象表明，事先的困難已被克服，接下來道路通達，隨心所欲，逍遙自在。\",\"en\":\"This poem's theme is the depiction of a celestial crane escaping its cage and freeing itself from all"
+  }
+}

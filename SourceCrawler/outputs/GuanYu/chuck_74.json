@@ -1,0 +1,25 @@
+{
+  "id": 74,
+  "title": "關聖帝君一百籤第七十四籤",
+  "subtitle": "崔武求官辛丁",
+  "fortune": "上吉",
+  "poem": [
+    "崔巍崔巍復崔巍",
+    "履險如夷去復來",
+    "身似菩提心似鏡",
+    "長安一道放春回"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於行路的堅韌與內心的平靜，並以長安之行作為比喻。第一句「崔巍崔巍復崔巍」描繪了陡峭不斷的山峰，象徵旅程中層層挑戰；第二句「履險如夷去復來」說明即使道路危險，行者仍能像走在平地般平穩前行，並且能往來自如；第三句「身似菩提心似鏡」把身體比作菩提樹、心靈比作明鏡，強調身心合一、清明正直；最後一句「長安一道放春回」把長安視為終點，春回表示旅程結束時帶來的安寧與復甦。整首詩傳達的是：只要保持身心的穩定與清晰，即使前路艱險，也能安全抵達目的地。",
+    "en": "This poem's theme is the steadfastness of travel and the tranquility of the mind, illustrated through a journey to Chang'an. The opening line, \"崔巍崔巍復崔巍,\" depicts successive towering peaks, symbolizing continual challenges. The second line, \"履險如夷去復來,\" conveys that even through perilous terrain one can move as if on flat ground and return smoothly. The third line, \"身似菩提心似鏡,\" likens the body to a Bodhi tree and the mind to a clear mirror, emphasizing unity and clarity of body and mind. The final line, \"長安一道放春回,\" treats Chang'an as the destination where spring returns, signifying a peaceful, renewed completion. Overall, the poem teaches that maintaining a calm, clear mind allows one to navigate even the most treacherous paths safely.",
+    "jp": "この詩のテーマは、旅路の粘り強さと心の安寧であり、長安への旅を比喩に用いています。冒頭の「崔巍崔巍復崔巍」は、連なる高い峰を描き、連続する挑戦を象徴しています。次の「履險如夷去復来」では、危険な道であってもまるで平坦に歩くかのように滑らかに行き来できることを示しています。三行目の「身似菩提心似鏡」は、身体を菩提樹、心を清らかな鏡にたとえ、身心が調和し、明晰であることを強調しています。最後の「長安一道放春回」は、長安を目的地とし、春が戻る様子を通じて旅の終わりに安心と再生が訪れることを示しています。全体として、心を穏やかに保つことで、最も困難な道でも安全に目的地へ到達できるというメッセージが込められています。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is that perseverance combined with inner calm leads to safe completion of a challenging journey. • The repeated peaks in the first line symbolize persistent obstacles or difficulties. • The second line illustrates that, despite perilous conditions, one can navigate as if the path were level, indicating steadiness and resilience. • The third line uses Bodhi tree (body) and mirror (mind) as metaphors for spiritual rootedness and clarity of thought. • The final line positions Chang'an as the destination where spring returns, representing the renewal and peace that follows a successful journey. Overall, the poem conveys a philosophy of aligning body and mind to confront and overcome hardships, ultimately arriving safely at one’s goal.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:00:37",
+    "source_file": "chuck_74.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 74,\n  \"title\": \"關聖帝君一百籤第七十四籤\",\n  \"subtitle\": \"崔武求官辛丁\",\n  \"fortune\": \"上吉\",\n  \"poem\": [\n    \"崔巍崔巍復崔巍\",\n    \"履險如夷去復來\",\n    \"身似菩提心似鏡\",\n    \"長安一道放春回\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於行路的堅韌與內心的平靜，並以長安之行作為比喻。第一句「崔巍崔巍復崔巍」描繪了陡峭不斷的山峰，象徵旅程中層層挑戰；第二句「履險如夷去復來」說明即使道路危險，行者仍能像走在平地般平穩前行，並且能往"
+  }
+}

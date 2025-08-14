@@ -1,0 +1,20 @@
+{
+  "id": 27,
+  "title": "日本淺草觀音寺一百籤第二十七籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "望祿應重山,花紅喜悅顏,舉頭看皎月,漸出黑雲間",
+  "analysis": {
+    "zh": "這首詩的主題是關於努力後的收穫與心境的轉變。望祿應重山，意指要克服重重阻礙才能得到榮華。花紅喜悅顏，象徵心境因成就而紅煥。舉頭看皎月，說明在雲散之際能看見明朗的未來。漸出黑雲間，則描寫痛苦雲層慢慢散去，心靈變得寧靜。",
+    "en": "This poem's theme revolves around the transformation of one’s spirit after enduring hardship and the clarity that follows. \"望祿應重山\" suggests that to gain honor and prosperity one must surmount towering obstacles. \"花紅喜悅顏\" depicts the joy that blooms when success is achieved. \"舉頭看皎月\" conveys looking up to see a bright moon once the clouds lift, symbolizing a clear future. Finally, \"漸出黑雲間\" describes the gradual dispersal of dark clouds, representing the easing of troubles and the calm that ensues.",
+    "jp": "この詩のテーマは、努力を乗り越えた後の報いと心境の変化にあります。\"望祿応重山\"は、栄光と豊かさを得るためには山々のような障害を乗り越える必要があることを示唆しています。\"花紅喜悦顔\"は、成功によって喜びが咲き誇る様子を描いています。\"舉頭看皎月\"は、雲が晴れた瞬間に明るい月を見上げ、明るい未来を象徴しています。最後に\"漸出黒雲間\"は、闇雲が徐々に散っていく様子を表し、苦しみが和らぎ心が静まることを示しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- **Perseverance leads to reward**: The first line evokes the image of crossing heavy mountains to attain favor and honor.\n- **Joyful fruition**: The second line paints a vivid picture of a face glowing with the happiness that blooms like red flowers after success.\n- **Clarity after obstruction**: The third line suggests that, once one lifts their gaze, a bright moon emerges beyond the clouds, symbolizing a clear vision for the future.\n- **Easing of hardship**: The fourth line captures the gradual dispersal of dark clouds, indicating that suffering and worries are slowly lifted, leaving a calm and tranquil state.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:56:38",
+    "source_file": "chuck_27.json",
+    "raw_llm_response_preview": "{\"id\":27,\"title\":\"日本淺草觀音寺一百籤第二十七籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"望祿應重山,花紅喜悅顏,舉頭看皎月,漸出黑雲間\",\"analysis\":{\"zh\":\"這首詩的主題是關於努力後的收穫與心境的轉變。望祿應重山，意指要克服重重阻礙才能得到榮華。花紅喜悅顏，象徵心境因成就而紅煥。舉頭看皎月，說明在雲散之際能看見明朗的未來。漸出黑雲間，則描寫痛苦雲層慢慢散去，心靈變得寧靜。\",\"en\":\"This poem's theme revolves around the transformation of one’s spirit a"
+  }
+}

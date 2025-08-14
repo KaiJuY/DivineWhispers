@@ -1,0 +1,25 @@
+{
+  "id": 23,
+  "title": "關聖帝君一百籤第二十三籤",
+  "subtitle": "吳王愛西施丙丙",
+  "fortune": "下平",
+  "poem": [
+    "花開花謝在春風",
+    "貴賤窮通百歲中",
+    "羨子榮華今已矣",
+    "到頭萬事總成空"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是人生無常與榮華易逝。春風中花開花謝，正如人生百歲裡貴賤窮通的循環；羨子之名與榮華已逝，最終萬事歸於空虛。詩句提醒我們，盛極衰時、衰極盛時都只是自然的輪回，無需過度解讀或自責。",
+    "en": "This poem's theme is the impermanence of life and the fleeting nature of glory. Flowers bloom and wither in the spring breeze, mirroring the cycle of status and fortune over a lifetime; the envy of others and the glory that has passed are ultimately empty. The verse reminds us that both peaks and troughs are natural cycles, not something to overanalyze or lament.",
+    "jp": "この詩のテーマは人生の無常と栄華の儚さである。春風の中で咲き、散る花は、人生の貴賤・富貧の循環を象徴し、羨望や栄華はやがて虚無へと消えていくということを示している。盛衰は自然のサイクルであり、過度に解釈したり自責したりする必要はないというメッセージが込められている。",
+    "reference": "吳既滅越。越王勾踐。卑詞請成。臥薪嘗膽。果報會稽之仇。與大夫范蠡。文種謀。乃選民間絕色西施女。進之吳王。夫差甚嬖愛之。至於亡國。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a meditation on the transient nature of worldly achievements. The recurring imagery of flowers blooming and withering in the spring breeze underscores the inevitability of change. The verses portray status, wealth, and influence as passing states that ultimately dissolve into nothingness. It cautions against clinging to fleeting glory and reminds the reader that the ebb and flow of fortunes is a natural rhythm rather than a judgment of character. The poem encourages acceptance of impermanence and discourages over‑interpretation of success or failure.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:32:59",
+    "source_file": "chuck_23.json",
+    "raw_llm_response_preview": "{\"id\":23,\"title\":\"關聖帝君一百籤第二十三籤\",\"subtitle\":\"吳王愛西施丙丙\",\"fortune\":\"下平\",\"poem\":[\"花開花謝在春風\",\"貴賤窮通百歲中\",\"羨子榮華今已矣\",\"到頭萬事總成空\"],\"analysis\":{\"zh\":\"這首詩的主題是人生無常與榮華易逝。春風中花開花謝，正如人生百歲裡貴賤窮通的循環；羨子之名與榮華已逝，最終萬事歸於空虛。詩句提醒我們，盛極衰時、衰極盛時都只是自然的輪回，無需過度解讀或自責。\",\"en\":\"This poem's theme is the impermanence of life and the fleeting "
+  }
+}

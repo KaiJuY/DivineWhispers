@@ -1,0 +1,20 @@
+{
+  "id": 17,
+  "title": "觀音一百籤第十七籤",
+  "subtitle": "卯宮",
+  "fortune": "中籤",
+  "poem": "莫聽閑言與是非、晨昏只好念阿彌、若將妄語為真實、畫餅如何療得飢。",
+  "analysis": {
+    "zh": "此卦以餅象徵虛空與不實，提醒人們事多虛幻、少有真實，心中疑惑難以把握。其語句像書寫餅餵飢，實則難以消化。",
+    "en": "This hexagram employs the image of a cake to symbolize emptiness and falsehood, warning that many matters are illusory while few are real. One’s heart is unsettled, and the scripture reads vainly, like a written cake that is hard to digest.",
+    "jp": "この卦は餅のイメージで虚しさと虚偽を象徴し、事柄の多くは幻想で本当のものは少ないことを警告します。心が揺れ動き、経文は無駄に読まれるまま、書き込まれた餅のように消化しにくいのです。",
+    "reference": "*(將字，本作獎字)家宅　祈福。自身　順利（不順）。求財　順利（甭想）。交易　順利（且慢）。婚姻　阻。六甲　安（空孕）。行人　遲。田蠶　宜早種。六畜　不利。尋人　見（難）。公訟　和（勿興）。移徙　守舊。失物　不見。疾病　還願。山墳　吉。1.曹操話梅止渴三國。曹操領兵。敗季缺水。兵卒口渴。曹曰前有一梅林。到那當可吃梅解渴。望梅止渴出此。與畫餅充飢同意。2.李斯遺藥殺韓非李斯一面勸秦王要善用客卿（上『諫逐客書』反對秦王的逐客令），一面卻嫉妒並害死投秦之客卿韓非。一面偽裝與韓非友好，一面又設計讓韓非入獄，探監時故意不慎遺落毒藥給求死不能的韓非（其實韓非可能將被秦王下令釋放），故韓非自盡。李斯害韓非有如龐涓害孫臏，這個故事的啟示是：您可能有個『很好的壞朋友』（夥伴），真是防人之心不可無。"
+  },
+  "rag_analysis": "- According to the poem, the core meaning is a caution against indulging in idle gossip and disputes, urging focus on sincere practice such as daily recitation of Amitabha.\n- The image of a \"painted cake\" (画餅) serves as a symbol of false promises or illusion that cannot satisfy true hunger or desire.\n- The line about \"若將妄語為真實\" highlights the danger of accepting lies as truth, leading to misguided actions.\n- The overall philosophy is that genuine fulfillment comes from sincere devotion and inner clarity rather than external, illusory comforts.\n- The poem reflects a broader message: do not let petty arguments or unverified claims cloud judgment; maintain steady practice and discern truth from falsehood.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:49:47",
+    "source_file": "chuck_17.json",
+    "raw_llm_response_preview": "{\"id\":17,\"title\":\"觀音一百籤第十七籤\",\"subtitle\":\"卯宮\",\"fortune\":\"中籤\",\"poem\":\"莫聽閑言與是非、晨昏只好念阿彌、若將妄語為真實、畫餅如何療得飢。\",\"analysis\":{\"zh\":\"此卦以餅象徵虛空與不實，提醒人們事多虛幻、少有真實，心中疑惑難以把握。其語句像書寫餅餵飢，實則難以消化。\",\"en\":\"This hexagram employs the image of a cake to symbolize emptiness and falsehood, warning that many matters are illusory w"
+  }
+}

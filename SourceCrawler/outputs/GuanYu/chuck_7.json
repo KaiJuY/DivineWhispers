@@ -1,0 +1,25 @@
+{
+  "id": 7,
+  "title": "關聖帝君一百籤第七籤",
+  "subtitle": "洞賓煉丹甲庚",
+  "fortune": "大吉",
+  "poem": [
+    "仙風道骨本天生",
+    "又遇仙宗為主盟",
+    "指日丹成謝巖谷",
+    "一朝引領向天行"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是天生仙骨，受到神聖盟約的幫助，迅速完成煉丹，最終引領升天。詩中先描繪「仙風道骨本天生」說明作者天生具備非凡之氣，接著「又遇仙宗為主盟」表明得到神聖盟友的協助，隨即「指日丹成謝巖谷」暗示煉丹成功，離開束縛的山谷；最後「一朝引領向天行」象徵終於能夠翱翔天際，達到超凡的境界。這句詩也可用來提醒，占籤者若擁有本身天賦優勢，並能得到正面力量，便能在事業、健康、財富等各方面得到順遂；若缺乏此等優勢，則需更積極尋求外力協助。",
+    "en": "The theme of this poem is an innate celestial nature that, when aided by divine support, swiftly completes alchemical transformation and ascends to the heavens. The first line, \"仙風道骨本天生,\" highlights the speaker’s natural, auspicious aura. The second line, \"又遇仙宗為主盟,\" indicates the arrival of a spiritual covenant that provides assistance. The third line, \"指日丹成謝巖谷,\" signals the imminent creation of the elixir and liberation from earthly confinement. The final line, \"一朝引領向天行,\" foretells a sudden rise into the celestial realm. In fortune‑reading terms, those who possess inherent talent and receive positive influence will experience success in work, health, and wealth, while others may need to seek external help more actively.",
+    "jp": "この詩のテーマは、天生の仙骨を持ち、神聖な盟約の助けを得て、迅速に丹薬を完成させ、最終的に天へと導かれることです。最初の行「仙風道骨本天生」は、作者が自然に備わった霊性を示し、次の行「又遇仙宗為主盟」は、神聖な盟友の援助を受けることを示しています。続く「指日丹成謝巖谷」では、丹薬の完成と山谷からの解放を暗示し、最後の行「一朝引領向天行」では、天への突然の昇天を予感させます。占いとしては、天性の才能と良い影響を受ける者は、仕事・健康・財産などで順調に進む可能性が高く、そうでない者は外部からの支援をより積極的に求める必要があります。",
+    "reference": "唐。呂品字洞賓。天寶十四年四月十四日己時生。自號純陽子。由進士授江州德化縣令。私行盧山。遇鐘離真人授天仙劍法(另日遇火龍真人。授天遁劍法。)得九九數。學金丹之術。居深山中煉丹。丹成長生不老。多往來湘鄂間。籐守宗諒嘗遇諸岳陽樓。自稱華州道人。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• The speaker possesses an inherent celestial nature (仙風道骨本天生) that is naturally auspicious.\n• A divine covenant (又遇仙宗為主盟) brings support, allowing the alchemical work to succeed swiftly.\n• The completion of the elixir (指日丹成謝巖谷) signals a breakthrough that frees the soul from earthly confines.\n• Finally, the poet envisions a sudden ascension into the heavens (一朝引領向天行), implying ultimate liberation and triumph over worldly limitations.\n• Symbolically, the poem reflects the harmony between innate virtue and divine assistance, portraying a path from earthly cultivation to celestial attainment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:58:25",
+    "source_file": "chuck_7.json",
+    "raw_llm_response_preview": "{\n  \"id\": 7,\n  \"title\": \"關聖帝君一百籤第七籤\",\n  \"subtitle\": \"洞賓煉丹甲庚\",\n  \"fortune\": \"大吉\",\n  \"poem\": [\n    \"仙風道骨本天生\",\n    \"又遇仙宗為主盟\",\n    \"指日丹成謝巖谷\",\n    \"一朝引領向天行\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是天生仙骨，受到神聖盟約的幫助，迅速完成煉丹，最終引領升天。詩中先描繪「仙風道骨本天生」說明作者天生具備非凡之氣，接著「又遇仙宗為主盟」表明得到神聖盟友的協助，隨即「指日丹成謝巖谷」暗示煉丹成功，離開束縛的山谷；最後「一"
+  }
+}

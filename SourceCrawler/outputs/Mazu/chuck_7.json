@@ -1,0 +1,25 @@
+{
+  "id": 7,
+  "title": "六十甲子籤第七籤",
+  "subtitle": "屬金利秋　宜其西方",
+  "fortune": "乙丑○○●　●○●",
+  "poem": [
+    "雲開月出正分明",
+    "不須進退問前程",
+    "婚姻皆由天註定",
+    "和合清吉萬事成"
+  ],
+  "analysis": {
+    "zh": "雲散開就能看見明亮的月亮，提醒你不必為前進或後退過度擔憂。重點在於看清現實並按道理行事。婚姻與緣分由天注定，若是天定良緣，凡事皆能順利；若非天定，亦不必強求。你目前所問的事已明確，關鍵不是進退，而是認清真相。",
+    "en": "The bright moon appears when the clouds disperse, urging you not to worry too much about moving forward or backward. The key is to see the truth and act accordingly. Marriage is destined by heaven; if it is a heavenly match, everything will succeed; if not, do not force it. The matters you ask about are already clear, so focus on the truth rather than the direction of progress.",
+    "jp": "雲が散ると明るい月が見える。進むか退くかは大きな意味がない。真実を見極め、正しい道を歩むことが大切だ。結婚は天に決まっている。天に定まった良縁なら、何をしても成功する。そうでなければ無理に求めるべきではない。",
+    "reference": "一、國公暗察白袍將國公暗察，另有改作包公暗訪一說。唐太宗要遠征高麗，夢見名為薛仁貴之一白袍將軍，可以保駕戰勝高麗而歸。當時的兵馬總管張士貴，以女婿何宗憲假冒白袍將軍，反而設計欺騙薛仁貴，說皇帝要殺他，令其隱於軍中廚房當伙夫。在戰爭中，薛仁貴屢屢建功，但是都被張士貴將功勞記於何宗憲名下。有一天國公尉遲恭在兩軍交戰時看見白袍將軍，很高興地要去察看，但是在混亂中，薛仁貴溜走了。又有一次，遇敵軍埋伏，尉遲恭危急中得白袍將軍解救，想要前往相認，還是被逃走了。因此，尉遲恭就想要清點軍中人員，找出白袍將軍，張士貴知道尉遲恭愛喝酒，就先將他灌醉，在還沒點名完畢，尉遲恭就睡著了。而張士貴還傳假消息說尉遲恭是要搜捕薛仁貴，薛仁貴因而逃離軍營，尉遲恭最後並沒有查出誰是白袍將軍。　二、尉遲恭掛帥此故事與國公暗察白袍將同，在此戰爭中，尉遲恭為元帥出征高麗。凡事　後成。作事　月光成。家事　冒險。平安。家運　漸漸平安。婚姻　月光成。暗不成。求兒　好。六甲　定必生女。求財　有成。功名　少有成。老無。歲君　好。治病　女平。男晚好。少險。老不畏。出外　滿路異香。經商　成者大吉。來人　月中到。行舟　須當先防。移居　不吉。失物　月光在。月暗無求雨　初無。月尾有。官事　破財。完局。六畜　興旺。耕作　有收。築室　月中好。墳墓　地勢甚美。討海　合和吉。不合凶。作塭　須防風水。魚苗　月中吉。月令　淡淡。尋人　月中遇。遠信　可喜。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that obstacles (clouds) clear to reveal clarity (the bright moon). It teaches that the direction of progress—whether to move forward or backward—is less important than seeing the truth and acting rightly. The poem also emphasizes that relationships are predetermined by a higher power; a destined partnership brings success, while an undesired one should not be forced. The imagery of clouds and moon, the suggestion of calm acceptance, and the notion of destiny together convey a philosophy of letting go of overthinking and trusting in natural order.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:43:29",
+    "source_file": "chuck_7.json",
+    "raw_llm_response_preview": "{\"id\":7,\"title\":\"六十甲子籤第七籤\",\"subtitle\":\"屬金利秋　宜其西方\",\"fortune\":\"乙丑○○●　●○●\",\"poem\":[\"雲開月出正分明\",\"不須進退問前程\",\"婚姻皆由天註定\",\"和合清吉萬事成\"],\"analysis\":{\"zh\":\"雲散開就能看見明亮的月亮，提醒你不必為前進或後退過度擔憂。重點在於看清現實並按道理行事。婚姻與緣分由天注定，若是天定良緣，凡事皆能順利；若非天定，亦不必強求。你目前所問的事已明確，關鍵不是進退，而是認清真相。\",\"en\":\"The bright moon appears when the clouds disperse,"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 86,
+  "title": "日本淺草觀音寺一百籤第八十六籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "花發應陽臺,車行進寶財,執文朝帝殿,走馬聽聲雷",
+  "analysis": {
+    "zh": "籤詩中\"花發應陽臺\"象徵陽光照耀下的花園，寓意事業或願望得以順利開展；\"車行進寶財\"則象徵財源滾滾而來，財富充盈；\"執文朝帝殿\"暗示學識與官運，能得上位者指引，願望得以實現；\"走馬聽聲雷\"形容騎馬聽雷，象徵行動迅速、勢頭強盛，令人稱羨。整首詩預示各項事業皆順利，願望成真，健康恢復，失物可尋，婚姻與旅遊皆吉利。",
+    "en": "In this tanzaku, \"花發應陽臺\" evokes a garden bathed in sunlight, symbolising the successful blossoming of plans or aspirations. \"車行進寶財\" represents a vehicle laden with treasure, indicating a steady flow of wealth. \"執文朝帝殿\" hints at scholarly or official influence, suggesting that with guidance from higher authorities your wishes can be realised. \"走馬聽聲雷\" portrays a horse galloping while hearing thunder, a metaphor for swift, powerful action that earns admiration. Together the poem forecasts favourable outcomes across business, health, lost items, marriage, and travel.",
+    "jp": "この手紙詩では、\"花発應陽臺\" が日光を浴びた庭園を連想させ、計画や願望が順調に実現することを象徴しています。\"車行進寶財\" は宝物を積んだ車を描き、財運が流れ込むことを示唆します。\"執文朝帝殿\" は学識や官位の影響を暗示し、上位者の導きにより願いが叶う可能性を示します。\"走馬聽聲雷\" は馬に乗り雷の音を聞く様子で、迅速かつ力強い行動が称賛を得ることを表します。全体として、ビジネス、健康、失物、結婚、旅などの面で良い結果が期待できることを示しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- **Blooming in sunlight**: \"花發應陽臺\" evokes a garden basked in sunshine, signifying that personal aspirations or projects are poised to flourish.\n- **Abundant wealth**: \"車行進寶財\" paints a vehicle laden with treasure, indicating a steady influx of material prosperity.\n- **Scholarly guidance**: \"執文朝帝殿\" implies recognition from higher authorities or mentors, suggesting that intellectual effort and proper support can help realise goals.\n- **Powerful momentum**: \"走馬聽聲雷\" describes a horse galloping while hearing thunder, a metaphor for rapid, dynamic progress that garners admiration.\n- **Overall auspiciousness**: The stanza collectively forecasts favourable outcomes across career, health, lost items, marriage, and travel, reinforcing the \"大吉\" fortune.\"",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:23:06",
+    "source_file": "chuck_86.json",
+    "raw_llm_response_preview": "{\"id\":86,\"title\":\"日本淺草觀音寺一百籤第八十六籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"花發應陽臺,車行進寶財,執文朝帝殿,走馬聽聲雷\",\"analysis\":{\"zh\":\"籤詩中\\\"花發應陽臺\\\"象徵陽光照耀下的花園，寓意事業或願望得以順利開展；\\\"車行進寶財\\\"則象徵財源滾滾而來，財富充盈；\\\"執文朝帝殿\\\"暗示學識與官運，能得上位者指引，願望得以實現；\\\"走馬聽聲雷\\\"形容騎馬聽雷，象徵行動迅速、勢頭強盛，令人稱羨。整首詩預示各項事業皆順利，願望成真，健康恢復，失物可尋，婚姻與旅遊皆吉利。\",\"en\":\"In this tanzak"
+  }
+}

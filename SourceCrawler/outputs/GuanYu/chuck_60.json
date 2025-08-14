@@ -1,0 +1,25 @@
+{
+  "id": 60,
+  "title": "關聖帝君一百籤第六十籤",
+  "subtitle": "宋郊兄弟同科己癸",
+  "fortune": "上上",
+  "poem": [
+    "羨君兄弟好名聲",
+    "只管謙撝莫自矜",
+    "丹詔槐黃相逼近",
+    "巍巍科甲兩同登"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是兄弟間的共同榮耀與謙遜之道。詩中先讚嘆兄弟擁有佳名，提醒彼此勿因名聲而自矜，應保持謙遜；接著提到「丹詔槐黃」象徵天子下的詔書，預示雙雙登科，終成科甲，顯示透過謙遜與努力，雙方皆可同時獲得官位與光榮。",
+    "en": "The theme of this poem is the shared glory between brothers and the virtue of humility. It begins by praising the brothers’ good reputation, then advises them not to be prideful but to remain modest. The line about the \"red decree\" symbolizes the emperor’s edict, indicating that both brothers will attain the same success, achieving the rank of candidate together and securing a distinguished future.",
+    "jp": "この詩のテーマは、兄弟間の共通の栄光と謙遜の道です。まず兄弟の名声を称賛し、名声に自負せず謙虚であることを戒めています。次に『丹詔槐黄』という天皇の詔書を象徴する言葉が登場し、両兄弟が同時に科甲を取得し、栄光を手にすることを示唆しています。",
+    "reference": "宋。宋郊。弟都。雍邱人。天聖初與弟同舉進士。未第時。有僧相之云。小宋當大魁天下。大宋亦不失功名。後數日僧見郊。異之曰。君何滿面陰騭紋。似救數萬生命者。郊曰惟前日見蟻被水掩。戲將竹編橋渡之。僧曰即此便是當大魁天下。後果然。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- **Brotherly solidarity**: The first line praises the brothers’ joint reputation, underscoring a shared identity and mutual support. \n- **Humility as a virtue**: The second line admonishes against pride; it stresses that success comes from modesty rather than arrogance. \n- **Imperial endorsement**: The third line references a \"red decree,\" symbolizing the emperor’s approval and the promise of official recognition. \n- **Simultaneous triumph**: The final line celebrates that both brothers attain the rank of candidate (科甲) together, implying parallel progress and shared destiny. \n- **Underlying lesson**: The poem suggests that achieving greatness together is possible when one remains humble, and that external recognition (the emperor’s decree) confirms the merit of this approach.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:53:26",
+    "source_file": "chuck_60.json",
+    "raw_llm_response_preview": "{\n  \"id\": 60,\n  \"title\": \"關聖帝君一百籤第六十籤\",\n  \"subtitle\": \"宋郊兄弟同科己癸\",\n  \"fortune\": \"上上\",\n  \"poem\": [\n    \"羨君兄弟好名聲\",\n    \"只管謙撝莫自矜\",\n    \"丹詔槐黃相逼近\",\n    \"巍巍科甲兩同登\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是兄弟間的共同榮耀與謙遜之道。詩中先讚嘆兄弟擁有佳名，提醒彼此勿因名聲而自矜，應保持謙遜；接著提到「丹詔槐黃」象徵天子下的詔書，預示雙雙登科，終成科甲，顯示透過謙遜與努力，雙方皆可同時獲得官位與光榮。\",\n   "
+  }
+}

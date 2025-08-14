@@ -1,0 +1,20 @@
+{
+  "id": 45,
+  "title": "日本淺草觀音寺一百籤第四十五籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "有意興高顯,祿馬引前程,得遇雲中箭,芝蘭滿路生",
+  "analysis": {
+    "zh": "這首詩的主題是：良好的意願與積極的行動能使人名聲顯赫，並帶來財富與機遇。\\n\n有意興高顯：表明心中有高遠的志向，且這些志向能被外人看到與認可。\\n祿馬引前程：象徵一匹帶來財運與順利的馬，暗示只要保持善心與正直，未來的道路將受到吉祥指引。\\n得遇雲中箭：暗示偶遇天意的指引，或在無形的保佑下迎來幸運。\\n芝蘭滿路生：比喻路上滿佈美好的事物，既有善友的陪伴，也有名聲與幸福的相隨。",
+    "en": "This poem is about how a sincere intention and positive actions can elevate one’s reputation, attract wealth, and invite fortune.\\n\n* 有意興高顯 – The speaker’s lofty intentions become evident and are acknowledged by others.\\n* 祿馬引前程 – A symbol of a fortunate horse guiding one toward a bright future, implying that keeping a kind heart and integrity will bring good luck.\\n* 得遇雲中箭 – A chance encounter with a guiding arrow in the clouds, suggesting that unseen blessings will bring good fortune.\\n* 芝蘭滿路生 – The path is filled with fragrant orchids, representing a life surrounded by good people, fame, and happiness.",
+    "jp": "この詩は、誠実な意図と前向きな行動が人の名声を高め、富と幸運をもたらすというテーマです。\\n\n* 有意興高顯：高い志が外部に認められ、明らかになることを示しています。\\n* 祿馬引前程：幸運をもたらす馬が未来への道を導く象徴であり、善良な心と正直さを保てば、吉祥が導くと暗示しています。\\n* 得遇雲中箭：雲の中の矢に偶然出会うことで、見えない守護の恩恵が幸運をもたらすことを示唆しています。\\n* 芝蘭滿路生：路上に芳香を放つ蘭が咲き乱れ、良い人々に囲まれ、名声と幸福が伴う人生を象徴しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- **A sincere intention shines bright** – The speaker’s lofty aspirations become evident and are recognized by others.\n- **A lucky horse leads to a hopeful future** – A metaphor for fortune and progress that comes from maintaining kindness and integrity.\n- **A fortuitous encounter in the clouds** – An unexpected guiding sign, implying that unseen blessings will bring good fortune.\n- **Orchids filling the path** – Symbolic of a life surrounded by good people, growing reputation, and overall happiness.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:04:34",
+    "source_file": "chuck_45.json",
+    "raw_llm_response_preview": "{\"id\":45,\"title\":\"日本淺草觀音寺一百籤第四十五籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"有意興高顯,祿馬引前程,得遇雲中箭,芝蘭滿路生\",\"analysis\":{\"zh\":\"這首詩的主題是：良好的意願與積極的行動能使人名聲顯赫，並帶來財富與機遇。\\\\n\\n有意興高顯：表明心中有高遠的志向，且這些志向能被外人看到與認可。\\\\n祿馬引前程：象徵一匹帶來財運與順利的馬，暗示只要保持善心與正直，未來的道路將受到吉祥指引。\\\\n得遇雲中箭：暗示偶遇天意的指引，或在無形的保佑下迎來幸運。\\\\n芝蘭滿路生：比喻路上滿佈美好的事物，既有善友的陪伴，也有名聲"
+  }
+}

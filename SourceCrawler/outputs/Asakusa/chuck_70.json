@@ -1,0 +1,20 @@
+{
+  "id": 70,
+  "title": "日本淺草觀音寺一百籤第七十籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "雷發庭前草,炎火向天飛,一心來趕祿,爭奈掩朱扉",
+  "analysis": {
+    "zh": "這首詩的主題是：雷發庭前草象徵由下層人員或雇用的人所帶來的災禍；炎火向天飛則描繪上層與下層之間的爭執與關係緊張；一心來趕祿說明人們一心追求利益卻難以實現；爭奈掩朱扉代表盡力封閉危險，但仍未能完全避免。整體上提醒應重視下屬與關係，避免因內部衝突而招來不幸。",
+    "en": "這首詩的主題是: Thunder striking the courtyard grass signals trouble emanating from lower‑ranked or employed people; fiery flames rising to the sky depicts heated disputes and strained relations between higher and lower tiers; a single‑hearted pursuit of pay reveals that striving for profit is futile; trying to shut the red door indicates attempts to seal off danger, yet it proves ineffective. The verse overall urges attention to subordinates and relationships to avert misfortune arising from internal conflict.",
+    "jp": "這首詩のテーマは: 雷が庭前の草を打ち、低位者や雇用者からの災厄を示す。炎火が天に向かって飛び、上下関係の緊張と争いを描く。利益を追い求める一心は実現できず、赤い扉を閉めようとするも効果がない。全体として、部下や関係を重視し、内部の対立で不幸を招かないよう警告する。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Thunder over the courtyard grass symbolizes trouble originating from lower ranks or subordinates.\n- Flames ascending to the sky suggest heated conflicts or strained authority relations.\n- The speaker’s single‑hearted pursuit of income is futile; promises of profit cannot materialize.\n- The attempt to close the red door implies trying to seal off danger, but it is ineffective.\n- Overall, the verse warns of misfortune brought by subordinate staff, internal discord, and the futility of selfish ambition.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:16:05",
+    "source_file": "chuck_70.json",
+    "raw_llm_response_preview": "{\n  \"id\": 70,\n  \"title\": \"日本淺草觀音寺一百籤第七十籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"凶\",\n  \"poem\": \"雷發庭前草,炎火向天飛,一心來趕祿,爭奈掩朱扉\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：雷發庭前草象徵由下層人員或雇用的人所帶來的災禍；炎火向天飛則描繪上層與下層之間的爭執與關係緊張；一心來趕祿說明人們一心追求利益卻難以實現；爭奈掩朱扉代表盡力封閉危險，但仍未能完全避免。整體上提醒應重視下屬與關係，避免因內部衝突而招來不幸。\",\n    \"en\": \"這首詩的主題是: Thunder"
+  }
+}

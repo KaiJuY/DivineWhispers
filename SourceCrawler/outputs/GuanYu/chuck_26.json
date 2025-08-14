@@ -1,0 +1,25 @@
+{
+  "id": 26,
+  "title": "關聖帝君一百籤第二十六籤",
+  "subtitle": "邵堯夫告天丙己",
+  "fortune": "中吉",
+  "poem": [
+    "年來豐歉皆天數",
+    "自是今年旱較多",
+    "與子定期三日內",
+    "田疇霑足雨滂沱"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描述天時雨勢對農作物產量的影響，指出今年旱勢較重，雖然天數決定收成，但相信三日內將有足夠降雨，幫助土地恢復水份。",
+    "en": "這首詩的主題是… This poem reflects the impact of weather on harvest, noting that this year has more drought, but within three days there will be enough rain to replenish the fields.",
+    "jp": "這首詩の主題は… この詩は、今年の旱が多いことを示しつつ、三日以内に十分な雨が降ると信じられ、畑が潤うことを期待している内容です。",
+    "reference": "宋。邵雍字堯夫。范陽人。於書無所不讀。精天文易數。程子稱為振古之豪傑。遇苦旱焚香告天。為民祈雨。竭盡誠敬。經王拱辰、呂誨等。屢薦不起。卒年六十七。贈秘書省著作郎元祐中。諡康節"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The harvest is bound by a fixed number of days, implying destiny rather than human effort.\n- Current drought has reduced yields, but the verse holds that within three days sufficient rain will arrive to restore the fields.\n- It encourages faith, prayer, and patience as the means to bring relief and avert further hardship.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:34:15",
+    "source_file": "chuck_26.json",
+    "raw_llm_response_preview": "{\"id\":26,\"title\":\"關聖帝君一百籤第二十六籤\",\"subtitle\":\"邵堯夫告天丙己\",\"fortune\":\"中吉\",\"poem\":[\"年來豐歉皆天數\",\"自是今年旱較多\",\"與子定期三日內\",\"田疇霑足雨滂沱\"],\"analysis\":{\"zh\":\"這首詩的主題是描述天時雨勢對農作物產量的影響，指出今年旱勢較重，雖然天數決定收成，但相信三日內將有足夠降雨，幫助土地恢復水份。\",\"en\":\"這首詩的主題是… This poem reflects the impact of weather on harvest, noting that this year has more d"
+  }
+}

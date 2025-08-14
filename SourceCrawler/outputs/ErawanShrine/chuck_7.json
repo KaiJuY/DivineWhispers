@@ -1,0 +1,20 @@
+{
+  "id": 7,
+  "title": "四面佛三十籤第七籤",
+  "subtitle": "",
+  "fortune": "上籤",
+  "poem": "蒼松翠柏志氣堅,雨雪風霜益增強,爆竹一聲春色空,大地萬物樂融融。",
+  "analysis": {
+    "zh": "身強體健、精神矜持，外邪無法侵擾，彷彿蒼松翠柏般挺拔堅韌。財運亨通，運勢連綿，財源不斷，春日暖陽象徵新氣象，四季財源滾滾。感情穩定、情投意合，堅定不移，無懼外來干擾；春天到來，喜事紛呈，男女結合百年好合。事業志向高遠，越是困難越能激發鬥志，機會一到，成就無限。",
+    "en": "You possess a strong body and a steadfast spirit, impervious to external harm—like the unwavering green pine and cypress. Financial luck flows steadily, and fortune keeps arriving; the spring sun heralds a new, vibrant outlook, and wealth accumulates throughout the seasons. Your relationships are stable and aligned, unshaken by outside forces; when spring comes, joyous events unfold, and a marriage between man and woman promises lifelong harmony. Career ambitions are lofty; every challenge strengthens your resolve, and when opportunity strikes, your success will be boundless.",
+    "jp": "あなたは体力があり、精神も堅く、外部の邪悪や病気が侵入できません。まるで青い松や真柏のようにしっかりと立ち、しっかりしています。金運が良く、運勢も連続して続き、春の暖陽が新たな気象を象徴し、四季を通じて財源が滲滲と流れます。恋愛は安定しており、心が合致し、愛は揺るぎません。外部の影響を恐れず、春になると幸せな出来事が訪れます。男女の結婚は長い幸福を約束します。事業面では高い理想を持ち、困難があるほど闘志が強まります。機会が来れば、成功は無限です。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The poem likens the seeker to steadfast trees, symbolising resilience against hardship.\n- It foresees prosperous financial flow and stable relationships, suggesting that strength will attract abundance and harmony.\n- The verses emphasize that adversity can strengthen one’s will, hinting at a philosophy of growth through challenge.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:38:44",
+    "source_file": "chuck_7.json",
+    "raw_llm_response_preview": "{\"id\":7,\"title\":\"四面佛三十籤第七籤\",\"subtitle\":\"\",\"fortune\":\"上籤\",\"poem\":\"蒼松翠柏志氣堅,雨雪風霜益增強,爆竹一聲春色空,大地萬物樂融融。\",\"analysis\":{\"zh\":\"身強體健、精神矜持，外邪無法侵擾，彷彿蒼松翠柏般挺拔堅韌。財運亨通，運勢連綿，財源不斷，春日暖陽象徵新氣象，四季財源滾滾。感情穩定、情投意合，堅定不移，無懼外來干擾；春天到來，喜事紛呈，男女結合百年好合。事業志向高遠，越是困難越能激發鬥志，機會一到，成就無限。\",\"en\":\"You possess a strong body and a steadfast spi"
+  }
+}

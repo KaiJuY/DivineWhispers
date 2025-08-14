@@ -1,0 +1,20 @@
+{
+  "id": 44,
+  "title": "觀音一百籤第四十四籤",
+  "subtitle": "戌宮",
+  "fortune": "中籤",
+  "poem": "棋逢對手要藏機、黑白盤中未決時、到底欲知誰勝負、須教先著相機宜。",
+  "analysis": {
+    "zh": "這首詩的主題是棋逢對手之象。卦象告訴人們，凡事若採取機關巧思，往往能得吉運。詩中說到「棋逢對手要藏機，黑白盤中未決時」，寓意當遇到對手時要慎重隱藏策略；「到底欲知誰勝負，須教先著相機宜」則提醒要先落下巧妙的棋子，才能掌握勝負。整體上詩意在於以圍棋作隱喻，強調在競爭與抉擇中，用心機與策略可決定成敗。",
+    "en": "According to the poem, the theme of this poem is the image of a match of chess. The hexagram says that whenever you adopt a clever scheme or mechanism, you will likely obtain good fortune. The lines ‘when a match of chess, hide the machinations; in the black‑and‑white board, it is undecided’ imply that when you meet an opponent you must conceal your strategy; ‘who will win? you must first place a clever move’ reminds you that only by putting an ingenious move first can you master the outcome. Overall the poem uses the board game of Go (or chess) as a metaphor, stressing that in competition and decision‑making, using a smart tactic can determine success.",
+    "jp": "この詩のテーマは、対戦相手に対する策略を示す象です。卦は、巧妙な機関や戦略を採用すれば、幸運を得られると告げています。「棋逢対手、機を隠す」「黒白の盤に未決まる時」とは、相手と対峙する際に策略を隠す必要があることを示唆し、「勝敗を知りたければ、まず機を置くべきだ」という言葉は、巧妙な一手を先に打つことで勝負を支配できるという教えです。全体として、この詩は囲碁（または将棋）を比喩に用い、競争や選択の中で賢明な戦術を用いることで結果を決めることができるというメッセージを伝えています。",
+    "reference": "家宅　大利。自身　平穩。求財　遂。交易　利。婚姻　未合。六甲　女。行人　阻。田蠶　平。六畜　損。尋人　阻。公訟　宜和。移徙　守舊。失物　空。疾病　祈保。山墳　守舊。1.姜維鄧艾鬥陣三國時。姜維(蜀)與鄧艾(魏)會師祈山。二人皆擺八卦陣。姜維又擺長蛇陣。鄧艾被困。得司馬望救出。喻世事如棋。一子莫錯。2.周郎赤壁敗曹軍三國時代火燒赤壁故事，周郎即東吳周瑜，曹軍是指曹操軍隊。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The poem uses the game of Go (or chess) as a metaphor for facing opponents in life.\n- It emphasizes the importance of concealing one’s tactics (機) until the right moment.\n- A decisive, clever move made early can determine the outcome (勝負).\n- The main symbols are the black‑and‑white board, hidden machinations, and the quest to know who will win.\n- The hidden philosophy is that success comes from strategic planning, patience, and timely execution rather than brute force.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:05:27",
+    "source_file": "chuck_44.json",
+    "raw_llm_response_preview": "{\"id\":44,\"title\":\"觀音一百籤第四十四籤\",\"subtitle\":\"戌宮\",\"fortune\":\"中籤\",\"poem\":\"棋逢對手要藏機、黑白盤中未決時、到底欲知誰勝負、須教先著相機宜。\",\"analysis\":{\"zh\":\"這首詩的主題是棋逢對手之象。卦象告訴人們，凡事若採取機關巧思，往往能得吉運。詩中說到「棋逢對手要藏機，黑白盤中未決時」，寓意當遇到對手時要慎重隱藏策略；「到底欲知誰勝負，須教先著相機宜」則提醒要先落下巧妙的棋子，才能掌握勝負。整體上詩意在於以圍棋作隱喻，強調在競爭與抉擇中，用心機與策略可決定成敗。\",\"en\":\"According to the poem,"
+  }
+}

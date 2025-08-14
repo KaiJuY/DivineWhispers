@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "title": "六十甲子籤第一籤",
+  "subtitle": "屬金利秋　宜其西方",
+  "fortune": "甲子 ○○○　○○○",
+  "poem": [
+    "日出便見風雲散",
+    "光明清淨照世間",
+    "一向前途通大道",
+    "萬事清吉保平安"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描繪日出帶來的光明與清淨，象徵障礙消散、前路順暢，提醒人們正向前進、信心與祝福會帶來安寧與順利。",
+    "en": "The theme of this poem is the depiction of sunrise bringing light and clarity, symbolizing the dispersal of obstacles and a smooth path ahead, urging people to move forward positively, that confidence and blessings bring peace and success.",
+    "jp": "この詩のテーマは、日の出がもたらす光と清らかさを描き、障害が散ることと前進が円滑であることを象徴しています。前向きに進むことを促し、信頼と祝福が平穏と成功をもたらすと語っています。",
+    "reference": "一、朱德武入寺相分明二、崔文德胡鳳嬌到家空成婚三、包公請雷驚仁宗：宋朝的時候，由於人民為乾旱所苦，包公一心為民請到雷神，降下甘霖而五穀豐收，解除了災難，這件事驚動了京城裡仁宗皇帝。四、包公請雷驚仁宗（另一版本）：當包公要到開封任職，鑒於仁宗顧忌包公的能力，包公知道了就一再向仁宗保證，然而仁宗依然不放心，所以包公只好仰天請雷，以作為見証，結果沒多久就自天上落下雷來，使得仁宗受到了很大的驚嚇，所以讓包公任職，而沒有再質疑了。凡事　大吉昌。作事　難成。成者大吉。家事　無憂。家運　平安大吉。婚姻　允成。求兒　大吉。六甲　頭胎男。二胎女。求財　先大進。後小利。功名　望後有成。歲君　清吉。治病　未日(半月)痊安。出外　平安。經商　如意。來人　月光在。行舟　有大財。移居　得安。失物　在東急尋能還。求雨　尚未。官事　理斷分明。六畜　好。耕作　甚得利。築室　清吉光明。墳墓　地穴大吉。討海　漸漸得利。作塭　大吉利。魚苗　不畏。月令　遂意。尋人　得回。遠信　速至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The sunrise disperses the clouds, symbolizing the fading of obstacles and difficulties.\n- The light that shines on the world conveys purity, clarity, and hope.\n- The line \"一向前途通大道\" portrays a straight and unobstructed path toward success.\n- \"萬事清吉保平安\" offers assurance of overall good fortune and peace.\n- The poem encourages optimism, perseverance, and trust that blessings will bring safety and success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:13:22",
+    "source_file": "chuck_1.json",
+    "raw_llm_response_preview": "{\"id\":1,\"title\":\"六十甲子籤第一籤\",\"subtitle\":\"屬金利秋　宜其西方\",\"fortune\":\"甲子 ○○○　○○○\",\"poem\":[\"日出便見風雲散\",\"光明清淨照世間\",\"一向前途通大道\",\"萬事清吉保平安\"],\"analysis\":{\"zh\":\"這首詩的主題是描繪日出帶來的光明與清淨，象徵障礙消散、前路順暢，提醒人們正向前進、信心與祝福會帶來安寧與順利。\",\"en\":\"The theme of this poem is the depiction of sunrise bringing light and clarity, symbolizing the di"
+  }
+}

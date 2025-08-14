@@ -1,0 +1,20 @@
+{
+  "id": 91,
+  "title": "觀音一百籤第九十一籤",
+  "subtitle": "酉宮",
+  "fortune": "中籤",
+  "poem": "好把愁眉須展開、大才大用薦將來、一條大路平如掌、凡有施為總稱懷。",
+  "analysis": {
+    "zh": "詩中提醒，應以坦然的態度面對憂愁，並將自己的才華展現出來，為未來鋪就光明之路。它將一條寬廣平坦的大道比作掌心，象徵前途順暢、易於掌控。最後一句則說明，凡事皆應以心為指引，保持善念，善行終將得到肯定。",
+    "en": "The poem encourages openness: one should not hide worries but express them, and showcase talents to shape the future. It likens a wide, smooth road to the surface of a palm, symbolising a clear and manageable path ahead. The final line stresses that all deeds should be guided by the heart, implying that sincere intentions and actions will be acknowledged.",
+    "jp": "この詩は、愁眉（苦悩）を隠さずに率直に示し、天賦の才を活かして未来を切り拓くことを勧めています。また、広々と平坦な大道を掌のように例え、順調に進むことができることを示しています。最後の一句は、すべての行動は心を指針にすべきだと述べ、真摯な意図と行いが認められることを示唆しています。",
+    "reference": "1.三戰呂布三國時。呂布領兵三萬入駐虎牢關。張飛持三叉戟與呂布持丈八矛相戰。不分勝負。關羽持青龍偃月刀加入。劉備又加入戰圈。是為三英戰呂布。呂布見不能勝。逃回關內。籤意與故事不合。2.宗愨長風破浪宗愨小時後叔父問他的志向，宗愨回答「願乘長風破萬里浪。」 。宗愨的哥哥婚禮時有山賊入侵，大家慌亂之際，宗愨獨自前往反擊山賊，後來大家合力擊退山賊。日後宗愨打了很多勝仗，被南宋孝武帝封為洮陽侯，實現年幼時的遠大志 向。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It urges the reader to openly confront and express worries rather than conceal them.\n- It highlights the importance of harnessing great talent to shape a promising future.\n- A wide, smooth road is likened to a palm’s surface, symbolizing a clear, manageable path ahead.\n- All actions are encouraged to be guided by the heart, underscoring sincerity and moral integrity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:44:44",
+    "source_file": "chuck_91.json",
+    "raw_llm_response_preview": "{\n  \"id\": 91,\n  \"title\": \"觀音一百籤第九十一籤\",\n  \"subtitle\": \"酉宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"好把愁眉須展開、大才大用薦將來、一條大路平如掌、凡有施為總稱懷。\",\n  \"analysis\": {\n    \"zh\": \"詩中提醒，應以坦然的態度面對憂愁，並將自己的才華展現出來，為未來鋪就光明之路。它將一條寬廣平坦的大道比作掌心，象徵前途順暢、易於掌控。最後一句則說明，凡事皆應以心為指引，保持善念，善行終將得到肯定。\",\n    \"en\": \"The poem encourages openness: one sh"
+  }
+}

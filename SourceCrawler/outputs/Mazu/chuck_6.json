@@ -1,0 +1,25 @@
+{
+  "id": 6,
+  "title": "六十甲子籤第六籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "甲戌 ○●○　○○○",
+  "poem": [
+    "風雲致雨落洋洋",
+    "天災時氣必有傷",
+    "命內此事難和合",
+    "更逢一足出外鄉"
+  ],
+  "analysis": {
+    "zh": "詩句描寫風雲聚集，豪大雨勢洶洶地落下，象徵天災即將來臨。因為天災不可避免，必然會帶來損傷。此情此景也暗示事態難以得到和諧與順利，甚至可能帶來離家外出的情況。整體來說，詩中的意象提醒人們，面對風雨與變動時，應保持警覺與靈活，切勿過度執著於不合時宜的目標。",
+    "en": "The poem depicts a gathering of wind and cloud, followed by a relentless downpour—an image of an impending natural disaster. Such calamities inevitably bring damage, and the verses hint that the situation will be hard to reconcile, even potentially causing one to leave home. Overall, the imagery cautions against clinging to ill‑timed goals when weathering change, urging vigilance and adaptability.",
+    "jp": "詩は風雲が集まり、やがて激しい雨が降り注ぐ様子を描いています。これは天災が迫っていることを示唆し、避けられない損害が生じる可能性が高いことを示しています。また、事態が円滑に進まないうえ、家を離れるような状況に陥る恐れもあると詩は示しています。全体として、風雨や変化に対して無理に固執せず、警戒と柔軟な対応を心がけるべきだというメッセージが込められています。",
+    "reference": "1.烏精亂宋朝烏字，另有改作鳥字一說。烏精或指烏靈聖母。她是東晉時沙賈使君之女。秀才慎郎(蛟精所變)入贅賈府。賈女亦變蛟。生三子(兩子被許真君斬)。餘子修成虯龍(轉世秦檜)。烏靈聖母欲報殺子之仇。和兀朮合作滅宋。(見岳飛傳。清。錢彩著。01/73/79)「鳥精亂宋朝」在台灣傳統歌仔戲中的戲名為《觀音收大鵬》，是廟會中常演出的戲碼。劇情描述宋朝仁宗時期，觀世音菩薩身邊的大鵬鳥，幻化成人形，到人間作亂，天災人禍頻傳，民不聊生，最後觀世音菩薩下凡，收服大鵬鳥，為人民解患。故事內容有一切都會化險為夷的寓意。2.劉志遠戰瓜精。(劉志遠投軍)劉志遠與妻李三娘居舅家。舅嫌其貧。哄志遠往瓜園。欲給二瓜精吃掉。志遠夜持鎗。戰瓜精走入地。掘開見劍。拾之辭妻投軍。後得天下。凡事　待望。作事　不成局。家事　家庭相爭。家運　有怪必防。婚姻　不宜。求兒　不可。六甲　男高貴。晚投枝。求財　空有。功名　難望。歲君　破財。27月令不吉。治病　邪作病。險不吉。出外　無貴人。經商　財本耗散。來人　月光即到。行舟　不好。移居　且慢。失物　運如此。路難逢。求雨　不到則久。官事　了錢。拖尾。六畜　不佳。耕作　無收。築室　犯凶星。墳墓　地運不佳。討海　邪祟不利。作塭　失利。魚苗　失利了錢。月令　不遂。尋人　遲遇。遠信　無望。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\\n- A violent weather front is approaching, bringing heavy rain and inevitable damage.\\n- The wind and cloud symbolize turbulence and change; the downpour represents an impending disaster.\\n- The verses warn that such conditions will make harmony difficult and may force one to leave home or travel abroad.\\n- The underlying message advises against pursuing ill‑timed goals, urging vigilance, adaptability, and caution when dealing with allies during turbulent times.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:41:10",
+    "source_file": "chuck_6.json",
+    "raw_llm_response_preview": "{\"id\":6,\"title\":\"六十甲子籤第六籤\",\"subtitle\":\"屬火利夏　宜其南方\",\"fortune\":\"甲戌 ○●○　○○○\",\"poem\":[\"風雲致雨落洋洋\",\"天災時氣必有傷\",\"命內此事難和合\",\"更逢一足出外鄉\"],\"analysis\":{\"zh\":\"詩句描寫風雲聚集，豪大雨勢洶洶地落下，象徵天災即將來臨。因為天災不可避免，必然會帶來損傷。此情此景也暗示事態難以得到和諧與順利，甚至可能帶來離家外出的情況。整體來說，詩中的意象提醒人們，面對風雨與變動時，應保持警覺與靈活，切勿過度執著於不合時宜的目標。\",\"en\":\"The poem depicts a gatheri"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 28,
+  "title": "六十甲子籤第二十八籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "戊午●●○　○●●",
+  "poem": [
+    "於今莫作此當時",
+    "虎落平陽被犬欺",
+    "世間凡事何難定",
+    "千山萬水也遲疑"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是對當前時勢與個人處境的警示與自我檢視。第一句提醒不應在不合時宜的時刻採取行動；第二句以“虎落平陽被犬欺”形容失勢後容易受到衝擊，提醒權勢易轉弱。第三句說明世事難以明確決定，複雜多變；第四句則以“千山萬水”作比喻，即使面臨重重障礙，也可能因不確定性而遲疑不前。整體來說，詩句倡導先觀察、先留意，避免因時機不佳而誤入歧途。",
+    "en": "The theme of this poem is a cautionary reflection on the present circumstances and one’s personal position. The opening line advises against acting in an untimely moment. The second line, ‘a tiger falling to flat ground is bullied by dogs’, warns that losing status can leave one vulnerable to attack. The third line reminds that worldly matters are difficult to settle, highlighting their complexity. The fourth line, using the image of ‘thousands of mountains and rivers’, suggests that even great obstacles can induce hesitation when uncertainty prevails. Overall, the poem urges careful observation and prudence to avoid missteps caused by ill‑timed actions.",
+    "jp": "この詩のテーマは、現在の状況への警告と自分の立ち位置についての自省である。最初の行では、時期に合わない行動を避けるべきだと示唆し、次に「虎落平陽被犬欺」を用いて勢力が低下すると他者に利用されやすくなると警告する。三行目は世間の事柄が決定しにくく、複雑であることを指摘し、四行目では「千山万水」を例に、重い障壁に直面しても不確実性から躊躇してしまうことを示す。全体として、先に状況を観察し、慎重に行動することを促している。",
+    "reference": "1.李存孝打虎2.石存孝遇李克用收為誼子凡事　後成吉。作事　難成。家事　恐防大害。家運　人作怪。恐風波。婚姻　不吉。(女帶殺氣)求兒　不可。六甲　須防難產。求財　不得。功名　無。歲君　平平。治病　運犯劫。被邪欺。寅戌日過不畏。出外　被人欺。經商　呆人欺。難如意。來人　難在。行舟　無利可得。(了財帛)移居　大不好。失物　難尋。求雨　不日到。官事　被官欺。大了錢。六畜　不安。耕作　半收。築室　不可。(犯殺)墳墓　犯六十年。緊移。討海　無利可得。作塭　剋口舌。忍耐好。魚苗　不利。月令　九不畏。防人欺。尋人　難得。遠信　魚沉消息。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is to urge caution when the timing is unfavorable and to recognize the vulnerability that follows a loss of power. • The opening admonition warns against acting impulsively. • The tiger‑dog metaphor symbolizes the danger of losing status and becoming prey to others. • The third line acknowledges the inherent uncertainty and difficulty in determining outcomes in life. • The mountain‑river comparison illustrates that even great challenges can trigger hesitation when circumstances are unclear. • Overall, the poem highlights prudence, awareness of one’s position, and the need to assess the environment before proceeding.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:23:53",
+    "source_file": "chuck_28.json",
+    "raw_llm_response_preview": "{\"id\":28,\"title\":\"六十甲子籤第二十八籤\",\"subtitle\":\"屬火利夏　宜其南方\",\"fortune\":\"戊午●●○　○●●\",\"poem\":[\"於今莫作此當時\",\"虎落平陽被犬欺\",\"世間凡事何難定\",\"千山萬水也遲疑\"],\"analysis\":{\"zh\":\"這首詩的主題是對當前時勢與個人處境的警示與自我檢視。第一句提醒不應在不合時宜的時刻採取行動；第二句以“虎落平陽被犬欺”形容失勢後容易受到衝擊，提醒權勢易轉弱。第三句說明世事難以明確決定，複雜多變；第四句則以“千山萬水”作比喻，即使面臨重重障礙，也可能因不確定性而遲疑不前。整體來說，詩句倡導先觀察、先留意，避免因時機"
+  }
+}

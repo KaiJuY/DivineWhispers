@@ -1,0 +1,20 @@
+{
+  "id": 14,
+  "title": "四面佛三十籤第十四籤",
+  "subtitle": "",
+  "fortune": "中籤",
+  "poem": "不須在此問他身,禍福從來皆前因,好歹回頭思去日,存心天理總由人。",
+  "analysis": {
+    "zh": "詩中提醒不必再去問身體的狀況，因為禍福皆源於前因前業。身體不佳乃因往昔未曾善加保養，若想了解財運亦同理，皆有其根源。人生的感情若已離去，則如江水東流，無法再回。回首往昔，皆是自身負責。天理長存，天道永續。",
+    "en": "The poem advises that one need not ask about one’s physical condition, for good or bad fortune always stems from prior causes. Poor health is a result of past neglect, and financial fortunes likewise arise from their own origins. Matters of love that have moved on are like river water flowing eastward; they cannot return. One must look back, accept responsibility for past actions, and understand that the laws of nature endure and the divine order persists.",
+    "jp": "詩は自分の身体の状態を尋ねる必要はないと告げている。喜びも不幸もすべて前因に起因するものだ。身体の調子が悪いのは、過去に十分にケアできていなかったためだ。金運についても同様で、すべて根本的な原因がある。恋愛が終わったら、川の水が東へ流れるように戻ることはない。過去を振り返り、責任を受け入れなさい。天地の法則は永続し、天道は変わらない。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It discourages continual inquiry into one's health, suggesting that health issues are rooted in past actions.\n- Good or bad fortune is always a consequence of prior causes.\n- The poem draws an analogy that once a relationship ends, it is like river water flowing eastward – it cannot return.\n- The speaker urges reflection on the past and taking responsibility for one’s own deeds.\n- Ultimately, it reminds us that natural law and the divine order remain constant, guiding the course of life.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:30:38",
+    "source_file": "chuck_14.json",
+    "raw_llm_response_preview": "{\"id\":14,\"title\":\"四面佛三十籤第十四籤\",\"subtitle\":\"\",\"fortune\":\"中籤\",\"poem\":\"不須在此問他身,禍福從來皆前因,好歹回頭思去日,存心天理總由人。\",\"analysis\":{\"zh\":\"詩中提醒不必再去問身體的狀況，因為禍福皆源於前因前業。身體不佳乃因往昔未曾善加保養，若想了解財運亦同理，皆有其根源。人生的感情若已離去，則如江水東流，無法再回。回首往昔，皆是自身負責。天理長存，天道永續。\",\"en\":\"The poem advises that one need not ask about one’s physical condition, "
+  }
+}

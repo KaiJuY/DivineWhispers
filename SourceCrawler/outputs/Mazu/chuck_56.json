@@ -1,0 +1,25 @@
+{
+  "id": 56,
+  "title": "六十甲子籤第五十六籤",
+  "subtitle": "屬金利秋　宜其西方",
+  "fortune": "癸卯●○○　●●●",
+  "poem": [
+    "病中若得苦心勞",
+    "到底完全總未遭",
+    "去後不須回頭問",
+    "心中事務盡消磨"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於病中不必過於糾纏於因果，應放下過往，專注於當下。詩中提到，當身體不適時，若再去追問前因後果，只會增加痛苦，應該讓這些事留在心裡，隨時忘記，避免讓自己陷入無謂的煩惱。若關心身體狀況，則需小心治療，避免因過度勞累而使病情惡化。",
+    "en": "The theme of this poem is that when one is ill, one should not dwell on past causes and effects but instead let go and focus on the present. It warns that pursuing reasons while sick only adds distress, so those matters should be left behind. If the concern is health, the poem advises careful treatment and warns that extra effort may worsen the illness.",
+    "jp": "この詩のテーマは、病中に過去の因果に縛られず、今に集中することの重要性を説いています。詩中では、病気の時に原因や結果を追い求めると不安が増えると述べ、過去のことは心に置いておいて忘れ、余計な煩わしさを抱えないようにと呼びかけています。健康への配慮が必要であれば、過度の労働は病状を悪化させる恐れがあるため、慎重に治療に当たるべきだと警告しています。",
+    "reference": "楊戩得病在西軒凡事　小心為要。(成者不好)作事　難成。家事　門庭小吉。家運　平常罔居。婚姻　不可。求兒　不吉。(無根基)六甲　先女後男。(生男)(無求必得)求財　空無。功名　難望。(可望)歲君　頗安。治病　先凶後吉。出外　在家待時。經商　多勞辛苦。來人　未日(半月)到行舟　無利益。移居　不好。失物　未日(半月)在。(無處可尋)求雨　尚未。官事　拖尾。(了錢)六畜　不可。耕作　平平。(無。半收)築室　多逢疾病。不佳。墳墓　淡淡平平。討海　無利益。作塭　失利無望。魚苗　無利了錢。月令　不遂。尋人　信尚遠。遠信　音信耐候。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is to let go of past causes and effects when suffering from illness, and to focus on the present. \n- The poem uses the image of a sick person who cannot attend to everything, illustrating the mind’s burden during illness. \n- It advises that seeking explanations for what has already happened only adds emotional weight and hinders recovery. \n- The central philosophy is one of non‑attachment and mindfulness, encouraging the reader to release past concerns and accept the current situation. \n- For those seeking health, the poem cautions that over‑exertion while ill may worsen the condition, urging careful treatment and rest.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:39:16",
+    "source_file": "chuck_56.json",
+    "raw_llm_response_preview": "{\"id\":56,\"title\":\"六十甲子籤第五十六籤\",\"subtitle\":\"屬金利秋　宜其西方\",\"fortune\":\"癸卯●○○　●●●\",\"poem\":[\"病中若得苦心勞\",\"到底完全總未遭\",\"去後不須回頭問\",\"心中事務盡消磨\"],\"analysis\":{\"zh\":\"這首詩的主題是關於病中不必過於糾纏於因果，應放下過往，專注於當下。詩中提到，當身體不適時，若再去追問前因後果，只會增加痛苦，應該讓這些事留在心裡，隨時忘記，避免讓自己陷入無謂的煩惱。若關心身體狀況，則需小心治療，避免因過度勞累而使病情惡化。\",\"en\":\"The theme of this poem is that"
+  }
+}

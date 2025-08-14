@@ -1,0 +1,25 @@
+{
+  "id": 3,
+  "title": "關聖帝君一百籤第三籤",
+  "subtitle": "賈誼遇漢文帝甲丙",
+  "fortune": "中吉",
+  "poem": [
+    "衣食自然生處有",
+    "勸君不用苦勞心",
+    "但能孝梯存忠信",
+    "福祿來成禍不侵"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：透過守正、順應天命來獲得內心的安寧與實際的福祿。詩中說服人要做好本分，衣食自然不必擔憂；若能恪守孝道、忠信，便能抵禍；不必強求名利，因為命中之事已定，順從才是最好的路。",
+    "en": "This poem’s theme is: by staying true to one’s duties and accepting the natural order, one can achieve inner peace and tangible blessings. The verses urge the reader to fulfill their role without over‑exerting; food and clothing will come naturally. By observing filial piety and loyalty, one can ward off misfortune. The poem stresses that forcing wealth or status is futile—what is destined will come if one simply follows the right path.",
+    "jp": "この詩のテーマは：自分の役割を守り、天の流れに従うことで内面の安寧と実際の福祉を得ることにあります。詩は、無理に苦労せずに本分を全うすれば衣食が自然と供給されると告げ、孝行と忠信を守れば災いを避けられると説いています。名利を強要するのは無駄で、運命に従うことが最善であると強調しています。",
+    "reference": "漢。賈誼。洛陽人。文帝時。河南守吳薦之。召為博士。年二十餘。超遷歲中至大中大夫。請改正朔。興禮樂。上治安策。絳灌等毀之。出為長沙王太傅。誼既適去。渡湘水作賊弔屈原。論者謂賈生王佐才。遇漢文明主。終不大用。卒悲傷而死。豈非天乎。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The first two lines remind the reader that when one performs his or her proper duties, food and clothing will arise naturally; there is no need to worry.\n- The third line links filial devotion and loyalty to the safeguarding of fortune—by being honest and caring within the family, one can ward off calamity.\n- The fourth line reinforces the idea that blessings come when one does not force wealth or status; destiny is fixed, and the wise follow the natural course to attract benevolence.\n- The overall philosophy is one of simplicity, obedience to duty, and acceptance of the natural order rather than the pursuit of power or wealth.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:36:07",
+    "source_file": "chuck_3.json",
+    "raw_llm_response_preview": "{\"id\":3,\"title\":\"關聖帝君一百籤第三籤\",\"subtitle\":\"賈誼遇漢文帝甲丙\",\"fortune\":\"中吉\",\"poem\":[\"衣食自然生處有\",\"勸君不用苦勞心\",\"但能孝梯存忠信\",\"福祿來成禍不侵\"],\"analysis\":{\"zh\":\"這首詩的主題是：透過守正、順應天命來獲得內心的安寧與實際的福祿。詩中說服人要做好本分，衣食自然不必擔憂；若能恪守孝道、忠信，便能抵禍；不必強求名利，因為命中之事已定，順從才是最好的路。\",\"en\":\"This poem’s theme is: by staying true to one’s duties and accepting"
+  }
+}

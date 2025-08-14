@@ -1,0 +1,25 @@
+{
+  "id": 92,
+  "title": "關聖帝君一百籤第九十二籤",
+  "subtitle": "高祖治漢民癸乙",
+  "fortune": "下吉",
+  "poem": [
+    "今年禾穀不如前",
+    "物價喧騰倍百年",
+    "災數流行多疫癘",
+    "一陽復後始安全"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描寫今年糧食不足、物價飆升、疾病頻傳，唯有等到冬至一陽回復後方可恢復安寧。",
+    "en": "這首詩的主題是描寫今年糧食不足、物價飆升、疾病頻傳，唯有等到冬至一陽回復後方可恢復安寧。",
+    "jp": "這首詩のテーマは、今年の稲穀不足、物価の高騰、疫病の蔓延を描き、冬至後に一陽が回復しないと安全が確保できないという内容です。",
+    "reference": "諸侯既滅。秦惟項籍最強。自立為西楚霸王。封高祖於漢。高祖與國民言曰。父老苦。秦苛法久矣。毀謗者族(誅)。偶語者棄市。民其何堪焉。今日者。吾當王關中。與父老約法三章。殺人者死。傷人及盜者抵罪。餘悉除去。民賴以安。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: • The first line indicates a decline in grain harvests, implying economic hardship. • The second line depicts soaring prices, suggesting inflation and social tension. • The third line speaks of widespread disease, highlighting public health crises. • The final line offers hope that after the winter solstice and the return of the sun (一陽), stability and safety will return. The poem thus presents a cyclical view of hardship and renewal, urging patience and resilience in the face of adversity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:10:00",
+    "source_file": "chuck_92.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 92,\n  \"title\": \"關聖帝君一百籤第九十二籤\",\n  \"subtitle\": \"高祖治漢民癸乙\",\n  \"fortune\": \"下吉\",\n  \"poem\": [\n    \"今年禾穀不如前\",\n    \"物價喧騰倍百年\",\n    \"災數流行多疫癘\",\n    \"一陽復後始安全\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是描寫今年糧食不足、物價飆升、疾病頻傳，唯有等到冬至一陽回復後方可恢復安寧。\",\n    \"en\": \"這首詩的主題是描寫今年糧食不足、物價飆升、疾病頻傳，唯有等到冬至一陽回復後方可恢復安寧。\","
+  }
+}

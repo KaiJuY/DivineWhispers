@@ -1,0 +1,24 @@
+{
+  "id": 30,
+  "title": "日本淺草觀音寺一百籤第三十籤",
+  "subtitle": "",
+  "fortune": "半吉",
+  "poem": "仙鶴立高枝,防他暗箭虧,井畔剛刀利,戶內更防危",
+  "analysis": {
+    "zh": "這首詩的主題是以鶴之身象徵心願與障礙，描述在高枝、暗箭、井畔與家門四個場景中，雖有好意但仍面臨阻礙與危險。仙鶴站在高枝上，暗示希望高遠但難以實現；暗箭象徵突如其來的危險；井畔的刀利提醒外在的危險與障礙；戶內更防危則強調家庭內部的風險。整體表達的是，無論處於何種情境，意願難以完全實現，且需警惕各種潛在危害。",
+    "en": [
+      "這首詩的主題是... This poem uses the image of a crane perched on a high branch to symbolize lofty aspirations that are difficult to reach. The lines then shift to four scenes – a hidden arrow, a sharp blade by the well, and a protective barrier within the home – each depicting obstacles or dangers that can thwart one's plans. Overall, it suggests that while intentions may be good, external and internal challenges make full realization hard, and one must be vigilant against unforeseen risks."
+    ],
+    "jp": [
+      "這首詩的主題は... 鶴が高い枝に止まる様子は、遠く高い理想を象徴し、到達しにくいことを示唆しています。暗い弓矢、井戸辺の鋭い刃、そして家庭内の防御といった四つの場面が、外的・内的な障害や危険を表しており、意図が良くても実現が困難であることを示唆しています。"
+    ],
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The crane on a high branch symbolizes lofty goals that remain out of reach.\n- A hidden arrow represents unforeseen, external threats that can damage plans.\n- A sharp blade near the well points to dangers that may come from the environment or from seemingly safe places.\n- Mention of protecting against danger inside the house emphasizes that threats can arise within one's own life or surroundings.\n- Overall, the poem warns that aspirations, no matter how good, face obstacles and that vigilance against both external and internal risks is necessary.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:58:19",
+    "source_file": "chuck_30.json",
+    "raw_llm_response_preview": "{\n  \"id\": 30,\n  \"title\": \"日本淺草觀音寺一百籤第三十籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"半吉\",\n  \"poem\": \"仙鶴立高枝,防他暗箭虧,井畔剛刀利,戶內更防危\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是以鶴之身象徵心願與障礙，描述在高枝、暗箭、井畔與家門四個場景中，雖有好意但仍面臨阻礙與危險。仙鶴站在高枝上，暗示希望高遠但難以實現；暗箭象徵突如其來的危險；井畔的刀利提醒外在的危險與障礙；戶內更防危則強調家庭內部的風險。整體表達的是，無論處於何種情境，意願難以完全實現，且需警惕各種潛在危害。\",\n"
+  }
+}

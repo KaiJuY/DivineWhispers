@@ -1,0 +1,25 @@
+{
+  "id": 5,
+  "title": "六十甲子籤第五籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "甲申●○○　○●○",
+  "poem": [
+    "只恐前途命有變",
+    "勸君作急可宜先",
+    "且守長江無大事",
+    "命逢太白守身邊"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是預示未來不確定性與慎重行事的提醒。詩中先說「只恐前途命有變」提醒命運可能改變；接著勸說「勸君作急可宜先」要避免急於行動；「且守長江無大事」建議停留在長江旁，安然度過；最後「命逢太白守身邊」說命運受到太白星守護，會有安全保障。總結是要先觀察、保持平衡、等待時機。",
+    "en": "這首詩的主題是提醒未來可能的變化與保持謹慎。Poem says “只恐前途命有變” indicates uncertainty of fate, “勸君作急可宜先” advises against rushing, “且守長江無大事” suggests staying near the Yangtze River to stay safe, and “命逢太白守身邊” means being protected by the Tai‑Bai star ensures safety. The overall message encourages observation, balance and waiting for the right moment.",
+    "jp": "この詩のテーマは、未来の不確実性と慎重な行動を促すものです。詩の「只恐前途命有変」は運命が変わる恐れを示し、「勸君作急可宜先」は急がずに待つことを勧め、「且守長江無大事」は長江沿岸で安全に過ごすことを示唆し、最後の「命逢太白守身邊」は太白星に守られて安全が保証されることを示しています。全体としては、観察し、バランスを保ち、適切なタイミングを待つよう促しています。",
+    "reference": "一、韓文公過秦嶺遇霜雪凍韓愈。字退之。昌黎人。唐德宗貞元八年進士。諡文公。因諫迎佛骨。獨怒天子。貶至潮州刺史。途經藍關。大雪封山。韓嘆皇上不殺我。皇天亡我矣。有曰「雲橫秦嶺家何在。雪擁藍關馬不前。」二、王剪戰袁達秦併六國，命王翦為大將，領兵伐燕，王翦部署軍營，燕遣刺客袁達刺之，反為所敗。凡事　待時機。作事　顛倒。前凶後吉。家事　有貴人。團圓。家運　先被邪。後吉祥。婚姻　多口舌。不吉。求兒　不佳。六甲　頭胎生女次生男。(先女后女)求財　以待時來。(不吉)功名　必遇。防徼。歲君　平安。治病　月光癒。暗不吉。出外　下半年好。經商　先利。後遇貴人。來人　遲後到。行舟　出外有風波災。移居　不好。失物　謹尋在。遲即無。求雨　朝夕即有。官事　宜和拖尾。(被官欺。后完明)六畜　不祥。耕作　內有不足。築室　不吉。墳墓　先平後得佳氣。討海　邪病先輕後好。作塭　先難後得。魚苗　先無後有。月令　淡淡。尋人　待慢。遠信　必阻遲至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the narrator feels uncertain about the future, so they advise taking a cautious approach.\n- The line “只恐前途命有變” signals that fate may change.\n- “勸君作急可宜先” urges against hasty action and encourages waiting.\n- “且守長江無大事” suggests staying near the Yangtze River to remain safe.\n- “命逢太白守身邊” implies that the Tai‑Bai star will protect the person, ensuring no major harm.\nThe poem overall encourages observation, balance, and patience until a suitable opportunity arises.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:35:55",
+    "source_file": "chuck_5.json",
+    "raw_llm_response_preview": "{\"id\": 5, \"title\": \"六十甲子籤第五籤\", \"subtitle\": \"屬水利冬　宜其北方\", \"fortune\": \"甲申●○○　○●○\", \"poem\": [\"只恐前途命有變\", \"勸君作急可宜先\", \"且守長江無大事\", \"命逢太白守身邊\"], \"analysis\": {\"zh\": \"這首詩的主題是預示未來不確定性與慎重行事的提醒。詩中先說「只恐前途命有變」提醒命運可能改變；接著勸說「勸君作急可宜先」要避免急於行動；「且守長江無大事」建議停留在長江旁，安然度過；最後「命逢太白守身邊」說命運受到太白星守護，會有安全保障。總結是要先觀察、保持平衡、等待時機。\", \"en\": "
+  }
+}

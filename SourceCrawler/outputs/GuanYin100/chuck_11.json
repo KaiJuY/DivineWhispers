@@ -1,0 +1,20 @@
+{
+  "id": 11,
+  "title": "觀音一百籤第十一籤",
+  "subtitle": "寅宮",
+  "fortune": "上籤",
+  "poem": "欲求好事喜非常、爭相姻親只暫忙、畢竟到頭成好事、貴人接引貴人鄉。",
+  "analysis": {
+    "zh": "此卦象徵由禍轉福。凡事若謀定吉利，均能安然無事。若問如何處理，應順從貴人之引導。",
+    "en": "This hexagram signifies a transformation from misfortune to fortune. When planning yields auspicious results, everything remains calm and safe. If one asks how to proceed, it is advised to heed the guidance of benefactors.",
+    "jp": "この卦は災難から幸運へと転換する象徴です。計画が吉兆をもたらすと、すべては落ち着き安全に進みます。進め方を尋ねるなら、貴人の導きを仰ぐべきです。",
+    "reference": "*(中箭二字，本作鹿箭)家宅　大吉。自身　順利。求財　有。交易　成。婚姻　合。六甲　男。行人　未至。田蠶　中平。六畜　中平。尋人　見。公訟　有理。移徙　旺。失物　東方。疾病　禳星。山墳　吉。1.書薦姜維(書獻姜維)三國時。孔明帶兵六出祁山。病重命危。將兵書二十四篇。傳大將軍姜維。望其秉承遺志。2.劉先主入贅東吳（即三國孔明『錦囊妙計』、『孫權嫁妹』故事）劉備佔領了荊州，力量逐漸壯大。後來，孫權因想討還借給劉備的南郡沒有得逞，便採用大將周瑜的計謀，騙劉備到東吳來娶孫權的妹妹為妻，乘機把他扣下當人質，藉以討還南郡。蜀營裡的人都知道孫權和周瑜「過江招親」的邀約必然有詐。諸葛亮知是周瑜之計，但仍要劉備答應這項婚事。同時，他安排趙雲陪同前往，並將三個裝有妙計的錦囊交與趙雲，教他一到南徐，開第一個；住到年終，開第二個；臨到危急無路之時，開第三個：內有神出鬼沒之計，可保主公回家。建安十四年（209年）十月，劉備在趙雲等人的陪同下，去東吳的南徐完婚。剛到南徐時，趙雲打開了第一個錦囊。按其中計策，劉備先去拜見孫策的岳丈喬國老，告知要娶孫權之妹的事；並吩咐隨從士兵大造聲勢，讓全城人都知道劉備要與孫權之妹結婚。最終在吳國太做主之下，結果周瑜的聯姻之計弄假成真，孫權之妹真的成了劉備的夫人。劉備婚後，與孫夫人過著美滿的生活。到了年底，趙雲見劉備沒有回荊州去的意思，就打開第二個錦囊，並按其中寫的妙計，驚慌失措地對劉備說，諸葛亮派人來報，曹操五十萬精兵殺向荊州，請主公速回。到了元旦，夫妻二人給吳國太拜年，孫夫人代劉備向吳國太說：「夫主父母宗祖墳墓，俱在涿郡，晝夜傷感不已。今日想到江邊，望北遙祭，以表人子之情。須告母親得知。」於是，夫妻二人瞞著孫權和周瑜，在趙雲的護送下，往荊州而行。次日孫權得訊，急派兵前截後追。此時趙雲趕緊打開第三個錦囊，依計叫劉備請孫夫人解救。在孫夫人的責罵下，那兩名將領只得放行。正在這時，只見周瑜領水軍追來，孔明令船靠岸，周瑜也追到岸上。這時，關羽突然殺出，周瑜抵擋不住，急忙上船。這時，荊州士兵齊聲高叫：「周郎妙計安天下，賠了夫人又折兵。」周瑜大怒，昏倒在船上。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the pursuit of favorable outcomes brings great joy; the initial bustle, especially concerning marriage, eventually resolves into a good result, guided by a benefactor. The poem highlights the following points:\n- Desire for good fortune is inherently satisfying.\n- The symbolic act of marriage represents partnership and collective effort.\n- The presence of a benefactor indicates external support and favorable influence.\n- The transformation from frantic effort to calm success reflects a philosophy of patience and acceptance of guidance.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:46:41",
+    "source_file": "chuck_11.json",
+    "raw_llm_response_preview": "{\"id\":11,\"title\":\"觀音一百籤第十一籤\",\"subtitle\":\"寅宮\",\"fortune\":\"上籤\",\"poem\":\"欲求好事喜非常、爭相姻親只暫忙、畢竟到頭成好事、貴人接引貴人鄉。\",\"analysis\":{\"zh\":\"此卦象徵由禍轉福。凡事若謀定吉利，均能安然無事。若問如何處理，應順從貴人之引導。\",\"en\":\"This hexagram signifies a transformation from misfortune to fortune. When planning yields auspicious results, everything remains cal"
+  }
+}

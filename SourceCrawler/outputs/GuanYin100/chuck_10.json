@@ -1,0 +1,20 @@
+{
+  "id": 10,
+  "title": "觀音一百籤第十籤",
+  "subtitle": "寅宮",
+  "fortune": "中籤",
+  "poem": "櫝藏無價寶和珍、只管他鄉外處尋、好似將燈來覔火、不如安靜莫勞心。",
+  "analysis": {
+    "zh": "這首詩的主題是關於對財富與欲望的看法，表達了與其忙於尋找外在的珍寶，不如在安靜中保持內心的平和。櫝（木盒）象徵藏匿的珍寶，無價之寶與珍並非必須外尋，提醒人們珍惜眼前。將燈來覔火形容為努力尋找光亮，但卻不如放下重負，安靜自處。",
+    "en": "This poem deals with one’s attitude toward wealth and desire, suggesting that instead of chasing external treasures, one should find inner peace by staying quiet and calm. The wooden chest represents hidden treasures, implying that priceless items need not be sought elsewhere; it reminds us to cherish what we have. The lamp searching for fire illustrates the effort to seek light, but the poem advises that staying serene is preferable to restless pursuit.",
+    "jp": "この詩は、富や欲望に対する姿勢を扱い、外部の宝物を追い求めるよりも、静かに心を落ち着かせて内なる平和を見つけることが重要であると示唆しています。木箱（櫝）は隠された宝物を象徴し、価値あるものは外に求める必要はないことを思い出させます。灯りが火を探す様子は光を求めて努力する姿を表していますが、詩は不安な追求よりも静けさを保つべきだと勧めています。",
+    "reference": "*(櫝：音同獨-是指木製的盒子;覔：音同覓-覔是覓的異體字)*(外客二字，有改作外界一說)家宅　欠利。自身　安。求財　難。交易　難。婚姻　合。六甲　女。行人　動。田蠶　秋吉。六畜　難養。尋人　見。公訟　虧。移徙　舊安。失物　難見。疾病　設送。山墳　中平。1.龐涓觀陣戰國。孫臏齊人。龐涓魏人。同師事鬼谷子。孫臏之學優於龐涓。涓為魏將。與臏鬥智。輸而忌之。乃以計刖其足。後孫臏假作顛狂。得脫歸。齊威王以(臏)為師。將兵伐魏。龐涓至營地觀陣。孫臏用減灶添兵之法。賺龐涓。追至馬陵道。伏弩射死。2.秦昭王連城求趙璧（故事同第六籤，但主人翁不同，意涵也大不相同）藺相如是戰國時期的政治家、外交家。他流傳的最廣也最久遠的是“完璧歸趙”、“澠池之會”及“廉頗負荊請罪”等三個故事。這三個故事也充份說明了藺相如是一位真正為國為民、大智大勇的政治家。秦昭王聽說趙惠文王有一塊完美無瑕的和氏璧，就想要得到這塊寶玉，於是派遣使者送信給趙惠文王，表示願意以十五座城池換取寶玉。趙王收到信後，命藺相如為使臣，帶著和氏璧出使秦國。到了秦國後，藺相如雙手捧璧，獻給秦王。秦王接過來仔細端詳良久，發現不愧是稀世之寶，非常高興。可是過了很久，秦王都絕口不提以城換璧之事，於是藺相如假意要指出和氏璧上的瑕疵給秦王看，把和氏璧拿了回來，並且義正詞嚴地說：“大王答應以十五座城交換和氏璧，可是我一直看不到大王的誠意。如果大王要寶玉卻不肯實現諾言，我就以自己的腦袋和這塊寶玉一起在柱子上撞個粉碎。”秦王怕他真的把璧玉撞碎了，就含糊其詞的表示自己會實現諾言，並請藺相如先回賓館休息。回到賓館後，藺相如知道秦王不會真的以城換璧，就秘密派人將和氏璧送回趙國了。當秦王知道和氏璧已送回趙國時，非常震怒。可是在藺相如大無畏態度的面前，也就無可奈何地將他奉為上賓，然後讓他回趙國去了。後來，秦國一直沒有把十五座城池割給趙國，趙國自然也就沒有再把和氏璧送給秦國了。請注意，本籤故事主人不是藺相如，而是聽信奸臣（魏冉）建議，想詐取和氏璧，卻被看破手腳，反遭羞辱的秦昭王（原來，秦王也玩這種詐騙把戲）。所以這個故事的啟示是：人家的就是人家的，別聽小人建議貪心謀取為宜。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the speaker advises against the restless pursuit of external wealth or treasure. • The wooden chest (“櫝”) symbolizes hidden or intrinsic value that need not be sought elsewhere. • The image of a lamp searching for fire (“將燈來覔火”) illustrates the effort to chase illumination or gain, yet the poem recommends staying calm instead of laboring over it. • The final line “不如安靜莫勞心” urges the reader to embrace inner peace and avoid unnecessary worry. • Overall, the poem conveys a philosophical stance: true worth lies within, and tranquillity is preferable to the frantic search for external riches.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:46:00",
+    "source_file": "chuck_10.json",
+    "raw_llm_response_preview": "{\"id\":10,\"title\":\"觀音一百籤第十籤\",\"subtitle\":\"寅宮\",\"fortune\":\"中籤\",\"poem\":\"櫝藏無價寶和珍、只管他鄉外處尋、好似將燈來覔火、不如安靜莫勞心。\",\"analysis\":{\"zh\":\"這首詩的主題是關於對財富與欲望的看法，表達了與其忙於尋找外在的珍寶，不如在安靜中保持內心的平和。櫝（木盒）象徵藏匿的珍寶，無價之寶與珍並非必須外尋，提醒人們珍惜眼前。將燈來覔火形容為努力尋找光亮，但卻不如放下重負，安靜自處。\",\"en\":\"This poem deals with one’s attitude toward wealth and desire,"
+  }
+}

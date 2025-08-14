@@ -1,0 +1,25 @@
+{
+  "id": 59,
+  "title": "關聖帝君一百籤第五十九籤",
+  "subtitle": "鄧伯無兒己壬",
+  "fortune": "中平",
+  "poem": [
+    "門衰戶冷苦伶仃",
+    "自嘆祈求不一靈",
+    "幸有祖宗陰騭在",
+    "香煙未斷續螟蛉"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描寫門庭衰落、寒冷孤寂的境遇，卻暗示祖先陰德與自我努力能帶來延續的希望。詩中第一句「門衰戶冷苦伶仃」形象呈現家門衰落，空冷、寂寞。第二句「自嘆祈求不一靈」說明人對困境的無力與祈禱無門。第三句「幸有祖宗陰騭在」提醒祖先的德行仍在守護，第四句「香煙未斷續螟蛉」則比喻香火延續、後繼者繼承，象徵不論當前困境，仍有延續的生機。",
+    "en": "The poem portrays a declining household and a lonely, cold environment, yet it hints that ancestral virtue and personal effort can sustain a continuous legacy. The first line, \"門衰戶冷苦伶仃\", illustrates a deteriorating home, cold and desolate. The second line, \"自嘆祈求不一靈\", conveys the futility of personal pleas. The third line, \"幸有祖宗陰騭在\", reminds us that the ancestral virtue still guards the household. The final line, \"香煙未斷續螟蛉\", uses the imagery of an unextinguished incense to suggest that the family fire will continue, with new heirs carrying on the flame.",
+    "jp": "この詩は、衰退した門庭と冷えた孤独な境遇を描きつつ、祖先の陰徳と自身の努力が火を継続させる希望を示唆しています。第一行の\"門衰戶冷苦伶仃\"は、衰退した家を冷たく孤立した様子を表現。第二行の\"自嘆祈求不一靈\"は、個人の祈りが通じない無力感を示す。第三行の\"幸有祖宗陰騭在\"は、祖先の徳が守り続けていることを思い起こさせる。第四行の\"香煙未斷續螟蛉\"は、消えない香火のイメージで、家系の火が継続し、新たな継承者が火を受け継ぐことを象徴する。",
+    "reference": "晉。鄧攸字伯道。永嘉未石助兵起。攸絜家而逃。以其弟早亡。特全其姪。繫其子於樹而去。為吳郡太守。載釆之官。俸祿無所收。惠政及民。民歌頌之。後官至尚書。卒竟無兒。時人慕其名。以為天道無知。而不想其縛子於樹。其心太忍也。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It depicts a household in decline and a sense of isolation.\n- The speaker feels powerless and finds that both personal pleas and divine intercession are ineffective.\n- Ancestral virtue is presented as a protective presence that still watches over the family.\n- The imagery of an unextinguished incense flame symbolizes the continuation of lineage and the potential for future heirs to revive the family legacy.\n- Overall, the poem suggests that despite current hardships, perseverance and faith in ancestral support can keep the family line alive.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:52:32",
+    "source_file": "chuck_59.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 59,\n  \"title\": \"關聖帝君一百籤第五十九籤\",\n  \"subtitle\": \"鄧伯無兒己壬\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"門衰戶冷苦伶仃\",\n    \"自嘆祈求不一靈\",\n    \"幸有祖宗陰騭在\",\n    \"香煙未斷續螟蛉\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是描寫門庭衰落、寒冷孤寂的境遇，卻暗示祖先陰德與自我努力能帶來延續的希望。詩中第一句「門衰戶冷苦伶仃」形象呈現家門衰落，空冷、寂寞。第二句「自嘆祈求不一靈」說明人對困境的無力與祈禱無門。第三句「幸有"
+  }
+}

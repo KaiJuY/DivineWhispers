@@ -1,0 +1,20 @@
+{
+  "id": 87,
+  "title": "觀音一百籤第八十七籤",
+  "subtitle": "申宮",
+  "fortune": "中籤",
+  "poem": "人行半嶺日啣山、峻險巉巖未可攀、仰望上天垂護佑、此身猶在太虛間。",
+  "analysis": {
+    "zh": "這首詩的主題是描述行走在半山脈之間的艱難與對天祈求庇佑的情景。詩中以\"人行半嶺日啣山\"描繪行者在陡峭的山脈上行走，\"峻險巉巖未可攀\"強調地形的危險與難以攀登，\"仰望上天垂護佑\"則表達對神明保佑的懇求，最後以\"此身猶在太虛間\"結束，暗示身處於人生的空虛與未知之中。",
+    "en": "This poem's theme is the hardship of walking along a rugged mountain ridge and the yearning for divine protection. It opens with the traveler’s arduous trek across the cliffs, underscores the impassable steepness, then looks upward for heavenly guardianship, and finally remarks that the self remains suspended in a realm of emptiness, reflecting a sense of uncertainty and spiritual search.",
+    "jp": "この詩のテーマは険しい山脈を歩く困難さと、天に祈り願う保護の願いです。詩は旅人が岩壁を越える苦労を描写し、登りにくい険しい姿勢を強調し、神の保護を求めて仰ぎ、最後に自身が虚無の中にいることを示し、未知と精神的探求の不安を映しています。",
+    "reference": "*(巉：音同蟬)*(西有作啣。本作不明符)家宅　祈福。自身　欠利。求財　勞心。交易　謹慎。婚姻　有阻。六甲　虛。行人　遲。田蠶　平穩。六畜　平穩。尋人　未遇。公訟　虧。移徙　守。失物　凶。疾病　阻。山墳　不阻。1.咬金探地穴為慶戰功。程咬金于演武楊擺宴。忽地裂一洞。深不可測。大家拈字抽簽。咬金抽得。租繩縛身入穴。見石造之門桌椅橋等。桌上還有龍袍玉帶。咬金穿著出洞。做了三年混世魔王。　故事與籤詩不合。2.魏武帝羊腸失路曹操（後為魏武帝）率軍過太行山時，見冰天雪地兵馬難行，就問身邊的曹洪是否另有其他路可走，曹洪回答只有此羊腸小徑可走，結果因為橋樑斷了，所以只好試著繞路，結果這一繞就繞到天黑仍無法尋得出路，只好在冰天雪地中度過一夜，第二天晌午才好不容易走出太行山。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A vivid depiction of a traveler confronting harsh, impassable terrain.\n- The stark contrast between physical challenge and the need for spiritual support.\n- A contemplative sense of the self existing within a broader, undefined space—symbolic of life’s uncertainties.\n- The imagery of looking upward for protection reflects a reliance on higher powers during trials.\n- The ending line implies that even in adversity, the individual remains within a realm of emptiness, hinting at a philosophical acceptance of the unknown.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:42:04",
+    "source_file": "chuck_87.json",
+    "raw_llm_response_preview": "{\"id\":87,\"title\":\"觀音一百籤第八十七籤\",\"subtitle\":\"申宮\",\"fortune\":\"中籤\",\"poem\":\"人行半嶺日啣山、峻險巉巖未可攀、仰望上天垂護佑、此身猶在太虛間。\",\"analysis\":{\"zh\":\"這首詩的主題是描述行走在半山脈之間的艱難與對天祈求庇佑的情景。詩中以\\\"人行半嶺日啣山\\\"描繪行者在陡峭的山脈上行走，\\\"峻險巉巖未可攀\\\"強調地形的危險與難以攀登，\\\"仰望上天垂護佑\\\"則表達對神明保佑的懇求，最後以\\\"此身猶在太虛間\\\"結束，暗示身處於人生的空虛與未知之中。\",\"en\":\"This poem's theme is the hardshi"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 95,
+  "title": "日本淺草觀音寺一百籤第九十五籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "志氣勤修業,祿位未造逢,若聞金雞語,乘船得便風",
+  "analysis": {
+    "zh": "這首詩的主題是：勤奮修行與順利時機的相遇。詩中說明，擁有志氣與勤勉的人雖然尚未見到高官厚禮，但只要持續努力並等待正確時機，最終就能像聽到金雞鳴叫般，迎來機遇；一旦機會到來，便能像乘船迎風般順利前進。整體強調「不畏等待，持續耕耘，機遇自會來臨」的積極態度。",
+    "en": "這首詩的主題是: The importance of diligence, perseverance, and the arrival of opportune moments. The poem suggests that a person with determination and hard work may not yet see rewards or rank, but by continuing to strive and patiently waiting, one can hear the rooster’s call as a signal of impending opportunity. Once the opportunity comes, it is like a boat catching favorable wind, propelling the person forward. The central message emphasizes resilience and the belief that hard work will eventually lead to success.",
+    "jp": "這首詩の主題は：勤勉と忍耐、そしてチャンスの訪れです。詩は、志気と努力を持つ人はまだ報酬や地位を得ていなくても、粘り強く努力し、正しいタイミングを待つことで、金鶏の鳴き声のように機会を感じ取り、風に乗った船のように順調に進むと語っています。全体として「待つことを恐れず、働き続けると必ずチャンスが来る」という前向きな姿勢を示しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is: 1) A determined spirit that diligently cultivates knowledge and hard work. 2) Although high rank or fortune is not yet achieved, perseverance will eventually bring favorable circumstances. 3) The sound of a rooster’s call symbolizes an imminent turning point or opportunity. 4) When that moment arrives, it feels like a boat catching the wind, smoothly steering one toward desired success. 5) The overall lesson is that patience and continuous effort inevitably lead to progress.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:26:57",
+    "source_file": "chuck_95.json",
+    "raw_llm_response_preview": "{\n  \"id\": 95,\n  \"title\": \"日本淺草觀音寺一百籤第九十五籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"吉\",\n  \"poem\": \"志氣勤修業,祿位未造逢,若聞金雞語,乘船得便風\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：勤奮修行與順利時機的相遇。詩中說明，擁有志氣與勤勉的人雖然尚未見到高官厚禮，但只要持續努力並等待正確時機，最終就能像聽到金雞鳴叫般，迎來機遇；一旦機會到來，便能像乘船迎風般順利前進。整體強調「不畏等待，持續耕耘，機遇自會來臨」的積極態度。\",\n    \"en\": \"這首詩的主題是: The im"
+  }
+}

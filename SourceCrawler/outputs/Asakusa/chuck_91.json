@@ -1,0 +1,20 @@
+{
+  "id": 91,
+  "title": "日本淺草觀音寺一百籤第九十一籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "改變前途去,月桂又逢圓,雲中乘祿至,凡事可宜先",
+  "analysis": {
+    "zh": "籤詩說：若要改變前途，請先去。月桂再度圓缺，像缺月終會再次圓滿，暗示吉事將在未來轉圜。雲中乘祿至，意為福祿從天降。凡事可宜先，做事應當率先行動，才能取得好結果。",
+    "en": "The fortune says: To change your future, you must act. The waxing moon returning to fullness indicates that good fortune will come in time. Blessings descend from the heavens. In everything, you should act first, for early action brings favorable results.",
+    "jp": "この占いは、未来を変えるには行動を起こすべきだと示唆しています。月が再び満ちるように、好運は時を経て訪れるといいます。天から福が降り注ぎ、すべてのことに先手を打つことで良い結果が得られると述べています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Changing one’s destiny requires decisive action (“改變前途去”).\n- The waxing moon that completes its cycle symbolizes the restoration of fortune and the inevitability of good outcomes (“月桂又逢圓”).\n- Blessings descending from the clouds represent heavenly favor or unexpected good fortune (“雲中乘祿至”).\n- The admonition to act first in all matters highlights the value of initiative and proactive behavior for success (“凡事可宜先”).",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:25:33",
+    "source_file": "chuck_91.json",
+    "raw_llm_response_preview": "{\"id\": 91, \"title\": \"日本淺草觀音寺一百籤第九十一籤\", \"subtitle\": \"\", \"fortune\": \"吉\", \"poem\": \"改變前途去,月桂又逢圓,雲中乘祿至,凡事可宜先\", \"analysis\": {\"zh\": \"籤詩說：若要改變前途，請先去。月桂再度圓缺，像缺月終會再次圓滿，暗示吉事將在未來轉圜。雲中乘祿至，意為福祿從天降。凡事可宜先，做事應當率先行動，才能取得好結果。\", \"en\": \"The fortune says: To change your future, you must act. The waxing moon returning to "
+  }
+}

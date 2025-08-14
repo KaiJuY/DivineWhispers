@@ -1,0 +1,20 @@
+{
+  "id": 96,
+  "title": "觀音一百籤第九十六籤",
+  "subtitle": "戌宮",
+  "fortune": "上籤",
+  "poem": "巍巍寶塔不尋常、八面玲瓏盡放光、勸汝志心勤頂禮、天龍擁護降千祥。",
+  "analysis": {
+    "zh": "詩中描繪福德顯現之象，暗示凡事皆大吉。福份已成，眾人皆可得，無需過度勞心。",
+    "en": "The poem depicts the manifestation of blessings, suggesting that all matters are auspicious. The blessings are already determined, available to everyone, and no excessive effort is required.",
+    "jp": "この詩は福徳の顕現を描いており、すべての事柄が吉祥であることを示唆しています。福徳は既に定まり、すべての人が得られるものであり、過度の労働は不要です。",
+    "reference": "家宅　許願。自身　許經。求財　正勝。交易　大吉。婚姻　好合。六甲　喜。行人　動。田蠶　平穩。六畜　欠利尋人　遇。公訟　和。移徙　吉。失物　疾病　禳星。山墳　平。1.汾陽王七夕天孫（引用唐史演義第63回，『天孫』在此指織女）相傳子儀自華州原籍，從軍塞外，因入京催趲軍餉，返至銀州，時正七夕，風砂徙暗，日暮無光，子儀不得前行，就道旁空屋中，席地留宿，正在蒙矓欲睡，忽見左右皆現赤光，驚起仰視，天空中有一雲軿，冉冉而下，內坐美女，端莊華麗，迥與凡人不同。子儀即拜祝道：「今天為七月七日，想是織女降臨，願賜長壽富貴。」女囅然道：「大富貴亦壽考。」言訖，霞光復起，雲軿徐升，女尚俯視子儀，笑容可掬，直至高低遠隔，方才煙霧迷離，不可復見，果然後來俱驗，一如女言。史官稱他權傾天下，朝不加忌，功蓋一世，主不加疑，侈窮人欲，議不加貶，真是福德兼全，哀榮終始呢。2.竇燕山積善宋朝。竇燕山中年無子。一夜夢中。其父訓他去惡從善。自此竇燕山痛改前非。力行方便。並得五子。三字經有載竇燕山。有義方。教五子。名俱揚。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A majestic pagoda is described as extraordinary and radiant, symbolizing spiritual elevation.\n- The poem urges the reader to cultivate diligence and devotion (志心勤頂禮) as a means to attain blessings.\n- The imagery of a heavenly dragon (天龍) supporting the seeker conveys divine endorsement and the promise of abundant auspiciousness.\n- The overall tone conveys that reverence toward sacred sites and disciplined intent invites favorable outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:47:35",
+    "source_file": "chuck_96.json",
+    "raw_llm_response_preview": "{\"id\":96,\"title\":\"觀音一百籤第九十六籤\",\"subtitle\":\"戌宮\",\"fortune\":\"上籤\",\"poem\":\"巍巍寶塔不尋常、八面玲瓏盡放光、勸汝志心勤頂禮、天龍擁護降千祥。\",\"analysis\":{\"zh\":\"詩中描繪福德顯現之象，暗示凡事皆大吉。福份已成，眾人皆可得，無需過度勞心。\",\"en\":\"The poem depicts the manifestation of blessings, suggesting that all matters are auspicious. The blessings are already determined, ava"
+  }
+}

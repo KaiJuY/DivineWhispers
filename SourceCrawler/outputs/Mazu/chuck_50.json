@@ -1,0 +1,25 @@
+{
+  "id": 50,
+  "title": "六十甲子籤第五十籤",
+  "subtitle": "屬金利秋　宜其西方",
+  "fortune": "壬寅●○●　●○○",
+  "poem": [
+    "佛前發誓無異心",
+    "且看前途得好音",
+    "此物原來本是鐵",
+    "也能變化得成金"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：堅持與努力，將平凡變為珍貴。詩中以「佛前發誓無異心」說明要對信念保持不變；「且看前途得好音」則表示只要持續信心，前景將明朗；後兩句以「此物原來本是鐵，亦能變化得成金」作比喻，告訴人們透過不懈努力，即使起點只是鐵，也能化為黃金。整體上強調內在決心、持續行動的力量，提醒求籤者在面對困難時須保持堅定，才能迎來好報。",
+    "en": "這首詩的主題是： Perseverance and the power of effort to transform the ordinary into the extraordinary. The lines “佛前發誓無異心” indicate a steadfast resolve toward one’s intention; “且看前途得好音” promises a bright future as long as that resolve is maintained. The last two verses use the metaphor of iron turning into gold to remind us that, through persistent effort, a humble beginning can become precious. Overall the poem stresses inner determination and continuous action, urging the querent to stay firm in the face of obstacles so that good fortune may arrive.",
+    "jp": "這首詩のテーマは： 持続と努力で凡庸を貴重に変える力。『佛前発誓無異心』は信念を揺るがぬ固い決意を示し、『且看前途得好音』はその決意を保ち続ければ明るい未来が待っていることを約束する。最後の二行は鉄が金に変わる比喩で、不断の努力により粗末な出発点も貴重に変えられることを示す。全体として、内なる決意と継続的な行動の重要性を強調し、困難に直面した際に固くあきらめないことが吉報への鍵であると説いている。",
+    "reference": "1.小兒遇三煞煞即殺。小兒煞有廿六關。于鬼有五鬼關和鬼門關。本屬凶象。有符可解。難關可過。諭人只要肯信。逢凶化吉。鐵可成金。信乎。(三煞指啥不明)。2.小兒路遇惡鬼凡事　有公人求完。吉。作事　難成。家事　家庭進益。家運　瑞氣滿門。婚姻　難成。成者大吉。求兒　好。大吉。六甲　男女貴氣。(先男後女)(男難養。生女好)求財　大吉。寶樹開花。功名　無。歲君　吉。治病　祝天地者平安。老拖尾。出外　不可。(慢即有大財)經商　先平平。後大吉。來人　月光到。行舟　早晚平平。移居　好。失物　急尋在。(西尋)求雨　及時。官事　拖尾。(去倒得失了錢)六畜　平安大進。耕作　早好晚平。築室　慢吉。墳墓　吉地吉穴。討海　和者大吉。作塭　先呆後有大利。魚苗　後有大利。月令　漸春風好。尋人　速回。遠信　音信速至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- **Unwavering resolve**: \"佛前發誓無異心\" and \"且看前途得好音\" suggest that a steadfast intention will bring good news. \n- **Transformation metaphor**: iron turning into gold symbolizes that with continuous effort, even a modest beginning can become valuable. \n- **Personal perseverance over external reliance**: while prayer is mentioned, the poem emphasizes the importance of one's own persistent action. \n- **Perseverance through obstacles**: the poem warns that the path may be challenging, but staying determined leads to a positive outcome. \n- **Inner growth**: the change from iron to gold represents personal development and turning ordinary life into something precious.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:36:31",
+    "source_file": "chuck_50.json",
+    "raw_llm_response_preview": "{\"id\": 50, \"title\": \"六十甲子籤第五十籤\", \"subtitle\": \"屬金利秋　宜其西方\", \"fortune\": \"壬寅●○●　●○○\", \"poem\": [\"佛前發誓無異心\", \"且看前途得好音\", \"此物原來本是鐵\", \"也能變化得成金\"], \"analysis\": {\"zh\": \"這首詩的主題是：堅持與努力，將平凡變為珍貴。詩中以「佛前發誓無異心」說明要對信念保持不變；「且看前途得好音」則表示只要持續信心，前景將明朗；後兩句以「此物原來本是鐵，亦能變化得成金」作比喻，告訴人們透過不懈努力，即使起點只是鐵，也能化為黃金。整體上強調內在決心、持續行動的力量，提醒求籤者"
+  }
+}

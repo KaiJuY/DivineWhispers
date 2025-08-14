@@ -1,0 +1,20 @@
+{
+  "id": 32,
+  "title": "日本淺草觀音寺一百籤第三十二籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "似玉藏深石,休將故眼看,一朝良匠別,方見寶光寒",
+  "analysis": {
+    "zh": "這首詩的主題是：透過對玉石隱藏與被發現的比喻，說明才能與機會的關係。詩句「似玉藏深石」象徵有才華的人若不加以開掘，會像埋在岩石中的寶石一樣無法被發現；「休將故眼看」提醒勿以過往的眼光看待自己，應放下舊觀念；「一朝良匠別」則表示只有在適當的時機遇見能幫助自己的人，才能被發現；最後「方見寶光寒」說明經過磨礪後，真正的才華才會如寒光般閃耀。整首詩呼籲持續努力、擁抱改變，才能讓內在的寶藏被世界看到。",
+    "en": "這首詩的主題是... This poem's theme is a metaphor of hidden talent and the chance to uncover it. The line '似玉藏深石' suggests that talent, if not cultivated, remains like a gem buried deep within stone and cannot be found. '休將故眼看' warns against viewing oneself through past eyes and urges letting go of old perceptions. '一朝良匠別' means that only at the right moment, when one encounters a skilled mentor or supportive person, can one be discovered. Finally, '方見寶光寒' indicates that after refinement, true talent will shine like a cold light. The poem encourages persistent effort and openness to change so that inner treasure becomes visible to the world.",
+    "jp": "這首詩のテーマは... この詩のテーマは、玉のように石の中に隠れた才能とそれを発見する機会を比喩として表しています。『似玉藏深石』は、才能が開発されない限り、石の奥に埋もれた宝石のように見つけられないことを示しています。『休將故眼看』は、過去の視点で自分を見るのをやめ、古い観念を手放すよう促しています。『一朝良匠別』は、適切な時に優れた師や助けてくれる人に出会うことで、初めて自分が認められることを意味します。最後に『方見寶光寒』は、磨き上げられた後に真の才能が寒い光のように輝くことを示しています。詩は、継続的な努力と変化を受け入れる姿勢が、内なる宝を世界に示す鍵であると呼びかけています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The poem uses the image of a gem hidden within stone to illustrate how talent can remain unseen if not cultivated.\n- \"似玉藏深石\" (like jade hidden deep in stone) signals the latent potential that requires effort to uncover.\n- \"休將故眼看\" (do not look with old eyes) urges a fresh perspective, letting go of past biases that keep one from seeing their own worth.\n- \"一朝良匠別\" (a day when a master parting) indicates that encountering a skilled mentor or supportive environment can trigger recognition.\n- \"方見寶光寒\" (only then do we see the cool light of treasure) shows that after refinement, the true brilliance emerges.\n- Overall, the poem encourages perseverance, openness to guidance, and the willingness to transform oneself so that hidden brilliance shines to the world.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:59:25",
+    "source_file": "chuck_32.json",
+    "raw_llm_response_preview": "{\n  \"id\": 32,\n  \"title\": \"日本淺草觀音寺一百籤第三十二籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"吉\",\n  \"poem\": \"似玉藏深石,休將故眼看,一朝良匠別,方見寶光寒\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：透過對玉石隱藏與被發現的比喻，說明才能與機會的關係。詩句「似玉藏深石」象徵有才華的人若不加以開掘，會像埋在岩石中的寶石一樣無法被發現；「休將故眼看」提醒勿以過往的眼光看待自己，應放下舊觀念；「一朝良匠別」則表示只有在適當的時機遇見能幫助自己的人，才能被發現；最後「方見寶光寒」說明經過磨礪後，真正"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 81,
+  "title": "日本淺草觀音寺一百籤第八十一籤",
+  "subtitle": "",
+  "fortune": "小吉",
+  "poem": "道合須成合,先憂事更多,所求財寶盛,更變得中和",
+  "analysis": {
+    "zh": "這首詩的主題是：當一切與道相合，事物便會順其自然地發展。雖然開頭時可能會感到憂慮與繁重，隨著心志堅定，所求之財寶便會如願聚集，最後整體也會回到和諧與平衡之中。",
+    "en": "這首詩的主題是：It reflects that when one’s actions align with the Dao, things will naturally harmonize. Initially, worries may be more abundant, but as one remains steadfast in pursuit, the desired wealth will gather, ultimately restoring balance.",
+    "jp": "這首詩的主題は：道に合致すると、物事は自然に調和します。最初は心配が多いかもしれませんが、心を固めて追求すれば、求める財宝は集まり、最終的にバランスが回復します。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Harmony with the Dao leads to success and natural progression of events.\n- The opening phase is marked by increased worries and challenges.\n- Persistent pursuit brings an abundance of desired wealth.\n- Ultimately, everything returns to a state of balance and harmony.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:22:00",
+    "source_file": "chuck_81.json",
+    "raw_llm_response_preview": "{\n  \"id\": 81,\n  \"title\": \"日本淺草觀音寺一百籤第八十一籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"小吉\",\n  \"poem\": \"道合須成合,先憂事更多,所求財寶盛,更變得中和\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：當一切與道相合，事物便會順其自然地發展。雖然開頭時可能會感到憂慮與繁重，隨著心志堅定，所求之財寶便會如願聚集，最後整體也會回到和諧與平衡之中。\",\n    \"en\": \"這首詩的主題是：It reflects that when one’s actions align with the Dao"
+  }
+}

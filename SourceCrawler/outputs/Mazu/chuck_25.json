@@ -1,0 +1,25 @@
+{
+  "id": 25,
+  "title": "六十甲子籤第二十五籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "戊子 ●○○　○●●",
+  "poem": [
+    "總是前途莫心勞",
+    "求神問聖枉是多",
+    "但看雞犬日過後",
+    "不須作福事如何"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於不必過度費心於未來，等待時機自然明朗。詩中說，無論是求神問卜，還是自費心，都是徒勞，真正的答案會在“雞犬日”之後顯現。‘雞犬日’代表酉戌之時、日、月或年，暗示在這個時節後，事情會自然而然地清晰。整首詩提醒人們，若能先放下焦慮，讓時間自行決定，往往能得更準確、簡單的答案。",
+    "en": "**This poem’s theme is** that there is no need to exhaust oneself over future uncertainties; the resolution will unfold naturally after a certain time. The verses advise that both praying to deities and consulting diviners are futile; the true outcome will become clear once the ‘Chicken‑Dog’ days have passed. In Chinese astrology, ‘Chicken‑Dog’ can refer to the 酉 (afternoon 5‑7 p.m.) and 戌 (7‑9 p.m.) hours, or the corresponding days, months, or years. The poem suggests that when this period is over, the situation will reveal itself, encouraging patience and letting time decide rather than force.",
+    "jp": "この詩のテーマは、未来のことに無駄に心を配る必要はなく、ある時期を経て自然に答えが明らかになるということです。詩の中で、神に祈り、占いを頼ることは無駄であり、『鶏犬の日』が過ぎた後に真相が分かると述べられています。『鶏犬』は酉（午後5時〜7時）と戌（午後7時〜9時）の時間帯、または日・月・年を指すと解釈でき、詩はその期間を経れば状況がはっきりすると示唆しています。時間に任せて焦らず待つことが重要だと伝えています。",
+    "reference": "1.鳳嬌觀音庵問籤中奸臣計2.胡鳳嬌觀音寺行香求懺凡事　作可作。和者吉。作事　慢成。家事　平平。家運　宅舍難居婚姻　不好難成。求兒　不可。六甲　謝良愿。求神佛。求財　微利不吉。功名　未就。歲君　中和治病　運深。酉戌不畏。出外　不可。經商　新業差。舊業平來人　戌日到。行舟　財輕微利。移居　且慢。失物　己丑卯戌日在。求雨　甲子乙丑日。不久。官事　宜和。(必受災殃)六畜　不可。耕作　只收半。築室　不美。成者安。墳墓　地勢不合。討海　和者好。不和呆。作塭　只求微利。魚苗　小利。月令　下半年平安。尋人　慢至。遠信　音信遲延。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- The poet advises against over‑investing emotional energy in uncertain futures; the answer will appear naturally after a specific period.\n- “Chicken‑Dog days” symbolize a threshold in Chinese astrology (酉–戌 hours, corresponding days, months or years); once this threshold passes, clarity emerges.\n- Seeking divine intervention or consulting oracles is portrayed as futile; patience and allowing time to work are the recommended approach.\n- The poem underscores the value of letting nature and time resolve matters rather than forcing them through external rituals.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:22:30",
+    "source_file": "chuck_25.json",
+    "raw_llm_response_preview": "{\"id\":25,\"title\":\"六十甲子籤第二十五籤\",\"subtitle\":\"屬火利夏　宜其南方\",\"fortune\":\"戊子 ●○○　○●●\",\"poem\":[\"總是前途莫心勞\",\"求神問聖枉是多\",\"但看雞犬日過後\",\"不須作福事如何\"],\"analysis\":{\"zh\":\"這首詩的主題是關於不必過度費心於未來，等待時機自然明朗。詩中說，無論是求神問卜，還是自費心，都是徒勞，真正的答案會在“雞犬日”之後顯現。‘雞犬日’代表酉戌之時、日、月或年，暗示在這個時節後，事情會自然而然地清晰。整首詩提醒人們，若能先放下焦慮，讓時間自行決定，往往能得更準確、簡單的答案。\",\"en\":\"**Thi"
+  }
+}

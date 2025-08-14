@@ -1,0 +1,25 @@
+{
+  "id": 9,
+  "title": "六十甲子籤第九籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "乙巳●●●　○○○",
+  "poem": [
+    "龍虎相隨在深山",
+    "君爾何須背後看",
+    "不知此去相愛愉",
+    "他日與我卻無干"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是龍與虎在深山中同處，描繪了兩種性格不同的生靈在隱秘環境中的共存與相互觀察。第二句表達對於背後偷看、猜疑的疑問；第三句暗示當下相互關係看似融洽，未來卻可能發生距離；第四句則說明最終彼此間不再有交集。整體以生動的動物象徵，反映人際關係中外在環境與內在互動的微妙平衡。",
+    "en": "The theme of this poem is the coexistence of dragon and tiger in a deep mountain, illustrating how two fundamentally different spirits share a hidden space. The second line questions the need for hidden observation or suspicion. The third line suggests that while their current relationship appears harmonious, future circumstances may create distance. The final line indicates that eventually they will no longer interfere with each other. Overall, the poem uses vivid animal imagery to reflect the delicate balance between external surroundings and internal interactions in human relationships.",
+    "jp": "この詩のテーマは、深い山において龍と虎が共存し、異なる性格を持つ二つの生き物が隠れた環境で互いに観察し合う様子を描くことです。第二行は、背後での覗き見や疑いの必要性を問いかけます。第三行は、現時点では調和しているように見えても、将来的には距離が生じる可能性があることを示唆しています。第四行では、最終的に互いに干渉しなくなることを示しています。全体として、動物の象徴を通じて、人間関係における外部環境と内部の相互作用の微妙なバランスを反映しています。",
+    "reference": "龍虎爭鬥（龍虎相會）*愉字，另有改作娛字一說。凡事　謹慎。作事　守己安分。家事　無有際會。家運　有邪。難安。婚姻　不可。求兒　切要不可。六甲　子媳虛。求財　無益。功名　不取。歲君　不吉。治病　運深危險。寅辰日過不畏。出外　不可。經商　了錢。來人　未日(半月)到。行舟　不美。移居　不佳。失物　難尋。求雨　尚未。自有。官事　不可。破財。六畜　不可納。耕作　無收。了工。築室　且慢也可。墳墓　地勢適當。討海　有犯邪祟。作塭　了工蝕本。魚苗　了錢。月令　破財有口舌。尋人　漸回。遠信　無望。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Two powerful creatures (dragon and tiger) coexist in a secluded setting, symbolizing diversity and hidden harmony.\n- The narrator questions why one would watch from behind, hinting at suspicion or hidden motives.\n- The present bond feels affectionate, but the future suggests distance and detachment.\n- Ultimately, the relationship dissolves into non‑interference, illustrating how initial closeness can fade when underlying differences remain unresolved.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:44:15",
+    "source_file": "chuck_9.json",
+    "raw_llm_response_preview": "{\"id\":9,\"title\":\"六十甲子籤第九籤\",\"subtitle\":\"屬火利夏　宜其南方\",\"fortune\":\"乙巳●●●　○○○\",\"poem\":[\"龍虎相隨在深山\",\"君爾何須背後看\",\"不知此去相愛愉\",\"他日與我卻無干\"],\"analysis\":{\"zh\":\"這首詩的主題是龍與虎在深山中同處，描繪了兩種性格不同的生靈在隱秘環境中的共存與相互觀察。第二句表達對於背後偷看、猜疑的疑問；第三句暗示當下相互關係看似融洽，未來卻可能發生距離；第四句則說明最終彼此間不再有交集。整體以生動的動物象徵，反映人際關係中外在環境與內在互動的微妙平衡。\",\"en\":\"The theme of th"
+  }
+}

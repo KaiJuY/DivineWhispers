@@ -1,0 +1,25 @@
+{
+  "id": 69,
+  "title": "關聖帝君一百籤第六十九籤",
+  "subtitle": "孫龐鬥智庚壬",
+  "fortune": "下吉",
+  "poem": [
+    "捨舟遵路總相宜",
+    "慎勿嬉遊逐貴兒",
+    "一夜樽前兄與弟",
+    "明朝仇敵又相隨"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：離開不切實際的漂泊，踏實走自己的道路；慎重交友，尤其不應把寶貴時間浪費在歡娛之中；一夜的聚飲兄弟如兄弟，卻可能因利益衝突而化敵。",
+    "en": "這首詩的主題是：It advises abandoning aimless drifting, walking a steady path, being cautious with friendships, especially avoiding wasting precious time on idle amusements, and warns that a night of camaraderie may turn into rivalry the next morning.",
+    "jp": "這首詩の主題は：無駄な遊びを捨てて実りある道を歩むべきであること、友人選びには慎重であり、余計な酒宴に時間を費やすべきではないこと、そして一夜の酒宴で兄弟のように親しくしても、翌朝には利益の対立から敵対に変わるかもしれないことを警告しています。",
+    "reference": "齊。孫臏。魏。龐涓。其初同事鬼谷子。涓之才學弗如臏。嘗與鬥智輸之。涓忌其能。致結成仇。彼此謀害。君子觀於異日。涓刖臏足。臏喪涓命。互相殘忍。毋乃其不仁不智之甚與。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It encourages leaving an aimless or frivolous path and embracing a practical, purposeful route.\n- It cautions against wasting valuable time on idle or playful pursuits, which can lead to lost opportunities.\n- It highlights that friendships formed in the heat of a night’s revelry can quickly turn into rivalries the next day when interests diverge.\n- The poem underscores the importance of practical diligence, careful selection of companions, and avoiding superficial pleasures.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:57:53",
+    "source_file": "chuck_69.json",
+    "raw_llm_response_preview": "{\n  \"id\": 69,\n  \"title\": \"關聖帝君一百籤第六十九籤\",\n  \"subtitle\": \"孫龐鬥智庚壬\",\n  \"fortune\": \"下吉\",\n  \"poem\": [\n    \"捨舟遵路總相宜\",\n    \"慎勿嬉遊逐貴兒\",\n    \"一夜樽前兄與弟\",\n    \"明朝仇敵又相隨\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：離開不切實際的漂泊，踏實走自己的道路；慎重交友，尤其不應把寶貴時間浪費在歡娛之中；一夜的聚飲兄弟如兄弟，卻可能因利益衝突而化敵。\",\n    \"en\": \"這首詩的主題是：It advises abandoni"
+  }
+}

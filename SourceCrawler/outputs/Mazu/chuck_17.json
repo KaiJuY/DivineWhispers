@@ -1,0 +1,25 @@
+{
+  "id": 17,
+  "title": "六十甲子籤第十七籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "丙申○○●　●○○",
+  "poem": [
+    "舊恨重重未改為",
+    "家中禍患不臨身",
+    "須當謹防宜作福",
+    "龍蛇交會得和合"
+  ],
+  "analysis": {
+    "zh": "這首籤詩的主題是提醒求問者關注未解的舊怨與潛在的危險，並透過做好事為自己筑起防禦。詩中說，過去的種種矛盾與痛恨仍在心頭，家中可能出現的災祸並未直接波及自身，但仍須防患於未然。要多行善，積累福報，以此化解不利。至於龍蛇相會之時，則暗示事情將迎來轉機，龍（辰）象徵三月，蛇（巳）象徵四月，或是龍年與蛇年交替的時刻，屆時問題會得到圓滿結局。",
+    "en": "According to the poem, the core theme is the persistence of unresolved past grievances and the latent danger that may arise. It advises the seeker to protect themselves by doing good deeds, thereby cultivating a safeguard. The verses state that old resentments remain in the heart and that family misfortunes have not yet directly afflicted the seeker, yet vigilance is still required. By performing benevolent acts one builds fortune to avert harm. The phrase “when the dragon meets the snake” points to a turning point—either the period when the sign of the dragon (辰) meets that of the snake (巳), i.e., the months of March and April, or the transition from a dragon year to a snake year—at which time the issue will be resolved.",
+    "jp": "この籤詩の主題は、未解決の旧怨と潜在的な危険を指摘し、善行を積むことで自分を守ることを促す点にあります。詩では、過去の恨みや苦しみが心に残っており、家内での災厄はまだ直接本人に波及していないものの、未然に防ぐ必要があると語られています。善行を行い福徳を蓄えることで、悪事を防ぐ防御を築けると示唆されています。「龍蛇相会」では、事情が転機を迎える時期―龍（辰）と蛇（巳）が交わる時、すなわち三月と四月、または龍年と蛇年の交替期―に問題が解決に向かうことを示しています。",
+    "reference": "1.紅孩兒捷住路頭2.范丹妻未出身殺九夫凡事　人害緊。和無事。作事　先難後易。家事　和為貴。家運　居之則安。婚姻　大吉。求兒　不可。六甲　先男後女。求財　勤儉必得。功名　修陰德必中。歲君　淡淡。治病　求神庇祐。辰未日(半月)過漸癒。出外　辰巳日則可。經商　平平。來人　辰未日(半月)到。行舟　平平。財輕。移居　隨意。(不可)失物　辰巳日在。(難尋)求雨　初初到尾。(不明其意)官事　和為貴。不和凶。六畜　納者不可。耕作　平平。少利。築室　有犯陰邪。墳墓　平平。小吉。討海　微利運不辰作塭　運不合。求小利。魚苗　微利。月令　不畏。漸漸平安。尋人　待時。遠信　慢。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that lingering past grievances continue to affect the present, and that prevention of potential misfortune is best achieved through proactive good deeds. The key symbols are:\n\n• The \"old grudges\" – representing unresolved emotional baggage that must be acknowledged.\n• The family calamity not striking the seeker – signifying external dangers that require vigilance.\n• Doing good – the proactive measure to accumulate fortune and safeguard against harm.\n• The \"dragon meets the snake\" – the turning point in time, indicating that when the Dragon (辰) and Snake (巳) signs align (March–April or the transition from a dragon year to a snake year), clarity will emerge and the problem will reach a resolution.\n\nThus the poem advises the seeker to confront unresolved issues, maintain moral diligence, and remain patient until the auspicious period arrives for a positive outcome.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:17:52",
+    "source_file": "chuck_17.json",
+    "raw_llm_response_preview": "{\n  \"id\": 17,\n  \"title\": \"六十甲子籤第十七籤\",\n  \"subtitle\": \"屬火利夏　宜其南方\",\n  \"fortune\": \"丙申○○●　●○○\",\n  \"poem\": [\n    \"舊恨重重未改為\",\n    \"家中禍患不臨身\",\n    \"須當謹防宜作福\",\n    \"龍蛇交會得和合\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首籤詩的主題是提醒求問者關注未解的舊怨與潛在的危險，並透過做好事為自己筑起防禦。詩中說，過去的種種矛盾與痛恨仍在心頭，家中可能出現的災祸並未直接波及自身，但仍須防患於未然。要多行善，積累福報，以此化解不利。至於"
+  }
+}

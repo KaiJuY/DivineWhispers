@@ -1,0 +1,25 @@
+{
+  "id": 44,
+  "title": "關聖帝君一百籤第四十四籤",
+  "subtitle": "王莽篡漢戊丁",
+  "fortune": "中平",
+  "poem": [
+    "汝是人中最吉人",
+    "誤為誤作損精神",
+    "堅牢一念酬香願",
+    "富貴榮華萃汝身"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於品德與行動之間的互動。詩句指出，即使是人群中最善良的人，也可能因為輕率而造成錯誤，浪費精神；然而，只要堅守善念、慎重行事，最終仍能獲得富貴與榮華。",
+    "en": "這首詩的主題是 a reflection on the interplay between virtue and cautious action: it reminds us that even the most benevolent person can err when acting rashly, wasting energy; but by holding steadfast to goodwill and proceeding with prudence, one can ultimately attain wealth and honor.",
+    "jp": "這首詩の主題は、善意と慎重さの関係を示し、最も善良な人でも軽率に行動すると失敗してエネルギーを無駄にすることがあると警告しつつ、善念を固め、慎重に行動すれば最終的に富と栄華を得られるというメッセージです。",
+    "reference": "王莽字巨君。漢。孝元皇后之姪也。以國戚一門貴顯。莽繼叔父遺烈當成哀平帝。享國不永。統嗣三絕。位居宰相。封新息侯。假行仁義。自此伊周弒平帝。立孺子嬰。竊周公之法。攝位改元。竟移漢祚。國號曰新。後被漢兵所殺。傳首師百姓。爭食其肉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: • The poem highlights the contrast between inherent kindness and the tendency to err when acting without forethought. • It emphasizes that vigilance and steadfastness in intention can transform potential mistakes into rewards. • The imagery of “wealth and glory” signifies the tangible benefits that arise from disciplined, mindful conduct.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:43:59",
+    "source_file": "chuck_44.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 44,\n  \"title\": \"關聖帝君一百籤第四十四籤\",\n  \"subtitle\": \"王莽篡漢戊丁\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"汝是人中最吉人\",\n    \"誤為誤作損精神\",\n    \"堅牢一念酬香願\",\n    \"富貴榮華萃汝身\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於品德與行動之間的互動。詩句指出，即使是人群中最善良的人，也可能因為輕率而造成錯誤，浪費精神；然而，只要堅守善念、慎重行事，最終仍能獲得富貴與榮華。\",\n    \"en\": \"這首詩的主題是 a"
+  }
+}

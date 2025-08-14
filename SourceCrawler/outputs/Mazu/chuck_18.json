@@ -1,0 +1,25 @@
+{
+  "id": 18,
+  "title": "六十甲子籤第十八籤",
+  "subtitle": "屬土利年。四方皆宜",
+  "fortune": "丙戌●○○　○●○",
+  "poem": [
+    "君問中間此言因",
+    "看看祿馬拱前程",
+    "若得貴人多得利",
+    "和合自有兩分明"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於詢問事物的原因與結果，並提醒前途若有貴人相助，將會迎來順利發展。詩中「祿馬」象徵順利與功名，暗示在努力之後，若得到有利的幫助，未來會十分光明。最後一句「和合自有兩分明」強調和諧與清晰的結局。",
+    "en": "這首詩的主題是：This poem explores the inquiry into the causes and outcomes of a situation, emphasizing that with the support of benefactors, a bright future is expected. The reference to a “Lu‑Ma” horse symbolizes success and official achievement, suggesting that with the right help, prospects become clear. The final line, “Harmony will be clear in two parts,” highlights a harmonious and well‑defined resolution.",
+    "jp": "這首詩のテーマは：この詩は、事柄の原因と結果を問い、貴人の助けがあれば前途が明るくなることを示唆しています。「祿馬」は成功や官位を象徴し、支援があれば未来が光り輝くと暗示します。最後の「和合自有二分明」は、調和と明確な結末を強調しています。",
+    "reference": "1.孫悟空大難火災火字，另有改作水字一說。孫悟空大鬧天宮。火刑不畏。八卦爐不困。後給佛祖壓于五指山下。惡貫滿刑身受困。五百年後才遇唐僧解救。2.薛丁山著飛刀凡事　忍耐求和。作事　貴人利。和氣成。家事　圓滿進財。家運　瑞氣盈庭。婚姻　大吉。求兒　月光好。月暗平。六甲　先男。求財　不多。(萬金萬貫連得)功名　有望。歲君　得利。治病　痊癒。出外　有貴人提攜。經商　大進利市。來人　月光到。行舟　得財。移居　大吉。失物　月光在。求雨　不日即到。官事　速和公判。六畜　可好。耕作　有收。築室　祥氣盈庭。墳墓　福人必得福地。討海　和者得大財。作塭　獲利三倍。魚苗　大利。月令　平安吉慶。尋人　在。遠信　佳音速報。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The speaker seeks clarification on why a particular situation occurs and what its outcome will be.\n- The image of the “Lu Ma” horse represents favorable circumstances, official achievement, or a bright future; it signals that success is likely when the right support is present.\n- Having benefactors (“貴人”) is essential; their help multiplies the benefits and brings clarity.\n- The closing line emphasizes that harmony will naturally be apparent, suggesting a balanced and clear resolution.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:18:36",
+    "source_file": "chuck_18.json",
+    "raw_llm_response_preview": "{\n  \"id\": 18,\n  \"title\": \"六十甲子籤第十八籤\",\n  \"subtitle\": \"屬土利年。四方皆宜\",\n  \"fortune\": \"丙戌●○○　○●○\",\n  \"poem\": [\n    \"君問中間此言因\",\n    \"看看祿馬拱前程\",\n    \"若得貴人多得利\",\n    \"和合自有兩分明\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於詢問事物的原因與結果，並提醒前途若有貴人相助，將會迎來順利發展。詩中「祿馬」象徵順利與功名，暗示在努力之後，若得到有利的幫助，未來會十分光明。最後一句「和合自有兩分明」強調和諧與清晰的結局。\","
+  }
+}

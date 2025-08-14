@@ -1,0 +1,20 @@
+{
+  "id": 43,
+  "title": "觀音一百籤第四十三籤",
+  "subtitle": "戌宮",
+  "fortune": "上籤",
+  "poem": "天地交泰萬物新、自形自色自怡神、森羅萬象皆精彩、事事和諧得稱人。",
+  "analysis": {
+    "zh": "這首詩的主題是天地交泰，描繪天地和諧，萬物重現生機，色彩與形態自覺怡人，所有景象皆精彩且和諧，整個世界因此呈現稱讚的姿態。",
+    "en": "這首詩的主題是... The poem portrays a harmonious cosmos where heaven and earth align, all beings emerge anew with their own shapes and colors, feeling at peace. Every phenomenon shines brilliantly, and everything is in harmony, making the world a commendable state.",
+    "jp": "この詩のテーマは... 天地が交わり、万物が新しく生まれ、形や色が自らで心地よいと感じる様子を描いています。すべての現象が素晴らしく調和し、世界全体が称賛される姿になっています。",
+    "reference": "*(營本作榮)家宅　吉。自身　安。求財　有。交易　利。婚姻　合。六甲　男。行人　有阻。田蠶　中平。六畜　中平。尋人　見。公訟　勝。移徙　利。失物　東西。疾病　禳星。山墳　東西吉。1.行者得道西遊記載。行者本為花果山猴王。訪求仙法。拜須菩提祖師作師父。祖師賜姓孫。法名悟空。歷七年也不知何者為道。祖師打悟空頭三下又倒背著手。悟空明白打三下即三更時份。倒背著手指從後門授道。于是祖師授悟空長生之道。又過三年。更修得七十二變。離家二十年後。返回花果山。2.泗水亭長作天子劉邦在秦始皇時任泗水亭長，後來成為漢高祖。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the universe is in a state of balanced harmony. The main symbols are the intertwining of heaven and earth, the renewal of all things, and the inherent beauty of shape and color. The hidden philosophy suggests that when each element is content and in agreement, the world as a whole attains a state worthy of praise.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:04:59",
+    "source_file": "chuck_43.json",
+    "raw_llm_response_preview": "{\n  \"id\": 43,\n  \"title\": \"觀音一百籤第四十三籤\",\n  \"subtitle\": \"戌宮\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"天地交泰萬物新、自形自色自怡神、森羅萬象皆精彩、事事和諧得稱人。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是天地交泰，描繪天地和諧，萬物重現生機，色彩與形態自覺怡人，所有景象皆精彩且和諧，整個世界因此呈現稱讚的姿態。\",\n    \"en\": \"這首詩的主題是... The poem portrays a harmonious cosmos where heaven and earth al"
+  }
+}

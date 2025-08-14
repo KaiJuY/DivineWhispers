@@ -1,0 +1,20 @@
+{
+  "id": 21,
+  "title": "日本淺草觀音寺一百籤第二十一籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "洗出經年否,光華得再清,所求終吉利,重日照前程",
+  "analysis": {
+    "zh": "這首詩的主題是清洗過去的煩惱與不順，迎來更為明亮的未來。第一句「洗出經年否」象徵將過去多年累積的負面情緒或不利情況徹底洗去。第二句「光華得再清」則說明在淨化之後，光彩與希望再次顯得更為澄澈。第三句「所求終吉利」表明所有的願望與企盼最終都會實現並帶來好運。最後一句「重日照前程」用重複的陽光比喻，寓意時間的推移將持續照亮前路，讓前途更加光明。",
+    "en": "This poem’s theme is cleansing past troubles and embracing a clearer, brighter future. The first line, “洗出經年否,” indicates purging years of negative experiences or misfortunes. The second line, “光華得再清,” suggests that after this cleansing, the brilliance and hope become even more vivid. The third line, “所求終吉利,” conveys that all wishes and aspirations will ultimately turn favorable. The final line, “重日照前程,” uses the repetition of sunshine to symbolize that time’s steady passage will keep illuminating the path ahead, making the future increasingly bright.",
+    "jp": "この詩のテーマは、過去の悩みや不運を洗い流し、より明るい未来へと踏み出すことです。最初の行「洗出経年否」は、長年の負の経験や不運を徹底的に洗い去ることを示しています。次の行「光華得再清」は、浄化の後、光と希望がさらに鮮明に輝くことを意味します。三番目の行「所求終吉利」は、すべての願いと企図が最終的に良い結果をもたらすことを示しています。最後の行「重日照前程」は、太陽の光が重なる様子を用いて、時間の進行が未来を照らし続け、より明るい道へと導くことを表しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that by purging past misfortunes, one can attain renewed clarity and success. \n- The first line symbolizes cleansing long‑standing negative energies. \n- The second line reflects the restoration of inner brilliance and hope. \n- The third line assures that all wishes will ultimately bring good fortune. \n- The final line uses the imagery of recurring sunlight to represent a bright, steady future illuminated by time and effort.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:54:18",
+    "source_file": "chuck_21.json",
+    "raw_llm_response_preview": "{\"id\":21,\"title\":\"日本淺草觀音寺一百籤第二十一籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"洗出經年否,光華得再清,所求終吉利,重日照前程\",\"analysis\":{\"zh\":\"這首詩的主題是清洗過去的煩惱與不順，迎來更為明亮的未來。第一句「洗出經年否」象徵將過去多年累積的負面情緒或不利情況徹底洗去。第二句「光華得再清」則說明在淨化之後，光彩與希望再次顯得更為澄澈。第三句「所求終吉利」表明所有的願望與企盼最終都會實現並帶來好運。最後一句「重日照前程」用重複的陽光比喻，寓意時間的推移將持續照亮前路，讓前途更加光明。\",\"en\":\"This poe"
+  }
+}

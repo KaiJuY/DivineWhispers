@@ -1,0 +1,25 @@
+{
+  "id": 55,
+  "title": "關聖帝君一百籤第五十五籤",
+  "subtitle": "包龍圖勸農己戊",
+  "fortune": "中平",
+  "poem": [
+    "勤耕力作莫蹉跎",
+    "衣食隨時安分過",
+    "縱使經商收倍利",
+    "不如逐歲廩禾多"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是勤勉耕作、安分守己、勿投機取巧。詩中提醒人們應以踏實耕作為主，衣食自足、心安理得；即使經商可以有加倍收益，長期來看也不如一年一年的穩定收成。並提倡不應追名逐利、避免投機冒險，最終強調順其自然、保持安分才是長久之道。",
+    "en": "According to the poem, the theme centers on diligent cultivation, self‑contentment, and avoiding opportunistic shortcuts. It encourages a steady, honest working life—food and clothing are provided by one’s own labor, and one should stay content. Although commerce can yield double the profit, it cannot match the steady harvest year after year. The verse urges against chasing fame, greed, and reckless speculation, reminding us that patience and modesty bring lasting benefit.",
+    "jp": "この詩のテーマは、勤勉に耕すこと、安分な生活を守ること、そして投機的な手段を避けることです。詩は、手を抜くことなく真面目に農業に勤めることで、食料や衣服が自らの労働で得られ、心安らかに過ごせると説いています。商売で倍の利益を得ることもできるが、長い目で見れば年々の安定した収穫に勝るものはない。名誉や利潤を追い求め、リスクを取ることは避け、忍耐と節制こそが永続的な幸せをもたらすと示唆しています。",
+    "reference": "宋。包拯。字希仁。合肥人。官龍圖閣學士。由進士出身。常守鄉郡。不以(以本作少)屈法以殉鄉曲。惟貴粟重農。欲民知耕。更治推第一。為御史時。危言鯁論。烈如秋霜。尹開封。權貴歛跡。人以笑比冀洵清。雖童稚婦人亦識其姓名。諡孝肅。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A call to diligent, honest labor: farming as a reliable source of sustenance.\n- A warning against the lure of quick, speculative gains in commerce.\n- The idea that steady, year‑by‑year harvests bring lasting security and contentment.\n- A reminder that modest living, free of ambition for fame or wealth, aligns with a balanced, harmonious life.\n- An implicit philosophical theme of \"earn by working, not by scheming\" and the moral value of self‑contentment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:49:52",
+    "source_file": "chuck_55.json",
+    "raw_llm_response_preview": "{\"id\":55,\"title\":\"關聖帝君一百籤第五十五籤\",\"subtitle\":\"包龍圖勸農己戊\",\"fortune\":\"中平\",\"poem\":[\"勤耕力作莫蹉跎\",\"衣食隨時安分過\",\"縱使經商收倍利\",\"不如逐歲廩禾多\"],\"analysis\":{\"zh\":\"這首詩的主題是勤勉耕作、安分守己、勿投機取巧。詩中提醒人們應以踏實耕作為主，衣食自足、心安理得；即使經商可以有加倍收益，長期來看也不如一年一年的穩定收成。並提倡不應追名逐利、避免投機冒險，最終強調順其自然、保持安分才是長久之道。\",\"en\":\"According to the poem, the theme centers on"
+  }
+}

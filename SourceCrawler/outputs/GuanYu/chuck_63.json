@@ -1,0 +1,25 @@
+{
+  "id": 63,
+  "title": "關聖帝君一百籤第六十三籤",
+  "subtitle": "楊令公撞李陵碑庚丙",
+  "fortune": "中平",
+  "poem": [
+    "曩時敗北且圖南",
+    "筋力雖衰尚一堪",
+    "欲識生前君大數",
+    "前三三與後三三"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是對過去失敗與未來機遇的反思與勉勵。詩中提到『曩時敗北且圖南』，說明曾在過去遭遇失敗並試圖尋找新的方向；『筋力雖衰尚一堪』則表示雖然力量有所衰弱，但仍具備持續奮鬥的能力。最後兩句『欲識生前君大數 前三三與後三三』以數字暗示未來的三十個年紀或三十年代的起伏，提醒人們從過往吸取教訓，並抓住未來的機會。",
+    "en": "This poem’s theme is a reflection on past defeat and a call to embrace future opportunities. The line \"曩時敗北且圖南\" speaks of a prior setback and a shift in direction; \"筋力雖衰尚一堪\" conveys that even though strength wanes, endurance remains. The final two lines, \"欲識生前君大數 前三三與後三三,\" use numeric symbolism to hint at cycles of struggle and chance in the succeeding decades, urging the reader to learn from the past and seize upcoming prospects.",
+    "jp": "この詩のテーマは、過去の敗北を振り返り、将来の機会を掴むことへの呼びかけです。『曩時敗北且圖南』は、以前の挫折と方向転換を語り、 『筋力雖衰尚一堪』は、力が衰えても耐える力が残っていることを示します。最後の二行『欲識生前君大數 前三三與後三三』は、数の象徴で次の数十年にわたる波乱とチャンスの循環を示し、過去から学び、将来の機会を掴むよう促しています。",
+    "reference": "宋。楊業。太原人。先事北漢。屢立戰功。號楊無敵。後降從招說。使潘美征遼。被遼將耶律斜軫。伏兵於陳家谷。業以孤軍深入。美妒恨之故。不發授師。欲置其死。業被困無援。撞李陵碑而死。此見於北宋志傳。與史稱被擒不食而死矣。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The narrator reflects on a previous defeat and seeks a new direction.\n- The poem acknowledges diminished strength yet stresses the capacity to endure.\n- The numeric phrase \"前三三與後三三\" symbolises a cycle of adversity and opportunity across decades.\n- Overall, it encourages perseverance, learning from past setbacks, and anticipating future chances.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:54:53",
+    "source_file": "chuck_63.json",
+    "raw_llm_response_preview": "{\n  \"id\": 63,\n  \"title\": \"關聖帝君一百籤第六十三籤\",\n  \"subtitle\": \"楊令公撞李陵碑庚丙\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"曩時敗北且圖南\",\n    \"筋力雖衰尚一堪\",\n    \"欲識生前君大數\",\n    \"前三三與後三三\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對過去失敗與未來機遇的反思與勉勵。詩中提到『曩時敗北且圖南』，說明曾在過去遭遇失敗並試圖尋找新的方向；『筋力雖衰尚一堪』則表示雖然力量有所衰弱，但仍具備持續奮鬥的能力。最後兩句『欲識生前君大數 前三三與後三"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 68,
+  "title": "關聖帝君一百籤第六十八籤",
+  "subtitle": "錢大王販鹽庚辛",
+  "fortune": "中平",
+  "poem": [
+    "南販珍珠北販鹽",
+    "年來幾倍偵財掭",
+    "勸君止此求田舍",
+    "心欲多時何日厭"
+  ],
+  "analysis": {
+    "zh": "詩中描寫從南方販賣珍珠、北方販賣鹽的商旅，數年來收入翻倍。詩中勸告詩者停下對土地的追求，提醒貪欲不止將招致憂患。整體寓意是：已經有豐厚財富，應知足且勿沉迷於購地等物質欲望。",
+    "en": "The poem depicts a trader who sells pearls in the south and salt in the north, earning multiple times the money over several years. It advises the seeker to cease the pursuit of land and reminds that unchecked greed leads to trouble. The overall message is that with abundant wealth, one should be content and refrain from excessive material desires.",
+    "jp": "詩は、南で真珠を、北で塩を売って、数年で多倍の利益を得た商人を描いています。詩の中で、土地の取得をやめるように勧め、貪欲が続くと不幸に至ると警告しています。全体としては、既に十分な財を手に入れたなら、満足し、物質的な欲望に溺れないようにするべきだという意味です。",
+    "reference": "唐。錢鏐。臨安人。微時。以販鹽謀生。值黃巢亂。以鄉兵破走之。又以八都兵。討劉漢宏破越州。以迎董昌。而自居於杭。及董昌反鏐。執之歸杭。昭宗拜為鎮海鎮東兩軍節度使。朱溫纂唐。封與越王。傳至孫忠懿王俶。乃納士於宋。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a cautionary message wrapped in a narrative of commercial success. • It tells the story of a trader who moves between the south and the north, selling pearls and salt, respectively, and who has earned multiples of his initial capital over the years. • The poem then shifts to a moral exhortation: do not pursue land or further material gains, because unchecked desire will bring future distress. • The underlying philosophy is that one has already achieved sufficient wealth and should practice contentment, avoiding the pitfalls of greed. • The advice is directed at the seeker—if you are tempted by endless acquisition, pause and reconsider your priorities. • In short, prosperity is praised, but the poem urges restraint and gratitude as the true path to lasting well‑being.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:57:31",
+    "source_file": "chuck_68.json",
+    "raw_llm_response_preview": "{\"id\":68,\"title\":\"關聖帝君一百籤第六十八籤\",\"subtitle\":\"錢大王販鹽庚辛\",\"fortune\":\"中平\",\"poem\":[\"南販珍珠北販鹽\",\"年來幾倍偵財掭\",\"勸君止此求田舍\",\"心欲多時何日厭\"],\"analysis\":{\"zh\":\"詩中描寫從南方販賣珍珠、北方販賣鹽的商旅，數年來收入翻倍。詩中勸告詩者停下對土地的追求，提醒貪欲不止將招致憂患。整體寓意是：已經有豐厚財富，應知足且勿沉迷於購地等物質欲望。\",\"en\":\"The poem depicts a trader who sells pearls in the south and salt in the"
+  }
+}

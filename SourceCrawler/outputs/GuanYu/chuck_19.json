@@ -1,0 +1,25 @@
+{
+  "id": 19,
+  "title": "關聖帝君一百籤第十九籤",
+  "subtitle": "劉智遠得岳氏乙壬",
+  "fortune": "上吉",
+  "poem": [
+    "嗟子從來未得時",
+    "今年星運頗相宜",
+    "營求動作都如意",
+    "和合婚姻誕貴兒"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：時間與運勢的轉折。第一句表達了過去因時機不佳而受挫，第二句則指出今年的星運相當順利，第三句說明此時開始的計畫與行動都能順利達成，第四句預示婚姻和諧且將有貴子降生。整首詩呈現從無望到順遂、從失意到喜悅的心理轉變，並以結合家庭與成就為結局。",
+    "en": "This poem's theme is: the shift of time and fortune. The first line laments past misfortune due to untimely circumstances, the second line announces that this year's starry fate is quite favorable, the third line states that plans and actions taken now will go smoothly, and the fourth line foretells a harmonious marriage and the birth of a noble child. The whole poem depicts a psychological transition from hopelessness to success, from despair to joy, culminating in family harmony and personal achievement.",
+    "jp": "この詩のテーマは：時と運勢の転換です。最初の一行は、昔からタイミングが合わず不運だったことを嘆き、二行目では今年の星運がかなり良いと述べ、三行目では今始めた企画や行動がすべて順調に進むことを示し、四行目では和合した結婚と貴子の誕生が予言されています。全体として、失意から成功へ、絶望から喜びへと心の転換を描き、家庭の調和と個人的な成就で結末を迎える詩です。",
+    "reference": "劉智遠(知遠)。沙陶(沙陀)人。初為節度使。岳彥真軍校時。彥真奇其相貌。以女妻焉。後仕晉。為邠州太原節度。契丹滅晉。中原無主。智遠乃即帝位。改國曰后漢。仍稱天福而不改元。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A narrative of turning a past period of misfortune into a future of favorable circumstances.\n- The first line reflects the speaker’s lament about having never found the right timing.\n- The second line signals a positive shift: this year’s starry fortune aligns favorably.\n- The third line conveys that any plans or actions undertaken now will proceed smoothly and as desired.\n- The fourth line offers a hopeful vision of marital harmony and the birth of a noble child, tying personal success to family prosperity.\n- Symbolically, time, celestial fortune, personal initiative, and domestic harmony intertwine to express renewal and optimism.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:31:06",
+    "source_file": "chuck_19.json",
+    "raw_llm_response_preview": "{\"id\":19,\"title\":\"關聖帝君一百籤第十九籤\",\"subtitle\":\"劉智遠得岳氏乙壬\",\"fortune\":\"上吉\",\"poem\":[\"嗟子從來未得時\",\"今年星運頗相宜\",\"營求動作都如意\",\"和合婚姻誕貴兒\"],\"analysis\":{\"zh\":\"這首詩的主題是：時間與運勢的轉折。第一句表達了過去因時機不佳而受挫，第二句則指出今年的星運相當順利，第三句說明此時開始的計畫與行動都能順利達成，第四句預示婚姻和諧且將有貴子降生。整首詩呈現從無望到順遂、從失意到喜悅的心理轉變，並以結合家庭與成就為結局。\",\"en\":\"This poem's theme is: the shift"
+  }
+}

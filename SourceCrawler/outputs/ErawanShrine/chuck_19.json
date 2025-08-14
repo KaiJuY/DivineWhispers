@@ -1,0 +1,20 @@
+{
+  "id": 19,
+  "title": "四面佛三十籤第十九籤",
+  "subtitle": "",
+  "fortune": "上籤",
+  "poem": "君來問事心未誠,需奉先師由五觔,叩求神力多保佑,財源廣進萬事興。",
+  "analysis": {
+    "zh": "這首詩的主題是關於在求問時缺乏真誠，需要先以五斤的供物敬奉先師，才能請求神力，並期望財源廣進、萬事興旺。若你因不夠誠心而感到失望，請先準備好供品，真誠祈求，將更容易得到神靈的保佑，從而促進健康、感情、事業等方面的進展。",
+    "en": "這首詩的主題是... The poem emphasizes the need for sincerity and proper offerings when seeking divine help. The opening line ‘君來問事心未誠’ indicates that the seeker’s heart is not sincere; one must first present a five‑kilo offering to the ancestral spirit. Only then can one ‘叩求神力多保佑’—pray for abundant blessings. The final couplet ‘財源廣進萬事興’ promises that sincere devotion will bring a steady flow of wealth and overall prosperity.",
+    "jp": "この詩のテーマは… この詩は、神の加護を求める際に真心と適切な供物が必要であることを強調しています。冒頭の『君来問事心未誠』は、問う者の心が真っ直ぐでないことを示し、先祖の精に五斤の供物を捧げることで神力を請い、保護を願うという流れです。最後の『財源廣進萬事興』は、誠意ある祈りが豊かな財源と万事の繁栄をもたらすと約束しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that genuine sincerity and proper offerings are prerequisites for divine assistance.\n- The five‑kilo offering symbolizes respect and reverence to ancestral spirits.\n- The act of knocking and praying underscores active devotion.\n- The promise of ‘財源廣進萬事興’ reflects the belief that sincere faith leads to material and personal blessings.\n- It subtly reminds seekers that without true sincerity, their requests may not be granted, encouraging a humble, respectful approach to spiritual practice.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:32:27",
+    "source_file": "chuck_19.json",
+    "raw_llm_response_preview": "{\n  \"id\": 19,\n  \"title\": \"四面佛三十籤第十九籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"君來問事心未誠,需奉先師由五觔,叩求神力多保佑,財源廣進萬事興。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於在求問時缺乏真誠，需要先以五斤的供物敬奉先師，才能請求神力，並期望財源廣進、萬事興旺。若你因不夠誠心而感到失望，請先準備好供品，真誠祈求，將更容易得到神靈的保佑，從而促進健康、感情、事業等方面的進展。\",\n    \"en\": \"這首詩的主題是... The poem emphasiz"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 88,
+  "title": "觀音一百籤第八十八籤",
+  "subtitle": "酉宮",
+  "fortune": "中籤",
+  "poem": "木雕一虎在山林、遠望威容意不禁、縱說不妨終可畏、此身如入大江心。",
+  "analysis": {
+    "zh": "這首詩的主題是對木雕虎在山林中威嚴與內在命運的寓意。詩中描寫遠望虎時其威容令人不禁敬畏，提醒人們恐懼往往表面化，真正的意義隱藏於深處。\"爐頭點雪\"與\"似耳邊風\"象徵微妙的暗示，像是小小火光與耳畔風聲，提示人須細心觀察才能看清真相。最後一句\"此身如入大江心\"比喻心靈漂泊於大江之中，暗示命運隨波逐流，未來可能有好運亦有凶險。",
+    "en": "This poem's theme is the majestic presence of a tiger carved from wood in the forest and its symbolic reflection on inner fate. The narrator describes the tiger's fierce appearance from a distance, evoking awe yet hinting that fear is often superficial. Phrases like \"flicker of snow on a stove\" and \"wind in one's ears\" represent subtle signs, urging deeper insight to uncover true meaning. The concluding line, \"this body is like entering the heart of a great river,\" metaphorically speaks of a wandering soul swept by fate, suggesting that future fortunes may be both good and perilous.",
+    "jp": "この詩のテーマは、木彫りの虎が山林に佇む威厳と、心の運命を象徴するものです。遠くから見ても威風堂々とした虎の姿は畏怖を覚えさせますが、詩人は恐れは表面的で実際の意味は深いと指摘します。炉頭に雪が舞うような微かな光や耳にそっと吹く風のような象徴は、細やかな兆候を示唆し、真実を見抜くには内省が必要であることを示しています。最後に「この身は大河の心に入るようだ」と語ることで、運命の流れに揺られつつも、好運も凶事も潜む不確定性を暗示しています。",
+    "reference": "*(林有作木)家宅　不安。自身　口舌。求財　小人。交易　不利。婚姻　不合。六甲　虛險。行人　阻。田蠶　損。六畜　損。尋人　杳。公訟　虧。移徙　守舊。失物　凶。疾病　祭虎。山墳　凶。1.龐洪畏包公宋朝仁宗。包公為開封府府尹。龐洪為國丈(皇帝作女婿)。陷將軍狄青于獄中。包公求審此案。龐洪驚畏萬分。多方阻攔。後案情大白。証實龐洪誣陷。呈宋仁宗聖裁。又因皇戚被釋。2.張子房誤中副車張良（張子房）尋得大力士一同意圖襲擊秦始皇，在博浪沙等待秦王車隊經過，沒想到一口氣出現了許多相同的車，根本無法知道秦王到底在那一輛，結果勉強出手擊碎其中一輛，但那卻不是秦王的座車。秦王生氣並命秦兵追殺張良，張良只好逃走並隱性埋名。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: • The carved tiger symbolizes strength, authority, and the awe that nature commands. • Its presence in the forest evokes a sense of respect while also warning that outward fear may mask deeper truths. • Imagery such as \"flicker of snow on a stove\" and \"wind in one’s ears\" conveys subtle, almost imperceptible signs that point to hidden realities. • The line about entering the heart of a great river portrays a wandering soul caught in the currents of destiny, hinting at the unpredictable mix of fortune and peril that lies ahead. • Overall, the poem invites readers to confront the gap between external appearance and inner reality, encouraging humility before nature and acceptance of life’s ever‑shifting tides.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:42:41",
+    "source_file": "chuck_88.json",
+    "raw_llm_response_preview": "{\n  \"id\": 88,\n  \"title\": \"觀音一百籤第八十八籤\",\n  \"subtitle\": \"酉宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"木雕一虎在山林、遠望威容意不禁、縱說不妨終可畏、此身如入大江心。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對木雕虎在山林中威嚴與內在命運的寓意。詩中描寫遠望虎時其威容令人不禁敬畏，提醒人們恐懼往往表面化，真正的意義隱藏於深處。\\\"爐頭點雪\\\"與\\\"似耳邊風\\\"象徵微妙的暗示，像是小小火光與耳畔風聲，提示人須細心觀察才能看清真相。最後一句\\\"此身如入大江心\\\"比喻心靈漂泊於大江之中，暗示命"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 62,
+  "title": "觀音一百籤第六十二籤",
+  "subtitle": "寅宮",
+  "fortune": "中籤",
+  "poem": "晨昏全賴佛扶持、雖是逢危不見危、若得貴人來接引、此時福祿自相隨。",
+  "analysis": {
+    "zh": "這首詩的主題是神佛的庇佑與人間的順遂。晨昏全靠佛扶持，暗示無論日夜都受佛祈福；雖遇危險卻不見危險，表現出對佛的信賴與忍耐；若有貴人相助，福祿自然隨之而來，強調人際關係與恩惠對個人吉運的重要性。",
+    "en": "這首詩的主題是 Buddha’s protection and the importance of patience and benevolent connections. The lines show that day and night rely on Buddha’s support, indicating continuous spiritual guidance. Even when danger appears, the speaker does not perceive it, reflecting trust and endurance. When a benefactor comes, fortune and wealth naturally follow, emphasizing how generosity and support influence one’s luck.",
+    "jp": "這首詩の主題は、仏の保護と忍耐、親切な人々との関係の重要性です。朝夕は仏に頼ることで、日々の導きを示し、危険を感じてもそれを見逃す信頼と忍耐を表しています。貴人が助けると、幸福と富が自然に訪れ、恩恵と支援が人の運勢に影響を与えることを強調しています。",
+    "reference": "*(傳籟本作傳賴。有作全賴)家宅　安。自身　吉。求財　西方。交易　遂。婚姻　成。六甲　祈福。行人　阻。田蠶　七分。六畜　利。尋人　西方。公訟　虧。移徙　守舊。失物　見。疾病　祈福。山墳　吉。1.唐僧得道一天來到河邊。佛祖靈山在望。有一獨木橋。唐僧不敢走過。佛祖化身船夫並撐著無底破船。唐僧跌下河中。被船夫救起。唐僧就此得証佛道了。2.唐僧得道唐三藏信姓陳名禕。十三歲出家。法號玄奘。往天竺(印度)取經。歷盡艱辛。四年始達。學習十五年後返國。攜回大量佛經。並譯成中文。西遊記內述其故事。3.呂蒙正破窯守困參考雷雨師一百籤第五籤『呂蒙正守困』宋(朝)呂蒙正。字聖初。河南人。父龜圖與母不合並。蒙正老遂之時。貧甚。投跡龍門。封僧鑿山巖為龕。禁足不出。守困此年。太宗時。舉延試第一。二歷相府。以直道自持。拜太師。致仕歸。累封許國公。卒謚文穆。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The reliance on Buddha’s guidance is presented as a steady source of support, highlighting spiritual protection throughout daily life.\n- The speaker’s perception that danger is not apparent illustrates faith, patience, and trust in divine help.\n- The presence of a benefactor or wise ally is portrayed as the catalyst that brings blessings and prosperity.\n- Overall, the poem emphasizes that with steadfast faith, patience, and the assistance of benevolent people, one can achieve personal fortune and well-being.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:26:10",
+    "source_file": "chuck_62.json",
+    "raw_llm_response_preview": "{\"id\": 62, \"title\": \"觀音一百籤第六十二籤\", \"subtitle\": \"寅宮\", \"fortune\": \"中籤\", \"poem\": \"晨昏全賴佛扶持、雖是逢危不見危、若得貴人來接引、此時福祿自相隨。\", \"analysis\": {\"zh\": \"這首詩的主題是神佛的庇佑與人間的順遂。晨昏全靠佛扶持，暗示無論日夜都受佛祈福；雖遇危險卻不見危險，表現出對佛的信賴與忍耐；若有貴人相助，福祿自然隨之而來，強調人際關係與恩惠對個人吉運的重要性。\", \"en\": \"這首詩的主題是 Buddha’s protection and the importance of patience an"
+  }
+}

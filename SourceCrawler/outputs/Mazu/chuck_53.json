@@ -1,0 +1,25 @@
+{
+  "id": 53,
+  "title": "六十甲子籤第五十三籤",
+  "subtitle": "屬金利秋　宜其西方",
+  "fortune": "壬申○○○　○●○",
+  "poem": [
+    "看君來問心中事",
+    "積善之家慶有餘",
+    "運亨財子雙雙至",
+    "指日喜氣溢門閭"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是說，當你詢問心中的疑問時，行善之人會得到福報，財運與運勢皆順利，喜氣將滿溢進門。籤示運勢已轉好，繼續做好事即可迎來財富與喜悅，若問婚姻或生育，亦有成吉之意。",
+    "en": "The poem speaks of asking one's inner concerns and indicates that those who do good deeds are rewarded; luck and wealth are both favorable, and happiness will flow into the household. This fortune card signals that fortunes are improving, and by continuing virtuous acts, one will attract prosperity and joy; it also hints at positive outcomes in marriage or childbearing.",
+    "jp": "この詩は、心の中の疑問を尋ねたとき、善行を行う者には福がもたらされ、運勢と財運がともに好調で、喜びが家に満ち溢れると語っています。籤は運勢が上向きになっていることを示し、善い行いを続ければ繁栄と喜びを招き、結婚や子育てにおいても良い結果が期待できることを示唆しています。",
+    "reference": "1.蘇秦夫妻相會2.蘇秦不第戰國。蘇秦。洛陽人。師鬼谷子。游說秦王。書十二上其說。不行。裘敝金盡。憔悴而歸。至家妻不下(織)機。(不理睬其夫)嫂不為炊。(不煮飯給其叔)秦慚怒。得太公陰符。發憤苦讀。困怠時用錐刺股。痛而再讀。後以合從(合縱)之說。聯六國抗秦。說趙竟佩六國相印。後回家喜氣洋洋。3.蘇秦回家假不第凡事　大吉。有貴人。作事　成好。家事　進益無窮。家運　禎祥福祉。婚姻　成好。(益夫旺子)求兒　大富貴。六甲　先男後女。(雙生貴子)求財　積善大利。功名　無。(可得進)歲君　中平。治病　拖尾不畏。平安。出外　好。(利路亨通)經商　萬利可得。來人　月光到。行舟　大吉利。移居　平安。失物　援尋。求雨　月尾到。官事　緊審和好。(完者大吉)六畜　可納平安。耕作　中平。(大利)築室　可好。(瑞氣呈祥)墳墓　大吉。(世代流芳)討海　可得大進。作塭　滿載而歸。魚苗　有大利。月令　平安。尋人　得回。遠信　速報佳音。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The seeker is advised to reflect on inner concerns, with the assurance that moral actions bring blessings.\n- Good fortune (運) and financial prosperity (財) are both highlighted as forthcoming, suggesting a holistic improvement in life.\n- The imagery of “喜氣溢門閭” emphasizes that happiness will flood the household, symbolizing the return of joy and abundance.\n- The line “運亨財子雙雙至” subtly hints at dual blessings: wealth and a potential new life (子), pointing toward positive outcomes in marriage or childbearing.\n- Overall, the verse encourages virtuous deeds as the key to unlocking sustained luck and prosperity, while portraying a hopeful future where blessings arrive at the doorstep.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:37:45",
+    "source_file": "chuck_53.json",
+    "raw_llm_response_preview": "{\"id\":53,\"title\":\"六十甲子籤第五十三籤\",\"subtitle\":\"屬金利秋　宜其西方\",\"fortune\":\"壬申○○○　○●○\",\"poem\":[\"看君來問心中事\",\"積善之家慶有餘\",\"運亨財子雙雙至\",\"指日喜氣溢門閭\"],\"analysis\":{\"zh\":\"這首詩的主題是說，當你詢問心中的疑問時，行善之人會得到福報，財運與運勢皆順利，喜氣將滿溢進門。籤示運勢已轉好，繼續做好事即可迎來財富與喜悅，若問婚姻或生育，亦有成吉之意。\",\"en\":\"The poem speaks of asking one's inner concerns and indicates that"
+  }
+}

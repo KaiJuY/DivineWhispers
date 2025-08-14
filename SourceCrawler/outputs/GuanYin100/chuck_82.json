@@ -1,0 +1,20 @@
+{
+  "id": 82,
+  "title": "觀音一百籤第八十二籤",
+  "subtitle": "未宮",
+  "fortune": "中籤",
+  "poem": "炎炎烈火焰燒天、焰裡還生一朵蓮、到底永成根不壞、依然枝葉色新鮮。",
+  "analysis": {
+    "zh": "這首詩的主題是此卦象徵火中生蓮，意謂困境中亦有生機。凡事表面似險，實則不至於傷害。即使遭遇危險，也不受損害。無論是計劃或事務，皆會遇到貴人相助。",
+    "en": "這首詩的主題是The poem symbolizes a lotus blossoming amidst flames, signifying that even in peril there is potential for renewal. Things that appear dangerous on the surface are actually harmless. Even when confronted with danger, one remains safe. Whether planning or handling affairs, benevolent figures will provide assistance.",
+    "jp": "這首詩的主題は火の中で咲く蓮を象徴し、危険の中にあっても生き延びる可能性があることを示しています。表面的に危険に見えるものは実際には害を与えない。危険に直面しても自分は損なわれない。計画や事業を進める際には、貴人が助けてくれるでしょう。",
+    "reference": "家宅　欠安。自身　謹防。求財　勞力。交易　小人。婚姻　阻。六甲　虛驚。行人　阻。田蠶　缺。六畜　損。尋人　西。公訟　虧。移徙　守舊。失物　南。疾病　設送。山墳　改。1.火燒葫蘆谷三國。赤壁之戰曹操大敗。落荒而逃。孔明派大將于各處埋伏。曹操至葫蘆谷口休息。見地勢險要又無伏兵而哈哈大笑。忽聞炮響。張飛殺到。山谷到處起火。曹操急上馬。狼狽奔逃。敗走華容道。籤詩與故事不合。2.呂純陽重生梓樹（呂純陽即呂洞賓）呂洞賓當初在岳陽樓度脫了一枝柳樹，因為他是土木形骸，不能成仙。於是令其投胎樓下賣茶人郭家為男，名為馬兒。又令白梅花精托生賀姓為女，名為臘梅，共成夫婦。相約三十年後，再來度化。三十年後，呂來度化，而郭馬兒已忘前因。三次度化，郭仍不悟。呂乃以劍授郭，令殺妻後出家修道。郭本無意殺妻，姑帶劍回家，賀臘梅之頭忽然自落，郭大恨，控呂於官。在堂上，呂謂臘梅未死，一呼即來，於是官遂坐郭誣告之罪。郭大恐，求呂救免，抬頭一見問官，則是八仙中之鍾離權。郭遂悟前因，並與臘梅從呂入道。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that intense flames symbolize adversity while a lotus still blooms, indicating resilience and renewal. - Fire represents destruction or challenging circumstances. - The lotus growing within the fire shows that purity and hope can arise in harsh conditions. - Roots that never break signify inner strength and stability. - Fresh leaves illustrate ongoing vitality and the potential for fresh beginnings. The poem conveys that outer turmoil does not destroy the core essence, and there may be supportive figures aiding the journey.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:39:59",
+    "source_file": "chuck_82.json",
+    "raw_llm_response_preview": "{\"id\":82,\"title\":\"觀音一百籤第八十二籤\",\"subtitle\":\"未宮\",\"fortune\":\"中籤\",\"poem\":\"炎炎烈火焰燒天、焰裡還生一朵蓮、到底永成根不壞、依然枝葉色新鮮。\",\"analysis\":{\"zh\":\"這首詩的主題是此卦象徵火中生蓮，意謂困境中亦有生機。凡事表面似險，實則不至於傷害。即使遭遇危險，也不受損害。無論是計劃或事務，皆會遇到貴人相助。\",\"en\":\"這首詩的主題是The poem symbolizes a lotus blossoming amidst flames, signifying that even in peril there is"
+  }
+}

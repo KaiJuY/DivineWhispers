@@ -1,0 +1,25 @@
+{
+  "id": 57,
+  "title": "關聖帝君一百籤第五十七籤",
+  "subtitle": "欄柯觀棋己庚",
+  "fortune": "中平",
+  "poem": [
+    "事端百出慮雖長",
+    "莫聽人言自主張",
+    "一著仙機君記取",
+    "紛紛鬧裏更思量"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於面對複雜局勢時，保持自主思考與果斷行動的重要性。詩中提到「事端百出慮雖長」說明事情多，思緒繁瑣；「莫聽人言自主張」則提醒不要聽信外界聲音，要堅持自己的主張；「一著仙機君記取」鼓勵一旦找到明確方案，立即行動；「紛紛鬧裏更思量」則指出若被各方意見淹沒，反而會拖延決策。",
+    "en": "這首詩的主題是描述在許多複雜情況下，思緒可能拖延的情景，並強調不要聽從他人建議，而應堅持自己的立場；一旦找到明確方案（“仙機”），就應立即採取行動；混亂的各方意見會導致拖延。",
+    "jp": "この詩のテーマは、数多くの問題が発生したときに思考が長くなることを示し、他人の意見に耳を傾けず、自分の立場を主張すべきだということです。一旦明確な解決策（「仙機」）が見つかったらすぐに行動し、混乱する多様な意見に惑わされないようにすることが重要です。",
+    "reference": "晉。王質。採樵信步入深山。見兩童子在石上對奕。質置斧旁觀。童子與質。一物形如棗核。食之不饑。至局終謂質曰。此非人間。仙家片刻。凡世百年。爾合急歸。質回頭見柯己爛。匆惶而歸至家。景物全非。人莫之識。爛柯山今在浙省衢州府。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It highlights how multiple issues can extend one’s thoughts and cause hesitation.\n- It advises against listening to external advice, urging the speaker to maintain their own stance.\n- When a clear solution appears (the “仙機”), decisive action should be taken immediately.\n- A cacophony of conflicting opinions can lead to further indecision and delay.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:51:11",
+    "source_file": "chuck_57.json",
+    "raw_llm_response_preview": "{\"id\":57,\"title\":\"關聖帝君一百籤第五十七籤\",\"subtitle\":\"欄柯觀棋己庚\",\"fortune\":\"中平\",\"poem\":[\"事端百出慮雖長\",\"莫聽人言自主張\",\"一著仙機君記取\",\"紛紛鬧裏更思量\"],\"analysis\":{\"zh\":\"這首詩的主題是關於面對複雜局勢時，保持自主思考與果斷行動的重要性。詩中提到「事端百出慮雖長」說明事情多，思緒繁瑣；「莫聽人言自主張」則提醒不要聽信外界聲音，要堅持自己的主張；「一著仙機君記取」鼓勵一旦找到明確方案，立即行動；「紛紛鬧裏更思量」則指出若被各方意見淹沒，反而會拖延決策。\",\"en\":\"這首詩的主題是描述在許多複雜情況下"
+  }
+}

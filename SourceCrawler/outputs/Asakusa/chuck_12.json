@@ -1,0 +1,20 @@
+{
+  "id": 12,
+  "title": "日本淺草觀音寺一百籤第十二籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "楊柳遇春時,殘花發舊枝,重重霜雪裡,黃金色更輝",
+  "analysis": {
+    "zh": "這首詩的主題是柳樹在春天復蘇的美景，描繪了即使在寒霜與雪覆之下，仍能綻放金色光輝的堅韌與希望。",
+    "en": "This poem’s theme is the resilience and renewal of the willow tree in spring, depicting how even amid heavy frost and snow, it still bursts into a golden radiance, symbolizing hope and steadfastness.",
+    "jp": "この詩のテーマは、春に芽吹く柳の再生と忍耐力を描いており、重い霜や雪の中でも金色の輝きを放つ様子を通じて、希望と粘り強さを象徴しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The willow meeting spring represents the renewal of life.\n- Buds sprouting from old branches illustrate growth emerging from decay.\n- The heavy frost and snow symbolize the hardships faced.\n- The golden hue shining brighter in the cold conveys hope and resilience.\n- Overall, the poem celebrates the beauty that can arise even in the midst of adversity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:50:37",
+    "source_file": "chuck_12.json",
+    "raw_llm_response_preview": "{\"id\":12,\"title\":\"日本淺草觀音寺一百籤第十二籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"楊柳遇春時,殘花發舊枝,重重霜雪裡,黃金色更輝\",\"analysis\":{\"zh\":\"這首詩的主題是柳樹在春天復蘇的美景，描繪了即使在寒霜與雪覆之下，仍能綻放金色光輝的堅韌與希望。\",\"en\":\"This poem’s theme is the resilience and renewal of the willow tree in spring, depicting how even amid heavy frost and snow, it stil"
+  }
+}

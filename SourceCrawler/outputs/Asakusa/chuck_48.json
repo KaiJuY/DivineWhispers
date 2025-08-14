@@ -1,0 +1,20 @@
+{
+  "id": 48,
+  "title": "日本淺草觀音寺一百籤第四十八籤",
+  "subtitle": "",
+  "fortune": "小吉",
+  "poem": "見祿隔前溪,勞心休更迷,一朝逢好渡,鸞鳳入雲飛",
+  "analysis": {
+    "zh": "這首詩描寫了雖然看見前方的好處，卻因心中煩亂而難以把握；若有適時的良機，便能順利渡過難關；最後如鳳凰入雲，象徵得勢與升遷。",
+    "en": "The verse expresses that although blessings lie ahead, a troubled heart makes them hard to grasp. When a favorable opportunity arises, one can smoothly cross the obstacles, and the phoenix entering the clouds symbolizes success and upward movement.",
+    "jp": "この詩は、前にある幸運が見えるものの、心の迷いがそれを掴みにくくさせている様子を描いています。適切な時期に良い機会に巡り合えば、障害をスムーズに乗り越えられ、鳳凰が雲に入るように成功や昇進を象徴します。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that visible blessings may remain elusive when the heart is troubled, but with the right timing one can cross difficulties. It highlights:\n- A clear vision of future prosperity juxtaposed with inner confusion.\n- The phoenix (鸞鳳) soaring into clouds as a symbol of elevated status and eventual triumph.\n- The importance of patience and seizing the right moment.\n- A subtle reassurance that the path to success is not impossible, merely delayed by mental distraction.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:05:42",
+    "source_file": "chuck_48.json",
+    "raw_llm_response_preview": "{\"id\":48,\"title\":\"日本淺草觀音寺一百籤第四十八籤\",\"subtitle\":\"\",\"fortune\":\"小吉\",\"poem\":\"見祿隔前溪,勞心休更迷,一朝逢好渡,鸞鳳入雲飛\",\"analysis\":{\"zh\":\"這首詩描寫了雖然看見前方的好處，卻因心中煩亂而難以把握；若有適時的良機，便能順利渡過難關；最後如鳳凰入雲，象徵得勢與升遷。\",\"en\":\"The verse expresses that although blessings lie ahead, a troubled heart makes them hard to grasp. When a favorable o"
+  }
+}

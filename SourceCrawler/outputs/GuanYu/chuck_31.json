@@ -1,0 +1,25 @@
+{
+  "id": 31,
+  "title": "關聖帝君一百籤第三十一籤",
+  "subtitle": "蘇卿負信丁甲",
+  "fortune": "中吉",
+  "poem": [
+    "秋冬作事只尋常",
+    "春到門庭漸吉昌",
+    "千里信音符遠望",
+    "萱堂快樂未渠央"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是...秋冬之時，事情平平，必須等到春天才可漸進成功；遠方傳來的音訊如同安慰，提醒我們千里之外的消息也能帶來希望。詩句強調順其自然、循序漸進的態度，避免急躁，才會迎來吉利與安寧。",
+    "en": "這首詩的主題是... The poem emphasizes that during autumn and winter, affairs remain ordinary, and one must wait for spring to see gradual progress. The distant sound of a message serves as a reassurance that even faraway news can bring hope. It encourages a patient, step‑by‑step approach rather than haste, leading to auspicious outcomes.",
+    "jp": "この詩のテーマは... この詩は、秋冬の時期は何も特別ではなく、春になるまで順調に進むのを待つべきだと語っています。遠くから届く音が、遠方からの知らせでも希望をもたらすことを示し、焦らずに一歩ずつ進むことが吉運を呼び込むとしています。",
+    "reference": "漢。蘇武字。子卿。使匈奴。被留十九年。有一番女奉待甚殷。子卿納之。與生三子。歸時約其再往。迨到中國。後不克踐約。二子奉母命。來請蘇卿。置而不顧。番女所由責其有節而無信焉。盜謂聚猩猩之女非也。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Autumn and winter represent ordinary, unremarkable periods where progress stalls.\n- Spring symbolizes renewal and the gradual unfolding of success.\n- The distant sound of a message conveys that even far‑off communication can bring comfort and hope.\n- The poem urges patience and incremental action, warning against hasty moves.\n- Ultimately, it teaches that perseverance through the ordinary seasons leads to auspicious outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:37:18",
+    "source_file": "chuck_31.json",
+    "raw_llm_response_preview": "{\"id\":31,\"title\":\"關聖帝君一百籤第三十一籤\",\"subtitle\":\"蘇卿負信丁甲\",\"fortune\":\"中吉\",\"poem\":[\"秋冬作事只尋常\",\"春到門庭漸吉昌\",\"千里信音符遠望\",\"萱堂快樂未渠央\"],\"analysis\":{\"zh\":\"這首詩的主題是...秋冬之時，事情平平，必須等到春天才可漸進成功；遠方傳來的音訊如同安慰，提醒我們千里之外的消息也能帶來希望。詩句強調順其自然、循序漸進的態度，避免急躁，才會迎來吉利與安寧。\",\"en\":\"這首詩的主題是... The poem emphasizes that during autumn and winter, a"
+  }
+}

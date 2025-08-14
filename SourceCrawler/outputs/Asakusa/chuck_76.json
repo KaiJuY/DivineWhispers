@@ -1,0 +1,20 @@
+{
+  "id": 76,
+  "title": "日本淺草觀音寺一百籤第七十六籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "富貴天之祐,何須苦用心,前程應顯跡,久用得高臨",
+  "analysis": {
+    "zh": "這首詩的主題是上天的恩賜與長期善行帶來的財富與地位。詩中說『富貴天之祐，何須苦用心』，意即富貴與名利皆來自天命，非單靠人力可得。它提醒人們不必過於焦慮，未來的軌跡將隨著所作之善自然顯現。持續行善、恪守正道，終將『久用得高臨』，使地位升遷、財寶滿盈。整體上，詩句鼓勵以虔誠之心，順應天意，長久地實踐善行，便能獲得順遂與富足。",
+    "en": "這首詩的主題是上天的恩惠與長期善行帶來的財富與地位。The poem declares that prosperity and status are gifts from heaven: ‘富貴天之祐，何須苦用心’, meaning that wealth and renown come from divine grace, not merely human effort. It encourages letting go of worry; your future trajectory will naturally reveal itself based on the righteousness of your deeds. By persistently practicing virtue and following the righteous path, one will ultimately ‘久用得高臨’, achieving higher standing and ample wealth. In short, the poem urges a devout heart, following divine will, and steady righteous conduct to attain ease and prosperity.",
+    "jp": "這首詩のテーマは、天からの恵みと長期的な善行によってもたらされる財産と地位です。詩は『富貴天之祐、何須苦用心』と語り、富と名誉は天命から与えられるもので、人間の努力だけでは得られないと示しています。焦らず、将来の軌道は善行に応じて自然に明らかになると励ましています。善行を継続し、正道を守れば、最終的に『久用得高臨』となり、地位が上がり、財宝が豊かになると詩は言っています。要するに、神の意志に従い、誠実に善行を続けることで、順調で豊かな人生を得られるというメッセージです。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Prosperity and status are presented as gifts from heaven rather than outcomes of personal struggle.\n- The poet advises to abandon excessive worry; fate will unfold naturally based on one's conduct.\n- Persistent practice of righteousness and consistent good deeds will eventually lead to elevated standing and material wealth.\n- The message encourages a humble, grateful attitude that aligns with divine will, suggesting long-term virtuous behavior as the key to success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:18:41",
+    "source_file": "chuck_76.json",
+    "raw_llm_response_preview": "{\"id\":76,\"title\":\"日本淺草觀音寺一百籤第七十六籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"富貴天之祐,何須苦用心,前程應顯跡,久用得高臨\",\"analysis\":{\"zh\":\"這首詩的主題是上天的恩賜與長期善行帶來的財富與地位。詩中說『富貴天之祐，何須苦用心』，意即富貴與名利皆來自天命，非單靠人力可得。它提醒人們不必過於焦慮，未來的軌跡將隨著所作之善自然顯現。持續行善、恪守正道，終將『久用得高臨』，使地位升遷、財寶滿盈。整體上，詩句鼓勵以虔誠之心，順應天意，長久地實踐善行，便能獲得順遂與富足。\",\"en\":\"這首詩的主題是上天的恩惠與長期善行"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 18,
+  "title": "日本淺草觀音寺一百籤第十八籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "離暗出明時,麻衣變綠衣,舊憂終是退,遇祿應交輝",
+  "analysis": {
+    "zh": "離暗出明時，暗雲散去，天空逐漸明朗，仿佛月光溢出。麻衣變綠衣，象徵脫去舊衣，換上新裝，心境焕然，繼續行善。舊憂終退，長久的憂愁也會漸漸消散。遇祿應交輝，福德自然增長，人生將呈現光輝。整首詩鼓勵人們以堅持與更新的姿態迎接好運與希望。",
+    "en": "When darkness gives way to light, the clouds part and the sky brightens like a glowing moon. The hemp garment turns green, symbolizing the shedding of old clothes and donning fresh attire, signaling a renewed spirit for doing good. Past anxieties eventually fade, and auspicious encounters bring blessings that shine. The poem encourages perseverance, renewal, and the anticipation of favorable fortune and hope.",
+    "jp": "暗闇が明るさに変わるとき、雲が晴れ渡り、空は月光のように明るくなります。麻の衣が緑に変わるのは、古い服を脱ぎ捨て新しい衣をまとうことで、善行に新たな心構えで臨むことを象徴しています。古い憂慮はやがて消えていき、縁起の良い出会いが福徳を輝かせます。詩全体は、忍耐と再生の姿勢で良い運と希望を迎えるよう促しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- \"離暗出明時\" symbolizes the end of darkness and the arrival of clarity, with the sky clearing indicating improved circumstances.\n- \"麻衣變綠衣\" represents shedding old burdens and donning fresh, hopeful attire, suggesting renewal and optimism.\n- \"舊憂終是退\" indicates lingering worries will gradually fade.\n- \"遇祿應交輝\" conveys that auspicious encounters will bring blessings and radiant success.\n- Overall, the verse encourages perseverance, renewal, and the expectation that good fortune will arrive, fostering hope for wishes, health, and positive outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:52:51",
+    "source_file": "chuck_18.json",
+    "raw_llm_response_preview": "{\"id\":18,\"title\":\"日本淺草觀音寺一百籤第十八籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"離暗出明時,麻衣變綠衣,舊憂終是退,遇祿應交輝\",\"analysis\":{\"zh\":\"離暗出明時，暗雲散去，天空逐漸明朗，仿佛月光溢出。麻衣變綠衣，象徵脫去舊衣，換上新裝，心境焕然，繼續行善。舊憂終退，長久的憂愁也會漸漸消散。遇祿應交輝，福德自然增長，人生將呈現光輝。整首詩鼓勵人們以堅持與更新的姿態迎接好運與希望。\",\"en\":\"When darkness gives way to light, the clouds part and the sky br"
+  }
+}

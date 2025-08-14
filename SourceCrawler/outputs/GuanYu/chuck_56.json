@@ -1,0 +1,25 @@
+{
+  "id": 56,
+  "title": "關聖帝君一百籤第五十六籤",
+  "subtitle": "王樞密奸險己己",
+  "fortune": "下下",
+  "poem": [
+    "心頭理曲強詞遮",
+    "直欲欺官行路斜",
+    "一旦醜形臨月鏡",
+    "身投憲網莫咨嗟"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：揭示用詭計和欺瞞走非法道路的人，若被曝光於法律之網，後悔已無及。詩中提醒讀者不能寄望於隱蔽之策，善有善報、惡有惡報，天理昭彰。舉例說明：南部某人為贏訴訟而行賄，結果被揭發，身敗名裂；又有一人求財，詩告其財運不順，建議勿強求，最終因走私案被捕。",
+    "en": "This poem's theme is: a warning against using tricks and deceit to pursue unlawful paths. If such deceit is uncovered by the law, regret comes too late. The poem advises against hoping for hidden shortcuts, emphasizing that good is rewarded, evil punished, and justice inevitably prevails. It illustrates the warning with real‑life anecdotes – a man who bribed officials to win a lawsuit was exposed and disgraced; another sought wealth and, ignoring the poem’s counsel, was later imprisoned for smuggling.",
+    "jp": "この詩のテーマは、詐欺や欺瞞を使って違法な道を歩む人への警告です。もしその欺瞞が法網に捕らえられたら、後悔するには遅すぎます。詩は隠れた策に頼らず、善は報いられ、悪は罰せられ、正義は必ず到来することを強調しています。実例として、訴訟勝利を求めて賄賂を行い、暴露され名誉を失った男性、また、財を求めて詩の忠告を無視し、後に密輸で捕らえられた男性が挙げられます。",
+    "reference": "宋。黃欽若。字定國。官至樞密。封冀國公。諡文穆。仁宗嘗謂輔臣曰。欽若久在政府。觀其所為。真奸邪也。澶淵之役。遼已大震。冠準請乘破竹之勢。以復燕雲。欽若妒功。乃以孤注阻之。真宗竟許遼盟。使宋終燕雲。欽若之罪也。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The narrator warns against deception and manipulation, especially when trying to avoid legal consequences.\n- Once the deceit is exposed, the individual will be caught by the law and have no chance to regret.\n- The poem emphasizes the inevitability of moral balance: good is rewarded, evil is punished, and justice is inevitable.\n- Real‑life anecdotes illustrate the warning: a man who bribed officials to win a lawsuit fell from grace; another who sought wealth but ignored the poem’s advice ended up imprisoned for smuggling.\n- Overall, the poem urges readers to act with integrity, refrain from shortcuts, and accept responsibility for their actions.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:50:36",
+    "source_file": "chuck_56.json",
+    "raw_llm_response_preview": "{\n  \"id\": 56,\n  \"title\": \"關聖帝君一百籤第五十六籤\",\n  \"subtitle\": \"王樞密奸險己己\",\n  \"fortune\": \"下下\",\n  \"poem\": [\n    \"心頭理曲強詞遮\",\n    \"直欲欺官行路斜\",\n    \"一旦醜形臨月鏡\",\n    \"身投憲網莫咨嗟\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：揭示用詭計和欺瞞走非法道路的人，若被曝光於法律之網，後悔已無及。詩中提醒讀者不能寄望於隱蔽之策，善有善報、惡有惡報，天理昭彰。舉例說明：南部某人為贏訴訟而行賄，結果被揭發，身敗名裂；又有一人求財，詩告其財運不"
+  }
+}

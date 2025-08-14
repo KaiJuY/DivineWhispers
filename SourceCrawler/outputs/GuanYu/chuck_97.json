@@ -1,0 +1,25 @@
+{
+  "id": 97,
+  "title": "關聖帝君一百籤第九十七籤",
+  "subtitle": "買臣五十富貴癸庚",
+  "fortune": "上上",
+  "poem": [
+    "五十功名心已灰",
+    "那知富貴逼人來",
+    "更行好事存方寸",
+    "壽比岡陵位鼎台"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是…詩人以五十歲為轉折點，表達對功名的失望與突如其來的富貴與地位。第一句說明心志已經灰塵，第二句則呈現富貴逼人而來，第三句提醒仍需以善行守住方寸，保持內心清明。最後一句以壽比岡陵、位鼎台的比喻，象徵長壽與高尚的地位，暗示善行可帶來不僅是財富，更有長壽與尊崇。",
+    "en": "這首詩的主題是…The poem centers on the turning point at age fifty, where the poet’s longing for fame has faded, yet sudden fortune and status appear. It stresses that maintaining a clear mind through virtuous actions leads to a life of longevity comparable to the heights of revered graves or bronze platforms, implying that good deeds can bring lasting respect and health.",
+    "jp": "この詩の主題は…詩は五十歳を転換点として、功名への熱望が薄れた後、急に富貴と地位が押し寄せることを語ります。善行を通じて心を清らかに保つことが、山の墓や鼎のように高い寿命と尊敬に至るという教えを示しています。",
+    "reference": "漢。朱買臣。會稽人。家貧。賣薪自給。行歌誦書。妻羞之。求去。買臣曰。吾年五十當富貴。即時自可報汝。妻不聽。適田夫後。買臣果五十為會稽太守。妻與田夫治道迎官。買臣駐車呼之。以車載其夫婦。舍園中給食一月。妻慚自縊。與夫錢以葬之。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The turning point at fifty where the pursuit of fame has faded.\n- The sudden arrival of wealth and status.\n- The importance of keeping a clear mind through good deeds.\n- Longevity symbolized by surpassing the heights of revered graves or bronze platforms.\n- The overarching philosophy that a life guided by virtue can secure lasting respect and health.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:11:51",
+    "source_file": "chuck_97.json",
+    "raw_llm_response_preview": "{\"id\":97,\"title\":\"關聖帝君一百籤第九十七籤\",\"subtitle\":\"買臣五十富貴癸庚\",\"fortune\":\"上上\",\"poem\":[\"五十功名心已灰\",\"那知富貴逼人來\",\"更行好事存方寸\",\"壽比岡陵位鼎台\"],\"analysis\":{\"zh\":\"這首詩的主題是…詩人以五十歲為轉折點，表達對功名的失望與突如其來的富貴與地位。第一句說明心志已經灰塵，第二句則呈現富貴逼人而來，第三句提醒仍需以善行守住方寸，保持內心清明。最後一句以壽比岡陵、位鼎台的比喻，象徵長壽與高尚的地位，暗示善行可帶來不僅是財富，更有長壽與尊崇。\",\"en\":\"這首詩的主題是…The poem cent"
+  }
+}

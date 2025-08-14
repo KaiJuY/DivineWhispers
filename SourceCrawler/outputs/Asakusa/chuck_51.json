@@ -1,0 +1,20 @@
+{
+  "id": 51,
+  "title": "日本淺草觀音寺一百籤第五十一籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "修進甚功辛,勞生未得時,騰身遊碧漢,方得遇高枝",
+  "analysis": {
+    "zh": "此籤詩說，雖努力修行，但收穫仍未到。心中懷抱遠大志向，努力不懈仍待時機；若把握機會，終能升遷、獲得榮譽與財富，安心無憂。",
+    "en": "This poem’s theme is perseverance and the delayed fruition of diligent efforts. It speaks of working hard yet not yet reaping the rewards, encouraging continued dedication and patience. When the right moment arrives, success, recognition, and prosperity will follow, bringing peace of mind.",
+    "jp": "この詩のテーマは、勤勉であっても実らず、実りの時を待つということです。努力を続け、辛抱強く待つことが重要であり、機会が訪れれば昇進や名誉、富が得られ、安心できると示唆しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The speaker is diligently working, yet the results have not materialized.\n- There is a sense of longing for higher aspirations and a need for perseverance.\n- The poem encourages patience and continued effort, implying that eventual success, recognition, and material rewards are forthcoming.\n- It conveys the philosophical idea that hard work requires time and that rewards are tied to the right moment of opportunity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:21:09",
+    "source_file": "chuck_51.json",
+    "raw_llm_response_preview": "{\"id\":51,\"title\":\"日本淺草觀音寺一百籤第五十一籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"修進甚功辛,勞生未得時,騰身遊碧漢,方得遇高枝\",\"analysis\":{\"zh\":\"此籤詩說，雖努力修行，但收穫仍未到。心中懷抱遠大志向，努力不懈仍待時機；若把握機會，終能升遷、獲得榮譽與財富，安心無憂。\",\"en\":\"This poem’s theme is perseverance and the delayed fruition of diligent efforts. It speaks of working hard yet not yet "
+  }
+}

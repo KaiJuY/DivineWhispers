@@ -1,0 +1,25 @@
+{
+  "id": 70,
+  "title": "關聖帝君一百籤第七十籤",
+  "subtitle": "王曾祈禱庚癸",
+  "fortune": "中平",
+  "poem": [
+    "雷雨風雲各有司",
+    "至誠禱告莫生疑",
+    "與君定約為霖日",
+    "正是蘊隆中伏時"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是… 雲雷雨風各有其神祇掌管，至誠的禱告能打動這些天機，將乾旱的季節轉化為甘霖。詩中指出，正是「隆中」的中伏時期，預示著雨將降臨。",
+    "en": "這首詩的主題是… The poem portrays that thunder, rain, wind, and cloud are each governed by their own divine forces, and sincere prayers can stir these powers, turning a dry season into sweet rain. It points to the hidden central period of the year (mid‑summer) where rain is promised to arrive.",
+    "jp": "這首詩の主題は… 雲・雷・雨・風はそれぞれに神の意志があり、誠実な祈りでそれらを動かし、干ばつの季節を甘露に変えることが示唆されています。詩は、隆中の中伏時期に雨が降ると告げています。",
+    "reference": "宋。王曾。字孝先。益都人。自少穎悟。善為文辭。咸平中三元及第。累官石僕。財乎章事。封沂國公。諡文正。居官之日。偶偵乾旱。輒竭誠禱。必沛自霖。乃止。其在明廷。正色危言。進退士人。莫有知者。嘗曰。夫執政者。恩欲歸己。怨欲歸誰。范仲淹深服其言。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: • The natural elements—thunder, rain, wind, and cloud—each follow their own divine order. • Sincere prayer serves as the conduit that can influence these forces, turning a dry season into sweet rain. • The poem specifically mentions that during the hidden central (mid‑summer) period, a long‑awaited rain will finally arrive, offering relief from drought. • Symbolically, this reflects the interplay of genuine faith and timely action in bringing about favorable change.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:59:05",
+    "source_file": "chuck_70.json",
+    "raw_llm_response_preview": "{\n  \"id\": 70,\n  \"title\": \"關聖帝君一百籤第七十籤\",\n  \"subtitle\": \"王曾祈禱庚癸\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"雷雨風雲各有司\",\n    \"至誠禱告莫生疑\",\n    \"與君定約為霖日\",\n    \"正是蘊隆中伏時\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是… 雲雷雨風各有其神祇掌管，至誠的禱告能打動這些天機，將乾旱的季節轉化為甘霖。詩中指出，正是「隆中」的中伏時期，預示著雨將降臨。\",\n    \"en\": \"這首詩的主題是… The poem portrays th"
+  }
+}

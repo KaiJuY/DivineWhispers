@@ -1,0 +1,25 @@
+{
+  "id": 3,
+  "title": "六十甲子籤第三籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "甲辰○○○　●○●",
+  "poem": [
+    "勸君把定心莫虛",
+    "天註衣祿自有餘",
+    "和合重重常吉慶",
+    "時來終遇得明珠"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是安定心態與接受天命，並透過和諧相處來尋求吉祥與成果。詩中先勸人「把定心莫虛」提醒不要胡思亂想，保持內心的安定；接著說「天註衣祿自有餘」指出財物與機會已由天注定，無須過度焦慮；「和合重重常吉慶」強調與人相互配合、和諧相處會不斷帶來好運；最後「時來終遇得明珠」則表達到合適的時機時，將能得到心中所渴望的「明珠」，象徵最終的成功或理想。整體寓意為順應天意、保持內心安定，並以和合為基礎，等待時機降臨，方能實現願望。",
+    "en": "This poem's theme is maintaining inner calm and accepting fate, using harmony to seek fortune and fulfillment. It first urges the reader to \"settle the heart, do not indulge in emptiness,\" warning against restless thoughts; then states that \"Heaven has already allotted clothing and income,\" implying that material blessings are predetermined, so worry need not be excessive. \"Harmony and cooperation repeatedly bring good fortune\" highlights that mutual cooperation and harmonious relationships continually yield blessings. Finally, \"When the time comes, you will meet the bright pearl\" conveys that at the right moment one will attain the sought-after \"pearl,\" symbolizing ultimate success or desire. The overall message encourages embracing destiny, keeping calm, fostering harmonious relations, and patiently awaiting the right moment to realize one's goals.",
+    "jp": "この詩のテーマは、心を落ち着かせ天命を受け入れ、和合（協調）を通じて吉祥と成果を求めることです。まず「定心を持ち、虚無を避けるよう勧める」で、無駄な思考をやめて内なる安定を保つよう促します。続く「天は衣祿を余って注ぐ」では、金銭や機会はすでに天が定めていると示し、過度な不安は不要であることを示唆します。「和合が重なれば常に吉慶が訪れる」では、相互に協調し合うことで常に幸運が訪れると強調。最後に「時が来れば必ず明珠に出会える」では、適切なタイミングで望む「明珠（成功や理想の象徴）」に辿り着くと語ります。全体として、天命に順応し、内なる平静を保ち、和合を重んじ、適時に願いを実現することを訴える詩です。",
+    "reference": "一、朱德武入寺相分明二、崔文德胡鳳嬌到家空成婚三、沈萬三掘寶與正德君鬥法沈萬三是明朝有錢人，捕魚鑽錢，因為挖得寶藏致富，傳聞中其家中有一個只要放進東西，該項東西就會裝滿盆的聚寶盆，據說這也是他致富的原因之一。*衣祿二字，另有改作姻緣一說。凡事　吉。作事　二次成。家事　餘興且喜。家運　和氣。後得祥瑞。婚姻　大吉。求兒　吉。六甲　先男後女。求財　後遇貴人大興。功名　後科連登。尾有。歲君　安和。治病　命不畏。平安。出外　向南方遇貴人。經商　先利平。後大財。來人　立即到。行舟　漸得大財。移居　得安失物　月光必在。求雨　過日自有。官事　不畏。破財。完局。六畜　可納。耕作　下冬好。築室　大吉。墳墓　永裕後崑。討海　晚有大利。作塭　和者必獲厚利。魚苗　後得大利。月令　漸得春風。尋人　得回。遠信　守候佳音。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- **Steadiness of mind**: The first line urges the reader to settle the heart and avoid frivolous thoughts, highlighting the importance of inner calm.\n- **Predestined abundance**: The second line asserts that clothing and income are already allotted by heaven, suggesting that material blessings are predetermined and need not be chased obsessively.\n- **Harmony as a source of fortune**: The third line links repeated cooperation and harmonious relationships with constant good luck, implying that mutual alignment brings blessings.\n- **Timing and attainment**: The final line predicts that when the right moment arrives, the seeker will meet the \"bright pearl,\" symbolizing the realization of a long‑desired goal or success.\n- **Overall message**: Embrace fate, keep a calm heart, cultivate harmonious interactions, and patiently wait for the opportune time to achieve your aspirations.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:24:50",
+    "source_file": "chuck_3.json",
+    "raw_llm_response_preview": "{\n  \"id\": 3,\n  \"title\": \"六十甲子籤第三籤\",\n  \"subtitle\": \"屬火利夏　宜其南方\",\n  \"fortune\": \"甲辰○○○　●○●\",\n  \"poem\": [\n    \"勸君把定心莫虛\",\n    \"天註衣祿自有餘\",\n    \"和合重重常吉慶\",\n    \"時來終遇得明珠\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是安定心態與接受天命，並透過和諧相處來尋求吉祥與成果。詩中先勸人「把定心莫虛」提醒不要胡思亂想，保持內心的安定；接著說「天註衣祿自有餘」指出財物與機會已由天注定，無須過度焦慮；「和合重重常吉慶」強調與人相"
+  }
+}

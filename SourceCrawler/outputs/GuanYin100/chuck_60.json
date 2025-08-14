@@ -1,0 +1,20 @@
+{
+  "id": 60,
+  "title": "觀音一百籤第六十籤",
+  "subtitle": "寅宮",
+  "fortune": "下籤",
+  "poem": "抱薪救火火增烟、燒卻三千及大千、若問營謀併出入、不如收拾莫憂燃。",
+  "analysis": {
+    "zh": "這首詩的主題是……以抱薪救火的比喻，告誡人們在處理問題時，若措手不及或過度介入，反而會加劇困境。詩中說「抱薪救火火增烟、燒卻三千及大千」形容本想解決火災卻卻把火燒得更大。接著以「若問營謀併出入、不如收拾莫憂燃」提醒，若對策不慎，最好先收拾好環境，避免不必要的風險。整體強調謹慎行事、量力而行，避免自作主張造成更大的災禍。",
+    "en": "這首詩的主題是…… The poem uses the metaphor of carrying firewood to put out a fire, warning that an ill‑timed or over‑zealous intervention can worsen a situation. The lines “抱薪救火火增烟、燒卻三千及大千” illustrate how an attempt to extinguish a blaze ends up inflaming it even more, magnifying the damage. The advice “若問營謀併出入、不如收拾莫憂燃” translates to: before engaging in plans or negotiations, one should first clear the environment and avoid unnecessary risk. Overall, the poem urges prudence, measured decision‑making, and a cautious approach to conflict or business dealings, reminding us that hasty action often leads to self‑harm.",
+    "jp": "這首詩の主題は…… 火を消すために薪を運ぶという比喩を通じて、余計な介入が問題を悪化させることを警告しています。『抱薪救火火増烟、燒却三千及大千』の語句は、火災を消そうとしたが逆に火が広がったことを象徴しており、対策を誤ると被害が拡大することを示唆します。『若問營謀併出入、不如收拾莫憂燃』のアドバイスは、計画や交渉を行う前にまず環境を整理し、無用なリスクを避けるべきだと示しています。全体として慎重な行動、実力に合った判断、衝突やビジネスにおいて慎重な姿勢を促し、思慮のない行動が自己破壊につながるという哲学を表現しています。",
+    "reference": "家宅　凶。自身　祈保。求財　微微。交易　不合。婚姻　不合。六甲　險。行人　滯。田蠶　不利。六畜　損。尋人　杳。公訟　虧。移徙　吉。失物　西方。疾病　有驚。山墳　平平。1.赤壁鏖兵三國時。曹操大軍駐赤壁岸邊。孫權將周瑜。聯劉備軍抗曹。孔明借東風。黃蓋引火燒連環船。二軍激戰。一片火海。曹軍大敗。史稱赤壁之戰。(鏖指燒殺)2.先主連營劉備因關羽遭襲遇害、張飛遭部下殺害之際，不顧孔明勸阻執意攻打東吳，但因缺乏充分理智而犯兵家大忌，做出連營七百里的佈局，結果遭東吳陸遜利用天候之機進行火攻，蜀軍傷亡慘重之餘，劉備只好逃往白帝城，且因病在白帝城託孤逝世。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The central image is a failed attempt to extinguish a fire by adding more fuel, illustrating that hasty or ill‑thought actions can exacerbate problems.\n- The lines about “three thousand and even the great thousand” metaphorically extend the scale of damage when one misjudges the situation.\n- The advice “if asked about strategy, better to tidy up and not worry about burning” translates to: before engaging in plans or negotiations, one should first clear the environment and avoid unnecessary risk.\n- The poem encourages prudence, measured decision‑making, and a cautious approach to conflict or business dealings.\n- It reflects the broader philosophical idea that over‑intervention or unnecessary ambition leads to self‑harm.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:24:54",
+    "source_file": "chuck_60.json",
+    "raw_llm_response_preview": "{\"id\":60,\"title\":\"觀音一百籤第六十籤\",\"subtitle\":\"寅宮\",\"fortune\":\"下籤\",\"poem\":\"抱薪救火火增烟、燒卻三千及大千、若問營謀併出入、不如收拾莫憂燃。\",\"analysis\":{\"zh\":\"這首詩的主題是……以抱薪救火的比喻，告誡人們在處理問題時，若措手不及或過度介入，反而會加劇困境。詩中說「抱薪救火火增烟、燒卻三千及大千」形容本想解決火災卻卻把火燒得更大。接著以「若問營謀併出入、不如收拾莫憂燃」提醒，若對策不慎，最好先收拾好環境，避免不必要的風險。整體強調謹慎行事、量力而行，避免自作主張造成更大的災禍。\",\"en\":\"這首詩的主題是…… Th"
+  }
+}

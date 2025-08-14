@@ -1,0 +1,20 @@
+{
+  "id": 65,
+  "title": "觀音一百籤第六十五籤",
+  "subtitle": "卯宮",
+  "fortune": "下籤",
+  "poem": "眼前歡喜未為歡、危不危兮安不安、割肉成瘡因甚事、不如守舊得安全。",
+  "analysis": {
+    "zh": "此籤以割肉成瘡的意象，說明因小事而造成重大痛苦，建議只要守舊、謹慎行事即可維持安全，無需冒險。",
+    "en": "This drawing uses the image of cutting flesh to form a sore, suggesting that a seemingly small issue can cause significant pain. It advises that simply maintaining the old ways and proceeding cautiously will keep one safe, rather than taking risky measures.",
+    "jp": "このくじは、肉を切って傷をつくるというイメージで、表面上は小さな問題に見えても実は大きな痛みを伴う可能性があることを示唆しています。古いやり方を守り、慎重に進むだけで安全を保てると、危険を冒すよりも賢明だと助言しています。",
+    "reference": "*(補瘡本作成瘡)家宅　不安。自身　口舌。求財　不利。交易　小人。婚姻　不長。六甲　有驚。行人　阻。田蠶　損。六畜　損。尋人　招非。公訟　虧。移徙　守舊。失物　難尋。疾病　反覆。山墳　不利。1.孫臏困龐涓戰國。孫臏齊人。龐涓魏人。同師事鬼谷子。孫臏之學優於龐涓。涓為魏將。與臏鬥智。輸而忌之。乃以計刖其足。後孫臏假作顛狂。得脫歸。齊威王以(臏)為師。將兵伐魏。用減灶添兵之法。賺龐涓。追至馬陵道。伏弩射死。2.越王句踐棲會稽山春秋時代，吳王夫差為報父仇攻打越國，越王句踐不聽范蠡、文種之勸議和，執意出兵應戰，結果敗逃會稽山。句踐請范蠡、文種設法解危，日後並圖謀復國。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a warning against hasty decisions that may seem joyful but ultimately cause pain.\n- The imagery of \"cutting flesh\" highlights how small, unexamined actions can leave lasting wounds.\n- The alternating phrases of danger and safety underscore uncertainty; true safety comes from sticking to familiar, proven methods.\n- The concluding advice to \"守舊得安全\" (maintain the old and stay safe) reflects a philosophy of prudence over risk-taking.\n- The poem suggests that fleeting happiness is unreliable; stability comes from cautious, consistent practice rather than impulsive excitement.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:27:49",
+    "source_file": "chuck_65.json",
+    "raw_llm_response_preview": "{\"id\":65,\"title\":\"觀音一百籤第六十五籤\",\"subtitle\":\"卯宮\",\"fortune\":\"下籤\",\"poem\":\"眼前歡喜未為歡、危不危兮安不安、割肉成瘡因甚事、不如守舊得安全。\",\"analysis\":{\"zh\":\"此籤以割肉成瘡的意象，說明因小事而造成重大痛苦，建議只要守舊、謹慎行事即可維持安全，無需冒險。\",\"en\":\"This drawing uses the image of cutting flesh to form a sore, suggesting that a seemingly small issue can cause significant p"
+  }
+}

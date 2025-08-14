@@ -1,0 +1,20 @@
+{
+  "id": 21,
+  "title": "四面佛三十籤第二十一籤",
+  "subtitle": "",
+  "fortune": "中籤",
+  "poem": "光明磊落好心田,左右逢源勝神仙,作事問心無錯過,自身從得此安然。",
+  "analysis": {
+    "zh": "這首詩的主題是以光明磊落、坦誠相待的心態去面對人生。詩中說「光明磊落好心田」描繪一個心地坦蕩、善良的境界；「左右逢源勝神仙」則暗示正直與真誠能吸引眾多有利資源，甚至勝過神仙；「作事問心無錯過」說明行事時始終保持清醒的良知，避免失誤；最後「自身從得此安然」總結出在保持內心光明的同時，能獲得安寧與自在。",
+    "en": "This poem's theme is living with honesty, integrity and an open heart. The line \"光明磊落好心田\" (bright and upright, a good heartland) portrays a clear, virtuous mind. \"左右逢源勝神仙\" (meeting favorable circumstances on both sides, surpassing immortals) suggests that sincerity attracts abundant blessings. \"作事問心無錯過\" (doing things with a clear conscience, no mistakes) highlights mindful action. The final line, \"自身從得此安然\", conveys that maintaining such inner light brings personal peace and contentment.",
+    "jp": "この詩のテーマは、光明磊落で正直な心で人生を受け止めることです。\\n「光明磊落好心田」は、心の清らかさと善意を示し、\\n「左右逢源勝神仙」は、真心が多くの恵みを呼び寄せ、神仙を上回るほどの価値を持つことを暗示します。\\n「作事問心無錯過」は、行動時に良心を保ち、ミスをしない姿勢を表します。\\n最後の「自身從得此安然」は、内面の光を保つことで、安らぎと満足を得ることを示しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The poem emphasizes living with integrity and an honest heart.\n- The imagery of \"光明磊落\" and \"好心田\" symbolizes a clear, virtuous mind.\n- \"左右逢源勝神仙\" suggests that genuine sincerity attracts favorable circumstances, even surpassing the realm of immortals.\n- \"作事問心無錯過\" indicates a mindful approach to actions, ensuring no errors.\n- The final line, \"自身從得此安然,\" conveys that maintaining such an inner light brings personal tranquility and contentment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:33:51",
+    "source_file": "chuck_21.json",
+    "raw_llm_response_preview": "{\"id\":21,\"title\":\"四面佛三十籤第二十一籤\",\"subtitle\":\"\",\"fortune\":\"中籤\",\"poem\":\"光明磊落好心田,左右逢源勝神仙,作事問心無錯過,自身從得此安然。\",\"analysis\":{\"zh\":\"這首詩的主題是以光明磊落、坦誠相待的心態去面對人生。詩中說「光明磊落好心田」描繪一個心地坦蕩、善良的境界；「左右逢源勝神仙」則暗示正直與真誠能吸引眾多有利資源，甚至勝過神仙；「作事問心無錯過」說明行事時始終保持清醒的良知，避免失誤；最後「自身從得此安然」總結出在保持內心光明的同時，能獲得安寧與自在。\",\"en\":\"This poem's theme is l"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 18,
+  "title": "關聖帝君一百籤第十八籤",
+  "subtitle": "孟嘗君招賢乙辛",
+  "fortune": "中平",
+  "poem": [
+    "知君指擬是空華",
+    "底事茫茫未有涯",
+    "牢把腳根踏實地",
+    "善為善應永無差"
+  ],
+  "analysis": {
+    "zh": "你的計畫雖多，但往往難以實現，猶如鏡中花、河中月，雖好看卻空洞無實。想要成功，須踏實腳步，務實求成。心志要向善，勿做惡事，善行自然有善報。碧仙註解說：「本分兩字到處諧，虧為妄想便生災，財源未遂徒勞力，且宜向善保亨來。」因此抽此籤提醒，勿妄圖而失，須自省、改過向善，自然能轉凶為吉，受到天佑。舉例來說，曾有考生自以才華，懶於用功，盼靠聰明通過考試，結果失利。之後在反省後努力，翌年成功進入高中，實證後兩句的道理。",
+    "en": "The poem cautions that many ambitions may be futile, like flowers reflected in a mirror or moonlit water—beautiful yet empty. To succeed one must ground oneself in practical action, work earnestly, and keep a virtuous heart. Those who do good faithfully will naturally receive favorable outcomes. This aligns with the wisdom that hard work and kindness, rather than fanciful plans, bring true prosperity.",
+    "jp": "詩は、鏡の中の花や水の中の月のように、空想や華やかな計画に夢中になるよりも、地に足をつけ、心を落ち着かせて善行に努めれば、天のご加護が受けられると告げています。",
+    "reference": "戰國。孟嘗君。姓田名文嘗。謂其父田嬰。曰家累萬金。門下不見一覽者。後其父卒。孟嘗君立在落(路)。招致諸侯賓客。及亡人。有罪者。皆歸焉。孟嘗君舍業。厚遇之。以故傾天下之士。其時。門下食客數千。無分貴賤。一與交等。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The opening lines depict the hollowness of lofty ambitions that exist only in imagination, likening them to flowers in a mirror or the moon reflected on water.\n- The third line urges the reader to firmly plant roots on solid ground, emphasizing the importance of practical, grounded action.\n- The fourth line asserts that consistently doing good will yield lasting, flawless results.\n- Symbolically, the poem contrasts ethereal aspirations with concrete reality and moral conduct.\n- The underlying philosophy is that true success and fortune arise from diligent effort and virtuous behavior, not from fanciful or illusory plans.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:30:48",
+    "source_file": "chuck_18.json",
+    "raw_llm_response_preview": "{\"id\":18,\"title\":\"關聖帝君一百籤第十八籤\",\"subtitle\":\"孟嘗君招賢乙辛\",\"fortune\":\"中平\",\"poem\":[\"知君指擬是空華\",\"底事茫茫未有涯\",\"牢把腳根踏實地\",\"善為善應永無差\"],\"analysis\":{\"zh\":\"你的計畫雖多，但往往難以實現，猶如鏡中花、河中月，雖好看卻空洞無實。想要成功，須踏實腳步，務實求成。心志要向善，勿做惡事，善行自然有善報。碧仙註解說：「本分兩字到處諧，虧為妄想便生災，財源未遂徒勞力，且宜向善保亨來。」因此抽此籤提醒，勿妄圖而失，須自省、改過向善，自然能轉凶為吉，受到天佑。舉例來說，曾有考生自以才華，懶於用功，盼靠"
+  }
+}

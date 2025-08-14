@@ -1,0 +1,20 @@
+{
+  "id": 78,
+  "title": "日本淺草觀音寺一百籤第七十八籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "但存公道正,何愁理去忠,松柏蒼蒼翠,前山祿馬重",
+  "analysis": {
+    "zh": "這首詩的主題是守正與忠誠。作者提醒人們即使面臨挑戰，也要堅守公共正道、保持忠義，像松柏般常青、堅韌。這樣的品行將為未來帶來福祉與重重幸運。",
+    "en": "這首詩的主題是…This poem emphasizes the importance of maintaining righteousness and loyalty. It urges readers to stay steadfast in the public good and to keep their fidelity, likening themselves to evergreen pines and cypresses that remain resilient. Such virtues are said to bring future prosperity and abundant blessings.",
+    "jp": "這首詩的主題是…この詩は正義と忠義を守る重要性を強調しています。読者に公共の善に固執し、誠実さを保つよう促し、常緑の松柏のように揺るがぬ姿を例えています。このような徳が将来の繁栄と多くの幸運をもたらすとされています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• Upholding righteousness and loyalty is paramount, even when faced with obstacles.\n• The image of evergreen pines (松柏) symbolizes enduring integrity and resilience.\n• The phrase “前山祿馬重” suggests that steadfast virtue will eventually yield great fortune and blessings.\n• Overall, the poem offers moral encouragement: remain steadfast in good conduct and you will be rewarded with prosperity and wellbeing.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:19:33",
+    "source_file": "chuck_78.json",
+    "raw_llm_response_preview": "{\n  \"id\": 78,\n  \"title\": \"日本淺草觀音寺一百籤第七十八籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"大吉\",\n  \"poem\": \"但存公道正,何愁理去忠,松柏蒼蒼翠,前山祿馬重\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是守正與忠誠。作者提醒人們即使面臨挑戰，也要堅守公共正道、保持忠義，像松柏般常青、堅韌。這樣的品行將為未來帶來福祉與重重幸運。\",\n    \"en\": \"這首詩的主題是…This poem emphasizes the importance of maintaining righteousness"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 90,
+  "title": "觀音一百籤第九十籤",
+  "subtitle": "酉宮",
+  "fortune": "上籤",
+  "poem": "忽朝一信天下墀、寶貝船裝滿載歸、若問前程成底事、始終應得貴人提。",
+  "analysis": {
+    "zh": "此籤象徵功名與財運的圓滿成就，預示凡事皆宜進取，將迎來大吉。若問前程，皆有貴人相助，財祿豐盈，事業順遂，喜氣更添。",
+    "en": "This poem conveys that you will achieve success and prosperity; everything will go well. When you inquire about your future, a benefactor will support you from start to finish, bringing wealth and smooth progress. The overall tone is one of great fortune and favorable outcomes.",
+    "jp": "この詩は、功名と財運が円満に成就することを示し、すべてが順調に進む予兆です。将来を尋ねれば、始めから終わりまで貴人が支えてくれ、豊かな財運と円滑な進展がもたらされます。全体的に大きな幸運と好結果を示す雰囲気です。",
+    "reference": "1.葦佩遇仙(韋佩遇仙)窮書生韋佩年近四十。牽驢過洛陽橋。一漁夫賣大鱉。韋佩不忍。但缺錢。遂以驢換鱉。于橋下放生。從此韋佩中舉。加官晉爵。或指此鱉為仙所化。故曰韋佩遇仙。2.劉先主如魚得水劉備三顧茅廬得到孔明相助，兩人經常談論，關羽和張飛等人都覺得很奇怪，到底兩人之間那來那麼多事可談，劉備回答說得到孔明相助，就好像魚得到了水一樣，是非常高興的事。這故事是說該找軍師指點如何行事，才能趨吉避凶、轉危為安。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that favorable fortune and prosperity are forthcoming, with wealth and success returning like a fully loaded treasure ship. The imagery of a morning signal from the heavens (“天下墀”) signals an auspicious start, while the repeated reference to a benefactor (“貴人提”) emphasizes that guidance and support from influential people will accompany the seeker’s path. The poem highlights a philosophy of readiness to seize opportunity and the assurance that external help will enable a smooth, prosperous journey.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:43:52",
+    "source_file": "chuck_90.json",
+    "raw_llm_response_preview": "{\"id\":90,\"title\":\"觀音一百籤第九十籤\",\"subtitle\":\"酉宮\",\"fortune\":\"上籤\",\"poem\":\"忽朝一信天下墀、寶貝船裝滿載歸、若問前程成底事、始終應得貴人提。\",\"analysis\":{\"zh\":\"此籤象徵功名與財運的圓滿成就，預示凡事皆宜進取，將迎來大吉。若問前程，皆有貴人相助，財祿豐盈，事業順遂，喜氣更添。\",\"en\":\"This poem conveys that you will achieve success and prosperity; everything will go well. When you inquire about you"
+  }
+}

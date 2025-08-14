@@ -1,0 +1,20 @@
+{
+  "id": 21,
+  "title": "觀音一百籤第二十一籤",
+  "subtitle": "辰宮",
+  "fortune": "上籤",
+  "poem": "陰陽道合總由天、女嫁男婚豈偶然、但看龍蛇堪運動、熊羆叶夢喜團圓。",
+  "analysis": {
+    "zh": "此卦象徵陰陽道合，預示大吉。凡事從心謀望，婚姻以男孕為主，財富會增益，且對田蠶亦有利。",
+    "en": "This verse portrays that the harmony of yin and yang is ordained by heaven; a woman's marriage to a man is not accidental. The sight of dragons and snakes signifies auspicious movement, while the bear and tiger in a dream yearn for reunion, implying a harmonious and fortunate outcome.",
+    "jp": "この詩は陰陽の道が天によって決められ、女性が男性と結婚することが偶然ではないと示しています。龍や蛇の姿は吉兆を意味し、クマと虎が夢で再会を求めることは、調和と幸福を象徴しています。",
+    "reference": "*(叶：音同寫)*(熊羆入夢四字，本作熊熊人蘿)家宅　安。自身　利。求財　有。交易　成。婚姻　合。六甲　男。行人　至。田蠶　興。六畜　興。尋人　見。公訟　有理。移徙　昌盛。失物　得見。疾病　遇良方。山墳　大吉。1.李旦龍鳳配合李旦為唐睿宗。武則天登基。皇帝貶作平民。流落鄉間。巧與胡鳳姣相遇。結為夫婦。龍指睿宗。喻婚姻由天也。2.邵康節定陰陽相傳有一天，邵康節進入梅花園賞花時，偶然見兩隻麻雀在枝頭上爭吵，後又見此二雀忽然爭枝墜地，邵康節看到此種現像，覺而怪之，即運用其心易神數，認為不動不占，不因事不占，今見二雀無故爭枝墜地，怪哉？因覺有事而占之，隨後向園主說：明日當會有一鄰女來攀折梅花，請勿叱責她，恐鄰女驚恐自梅樹跌下，有傷足之虞，事後果然應驗；後之學者因認為此卦例特殊，竟能斷出與卦題不相干之事情來，為別種占法所不及，才將此種斷法命名為『梅花易數』。邵康節（邵雍）與同時的周敦頤、程顥、程頤、張載並稱北宋五子。有些人依常理推斷儒家不問卜，有一部分是受了『子不語怪力亂神』的影響，這是誤解了。孔子不但擔任過宗廟祭祀的工作，現在也正在被供奉在孔廟。『子不語怪力亂神』並不是說孔子不信鬼神，而是不將成敗歸咎於鬼神，因為應該敬鬼神而遠之。當然，既不歸咎鬼神，當然也不會喜歡將成敗推諉給三世因果，所以儒家講究現世因果報應，韓愈反對迎佛骨，思考的出發點也是不想將問題推給前世和來生。儒家君子卜卦，也不是問那些三世因果的。像梅花易數這種無需請神監卦的占卜技術，非常有儒家的風格。占卜可以斷氣數，孔廟內就供奉數位卦門先師，一點都不奇怪。從前認定君子不問卜的，可以去台北孔廟西廡重新認識，幾位優秀的卦門名師就在那裡。有些占卜的技術是皇帝命令大學士整理的，是認真考究出來的，雖然不見得符合今日科學根據（其實很多所謂科學根據，也是用科學名詞進行未究其理的穿鑿附會，實際上還是不了解），但是卻禁得起當時的歸納法則，否則我們聽說過一個人只有一個頭，很少有人可以常犯欺君之罪的。本籤與觀音三二籤第九籤相同。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The harmony of yin and yang is ordained by heaven, implying that such balance is natural and inevitable.\n- A woman’s marriage to a man is presented as a divinely guided event rather than a random occurrence.\n- The appearance of dragons and snakes is interpreted as auspicious movement, suggesting favorable changes or progress.\n- Bears and tigers appearing in a dream symbolize longing for reunion, reflecting a hopeful and harmonious outcome for family or partnership.\n- Overall, the verse conveys a sense of providential arrangement and auspicious fortune.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:52:18",
+    "source_file": "chuck_21.json",
+    "raw_llm_response_preview": "{\"id\":21,\"title\":\"觀音一百籤第二十一籤\",\"subtitle\":\"辰宮\",\"fortune\":\"上籤\",\"poem\":\"陰陽道合總由天、女嫁男婚豈偶然、但看龍蛇堪運動、熊羆叶夢喜團圓。\",\"analysis\":{\"zh\":\"此卦象徵陰陽道合，預示大吉。凡事從心謀望，婚姻以男孕為主，財富會增益，且對田蠶亦有利。\",\"en\":\"This verse portrays that the harmony of yin and yang is ordained by heaven; a woman's marriage to a man is not accidental. The s"
+  }
+}

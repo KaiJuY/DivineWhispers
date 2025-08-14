@@ -1,0 +1,20 @@
+{
+  "id": 60,
+  "title": "日本淺草觀音寺一百籤第六十籤",
+  "subtitle": "",
+  "fortune": "小吉",
+  "poem": "高危安可涉,平坦是延年,守道當逢泰,風雲不偶然",
+  "analysis": {
+    "zh": "這首詩的主題是關於在高危情況下不宜冒險，選擇平坦的道路才能延年益壽，守道則能遇到平和的安泰，風雲雖不可避免，但不因偶然而偏離正道。高危安可涉的意旨提醒人們在面對風險時應保持謹慎；平坦是延年則指出平靜而安穩的生活是長壽的關鍵；守道當逢泰說明堅守道德與原則可帶來心靈安寧；風雲不偶然則告訴我們雖然人生充滿變幻，仍須以定力面對。",
+    "en": "This poem's theme is about the wisdom of avoiding risky ventures, choosing a steady path for longevity, and the peace that comes from maintaining one's principles; it acknowledges that while turbulent events are inevitable, one should not deviate from the right path due to chance. The line \"high danger cannot be crossed\" warns against reckless risk-taking, \"a flat path ensures longevity\" points to the virtue of a calm, stable life, \"guarding the way brings peace\" suggests that staying true to one’s principles brings inner serenity, and \"storms are not accidental\" reminds us that though life is turbulent, we must face it with steadfast resolve.",
+    "jp": "この詩のテーマは、危険を冒さず、平穏で安定した道を選ぶことが長寿をもたらし、道を守れば平和な安泰に至るという知恵を語っています。高危安可涉は危険を慎重に見極めるべきことを示し、平坦は延年は静かで安定した生活こそが長寿への鍵であることを示し、守道当逢泰は道徳と原則を守り続けることで心の平和が得られること、風雲不偶然は人生の変幻を受け入れつつも決断力を保つべきだという教えです。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- A caution against rushing into dangerous situations (高危安可涉). \n- The value of a steady, uncomplicated path as a route to longevity (平坦是延年). \n- The idea that adhering to one's principles brings peace and stability (守道當逢泰). \n- An acknowledgment that while turbulent events (風雲) are inevitable, they should not be mistaken for random chance that forces one off the right track. \nOverall, the verse advocates a life of measured caution, simplicity, and steadfastness as the keys to health and tranquility.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:11:15",
+    "source_file": "chuck_60.json",
+    "raw_llm_response_preview": "{\"id\":60,\"title\":\"日本淺草觀音寺一百籤第六十籤\",\"subtitle\":\"\",\"fortune\":\"小吉\",\"poem\":\"高危安可涉,平坦是延年,守道當逢泰,風雲不偶然\",\"analysis\":{\"zh\":\"這首詩的主題是關於在高危情況下不宜冒險，選擇平坦的道路才能延年益壽，守道則能遇到平和的安泰，風雲雖不可避免，但不因偶然而偏離正道。高危安可涉的意旨提醒人們在面對風險時應保持謹慎；平坦是延年則指出平靜而安穩的生活是長壽的關鍵；守道當逢泰說明堅守道德與原則可帶來心靈安寧；風雲不偶然則告訴我們雖然人生充滿變幻，仍須以定力面對。\",\"en\":\"This poem's theme"
+  }
+}

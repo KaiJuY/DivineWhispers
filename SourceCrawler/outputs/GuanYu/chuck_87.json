@@ -1,0 +1,25 @@
+{
+  "id": 87,
+  "title": "關聖帝君一百籤第八十七籤",
+  "subtitle": "武侯與子敬同舟壬庚",
+  "fortune": "下吉",
+  "poem": [
+    "陰裏詳看怪爾曹",
+    "舟中敵圖笑中刀",
+    "藩籬剖破渾無事",
+    "一種天生惜羽毛"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於人際關係中的疑慮與隱蔽的危險，以及若能坦誠相見，便能化解誤會，恢復和諧。詩中以陰暗之處的猜疑、船上的敵意以及外表和善的背後隱藏著的危害為對比，最後以「一種天生惜羽毛」作為結尾，暗示只要保持純淨與善良，便能避開風險。",
+    "en": "This poem's theme is the presence of suspicion and hidden danger within close relationships, and how honesty can dissolve misunderstandings and restore harmony. It contrasts the covert mistrust hinted by “Cao,” the concealed knife behind smiles on the boat, with the idea that the torn fence ultimately reveals nothing serious. The concluding line, “a kind naturally cherishes feather,” suggests that maintaining a gentle, pure heart protects one from peril.",
+    "jp": "この詩のテーマは、人間関係に潜む疑念と隠された危険を示し、正直に向き合えば誤解が解け、調和が回復できるというものです。詩は、陰での「曹」に対する疑い、船上で笑顔の裏に潜む刃、そして「一種天生惜羽毛」という結末で、純粋で優しい心が危険を避ける力を持つことを暗示しています。",
+    "reference": "曹操已破劉備。備奔夏口。依劉琦。操乘勢下江南。孫權大懼。和戰未決。聞曹兵聲勢百萬。乃使魯肅往夏口探問虛實。並且孔明同入吳肅。欲戰於舟中。囑孔明曰。見吾主切勿言曹兵之多。勸其決戰。合力拒曹。願先生相助焉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The hidden suspicion among people can be likened to a subtle threat lurking in the shadows.\n- The boat scene represents an environment where outward friendliness masks underlying hostility.\n- The torn fence symbolizes that apparent obstacles or misunderstandings are often shallow and can be overcome.\n- The final image of a gentle soul who cherishes lightness serves as a reminder that maintaining a pure, kind nature helps one avoid danger and preserves harmony.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:07:06",
+    "source_file": "chuck_87.json",
+    "raw_llm_response_preview": "{\"id\":87,\"title\":\"關聖帝君一百籤第八十七籤\",\"subtitle\":\"武侯與子敬同舟壬庚\",\"fortune\":\"下吉\",\"poem\":[\"陰裏詳看怪爾曹\",\"舟中敵圖笑中刀\",\"藩籬剖破渾無事\",\"一種天生惜羽毛\"],\"analysis\":{\"zh\":\"這首詩的主題是關於人際關係中的疑慮與隱蔽的危險，以及若能坦誠相見，便能化解誤會，恢復和諧。詩中以陰暗之處的猜疑、船上的敵意以及外表和善的背後隱藏著的危害為對比，最後以「一種天生惜羽毛」作為結尾，暗示只要保持純淨與善良，便能避開風險。\",\"en\":\"This poem's theme is the presence of su"
+  }
+}

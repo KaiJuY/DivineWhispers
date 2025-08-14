@@ -1,0 +1,20 @@
+{
+  "id": 44,
+  "title": "日本淺草觀音寺一百籤第四十四籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "盤中黑白子,一著要先機,天龍降甘澤,洗出舊根基",
+  "analysis": {
+    "zh": "盤中黑白子，如同下棋，象徵人生的吉凶尚未定。首手決定先機，決勝關鍵在於把握先機。天龍降甘澤，意指神佛恩澤降臨，洗清舊根基，使舊有障礙消散，能以全新姿態發揮潛能。",
+    "en": "The poem likens the board to a game of Go, where black and white stones represent the uncertain fate of life. The first move decides the crucial advantage; seizing the initiative is key. The “dragon of the heavens” bestows a sweet bounty, symbolizing divine grace that purifies the old foundations, washing away past burdens so one can unleash their true potential.",
+    "jp": "詩は盤上の黒白の石を囲碁に例え、人生の吉凶はまだ決まっていないことを示唆しています。最初の一手が先機を決定し、勝利の鍵はその先機を掴むことにあります。「天龍が甘澤を降らせる」という表現は、神仏の恩恵が古い根拠を洗い清め、過去の重荷を取り除き、真の可能性を発揮できるようになることを象徴しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The board of black and white stones represents the duality and uncertainty of life, akin to a game of Go where the outcome is not predetermined.\n- The opening move is emphasized as the decisive factor; taking initiative is crucial for success.\n- The “heavenly dragon” descending sweet waters symbolizes divine grace or benevolent influence that cleanses old foundations.\n- Washing away the past suggests purification, letting go of previous obstacles and allowing one to manifest their true potential.\n- Overall, the poem encourages seizing early opportunities and embracing spiritual cleansing to achieve personal growth.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:04:19",
+    "source_file": "chuck_44.json",
+    "raw_llm_response_preview": "{\"id\":44,\"title\":\"日本淺草觀音寺一百籤第四十四籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"盤中黑白子,一著要先機,天龍降甘澤,洗出舊根基\",\"analysis\":{\"zh\":\"盤中黑白子，如同下棋，象徵人生的吉凶尚未定。首手決定先機，決勝關鍵在於把握先機。天龍降甘澤，意指神佛恩澤降臨，洗清舊根基，使舊有障礙消散，能以全新姿態發揮潛能。\",\"en\":\"The poem likens the board to a game of Go, where black and white stones represent the uncertain fa"
+  }
+}

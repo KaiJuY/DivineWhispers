@@ -1,0 +1,20 @@
+{
+  "id": 14,
+  "title": "日本淺草觀音寺一百籤第十四籤",
+  "subtitle": "",
+  "fortune": "末吉",
+  "poem": "玉石未分時,憂心轉更悲,前途通大道,花發應殘枝",
+  "analysis": {
+    "zh": "詩句『玉石未分時』形容雖有寶玉卻難以辨別其真偽，暗示事物尚未明朗。『憂心轉更悲』則說明因心事重重，情緒愈發低落。『前途通大道』鼓勵持續前進，未來道路將顯現光明。最後的『花發應殘枝』像枯枝仍能開花，象徵雖遭困境仍有希望，願望終將成真。",
+    "en": "The lines “玉石未分時” mean that although one may have precious stones, it is hard to distinguish which are valuable and which are not, indicating that circumstances are not yet clear. “憂心轉更悲” expresses growing sorrow as worries mount. “前途通大道” encourages perseverance, promising that the path ahead will become clear. Finally, “花發應殘枝” likens a dying branch that still blooms, symbolizing hope that even in adversity, one’s aspirations can still come to fruition.",
+    "jp": "『玉石未分時』は宝石があるものの、その真偽を判別できず、状況がまだ明らかでないことを示します。『憂心転更悲』は心配事が増え、気持ちが落ち込み続けている様子です。『前途通大道』は粘り強く進むことで未来の道が開けると励ましています。最後の『花発應殘枝』は枯れ枝でも花が咲くように、困難の中でも希望が残り、願いは実現できるという象徴です。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- **Uncertainty of Value** – The line “玉石未分時” conveys that, despite possessing precious items, it is unclear which are truly valuable, reflecting current ambiguity in decisions or situations. \n- **Increasing Sorrow** – “憂心轉更悲” shows that as worries accumulate, emotional distress deepens. \n- **Promise of Clarity Ahead** – “前途通大道” encourages perseverance, suggesting that a clear and prosperous path will emerge once one continues forward. \n- **Hope Amidst Adversity** – “花發應殘枝” uses the image of a dying branch blooming, symbolizing that even in difficult times, resilience can lead to growth and fulfillment of hopes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:51:07",
+    "source_file": "chuck_14.json",
+    "raw_llm_response_preview": "{\"id\":14,\"title\":\"日本淺草觀音寺一百籤第十四籤\",\"subtitle\":\"\",\"fortune\":\"末吉\",\"poem\":\"玉石未分時,憂心轉更悲,前途通大道,花發應殘枝\",\"analysis\":{\"zh\":\"詩句『玉石未分時』形容雖有寶玉卻難以辨別其真偽，暗示事物尚未明朗。『憂心轉更悲』則說明因心事重重，情緒愈發低落。『前途通大道』鼓勵持續前進，未來道路將顯現光明。最後的『花發應殘枝』像枯枝仍能開花，象徵雖遭困境仍有希望，願望終將成真。\",\"en\":\"The lines “玉石未分時” mean that although one may have precious sto"
+  }
+}

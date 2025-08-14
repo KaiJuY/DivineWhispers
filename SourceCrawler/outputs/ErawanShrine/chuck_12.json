@@ -1,0 +1,20 @@
+{
+  "id": 12,
+  "title": "四面佛三十籤第十二籤",
+  "subtitle": "",
+  "fortune": "上籤",
+  "poem": "前生積德不須款,謀望求財正及時,種玉藍田傳美話,鴛鴦成對不分離。",
+  "analysis": {
+    "zh": "這首詩的主題是關於前世善行累積的福報，現在正是把握財富機會、傳播美名與維繫愛情的好時節。前生的善行不再需要回報，當下求財正合時宜；在藍田（象徵純潔與富饒）播下玉種，能讓名聲傳揚；最後以鴛鴦相伴的畫面，寓意愛情或關係將會長久不離。",
+    "en": "This poem reflects on how past deeds accumulate fortune, and now is the opportune moment to pursue wealth, spread a good reputation, and maintain enduring love. The past good deeds require no repayment; seeking financial gains is timely; planting jade in a blue field symbolizes spreading noble reputation; the image of mandarin ducks represents a lasting, inseparable partnership.",
+    "jp": "この詩は、前世の善行が福を積み、今は財を求めるのに恵まれた時期であり、良い評判を広め、永続する愛を保つことに関するものです。前世の善行は報いを必要とせず、現在は財を求めるのに最適です。青い畑で玉を植えることは名誉を広げる象徴であり、鴛鴦のペアは永遠に離れない愛のイメージです。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that:\n- Past virtuous deeds have accumulated blessings that no longer need to be repaid.\n- The present moment is perfectly aligned for seeking and obtaining wealth.\n- By planting jade in a blue field, one’s reputation and influence will spread beautifully.\n- The image of mandarin ducks illustrates that loving relationships or partnerships will remain inseparable and harmonious.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:30:00",
+    "source_file": "chuck_12.json",
+    "raw_llm_response_preview": "{\"id\":12,\"title\":\"四面佛三十籤第十二籤\",\"subtitle\":\"\",\"fortune\":\"上籤\",\"poem\":\"前生積德不須款,謀望求財正及時,種玉藍田傳美話,鴛鴦成對不分離。\",\"analysis\":{\"zh\":\"這首詩的主題是關於前世善行累積的福報，現在正是把握財富機會、傳播美名與維繫愛情的好時節。前生的善行不再需要回報，當下求財正合時宜；在藍田（象徵純潔與富饒）播下玉種，能讓名聲傳揚；最後以鴛鴦相伴的畫面，寓意愛情或關係將會長久不離。\",\"en\":\"This poem reflects on how past deeds accumulate fortune, an"
+  }
+}

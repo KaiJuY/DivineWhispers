@@ -1,0 +1,20 @@
+{
+  "id": 4,
+  "title": "觀音一百籤第四籤",
+  "subtitle": "子宮",
+  "fortune": "上籤",
+  "poem": "菱花鏡破復重圓、女再求夫男再婚、自此門閭重改換、更添福祿與兒孫。",
+  "analysis": {
+    "zh": "此卦以破碎的菱形鏡象徵關係的斷裂，經過修復後又恢復為完整圓形，暗示婚姻關係的重整與復合。詩中提到女方再次尋找丈夫，男方亦再婚，說明雙方將重新結合。由此門閭將改觀，家庭與鄰里環境得以重整，最終帶來更大的福祿和後代。",
+    "en": "This hexagram is represented by a broken diamond-shaped mirror that is repaired into a perfect circle, symbolizing the restoration and reunion of a relationship. The poem indicates that the woman will seek a husband again and the man will remarry, meaning that the two parties will re-establish their bond. From this point forward, the household and the neighbourhood will be transformed, leading to increased prosperity and progeny.",
+    "jp": "この卦は、砕けた菱形の鏡が修復されて再び完璧な円形になる様子を表し、関係の修復と再統合を象徴しています。詩では、女性が再び夫を求め、男性が再婚することが示されており、両者が再び結びつくことを意味します。以後、門閭（家や隣人）も変わり、より多くの福徳と子孫がもたらされるでしょう。",
+    "reference": "*(閭：音同驢)家宅　欠利。自身　秋冬旺。求財　秋冬旺。交易　允。婚姻　成。六甲　祈保。行人　至。田蠶　可養。六畜　可養。尋人　見。公訟　不利。移徙　守舊。失物　遲見。疾病　祈福。山墳　吉。1.玉蓮會十朋荊錄記。宋朝。錢玉蓮與王十朋結婚。十朋上京赴考。孫汝權逼玉蓮相嫁。玉蓮投河自殺獲救。十朋中狀元。拒娶丞相之女為妻。二人幾經波折。夫妻始復團圓。這是本籤正牌故事，來源是《荊釵記》，雖有外界（例如父母）干涉，最後仍是有情人終成眷屬。姻緣有碍者得此籤，當以此故事為鑑。2.長樂老歷相五代五代名士馮道（號長樂老），當上宰相後為民服務，二十餘年來四朝十一位皇帝都請他任宰相。良好的經理人才若得此籤，當以此故事為鑑。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: - The broken diamond-shaped mirror that is restored to a full circle symbolizes the healing of a fractured relationship. - The woman’s renewed pursuit of a husband and the man’s remarriage indicate a literal or figurative remarriage. - The change in \"門閭\" (household and neighbourhood) implies a new social environment and improved domestic harmony. - The final line promises increased blessings, prosperity, and offspring, suggesting long-term family stability and growth.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:03:05",
+    "source_file": "chuck_4.json",
+    "raw_llm_response_preview": "{\n  \"id\": 4,\n  \"title\": \"觀音一百籤第四籤\",\n  \"subtitle\": \"子宮\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"菱花鏡破復重圓、女再求夫男再婚、自此門閭重改換、更添福祿與兒孫。\",\n  \"analysis\": {\n    \"zh\": \"此卦以破碎的菱形鏡象徵關係的斷裂，經過修復後又恢復為完整圓形，暗示婚姻關係的重整與復合。詩中提到女方再次尋找丈夫，男方亦再婚，說明雙方將重新結合。由此門閭將改觀，家庭與鄰里環境得以重整，最終帶來更大的福祿和後代。\",\n    \"en\": \"This hexagram is represented by "
+  }
+}

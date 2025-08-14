@@ -1,0 +1,25 @@
+{
+  "id": 78,
+  "title": "關聖帝君一百籤第七十八籤",
+  "subtitle": "袁安寸困辛辛",
+  "fortune": "下吉",
+  "poem": [
+    "家道豐腴自飽溫",
+    "也須肚裏立乾坤",
+    "財多害己君當省",
+    "福有胚胎禍有門"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是家道繁榮與個人修養的平衡。它提醒人們，雖然家庭富足能帶來物質滿足，但如果缺乏自我立足的思想與自省，財富反而可能成為自我傷害的源頭。詩中指出，福祿與禍患都是自身造成的，只有在保持謹慎、節制、正直的態度下，才能將財富轉化為真正的福祉。",
+    "en": "This poem is about the balance between a prosperous family life and personal self‑discipline. While wealth and comfort bring physical security, the poem cautions that without a firm sense of self and continual self‑reflection, abundance can become a source of self‑harm. It underscores that blessings and misfortunes are self‑made, and only through prudence, restraint, and upright conduct can one transform riches into genuine fortune.",
+    "jp": "この詩のテーマは、家族の豊かな暮らしと個人の自律のバランスです。物質的な満足は確かに安らぎをもたらしますが、自己の確固たる姿勢や常に自省する姿勢がなければ、富は自己を傷つける源となり得ます。詩は、福祉と災難はすべて自己によって作られるものであり、慎重さ、節制、正直な行動を保つことで、富を真の幸運へと変えることができると示しています。",
+    "reference": "漢。袁安。字邵公。汝南人。少時貧困。志行清高。嘗高臥雪上。後室孝廉。除陰平長。任城會所在。使人畏而愛之。至為三分時。漢舉中微。外戚強盛。朝廷之上。皆倚賴安一人焉。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that material abundance alone does not guarantee wellbeing; it must be accompanied by inner integrity and vigilance. The key points are:\n- A prosperous household provides comfort, but one must also build a solid moral foundation internally.\n- Excess wealth can become a burden if it leads to careless or indulgent behavior.\n- Blessings and misfortunes arise from one's own actions; self‑reflection and restraint are essential to turn fortune into lasting peace.\n- The poem serves as a reminder that true fortune comes from the harmony between external resources and internal discipline.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:02:14",
+    "source_file": "chuck_78.json",
+    "raw_llm_response_preview": "{\"id\":78,\"title\":\"關聖帝君一百籤第七十八籤\",\"subtitle\":\"袁安寸困辛辛\",\"fortune\":\"下吉\",\"poem\":[\"家道豐腴自飽溫\",\"也須肚裏立乾坤\",\"財多害己君當省\",\"福有胚胎禍有門\"],\"analysis\":{\"zh\":\"這首詩的主題是家道繁榮與個人修養的平衡。它提醒人們，雖然家庭富足能帶來物質滿足，但如果缺乏自我立足的思想與自省，財富反而可能成為自我傷害的源頭。詩中指出，福祿與禍患都是自身造成的，只有在保持謹慎、節制、正直的態度下，才能將財富轉化為真正的福祉。\",\"en\":\"This poem is about the balance betwe"
+  }
+}

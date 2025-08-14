@@ -1,0 +1,25 @@
+{
+  "id": 85,
+  "title": "關聖帝君一百籤第八十五籤",
+  "subtitle": "姜女尋夫壬戊",
+  "fortune": "中平",
+  "poem": [
+    "一春風雨正瀟瀟",
+    "千里行人去路遙",
+    "移寡就多君得計",
+    "如何歸路轉無聊"
+  ],
+  "analysis": {
+    "zh": "這首籤詩以春風雨為象徵，說明行路漫長且遠離歸途。雖有巧計卻無法改變結局，歸路仍顯無聊。詩中提醒人們，盡管計策多，若貪圖利害而不顧時機，最終仍會招來災禍。占得此籤者宜守舊、勿妄想擴張財物，若涉及婚姻則不理想，遠行之人即將返還，若有疾痛可祈求神恩。",
+    "en": "This fortune poem depicts the spring wind and rain as a metaphor for the long, distant journey of life. Though one may devise many schemes, the return path remains dull. The verse warns that even clever plans cannot alter the outcome; greed for profit, disregarding timing, ultimately brings disaster. Those who draw this card should maintain the status quo, refrain from overreaching for wealth, and be cautious about marriage. Travelers will soon return, and those afflicted by illness can pray for divine aid.",
+    "jp": "この籤詩は春の風雨を象徴に、人生の長く遠い旅路を示しています。たとえ多くの策を練っても、帰路はやがて退屈に終わります。計策が多くても運命を変えられず、利益に執着し、時を無視すれば最終的に災いが訪れるという警告です。占い者は現状を守り、無理に財を増やそうとせず、結婚についてはあまり良い兆しではありません。遠方へ出る人は帰路に近づき、病気の人は神の加護を祈ると良いでしょう。",
+    "reference": "野史。秦。孟姜女。夫范杞郎(萬喜良)。新婚奉命作長城之役。姜女往尋之。及至。知夫已死。欲尋骸骨歸葬。神為指處咬指出血。點認夫骨。號慟大哭。長城為之崩。婦人守節。自孟女始。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The spring wind and rain symbolize the uncertainties and challenges of a long journey.\n- Even with many clever plans, the return path ultimately feels uninteresting, hinting at the futility of over‑planning.\n- Greed for profit and ignoring timing can lead to disaster.\n- The fortune advises staying in one’s current situation, avoiding overambitious pursuits, and being cautious about marriage.\n- Those who travel far will soon return; those who are ill may find comfort in praying for divine help.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:06:02",
+    "source_file": "chuck_85.json",
+    "raw_llm_response_preview": "{\"id\":85,\"title\":\"關聖帝君一百籤第八十五籤\",\"subtitle\":\"姜女尋夫壬戊\",\"fortune\":\"中平\",\"poem\":[\"一春風雨正瀟瀟\",\"千里行人去路遙\",\"移寡就多君得計\",\"如何歸路轉無聊\"],\"analysis\":{\"zh\":\"這首籤詩以春風雨為象徵，說明行路漫長且遠離歸途。雖有巧計卻無法改變結局，歸路仍顯無聊。詩中提醒人們，盡管計策多，若貪圖利害而不顧時機，最終仍會招來災禍。占得此籤者宜守舊、勿妄想擴張財物，若涉及婚姻則不理想，遠行之人即將返還，若有疾痛可祈求神恩。\",\"en\":\"This fortune poem depicts the spring"
+  }
+}

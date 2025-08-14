@@ -1,0 +1,20 @@
+{
+  "id": 61,
+  "title": "日本淺草觀音寺一百籤第六十一籤",
+  "subtitle": "",
+  "fortune": "半吉",
+  "poem": "舊愆何日解,戶內保嬋娟,要逢十一口,遇鼠過牛邊",
+  "analysis": {
+    "zh": "舊愆何日解，暗示過去的錯誤何時能得到釋懷；戶內保嬋娟，提醒在家中應保持純潔與和諧的氣氛。要逢十一口，數字十一在中文裡常被視為吉數，口字代表說話，合在一起暗示只要開口說出心聲，便能帶來好運。遇鼠過牛邊則提醒小事也能對大事產生影響，須謹慎處理細節。整體來說，籤詩提醒你要釋懷舊怨、以和為重、把握吉兆，同時注意小事不被忽視。",
+    "en": "‘When will the old faults be released?’ points to the desire to let go of past mistakes; ‘Keep the home pure and harmonious’ urges maintaining a tidy and balanced domestic atmosphere. ‘Meeting eleven mouths’ combines the lucky number eleven with the character mouth, suggesting that speaking your heart will attract good fortune. ‘A mouse passing the cow’s side’ warns that small matters can affect larger ones, so pay attention to details. Overall, the poem advises letting go of past grievances, valuing harmony, seizing lucky signs, and not overlooking the small things.",
+    "jp": "『旧愆何日解』は過去の過ちをいつまでに解消できるかを問う表現で、心の整理を促します。『戸内保嬋娟』は家庭内で清らかさと和を保つようにという助言です。『要逢十一口』は数字の「十一」を吉数とし、口文字は言葉を意味するため、心を開いて発言すれば良い兆しが訪れるという示唆です。『鼠過牛邊』は小さな事柄が大事に影響を与えることを警告し、細部に注意を払う必要性を示しています。総じて、過去の憂いを手放し、和を重んじ、吉兆を捉えつつ小さな点も見落とさないようにというメッセージです。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The first line hints at the desire to release old mistakes, suggesting the need to let go of past grievances.\n- The second line emphasizes maintaining purity and harmony within the home, urging a peaceful domestic environment.\n- The third line interprets the number 11 (a common lucky number) combined with the character for mouth, meaning that speaking your heart or making a heartfelt declaration will bring good fortune.\n- The fourth line warns that even a small creature (mouse) passing beside a larger one (cow) can influence larger circumstances, reminding one to pay attention to minor details.\n- Overall, the poem encourages letting go of past concerns, valuing domestic harmony, seizing auspicious signs, and remaining mindful of small matters.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:11:40",
+    "source_file": "chuck_61.json",
+    "raw_llm_response_preview": "{\"id\":61,\"title\":\"日本淺草觀音寺一百籤第六十一籤\",\"subtitle\":\"\",\"fortune\":\"半吉\",\"poem\":\"舊愆何日解,戶內保嬋娟,要逢十一口,遇鼠過牛邊\",\"analysis\":{\"zh\":\"舊愆何日解，暗示過去的錯誤何時能得到釋懷；戶內保嬋娟，提醒在家中應保持純潔與和諧的氣氛。要逢十一口，數字十一在中文裡常被視為吉數，口字代表說話，合在一起暗示只要開口說出心聲，便能帶來好運。遇鼠過牛邊則提醒小事也能對大事產生影響，須謹慎處理細節。整體來說，籤詩提醒你要釋懷舊怨、以和為重、把握吉兆，同時注意小事不被忽視。\",\"en\":\"‘When will the old"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 75,
+  "title": "觀音一百籤第七十五籤",
+  "subtitle": "午宮",
+  "fortune": "中籤",
+  "poem": "宛如抱虎過山前、戰戰兢兢膽碎寒、幸得山前逢妙手、方能保得一身安。",
+  "analysis": {
+    "zh": "這首詩的主題是描寫擁抱猛虎般的危險，表現出行進時的恐懼與心碎，幸得山前逢妙手，方能獲得平安。",
+    "en": "這首詩的主題是This poem's theme is a depiction of moving through peril as if carrying a tiger, expressing the trembling and broken spirit in the face of danger, and the relief brought by a miraculous hand that ensures safety.",
+    "jp": "這首詩のテーマはこの詩のテーマは猛虎を抱えるような危険を乗り越える様子を描き、恐怖と心の痛み、そして奇跡の手に出会うことで安寧を得ることを表しています。",
+    "reference": "*(拖虎二字，本作抱虎)家宅　祈保。自身　提防。求財　謹慎。交易　滯。婚姻　難順。六甲　有驚。行人　阻。田蠶　五分。六畜　損。尋人　杳。公訟　虧。移徙　守。失物　難。疾病　祭虎。山墳　凶。1.伍員夜出昭關伍子胥。春秋時代楚人。楚平王追殺之。日藏夜行。翻山越嶺。至邊境關卡韶關。守關的竟認不出伍員。因他終日焦慮。一夜白頭。後平安到達吳國。2.伍子胥中流得蘭槳伍子胥過昭關以後到了河邊，幸好遇到漁夫，伍子胥與公子勝才得以上船，漁夫先撐篙至江心，到了中流再划蘭槳，一下子就到了對岸。伍子胥取出配劍要贈送漁夫，漁夫說既然沒有檢舉討賞，也不會收下伍子胥的劍，故伍子胥與公子勝拜謝後離去。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The journey over the mountain while carrying a tiger symbolizes confronting great danger and uncertainty.\n- The lines “戰戰兢兢膽碎寒” illustrate the trembling, fear, and emotional breakdown one experiences amid threats.\n- The sudden encounter with a “妙手” represents an unexpected guide or support that restores calm and safety.\n- The poem conveys that even in the most perilous moments, help or insight can bring peace, underscoring resilience and hope.\n- The tiger and mountain are key symbols for external obstacles and internal courage, while the miraculous hand highlights faith or providence.\n- Philosophically, it reminds the reader that acknowledging fear is natural, but maintaining hope for aid can preserve one’s well-being.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:33:42",
+    "source_file": "chuck_75.json",
+    "raw_llm_response_preview": "{\"id\":75,\"title\":\"觀音一百籤第七十五籤\",\"subtitle\":\"午宮\",\"fortune\":\"中籤\",\"poem\":\"宛如抱虎過山前、戰戰兢兢膽碎寒、幸得山前逢妙手、方能保得一身安。\",\"analysis\":{\"zh\":\"這首詩的主題是描寫擁抱猛虎般的危險，表現出行進時的恐懼與心碎，幸得山前逢妙手，方能獲得平安。\",\"en\":\"這首詩的主題是This poem's theme is a depiction of moving through peril as if carrying a tiger, expressing the trembling and broken s"
+  }
+}

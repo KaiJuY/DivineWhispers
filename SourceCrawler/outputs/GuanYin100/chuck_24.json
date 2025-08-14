@@ -1,0 +1,20 @@
+{
+  "id": 24,
+  "title": "觀音一百籤第二十四籤",
+  "subtitle": "巳宮",
+  "fortune": "下籤",
+  "poem": "不成鄰里不成家、水泡痴人似落花、若問君恩難得力、到頭畢竟事如蔴。",
+  "analysis": {
+    "zh": "此卦象徵痴人自閉，暗示凡事應守舊待時，對事非要說什麼也不必，務必留意，保持正直，方可避免災祸。",
+    "en": "This hexagram depicts a fool who is shut in; it suggests that one should keep to established ways and wait for the right time, refrain from unnecessary arguments, pay close attention, and maintain a clear conscience to avoid disaster.",
+    "jp": "この卦は愚者が閉じ込められる様子を示し、物事は既存の方法を守り、適切な時を待ち、余計な議論を避け、注意深く正直であることが災いを避ける鍵であることを示唆しています。",
+    "reference": "家宅　不安。自身　險。求財　阻。交易　難。婚姻　待時。六甲　祈福。行人　阻。田蠶　多災。六畜　多災。尋人　阻。公訟　虧。移徙　吉。失物　難見。疾病　急求神。山墳　不吉。1.殷郊遇師殷郊是商朝紂王之子。拜廣成子為師。三年後學得法術。下山時曾向廣成子宣誓。不幫紂王幹壞事。往投靠文王。半途受人唆使回家協助紂王。師父往勸。師徒大打出手。後姜子牙合燃燈道人。把殷郊夾于兩山之間。被廣成子鏟死。以應其誓。(封神榜)2.文種不聽范少伯越王勾踐（前四九七年 -- 前四六五年）即位不久，即打敗吳國。兩年後，吳王夫差攻破越都，勾踐被迫屈膝投降，並隨夫差至吳國，臣事吳王，後被赦歸返國。勾踐自戰敗以後，時刻不忘會稽之恥，日日臥薪嘗膽，反躬自問『汝忘會稽之恥邪？』。他重用范蠡、文種等賢人，經過『十年生聚而十年教訓』，使越之國力漸漸恢復起來。可是吳對此卻毫不警惕。前四八二年，吳王夫差為參加黃池之會，盡率精銳而出，僅使太子和老弱守國。越王勾踐遂乘虛而入，大敗吳師殺吳太子。夫差倉卒與晉定盟而返，連戰不利，不得已而與越議和。前四七三年，越軍再次大破吳國，吳王夫差被圍困在吳都西面的姑蘇山上，求降不得而自殺，吳亡。越王勾踐既平吳，聲威大震，乃步吳之後塵，以兵渡淮，會齊、宋、晉、魯等諸侯於徐州（今山東滕縣南），周天子使人命勾踐為『伯』（霸）。時『越兵橫行於江、淮東，諸侯畢賀，號稱霸王』但這時，春秋時代行將結束，霸政趨於尾聲，勾踐實乃春秋末期最後的一個霸主。當勾踐剛剛滅吳稱霸，其手下最大之功臣范蠡被封上將軍，然范蠡深知『大名之下難久居』、『久受尊名不祥』，故功成立即隱退，『自與其私徒屬乘舟浮海以行，終不反』。傳其改名陶朱公，後以經商而致富。范蠡曾遣人致書文種，謂『飛鳥盡，良弓藏；狡兔死，走狗烹。越王為人長頸鳥啄，可與共患難，不可與共樂，子何不去？』文種未能聽從，不久果被勾踐賜劍自殺。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The poem reflects a situation of instability where lack of good neighbors and family leads to failure in establishing a harmonious home.\n- The image of water bubbles and a fool falling like a flower highlights transience and vulnerability, suggesting that one should not cling to fleeting attachments.\n- The line about asking for a lover’s kindness being difficult underscores the idea that genuine affection is hard to obtain and must be earned through patience and perseverance.\n- The final comparison to “蔴” (a metaphor for something that ends in a negative outcome) warns that without careful handling, events will culminate in an undesirable conclusion.\n- Overall, the poem urges vigilance, steadfastness, and humility to navigate the uncertainties of relationships and personal ambitions.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:53:48",
+    "source_file": "chuck_24.json",
+    "raw_llm_response_preview": "{\"id\":24,\"title\":\"觀音一百籤第二十四籤\",\"subtitle\":\"巳宮\",\"fortune\":\"下籤\",\"poem\":\"不成鄰里不成家、水泡痴人似落花、若問君恩難得力、到頭畢竟事如蔴。\",\"analysis\":{\"zh\":\"此卦象徵痴人自閉，暗示凡事應守舊待時，對事非要說什麼也不必，務必留意，保持正直，方可避免災祸。\",\"en\":\"This hexagram depicts a fool who is shut in; it suggests that one should keep to established ways and wait for the right tim"
+  }
+}

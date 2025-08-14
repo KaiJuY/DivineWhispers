@@ -1,0 +1,25 @@
+{
+  "id": 8,
+  "title": "六十甲子籤第八籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "乙卯○● ●　●○●",
+  "poem": [
+    "禾稻看看結成完",
+    "此事必定兩相全",
+    "回到家中寬心坐",
+    "妻兒鼓舞樂團圓"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是觀察稻穀成熟所象徵的心安與圓滿。詩中以稻穀結實、家庭團圓為喚，提醒問卜者若已得到答案，應坦然接受；若關於感情則顯示雙方若皆願意，關係可順利走向完滿；若一方缺乏意願，復合難成，亦應保持平和。",
+    "en": "This poem's theme is observing the ripening of rice as a symbol of peace and completeness. The imagery of mature grain and a reunited family reminds the querent that if an answer has already been received, one should accept it calmly; regarding relationships, the verse suggests that if both parties are willing, harmony can be achieved. If one side lacks intent, reconciliation is unlikely, and the seeker should remain composed.",
+    "jp": "この詩のテーマは、稲が実る様子を通じて安心と円満を象徴することです。詩中では成熟した稲と団らんする家族を描き、質問者には既に答えが出ている場合は受け入れ、対人関係では両者が協力すれば調和が取れることを示唆します。片方が意図しない場合は復縁が難しいと示し、冷静な受容を促します。",
+    "reference": "1.薛仁貴回家　唐朝時代。薛仁貴征東。得勝回朝。封王而歸家。當時秋將冷。雁南飛。紅葉凋謝。人洗寒衣。此秋天冷落之景象。2.朱并(幷)回家*鼓舞，另有改作皷腹一說。凡事　和者得。不和失。作事　先難後興。家事　進益團美。家運　平安。婚姻　成。大吉。兩全其美。求兒　吉。六甲　先男後女。求財　下半年好。家利。功名　二次得進。歲君　和氣。治病　少不畏。老不好。出外　不可。經商　有利必得。來人　速到。行舟　得財。移居　大吉。失物　速尋必在。求雨　月尾即有。官事　二次完明。了財。六畜　大吉。耕作　下半年有收成。築室　居中。(鼓員固美)墳墓　地運有合。討海　好。作塭　允收。魚苗　大利。月令　破財。下年不畏。(和氣)尋人　速至。遠信　速至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The imagery of fully ripened rice represents a completed outcome or an answer that has come to fruition.\n- The phrase “both sides will receive a result” signals mutual understanding or agreement.\n- Returning home to sit calmly conveys acceptance, patience, and trust in the natural course of events.\n- The joyful family gathering symbolizes harmony, support, and shared happiness.\n- Overall, the verse encourages acceptance of what is finished, patience in waiting, and the importance of mutual cooperation for harmonious outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:43:53",
+    "source_file": "chuck_8.json",
+    "raw_llm_response_preview": "{\"id\":8,\"title\":\"六十甲子籤第八籤\",\"subtitle\":\"屬水利冬　宜其北方\",\"fortune\":\"乙卯○● ●　●○●\",\"poem\":[\"禾稻看看結成完\",\"此事必定兩相全\",\"回到家中寬心坐\",\"妻兒鼓舞樂團圓\"],\"analysis\":{\"zh\":\"這首詩的主題是觀察稻穀成熟所象徵的心安與圓滿。詩中以稻穀結實、家庭團圓為喚，提醒問卜者若已得到答案，應坦然接受；若關於感情則顯示雙方若皆願意，關係可順利走向完滿；若一方缺乏意願，復合難成，亦應保持平和。\",\"en\":\"This poem's theme is observing the ripening of rice"
+  }
+}

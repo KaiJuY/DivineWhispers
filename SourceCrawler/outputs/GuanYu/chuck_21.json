@@ -1,0 +1,25 @@
+{
+  "id": 21,
+  "title": "關聖帝君一百籤第二十一籤",
+  "subtitle": "孫龐鬥智結仇丙甲",
+  "fortune": "下吉",
+  "poem": [
+    "與君夙昔結成冤",
+    "今日相逢那得緣",
+    "好把經文多諷誦",
+    "祈求戶內保嬋娟"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是過去仇怨的和解與祈求家內女子安寧。詩中提到與對方在早年結下冤仇，今日相遇詢問是否能成緣；透過誦讀經文與祈禱，希望守護家中女性平安，顯示對過去恩怨的修復與對家庭福祉的關切。",
+    "en": "The theme of this poem is the reconciliation of past enmity and the prayer for the safety of the household’s woman. It speaks of a former grudge that was made with the addressee in earlier days, of meeting today and wondering if there can be a chance for harmony; by reciting scriptures and praying the poet hopes to protect the women inside the home, showing a desire to mend old grievances and care for family well‑being.",
+    "jp": "この詩のテーマは、過去の恨みを和解し、家族内の女性の安全を祈ることです。詩は、昔相手と仇を結んだこと、今日出会い縁があるか尋ねること、経文を朗読し祈りを捧げて家内の女性を守ろうとする様子を示しています。",
+    "reference": "戰國。孫臏齊人。龐涓魏人。同師事鬼谷子。孫臏之學優於龐涓。涓為魏將。與臏鬥智。輸而忌之。乃以計刖其足。後孫臏假作顛狂。得脫歸。齊威王以(臏)為師。將兵伐魏。用減灶添兵之法。賺龐涓。追至馬陵道。伏弩射死。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A reflection on old grievances that were made in earlier days.\n- The unexpected encounter today, questioning whether fate can reconcile them.\n- The act of reciting scriptures and praying as a means of seeking harmony.\n- A protective wish for the safety of the woman(s) within the household, underscoring the importance of family well‑being.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:32:21",
+    "source_file": "chuck_21.json",
+    "raw_llm_response_preview": "{\"id\":21,\"title\":\"關聖帝君一百籤第二十一籤\",\"subtitle\":\"孫龐鬥智結仇丙甲\",\"fortune\":\"下吉\",\"poem\":[\"與君夙昔結成冤\",\"今日相逢那得緣\",\"好把經文多諷誦\",\"祈求戶內保嬋娟\"],\"analysis\":{\"zh\":\"這首詩的主題是過去仇怨的和解與祈求家內女子安寧。詩中提到與對方在早年結下冤仇，今日相遇詢問是否能成緣；透過誦讀經文與祈禱，希望守護家中女性平安，顯示對過去恩怨的修復與對家庭福祉的關切。\",\"en\":\"The theme of this poem is the reconciliation of past enmity and "
+  }
+}

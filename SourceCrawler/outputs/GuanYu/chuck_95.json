@@ -1,0 +1,25 @@
+{
+  "id": 95,
+  "title": "關聖帝君一百籤第九十五籤",
+  "subtitle": "張文遠求官癸戊",
+  "fortune": "中平",
+  "poem": [
+    "知君袖內有驪珠",
+    "笁不逢辰亦強圖",
+    "可歎頭顱己如許",
+    "而今方得貴人扶"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於隱藏的才華與時機的衝突，以及最終得到貴人扶持所帶來的轉機。詩中說「知君袖內有驪珠」暗示詩人內在有珍貴的才能，卻因「不逢辰」而難以被外界看到，努力強求亦無法改變現狀，因而對目前的局面感到遺憾。最終，詩句「而今方得貴人扶」提醒詩人會在適當的時機遇到幫助，從而實現發揚光大。",
+    "en": "This poem’s theme is the contrast between hidden talent and missed opportunity, and the eventual benefit of a benevolent patron. The line \"知君袖內有驪珠\" signals that the subject possesses a precious ability concealed within. \"笁不逢辰亦強圖\" indicates that the right timing or auspicious occasion has not arrived, making forced effort futile and prompting lamentation. The final line \"而今方得貴人扶\" assures that, at last, a helpful figure will intervene, enabling the subject’s talents to flourish.",
+    "jp": "この詩のテーマは、隠れた才能と機会の不一致、そして最終的に貴人の助力がもたらす転機です。『知君袖內有驪珠』は、詩人が袖の中に宝石のような才能を秘めていることを示し、『笁不逢辰亦強図』は、適切な時機が訪れないため、強引な努力も無益であるといった遺憾を示します。最後に『而今方得貴人扶』とあり、やっと貴人が現れ、才能を開花させることができると示唆しています。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The subject possesses hidden brilliance, symbolized by the precious \"驪珠\" concealed within their sleeve.\n- The timing is unfavorable; they \"do not meet the auspicious star\" (辰), making earnest attempts futile.\n- A sense of regret or lamentation is expressed for the current state.\n- Eventually, a benefactor comes into play, offering support that allows the subject’s talents to flourish.\n- The message emphasizes patience and the importance of waiting for the right moment and the right people rather than forcing progress.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:11:01",
+    "source_file": "chuck_95.json",
+    "raw_llm_response_preview": "{\"id\":95,\"title\":\"關聖帝君一百籤第九十五籤\",\"subtitle\":\"張文遠求官癸戊\",\"fortune\":\"中平\",\"poem\":[\"知君袖內有驪珠\",\"笁不逢辰亦強圖\",\"可歎頭顱己如許\",\"而今方得貴人扶\"],\"analysis\":{\"zh\":\"這首詩的主題是關於隱藏的才華與時機的衝突，以及最終得到貴人扶持所帶來的轉機。詩中說「知君袖內有驪珠」暗示詩人內在有珍貴的才能，卻因「不逢辰」而難以被外界看到，努力強求亦無法改變現狀，因而對目前的局面感到遺憾。最終，詩句「而今方得貴人扶」提醒詩人會在適當的時機遇到幫助，從而實現發揚光大。\",\"en\":\"This poem’s th"
+  }
+}

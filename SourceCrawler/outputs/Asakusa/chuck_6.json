@@ -1,0 +1,20 @@
+{
+  "id": 6,
+  "title": "日本淺草觀音寺一百籤第六籤",
+  "subtitle": "",
+  "fortune": "末吉",
+  "poem": "宅墓鬼兇多,人事有爻訛,傷財防損失,祈福始中和",
+  "analysis": {
+    "zh": "這首詩的主題是宅墓鬼凶多，暗示家中可能發生災禍，需慎行並抱持信心；人事有爻訛，表示個人遭遇多有過錯，進展困難；傷財防損失，說明雖有破財，但有收獲；祈福始中和，提醒通過誠懇祈禱與努力，可達到和諧。",
+    "en": "這首詩的主題是The poem indicates that the house may encounter calamities, urging caution and faith; personal affairs involve many mistakes and progress is difficult; though there may be financial loss, there is also gain; sincere prayers and efforts can bring harmony.",
+    "jp": "這首詩のテーマは家で災害が起きやすいことを示し、注意と信頼が必要であると述べています。個人的な出来事には多くの過ちがあり、進展が困難であることを示します。財産の損失があっても収益があることを示し、誠実な祈りと努力で調和を得られると指摘しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The house is fraught with danger, implying potential calamities at home.\n- Personal affairs are marked by many mistakes and a lack of progress.\n- Financial loss is possible, but there is still a possibility of gain.\n- Sincere prayers and effort can lead to harmony and balance.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:10:50",
+    "source_file": "chuck_6.json",
+    "raw_llm_response_preview": "{\n  \"id\": 6,\n  \"title\": \"日本淺草觀音寺一百籤第六籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"末吉\",\n  \"poem\": \"宅墓鬼兇多,人事有爻訛,傷財防損失,祈福始中和\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是宅墓鬼凶多，暗示家中可能發生災禍，需慎行並抱持信心；人事有爻訛，表示個人遭遇多有過錯，進展困難；傷財防損失，說明雖有破財，但有收獲；祈福始中和，提醒通過誠懇祈禱與努力，可達到和諧。\",\n    \"en\": \"這首詩的主題是The poem indicates that the house may en"
+  }
+}

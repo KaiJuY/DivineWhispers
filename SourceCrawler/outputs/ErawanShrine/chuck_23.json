@@ -1,0 +1,20 @@
+{
+  "id": 23,
+  "title": "四面佛三十籤第二十三籤",
+  "subtitle": "",
+  "fortune": "上籤",
+  "poem": "當頭紅日照天心,不受浮雲半點侵,若得此籤真可賀,貧病一去祥光臨。",
+  "analysis": {
+    "zh": "這首詩的主題是描述一個晴朗、充滿陽光的命運，象徵著不受浮雲阻擾的順利與吉祥；若得到此籤，便值得慶賀，因為貧病將會離去，祥光將會降臨。",
+    "en": "The theme of this poem is a bright, sunlit destiny that is untouched by drifting clouds, symbolizing smooth progress and good fortune. Receiving this lot is a cause for celebration, as it promises the end of poverty and illness and the arrival of auspicious light.",
+    "jp": "この詩のテーマは、漂う雲に触れずに照らす明るい太陽のような運命を描いており、順調な進展と吉祥を象徴しています。この籤を手に入れれば、貧困と病気が去り、吉光が降り注ぐという喜びの証です。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is a celebration of a clear, sunlit path free from obstacles.\n- The bright sun at the head represents an unblemished destiny and optimism.\n- Floating clouds symbolize potential difficulties, yet they do not touch the sun, indicating that these challenges will not affect the outcome.\n- Receiving this lot is seen as a joyous event, promising the removal of poverty and illness.\n- The phrase \"祥光臨\" suggests that blessings and favorable circumstances will soon arrive.\n- Overall, the poem encourages confidence that current hardships will dissipate and a prosperous future awaits.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:34:52",
+    "source_file": "chuck_23.json",
+    "raw_llm_response_preview": "{\n  \"id\": 23,\n  \"title\": \"四面佛三十籤第二十三籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"當頭紅日照天心,不受浮雲半點侵,若得此籤真可賀,貧病一去祥光臨。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是描述一個晴朗、充滿陽光的命運，象徵著不受浮雲阻擾的順利與吉祥；若得到此籤，便值得慶賀，因為貧病將會離去，祥光將會降臨。\",\n    \"en\": \"The theme of this poem is a bright, sunlit destiny that is untouched b"
+  }
+}

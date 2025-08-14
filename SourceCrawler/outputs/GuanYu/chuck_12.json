@@ -1,0 +1,25 @@
+{
+  "id": 12,
+  "title": "關聖帝君一百籤第十二籤",
+  "subtitle": "蘇武牧羊乙乙",
+  "fortune": "中平",
+  "poem": [
+    "營為期望在春前",
+    "誰料秋來又不然",
+    "直遇清江貴公子",
+    "一生活計始安全"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於計畫與時機的變遷，以及在逆境中尋得援手所帶來的安全感。詩中先以春前營謀、期盼成就作開頭，顯示先期奮鬥與規畫；隨後提到秋天的變化，暗示原有計畫受阻；最後遇見「清江貴公子」的情景，象徵得到貴人的扶持，從而令「一生活計始安全」。整首詩凸顯的是時機與人脈對成功與安心的重要性。",
+    "en": "The theme of this poem is the shifting fortunes of planning and timing, and the reassurance that comes from finding help in adversity. It begins with springtime preparations and hopeful ambitions, then notes how autumn brings unexpected change, and finally describes meeting a noble by the clear river—symbolising assistance from a benefactor that stabilises one’s livelihood. The poem underscores the importance of timing and supportive connections for success and security.",
+    "jp": "この詩のテーマは、計画とタイミングの変遷、そして逆境に直面したときに助けを得ることで得られる安心感です。春前の準備と希望に満ちた期待から始まり、秋に予期せぬ変化が訪れる様子を示し、最後に清流のほとりで貴人に出会う場面で、貴人の助けによって生活が安定することを象徴しています。全体として、タイミングと人脈が成功と安心にとっていかに重要であるかを強調しています。",
+    "reference": "漢。蘇武。字子卿。杜陵人。天漢初。以中郎將使匈奴。被留。吃雪咽氈。杖節牧羊。居海上十九年。得還。拜典屬國。宣帝立賜爵關內侯。圖形麒麟閣。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is the interplay between planned effort, unforeseen setbacks, and the eventual arrival of a benevolent figure that restores stability. Key elements include: - Spring, symbolizing hope and initial plans; - Autumn, representing unforeseen difficulties or changes; - The clear river, a place of clarity and transition; - The noble figure, embodying external support or a benefactor. The hidden philosophy suggests that success often depends on both preparation and the willingness to adapt, recognizing that assistance may come at unexpected times. The poem encourages patience and openness to help, highlighting that securing a safe livelihood is not solely a personal endeavor but also a matter of aligning with favorable circumstances and supportive individuals.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:27:36",
+    "source_file": "chuck_12.json",
+    "raw_llm_response_preview": "{\"id\":12,\"title\":\"關聖帝君一百籤第十二籤\",\"subtitle\":\"蘇武牧羊乙乙\",\"fortune\":\"中平\",\"poem\":[\"營為期望在春前\",\"誰料秋來又不然\",\"直遇清江貴公子\",\"一生活計始安全\"],\"analysis\":{\"zh\":\"這首詩的主題是關於計畫與時機的變遷，以及在逆境中尋得援手所帶來的安全感。詩中先以春前營謀、期盼成就作開頭，顯示先期奮鬥與規畫；隨後提到秋天的變化，暗示原有計畫受阻；最後遇見「清江貴公子」的情景，象徵得到貴人的扶持，從而令「一生活計始安全」。整首詩凸顯的是時機與人脈對成功與安心的重要性。\",\"en\":\"The theme of thi"
+  }
+}

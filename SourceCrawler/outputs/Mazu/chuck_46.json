@@ -1,0 +1,25 @@
+{
+  "id": 46,
+  "title": "六十甲子籤第四十六籤",
+  "subtitle": "屬土利年　四方皆宜",
+  "fortune": "辛未○●●　○●○",
+  "poem": [
+    "功名得意與君顯",
+    "前途富貴喜安然",
+    "若遇一輪明月照",
+    "十五團圓光滿天"
+  ],
+  "analysis": {
+    "zh": "努力即可獲得功名與富貴，名聲將被彰顯。前途順遂，將迎來繁華。詩中以十五日滿月作比喻，象徵光輝照耀，提醒即使光亮亦是夜色，若問考試則需用功以及格，可能未必能高分。若問時機，則最佳於農曆十五（中秋）左右。",
+    "en": "Hard work leads to success and a glowing reputation; your future will be smooth and prosperous. The poem likens your fortunes to the bright full moon on the fifteenth day, illuminating the sky. It indicates that your wishes will come true after diligent effort. The moonlight metaphor also reminds that even though it shines, it is still night light, so if you ask about an exam you must study hard to pass, though a top score is not guaranteed. If you ask about the best timing, it points to the fifteenth day of the lunar month, i.e., the Mid‑Autumn Festival.",
+    "jp": "努力すれば功名と富貴を得られ、名声も高まるでしょう。詩は十五日満月の明るさを比喩に用い、夜の光であることを示唆し、試験であれば努力して合格できるが、高得点は保証されないと示唆します。最適なタイミングを尋ねるなら、旧暦の十五日、すなわち中秋節頃が答えです。",
+    "reference": "1,江中立欽賜狀元2.江中立遇永祿君凡事　大吉利。作事　成好。家事　福祉其昌。家運　安居樂業。婚姻　偕老。求兒　好。六甲　先男後女。求財　平平。功名　有。歲君　吉。治病　老拖尾。少立癒。出外　有貴人好。經商　利市三倍。來人　月半有。行舟　可喜吉利。移居　好。失物　月光有。求雨　月半到。官事　破財。完局。六畜　平平。耕作　平正。築室　得其所居。墳墓　得其吉地。討海　月半過漸得利。作塭　可得財利。魚苗　利路亨通。月令　漸平安。尋人　月光在。遠信　月半就至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- It celebrates the rewards of diligent effort, promising success, fame, and prosperity.\n- The full moon on the fifteenth lunar day serves as the central symbol: bright, round, illuminating, yet still a night light, implying that achievements require hard work.\n- The mention of the Mid‑Autumn Festival indicates that the auspicious time for fruition is around that date.\n- The poem subtly warns that while the light is bright, it does not guarantee the highest peak (e.g., a top exam score), but rather a solid accomplishment.\n- Overall, the verse encourages perseverance and sets a hopeful yet realistic tone for the seeker.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:34:05",
+    "source_file": "chuck_46.json",
+    "raw_llm_response_preview": "{\"id\":46,\"title\":\"六十甲子籤第四十六籤\",\"subtitle\":\"屬土利年　四方皆宜\",\"fortune\":\"辛未○●●　○●○\",\"poem\":[\"功名得意與君顯\",\"前途富貴喜安然\",\"若遇一輪明月照\",\"十五團圓光滿天\"],\"analysis\":{\"zh\":\"努力即可獲得功名與富貴，名聲將被彰顯。前途順遂，將迎來繁華。詩中以十五日滿月作比喻，象徵光輝照耀，提醒即使光亮亦是夜色，若問考試則需用功以及格，可能未必能高分。若問時機，則最佳於農曆十五（中秋）左右。\",\"en\":\"Hard work leads to success and a glowing reputatio"
+  }
+}

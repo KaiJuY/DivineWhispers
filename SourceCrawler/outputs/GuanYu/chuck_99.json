@@ -1,0 +1,25 @@
+{
+  "id": 99,
+  "title": "關聖帝君一百籤第九十九籤",
+  "subtitle": "百里奚投秦癸壬",
+  "fortune": "上吉",
+  "poem": [
+    "貴人遭遇水雲鄉",
+    "冷淡交情滋味長",
+    "黃閣開時延故客",
+    "驊騮應時驟康莊"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是描寫在水雲鄉遇見貴人，雖然相遇時交往略顯淡薄，但隨著時間漸深，終於得到延請。黃閣開啟之際，舊客再次被邀，乘上驊騮的時機出現，帶領說者步入康莊之路。",
+    "en": "This poem depicts meeting a noble person in the Water‑Cloud Village. Although the initial interaction feels faint, the relationship deepens over time and eventually receives an invitation. When the golden pavilion opens, a former guest is welcomed again, and a swift horse arrives, guiding the speaker onto the prosperous path of 康莊.",
+    "jp": "この詩は、水雲の里で貴人に出会い、最初は淡い交わりで始まるものの、時間とともに絆が深まる様子を描いています。黄閣が開くと旧友が再び招かれ、速やかな馬が現れ、康莊へと進む機会を与えてくれます。",
+    "reference": "百里奚。宛人。初事虞公。晉假途滅虢。知其將亡。不諫而先去之。秦復為勝。逃隱於楚。秦穆公聞其賢。以五千皮向楚贖回。授以國政。秦自強盛。并國二十。遂霸西戎。國人稱奚為五羖大夫。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The encounter with a noble person in a place of water clouds symbolizes an auspicious opportunity that is initially subtle but has the potential for great benefit.\n- The phrase \"冷淡交情\" reflects the gentle, understated nature of early relationships that can grow into deep, enduring bonds.\n- The opening of the golden pavilion represents a moment of recognition, invitation, or endorsement from an elder or former associate.\n- The swift horse (驊騮) appearing at the right moment signifies sudden support, advancement, or a decisive turning point in the speaker’s fortunes.\n- Overall, the poem conveys that patience, subtlety, and the willingness to embrace even faint encounters can lead to unexpected success and prosperity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:12:55",
+    "source_file": "chuck_99.json",
+    "raw_llm_response_preview": "{\n  \"id\": 99,\n  \"title\": \"關聖帝君一百籤第九十九籤\",\n  \"subtitle\": \"百里奚投秦癸壬\",\n  \"fortune\": \"上吉\",\n  \"poem\": [\n    \"貴人遭遇水雲鄉\",\n    \"冷淡交情滋味長\",\n    \"黃閣開時延故客\",\n    \"驊騮應時驟康莊\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是描寫在水雲鄉遇見貴人，雖然相遇時交往略顯淡薄，但隨著時間漸深，終於得到延請。黃閣開啟之際，舊客再次被邀，乘上驊騮的時機出現，帶領說者步入康莊之路。\",\n    \"en\": \"This poem depicts "
+  }
+}

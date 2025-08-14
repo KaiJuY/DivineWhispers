@@ -1,0 +1,20 @@
+{
+  "id": 6,
+  "title": "觀音一百籤第六籤",
+  "subtitle": "丑宮",
+  "fortune": "中籤",
+  "poem": "投身巖下飼於菟、須是還他大丈夫、捨己也應難再得、通行天下此人無。",
+  "analysis": {
+    "zh": "此卦象徵投身於岩石之下，飼養於菟，須以大丈夫的姿態還回。若自我放棄，難以再得；唯有能通行天下的人，才能稱為真男子。凡事宜順，吉兆在於堅守與努力；飲食無魚，顯示心中清澈；身處貧苦亦喜樂，待時順利；權勢與人間相互牽制。",
+    "en": "The verse portrays a figure who plunges into a rock, nurtures in a tiger (or \"菟\"), and must return as a true man. Abandoning oneself is difficult to regain; only those who can traverse the world are truly manly. The text urges harmony, perseverance, and resilience: \"All things should go smoothly and bring good omen\"; \"no fish to eat\" implies purity of spirit; \"poverty can bring joy\"; awaiting the right moment brings prosperity; power and people are intertwined.",
+    "jp": "ここでは、岩の下へ投身し、菟（虎）で飼育し、大丈夫として返すことを求められる。自らを捨てることは再び得ることが難しく、世界を通行できる者だけが真の男と称されるという意味だ。全ての事柄は順調で吉兆を示すべきであり、魚がないということは心が澄んでいることを示す。貧しくても喜び、適切な時を待つと繁栄が訪れ、権力と人々の関係は相互に影響し合うと解釈できる。",
+    "reference": "*(於菟二字，在中國古代方言中意指老虎;鵰字-本作銅字;大字-本作女字;及早二字-本作拾早)家宅　不利。自身　中吉。求財　中吉。交易　難。婚姻　平平。六甲　安。行人　近。田蠶　早種。六畜　損。尋人　見。公訟　有理。移徙　吉。失物　見。疾病　設送。山墳　安。1.仁貴遇主唐朝。薛仁貴三次投軍。只任伙頭。唐太宗(李世民)被蓋蘇追殺。危急之中。得仁貴救。即被唐太宗封為元帥。帶兵東征。累立戰功。2.藺相如完璧歸趙藺相如是戰國時期的政治家、外交家。他流傳的最廣也最久遠的是“完璧歸趙”、“澠池之會”及“廉頗負荊請罪”等三個故事。這三個故事也充份說明了藺相如是一位真正為國為民、大智大勇的政治家。秦昭王聽說趙惠文王有一塊完美無瑕的和氏璧，就想要得到這塊寶玉，於是派遣使者送信給趙惠文王，表示願意以十五座城池換取寶玉。趙王收到信後，命藺相如為使臣，帶著和氏璧出使秦國。到了秦國後，藺相如雙手捧璧，獻給秦王。秦王接過來仔細端詳良久，發現不愧是稀世之寶，非常高興。可是過了很久，秦王都絕口不提以城換璧之事，於是藺相如假意要指出和氏璧上的瑕疵給秦王看，把和氏璧拿了回來，並且義正詞嚴地說：“大王答應以十五座城交換和氏璧，可是我一直看不到大王的誠意。如果大王要寶玉卻不肯實現諾言，我就以自己的腦袋和這塊寶玉一起在柱子上撞個粉碎。”秦王怕他真的把璧玉撞碎了，就含糊其詞的表示自己會實現諾言，並請藺相如先回賓館休息。回到賓館後，藺相如知道秦王不會真的以城換璧，就秘密派人將和氏璧送回趙國了。當秦王知道和氏璧已送回趙國時，非常震怒。可是在藺相如大無畏態度的面前，也就無可奈何地將他奉為上賓，然後讓他回趙國去了。後來，秦國一直沒有把十五座城池割給趙國，趙國自然也就沒有再把和氏璧送給秦國了 。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The seeker is urged to confront obstacles—represented by the rock and the tiger—with courage and integrity, embodying the ideal of a true man.\n- Abandoning oneself is a loss that cannot be easily recovered, underscoring the importance of self‑respect and perseverance.\n- Only those who can navigate beyond their immediate realm, \"通行天下\", achieve genuine freedom and respect.\n- Symbols such as the rock and tiger represent enduring hardship and raw power; the absence of fish suggests purity of intent.\n- The overall message promotes harmony, steady effort, and the balance between personal strength and societal obligations.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:24:20",
+    "source_file": "chuck_6.json",
+    "raw_llm_response_preview": "{\"id\": 6, \"title\": \"觀音一百籤第六籤\", \"subtitle\": \"丑宮\", \"fortune\": \"中籤\", \"poem\": \"投身巖下飼於菟、須是還他大丈夫、捨己也應難再得、通行天下此人無。\", \"analysis\": {\"zh\": \"此卦象徵投身於岩石之下，飼養於菟，須以大丈夫的姿態還回。若自我放棄，難以再得；唯有能通行天下的人，才能稱為真男子。凡事宜順，吉兆在於堅守與努力；飲食無魚，顯示心中清澈；身處貧苦亦喜樂，待時順利；權勢與人間相互牽制。\", \"en\": \"The verse portrays a figure who plunges into a rock, "
+  }
+}

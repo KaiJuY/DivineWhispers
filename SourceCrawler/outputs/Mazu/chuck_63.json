@@ -1,0 +1,25 @@
+{
+  "id": 63,
+  "title": "六十甲子籤籤王",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "六十甲子加一枝、未來求問神先知、添丁添油增福壽、富貴榮華必佑汝。",
+  "poem": [
+    "月出光輝本清吉",
+    "浮雲總是蔽陰色",
+    "戶內用心再作福",
+    "當官分理便有益"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是…這首詩以月光、雲影、家內的福祉與官方職責為四象，呈現出清明、實際與負責的生活態度。",
+    "en": "這首詩的主題是…The poem portrays the theme of harmony and responsibility, using the bright moon, veiled clouds, home care, and official duties to depict a clear, practical, and dutiful life.",
+    "jp": "この詩の主題は…月の輝き、覆い隠す雲、家庭での心掛け、そして官職の役割を通じて、明晰さ、実用性、そして責任感を表現したものです。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The bright moon symbolizes clarity and hope, indicating a hopeful outlook.\n- Veiled clouds represent obstacles that can obscure vision, yet they can be overcome.\n- The line about caring inside the home highlights the importance of nurturing family and creating personal fortune.\n- Holding an official position implies duty and the benefit of contributing to society, suggesting that responsibility brings advantage.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:42:58",
+    "source_file": "chuck_63.json",
+    "raw_llm_response_preview": "{\"id\":63,\"title\":\"六十甲子籤籤王\",\"subtitle\":\"屬水利冬　宜其北方\",\"fortune\":\"六十甲子加一枝、未來求問神先知、添丁添油增福壽、富貴榮華必佑汝。\",\"poem\":[\"月出光輝本清吉\",\"浮雲總是蔽陰色\",\"戶內用心再作福\",\"當官分理便有益\"],\"analysis\":{\"zh\":\"這首詩的主題是…這首詩以月光、雲影、家內的福祉與官方職責為四象，呈現出清明、實際與負責的生活態度。\",\"en\":\"這首詩的主題是…The poem portrays the theme of harmony and responsibility, using the brig"
+  }
+}

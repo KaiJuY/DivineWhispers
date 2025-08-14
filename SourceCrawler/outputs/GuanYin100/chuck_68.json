@@ -1,0 +1,20 @@
+{
+  "id": 68,
+  "title": "觀音一百籤第六十八籤",
+  "subtitle": "卯宮",
+  "fortune": "中籤",
+  "poem": "門庭清吉夢禎祥、積善于門大吉昌、訟理婚成蠶又熟、病逢良藥得安康。",
+  "analysis": {
+    "zh": "這首詩的主題是：描繪一個充滿吉祥與順遂的生活。首句說門庭清吉，象徵家門迎來幸福與祥和；次句指出「積善于門大吉昌」，積累善行可帶來大繁榮；第三句提及訟理婚成，表示法律爭議得以解決、婚姻順利；最後一句說病逢良藥得安康，意味疾病能得到良醫治療，身心安寧。整體以四句結構，表達了「家運昌盛、事業順利、感情美滿、身體康健」的正面願望。",
+    "en": "這首詩的主題是... This poem portrays a life full of auspiciousness and smoothness. The first line speaks of a clear and fortunate entrance, symbolizing that the household receives happiness and harmony. The second line emphasizes that accumulating good deeds at home brings great prosperity. The third line mentions that legal disputes are resolved and marriage succeeds, indicating a smooth resolution of affairs. The final line says that illness meets good medicine, meaning ailments can be cured, leading to physical and mental well‑being. Overall, the four lines express a positive wish for \"prosperous household, smooth affairs, happy relationships, and healthy body\".",
+    "jp": "這首詩のテーマは… この詩は、門庭が清く吉運であること、善行を積むと大きな繁栄をもたらすこと、訴訟が解決し婚姻が成立すること、そして病気が良薬で治ることを詠んでいます。全体としては、\"家運が昌盛し、事柄が順調に進み、感情が満たされ、身体が健康である\"という前向きな願いを表現しています。",
+    "reference": "家宅　旺。自身　安。求財　春旺。交易　遂。婚姻　成。六甲　防驚。行人　到。田蠶　利。六畜　旺。尋人　至。公訟　勝。移徙　如意。失物　急尋。疾病　安。山墳　大吉。1.郭汾陽祝壽唐朝大將軍。汾陽王郭子儀。做大壽。親友來賀。氣氛一片歡樂。喜氣洋洋。2.李吉甫三代為相李吉甫、李德裕父子歷任三代皇帝均位居宰相的故事，李吉甫、李德裕父子亦為唐朝『牛李黨爭』之李黨代表人物。李黨作風相對保守、拘謹，任宰相期間社會安定，政治清明，是安史之亂後唐朝的盛世高峰。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a concise blessing for a harmonious and prosperous life. • A clear and lucky household entrance implies welcome of good fortune and peace. • Accumulating good deeds at home leads to great prosperity and flourishing. • Legal disputes resolved and marriage completed signal stability and emotional fulfillment. • Illness being cured by good medicine reflects health and overall well‑being. • Together, the verses convey the overarching wish that family, career, love, and health all thrive in harmony.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:29:29",
+    "source_file": "chuck_68.json",
+    "raw_llm_response_preview": "{\"id\":68,\"title\":\"觀音一百籤第六十八籤\",\"subtitle\":\"卯宮\",\"fortune\":\"中籤\",\"poem\":\"門庭清吉夢禎祥、積善于門大吉昌、訟理婚成蠶又熟、病逢良藥得安康。\",\"analysis\":{\"zh\":\"這首詩的主題是：描繪一個充滿吉祥與順遂的生活。首句說門庭清吉，象徵家門迎來幸福與祥和；次句指出「積善于門大吉昌」，積累善行可帶來大繁榮；第三句提及訟理婚成，表示法律爭議得以解決、婚姻順利；最後一句說病逢良藥得安康，意味疾病能得到良醫治療，身心安寧。整體以四句結構，表達了「家運昌盛、事業順利、感情美滿、身體康健」的正面願望。\",\"en\":\"這首詩的主題是.."
+  }
+}

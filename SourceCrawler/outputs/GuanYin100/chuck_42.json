@@ -1,0 +1,20 @@
+{
+  "id": 42,
+  "title": "觀音一百籤第四十二籤",
+  "subtitle": "酉宮",
+  "fortune": "上籤",
+  "poem": "君垂恩澤潤無邊、覆禱祈禳沒黨偏、一切有情皆受用、均沾樂利得週全。",
+  "analysis": {
+    "zh": "本詩描繪了天皇或神祇以無盡恩惠照耀人間，覆蓋人們的禱告，祈禳消除偏險，並使所有有情眾生皆受惠、共享喜樂與實利，表現出一種祥和、普惠的境界。",
+    "en": "This poem depicts a divine sovereign bestowing boundless grace upon the world, covering all prayers, expelling misfortune and bias, and allowing all sentient beings to benefit and share happiness and profit fully, illustrating a harmonious and all‑benefiting state.",
+    "jp": "本詩は、無限の恩恵を人間界に注ぐ神聖なる君主を描き、すべての祈りを覆い、災いと偏りを祓い、すべての有情の者が恩恵を受け喜びと利益を完全に共有できる調和と普遍的な恩恵を示しています。",
+    "reference": "*(禳：ㄖㄤˊ)家宅　祈福。自身　冬吉。求財　未有。交易　成。婚姻　中吉。六甲　平安。行人　動。田蠶　中平。六畜　中平。尋人　見。公訟　勝。移徙　守舊。失物　空。疾病　解。山墳　安。1.有蓮見母 （即為佛經故事之『目蓮救母』）2.溫公入相除新法宋神宗王安石變法時，司馬光（溫公）與蘇軾、歐陽修等舊黨皆反對，等宋神宗病逝，哲宗即位，其祖母太皇太后高氏早先即對王安石不滿，故召回年邁的司馬光任宰相之位。司馬光以激烈方式廢除新法、恢復舊制，舊黨如蘇軾反對在新法行之有年之後以激烈措施復舊，遭司馬光駁斥不理，司馬光於上任八個月後病逝。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a divine ruler bestows limitless grace upon the world, cleansing prayers of misfortune and bias, ensuring that every sentient being receives benefit and enjoys comprehensive joy and profit.\n- The opening line \"君垂恩澤潤無邊\" symbolizes the limitless benevolence of the heavens or the deity.\n- \"覆禱祈禳沒黨偏\" conveys purification of petitions, removal of obstacles and prejudice, highlighting the protective aspect of the divine.\n- The final lines emphasize universal benefit: all sentient beings are helped, all share happiness and gains, reflecting the ideal of harmonious society.\n- The poem subtly underscores that blessings are not selective but inclusive, reinforcing a sense of communal prosperity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:04:33",
+    "source_file": "chuck_42.json",
+    "raw_llm_response_preview": "{\"id\":42,\"title\":\"觀音一百籤第四十二籤\",\"subtitle\":\"酉宮\",\"fortune\":\"上籤\",\"poem\":\"君垂恩澤潤無邊、覆禱祈禳沒黨偏、一切有情皆受用、均沾樂利得週全。\",\"analysis\":{\"zh\":\"本詩描繪了天皇或神祇以無盡恩惠照耀人間，覆蓋人們的禱告，祈禳消除偏險，並使所有有情眾生皆受惠、共享喜樂與實利，表現出一種祥和、普惠的境界。\",\"en\":\"This poem depicts a divine sovereign bestowing boundless grace upon the world, covering all prayers, e"
+  }
+}

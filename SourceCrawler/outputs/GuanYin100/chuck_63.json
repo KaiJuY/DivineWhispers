@@ -1,0 +1,20 @@
+{
+  "id": 63,
+  "title": "觀音一百籤第六十三籤",
+  "subtitle": "卯宮",
+  "fortune": "中籤",
+  "poem": "昔日行船失了針、今朝依舊海中尋、若還尋得原針在、也費工夫也費心。",
+  "analysis": {
+    "zh": "此卦象徵在海中尋針。凡事皆需費心費力。福氣源自緣分，緣分又是福氣的種子。說得十分明確。切記要謹慎守持。（緣有作祿）",
+    "en": "This hexagram symbolizes searching for a needle at sea. Everything requires effort and perseverance. Fortune is founded on destiny, and destiny is the seed of fortune. It is expressed very clearly. One should remain cautious and diligent. (Destiny brings merit.)",
+    "jp": "この卦は海中で針を探す象徴です。すべての事柄に心と労力が必要です。福は因縁に根ざし、因縁は福の種である。非常に明確に語られています。慎重に守り続けるべきです。（因縁が功を得る）",
+    "reference": "*(然尋本作劃日)家宅　欠利。自身　謹防。求財　有。交易　成。婚姻　不合。六甲　阻。行人　滯。田蠶　吉。六畜　莫養。尋人　難。公訟　宜和。移徙　宜遷。失物　凶。疾病　難痊。山墳　暫安。1.黃孝子萬里尋親黃覺經，建昌人。五歲，因亂失母。稍長，誓天誦佛書，願求母所在。乃渡江涉淮，行乞而往，沖冒風雨，備歷艱苦，至汝州梁縣春店，得其母以歸。（二十五史‧元史‧卷197列傳第八十四‧孝友一）補充：黃覺經尋母花了二十八年　2.女媧氏煉石淮南子。覽冥篇。往古之時。四極廢。九州裂。天不兼覆。地不周載。火爁炎而不滅。水浩洋而不息。猛獸食顓民。鷙鳥攫老弱。于是女媧煉五色石以補蒼天。斷鰲足以立四極。殺黑龍以濟冀州。積蘆灰以止淫水。蒼天補。四極正。淫水涸。冀州平。狡蟲死。顓民生。背方州。抱圓天。當此之時。禽獸蟲蛇。無不匿其爪牙。藏其蜇毒。無有攫噬之心。考其功烈。上際九天。下契黃壚。名聲被後世。光暉熏萬物。本籤意指就算失而復得，也不是就此畫下幸福完美句點，日後仍需當『孝子』為他（它）勞心費力維持照料"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The image of searching for a lost needle in the sea represents a challenging pursuit of a lost goal.\n- Even when the needle is found again, it requires continued effort and care, implying that success is not a finished state but an ongoing task.\n- The poem underscores the necessity of diligence and persistence in all endeavors, reminding the seeker to remain cautious and persistent.\n- Symbolically, the sea denotes vastness and uncertainty, while the needle stands for a specific objective or hope; the act of seeking suggests determination amid adversity.\n- Philosophically, the verse teaches that fortune depends on continuous work and that one must not be complacent after a partial recovery.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:27:01",
+    "source_file": "chuck_63.json",
+    "raw_llm_response_preview": "{\n  \"id\": 63,\n  \"title\": \"觀音一百籤第六十三籤\",\n  \"subtitle\": \"卯宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"昔日行船失了針、今朝依舊海中尋、若還尋得原針在、也費工夫也費心。\",\n  \"analysis\": {\n    \"zh\": \"此卦象徵在海中尋針。凡事皆需費心費力。福氣源自緣分，緣分又是福氣的種子。說得十分明確。切記要謹慎守持。（緣有作祿）\",\n    \"en\": \"This hexagram symbolizes searching for a needle at sea. Everything requires ef"
+  }
+}

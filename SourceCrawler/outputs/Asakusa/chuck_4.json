@@ -1,0 +1,20 @@
+{
+  "id": 4,
+  "title": "日本淺草觀音寺一百籤第四籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "累有興雲志,君恩祿未封,若逢侯手印,好事始總總",
+  "analysis": {
+    "zh": "這首詩的主題是對個人志向與機遇的描繪。第一句「累有興雲志」說明詩人已經有了累積的志向與熱情；第二句「君恩祿未封」指出雖有抱負，但尚未得到上位者的肯定；第三句「若逢侯手印」暗示如果能遇見擁有權勢的人或得到其印信，便能打開機會；第四句「好事始總總」則是對此機遇所帶來連續好運的期盼。",
+    "en": "The theme of this poem is the interplay between personal ambition and opportunity. The first line, \"累有興雲志,\" expresses that the speaker has accumulated aspirations and enthusiasm. The second line, \"君恩祿未封,\" indicates that despite these ambitions, recognition or favor from those in power has not yet been granted. The third line, \"若逢侯手印,\" suggests that encountering a nobleman or obtaining his seal could unlock that recognition. The final line, \"好事始總總,\" conveys the hope that such an encounter will usher in a series of good fortunes.",
+    "jp": "この詩のテーマは、個人の志望と機会の相互作用です。最初の行「累有興雲志」では、詩人が積み重ねた志と熱意を表しています。次の行「君恩祿未封」では、その志望にも関わらず、権力者からの認めや恩恵がまだ得られていないことを示しています。三行目の「若逢侯手印」は、貴族に出会ったり、彼の印を得ることで、その認めが開かれる可能性を示唆しています。最後の行「好事始總總」は、その出会いが連続した幸運をもたらすことへの期待を表しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is the relationship between personal ambition and the influence of external authority. • The speaker has accumulated aspirations and enthusiasm (\"累有興雲志\"). • Yet, recognition from higher power remains unopened (\"君恩祿未封\"). • A pivotal encounter with a nobleman or receipt of his seal could open doors to opportunity (\"若逢侯手印\"). • Such an encounter is expected to trigger a chain of favorable events (\"好事始總總\"). The poem reflects a subtle hope that perseverance coupled with the right encounter will bring continuous blessings.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:02:34",
+    "source_file": "chuck_4.json",
+    "raw_llm_response_preview": "{\"id\":4,\"title\":\"日本淺草觀音寺一百籤第四籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"累有興雲志,君恩祿未封,若逢侯手印,好事始總總\",\"analysis\":{\"zh\":\"這首詩的主題是對個人志向與機遇的描繪。第一句「累有興雲志」說明詩人已經有了累積的志向與熱情；第二句「君恩祿未封」指出雖有抱負，但尚未得到上位者的肯定；第三句「若逢侯手印」暗示如果能遇見擁有權勢的人或得到其印信，便能打開機會；第四句「好事始總總」則是對此機遇所帶來連續好運的期盼。\",\"en\":\"The theme of this poem is the interplay be"
+  }
+}

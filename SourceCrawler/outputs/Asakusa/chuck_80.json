@@ -1,0 +1,20 @@
+{
+  "id": 80,
+  "title": "日本淺草觀音寺一百籤第八十籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "深山多養道,忠正帝王宣,鳳遂鸞飛去,昇高過九天",
+  "analysis": {
+    "zh": "這首詩的主題是說明在深山中修行可培養真實的道路，忠誠與正直的品格會受到帝王的宣傳與肯定，寓意品德得以被認同並得到提升。鳳與鸞相隨而飛，象徵吉祥與成功之兆。最後一句「昇高過九天」則說明努力不懈後，能夠超越世俗的高度，達到更高的境界。整首詩以積極向上的語氣，傳遞「勤奮修行、堅守正道、追求卓越」的精神，並以吉祥之鳥與高空作為象徵，寓意未來願望與目標將會得到實現與升華。",
+    "en": "This poem’s theme celebrates the idea that diligent cultivation in the deep mountains yields a genuine path. The line about “loyalty and righteousness proclaiming itself to the emperor” conveys that integrity and virtue are acknowledged by those in power, leading to personal elevation. The image of phoenix and roc flying together signals auspiciousness and success. The final line, “rising above the nine heavens,” expresses that persistent effort can transcend worldly limits and reach higher realms. Overall, the poem exhorts perseverance, adherence to moral principles, and the pursuit of excellence, using the symbolic birds and lofty sky to suggest that one’s wishes and goals will come to fruition and flourish.",
+    "jp": "この詩のテーマは、深い山での修行が真実の道を育むこと、忠誠と正直が皇帝に宣ばれ認められることで個人が高められるという考えを祝福するものです。『鳳と鸞が共に飛ぶ』というイメージは吉祥と成功の兆しを示し、最後の「九天を超えて昇る」は、粘り強い努力で世俗を超え、より高い境地に達することを表しています。全体として、継続的な努力と道徳の原則への固執、卓越の追求を奨励し、象徴的な鳥と高い空を通じて願いと目標が実現し発展することを示唆しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- *Rugged cultivation in deep mountains* prepares a person’s inner path, emphasizing that disciplined effort yields truth.\n- *Loyalty and righteousness* are proclaimed by the ruler, symbolizing that moral integrity receives recognition and can elevate one’s status.\n- *The phoenix and the roc flying together* serve as auspicious symbols of success and harmonious progress.\n- *Rising above the nine heavens* indicates transcending ordinary limits, reaching a higher plane of achievement.\n- The overall tone is optimistic, encouraging perseverance, fidelity to principle, and striving for excellence, with the bird imagery and lofty sky promising the realization and elevation of future aspirations.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:20:33",
+    "source_file": "chuck_80.json",
+    "raw_llm_response_preview": "{\"id\":80,\"title\":\"日本淺草觀音寺一百籤第八十籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"深山多養道,忠正帝王宣,鳳遂鸞飛去,昇高過九天\",\"analysis\":{\"zh\":\"這首詩的主題是說明在深山中修行可培養真實的道路，忠誠與正直的品格會受到帝王的宣傳與肯定，寓意品德得以被認同並得到提升。鳳與鸞相隨而飛，象徵吉祥與成功之兆。最後一句「昇高過九天」則說明努力不懈後，能夠超越世俗的高度，達到更高的境界。整首詩以積極向上的語氣，傳遞「勤奮修行、堅守正道、追求卓越」的精神，並以吉祥之鳥與高空作為象徵，寓意未來願望與目標將會得到實現與升華。\",\"e"
+  }
+}

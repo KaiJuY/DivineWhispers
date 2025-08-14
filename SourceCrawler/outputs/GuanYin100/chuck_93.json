@@ -1,0 +1,20 @@
+{
+  "id": 93,
+  "title": "觀音一百籤第九十三籤",
+  "subtitle": "戌宮",
+  "fortune": "中籤",
+  "poem": "鸞鳳翎毛雨壓垂、此時應被雀輕欺、忽朝一日雲霄霽、依舊還教振羽衣。",
+  "analysis": {
+    "zh": "這首詩的主題是鸞鳳的羽毛被雨覆蓋，寓意吉祥之事必須順其自然時節才能展現。詩中提到『此時應被雀輕欺』，提醒人們若急於行動，容易被卑賢所左右；『忽朝一日雲霄霽、依舊還教振羽衣』則說明天氣轉好後，鸞鳳仍能振翅高飛，象徵機遇到來時仍可顯示其光華。整體意旨是：凡事須待時，保持自身，勿輕易行動，待機遇成熟再展翅。",
+    "en": "The theme of this poem is a phoenix whose feathers are drizzled by rain, symbolizing that auspicious things must wait for the proper time to unfold. The line 'at this moment it may be fooled by sparrows' warns against acting too early and being taken advantage of. The sudden clearing of the sky and the phoenix’s renewed display of plumage indicates that when conditions improve, the bird can still take flight and show its brilliance. Overall, the poem urges patience, staying true to oneself, and acting only when the right moment arrives.",
+    "jp": "この詩のテーマは、雨に濡れた鳴羽を持つ鳳凰の姿で、吉兆が自然のタイミングを待たなければ実を結ばないことを示唆しています。『この時は雛鳥に騙されるべき』という一節は、急いで行動すれば卑賢にだまされる危険があると警告しています。『朝に雲が晴れ、鳳凰は羽を広げて再び飛び立つ』は、状況が好転すれば鳥は再び飛翔し、輝きを放つことを示しています。全体として、物事は順応し、自己を保ち、適切な時が来るまで待つことの大切さを説いています。",
+    "reference": "家宅　欠利。自身　謹防。求財　阻。交易　待時。婚姻　遲滯。六甲　有虛。行人　留連。田蠶　晚。六畜　損。尋人　難。公訟　虧。移徙　守舊。失物　凶。疾病　延。山墳　改。1.高君保招親(高俊保)高君保為高懷德之子。趙匡胤領兵征南唐被困。高君保領兵二百押糧接濟。至雙鎖山。被女賊劉金定劫持。並強逼成親。夫妻領眾殺入重圍。救出趙匡胤。2.衛懿公賜鶴乘軒春秋初期，衛懿公喜歡養鶴，所以大家都上山抓鶴討衛懿公歡心，結果北方的敵人趁機來犯，人民卻都都躲進山裡不願抗敵，衛懿公問大臣為何如此，大臣說大王不願練兵只管養鶴，並且讓鶴也領有官銜俸祿，甚至稱為鶴將軍，所以人民不願意為大王抗敵，因為大王有鶴可以幫忙抗敵。衛懿公聽了很後悔，雖然野放所有的鶴，並勉強招到一些兵士，在衛懿公親征率領下仍全軍覆墨，魏國滅亡。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The image of a phoenix whose plumage is soaked by rain represents that even auspicious symbols can be temporarily obscured by obstacles.\n- The suggestion that it may be \"cheated by sparrows\" warns against premature action and the risk of being deceived by lesser forces.\n- The sudden clearing of the clouds and the phoenix’s continued display of feathers illustrates that once conditions improve, the bird can still rise and shine.\n- Overall, the poem encourages patience, waiting for the right moment, and maintaining integrity while staying true to oneself.\n- The natural cycle of rain, clouds, and clear sky serves as a metaphor for the ebb and flow of fortune and the importance of aligning with the rhythm of nature.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:46:16",
+    "source_file": "chuck_93.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 93,\n  \"title\": \"觀音一百籤第九十三籤\",\n  \"subtitle\": \"戌宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"鸞鳳翎毛雨壓垂、此時應被雀輕欺、忽朝一日雲霄霽、依舊還教振羽衣。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是鸞鳳的羽毛被雨覆蓋，寓意吉祥之事必須順其自然時節才能展現。詩中提到『此時應被雀輕欺』，提醒人們若急於行動，容易被卑賢所左右；『忽朝一日雲霄霽、依舊還教振羽衣』則說明天氣轉好後，鸞鳳仍能振翅高飛，象徵機遇到來時仍可顯示其光華。整體意旨是：凡事須待時，保持自身，勿輕易行動"
+  }
+}

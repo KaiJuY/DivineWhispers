@@ -1,0 +1,25 @@
+{
+  "id": 25,
+  "title": "關聖帝君一百籤第二十五籤",
+  "subtitle": "唐明皇遊月宮丙戊",
+  "fortune": "中平",
+  "poem": [
+    "寅午戍年多阻滯",
+    "亥子丑月漸亨嘉",
+    "更逢玉兔金雞會",
+    "枯木逢春自放花"
+  ],
+  "analysis": {
+    "zh": "寅、午、戌三個生肖年中，事情往往會遇到許多阻礙；而在亥、子、丑這三個月（即年末）時，情勢會逐漸好轉。若能碰上玉兔（卯）與金雞（酉）的日子，則更能帶來良好的運勢。最後一句「枯木逢春自放花」以枯木春風開花作比喻，告訴人們只要等到合適的時機，順勢而為，事物自然會開花結果。整首詩以生肖歲月與季節變換為象徵，強調「時機」與「順勢」的理念。",
+    "en": "The first line says that years of the Tiger, Horse, and Dog are fraught with obstacles. The second line indicates that during the months of Hai, Zi, and Chou—toward the end of the year—luck gradually improves. The third line notes that encounters with the Jade Rabbit (卯) and Golden Rooster (酉) bring especially auspicious moments. The final line uses the image of a barren tree that blooms when spring arrives, meaning that when the right conditions appear, hope and success will blossom naturally. Overall, the poem urges patience, timing, and recognition of celestial cycles to make the most of favorable periods.",
+    "jp": "第一行は寅・午・戌の年に多くの障害があると述べ、第二行は亥・子・丑の月（年末）になると徐々に運勢が向上すると示す。第三行では玉兎（卯）と金鶏（酉）が出会うとさらに好機が訪れると述べ、最後の行は枯れ木が春に出会えば自ずと花を咲かせるという比喩で、適切な時期を待てば自然に成功が生まれることを意味する。",
+    "reference": "唐玄宗與方士羅光遠。八月十五日。秋宴。光遠取桂枝杖向空擲之。化為大橋。色如銀輿。帝同登遊。入月宮。見有霓裳羽衣之女歌唱。調甚新奇。帝默記其譜。以教大真。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Years of the Tiger, Horse, and Dog are marked by many obstacles and delays.\n- The later months of the year—Hai, Zi, and Chou—bring gradual improvement and more favorable opportunities.\n- Encounters with the Jade Rabbit (Month of Rabbit, 卯) and Golden Rooster (Month of Rooster, 酉) are especially auspicious, indicating peak periods of positive energy.\n- The image of a barren tree blossoming in spring symbolizes that when the right conditions appear, success and growth will happen naturally without forcing.\n- Overall, the poem advises patience, timing, and awareness of celestial cycles to harness favorable moments.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:33:53",
+    "source_file": "chuck_25.json",
+    "raw_llm_response_preview": "{\"id\":25,\"title\":\"關聖帝君一百籤第二十五籤\",\"subtitle\":\"唐明皇遊月宮丙戊\",\"fortune\":\"中平\",\"poem\":[\"寅午戍年多阻滯\",\"亥子丑月漸亨嘉\",\"更逢玉兔金雞會\",\"枯木逢春自放花\"],\"analysis\":{\"zh\":\"寅、午、戌三個生肖年中，事情往往會遇到許多阻礙；而在亥、子、丑這三個月（即年末）時，情勢會逐漸好轉。若能碰上玉兔（卯）與金雞（酉）的日子，則更能帶來良好的運勢。最後一句「枯木逢春自放花」以枯木春風開花作比喻，告訴人們只要等到合適的時機，順勢而為，事物自然會開花結果。整首詩以生肖歲月與季節變換為象徵，強調「時機」與「順勢」的理念"
+  }
+}

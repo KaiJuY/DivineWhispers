@@ -1,0 +1,25 @@
+{
+  "id": 27,
+  "title": "關聖帝君一百籤第二十七籤",
+  "subtitle": "江東得道丙庚",
+  "fortune": "下下",
+  "poem": [
+    "世間萬物各有主",
+    "一粒一毫君莫取",
+    "英雄豪傑自天生",
+    "也須步步循規矩"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於順其自然、遵循規則的道理。詩中說世間萬物皆有其應屬之主，隨意奪取只會招來不幸；即便是天生的英雄豪傑，也必須按步驟、遵守規矩才能完成使命。整首詩提醒人們要守住分寸、勿妄取，並以正當、合規的方式行事。",
+    "en": "The theme of this poem is the principle of respecting natural order and adhering to established rules. It states that every thing in the world has its rightful owner; taking what does not belong to you brings misfortune. Even a natural-born hero must proceed step by step and follow the prescribed norms to accomplish his destiny. The poem thus urges restraint, warns against taking what is not yours, and advocates acting through legitimate and orderly means.",
+    "jp": "この詩のテーマは自然の秩序を尊重し、既定のルールに従うことの重要性を説いています。詩は「世の中の万物にはそれぞれ主がある。自分のものではないものを奪えば不幸を招く」とし、英雄や豪傑であっても、天命に従い段階を踏んで規則を守らなければならないと述べています。全体としては、分寸を守り、無理に取らないこと、正当かつ秩序ある方法で行動することの大切さを訴えています。",
+    "reference": "錢塘。羅隱。號江東。唐末舉進士。求官不遂。立意修真。幸遇異人。傳授心法。因而得道。故能開口成讖。(讖本作織)嘗遊泉州。乞食於羅裳山下。鄉人慢之。江東畫馬於石。每夜出踐田穀。鄉人知而請罪焉。乃畫椿樹以繫馬。遂不踐。至今遺跡猶存。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- Every thing in the world has its rightful owner; appropriating what does not belong to you invites misfortune. \n- Even natural-born heroes must proceed step‑by‑step and respect established norms to fulfill their destiny. \n- The poem urges restraint, warns against overreaching, and advocates legitimate, orderly conduct. \n- Implicitly, it teaches that honor and success arise not from force or greed but from adherence to the natural and societal order.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:34:41",
+    "source_file": "chuck_27.json",
+    "raw_llm_response_preview": "{\"id\":27,\"title\":\"關聖帝君一百籤第二十七籤\",\"subtitle\":\"江東得道丙庚\",\"fortune\":\"下下\",\"poem\":[\"世間萬物各有主\",\"一粒一毫君莫取\",\"英雄豪傑自天生\",\"也須步步循規矩\"],\"analysis\":{\"zh\":\"這首詩的主題是關於順其自然、遵循規則的道理。詩中說世間萬物皆有其應屬之主，隨意奪取只會招來不幸；即便是天生的英雄豪傑，也必須按步驟、遵守規矩才能完成使命。整首詩提醒人們要守住分寸、勿妄取，並以正當、合規的方式行事。\",\"en\":\"The theme of this poem is the principle of respecti"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 49,
+  "title": "日本淺草觀音寺一百籤第四十九籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "正好中秋月,蟾蜍皎潔間,暗雲知何處,故故兩相攀",
+  "analysis": {
+    "zh": "這首詩的主題是對正圓月光下的清澈與團聚之美的讚頌，暗示在吉利的日子裡，心境清明、親情或友情緊密相依，亦象徵順遂、吉祥。",
+    "en": "這首詩的主題是 the poem celebrates the clarity and harmony of a perfectly round Mid‑Autumn moon, hinting that on fortunate days the heart is bright, bonds—whether family or friendship—are close, and everything proceeds smoothly and auspiciously.",
+    "jp": "這首詩の主題は この詩は、正しい満月の中秋の月の下での清らかさと調和を称賛し、運の良い日に心が明るく、親戚や友情がしっかり結ばれ、すべてが順調で幸運であることを示唆しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is to celebrate the clear, harmonious moments under a perfect Mid‑Autumn moon. • The moon itself symbolizes completeness, brightness, and auspiciousness. • The toad, seen in the clear light, represents calmness, purity, and the ability to see clearly. • The absence of dark clouds conveys freedom from obstacles and confusion. • The phrase “兩相攀” (the two cling together) evokes close bonds—family, friends, or lovers—held firmly in a favorable environment. The overall message is one of peace, clarity, and harmonious relationships, suggesting that good fortune and success are assured.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:06:07",
+    "source_file": "chuck_49.json",
+    "raw_llm_response_preview": "{\"id\":49,\"title\":\"日本淺草觀音寺一百籤第四十九籤\",\"subtitle\":\"\",\"fortune\":\"吉\",\"poem\":\"正好中秋月,蟾蜍皎潔間,暗雲知何處,故故兩相攀\",\"analysis\":{\"zh\":\"這首詩的主題是對正圓月光下的清澈與團聚之美的讚頌，暗示在吉利的日子裡，心境清明、親情或友情緊密相依，亦象徵順遂、吉祥。\",\"en\":\"這首詩的主題是 the poem celebrates the clarity and harmony of a perfectly round Mid‑Autumn moon, hinting that on fortunate day"
+  }
+}

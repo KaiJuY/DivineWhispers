@@ -1,0 +1,20 @@
+{
+  "id": 92,
+  "title": "日本淺草觀音寺一百籤第九十二籤",
+  "subtitle": "",
+  "fortune": "吉",
+  "poem": "自幼常為旅,逢春駿馬驕,前程宜進步,得箭降青霄",
+  "analysis": {
+    "zh": "這首詩的主題是從小旅居不安，到春日機遇，迎向光明未來。\n自幼常為旅，表達了自小便常在路途上的不安與勞苦，暗示心境的漂泊與探索。\n逢春駿馬驕，春天象徵新生與活力，駿馬驕傲奔騰，寓意機遇到來，精神被提振。\n前程宜進步，提醒應把握時勢，勇往直前，努力提升自身前途。\n得箭降青霄，箭象徵目標與方向，降青霄則表明成功會如天降的驚喜降臨，帶來光明與祝福。",
+    "en": "This poem focuses on the journey from a restless childhood to a hopeful future, symbolised by springtime opportunities and upward progress.\n\"自幼常為旅\" indicates a lifelong itinerant existence, reflecting constant change and the yearning for stability.\n\"逢春駿馬驕\" uses spring as a metaphor for renewal, while the proud steed suggests that favourable circumstances are arriving.\n\"前程宜進步\" urges the reader to seize the moment and actively improve one’s prospects.\n\"得箭降青霄\" portrays the arrow as a clear aim; the phrase implies that success will descend from above, like a heavenly blessing.\n\nThe poem therefore encourages perseverance and optimism, suggesting that with determination and timely opportunity, one can attain a brighter future.",
+    "jp": "この詩の主題は、幼い頃からの不安定な旅人生活から春の機会を得て、未来へと進むことにあります。\n『自幼常為旅』は、常に旅をしていた幼少期の不安と労苦を表し、心の漂泊を示唆します。\n『逢春駿馬驕』は春を再生と活力の象徴とし、駿馬の威勢が好運を呼び寄せる様子を示しています。\n『前程宜進步』は、今の機会をつかみ、前進し続けるべきだと告げています。\n『得箭降青霄』は矢を目標、青霄を天からの祝福と解釈し、成功が天から降ってくるという意味合いです。\n\n全体として、忍耐と楽観を重視し、努力とタイミングがあれば明るい未来を手に入れられるというメッセージが込められています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• **A lifelong journey** – The speaker’s early life of constant traveling symbolizes emotional restlessness and the search for stability.\n• **Spring as a turning point** – The arrival of spring, with its vibrant horse, marks a period of renewed energy and the arrival of favorable circumstances.\n• **Progressive aspiration** – The line about advancing in the future urges the reader to actively pursue improvement and seize opportunities.\n• **Divine blessing** – The image of an arrow descending from the sky represents success and good fortune arriving from above, signifying a heavenly gift or unexpected breakthrough.\n\nTogether, these elements portray a hopeful narrative that perseverance and seizing timely opportunities can lead to a brighter, more prosperous future.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:25:48",
+    "source_file": "chuck_92.json",
+    "raw_llm_response_preview": "{\"id\": 92, \"title\": \"日本淺草觀音寺一百籤第九十二籤\", \"subtitle\": \"\", \"fortune\": \"吉\", \"poem\": \"自幼常為旅,逢春駿馬驕,前程宜進步,得箭降青霄\", \"analysis\": {\"zh\": \"這首詩的主題是從小旅居不安，到春日機遇，迎向光明未來。\\n自幼常為旅，表達了自小便常在路途上的不安與勞苦，暗示心境的漂泊與探索。\\n逢春駿馬驕，春天象徵新生與活力，駿馬驕傲奔騰，寓意機遇到來，精神被提振。\\n前程宜進步，提醒應把握時勢，勇往直前，努力提升自身前途。\\n得箭降青霄，箭象徵目標與方向，降青霄則表明成功會如天降的驚喜降臨，帶來光明與祝福"
+  }
+}

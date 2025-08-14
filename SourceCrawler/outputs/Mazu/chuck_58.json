@@ -1,0 +1,25 @@
+{
+  "id": 58,
+  "title": "六十甲子籤第五十八籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "癸未○○●　○●●",
+  "poem": [
+    "蛇身意欲變成龍",
+    "只恐命內運未通",
+    "久病且作寬心坐",
+    "言語雖多不可從"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於個人欲望與運勢的等待。蛇身渴望成龍象徵著內在的成長與抱負，卻擔心命中注定的運氣尚未到位，提醒人們在追求目標時須先安定自身，像長期病痛需耐心休養，雖有許多指示與建議，但不應輕易接受。",
+    "en": "This poem's theme is the tension between aspiration and the timing of destiny. The snake longing to become a dragon symbolizes inner ambition, yet it fears that fate’s alignment has not yet arrived. It advises patience—like enduring a long illness and calmly resting—while many voices offer guidance, one should not heed them hastily.",
+    "jp": "この詩のテーマは、欲望と運勢の待ち時間に関するものです。蛇が龍になろうとする様子は内面的な成長と野心を象徴し、しかし運命がまだ整っていないと恐れています。長期の病気のように冷静に休むことを勧め、たくさんの助言があっても軽々しく従わないようにと警告しています。",
+    "reference": "1.白蛇精詐言往南海遇漢文2.袁達入昭國關凡事　不好。難成。作事　未日抽。成好。家事　漸待。莫得。家運　不順。婚姻　不吉。求兒　不可。六甲　弄璋之喜。求財　淡淡。功名　未該得。不能進。歲君　平平。治病　拖尾。不痊癒。出外　未日抽成。經商　無利可求。來人　己未日(半月)到。行舟　可得小利。(無利)移居　不可。失物　尋在。求雨　遠。官事　反覆。(恐生尚端)六畜　了錢不利。耕作　中平。築室　等待。墳墓　穴地平安。討海　可得小利。作塭　無財利。魚苗　不可採買。月令　破財。多逢口舌。尋人　辰日在。遠信　音信且待。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n• The speaker’s ambition is likened to a snake wanting to become a dragon, signifying a desire for transformation or greater status.\n• A sense of hesitation surfaces because the speaker feels that fate or luck has not yet aligned—\"命內運未通\" implies timing is off.\n• The poem advises patience and self‑care: \"久病且作寬心坐\" encourages calm, restorative rest instead of rushing.\n• It warns against over‑trusting external advice: \"言語雖多不可從\" reminds us that many suggestions may be misleading.\n• Overall, the verse urges balancing aspiration with realistic timing and inner steadiness, rather than chasing outcomes prematurely.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:40:03",
+    "source_file": "chuck_58.json",
+    "raw_llm_response_preview": "{\"id\":58,\"title\":\"六十甲子籤第五十八籤\",\"subtitle\":\"屬木利春　宜其東方\",\"fortune\":\"癸未○○●　○●●\",\"poem\":[\"蛇身意欲變成龍\",\"只恐命內運未通\",\"久病且作寬心坐\",\"言語雖多不可從\"],\"analysis\":{\"zh\":\"這首詩的主題是關於個人欲望與運勢的等待。蛇身渴望成龍象徵著內在的成長與抱負，卻擔心命中注定的運氣尚未到位，提醒人們在追求目標時須先安定自身，像長期病痛需耐心休養，雖有許多指示與建議，但不應輕易接受。\",\"en\":\"This poem's theme is the tension between aspiration"
+  }
+}

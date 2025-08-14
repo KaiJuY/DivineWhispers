@@ -1,0 +1,25 @@
+{
+  "id": 54,
+  "title": "關聖帝君一百籤第五十四籤",
+  "subtitle": "蘇秦刺股己丁",
+  "fortune": "中平",
+  "poem": [
+    "萬人叢裏逞英豪",
+    "便欲飛騰霄漢高",
+    "爭奈承流風未便",
+    "青燈黃卷且勤勞"
+  ],
+  "analysis": {
+    "zh": "在萬人中顯露英豪氣概，渴望一飛沖天，但運勢不佳，只能在青燈黃卷下勤奮學習，修身養性，等待機遇。詩中表達雖有遠大抱負，卻缺乏實現的機會，宜隱忍充實自己。此籤若詢功名、創業或擴張，均顯時機不佳，最宜守舊；訴訟則宜和解，婚姻則需暫緩。友人陳某因驕傲缺人緣，在官場受挫，閱讀此籤後改正心態，成為名譽學者，詩末所說「青燈黃卷且勤勞」正是其轉變的寫照。",
+    "en": "Lot No. 54 presents a picture of a person who, surrounded by many, displays heroic ambition and a desire to soar.  Yet fortune is not on his side, so he must keep working under the lamplight with yellow volumes, cultivating himself patiently.  The verse conveys that while great aspirations exist, the moment to realise them is not yet ripe.  For career matters—seeking fame, starting new ventures, or expanding business—this is an unfavourable time, so it is wiser to hold the status quo.  Litigation is best settled peacefully and marriage should be postponed.  A friend, Chen, once proud and lacking influence, found this poem instructive; he changed his attitude, studied hard, and eventually became a respected scholar—exactly what the line “under the lamp, with yellow volumes, work diligently” foretells.",
+    "jp": "第54籤は、群衆の中で英雄的な気概を示し、翔ることを望む者を描いているが、運勢は現在うまくいかず、青い灯の下で黄巻を読みながら修身と学習に勤しむ必要があることを示している。 つまり、大きな抱負はあるものの実現の時期が来ておらず、忍耐と自己研鑽が求められるという意味だ。 仕事や名声、創業・拡大のタイミングは不利で、現状を保つのが賢明である。 訴訟は和解し、結婚は時期を待つべきだと示唆されている。 友人の陳（チェン）が自らの傲慢さと人脈不足に悩み、此の詩を受けて心を改め、熱心に学び、やがて名門学者となった――「青灯黄巻且勤勞」という行為が彼の変化を象徴している。",
+    "reference": "戰國。蘇秦。洛陽人。師鬼谷子。游說秦王。書十二上其說。不行。裘敝金盡。憔悴而歸。至家妻不下(織)機。(不理睬其夫)嫂不為炊。(不煮飯給其叔)秦慚怒。得太公陰符。發憤苦讀。困怠時用錐刺股。痛而再讀。後以合從(合縱)之說。聯六國抗秦。說趙竟佩六國相印。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a person with heroic ambition finds himself in a period where fortune is not yet favourable. The verses juxtapose lofty aspiration with the reality of studying under lamplight and yellow volumes, symbolising disciplined learning and self‑cultivation. 1. **Ambition versus Timing** – The desire to ‘fly high’ contrasts with the lack of opportunity, suggesting patience is required before action. 2. **Symbolic Imagery** – ‘青燈黃卷’ (lamp and yellow books) represents diligent study and personal development. 3. **Practical Guidance** – For career and business, the timing is poor; maintaining the status quo is wiser. 4. **Personal Life** – Litigation should be settled peacefully; marriage is better postponed. 5. **Philosophical Insight** – Great ambitions must be tempered with humility and persistent effort; success comes through steady work rather than sudden fortune.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:49:17",
+    "source_file": "chuck_54.json",
+    "raw_llm_response_preview": "{\"id\":54,\"title\":\"關聖帝君一百籤第五十四籤\",\"subtitle\":\"蘇秦刺股己丁\",\"fortune\":\"中平\",\"poem\":[\"萬人叢裏逞英豪\",\"便欲飛騰霄漢高\",\"爭奈承流風未便\",\"青燈黃卷且勤勞\"],\"analysis\":{\"zh\":\"在萬人中顯露英豪氣概，渴望一飛沖天，但運勢不佳，只能在青燈黃卷下勤奮學習，修身養性，等待機遇。詩中表達雖有遠大抱負，卻缺乏實現的機會，宜隱忍充實自己。此籤若詢功名、創業或擴張，均顯時機不佳，最宜守舊；訴訟則宜和解，婚姻則需暫緩。友人陳某因驕傲缺人緣，在官場受挫，閱讀此籤後改正心態，成為名譽學者，詩末所說「青燈黃卷且勤勞」正是其轉變"
+  }
+}

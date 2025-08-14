@@ -1,0 +1,20 @@
+{
+  "id": 66,
+  "title": "日本淺草觀音寺一百籤第六十六籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "水滯少波濤,飛鴻落羽毛,重憂心緒亂,閑事惹風騷",
+  "analysis": {
+    "zh": "這首詩的主題是水停滯、羽毛掉落、心中憂鬱與小事挑起風波，呈現一種無法前行、情緒不安與偶發問題的境況。",
+    "en": "This poem's theme is the stillness of water, a hawk dropping its feathers, heavy worries stirring up chaotic thoughts, and idle matters that provoke turbulence—an image of being stuck, unsettled, and facing unexpected troubles.",
+    "jp": "この詩の主題は、水の停滞、鷹が羽を落とす、重い憂いが心を混乱させ、暇な事が風を呼び起こす――立ち止まり、心が不安定で予期せぬ問題に直面する姿です。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The still water suggests a lack of movement or progress, indicating stagnation in one’s circumstances.\n- The hawk’s fallen feathers symbolize a loss of purpose or capability, hinting that one cannot take flight or move forward.\n- Heavy worries disturb the mind, turning thoughts into chaos, which reflects inner turmoil.\n- Trivial or idle matters provoke turbulence, showing how small issues can magnify into larger problems.\n- Overall, the verses paint a picture of being trapped, emotionally unsettled, and susceptible to unexpected difficulties.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:13:23",
+    "source_file": "chuck_66.json",
+    "raw_llm_response_preview": "{\"id\":66,\"title\":\"日本淺草觀音寺一百籤第六十六籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"水滯少波濤,飛鴻落羽毛,重憂心緒亂,閑事惹風騷\",\"analysis\":{\"zh\":\"這首詩的主題是水停滯、羽毛掉落、心中憂鬱與小事挑起風波，呈現一種無法前行、情緒不安與偶發問題的境況。\",\"en\":\"This poem's theme is the stillness of water, a hawk dropping its feathers, heavy worries stirring up chaotic thoughts, and idle "
+  }
+}

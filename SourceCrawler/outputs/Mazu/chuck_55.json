@@ -1,0 +1,25 @@
+{
+  "id": 55,
+  "title": "六十甲子籤第五十五籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "癸丑●●○　○○●",
+  "poem": [
+    "須知進退總言虛",
+    "看看發暗未必全",
+    "珠玉深藏還未變",
+    "心中但得枉徒然"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是提醒你，現在的計畫缺乏實際可行性。前景雖暗，若不修正內在缺陷，寶藏仍難發現，所做努力將徒勞。詩中暗示你正處於自我磨練階段，應充實自己，揭露心中「珠玉」以迎接未來機會。",
+    "en": "This poem’s theme reminds you that your current plans lack practicality. The outlook is dim, and unless you correct internal shortcomings, hidden treasures remain unseen, rendering your efforts futile. The poem suggests you are in a stage of self‑refinement, needing to enrich yourself and bring out the “jewels” inside to seize future opportunities.",
+    "jp": "この詩のテーマは、現在の計画が実践的ではないことを思い起こさせるものです。展望は暗く、内面の欠点を修正しなければ、隠れた宝物は見つかりません。努力は無駄になります。詩は、自己磨練の段階にいることを示唆しており、自己を充実させ、心の中の「宝石」を引き出して将来の機会を掴むべきだと伝えています。",
+    "reference": "1.郭華醉酒誤佳期胭脂記。宋郭華。治陽人。往汴京。赴試。因戀胭脂舖女。王月英之美。落第不歸。羈留汴京。與之約期私會。屆期。王月英至。值郭華酒飲過醉。推擠不醒。乃解日鞋。藏華懷中而回。華醒時。見鞋悔恨。仰吞而死。是何為。出門不知過。欲者戒焉。2.玉堂春求佛嫁良緣明朝正德年間(1506~1521)。名妓玉堂春與王三官(王景隆)相戀。三官耗盡金錢被逐。玉姐贈銀回家讀書求功名。一年後中秋。玉堂春向神明祝願三官中榜。以結良緣。對月燒香禱告天。何時得洩腹中冤。王郎有日登金榜。不枉今生結好緣。三官高中第四名。但玉姐被老鴇賣給山西商人沈洪。沈洪又被妻毒死。其妻誣告玉堂春殺夫。知縣受賂。玉堂春被苦打成招。王三官有幸被派山西巡按。最後冤情大白。終成眷屬。(故事出自警世通言)凡事　了工。無利益。作事　難成。家事　家庭多逢口舌。家運　先凶後吉。婚姻　不成。求兒　不可。六甲　先男後女。(生男)(子媳晚得)求財　輕。功名　等後科。歲君　安。治病　不好。拖尾。出外　無貴人。經商　了錢。來人　未日(半月)到。行舟　無利。移居　不宜。失物　難尋。求雨　未有。官事　拖尾。了錢。六畜　了工無利。耕作　平平。築室　難得平安。墳墓　地勢不吉。討海　費了工。作塭　了資本。魚苗　蝕本。月令　不遂有口舌。尋人　難。遠信　漸且待望"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the seeker is currently pursuing unrealistic endeavors. The verses warn that the path ahead is dark and uncertain, and without addressing inner deficiencies, any latent talents or potential remain unrecognized, making efforts meaningless. The imagery of buried jewels implies hidden strengths that must be cultivated through self‑improvement. The poem therefore encourages patience, self‑development, and readiness to seize a more favorable opportunity when it arrives.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:38:41",
+    "source_file": "chuck_55.json",
+    "raw_llm_response_preview": "{\"id\":55,\"title\":\"六十甲子籤第五十五籤\",\"subtitle\":\"屬木利春　宜其東方\",\"fortune\":\"癸丑●●○　○○●\",\"poem\":[\"須知進退總言虛\",\"看看發暗未必全\",\"珠玉深藏還未變\",\"心中但得枉徒然\"],\"analysis\":{\"zh\":\"這首詩的主題是提醒你，現在的計畫缺乏實際可行性。前景雖暗，若不修正內在缺陷，寶藏仍難發現，所做努力將徒勞。詩中暗示你正處於自我磨練階段，應充實自己，揭露心中「珠玉」以迎接未來機會。\",\"en\":\"This poem’s theme reminds you that your current plans lack p"
+  }
+}

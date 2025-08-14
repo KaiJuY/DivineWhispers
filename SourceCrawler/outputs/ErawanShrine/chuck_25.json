@@ -1,0 +1,20 @@
+{
+  "id": 25,
+  "title": "四面佛三十籤第二十五籤",
+  "subtitle": "",
+  "fortune": "上籤",
+  "poem": "只因親者到焚香,便是前來問主張,供果閑修應得報,靈神保佑自安康。",
+  "analysis": {
+    "zh": "這首詩的主題是關於親者來焚香、祈求神明保佑，並以此提醒修身養性、守正不偏的道理。詩中以親者（親屬或友人）焚香為入口，說明人們在日常生活中透過誠心供養，將修行的成果化作福報。最後提及靈神保佑與安康，強調內外兼修，才能獲得真正的平安與健康。",
+    "en": "This poem's theme is about a close relative or friend who comes to burn incense, seeking divine protection, and it reminds us of the importance of cultivating oneself and staying righteous. The poem begins with the act of incense burning, indicating that sincere devotion in everyday life can transform one's spiritual practice into tangible blessings. It concludes with the promise of spiritual protection and health, underscoring that true peace and wellbeing come from balanced inner and outer cultivation.",
+    "jp": "この詩のテーマは、親しい人が香を焚いて神に祈り、守護と健康を求める様子を描き、自己修養と正しい行いの重要性を説いています。詩は香を焚く行為から始まり、日々の誠実な奉仕が精神的修練の成果を福徳へと変えることを示しています。最後に、霊神の保護と安寧が述べられ、内外のバランスが取れた修行こそが真の平安と健康をもたらすと結論づけられています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The act of burning incense by a close relative or friend symbolizes sincere devotion and a plea for divine guidance.\n- The poem links this devotional act to the concept of spiritual cultivation—implying that consistent, disciplined practice yields tangible blessings.\n- It conveys that true peace and health arise from a harmonious balance of inner spiritual growth and outer moral conduct.\n- The reference to a spiritual guardian’s protection underscores the belief that divine benevolence supports the practitioner’s well-being and fortifies their path.\n- Overall, the verse encourages regular, mindful practice and trust in a higher power to ensure holistic wellness.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:35:27",
+    "source_file": "chuck_25.json",
+    "raw_llm_response_preview": "{\"id\":25,\"title\":\"四面佛三十籤第二十五籤\",\"subtitle\":\"\",\"fortune\":\"上籤\",\"poem\":\"只因親者到焚香,便是前來問主張,供果閑修應得報,靈神保佑自安康。\",\"analysis\":{\"zh\":\"這首詩的主題是關於親者來焚香、祈求神明保佑，並以此提醒修身養性、守正不偏的道理。詩中以親者（親屬或友人）焚香為入口，說明人們在日常生活中透過誠心供養，將修行的成果化作福報。最後提及靈神保佑與安康，強調內外兼修，才能獲得真正的平安與健康。\",\"en\":\"This poem's theme is about a close relative or friend "
+  }
+}

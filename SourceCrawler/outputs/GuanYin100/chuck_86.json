@@ -1,0 +1,20 @@
+{
+  "id": 86,
+  "title": "觀音一百籤第八十六籤",
+  "subtitle": "申宮",
+  "fortune": "上籤",
+  "poem": "春來花發映陽臺、萬里舟行進寶來、躍過禹門三級浪、恰如平地一聲雷。",
+  "analysis": {
+    "zh": "這首詩的主題是春日盛景與順利旅程，寓意大吉大利，凡事順遂，事業如舟行進，財富如寶來，乃至達到高位，皆得如從心所願，象徵上朝見帝之象，皆吉運亨通。",
+    "en": "This poem’s theme is the vibrant spring scenery and a smooth voyage, symbolizing great luck and success. It portrays the arrival of treasures, steady progress like a boat sailing across vast waters, and thunder on flat land, implying that everything is favorable and in line with one’s desires, akin to a meeting with the emperor and attaining a high position.",
+    "jp": "この詩のテーマは春の華やかな景色と順調な旅路であり、大吉大利を象徴しています。春の花が陽台を映し、舟が万里を進み宝物が運ばれる様子が描かれ、禹門を跳び越えるような波が平地に雷のように響くことで、すべてが順調に進むことを示しています。",
+    "reference": "1.商輅中三元三元記。明朝。商輅。浙江人。父早亡。商輅三元及第。喻步步高升也。(三元即三級試。)鄉試　解元省試　會元殿試　狀元2.西王母獻益地圖西王母聽說堯禪讓予舜，故向舜祝賀，舜感謝之餘，請教西王母如何治理天下，當時天下分為九州，西王母給舜一張十二州地圖，表示再交付三州給舜，舜可依圖擴大三州領土，黃帝的九州領土就這樣擴大為十二州了。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a celebration of favorable circumstances and successful progress.\n- The blooming flowers in spring represent renewal and auspiciousness.\n- The boat traversing ten thousand miles conveys ambition and steady advancement.\n- Treasure arriving signals prosperity and rewards.\n- The ‘Yu’s gate’ and three-tier waves symbolize overcoming obstacles, while thunder on flat ground evokes sudden impact or decisive action.\n- Overall, the poem conveys that with determination and alignment to one’s aspirations, fortune and success will flow naturally.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:41:43",
+    "source_file": "chuck_86.json",
+    "raw_llm_response_preview": "{\n  \"id\": 86,\n  \"title\": \"觀音一百籤第八十六籤\",\n  \"subtitle\": \"申宮\",\n  \"fortune\": \"上籤\",\n  \"poem\": \"春來花發映陽臺、萬里舟行進寶來、躍過禹門三級浪、恰如平地一聲雷。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是春日盛景與順利旅程，寓意大吉大利，凡事順遂，事業如舟行進，財富如寶來，乃至達到高位，皆得如從心所願，象徵上朝見帝之象，皆吉運亨通。\",\n    \"en\": \"This poem’s theme is the vibrant spring scenery and a smooth vo"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 54,
+  "title": "觀音一百籤第五十四籤",
+  "subtitle": "子宮",
+  "fortune": "下籤",
+  "poem": "夢中得寶醒來無、應說巫山只是虛、若問婚姻幷病訟、別尋生路得相宜。",
+  "analysis": {
+    "zh": "這首詩的主題是：此卦以「夢中得寶醒來無」為核心，象徵夢境裡的富足與醒來後的空虛。詩中先提到巫山，意指所謂的榮華只是空幻，隨後談及婚姻、疾病、訴訟及人生道路，提醒人們凡事往往是徒勞無功、在水中尋物、形影短長，皆有定數，無需多言。整體傳達的是：不要被浮想聯翩的虛妄所牽引，應以實際可行的態度面對生活。",
+    "en": "這首詩的主題是：This verse revolves around the motif of ‘discovering treasure in a dream yet waking up empty’, symbolizing the fleeting nature of desires and the hollowness of imagined riches. The poem begins by likening the dream to the mythical Wushan, suggesting that what appears to be grandeur is merely illusion. It then touches upon marriage, illness, litigation, and life’s path, warning that many pursuits are futile, that matters may lie hidden like fish in water, that appearances can change like shadows, and that outcomes are predetermined – all of which do not require further debate. The overall message urges readers not to be ensnared by fanciful fantasies but to face life with a practical, grounded perspective.",
+    "jp": "この詩のテーマは：『夢中で宝を得て目覚めると無い』というモチーフを中心に、夢の中の豊かさと覚醒後の虚無を象徴しています。詩はまず巫山（むざん）にたとえて、見た目の華やかさが空想にすぎないと示唆し、続いて結婚、病気、訴訟、人生の道に触れ、ほとんどの追求は徒労であり、魚が水の中に隠れ、影は長短し、運命は既に決まっていると警告します。全体として、幻想に惑わされず、実際に手に取れるものを大切にし、現実的な姿勢で人生を見つめることを訴えています。",
+    "reference": "*(幷：音同并，但與并字不同（請注意分辨）)*(壽比南山指長壽。鋤指勞苦或掘穴;來路本作從路)家宅　欠安。自身　謹防。求財　阻。交易　難。婚姻　待時。六甲　祈保。行人　遲。田蠶　滯。六畜　滯。尋人　見。公訟　虧。移徙　吉。失物　空。疾病　求神保佑。山墳　不安。1.馬超追曹 三國時。曹操殺馬超之父。馬超攻曹操。曹操大敗。曹操脫下錦衣。割短了鬍鬚。騎馬逃竄。得曹洪相救。曹操得以保命。2.呂仙枕黃粱未熟書生呂岩（即呂洞賓）應試落第，遇到鍾離權，隨他往終南山，於休息時做夢。夢中呂岩做了狀元升大官，娶二妻享盡榮華富貴，四十年後獲罪抄家，遇人追殺而驚醒。醒來時鍾離權正煮黃梁飯。呂洞賓遂隨鍾離權求道。此籤『夢中得寶醒來無』一句於現代社會環境下，有寓意勿沉迷於社會觀感不切實際之事物，例如網路虛擬寶物遊戲等等之意。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the dream of finding treasure which vanishes upon waking symbolizes the illusory nature of material desire. It warns that apparent glory (referenced by Wushan) is merely an illusion, and that pursuits in marriage, health, litigation, and life’s path are often futile and predetermined, leaving little value in exhausting oneself. The poem encourages a pragmatic, grounded approach to relationships and personal matters, urging readers to focus on what is attainable rather than chasing fantasies.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:20:42",
+    "source_file": "chuck_54.json",
+    "raw_llm_response_preview": "{\"id\":54,\"title\":\"觀音一百籤第五十四籤\",\"subtitle\":\"子宮\",\"fortune\":\"下籤\",\"poem\":\"夢中得寶醒來無、應說巫山只是虛、若問婚姻幷病訟、別尋生路得相宜。\",\"analysis\":{\"zh\":\"這首詩的主題是：此卦以「夢中得寶醒來無」為核心，象徵夢境裡的富足與醒來後的空虛。詩中先提到巫山，意指所謂的榮華只是空幻，隨後談及婚姻、疾病、訴訟及人生道路，提醒人們凡事往往是徒勞無功、在水中尋物、形影短長，皆有定數，無需多言。整體傳達的是：不要被浮想聯翩的虛妄所牽引，應以實際可行的態度面對生活。\",\"en\":\"這首詩的主題是：This verse revo"
+  }
+}

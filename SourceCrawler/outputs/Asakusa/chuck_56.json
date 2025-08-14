@@ -1,0 +1,20 @@
+{
+  "id": 56,
+  "title": "日本淺草觀音寺一百籤第五十六籤",
+  "subtitle": "",
+  "fortune": "末小吉",
+  "poem": "生涯喜又憂,未老先白頭,勞心千百度,方遇貴人留",
+  "analysis": {
+    "zh": "這首詩的主題是生涯中的喜樂與憂愁交織，提前顯現的白髮象徵心事重重，經歷多次勞苦後，終於遇見貴人相助，心境得以安寧。",
+    "en": "This poem's theme is the intertwining of joy and sorrow throughout one's life, the early appearance of white hair symbolizing many worries, the repeated toil, and the eventual meeting with a benefactor that brings inner peace.",
+    "jp": "この詩のテーマは、人生における喜びと憂いが交錯し、早くも白髪が現れることによって心配が多いことを示し、何度も苦労しながら、最終的に貴人に助けられ、心が安らぐということです。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Life is a balance of happiness and melancholy, reminding us that good and bad moments often coexist.\n- The phrase \"未老先白頭\" (white hair before old age) symbolizes the weight of constant worries and responsibilities.\n- \"勞心千百度\" (thousands of times of mental toil) reflects persistent effort and inner struggle.\n- The concluding line \"方遇貴人留\" (finally meeting a benefactor) implies that after enduring hardships, benevolent help arrives, bringing relief and a sense of resolution.\n- Overall, the poem encourages patience, perseverance, and openness to support from others in times of hardship.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:09:15",
+    "source_file": "chuck_56.json",
+    "raw_llm_response_preview": "{\n  \"id\": 56,\n  \"title\": \"日本淺草觀音寺一百籤第五十六籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"末小吉\",\n  \"poem\": \"生涯喜又憂,未老先白頭,勞心千百度,方遇貴人留\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是生涯中的喜樂與憂愁交織，提前顯現的白髮象徵心事重重，經歷多次勞苦後，終於遇見貴人相助，心境得以安寧。\",\n    \"en\": \"This poem's theme is the intertwining of joy and sorrow throughout one's life, the "
+  }
+}

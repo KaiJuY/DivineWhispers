@@ -1,0 +1,20 @@
+{
+  "id": 30,
+  "title": "四面佛三十籤第三十籤",
+  "subtitle": "",
+  "fortune": "中籤",
+  "poem": "遇事愴惶到焚香,真誠祈禱問端祥,虔心早拜何難易,自有靈神作主張。",
+  "analysis": {
+    "zh": "這首詩的主題是... 這首詩說明了在面臨突如其來的困境時，若臨時驚慌地燃香，可能無法清楚表達問題。若能早早以虔誠的心態靜下來焚香並誠心請示，雖遇到難題，仍可得到神明的指引與保佑。若是因事業、財務、感情或人際關係等困難，並非因緣所致，卻可藉由祈禱與信仰，減輕負擔，讓神明自行安排好的結果。",
+    "en": "這首詩的主題是... This poem emphasizes that when sudden difficulties arise, a hurried and panicked incense offering may fail to convey the issue clearly. By taking the time to calmly and sincerely burn incense early and ask the divine, the deity will naturally respond and help. It illustrates how sincere devotion can guide one through career, financial, romantic, or interpersonal troubles, alleviating burden and allowing a favorable resolution.",
+    "jp": "這首詩的主題は… この詩は、突発的な困難に直面した際、焦って香を焚くと問題を十分に伝えられない可能性があることを示しています。落ち着いて心から香を焚き、神に真摯に祈ることで、神が自然に導き、助けてくれるということです。仕事・金銭・恋愛・人間関係などの困難に対して、信仰と誠実な祈りが負担を軽減し、良い結果をもたらすというメッセージが込められています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Facing sudden troubles can lead to panic and a rushed incense offering that fails to convey the true issue.\n- Taking time to calmly and sincerely perform the offering early allows the deity to understand the problem.\n- The divine response is natural and supportive, guiding the seeker toward a favorable outcome.\n- The poem underscores that genuine devotion can help overcome obstacles in career, finances, relationships, and other aspects of life, easing burdens and inviting a harmonious resolution.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:37:33",
+    "source_file": "chuck_30.json",
+    "raw_llm_response_preview": "{\"id\":30,\"title\":\"四面佛三十籤第三十籤\",\"subtitle\":\"\",\"fortune\":\"中籤\",\"poem\":\"遇事愴惶到焚香,真誠祈禱問端祥,虔心早拜何難易,自有靈神作主張。\",\"analysis\":{\"zh\":\"這首詩的主題是... 這首詩說明了在面臨突如其來的困境時，若臨時驚慌地燃香，可能無法清楚表達問題。若能早早以虔誠的心態靜下來焚香並誠心請示，雖遇到難題，仍可得到神明的指引與保佑。若是因事業、財務、感情或人際關係等困難，並非因緣所致，卻可藉由祈禱與信仰，減輕負擔，讓神明自行安排好的結果。\",\"en\":\"這首詩的主題是... This poem emphasize"
+  }
+}

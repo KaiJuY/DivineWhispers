@@ -1,0 +1,25 @@
+{
+  "id": 47,
+  "title": "關聖帝君一百籤第四十七籤",
+  "subtitle": "楚漢爭鋒戊庚",
+  "fortune": "下吉",
+  "poem": [
+    "與君萬語復千言",
+    "祗欲平和雪爾冤",
+    "訟則終凶君記取",
+    "試於清夜把心捫"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是透過言語與內省，提醒人們應以平和之心消除冤怨，避免訟訟。\\n- 第一行表示「與君萬語復千言」說明說話雖多，但核心訊息只有一句。\\n- 第二行「祗欲平和雪爾冤」強調想要用和氣來抹除過去的怨恨。\\n- 第三行「訟則終凶君記取」警示，若發起訴訟，結果往往不利，須記住此教誨。\\n- 第四行「試於清夜把心捫」則建議在安靜之夜反省自己的內心，才能真正避免爭端。",
+    "en": "This poem’s theme is to use words and self‑reflection to seek harmony, to let go of grievances, and to warn against litigation.\\n- The first line, \"With you a thousand words yet a thousand more\", signals that despite many words, the core message is singular.\\n- The second line, \"I merely wish to calm and erase your grievances\", stresses the desire for peace to dissolve past wrongs.\\n- The third line, \"If you sue, it ends in misfortune—remember this\", cautions that litigation leads to unfavorable outcomes.\\n- The fourth line, \"Try, in the quiet night, to pierce your heart\", advises introspection at night to truly avoid conflict.",
+    "jp": "この詩の主題は、言葉と内省を通じて平和を求め、恨みを消し、訟訟を避けることです。\\n- 第一行「与君万語復千言」は、言葉が多くても核心は一つであることを示します。\\n- 第二行「祗欲平和雪爾冤」は、過去の恨みを和らげることを望むという平和の願いを表しています。\\n- 第三行「訟則終凶君記取」は、訴訟は不利な結果を招くことを警告します。\\n- 第四行「試於清夜把心捫」は、夜の静けさの中で自らの心を掘り下げ、争いを避けるよう促しています。",
+    "reference": "項籍既滅秦。宰割天下。自立為西楚霸王。封沛公為漢王。陰弒義帝於江南。漢王乃拜韓信將。舉兵伐楚。定三秦。取咸陽。為義帝發喪。責楚弒逆之罪。與楚戰於成皋榮陽間。大戰三十。小戰七十。爭鋒五年。迨英布降漢。范增貶死。楚乃勢孤。被漢所滅。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The speaker urges the reader to communicate with calm and resolve past grievances.\n- The poem warns that pursuing legal action will likely end badly.\n- It encourages self‑reflection during quiet moments to ensure one’s intentions are pure.\n- Overall, it emphasizes the value of peaceful resolution and the dangers of conflict.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:45:36",
+    "source_file": "chuck_47.json",
+    "raw_llm_response_preview": "{\"id\":47,\"title\":\"關聖帝君一百籤第四十七籤\",\"subtitle\":\"楚漢爭鋒戊庚\",\"fortune\":\"下吉\",\"poem\":[\"與君萬語復千言\",\"祗欲平和雪爾冤\",\"訟則終凶君記取\",\"試於清夜把心捫\"],\"analysis\":{\"zh\":\"這首詩的主題是透過言語與內省，提醒人們應以平和之心消除冤怨，避免訟訟。\\\\n- 第一行表示「與君萬語復千言」說明說話雖多，但核心訊息只有一句。\\\\n- 第二行「祗欲平和雪爾冤」強調想要用和氣來抹除過去的怨恨。\\\\n- 第三行「訟則終凶君記取」警示，若發起訴訟，結果往往不利，須記住此教誨。\\\\n- 第四行「試於清夜把心捫」則建議在安"
+  }
+}

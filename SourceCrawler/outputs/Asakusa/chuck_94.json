@@ -1,0 +1,20 @@
+{
+  "id": 94,
+  "title": "日本淺草觀音寺一百籤第九十四籤",
+  "subtitle": "",
+  "fortune": "半吉",
+  "poem": "事忌樽前語,人防小輩交,幸乞陰公祐,方免事敵爻",
+  "analysis": {
+    "zh": "詩句提醒說，事務上要避免在飲酒前說話，因為那時說出的話往往不必當真；與地位較低或年紀較小的人交往時需謹慎；應向隱蔽的神祇祈求保佑；只要避免與人產生敵對，事務便能順利進行。",
+    "en": "The poem advises that in matters one should avoid speaking before drinking, because words said in that state are often unreliable; one should be cautious when interacting with people of lower status or younger age; one should seek the protection of a hidden deity; and by steering clear of hostility, affairs can proceed smoothly.",
+    "jp": "詩は、物事に関しては飲酒前に話すことを避けるべきであると述べています。なぜなら、飲酒中に発した言葉は必ずしも真実とは限らないからです。さらに、地位の低い人や年下の人との交流は慎重に行うべきで、隠れた神に保護を祈るべきだと示唆しています。敵意を避ければ、事柄は順調に進むでしょう。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that one should:\n• Refrain from making decisions or statements while intoxicated, as such words may be unreliable.\n• Be cautious about associating with those of lower status or younger age.\n• Seek the aid of a benevolent, unseen deity or higher power.\n• Avoid hostility or antagonism toward others, which in turn allows matters to proceed smoothly.\nThe underlying philosophy emphasizes prudence, humility, and the importance of aligning oneself with a protective force to maintain harmony.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:26:33",
+    "source_file": "chuck_94.json",
+    "raw_llm_response_preview": "{\"id\":94,\"title\":\"日本淺草觀音寺一百籤第九十四籤\",\"subtitle\":\"\",\"fortune\":\"半吉\",\"poem\":\"事忌樽前語,人防小輩交,幸乞陰公祐,方免事敵爻\",\"analysis\":{\"zh\":\"詩句提醒說，事務上要避免在飲酒前說話，因為那時說出的話往往不必當真；與地位較低或年紀較小的人交往時需謹慎；應向隱蔽的神祇祈求保佑；只要避免與人產生敵對，事務便能順利進行。\",\"en\":\"The poem advises that in matters one should avoid speaking before drinking, because words sa"
+  }
+}

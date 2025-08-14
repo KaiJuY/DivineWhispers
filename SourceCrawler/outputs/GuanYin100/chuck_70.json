@@ -1,0 +1,20 @@
+{
+  "id": 70,
+  "title": "觀音一百籤第七十籤",
+  "subtitle": "辰宮",
+  "fortune": "下籤",
+  "poem": "朝朝役役恰如蜂、飛來飛去西復東、春暮花殘無覔處、此身不戀舊叢中。",
+  "analysis": {
+    "zh": "此卦象徵蜜蜂採花。凡事勞心費力，無法尋得春色，長雨不晴。若以求謀或動用，倒不如安靜。",
+    "en": "This verse depicts the image of a bee gathering flowers, symbolising continual labour and restless movement. Each day one toils as a bee, flying from west to east, yet the late spring brings wilting blossoms and no place to find them. Thus one learns that clinging to the past is futile, and that sometimes stillness and detachment are wiser than persistent striving.",
+    "jp": "この詩は蜜蜂が花を集める様子を象徴し、終始労心を費やし、春が暮れると花が散り、見つける場所がないという無常を表す。朝朝と勤勉に働き、東西を飛び回るものの、過去に固執せずに静寂を保つ方が賢明であると示唆する。",
+    "reference": "*(覔：音、義皆同覓)家宅　口舌。自身　小人。求財　破耗。交易　反覆。婚姻　不長。六甲　虛花。行人　杳。田蠶　損。六畜　損。尋人　無蹤。公訟　虧。移徙　守舊。失物　空。疾病　有阻。山墳　改。1.李密反唐隋末。瓦崗寨之首領。李密自封魏王。手下名將。如秦瓊。單雄信。程咬金。紛投唐王李淵。李密與王伯當後亦投李淵。又娶李仁公之公主為妻。後殺妻反唐。被亂箭射死。2.諸葛瑾與關公說親曹操遭劉備所敗，遂自立為漢中王，曹操一時無力反擊之際，請東吳孫權攻打荊州。孫權不想得罪曹操，又想奪回荊州，遂依諸葛瑾（諸葛亮兄長）提議，由諸葛瑾前往荊州見關羽，提議孫權之子與關羽之女的婚事，結果關羽悍然拒絕，孫權得知便決定派兵襲取荊州。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is…\n- The bee motif conveys relentless effort and fleeting opportunities.\n- The constant movement from west to east illustrates the restless search for meaning.\n- The wilting flowers at late spring represent the impermanence of worldly pursuits.\n- The speaker’s detachment from old clumps signals a conscious release from past attachments.\n- Overall, the verse urges a balance between diligent work and mindful letting‑go, warning against endless striving when the conditions are unfavourable.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:31:01",
+    "source_file": "chuck_70.json",
+    "raw_llm_response_preview": "{\"id\":70,\"title\":\"觀音一百籤第七十籤\",\"subtitle\":\"辰宮\",\"fortune\":\"下籤\",\"poem\":\"朝朝役役恰如蜂、飛來飛去西復東、春暮花殘無覔處、此身不戀舊叢中。\",\"analysis\":{\"zh\":\"此卦象徵蜜蜂採花。凡事勞心費力，無法尋得春色，長雨不晴。若以求謀或動用，倒不如安靜。\",\"en\":\"This verse depicts the image of a bee gathering flowers, symbolising continual labour and restless movement. Each day one toils as"
+  }
+}

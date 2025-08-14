@@ -1,0 +1,25 @@
+{
+  "id": 12,
+  "title": "六十甲子籤第十二籤",
+  "subtitle": "屬火利夏　宜其南方",
+  "fortune": "乙亥●○○　●○○",
+  "poem": [
+    "長江風浪漸漸靜",
+    "于今得進可安寧",
+    "必有貴人相扶助",
+    "凶事脫出見太平"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是平靜化解危機與貴人相助。長江風浪漸息象徵動盪後的安寧；船隻在平靜中得以安全前進；「貴人相扶助」暗示外在援手可將危險轉為太平。",
+    "en": "這首詩的主題是... The poem depicts the Yangtze River’s waves gradually calming, symbolizing that after turbulence comes peace; only when the sea is calm can a vessel move safely. It also emphasizes that the presence of a benefactor will turn danger into tranquility.",
+    "jp": "這首詩的主題は... 長江の波が静まり、嵐の後に安寧が訪れる様子を示し、船が安全に進むことができるようになる。さらに、貴人の助力により危険が平和へと転じることが暗示されています。",
+    "reference": "1.桃園三結義大丈夫(關公)以四海為家。何患乎吾無兄弟。入桃園。睹兩人奇異。請問英雄何處。雄紏紏。朗曰張飛。貌堂堂。溫言劉備。出生投地今逢主。須待挽天河水來蕩滌。誠哉龍虎風雲會。宰牛馬昭告天地。結義匡扶漢室。2.曹操賜雲 長馬袍贈金銀凡事　月光好。作事　進行有利。家事　光耀門閭。家運　漸安。婚姻　可合成者吉。求兒　吉。六甲　先男高貴。求財　好運。得意。功名　難得。歲君　順吉。治病　月光好。老不痊。出外　有貴人扶。經商　大吉。來人　近日到。行舟　大吉。移居　平正。失物　急尋在。遲難尋。求雨　遠。官事　了錢。求貴人脫。六畜　可納。耕作　平平。築室　慢即可。墳墓　地勢有合。討海　微利后有。作塭　漸得如意。魚苗　中有利。月令　破財不遂。尋人　近日。遠信　速至"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The Yangtze River’s waves subside, indicating that turbulence has ended and calm has returned.\n- In a calm environment, a ship can move forward safely, symbolizing that peace allows progress.\n- The phrase \"貴人相扶助\" (a benefactor’s aid) suggests that external help is available to resolve difficulties.\n- Danger is transformed into peace, showing the hopeful resolution of conflict.\n- The poem implicitly advises patience or seeking a benefactor’s support during challenging times.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:15:12",
+    "source_file": "chuck_12.json",
+    "raw_llm_response_preview": "{\n  \"id\": 12,\n  \"title\": \"六十甲子籤第十二籤\",\n  \"subtitle\": \"屬火利夏　宜其南方\",\n  \"fortune\": \"乙亥●○○　●○○\",\n  \"poem\": [\n    \"長江風浪漸漸靜\",\n    \"于今得進可安寧\",\n    \"必有貴人相扶助\",\n    \"凶事脫出見太平\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是平靜化解危機與貴人相助。長江風浪漸息象徵動盪後的安寧；船隻在平靜中得以安全前進；「貴人相扶助」暗示外在援手可將危險轉為太平。\",\n    \"en\": \"這首詩的主題是... The poem dep"
+  }
+}

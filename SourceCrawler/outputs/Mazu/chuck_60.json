@@ -1,0 +1,25 @@
+{
+  "id": 60,
+  "title": "六十甲子籤第六十籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "癸亥●●●　○●●",
+  "poem": [
+    "月出光輝本清吉",
+    "浮雲總是蔽陰色",
+    "戶內用心再作福",
+    "當官分理便有益"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是月光與雲影的對比，以及在家庭與官場中努力與分工所帶來的福祉。第一句說明月光出現時的光輝與純潔帶來吉利；第二句則提醒浮雲總會遮蔽光亮，象徵困難與阻礙；第三句呼籲在戶內用心準備，才能再度創造福氣；第四句則指出當分工明確、責任分配得當時，官場也會得到益處。",
+    "en": "This poem’s theme is the contrast between the bright moonlight and the obscuring clouds, and the value of diligent preparation and proper division of work in both home and official duties. The first line celebrates the auspiciousness of a clear, shining moon. The second line warns that floating clouds will inevitably shadow that light, symbolizing obstacles. The third line urges careful effort within the household to create fortune again. The fourth line highlights that benefits arise when responsibilities are clearly divided in official affairs.",
+    "jp": "この詩のテーマは、月光と雲の対比、家庭内での努力と再び運を呼び寄せる準備、そして官職における分業の重要性を表しています。最初の句は、月光の明るさと清らかさが吉祥をもたらすことを示し、次の句は浮遊する雲が常に光を遮ることを警告し、困難や障害を象徴しています。三句目は家内での真剣な準備を促し、再び福を創造するために必要であると述べ、四句目では責任の適切な分担が官場で利益を生むことを示しています。",
+    "reference": "1.薛剛踢死太子驚崩聖駕薛剛要遼西姑姑家探親，父親薛丁山擔心薛剛喝酒鬧事，所以吩咐不可以喝酒，因此薛剛發誓「如果喝酒，就全家死光光」。薛剛在路上遇到伍雄臭氣相投，薛剛不顧自己的誓言與他彼此稱兄道弟喝酒作樂，在元宵節的時候，薛剛與一群朋友到酒樓飲酒作樂，喝醉了，出了酒樓來到張承相設宴的酒樓，非常熱鬧想進去卻被阻擋，一氣之下踢死張丞相的兒子張保，而張保是皇上的乾兒子，因死被判斬首之罪，行刑時伍雄帶領兄弟截刑場，並獲得程咬金暗助，逃脫。皇帝得知光天化日之下被劫囚，一怒之下竟然氣死了。其後張丞相為報子仇設計陷害薛丁山，除了樊梨花、薛蛟和薛剛之外，其餘家人全部被殺，直到武則天晚年時，薛剛接回太子恢復唐朝，重建薛王府。2.楊六婿斬子凡事　拖尾。了錢。作事　成無益。犯官事。家事　門庭平安。家運　小吉。婚姻　難得。求兒　慢即好。六甲　臨產空孕。(生女)(先男後女)求財　淡有。功名　望後科。歲君　把方殺。治病　拖尾。後痊癒。(男女犯魂必死)出外　不可。經商　後來有得。來人　月光到。行舟　有小利。(把定)移居　不可。失物　月光在。求雨　不日到。官事　不畏。六畜　不得利。了錢。耕作　平平。築室　不合。按住。墳墓　地運呆。後得吉。討海　平平小利。作塭　有小利。魚苗　無利可得。月令　不遂。尋人　遠回。遠信　音信慢至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The bright moonlight represents pure luck and auspiciousness.\n- The recurring clouds symbolize the obstacles that can obscure or diminish that luck.\n- The call to work diligently within the home emphasizes personal effort as a means to rebuild fortune.\n- The final line indicates that clear division of responsibilities in official matters yields tangible benefits.\n- Together, the poem encourages vigilance against setbacks, steady preparation, and organized collaboration to achieve favorable outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:16:05",
+    "source_file": "chuck_60.json",
+    "raw_llm_response_preview": "{\"id\": 60, \"title\": \"六十甲子籤第六十籤\", \"subtitle\": \"屬水利冬　宜其北方\", \"fortune\": \"癸亥●●●　○●●\", \"poem\": [\"月出光輝本清吉\", \"浮雲總是蔽陰色\", \"戶內用心再作福\", \"當官分理便有益\"], \"analysis\": {\"zh\": \"這首詩的主題是月光與雲影的對比，以及在家庭與官場中努力與分工所帶來的福祉。第一句說明月光出現時的光輝與純潔帶來吉利；第二句則提醒浮雲總會遮蔽光亮，象徵困難與阻礙；第三句呼籲在戶內用心準備，才能再度創造福氣；第四句則指出當分工明確、責任分配得當時，官場也會得到益處。\", \"en\": \"Th"
+  }
+}

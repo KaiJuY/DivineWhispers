@@ -1,0 +1,20 @@
+{
+  "id": 26,
+  "title": "觀音一百籤第二十六籤",
+  "subtitle": "巳宮",
+  "fortune": "中籤",
+  "poem": "上下傳來事總虛、天邊接得一封書、書中許我功名事、直待終時亦是無。",
+  "analysis": {
+    "zh": "此卦象徵虛名。凡事若虛有多寡，皆宜守舊。上下心煩，求閒不易。欲望功名，守舊則身安。",
+    "en": "This hexagram symbolizes a hollow reputation. Whatever the degree of emptiness, it is best to stick to what is old and familiar. Both upper and lower parts are troubled; seeking leisure is difficult. The desire for fame is natural, but maintaining the status quo brings inner peace.",
+    "jp": "この卦は虚名を象徴しています。どんなに虚しいと感じても、旧来のものを守ることが最善です。上下とも心が煩わしく、余暇を求めることは容易ではありません。名誉を求める欲望は自然ですが、現状を守ることで安寧が得られます。",
+    "reference": "家宅　祈福。自身　安。求財　阻。交易　不成。婚姻　不成。六甲　女。行人　有信。田蠶　半熟。六畜　可養。尋人　西方。公訟　虧。移徙　守舊。失物　難。疾病　祈保。山墳　吉。1.鍾馗得道姓鍾名馗。字正南。中南山人氏。唐時人。上京赴考。得狀元。但相醜。豹頭環眼。鐵面虯鬚。唐德宗見怕。欲取消其名銜。宰相盧杞附和。鍾馗打盧杞。德宗命拿鐘馗。鐘馗奪劍自殺。陸贄進諫。封為驅魔大神。鍾馗以為鬼魔必在地府。遂往斬之。閻君曰。大凡人鬼之分只在方寸間。心正之鬼可為神。心歪之人即為鬼。姓鍾大悟。陰間鬼魅有十殿閻君經理。遂返陽間斬妖除魔。成了捉鬼大王。2.桓溫得殷浩書故事很長，所以簡單敘述：桓溫、殷浩幼時就在一起，長大後都在東晉為官，但是卻相互鬥爭，最後殷浩不敵，被朝廷罷黜。後來桓溫升大將軍，有人建議桓溫念舊情重新起用殷浩，殷浩卻因為怕回信寫得不好惹桓溫升大將軍生氣，竟然只送了一張白紙。桓溫見到這張白紙非常憤怒（在官廳待過的都應該可以體會），就再也不和殷浩往來。有關桓溫的另一個故事詳見觀音一百籤第五十三籤。寫履歷表、寫求職信都是一樣（或是其他書信以外的形式），真誠是很重要的，過於矯情或是辭不達意可能會有很糟的下場，而且可能沒像殷浩這麼幸運，至少還被當作歷史教材。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the situation is fundamentally empty and unfulfilled, even if the promise of achievement is received. The imagery of a letter arriving from the horizon and the poem’s refrain that everything will end in nothingness emphasize that ambition alone does not guarantee lasting success. The hexagram warns against chasing hollow prestige and encourages a return to familiar, steady ways of life. The main symbols are:\n- The “horizon” (天邊) and the letter (一封書) represent external expectations and promises.\n- The line “功名事” (fame and achievements) highlights worldly aspirations.\n- The final line “直待終時亦是無” (in the end, everything is empty) underscores the transient nature of such pursuits.\nThe hidden philosophy is that true stability comes from respecting one’s roots and not being seduced by fleeting, illusory gains.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:54:49",
+    "source_file": "chuck_26.json",
+    "raw_llm_response_preview": "{\"id\":26,\"title\":\"觀音一百籤第二十六籤\",\"subtitle\":\"巳宮\",\"fortune\":\"中籤\",\"poem\":\"上下傳來事總虛、天邊接得一封書、書中許我功名事、直待終時亦是無。\",\"analysis\":{\"zh\":\"此卦象徵虛名。凡事若虛有多寡，皆宜守舊。上下心煩，求閒不易。欲望功名，守舊則身安。\",\"en\":\"This hexagram symbolizes a hollow reputation. Whatever the degree of emptiness, it is best to stick to what is old and familiar. B"
+  }
+}

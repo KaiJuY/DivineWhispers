@@ -1,0 +1,25 @@
+{
+  "id": 83,
+  "title": "關聖帝君一百籤第八十三籤",
+  "subtitle": "諸葛孔明學道壬丙",
+  "fortune": "下平",
+  "poem": [
+    "隨分堂前赴粥饘",
+    "何須妄想苦憂煎",
+    "主張門戶誠難事",
+    "百歲安閒得幾年"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於在平凡生活中守住內心的安寧，並提醒人們不必過度渴求功名與利禄。詩中以“隨分堂前赴粥饘”表現了日常的簡樸與順從；“何須妄想苦憂煎”則指出不必自創憂慮；“主張門戶誠難事”提醒開展事業與維持門戶難易；最後的“百歲安閒得幾年”以對生命短暫的感慨收尾，勉勵人保持平和。",
+    "en": "The poem's theme revolves around finding peace within ordinary life and cautions against overreaching for fame or fortune. \"隨分堂前赴粥饘\" depicts simple, obedient living; \"何須妄想苦憂煎\" advises against inventing worries; \"主張門戶誠難事\" acknowledges the difficulty of establishing a household and pursuing earnest endeavors; the closing line \"百歲安閒得幾年\" reflects on the brevity of life and encourages a tranquil mindset.",
+    "jp": "この詩の主題は、日常の平凡さの中で心の安寧を守り、名声や財を過度に求めることを戒めるものです。「隨分堂前赴粥饘」で簡素で従順な生活を表し、「何須妄想苦憂煎」で無用な悩みを自ら作るべきではないと示し、「主張門戸誠難事」で門戸を開き誠実に事を進める難しさを認め、最後の「百歳安閒得幾年」で人生の短さを感じさせながら静かな心を保つよう促しています。",
+    "reference": "漢。諸葛亮。字孔明。瑯琊人。漢末避居南陽。志學清修。養生之道。研究奇明(門)遁法。天文術數。卦算韜略。無所不精。初不求聞達於諸侯。後徐庶薦於劉先生。先主凡三往問計。延為軍師。先主即位。拜丞相。受以託孤。後主封為武卿侯。卒諡忠武。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that contentment in simple, everyday actions is preferable to chasing ambition. The imagery of preparing porridge in the assigned hall suggests a routine of modest sustenance and obedience. The line about not wishing for unnecessary sorrow warns against self‑created worries. The assertion that establishing a household and true matters is difficult reflects the hardships of building a lasting life. Finally, the contemplation of how few peaceful years one might enjoy in a hundred‑year life invites readers to cherish tranquility and avoid overambitious pursuits.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:04:59",
+    "source_file": "chuck_83.json",
+    "raw_llm_response_preview": "{\"id\":83,\"title\":\"關聖帝君一百籤第八十三籤\",\"subtitle\":\"諸葛孔明學道壬丙\",\"fortune\":\"下平\",\"poem\":[\"隨分堂前赴粥饘\",\"何須妄想苦憂煎\",\"主張門戶誠難事\",\"百歲安閒得幾年\"],\"analysis\":{\"zh\":\"這首詩的主題是關於在平凡生活中守住內心的安寧，並提醒人們不必過度渴求功名與利禄。詩中以“隨分堂前赴粥饘”表現了日常的簡樸與順從；“何須妄想苦憂煎”則指出不必自創憂慮；“主張門戶誠難事”提醒開展事業與維持門戶難易；最後的“百歲安閒得幾年”以對生命短暫的感慨收尾，勉勵人保持平和。\",\"en\":\"The poem's theme r"
+  }
+}

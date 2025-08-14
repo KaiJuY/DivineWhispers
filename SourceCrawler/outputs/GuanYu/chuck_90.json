@@ -1,0 +1,25 @@
+{
+  "id": 90,
+  "title": "關聖帝君一百籤第九十籤",
+  "subtitle": "楊文廣陷柳州壬癸",
+  "fortune": "中平",
+  "poem": [
+    "崆峒城裏事如麻",
+    "無事如君有幾家",
+    "勸汝不須勤致禱",
+    "徒勞生事苦咨嘆"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：在繁雜的世事中保持內心的安寧，不必過度祈禱或追求多餘的事務。崆峒城裏事多如麻，與此相對，無事如君有幾家，勸人不須勤致禱，若妄求多事反而招禍。詩句提醒當事人已能保持平安，無須再妄求，若再妄求則禍將隨時至。東坡解說指出人事擾擾，君者應保持清閒，不須瀆神，妄求多般會招口舌之禍，急宜靜守以保平安。碧仙註說：在家安分好，莫笑別人難，若貪欲知則身遭羅網。此籤告訴主靜不貪圖，訴訟以和為貴，求財徒勞無收，婚姻無望，疾病則無危險可痊癒。",
+    "en": "This poem's theme is: amidst the bustle of worldly affairs, maintain inner tranquility and refrain from over‑praying or seeking unnecessary matters. The lines describe how in the busy city of Kongtong many troubles arise, while the narrator, like you, experiences few troubles, and advises that you need not labor in prayer; trying to demand more will only bring trouble. The poem reminds the seeker that the current peace is already a blessing and further wishes may invite misfortune. The commentary of Dongpo explains that when worldly matters are chaotic, the wise should remain calm, not waste divine favor, and that vain aspirations will spark disputes and cause calamity; therefore one should quietly hold fast to preserve safety. Bixi notes that staying at home with a content heart is good, not scoffing at others’ hardships, and that greed and pride will entrap the self. Thus this divination urges serenity over greed, values harmony in litigation, warns that seeking wealth is futile, marriage prospects are bleak, but health is safe and likely to recover.",
+    "jp": "この詩のテーマは、世の中の喧騒の中で心を静め、無駄な祈りや欲望を手放すことです。崆峒の街では事が多く、無事のあなたのような人は少ないと語られ、勉強を続ける必要はなく、欲しがると災いを招くと警告しています。詩は、現在の平穏こそが幸せであり、さらに妄想を膨らませると災いが近づくと伝えています。東坡の解説では、世事が乱れる中、君は静かにし、神を汚さず、欲を捨てれば口論や災難を招くことはないと述べています。碧仙の注釈は、家に安分でいれば他人を笑わず、貪欲が人を網にかけると警告しています。総じて、この籤は静寂を保ち、争いは和解を優先し、金銭を求めるのは徒労で、結婚は望めず、病気は無害で回復すると示唆しています。",
+    "reference": "正史稱。宋。楊文廣。延昭子。從狄青南征。儂智高為廣西鈐轄。兵陷柳州。青救之。與野史云。文廣係宗之子。陷柳州被困。楊家諸女將往救焉。傳術迥異。姑併錄之。仍宜從正史為是。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Life’s affairs can be chaotic and overwhelming, as depicted by the bustling city of Kongtong.\n- The narrator, in contrast, experiences few troubles, emphasizing the value of a peaceful, uncomplicated existence.\n- The poem advises against excessive prayer or yearning for more; such efforts may backfire and invite misfortune.\n- Maintaining contentment and quietude protects one from unnecessary conflict and danger.\n- The underlying philosophy encourages humility, restraint, and inner calm over ambition or greed.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:09:06",
+    "source_file": "chuck_90.json",
+    "raw_llm_response_preview": "{\"id\":90,\"title\":\"關聖帝君一百籤第九十籤\",\"subtitle\":\"楊文廣陷柳州壬癸\",\"fortune\":\"中平\",\"poem\":[\"崆峒城裏事如麻\",\"無事如君有幾家\",\"勸汝不須勤致禱\",\"徒勞生事苦咨嘆\"],\"analysis\":{\"zh\":\"這首詩的主題是：在繁雜的世事中保持內心的安寧，不必過度祈禱或追求多餘的事務。崆峒城裏事多如麻，與此相對，無事如君有幾家，勸人不須勤致禱，若妄求多事反而招禍。詩句提醒當事人已能保持平安，無須再妄求，若再妄求則禍將隨時至。東坡解說指出人事擾擾，君者應保持清閒，不須瀆神，妄求多般會招口舌之禍，急宜靜守以保平安。碧仙註說：在家安分好，莫"
+  }
+}

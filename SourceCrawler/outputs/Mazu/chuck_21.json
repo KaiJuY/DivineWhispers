@@ -1,0 +1,25 @@
+{
+  "id": 21,
+  "title": "六十甲子籤第二十一籤",
+  "subtitle": "屬土利年　四方皆宜",
+  "fortune": "丁巳●○○　○○○",
+  "poem": [
+    "十方佛法有靈通",
+    "大難禍患不相同",
+    "紅日當空常照耀",
+    "還有貴人到家堂"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是佛法無邊、困境與貴人相助。詩中說到「十方佛法有靈通」表明佛法遍及四方，擁有廣大的智慧；「大難禍患不相同」提醒遭遇各異；「紅日當空常照耀」比喻光明照耀，暗示正面力量；「還有貴人到家堂」則說明會有貴人相助。",
+    "en": "This poem's theme is the boundless nature of Buddhist teachings, the diversity of hardships, the illuminating light of hope, and the appearance of benefactors. It opens with “the Dharma extends to all directions, possessing spiritual insight,” suggesting the far‑reaching wisdom of the Buddha. The line “great calamities and afflictions vary” points to the diverse nature of difficulties one may face. “The red sun rises in the sky” evokes a radiant light, symbolising hope and guidance. Finally, “a benefactor comes to the household” promises assistance from a helpful figure.",
+    "jp": "この詩のテーマは、仏法の無限の広がり、困難の多様性、希望の光、そして貴人の出現に関するものです。『十方佛法有靈通』という行は、仏法が四方に広がり、精神的洞察力を備えていることを示しています。『大難禍患不相同』は、直面する苦難が多種多様であることを指摘しています。『紅日當空常照耀』は、輝く光が希望と導きを象徴しています。最後に『還有貴人到家堂』は、助けてくれる貴人が現れることを約束しています。",
+    "reference": "1.周玉姊可遇陳春生2.姜子牙送飯為武吉掩卦凡事　貴人扶持。作事　和大吉。散得失。家事　門庭可恭可賀。家運　必得吉昌。婚姻　難成。求兒　好。六甲　先男後女。求財　先無後有。功名　望後科。歲君　中和。治病　大命險。貴人扶。出外　緩有貴人。經商　先難後吉。來人　立即到。行舟　無大利。移居　適宜大吉。失物　可在。求雨　緩到。官事　微殃。有貴人。脫。六畜　納之可喜。耕作　平平晚收。築室　必有餘慶。墳墓　顯裕後昆。討海　先微。后有大利。作塭　有利可得。魚苗　慢則有財。月令　平后。有貴人。吉。尋人　在。遠信　速至有喜。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The Dharma extends to all directions, indicating its boundless reach.\n- Great calamities vary, reminding that hardships are not uniform.\n- The red sun shining above symbolizes radiant hope and guidance.\n- A benefactor will arrive at the household, suggesting forthcoming help.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:20:16",
+    "source_file": "chuck_21.json",
+    "raw_llm_response_preview": "{\n  \"id\": 21,\n  \"title\": \"六十甲子籤第二十一籤\",\n  \"subtitle\": \"屬土利年　四方皆宜\",\n  \"fortune\": \"丁巳●○○　○○○\",\n  \"poem\": [\n    \"十方佛法有靈通\",\n    \"大難禍患不相同\",\n    \"紅日當空常照耀\",\n    \"還有貴人到家堂\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是佛法無邊、困境與貴人相助。詩中說到「十方佛法有靈通」表明佛法遍及四方，擁有廣大的智慧；「大難禍患不相同」提醒遭遇各異；「紅日當空常照耀」比喻光明照耀，暗示正面力量；「還有貴人到家堂」則說明會有貴人"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 40,
+  "title": "日本淺草觀音寺一百籤第四十籤",
+  "subtitle": "",
+  "fortune": "末小吉",
+  "poem": "中正方成道,姦邪恐惹愆,壺中盛妙藥,非久去煩煎",
+  "analysis": {
+    "zh": "這首詩的主題是尋求正直與內心清淨。中正方成道，意指只有保持中正不偏，才能成就道理。姦邪恐惹愆，提醒邪念恐怕會引發失誤。壺中盛妙藥，象徵內在有可療之藥，若能善用即可解決煩惱。非久去煩煎，則說明不久就能消除煩悶與痛苦。",
+    "en": "This poem's theme is the pursuit of uprightness and inner purity. 'Middle‑justeness makes the way' means that only by staying impartial and balanced can one achieve the path. 'Perverse thoughts may invite error' warns that evil intentions can lead to mistakes. 'A pot holds marvelous medicine' symbolizes an inner reservoir of healing that, if used wisely, can resolve troubles. 'Trouble will soon subside' indicates that the suffering will soon be alleviated.",
+    "jp": "この詩のテーマは正直と内面的な清らかさを追求することです。『中正方成道』は、偏りなく中立を保つことで道を成すことができるという意味です。『姦邪恐惹愆』は、邪念が間違いを招く恐れがあると警告します。『壺中盛妙藥』は、内に治療の薬があることを象徴し、賢く使えば悩みを解消できると示しています。『非久去煩煎』は、苦悩がすぐに消えることを意味します。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A call to maintain balance and impartiality as the foundation for moral success.\n- A warning that stray or evil thoughts can lead to error and misfortune.\n- The presence of a hidden, potent remedy within oneself that can heal and resolve inner troubles.\n- Assurance that these troubles will dissipate in the near future, restoring calm.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:02:49",
+    "source_file": "chuck_40.json",
+    "raw_llm_response_preview": "{\"id\":40,\"title\":\"日本淺草觀音寺一百籤第四十籤\",\"subtitle\":\"\",\"fortune\":\"末小吉\",\"poem\":\"中正方成道,姦邪恐惹愆,壺中盛妙藥,非久去煩煎\",\"analysis\":{\"zh\":\"這首詩的主題是尋求正直與內心清淨。中正方成道，意指只有保持中正不偏，才能成就道理。姦邪恐惹愆，提醒邪念恐怕會引發失誤。壺中盛妙藥，象徵內在有可療之藥，若能善用即可解決煩惱。非久去煩煎，則說明不久就能消除煩悶與痛苦。\",\"en\":\"This poem's theme is the pursuit of uprightness and inner purity. 'Mid"
+  }
+}

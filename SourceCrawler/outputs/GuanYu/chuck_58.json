@@ -1,0 +1,25 @@
+{
+  "id": 58,
+  "title": "關聖帝君一百籤第五十八籤",
+  "subtitle": "蘇秦背劍己辛",
+  "fortune": "上吉",
+  "poem": [
+    "蘇秦三寸足平生",
+    "富貴功名在此行",
+    "更好修為陰騭事",
+    "前程萬里自通亨"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：蘇秦以三寸舌之才，藉由口才和修為，取得富貴功名；若再積陰德，前程將更廣。",
+    "en": "This poem's theme is: Su Qin, with his three‑inch tongue, gains wealth and fame through eloquence and cultivation; by further accumulating hidden virtue, his future will become even more prosperous.",
+    "jp": "この詩のテーマは：蘇秦は三寸舌の才を用いて口才と修養で富貴と名声を得る。さらに陰徳を積めば、未来はより広くなるということです。",
+    "reference": "戰國。蘇秦既說秦不行。乃歸家發憤苦讀。研究太公陰符。學成即指秦往說趙王。以合從拒秦。起王大悅。為治裝并說齊楚魏。趙王乃秦。竟佩六國相印。使秦兵十五年不敢出函谷關。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Humble beginnings are symbolised by the ‘three‑inch foot’, a modest starting point that nevertheless defines the whole life.\n- Wealth and fame are achieved through the journey of eloquence and self‑discipline.\n- The poem urges further cultivation and the accumulation of hidden virtue, hinting that true success requires moral depth.\n- Finally, it looks forward to a future that stretches thousands of miles, smooth and prosperous, promising enduring success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:51:35",
+    "source_file": "chuck_58.json",
+    "raw_llm_response_preview": "{\"id\":58,\"title\":\"關聖帝君一百籤第五十八籤\",\"subtitle\":\"蘇秦背劍己辛\",\"fortune\":\"上吉\",\"poem\":[\"蘇秦三寸足平生\",\"富貴功名在此行\",\"更好修為陰騭事\",\"前程萬里自通亨\"],\"analysis\":{\"zh\":\"這首詩的主題是：蘇秦以三寸舌之才，藉由口才和修為，取得富貴功名；若再積陰德，前程將更廣。\",\"en\":\"This poem's theme is: Su Qin, with his three‑inch tongue, gains wealth and fame through eloquence and cultivation;"
+  }
+}

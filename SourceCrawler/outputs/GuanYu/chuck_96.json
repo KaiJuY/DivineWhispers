@@ -1,0 +1,25 @@
+{
+  "id": 96,
+  "title": "關聖帝君一百籤第九十六籤",
+  "subtitle": "山濤見王衍癸己",
+  "fortune": "上吉",
+  "poem": [
+    "婚姻子息莫嫌遲",
+    "但把精神仗佛持",
+    "四十年前須報應",
+    "功圓行滿育馨兒"
+  ],
+  "analysis": {
+    "zh": "不必擔心婚姻子息來得遲，只要保持心境平和，神佛必會保佑；四十歲前，往昔的因果將得到回報，善有善報，功德圓滿，家中將有幸福安寧的孩子。",
+    "en": "There is no need to worry about the timing of marriage and children; keep a calm mind and the divine will support you. Before the age of forty, the past karma will be answered, good deeds will be rewarded, and you will enjoy a harmonious life with a sweet child.",
+    "jp": "結婚や子孫の時期を遅れと気にする必要はありません。心を落ち着けていれば、神仏が守ってくださいます。40歳前に過去の因果が報われ、善行に報いが訪れ、調和のとれた生活と甘い子どもが得られます。",
+    "reference": "晉。山濤。字巨源。河內懷人。器量不群。小與阮藉為竹林友。武帝朝為吏部尚書。薦拔人物。王衍少時。山濤見之曰。何物老嫗生此寧馨兒。然悟天下蒼生。首必此子也。衍字夷甫。晉陽人。神姿高徹。如瑤林瓊樹。官至司徒。後為石勒所害。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- **Timing is not a concern**: Marriage and children need not be judged as late or early.\n- **Inner calm as the key**: Keeping a balanced, sincere mind invites divine support.\n- **Past karma and future reward**: By the age of forty, any previous deeds will be answered, leading to a culmination of merit.\n- **Harmonious family life**: The poem concludes with a vision of a well‑rounded life, filled with sweet children and domestic bliss.\n- **Symbolism**: The poem uses the image of a *fortune* that unfolds gradually, much like a river flowing steadily toward its destiny.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:11:19",
+    "source_file": "chuck_96.json",
+    "raw_llm_response_preview": "{\"id\":96,\"title\":\"關聖帝君一百籤第九十六籤\",\"subtitle\":\"山濤見王衍癸己\",\"fortune\":\"上吉\",\"poem\":[\"婚姻子息莫嫌遲\",\"但把精神仗佛持\",\"四十年前須報應\",\"功圓行滿育馨兒\"],\"analysis\":{\"zh\":\"不必擔心婚姻子息來得遲，只要保持心境平和，神佛必會保佑；四十歲前，往昔的因果將得到回報，善有善報，功德圓滿，家中將有幸福安寧的孩子。\",\"en\":\"There is no need to worry about the timing of marriage and children; keep a calm mind and t"
+  }
+}

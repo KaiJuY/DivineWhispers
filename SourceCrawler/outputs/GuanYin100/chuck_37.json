@@ -1,0 +1,20 @@
+{
+  "id": 37,
+  "title": "觀音一百籤第三十七籤",
+  "subtitle": "申宮",
+  "fortune": "中籤",
+  "poem": "欲問身安運泰時、風中燈燭不相宜、爭如收拾深堂坐、庶免光搖靜處期。",
+  "analysis": {
+    "zh": "詩以風中燈燭不安為象徵，提醒人在追求身安運泰時，須守常、守舊，保持安靜，勿輕易擾動，方能安泰。",
+    "en": "The poem uses the image of a lamp trembling in the wind to symbolize instability; it advises that when seeking peace and good fortune one should stay steady, avoid disturbances, and keep to the familiar path, so as to achieve a calm, secure life.",
+    "jp": "詩は風に揺れる灯りを象徴として描き、安身順運を求める際は安定を保ち、騒がしさを避け、既存の道を守るべきだと訴えています。そうすることで静かで安全な生活を得られるという教えです。",
+    "reference": "*(爭如：同『怎如』，就是『怎麼比得上』的意思)*(動有作運;搖本作瑤;免有作幾)家宅　守舊。自身　平平。求財　有。交易　難。婚姻　不合。六甲　祈保。行人　有信。田蠶　秋熟。六畜　安。尋人　見。公訟　和。移徙　守舊。失物　疾病　禳星。山墳　勿改。1.李靖歸山托塔天王李靖。為封神榜人物。塔能鎮魔。李靖父子(哪吒)協姜子牙伐紂興周。周武王立國初論功行賞。李靖父子辭賞歸山修道。喻風雲(名利)與燈燭(修道)不相合。欲要得道。須棄名利。兩者不可兼得。2.管公明避隱遼東（另稱『管幼安避隱遼東 』）管公明：即管輅，三國時期魏國學者，自公明，善周易。管幼安：即管寧三國時期魏國學者，字幼安，朱虛人。管寧、邴原、華歆一起游學，管寧被稱為龍頭，邴原被稱為龍尾，華歆被稱為龍腹，東漢末年亂世避隱遼東的是管寧（管幼安），管寧在遼東名氣很大，吸引許多避世的賢人前往。曹操想找管寧出仕為官，問華歆會不會有困難，華歆回答恐怕做不到，結果曹操派使者到遼東，果然無法說服管寧出仕為官。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The trembling lamp in the wind symbolizes instability that can disturb one’s peace.\n- It advises against exposing oneself to volatile situations—\"風中燈燭不相宜\"—and encourages keeping to a quiet, familiar setting.\n- The recommendation to sit in a deep hall reflects the value of solitude and routine as safeguards against misfortune.\n- Staying still and waiting for the right moment (待命守時) promotes safety and prosperity.\n- Unnecessary interference (支惹) is warned as a source of bad luck, whereas preserving the old ways (守舊) is considered suitable.\n- Overall, the poem encourages a calm, orderly lifestyle to secure a stable, harmonious life.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:01:22",
+    "source_file": "chuck_37.json",
+    "raw_llm_response_preview": "{\"id\": 37, \"title\": \"觀音一百籤第三十七籤\", \"subtitle\": \"申宮\", \"fortune\": \"中籤\", \"poem\": \"欲問身安運泰時、風中燈燭不相宜、爭如收拾深堂坐、庶免光搖靜處期。\", \"analysis\": {\"zh\": \"詩以風中燈燭不安為象徵，提醒人在追求身安運泰時，須守常、守舊，保持安靜，勿輕易擾動，方能安泰。\", \"en\": \"The poem uses the image of a lamp trembling in the wind to symbolize instability; it advises that when seeking"
+  }
+}

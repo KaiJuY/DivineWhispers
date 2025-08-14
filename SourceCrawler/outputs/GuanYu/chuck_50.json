@@ -1,0 +1,25 @@
+{
+  "id": 50,
+  "title": "關聖帝君一百籤第五十籤",
+  "subtitle": "蘇東坡勸民戊癸",
+  "fortune": "上吉",
+  "poem": [
+    "人說今年勝舊年",
+    "也須步多要周旋",
+    "一家和氣多生福",
+    "萋菲讒言莫聽偏"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：在追求一年比上一年更好的成就時，必須付出實際的努力，並以和諧的家庭關係為基礎，遠離無謂的八卦與誹謗。詩中說到，雖有人口頭說今年會勝過去年，但若不採取多方行動、周到調整，仍會停留在原點。相反，家庭若保持和氣，福氣自然會滲透進來；而對於諫言、流言蜚語則要保持警惕，避免被無謂的負面情緒所困。",
+    "en": "The theme of this poem is that to truly make the current year better than the previous one, one must take concrete steps and cultivate harmony within the family, while steering clear of gossip and slander. The poem cautions that merely proclaiming victory over the last year is insufficient; sustained effort and careful planning are required. In contrast, a harmonious household attracts blessings, and one should heed gossip skeptically to avoid unnecessary worry.",
+    "jp": "この詩のテーマは、今年を昨年より良くするためには、実際に多くの努力を重ね、家族内で和やかな関係を保ち、無用な噂や誹謗を避けることが必要だということです。詩は、単に今年が去年を勝ると語るだけでは不十分で、持続的な努力と慎重な調整が求められると警告しています。一方で、家庭が和気あいあいしていれば福が自然に訪れ、噂話には警戒心を持ち、不要な心配を避けるべきだと示唆しています。",
+    "reference": "宋。蘇軾。字子瞻。號東波居士。知杭州。歲饑。勸民平糶。發倉廩賑濟。又遣使四出治病。活者萬計。有逋(欠)稅不償。軾呼詢之。云以夏扇謀生。天寒難賣。非故負也。軾令取廿餘柄來。據案草書。及畫枯木竹石。其人持出。眾以千文爭買一扇不得。盡償所逋(欠)。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Achieving an improvement over the previous year demands persistent, multi-step action.\n- A harmonious family environment naturally generates blessings.\n- One should ignore petty gossip and slander to avoid needless anxiety.\n- The poem emphasizes that self‑trust and diligent planning are more valuable than empty optimism.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:47:26",
+    "source_file": "chuck_50.json",
+    "raw_llm_response_preview": "{\"id\":50,\"title\":\"關聖帝君一百籤第五十籤\",\"subtitle\":\"蘇東坡勸民戊癸\",\"fortune\":\"上吉\",\"poem\":[\"人說今年勝舊年\",\"也須步多要周旋\",\"一家和氣多生福\",\"萋菲讒言莫聽偏\"],\"analysis\":{\"zh\":\"這首詩的主題是：在追求一年比上一年更好的成就時，必須付出實際的努力，並以和諧的家庭關係為基礎，遠離無謂的八卦與誹謗。詩中說到，雖有人口頭說今年會勝過去年，但若不採取多方行動、周到調整，仍會停留在原點。相反，家庭若保持和氣，福氣自然會滲透進來；而對於諫言、流言蜚語則要保持警惕，避免被無謂的負面情緒所困。\",\"en\":\"The the"
+  }
+}

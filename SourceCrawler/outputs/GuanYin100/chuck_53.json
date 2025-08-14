@@ -1,0 +1,20 @@
+{
+  "id": 53,
+  "title": "觀音一百籤第五十三籤",
+  "subtitle": "子宮",
+  "fortune": "中籤",
+  "poem": "失意翻成得意時、龍吟虎嘯兩相宜、青雲有路終須到、許我功名必可期。",
+  "analysis": {
+    "zh": "此卦以龍吟虎嘯為象，顯示事務往往能順利進展，充滿希望。只要順勢放手，便能順利推進；最終必定取得成功，可於此地規劃未來。",
+    "en": "The poem speaks of turning disappointment into triumph; the dragon’s roar and the tiger’s howl both find harmony. The clear blue clouds chart a path that must eventually be reached, and it promises that the seeker’s fame and achievements are assured.",
+    "jp": "失意が得意に変わり、龍の咆哮と虎の吼が調和する様子を描きます。青い雲は道を示し、必ず辿り着くことを示唆し、功名が必ず達成されることを約束しています。",
+    "reference": "家宅　不安。自身　欠吉（先凶后吉）。求財　中平。交易　難。婚姻　成就。六甲　祈保。行人　至。田蠶　五分。六畜　損。尋人　至。公訟　和。移徙　吉。失物　見。疾病　安。山墳　吉。1.劉備招親劉玄德。即西蜀先主也。為荊州牧時。甘夫人(劉備妻)新喪。東吳孫權聞知。詐以妹招贅欲賺(軟禁)其人。吳素討荊州。孔明料知。乃授趙雲錦囊計。保先主入吳。(東江招親)意弄假成真。娶孫夫人以歸焉。有曰周郎妙計高天下。賠了夫人又折兵。2.王景略捫虱談兵王猛（325--375）十六國時期前秦的著名政治家。字景略，北海劇（今壽光東南）人。出身貧寒，以賣畚箕為業。志向遠大，勤奮好學，熟讀兵書。桓溫攻長安時，曾捉虱談天下事，令桓溫大驚，拜為軍謀祭酒。因為後來王猛問老師要不要追隨桓溫，老師認為恐兩人相忌，故不宜追隨桓溫，留在此處（長安）自有其他機會，所以未再追隨桓溫。後又被尚書呂婆薦於苻堅，苻堅認為自己像劉備遇到了諸葛亮，\"固是夷吾、子產一類人才爾\"。357年6月，秦王苻堅命其為中書侍郎，掌機密大政。轉為始平令。不久為尚書左丞、咸陽內史。又任吏部尚書、太子詹事。遷官尚書左僕射、輔國將軍、司隸校尉，加騎都尉，時36歲。1年之中，5 次遷官。359年，為侍中、中書令、京兆尹。上任數旬，權豪貴戚被殺戮、判刑、免官20餘人。奸猾歹徒，斂聲屏氣。苻堅說：\"吾今始知天下之有法也，天子之為尊也。\"370年，統率步騎6萬，攻滅前燕國。留鎮鄴，都督關東6州。不久，入朝為丞相，達16年之久。輔佐苻堅18年，剛正清肅，善惡分明；外修兵革，內崇儒學，勸課農桑，無罪不刑，無才不任。苻堅說：\"卿...勤于國政，朕如文王得太公，可以悠閒度日了。\"史書讚譽他\"宰政公平\"。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Turning misfortune into success; \n- Harmonious alignment of powerful forces (dragon & tiger); \n- A destined path (blue clouds) that will ultimately be reached; \n- Assurance that fame and achievements will come; \n- Encouragement to act with confidence and seize opportunity.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:19:59",
+    "source_file": "chuck_53.json",
+    "raw_llm_response_preview": "{\n  \"id\": 53,\n  \"title\": \"觀音一百籤第五十三籤\",\n  \"subtitle\": \"子宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"失意翻成得意時、龍吟虎嘯兩相宜、青雲有路終須到、許我功名必可期。\",\n  \"analysis\": {\n    \"zh\": \"此卦以龍吟虎嘯為象，顯示事務往往能順利進展，充滿希望。只要順勢放手，便能順利推進；最終必定取得成功，可於此地規劃未來。\",\n    \"en\": \"The poem speaks of turning disappointment into triumph; the dragon’s roar an"
+  }
+}

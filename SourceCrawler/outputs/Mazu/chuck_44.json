@@ -1,0 +1,25 @@
+{
+  "id": 44,
+  "title": "六十甲子籤第四十四籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "辛卯○●●　●●●",
+  "poem": [
+    "客到前途多得利",
+    "君爾何故兩相疑",
+    "雖是中間逢進退",
+    "月出光輝得運時"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是以「客到」開啟前途與利益的象徵，描寫在途中遇到疑惑與阻礙時，隨著「月出」的光輝，機遇與運勢將得到釋放，帶來光明的未來。",
+    "en": "This poem's theme is the arrival of a guest as a symbol of new opportunities and benefits, describing how hesitation and obstacles arise midway, yet with the rising moon's brilliance fortune is released, ushering in a brighter future.",
+    "jp": "この詩のテーマは、客が到来したことを新たな機会と利益の象徴として描き、途中で疑いや障害が現れたとしても、月が昇る光輝とともに運勢が解放され、明るい未来へと導かれるという内容です。",
+    "reference": "洪益春留傘愛陣三凡事　月光好。作事　運至事成。家事　志氣遠大。家運　左右平安。婚姻　中和。求兒　不可。六甲　先女後男。(弄瓦之慶)求財　淡淡。(漸利益。亨可喜)功名　必能得進。歲君　起倒。治病　月光安。運光彩。出外　一路順風。經商　大吉利市。來人　月半到。行舟　大吉有利。移居　大吉。失物　月光在。寅辰在。求雨　未有。官事　了錢。月光完局。六畜　可納。耕作　平平。(有利可得)築室　可居安樂。墳墓　地氣漸發財。討海　可能得利。作塭　有獲大利。魚苗　有利可得。月令　待時可安。尋人　月光在。遠信　速報好音。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is the emergence of opportunity represented by the arrival of a guest, tempered by doubt and hesitation. The rising moon signifies the moment when obstacles are overcome and fortune is fully realized, illuminating the path ahead.\n- The line \"客到前途多得利\" indicates that a new opportunity or visitor brings potential gains and progress.\n- \"君爾何故兩相疑\" reflects the speaker’s hesitation and questioning about the outcome.\n- \"雖是中間逢進退\" acknowledges the presence of obstacles or indecision midway through the endeavor.\n- \"月出光輝得運時\" uses the moon’s rising as a metaphor for a clear, auspicious moment when fortune arrives and the path brightens.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:32:51",
+    "source_file": "chuck_44.json",
+    "raw_llm_response_preview": "{\n  \"id\": 44,\n  \"title\": \"六十甲子籤第四十四籤\",\n  \"subtitle\": \"屬木利春　宜其東方\",\n  \"fortune\": \"辛卯○●●　●●●\",\n  \"poem\": [\n    \"客到前途多得利\",\n    \"君爾何故兩相疑\",\n    \"雖是中間逢進退\",\n    \"月出光輝得運時\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是以「客到」開啟前途與利益的象徵，描寫在途中遇到疑惑與阻礙時，隨著「月出」的光輝，機遇與運勢將得到釋放，帶來光明的未來。\",\n    \"en\": \"This poem's theme is the "
+  }
+}

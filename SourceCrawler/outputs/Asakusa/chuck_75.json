@@ -1,0 +1,20 @@
+{
+  "id": 75,
+  "title": "日本淺草觀音寺一百籤第七十五籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "孤舟欲過岸,浪急渡人空,女人立流水,望月意情濃",
+  "analysis": {
+    "zh": "這首詩的主題是對孤獨航行與靜觀情感的反思。詩中「孤舟欲過岸」描繪一艘孤單的小舟渴望抵達對岸，象徵人心中對遠方或理想的渴求；「浪急渡人空」則說明水面湍急、渡船人感到孤寂，暗示前進路上的困難與無助。接著「女人立流水」將女性人物置於流水旁，突顯其脆弱與獨立；「望月意情濃」以望月的動作映照內心深沉的情感與對美好、安寧的嚮往。整首詩以水為媒介，呈現身處變動與寧靜交錯的境況，勾勒出人在面對艱難與情感時的細膩感受。",
+    "en": "這首詩的主題是 According to this poem, the theme revolves around solitary passage and contemplative emotions. 'A lone boat wants to cross the shore' evokes a vessel yearning for the opposite bank, symbolizing a longing for distant goals or ideals. 'Waves surge, crossing feels empty' highlights turbulent waters and a sense of isolation, hinting at the hardships and helplessness on the way forward. 'A woman stands by the flowing water' places a female figure beside the stream, emphasizing her vulnerability and independence. 'Looking at the moon, feelings intensify' uses the act of gazing at the moon to mirror deep emotions and a yearning for beauty and tranquility. The poem uses water as a medium to portray a juxtaposition of change and stillness, painting a delicate picture of how one feels when confronting difficulties and emotions.",
+    "jp": "這首詩の主題は この詩のテーマは、孤独な航海と内省的な感情についてです。『孤舟欲過岸』は、孤独な小舟が向こう岸へ渡ろうとする様子を描き、遠い目標や理想への渇望を象徴しています。『浪急渡人空』は、激しい波と渡る人の孤独感を示し、前進する道の困難と無力さを暗示します。『女人立流水』は、女性を水辺に立たせ、その脆さと自立を強調しています。『望月意情濃』は、月を見つめることで深い感情と美しさ・安らぎへの願望を映し出しています。水を媒介に、変化と静寂が交差する境地を描き、人が困難や感情に直面したときの繊細な感覚を表しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is a poetic meditation on solitude and emotional depth. - The lone boat yearning to cross the shore symbolizes a personal longing for a distant goal or ideal. - Turbulent waves and the feeling of emptiness highlight the challenges and isolation that accompany such a journey. - The woman standing beside the flowing water represents vulnerability, resilience, and the quiet strength needed to face change. - Gazing at the moon intensifies feelings, conveying a deep longing for beauty, tranquility, and connection. - Water serves as a metaphorical backdrop, blending motion and stillness to illustrate how emotions intertwine with life’s uncertainties.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:18:06",
+    "source_file": "chuck_75.json",
+    "raw_llm_response_preview": "{\"id\":75,\"title\":\"日本淺草觀音寺一百籤第七十五籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"孤舟欲過岸,浪急渡人空,女人立流水,望月意情濃\",\"analysis\":{\"zh\":\"這首詩的主題是對孤獨航行與靜觀情感的反思。詩中「孤舟欲過岸」描繪一艘孤單的小舟渴望抵達對岸，象徵人心中對遠方或理想的渴求；「浪急渡人空」則說明水面湍急、渡船人感到孤寂，暗示前進路上的困難與無助。接著「女人立流水」將女性人物置於流水旁，突顯其脆弱與獨立；「望月意情濃」以望月的動作映照內心深沉的情感與對美好、安寧的嚮往。整首詩以水為媒介，呈現身處變動與寧靜交錯的境況，勾勒出"
+  }
+}

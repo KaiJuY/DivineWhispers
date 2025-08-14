@@ -1,0 +1,25 @@
+{
+  "id": 61,
+  "title": "關聖帝君一百籤第六十一籤",
+  "subtitle": "蒯輙見韓信庚甲",
+  "fortune": "中平",
+  "poem": [
+    "嘯聚山林兇惡儔",
+    "善良無事苦煎憂",
+    "主人大笑出門去",
+    "不用干戈盜賊休"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是...聚集於山林的兇惡盜賊使善良百姓陷入恐懼，然而主人以大笑離去，無需動用干戈，盜賊自然安息，展現以德服人、以智慧化解危機之主旨。",
+    "en": "這首詩的主題是... This poem depicts how a gathering of vicious bandits in the mountains induces fear among the innocent, yet the master, by calmly leaving with a smile, requires no weaponry; the thieves then retreat peacefully, illustrating that moral authority and wisdom can resolve threats without violence.",
+    "jp": "這首詩的主題は... この詩の主題は山林に集まる凶悪な盗賊が善良な民を恐怖に陥れ、主人が笑顔で退くことで武力を使わずに盗賊が休む様子を描き、徳と知恵で危機を解決することを示している。",
+    "reference": "漢。蒯輒。字通。范陽人。時韓信假節為齊王。輒知天下權在韓信。往說之曰。今大王威震天下。與楚則楚勝。與漢則漢勝。大王若不楚不漢。鼎足三分。可長保富貴。信謝之曰。吾受漢王厚恩。終身不忍背漢。後信被呂后所殺。臨刑有悔不聽蒯通之言。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It shows bandits assembling in the mountains, bringing anxiety to the innocent.\n- The ruler calmly leaves with a laugh, avoiding the use of force.\n- The thieves stop raiding once the threat of a wise, peaceful leader is present.\n- The poem highlights the power of moral authority and wisdom over brute strength.\n- It suggests that fear of violence can be mitigated by the presence of a just and composed leader.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:53:59",
+    "source_file": "chuck_61.json",
+    "raw_llm_response_preview": "{\"id\":61,\"title\":\"關聖帝君一百籤第六十一籤\",\"subtitle\":\"蒯輙見韓信庚甲\",\"fortune\":\"中平\",\"poem\":[\"嘯聚山林兇惡儔\",\"善良無事苦煎憂\",\"主人大笑出門去\",\"不用干戈盜賊休\"],\"analysis\":{\"zh\":\"這首詩的主題是...聚集於山林的兇惡盜賊使善良百姓陷入恐懼，然而主人以大笑離去，無需動用干戈，盜賊自然安息，展現以德服人、以智慧化解危機之主旨。\",\"en\":\"這首詩的主題是... This poem depicts how a gathering of vicious bandits in the mountains indu"
+  }
+}

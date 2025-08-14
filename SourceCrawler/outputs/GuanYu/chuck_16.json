@@ -1,0 +1,25 @@
+{
+  "id": 16,
+  "title": "關聖帝君一百籤第十六籤",
+  "subtitle": "王祥臥冰乙己",
+  "fortune": "下平",
+  "poem": [
+    "官事悠悠難辨明",
+    "不如息了且歸耕",
+    "傍人煽惑君休信",
+    "此事當謀親弟兄"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於官司或官事的纏繞與無法明辨，作者建議其不如停歇、放下，回到田裡耕種，避免因爲訴訟而將田園荒廢。詩中提醒不應被外界傍人的勸說所惑，應該與親友商量，以求和解為佳。此詩用簡潔而直接的語氣，勸人遠離無謂的糾紛，重回實際工作，並以家庭為依靠，達成內心安定。",
+    "en": "This poem deals with the lingering and confusing nature of official affairs or litigation. The author suggests abandoning the struggle, returning to the fields to farm, and thus avoiding the ruin that prolonged disputes can bring to one’s livelihood. The verses caution against being misled by surrounding voices and advise consulting close family for guidance, emphasizing reconciliation and practical action over endless legal battles.",
+    "jp": "この詩は官事や訴訟が長く曖昧であることを示し、争いを止めて農業に戻るべきだと述べています。外部の人々の煽りに惑わされず、親しい家族と相談し和解を目指すべきだと警告しています。争いを続けるよりも実際の仕事に戻り、家族と協力して安定した生活を取ることが大切だと説いています。",
+    "reference": "晉。王祥字伏徵。臨沂人。性至孝。事繼母極恭。謹母欲食生魚。天寒冰凍。祥赤身臥於冰上。求之。其冰立解。得雙鯉。持歸。人以為孝感云。後官至太保。進公爵。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Official or legal matters often become prolonged and difficult to clarify.\n- It is wiser to pause, cease the dispute, and return to one’s practical duties (e.g., farming).\n- Relying on the counsel of close relatives rather than being swayed by external provocateurs leads to better resolution.\n- The poem encourages the pursuit of harmony and practical solutions over endless litigation, emphasizing stability and familial support.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:29:35",
+    "source_file": "chuck_16.json",
+    "raw_llm_response_preview": "{\"id\":16,\"title\":\"關聖帝君一百籤第十六籤\",\"subtitle\":\"王祥臥冰乙己\",\"fortune\":\"下平\",\"poem\":[\"官事悠悠難辨明\",\"不如息了且歸耕\",\"傍人煽惑君休信\",\"此事當謀親弟兄\"],\"analysis\":{\"zh\":\"這首詩的主題是關於官司或官事的纏繞與無法明辨，作者建議其不如停歇、放下，回到田裡耕種，避免因爲訴訟而將田園荒廢。詩中提醒不應被外界傍人的勸說所惑，應該與親友商量，以求和解為佳。此詩用簡潔而直接的語氣，勸人遠離無謂的糾紛，重回實際工作，並以家庭為依靠，達成內心安定。\",\"en\":\"This poem deals with the li"
+  }
+}

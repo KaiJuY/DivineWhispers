@@ -1,0 +1,25 @@
+{
+  "id": 30,
+  "title": "關聖帝君一百籤第三十籤",
+  "subtitle": "柳毅傳書丙癸",
+  "fortune": "中吉",
+  "poem": [
+    "奉公謹守莫欺心",
+    "自有亨通吉利臨",
+    "目下營求且休矣",
+    "秋期與子定佳音"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是奉行公正、守法與安於自我，告誡人們要保持正直，避免自欺。詩中指出，因為奉公守法，未來將會亨通吉利；現在若急於求成，最好先安分守己，等待秋季之時才會有好消息。",
+    "en": "這首詩的主題是：adhering to fairness and law, maintaining one’s integrity, and avoiding self‑deception. The poem says that by being righteous, good fortune will come; yet one should not rush now, but remain calm and wait for the autumn season when the good news will arrive.",
+    "jp": "この詩のテーマは、公正を守り法を尊び、自己の正直さを保ち、自己欺瞞を避けることです。詩は、正直に行動すれば幸運が訪れ、今は急がずに秋に待つべきだと語っています。",
+    "reference": "唐。柳毅下第。歸至涇陽。遇安子滿而涕零。自云。洞庭龍君之女嫁與涇陽。遭婿暴辱。出書一封。托寄洞庭。毅以不能入水為辭。女云湖邊有柳樹一株。搖之當有所見。及至搖樹。果水中有人。出為持書去。俄邀毅入龍宮。洞庭君以女妻焉。後不知所終。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- It emphasizes staying true to principles and refraining from self‑deception. \n- By acting with fairness and integrity, one can expect smooth success and good fortune. \n- The poem advises patience, urging the reader not to push too soon but to remain calm and wait for the right season—specifically, autumn—when the promised good news will arrive. \n- In the broader context of the \"柳毅傳書\", the lines serve as a moral reminder that true success is earned through righteousness and perseverance, rather than hurried ambition.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:36:44",
+    "source_file": "chuck_30.json",
+    "raw_llm_response_preview": "{\n  \"id\": 30,\n  \"title\": \"關聖帝君一百籤第三十籤\",\n  \"subtitle\": \"柳毅傳書丙癸\",\n  \"fortune\": \"中吉\",\n  \"poem\": [\n    \"奉公謹守莫欺心\",\n    \"自有亨通吉利臨\",\n    \"目下營求且休矣\",\n    \"秋期與子定佳音\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是奉行公正、守法與安於自我，告誡人們要保持正直，避免自欺。詩中指出，因為奉公守法，未來將會亨通吉利；現在若急於求成，最好先安分守己，等待秋季之時才會有好消息。\",\n    \"en\": \"這首詩的主題是：adherin"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 98,
+  "title": "觀音一百籤第九十八籤",
+  "subtitle": "亥宮",
+  "fortune": "下籤",
+  "poem": "經商出入事遲疑、恐惹閒愁與是非、如鳥飛投羅網陷、相看能有幾人知。",
+  "analysis": {
+    "zh": "這首詩的主題是此卦象徵守舊、順其自然。凡事不順者多為凶。建議保持現狀，等待貴人相助；若有諸般問題，事務往往會拖延。",
+    "en": "這首詩的主題是This poem's theme is that the hexagram symbolizes holding onto the old and following the natural course. All matters that do not go as expected are often bad. It advises to maintain the status quo and wait for a benefactor; if there are various issues, affairs tend to be delayed.",
+    "jp": "這首詩的主題は、古きを守り自然に従うことを象徴する卦である。すべての事が思い通りにならないと凶事となりやすい。現状を保ち、恩人を待つことが勧められ、さまざまな問題があると事が遅れる傾向がある。",
+    "reference": "*(急恐憂愁四字，本作辦恐開愁;脫困本作相逢)家宅　憂疑。自身　小人。求財　破。交易　損失。婚姻　不長。六甲　刑損。行人　困。田蠶　損。六畜　損。尋人　杳。公訟　虧。移徙　勿動。失物　凶。疾病　犯羅網。山墳　絕。1.吉平遇難三國。醫師吉平。感于曹操挾天子以令諸侯。欲殺奸臣。恰曹操頭痛。吉平往治。藥中下毒。曹操發覺。嚴刑拷打吉平。吉平大罵曹操。一頭撞于石柱自殺。2.陶淵明三徑關門陶淵明為了不為五斗米折腰而辭去縣令，回到故居後，遙想西漢末年蔣詡辭官隱居於杜陵，僅留三條小路供好友往來，所以也效法蔣詡，將家中諸事交給妻子處理，自己則與整日於朋友飲酒作詩， 直到逝世。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: • The hexagram represents a cautious stance, holding onto familiar ways and following the natural flow. • It warns that when business decisions are delayed or indecisive, one may invite idle worries and disputes. • The metaphor of a bird caught in a web illustrates how inaction can trap opportunities. • The poem urges patience, waiting for a helpful influence before acting. • It reflects a philosophy that stagnation can be both protective and perilous, depending on timing.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:48:38",
+    "source_file": "chuck_98.json",
+    "raw_llm_response_preview": "{\"id\":98,\"title\":\"觀音一百籤第九十八籤\",\"subtitle\":\"亥宮\",\"fortune\":\"下籤\",\"poem\":\"經商出入事遲疑、恐惹閒愁與是非、如鳥飛投羅網陷、相看能有幾人知。\",\"analysis\":{\"zh\":\"這首詩的主題是此卦象徵守舊、順其自然。凡事不順者多為凶。建議保持現狀，等待貴人相助；若有諸般問題，事務往往會拖延。\",\"en\":\"這首詩的主題是This poem's theme is that the hexagram symbolizes holding onto the old and following the natural course. Al"
+  }
+}

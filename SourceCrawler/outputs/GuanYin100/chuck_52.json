@@ -1,0 +1,20 @@
+{
+  "id": 52,
+  "title": "觀音一百籤第五十二籤",
+  "subtitle": "子宮",
+  "fortune": "中籤",
+  "poem": "水中捉月費工夫、費盡功夫卻又無、莫信閑言併浪論、枉拋心力也難圖。",
+  "analysis": {
+    "zh": "此卦象徵貪求與費力。凡事皆需勞心費力，承諾難以執行，常伴隨宅中憂慮，若遇貴人則可化解。",
+    "en": "This poem illustrates that pursuing impossible or ill‑fated goals can exhaust effort without reward. It advises against believing idle chatter or speculative talk, reminding that even with great investment of heart and labor, attainment may still be out of reach.",
+    "jp": "水中で月を捕まえることは大きな努力を要し、すべてを費やしても得られない。軽い言葉や波の議論に惑わされず、心を投げ込んでも成果は得られにくいということを示しています。",
+    "reference": "*(身枯二字，本作身孤)家宅　不安。自身　欠吉（凶。注意健康）。求財　中平（休想）交易　難。婚姻　未就。六甲　祈保（空寶。防小產）。行人　有災。田蠶　五分。六畜　衰。尋人　至（凶）。公訟　和（即止訟）。移徙　平常（甭提）。失物　難（空 ）。疾病　祈保（凶）。山墳　吉。1.太白醉撈明月（李太白醉中捉月）唐朝詩人。自曰謫仙。被稱詩仙。無酒不歡。醉酒到湖邊。見月在水中。欲抱之。溺斃。年六十二歲。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The act of chasing an impossible dream consumes energy and often yields nothing.\n- It cautions against listening to idle gossip or speculative arguments.\n- Even with heartfelt effort, success may still be unattainable, highlighting the futility of such pursuits.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:19:18",
+    "source_file": "chuck_52.json",
+    "raw_llm_response_preview": "{\"id\":52,\"title\":\"觀音一百籤第五十二籤\",\"subtitle\":\"子宮\",\"fortune\":\"中籤\",\"poem\":\"水中捉月費工夫、費盡功夫卻又無、莫信閑言併浪論、枉拋心力也難圖。\",\"analysis\":{\"zh\":\"此卦象徵貪求與費力。凡事皆需勞心費力，承諾難以執行，常伴隨宅中憂慮，若遇貴人則可化解。\",\"en\":\"This poem illustrates that pursuing impossible or ill‑fated goals can exhaust effort without reward. It advises against believin"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 79,
+  "title": "關聖帝君一百籤第七十九籤",
+  "subtitle": "宋神宗誤圩牛頭山辛壬",
+  "fortune": "中平",
+  "poem": [
+    "乾亥來龍仔細看",
+    "坎居午向自當安",
+    "若移丑艮陰陽逆",
+    "門戶凋零家道難"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是順理而行，勿妄作。首句提醒乾亥之運將至，需謹慎觀察；次句說明坎居午為順，安定之道；第三句警告若改為丑艮，陰陽失衡，將帶來不利；最後一句預示若不守正，家門將衰敗。",
+    "en": "This poem’s theme is to act in accordance with natural order and avoid forcing things. The first line warns that the force of 乾亥 is coming, urging careful observation; the second line shows that staying in 坎居午 is the right and peaceful path; the third line cautions that moving to 丑艮 disrupts yin‑yang balance, leading to misfortune; the final line foretells that neglecting proper alignment will cause the household to decline.",
+    "jp": "この詩のテーマは、自然の秩序に従い、無理をしないことです。最初の行は乾亥の運が来ることを警告し、慎重に観察するよう促します。次の行は坎居午に留まることが正しい道であると示します。3 行目は丑艮に移動すると陰陽が乱れ、悪影響をもたらすと警告します。最後の行は、正しい位置を守らなければ家庭が衰えると予示します。",
+    "reference": "西伯侯姬昌。諡文王。為紂之諸侯。生有聖德。往朝紂。被崇侯虎所讒。因於羑里。乃編易卦。定六爻。後周大夫散宜生。以美女玉帛獻紂。方釋歸。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The opening line highlights the arrival of the 乾亥 force and urges careful observation.\n- The second line depicts staying in 坎居午 as the harmonious, peaceful state.\n- The third line warns that shifting to 丑艮 breaks the yin‑yang balance, leading to adverse consequences.\n- The final line predicts that failing to maintain proper alignment will bring decline to the household.\n- Overall, the poem stresses the importance of aligning one’s actions with natural order to avoid misfortune.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:02:31",
+    "source_file": "chuck_79.json",
+    "raw_llm_response_preview": "{\"id\":79,\"title\":\"關聖帝君一百籤第七十九籤\",\"subtitle\":\"宋神宗誤圩牛頭山辛壬\",\"fortune\":\"中平\",\"poem\":[\"乾亥來龍仔細看\",\"坎居午向自當安\",\"若移丑艮陰陽逆\",\"門戶凋零家道難\"],\"analysis\":{\"zh\":\"這首詩的主題是順理而行，勿妄作。首句提醒乾亥之運將至，需謹慎觀察；次句說明坎居午為順，安定之道；第三句警告若改為丑艮，陰陽失衡，將帶來不利；最後一句預示若不守正，家門將衰敗。\",\"en\":\"This poem’s theme is to act in accordance with natural order and av"
+  }
+}

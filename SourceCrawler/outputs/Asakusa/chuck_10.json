@@ -1,0 +1,20 @@
+{
+  "id": 10,
+  "title": "日本淺草觀音寺一百籤第十籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "舊用多成破,新更始見財,改求雲外望,枯木遇春開",
+  "analysis": {
+    "zh": "舊用多成破——過往的舊事多成破碎，往昔的煩惱將逐漸消散。新更始見財——迎來新變，財富隨之顯現。改求雲外望——把目光投向更高遠的目標，努力追求理想。枯木遇春開——如同枯木在春天破土發芽，象徵新生與繁榮。",
+    "en": "Old uses become broken – past troubles fade away. New beginnings bring wealth – prosperity appears with fresh starts. Seek beyond the clouds – aim higher and pursue your ideals. A withered tree blooms in spring – a metaphor for renewal and flourishing.",
+    "jp": "旧き使いは破れ、過去の苦悩が消えていく。新たな始まりが財をもたらす。雲の外を見て求める高い目標へと挑む。枯れ木が春に芽吹くように、新生と繁栄を象徴する。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that past difficulties will dissolve as new opportunities arise. • **象徵**: \n- *舊用多成破* 代表過去的失敗與煩惱。\n- *新更始見財* 代表新開始帶來的經濟與機會。\n- *改求雲外望* 暗示提升目標，向更高境界努力。\n- *枯木遇春開* 象徵再生與繁榮。\n• **隱含哲理**: 生命循環不斷，結束即是新生；努力向上能帶來財富與成長。\n• **情境**: 面對困境時，先放下舊事，開啟新章；目標提升能開創更大可能；即便枯木，也有春天開花的希望。",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:49:42",
+    "source_file": "chuck_10.json",
+    "raw_llm_response_preview": "{\"id\":10,\"title\":\"日本淺草觀音寺一百籤第十籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"舊用多成破,新更始見財,改求雲外望,枯木遇春開\",\"analysis\":{\"zh\":\"舊用多成破——過往的舊事多成破碎，往昔的煩惱將逐漸消散。新更始見財——迎來新變，財富隨之顯現。改求雲外望——把目光投向更高遠的目標，努力追求理想。枯木遇春開——如同枯木在春天破土發芽，象徵新生與繁榮。\",\"en\":\"Old uses become broken – past troubles fade away. New beginnings bring wealth –"
+  }
+}

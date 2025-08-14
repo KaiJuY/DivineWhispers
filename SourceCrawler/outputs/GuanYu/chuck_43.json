@@ -1,0 +1,25 @@
+{
+  "id": 43,
+  "title": "關聖帝君一百籤第四十三籤",
+  "subtitle": "玄德公黃鶴樓赴宴戊丙",
+  "fortune": "中吉",
+  "poem": [
+    "一紙官書火急催",
+    "扁舟速下浪如雷",
+    "雖然目下多驚險",
+    "保汝平安去復回"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是急促的官事與安心的旅程。\\n\\n一紙官書火急催，扁舟速下浪如雷，雖然目下多驚險，保汝平安去復回。\\n\\n詩中描繪一位官員因緊急任務而快速航行，海浪如雷，雖充滿危險，但神明保佑旅程平安。",
+    "en": "This poem's theme is an urgent official duty and a reassuring voyage.\\n\\nA single urgent official letter urges haste, a small boat rushes over thunder‑like waves, though danger looms, divine protection ensures a safe journey back and forth.\\n\\nThe poem depicts a swift boat voyage prompted by an emergency mission, with stormy waves and a promise of safety under divine guardianship.",
+    "jp": "この詩のテーマは急な官務と安心できる旅路です。\\n\\n一枚の急を要する官書が催し、扁舟が雷のような浪を切って速く進み、危険が多いものの神の加護で安全に往復できることを示しています。\\n\\n詩は緊急任務で急ぎ航行する様子を描き、波が雷のように荒れながらも、神の加護により安全に帰ることを約束しています。",
+    "reference": "漢。劉備。字玄德。獻帝時。群雄割據。曹操挾天子令諸侯。玄德未得四川。借與荊州。托足周瑜。計請赴宴。設伏挾討。幸孔明授趙雲密計。計得免於難。此係俗傳。攷史。赤壁合兵拒操時。瑜計請玄德。設伏欲害。因見關公在場。不敢動手。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- An urgent official dispatch forces rapid movement.\n- The small boat speeds across thunder‑like waves, indicating peril.\n- Despite the danger, divine protection promises a safe journey both ways.\n- The overall message conveys that swift action under urgent circumstances can be completed safely with faith in higher guidance.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:43:16",
+    "source_file": "chuck_43.json",
+    "raw_llm_response_preview": "{\"id\":43,\"title\":\"關聖帝君一百籤第四十三籤\",\"subtitle\":\"玄德公黃鶴樓赴宴戊丙\",\"fortune\":\"中吉\",\"poem\":[\"一紙官書火急催\",\"扁舟速下浪如雷\",\"雖然目下多驚險\",\"保汝平安去復回\"],\"analysis\":{\"zh\":\"這首詩的主題是急促的官事與安心的旅程。\\\\n\\\\n一紙官書火急催，扁舟速下浪如雷，雖然目下多驚險，保汝平安去復回。\\\\n\\\\n詩中描繪一位官員因緊急任務而快速航行，海浪如雷，雖充滿危險，但神明保佑旅程平安。\",\"en\":\"This poem's theme is an urgent official duty and a "
+  }
+}

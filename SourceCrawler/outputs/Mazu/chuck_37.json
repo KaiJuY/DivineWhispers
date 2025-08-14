@@ -1,0 +1,25 @@
+{
+  "id": 37,
+  "title": "六十甲子籤第三十七籤",
+  "subtitle": "屬土利年　四方皆宜",
+  "fortune": "庚子○●●　○●●",
+  "poem": [
+    "運逢得意身顯變",
+    "君爾身中皆有益",
+    "一向前途無難事",
+    "決意之中保清吉"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：一段順遂的人生旅程與明確的決策。詩中先說到運氣到來、身世顯要，接著強調所有內在的努力與行為皆為有益，未來路途無難，最後提醒在決心之際保持清晰，以保祺吉祥。",
+    "en": "這首詩的主題是：a smooth path of fortune and decisive clarity. The verses first depict luck arriving and status rising, then affirm that every action taken is beneficial to oneself and others, assure that the future holds no major obstacles, and finally advise that clear and firm decisions will safeguard good fortune.",
+    "jp": "この詩のテーマは、順調な運勢と決断の明確さです。まず運気が到来し、地位が高まる様子が描かれ、次にすべての行動が自分と他者に利益をもたらすと強調され、未来には大きな障害はないと語られ、最後に決断を明確にして吉祥を守るべきと勧めています。",
+    "reference": "1.正德君看呼綠牡丹開2.正德君戲李鳳姐凡事　有錢。拖尾。平安。作事　可成。有口舌。家事　克振家聲。。家運　居之平安。婚姻　好。求兒　好吉。六甲　先男後女。求財　漸有。功名　望後科。(身顯)歲君　平安治病　險不畏。祈平安。出外　平正。經商　峻發日新。來人　立即到。行舟　有利可得。移居　好吉。失物　難尋。求雨　不日到。官事　破財。結局。六畜　適宜吉昌。耕作　平平。有收。築室　清吉。墳墓　得其所哉。討海　和大利。漸得進。作塭　漸得利。魚苗　漸好。月令　漸好。尋人　盡心得回。遠信　佳音速至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It depicts the arrival of good fortune and an elevation of status.\n- Every action taken is portrayed as beneficial to oneself and to others.\n- The path ahead is promised to be free of major obstacles.\n- The poem stresses the importance of clear, decisive choices to preserve auspiciousness.\n- Overall, it encourages confident, positive action and mindful decision-making.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:29:05",
+    "source_file": "chuck_37.json",
+    "raw_llm_response_preview": "{\n  \"id\": 37,\n  \"title\": \"六十甲子籤第三十七籤\",\n  \"subtitle\": \"屬土利年　四方皆宜\",\n  \"fortune\": \"庚子○●●　○●●\",\n  \"poem\": [\n    \"運逢得意身顯變\",\n    \"君爾身中皆有益\",\n    \"一向前途無難事\",\n    \"決意之中保清吉\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：一段順遂的人生旅程與明確的決策。詩中先說到運氣到來、身世顯要，接著強調所有內在的努力與行為皆為有益，未來路途無難，最後提醒在決心之際保持清晰，以保祺吉祥。\",\n    \"en\": \"這首詩的主題"
+  }
+}

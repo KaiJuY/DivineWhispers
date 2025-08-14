@@ -1,0 +1,20 @@
+{
+  "id": 20,
+  "title": "四面佛三十籤第二十籤",
+  "subtitle": "",
+  "fortune": "下籤",
+  "poem": "一群鴻雁過南天,日夜奔馳實堪憐,待得春回思故里,程途依舊總茫然。",
+  "analysis": {
+    "zh": "詩中以鴻雁為喻，描繪春去秋來、四季奔波的辛勞。作者提醒身體因過度奔走而易疲憊，應多加休養以維持健康。財運目前顯得低迷，須忍耐等待明年春季的轉機。情感方面，過往雲煙不必再回顧，放下後將在春回之時迎來新的戀情。事業上，過往已成過去，仍在奮鬥卻缺乏明確方向。",
+    "en": "The poem uses wild geese as a metaphor to depict the toil of the seasons, the endless cycle from spring to autumn. It reminds the reader that physical exhaustion affects health, so one should rest and restore stamina. Wealth is currently in decline; patience is needed until spring of the following year for fortunes to turn. Emotionally, there is no need to linger on the past; let go, and a new romance will emerge after the new spring. Regarding career, the past has become a thing of the past; one is still striving but lacks a clear direction.",
+    "jp": "この詩は鴬を比喩に用い、四季の奔走と春から秋へと続く無限の労苦を描いています。身体の疲弊が健康に影響を与えるため、十分に休養し体力を回復するよう促しています。財運は現時点で低迷していますが、翌年の春に機会が訪れるまで忍耐が必要です。感情面では過去に縛られる必要はなく、手放すことで新しい恋が春とともに訪れるでしょう。職業面では、過去は既に過ぎ去り、今も努力を続けていますが、明確な方向性が欠けている状態です。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The wild geese symbolize persistent travel and perseverance across seasons, reflecting the subject’s continuous effort.\n- The movement from the south to the north and the relentless pursuit depict hardship and longing.\n- Anticipation of spring’s return evokes hope for renewal, yet the path remains hazy, indicating uncertainty about the future.\n- Themes of fatigue, health, and the need for rest emphasize self‑care; the poem urges embracing new opportunities instead of clinging to the past.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:33:21",
+    "source_file": "chuck_20.json",
+    "raw_llm_response_preview": "{\"id\":20,\"title\":\"四面佛三十籤第二十籤\",\"subtitle\":\"\",\"fortune\":\"下籤\",\"poem\":\"一群鴻雁過南天,日夜奔馳實堪憐,待得春回思故里,程途依舊總茫然。\",\"analysis\":{\"zh\":\"詩中以鴻雁為喻，描繪春去秋來、四季奔波的辛勞。作者提醒身體因過度奔走而易疲憊，應多加休養以維持健康。財運目前顯得低迷，須忍耐等待明年春季的轉機。情感方面，過往雲煙不必再回顧，放下後將在春回之時迎來新的戀情。事業上，過往已成過去，仍在奮鬥卻缺乏明確方向。\",\"en\":\"The poem uses wild geese as a metaphor to depic"
+  }
+}

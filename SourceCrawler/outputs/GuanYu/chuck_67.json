@@ -1,0 +1,25 @@
+{
+  "id": 67,
+  "title": "關聖帝君一百籤第六十七籤",
+  "subtitle": "江遺囑兒庚庚",
+  "fortune": "中平",
+  "poem": [
+    "纔發君心天己知",
+    "何須問我決狐疑",
+    "願子改圖從孝悌",
+    "不愁家室不相宜"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：天已知你心中所想，無須再去詢問命運。若能改正心思，恪守孝悌，便能消除家室不合、迎來和諧。",
+    "en": "這首詩的主題是：It is about how the heavens already know your true intentions, so you don't need to ask fate for judgment. By correcting your thoughts and observing filial piety, you can bring harmony to your household and avert misfortune.",
+    "jp": "這首詩的主題は… 天はすでにあなたの心を知っているので、運命を問い求める必要はありません。心を改め孝行を守れば、家族の不和を解消し、和やかな生活を取り戻すことができます。",
+    "reference": ""
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The universe already knows your true intentions, so you don't need to ask fate for judgment.\n- The poet encourages you to rectify your thoughts and follow filial piety, which brings harmony to the household.\n- The poem implies that moral conduct directly influences fortune, and by cultivating virtue you avert misfortune.\n- The central symbol is the ‘heart’ (君心) and the concept of ‘filial piety’ (孝悌), representing personal responsibility and harmony.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:57:08",
+    "source_file": "chuck_67.json",
+    "raw_llm_response_preview": "{\n  \"id\": 67,\n  \"title\": \"關聖帝君一百籤第六十七籤\",\n  \"subtitle\": \"江遺囑兒庚庚\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"纔發君心天己知\",\n    \"何須問我決狐疑\",\n    \"願子改圖從孝悌\",\n    \"不愁家室不相宜\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是：天已知你心中所想，無須再去詢問命運。若能改正心思，恪守孝悌，便能消除家室不合、迎來和諧。\",\n    \"en\": \"這首詩的主題是：It is about how the heavens already kno"
+  }
+}

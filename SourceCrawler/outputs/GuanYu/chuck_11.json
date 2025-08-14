@@ -1,0 +1,25 @@
+{
+  "id": 11,
+  "title": "關聖帝君一百籤第十一籤",
+  "subtitle": "韓信功勞不久乙甲",
+  "fortune": "下吉",
+  "poem": [
+    "今年好事一番新",
+    "富貴榮華萃汝身",
+    "誰道機關難料處",
+    "到頭獨立轉傷神"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是警示人們不要被表面看似順遂的運勢所迷惑，因為事物背後常隱藏難以預測的變化，最終若盲目獨立行事，可能會使人心靈受損。首句「今年好事一番新」透露一年將有許多新興好的事發生；第二句「富貴榮華萃汝身」形容財富與榮華將聚集於此人身旁；第三句「誰道機關難料處」提醒即使外表順利，實際上仍存在難以預料的內在機關；最後一句「到頭獨立轉傷神」則指出，若過度依賴自身獨立或自信，最終可能因驕傲或冒險而傷及精神。整體寓意是：莫因表面之好運而自滿，應以謹慎之心對待未來的變動。",
+    "en": "This poem's theme is to warn against being seduced by the appearance of smooth fortune, because beneath it often lies unpredictable change. The first line, \"今年好事一番新,\" signals that many new good things will come this year. The second line, \"富貴榮華萃汝身,\" depicts wealth and glory gathering around the person. The third line, \"誰道機關難料處,\" reminds us that even though things seem to go well on the surface, there are hidden mechanisms that are difficult to foresee. The final line, \"到頭獨立轉傷神,\" cautions that relying too heavily on independence or pride can ultimately harm one's spirit. Overall, the poem advises against complacency in the face of apparent success and urges careful attention to unforeseen twists.",
+    "jp": "この詩の主題は、見た目は順調に見える運勢に惑わされることなく、背後に予測不可能な変化が潜んでいることを警告し、最終的に無神経に独立して行動すると精神が損なわれる恐れがあるということです。第一句「今年好事一番新」は一年に多くの新しい良い事が起こることを示し、第二句「富貴榮華萃汝身」は財と栄光がその人物の周囲に集まる様子を描写します。第三句「誰道機關難料處」は、表面上順調に見えても、実際には予測できない内在の機構があると注意を促します。最後の句「到頭獨立轉傷神」は、過度に自立や自信に頼ると最終的に精神を傷つける可能性があると警告します。全体として、見た目の良い運勢に満足せず、予期せぬ変化に慎重に対応することを勧めています。",
+    "reference": "漢韓信。准陰人。佐漢高帝定天下。虜魏。破趙。降燕。下齊。滅楚。建十大功勳。初封楚王。高祖深忌其能。後偽遊雲夢。執歸降。封淮陰侯。乃不自損抑。務伐己功。致有殺身赤族之禍。亡年僅三十二歲。雖有功勞。不久於世。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A surge of favorable events is announced for the year, indicating fresh opportunities.\n- Material wealth and social prestige appear to gather effortlessly around the subject.\n- The poet warns that hidden mechanisms and unforeseen complications can lurk beneath the surface.\n- Ultimately, relying on a solitary, unchecked path leads to self‑imposed harm, reflecting the danger of overconfidence.\n- The underlying philosophy cautions against taking easy pride in apparent success and encourages mindful restraint.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:27:08",
+    "source_file": "chuck_11.json",
+    "raw_llm_response_preview": "{\n  \"id\": 11,\n  \"title\": \"關聖帝君一百籤第十一籤\",\n  \"subtitle\": \"韓信功勞不久乙甲\",\n  \"fortune\": \"下吉\",\n  \"poem\": [\n    \"今年好事一番新\",\n    \"富貴榮華萃汝身\",\n    \"誰道機關難料處\",\n    \"到頭獨立轉傷神\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是警示人們不要被表面看似順遂的運勢所迷惑，因為事物背後常隱藏難以預測的變化，最終若盲目獨立行事，可能會使人心靈受損。首句「今年好事一番新」透露一年將有許多新興好的事發生；第二句「富貴榮華萃汝身」形容財富與榮華將聚"
+  }
+}

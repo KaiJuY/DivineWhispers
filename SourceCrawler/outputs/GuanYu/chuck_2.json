@@ -1,0 +1,25 @@
+{
+  "id": 2,
+  "title": "關聖帝君一百籤第二籤",
+  "subtitle": "張子房遊赤松甲乙",
+  "fortune": "上吉",
+  "poem": [
+    "盈虛消息總天時",
+    "自此君當百事宜",
+    "若問前程歸縮地",
+    "更須方寸好修為"
+  ],
+  "analysis": {
+    "zh": "盈虛消息總天時，意指萬物的興衰、盈滿與虛空，皆隨著天道循環。自此君當百事宜，提醒人應順應時勢，處事不必強求。若問前程歸縮地，說明若想看見前途將被收縮於地心，須先行修身。更須方寸好修為，強調心志的修養與品德的淨化，才能迎接機遇。整首詩以自然循環為基調，勉勵人們以恆心修行，靜待機會，才能達成目標。",
+    "en": "All change – from fullness to emptiness – follows the natural rhythm of the heavens. Hence, one should act in harmony with the flow of time, avoiding forceful intervention. When asked about future prospects, the verse warns that one’s path may seem closed or narrowed if one does not first cultivate a disciplined mind. It stresses that true readiness comes from inner refinement and moral cultivation. The poem therefore urges patience, self‑discipline, and a respectful attunement to nature’s cycles to achieve one’s aims.",
+    "jp": "すべての満ち欠けは天の時に沿っている。ゆえに、時勢に合わせて行動し、強制的に進めないようにするべきだ。将来の見通しを尋ねたとき、詩は心を磨き、修養を重ねることが不可欠であると警告する。真の備えは内面の修練と品性の浄化から生まれる。詩は、忍耐、自己規律、自然の循環への敬意を持って目標を達成するよう促している。",
+    "reference": "子房名良。韓國人。自博浪沙事後（指行弒秦始皇）匿下邳。遊圮上遇衣褐老夫。墮履命良取跪進之。老夫曰。孺子可教。越五日授以太公兵法。謂後十三年。濟北穀城山下。黃石即我也。後良佐（漢）高祖定天下。封留侯。因感鳥盡弓藏。謝病歸入白雲山。師事黃石號赤松子。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that life’s ups and downs are governed by the natural cycle of fullness and emptiness, and one should act in accordance with this rhythm. It emphasizes that success or progress is not achieved by force or haste but by cultivating a calm and disciplined mind. The line about “shrinking path” warns that without inner cultivation, opportunities may appear limited. In essence, the verse encourages patience, moral refinement, and alignment with the natural order as the path to fulfillment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:31:25",
+    "source_file": "chuck_2.json",
+    "raw_llm_response_preview": "{\"id\":2,\"title\":\"關聖帝君一百籤第二籤\",\"subtitle\":\"張子房遊赤松甲乙\",\"fortune\":\"上吉\",\"poem\":[\"盈虛消息總天時\",\"自此君當百事宜\",\"若問前程歸縮地\",\"更須方寸好修為\"],\"analysis\":{\"zh\":\"盈虛消息總天時，意指萬物的興衰、盈滿與虛空，皆隨著天道循環。自此君當百事宜，提醒人應順應時勢，處事不必強求。若問前程歸縮地，說明若想看見前途將被收縮於地心，須先行修身。更須方寸好修為，強調心志的修養與品德的淨化，才能迎接機遇。整首詩以自然循環為基調，勉勵人們以恆心修行，靜待機會，才能達成目標。\",\"en\":\"All change –"
+  }
+}

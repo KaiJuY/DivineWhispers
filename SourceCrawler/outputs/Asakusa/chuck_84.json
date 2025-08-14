@@ -1,0 +1,20 @@
+{
+  "id": 84,
+  "title": "日本淺草觀音寺一百籤第八十四籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "否極方無泰,花開值晚秋,人情不調備,財寶鬼來偷",
+  "analysis": {
+    "zh": "詩句『否極方無泰，花開值晚秋，人情不調備，財寶鬼來偷』以四句簡潔描繪了逆境、變遷與人際不穩的連鎖。否極方無泰表明極端困境會帶來失去安寧；花開值晚秋形容雖有美好顯現，但在遲秋的寒風中很快凋零；人情不調備說明人際關係因利益衝突而失衡；財寶鬼來偷則警示財物容易被搶奪。整體而言，詩以極短的句式揭示物質與情感在動盪與不確定中脆弱易碎。",
+    "en": "The poem ‘否極方無泰, 花開值晚秋, 人情不調備, 財寶鬼來偷’ uses four concise lines to portray a chain of adversity, change, and unstable human relations. ‘否極方無泰’ suggests that extreme hardship erodes peace; ‘花開值晚秋’ indicates that while beauty may bloom, it quickly withers in the cold of late autumn; ‘人情不調備’ shows that personal relationships become unbalanced by conflicting interests; and ‘財寶鬼來偷’ warns that wealth is vulnerable to theft. Together, the lines reveal how material and emotional bonds are fragile amid turbulence and shifting motives.",
+    "jp": "『否極方無泰、花開値晚秋、人情不調備、財宝鬼来偷』という詩は、逆境と危険の連鎖を描いています。『否極方無泰』は極端な困難が安寧を失わせることを示し、『花開値晚秋』は美が咲くものの、遅秋の寒さで枯れやすいことを表します。『人情不調備』は人間関係が利害の衝突で崩れやすいことを意味し、『財宝鬼来偷』は財産が盗まれやすいことを警告しています。全体として、四行で示されるのは、逆境や変化、人間の不安定な感情の中で物質的・情緒的結びつきが脆弱であるというメッセージです。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Extreme hardship breaks tranquility, illustrating how adversity can shatter calm.\n- A late‑autumn bloom, beautiful yet short‑lived, symbolizes opportunities that wither quickly when conditions turn harsh.\n- Unstable human relations—conflicts of interest—highlight the fragility of social bonds.\n- The threat of \"ghost thieves\" against treasure reminds us that possessions are not secure in the face of danger.\n- Together, the four lines convey the delicate balance of wealth and affection amid turbulence and shifting motives.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:22:12",
+    "source_file": "chuck_84.json",
+    "raw_llm_response_preview": "{\"id\":84,\"title\":\"日本淺草觀音寺一百籤第八十四籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"否極方無泰,花開值晚秋,人情不調備,財寶鬼來偷\",\"analysis\":{\"zh\":\"詩句『否極方無泰，花開值晚秋，人情不調備，財寶鬼來偷』以四句簡潔描繪了逆境、變遷與人際不穩的連鎖。否極方無泰表明極端困境會帶來失去安寧；花開值晚秋形容雖有美好顯現，但在遲秋的寒風中很快凋零；人情不調備說明人際關係因利益衝突而失衡；財寶鬼來偷則警示財物容易被搶奪。整體而言，詩以極短的句式揭示物質與情感在動盪與不確定中脆弱易碎。\",\"en\":\"The poem ‘否極方無泰"
+  }
+}

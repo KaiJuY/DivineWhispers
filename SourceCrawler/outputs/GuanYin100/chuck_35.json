@@ -1,0 +1,20 @@
+{
+  "id": 35,
+  "title": "觀音一百籤第三十五籤",
+  "subtitle": "申宮",
+  "fortune": "中籤",
+  "poem": "衣冠重整舊宿風、道是無功卻有功、掃卻當途荊棘碍、三人共議事相同。",
+  "analysis": {
+    "zh": "此卦以衣冠重整為象，暗示在經歷舊習之風後，需要重新整理、整理心態與形象。詩中說「道是無功卻有功」指出，雖然行程看似沒有直接成果，但實際上卻帶來長遠利益。又以「掃卻當途荊棘碍」說明要清除前路的阻礙，才能順利前進。最後「三人共議事相同」則說明在團隊或合作中能夠達成共識，互相支持，將事事推進。整體來說，這首詩強調的是整理與清除障礙、團隊合作所帶來的順利發展與成功，並提醒不必過度憂疑，未來必有佳期。",
+    "en": "The poem speaks of a process of reassembling one’s clothing—an image of renewal after old habits. It says that the path may appear to yield no immediate results, yet it brings unseen benefits. It urges the reader to sweep away obstacles on the way, and ends with the image that three people are in agreement. Together, the verse highlights the importance of reorganization, clearing hindrances, and reaching consensus in order to move forward successfully.",
+    "jp": "詩は、衣冠を再び整えることを象徴し、古い習慣を断ち切って再出発する様子を描いています。『道は無功だが功がある』と語り、見えない成果が後に実を結ぶことを示しています。『掃けた当途荊棘碍』は、道の障害を取り除く必要があることを指し、最後の『三人共議事相同』は、３人が同じ考えで合意できることを意味します。全体として、整理・障害除去・合意形成の重要性を強調しています。",
+    "reference": "家宅　亂。自身　吉。求財　好。交易　利。婚姻　阻。六甲　驚。行人　至。田蠶　不利。六畜　興。尋人　至。公訟　有理。移徙　安。失物　遲見。疾病　祈福。山墳　宜舊。1.唐僧取經唐三藏信姓陳名禕。十三歲出家。法號玄奘。往天竺(印度)取經。歷盡艱辛。四年始達。學習十五年後返國。攜回大量佛經。並譯成中文。西遊記內述其故事。2.劉關張古城相會三國時代，劉關張三人投靠袁紹被曹操打散，劉備敗走，關羽與劉備的二位妻子同留曹操處、張飛不知去向，後來關羽得知劉備尚在，即過五關斬六將前往相會，在古城遇見張飛，又打聽到劉備消息將他迎來，三人於古城相會。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- A renewal of self, symbolized by reassembling clothes and hat, indicating a fresh start after old habits.\n- The path may seem unproductive, yet it ultimately yields long‑term benefits, highlighting patience and hidden value.\n- Clearing obstacles on the way (scanning the thorny path) stresses proactive action to remove hindrances.\n- Consensus among three people shows the power of teamwork and shared goals.\n- Overall, the verse encourages organization, obstacle removal, and collaborative agreement as keys to smooth progress and success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:00:31",
+    "source_file": "chuck_35.json",
+    "raw_llm_response_preview": "{\"id\":35,\"title\":\"觀音一百籤第三十五籤\",\"subtitle\":\"申宮\",\"fortune\":\"中籤\",\"poem\":\"衣冠重整舊宿風、道是無功卻有功、掃卻當途荊棘碍、三人共議事相同。\",\"analysis\":{\"zh\":\"此卦以衣冠重整為象，暗示在經歷舊習之風後，需要重新整理、整理心態與形象。詩中說「道是無功卻有功」指出，雖然行程看似沒有直接成果，但實際上卻帶來長遠利益。又以「掃卻當途荊棘碍」說明要清除前路的阻礙，才能順利前進。最後「三人共議事相同」則說明在團隊或合作中能夠達成共識，互相支持，將事事推進。整體來說，這首詩強調的是整理與清除障礙、團隊合作所帶來的順利發展與成功"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 42,
+  "title": "關聖帝君一百籤第四十二籤",
+  "subtitle": "董永賣身戊乙",
+  "fortune": "中吉",
+  "poem": [
+    "我曾許汝事和諧",
+    "誰料修為汝自乖",
+    "但改新圖莫依舊",
+    "營謀應得稱心懷"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是神明的諒解與自我修為的改變。詩中說明，雖然神明曾答應能使事物和諧，但如果自身修為偏離，結果就不如預期。關鍵在於改變過往的舊行為，向善努力，才能真正實現心中的願望。古語「人非聖賢，孰能無過？過而能改，善莫大焉」正體現此意。東坡在解說時提到：「神許和合，自乖所為，急欲更變，方得其宜；心行正直，無好自欺，若能悔過，天必相之。」因此，若你問事業，就應該改圖或更換設備；若問健康，就需更換醫師；若問婚姻，則另談。總而言之，凡事都需要改變才能稱心。曾有考生志願醫學未果，他改科後翌年順利考入理學院，證明了改變的重要性。",
+    "en": "The theme of this poem is the divine promise of harmony and the necessity of personal transformation. It states that although the deity promised harmony, the outcome falters when one’s own cultivation strays. The key lies in abandoning former habits, striving toward virtue, and thereby achieving true satisfaction. The ancient saying, \"Everyone, even a sage, makes mistakes; the great virtue is to learn from them and change,\" reflects this. Su Dongpo explained that \"the god permits harmony, but a deviation in one’s deeds demands swift change; only through an upright heart and sincere repentance will the heavens respond.\" Hence, if you ask about career, you should alter plans or replace equipment; if you ask about health, you should change physicians; marriage matters require a separate discussion. In short, change is essential to achieve desire. A student once aimed for medicine but failed; after changing his major he was admitted to the School of Philosophy the following year, illustrating the power of change.",
+    "jp": "この詩のテーマは、神からの諒解と自己修養の変化です。詩は、神が和合を約束したものの、本人の修行が背道し続けると、結果は期待通りにならないと示しています。重要なのは、過去の旧習を改め善へと努力することで、心の望みを実現できるという点です。『人非聖賢、孰能無過？過而能改、善莫大焉』という古語はこの意味を体現しています。東坡は「神許和合、自乖所為、急欲更変、方得其宜；心行正直、無好自欺、若能悔過、天必相之」と解説しています。したがって、事業に関しては図面を変更したり装置を入れ替えたりするべきであり、健康に関しては医師を変えるべきです。恋愛や結婚については別途相談してください。結局、何事も変えることが満足への道です。医学部志望だった学生が、科目を変えて次年哲学部に合格した例があります。",
+    "reference": "漢。董永。千乘人。少失母。獨養父。流寓孝感。父亡無以葬。乃從人貸錢一萬。日後無錢還。當以身作奴。葬畢。道遇一婦人。求為永妻。永與俱詰。錢主令織縑三百疋以償。一月而畢。辭永去。乃曰。我(係)天上織女。緣君至孝。玉帝令我助君償債。言訖。凌空而去。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The divine promise of harmony can be undone by one’s own misguided actions.\n- True harmony is achieved by abandoning old patterns and pursuing virtue.\n- Symbolic elements such as \"和諧\" (harmony), \"修為\" (cultivation), and \"改圖\" (change plans) illustrate the need for self‑renewal.\n- Practical implications: career adjustments, changing doctors for health, and separate considerations for marriage.\n- The underlying philosophy stresses that personal transformation is essential; stagnation results from refusing to change.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:42:56",
+    "source_file": "chuck_42.json",
+    "raw_llm_response_preview": "{\"id\":42,\"title\":\"關聖帝君一百籤第四十二籤\",\"subtitle\":\"董永賣身戊乙\",\"fortune\":\"中吉\",\"poem\":[\"我曾許汝事和諧\",\"誰料修為汝自乖\",\"但改新圖莫依舊\",\"營謀應得稱心懷\"],\"analysis\":{\"zh\":\"這首詩的主題是神明的諒解與自我修為的改變。詩中說明，雖然神明曾答應能使事物和諧，但如果自身修為偏離，結果就不如預期。關鍵在於改變過往的舊行為，向善努力，才能真正實現心中的願望。古語「人非聖賢，孰能無過？過而能改，善莫大焉」正體現此意。東坡在解說時提到：「神許和合，自乖所為，急欲更變，方得其宜；心行正直，無好自欺，若能悔過，天必相之"
+  }
+}

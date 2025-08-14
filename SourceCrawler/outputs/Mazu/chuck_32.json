@@ -1,0 +1,25 @@
+{
+  "id": 32,
+  "title": "六十甲子籤第三十二籤",
+  "subtitle": "屬土利年　四方皆宜",
+  "fortune": "己卯○●●　●●○",
+  "poem": [
+    "龍虎相交在門前",
+    "此事必定兩相連",
+    "黃金忽然變成鐵",
+    "何用作福問神仙"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是龍虎相遇而導致互相衝突，進而使本來珍貴的事物失去價值。詩句說龍與虎在門前相交，暗示兩種性質不同、互不相容的力量相碰撞，結果黃金變成鐵，象徵期望或成果因衝突而喪失光芒。因為問題的根源已在雙方間，故不必再向神明求助。",
+    "en": "This poem's theme is the clash between a dragon and a tiger at the gate, turning precious gold into iron. The imagery illustrates two incompatible forces meeting, eroding what was once valuable. Since the conflict lies between the two parties, there is no need to seek divine assistance.",
+    "jp": "この詩のテーマは、門前で龍と虎が衝突し、かつて貴重だった金が鉄に変わるというものです。詩句は龍と虎の出会いを描き、互いに合わない力の衝突が価値を失わせる様子を象徴しています。問題は両者の間にあるため、神に頼む必要はありません。",
+    "reference": "1.劉備入東吳進贅劉玄德。即西蜀先主也。為荊州牧時。甘夫人新喪。東吳孫權聞知。詐以妹招贅欲賺其人。吳素討荊州。孔明料知。乃授趙雲錦囊計。保先主入吳。意弄假成真。娶孫夫人以歸焉。2.龍虎交會凡事　退卻。作事　難得成功。家事　恐遇風波之災。家運　多口舌之災。婚姻　不吉。求兒　不可。六甲　防小產。子息虛。求財　失利虧本。功名　無望。歲君　中和。(不遂)治病　有邪凶險。拖尾。少者好。寅辰日不畏出外　不可。犯災難。經商　了錢。來人　寅辰日到。行舟　無利。了工。移居　大不好。失物　難尋。求雨　不日到。官事　了錢拖尾。六畜　損失。耕作　不可。築室　必退敗。墳墓　地氣漸失。討海　徒勞。作塭　失運虧本。魚苗　不可。月令　不遂。尋人　寅辰日在。遠信　音信遲至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a caution against confrontations between opposing forces that erode value. The dragon and tiger symbolize powerful but incompatible energies meeting at the threshold. The transformation of gold into iron represents the loss of worth when conflict erupts. The message implies that when problems arise from internal clashes, seeking external help is unnecessary; one must resolve the conflict within oneself or the parties involved. It suggests humility, adaptation, and recognizing that value can be stripped away by discord.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:26:38",
+    "source_file": "chuck_32.json",
+    "raw_llm_response_preview": "{\"id\":32,\"title\":\"六十甲子籤第三十二籤\",\"subtitle\":\"屬土利年　四方皆宜\",\"fortune\":\"己卯○●●　●●○\",\"poem\":[\"龍虎相交在門前\",\"此事必定兩相連\",\"黃金忽然變成鐵\",\"何用作福問神仙\"],\"analysis\":{\"zh\":\"這首詩的主題是龍虎相遇而導致互相衝突，進而使本來珍貴的事物失去價值。詩句說龍與虎在門前相交，暗示兩種性質不同、互不相容的力量相碰撞，結果黃金變成鐵，象徵期望或成果因衝突而喪失光芒。因為問題的根源已在雙方間，故不必再向神明求助。\",\"en\":\"This poem's theme is the clash betwee"
+  }
+}

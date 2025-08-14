@@ -1,0 +1,20 @@
+{
+  "id": 57,
+  "title": "觀音一百籤第五十七籤",
+  "subtitle": "丑宮",
+  "fortune": "中籤",
+  "poem": "聞是聞非風過耳、好衣好祿日當空、君須記取他年事、汝意還同我意同。",
+  "analysis": {
+    "zh": "此卦象徵孩兒見母之象，諸事貴人大吉也，所用謀望皆大歡喜，從公用力如子逢娘。",
+    "en": "This hexagram symbolizes a child seeing its mother, all matters are auspicious for the honored individual, the plans and hopes are filled with joy, and relying on public support is like a son meeting his mother.",
+    "jp": "この卦は子が母を見つける象徴で、すべての事柄は尊敬される人にとって大吉です。計画と希望は大いに喜び、公共の支援を頼ることは子が母に会うようなものです。",
+    "reference": "*(好衣本作好交。好指珍惜)家宅　不安。自身　平平。求財　順。交易　成。婚姻　合。六甲　女。行人　阻。田蠶　就。六畜　損。尋人　難。公訟　宜和。移徙　守舊。失物　空。疾病　祈福。山墳　吉。1.董仲尋親或指董永之子。2.董仲尋親董仲欲尋母。至太白山找。終見其母。3.董永賣身漢。董永。千乘人。少失母。獨養父。流寓孝感。父亡無以葬。乃從人貸錢一萬。日後無錢還。當以身作奴。葬畢。其主要董永日取柴一擔。汲水四擔。鋤田六七畝。辛苦難當。一日上山砍柴倦睡。皇天見其孝行。即差仙女下凡為婚。董永醒來見女恐是妖精。女攔曰吾無父母又無依。欲結為夫婦。董永見其淒涼。帶女回歸。主人責董永拐帶婦人禍及其主。後暫留該女。遍訪四方家庭並無失婦人。才允成親。董婦百日織得錦五十丈。剪一半往市賣出得銀。贖脫董永身。後將錦進。敕封進寶狀元。仙姬曰。天賜兒子三歲送還。(仙女回天)。後其子十六歲中狀元。衣錦還鄉。　4.甯戚飯牛叩角春秋衛人甯戚因無法向齊桓公求取祿位，於是做商旅，駕車至齊國，傍晚在城外休憩，遇上桓公在郊外迎接賓客，甯戚在車下餵牛時，悲戚地望著桓公擊牛角唱歌，桓公聽了撫著僕從的手，驚嘆他是位奇人，命人載回而重用他為相。典出《呂氏春秋˙離俗覽˙舉難》。後泛指自我推薦而獲重用。亦作甯戚扣角。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a reflection on perception, prosperity, foresight, and mutual understanding:\n- **True versus false**: \"聞是聞非風過耳\" suggests distinguishing what is heard from what passes like the wind—only true words have lasting value.\n- **Material abundance**: \"好衣好祿日當空\" paints a picture of plentiful clothing and good salary, likening them to daylight that fills the day.\n- **Planning for the future**: \"君須記取他年事\" urges the reader to remember and arrange matters for the coming years, emphasizing prudence and long‑term preparation.\n- **Shared intention**: \"汝意還同我意同\" expresses harmony of thoughts, implying that the speaker and the reader share the same goals and will act together.\n- **Overall message**: The poem encourages careful listening, gratitude for material blessings, proactive future planning, and the importance of aligning one's intentions with others to achieve shared success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:22:20",
+    "source_file": "chuck_57.json",
+    "raw_llm_response_preview": "{\n  \"id\": 57,\n  \"title\": \"觀音一百籤第五十七籤\",\n  \"subtitle\": \"丑宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"聞是聞非風過耳、好衣好祿日當空、君須記取他年事、汝意還同我意同。\",\n  \"analysis\": {\n    \"zh\": \"此卦象徵孩兒見母之象，諸事貴人大吉也，所用謀望皆大歡喜，從公用力如子逢娘。\",\n    \"en\": \"This hexagram symbolizes a child seeing its mother, all matters are auspicious for the honored ind"
+  }
+}

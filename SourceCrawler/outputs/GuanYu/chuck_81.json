@@ -1,0 +1,25 @@
+{
+  "id": 81,
+  "title": "關聖帝君一百籤第八十一籤",
+  "subtitle": "寇公任雷陽壬甲",
+  "fortune": "中平",
+  "poem": [
+    "假君財物自當還",
+    "謀賴心欺他自奸",
+    "幸有高臺明月鏡",
+    "請來對照破機關"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於借他人之財必還，且企圖欺瞞自己和他人最終會自亂陣腳。詩中說：假君財物自當還，謀賴心欺他自奸，警示若企圖損人財物，心存不義，終將自招災禍。幸有高臺明月鏡，請來對照破機關，象徵高處的明鏡能映照真相，當你踏上正直之路時，陰險計謀將被揭露，結果遭遇法律或道德的制裁。",
+    "en": "This poem’s theme revolves around the principle that borrowing someone else’s property must be repaid, and that deceitful schemes will ultimately backfire. The lines read: ‘Borrowing someone else’s wealth should be returned,’ and ‘Schemes built on lying and deception end up ruining the schemer.’ The final two lines refer to a lofty tower with a bright mirror; they imply that truth, represented by the mirror, will expose hidden misdeeds. When one follows a righteous path, hidden plots are uncovered, and justice or moral judgment will be met.",
+    "jp": "この詩のテーマは、他人の財産を借りたら必ず返すべきであり、欺くことや裏切りの計略は最終的に自分を破滅させるということです。『借りた者は必ず財物を返すべきだ』と『計算し欺く心は自らを裏切る』という内容で、最後の二行は高台にある光り輝く鏡を示し、真実が隠れた不正を照らし出すという意味です。正しい道を歩むと、陰険な策は明らかになり、法や道徳の審判に直面します。",
+    "reference": "宋。寇準。字平仲。下邽人。年十九舉進士。真宗時知同州判。永興軍。盡心民事。每日有一時之閒。則有一時之滯後。拜相決策。成澶淵之功。出鎮大名眨雷陽。準內儉外奢。寢處一青幃二十年。仁宗朝贈中書令。封來公。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that wrongful appropriation of another's belongings must be returned and that deceitful intentions ultimately lead to one's own downfall.\n- The first two lines warn that borrowing someone else’s property without rightful claim invites inevitable restitution, while any attempt to deceive others will backfire and betray the schemer himself.\n- The final two lines depict a high tower with a bright mirror—an image of transparency and justice—suggesting that hidden misdeeds will be exposed when one confronts the truth.\n- The poem encourages honesty, discourages lying or treachery, and implies that those who adhere to moral duty will be spared, whereas those who persist in deceit will face legal or moral judgment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:04:05",
+    "source_file": "chuck_81.json",
+    "raw_llm_response_preview": "{\"id\":81,\"title\":\"關聖帝君一百籤第八十一籤\",\"subtitle\":\"寇公任雷陽壬甲\",\"fortune\":\"中平\",\"poem\":[\"假君財物自當還\",\"謀賴心欺他自奸\",\"幸有高臺明月鏡\",\"請來對照破機關\"],\"analysis\":{\"zh\":\"這首詩的主題是關於借他人之財必還，且企圖欺瞞自己和他人最終會自亂陣腳。詩中說：假君財物自當還，謀賴心欺他自奸，警示若企圖損人財物，心存不義，終將自招災禍。幸有高臺明月鏡，請來對照破機關，象徵高處的明鏡能映照真相，當你踏上正直之路時，陰險計謀將被揭露，結果遭遇法律或道德的制裁。\",\"en\":\"This poem’s theme r"
+  }
+}

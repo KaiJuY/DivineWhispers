@@ -1,0 +1,25 @@
+{
+  "id": 57,
+  "title": "六十甲子籤第五十七籤",
+  "subtitle": "屬水利冬　宜其北方",
+  "fortune": "癸巳○●●　○○○",
+  "poem": [
+    "勸君把定心莫虛",
+    "前途清吉得運時",
+    "到底中間無大事",
+    "又遇神仙守安居"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是勸人鎮定，接受命運的安排，並相信神明保佑。詩中以「勸君把定心莫虛」為起點，提醒人不必慌張，應將心定下來。隨後提到「前途清吉得運時」與「到底中間無大事」，說明目前順利且無大風險；最後以「又遇神仙守安居」強調神明守護，使人得以安心安居。",
+    "en": "這首詩的主題是 calmness and faith in destiny. The poem opens with a warning against panic and encourages settling the heart. It then speaks of a clear, auspicious future when luck arrives, noting that there are no major matters ahead. Finally, it mentions a guardian spirit, suggesting safety and peace of mind.",
+    "jp": "這首詩の主題は落ち着きと運命への信頼です。詩は恐れず心を鎮めるよう促し、運が来たときに前途が清く吉兆であることを述べ、現在大きな事は無いと示します。最後に神の守護が安寧をもたらすと語り、安心を強調しています。",
+    "reference": "1.白蛇精遇許漢文。(許宣)宋朝高宗年間。杭州賣藥郎許宣。父母早逝。清明往廟燒香祭祖。事後乘船。遇一白衣婦人求搭。同舟共慕。白衣婦實白蛇精所化。白蛇把心不定。千年道行一朝喪。許宣把心不定。屢遭官司。2.龐涓孫臏學法戰國。孫臏齊人。龐涓魏人。同師事鬼谷子。孫臏之學優於龐涓。涓為魏將。與臏鬥智。輸而忌之。乃以計刖其足。後孫臏假作顛狂。得脫歸。凡事　心意把定。作事　成好。家事　且喜進益。家運　神仙扶持。平安。婚姻　大吉。求兒　大吉。六甲　先女後男。(月頭女。月尾男)(弄璋喜慶)求財　輕得。(應手而得)功名　必中。歲君　淡淡。治病　漸平安。貴人扶。出外　遇貴人提攜。(在家好)經商　小有成就。(永發其財)來人　未日(半月)到。行舟　平平有財。移居　平安。(不宜)失物　難尋。(謹尋有)求雨　不日到。官事　宜求和解。六畜　平平。耕作　平平有收。築室　平安。墳墓　地運如意。討海　有利入手。作塭　有利可得。魚苗　有大利。月令　破財。平安。尋人　只近回。遠信　且候佳音。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- It urges calmness and emotional stability.\n- It predicts that a favorable turn of fortune will come, leading to a smooth path.\n- Currently there are no major events or obstacles.\n- The presence of a protective divine spirit assures safety and peace of mind.\n- Overall, the message encourages trusting in destiny and divine guidance.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:39:48",
+    "source_file": "chuck_57.json",
+    "raw_llm_response_preview": "{\n  \"id\": 57,\n  \"title\": \"六十甲子籤第五十七籤\",\n  \"subtitle\": \"屬水利冬　宜其北方\",\n  \"fortune\": \"癸巳○●●　○○○\",\n  \"poem\": [\n    \"勸君把定心莫虛\",\n    \"前途清吉得運時\",\n    \"到底中間無大事\",\n    \"又遇神仙守安居\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是勸人鎮定，接受命運的安排，並相信神明保佑。詩中以「勸君把定心莫虛」為起點，提醒人不必慌張，應將心定下來。隨後提到「前途清吉得運時」與「到底中間無大事」，說明目前順利且無大風險；最後以「又遇神仙守安"
+  }
+}

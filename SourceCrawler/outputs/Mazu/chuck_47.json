@@ -1,0 +1,25 @@
+{
+  "id": 47,
+  "title": "六十甲子籤第四十七籤",
+  "subtitle": "屬木利春　宜其東方",
+  "fortune": "辛酉○○●　○●○",
+  "poem": [
+    "君爾何須問聖跡",
+    "自己心中皆有益",
+    "於今且看月中旬",
+    "凶事脫出化成吉"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是：以自我內觀取代對神明的詢問，並強調內在善意的力量，預示在月中旬時機，危險將化解並變為吉祥。",
+    "en": "This poem's theme is: replacing external appeals to divine intervention with introspection, emphasizing that the benefits lie within oneself, and indicating that at the mid‑month a turning point will turn misfortune into favour.",
+    "jp": "この詩のテーマは、外部の神に頼るよりも自分自身を見つめ直すこと、内なる善を重視し、月の中旬に不幸が吉へと変わるという時期を示唆していることです。",
+    "reference": "1.劉永作官蔭妻兒。2.李三娘井邊會凡事　先凶後好。作事　二次即成。家事　門閭得宜。家運　門庭小吉。婚姻　正好。求兒　好。六甲　年頭生女年尾生男。(月頭女月尾男)(先男後女)求財　輕。功名　有。(後科得進)歲君　淡安。治病　逢未月平安。十二月不吉。出外　先凶後吉。經商　利市。來人　月光到。行舟　春夏好。秋冬平。移居　正好。失物　尋有。(未日/半月在)求雨　未久。官事　先凶後吉。(未日/半月完局)六畜　平安。耕作　中中。築室　有合不畏。墳墓　地勢套當。討海　春夏大吉。作塭　得利。魚苗　先凶後吉。月令　不遂。尋人　慢回。遠信　近日就至。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Trust your own judgment rather than seeking external divine guidance.\n- Recognize that the benefits lie within your own thoughts and actions.\n- The mid‑month period marks the turning point when change can occur.\n- A troublesome situation will transform into a favourable one.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 01:34:33",
+    "source_file": "chuck_47.json",
+    "raw_llm_response_preview": "{\"id\":47,\"title\":\"六十甲子籤第四十七籤\",\"subtitle\":\"屬木利春　宜其東方\",\"fortune\":\"辛酉○○●　○●○\",\"poem\":[\"君爾何須問聖跡\",\"自己心中皆有益\",\"於今且看月中旬\",\"凶事脫出化成吉\"],\"analysis\":{\"zh\":\"這首詩的主題是：以自我內觀取代對神明的詢問，並強調內在善意的力量，預示在月中旬時機，危險將化解並變為吉祥。\",\"en\":\"This poem's theme is: replacing external appeals to divine intervention with introspection, empha"
+  }
+}

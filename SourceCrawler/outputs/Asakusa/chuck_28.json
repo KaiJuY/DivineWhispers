@@ -1,0 +1,20 @@
+{
+  "id": 28,
+  "title": "日本淺草觀音寺一百籤第二十八籤",
+  "subtitle": "",
+  "fortune": "凶",
+  "poem": "意速無船渡,波深必誤身,切須回舊路,方可免災迍",
+  "analysis": {
+    "zh": "這首詩的主題是警示人們在急於求成、沒有準備的情況下，前進往往會遇到重重阻礙，甚至招致危險。\\n\\n- \"意速無船渡\"：心急如車，卻缺乏實際的手段或資源，無法順利前進。\\n- \"波深必誤身\"：遇到困難和挑戰，若不謹慎行事，可能會被深層的危險所吞噬。\\n- \"切須回舊路\"：要避免失敗，必須回到已經熟悉的、穩定的道路，重新審視自己的選擇。\\n- \"方可免災迍\"：只有放慢腳步、回頭檢視，才能躲開災難，保持安全。",
+    "en": "This poem cautions against rushing forward without preparation, highlighting that hasty action can encounter obstacles and even danger. The lines describe how an impatient mind, lacking the necessary means, cannot cross the waters; deep waves threaten to bring misfortune, and only by returning to a familiar path can one avert disaster.",
+    "jp": "この詩は、準備不足のまま急いで前に進むことの危険性を警告しています。\\n- \"意速無船渡\" は、急ぐ心はあるが手段が不足している状態を示します。\\n- \"波深必誤身\" は、深い波により危険が増すことを意味します。\\n- \"切須回舊路\" は、昔の道に戻り安定した選択をする必要があると説いています。\\n- \"方可免災迍\" は、遅くても安全に災害を避けられることを示唆しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- It warns against hasty attempts to cross obstacles without proper preparation. \n- The imagery of a boat that cannot move and deep waves illustrates that impatience can lead to misfortune. \n- The advice to \"return to the old path\" signals that revisiting familiar, safer routes can prevent disaster. \n- Overall, the verse stresses the value of patience, careful planning, and learning from past experiences to maintain safety.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:56:56",
+    "source_file": "chuck_28.json",
+    "raw_llm_response_preview": "{\"id\":28,\"title\":\"日本淺草觀音寺一百籤第二十八籤\",\"subtitle\":\"\",\"fortune\":\"凶\",\"poem\":\"意速無船渡,波深必誤身,切須回舊路,方可免災迍\",\"analysis\":{\"zh\":\"這首詩的主題是警示人們在急於求成、沒有準備的情況下，前進往往會遇到重重阻礙，甚至招致危險。\\\\n\\\\n- \\\"意速無船渡\\\"：心急如車，卻缺乏實際的手段或資源，無法順利前進。\\\\n- \\\"波深必誤身\\\"：遇到困難和挑戰，若不謹慎行事，可能會被深層的危險所吞噬。\\\\n- \\\"切須回舊路\\\"：要避免失敗，必須回到已經熟悉的、穩定的道路，重新審視自己的選擇。\\\\n- \\\"方可"
+  }
+}

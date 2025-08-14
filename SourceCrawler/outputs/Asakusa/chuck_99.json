@@ -1,0 +1,20 @@
+{
+  "id": 99,
+  "title": "日本淺草觀音寺一百籤第九十九籤",
+  "subtitle": "",
+  "fortune": "大吉",
+  "poem": "紅日當門照,暗月再重圓,遇珍須得寶,頗有稱心田",
+  "analysis": {
+    "zh": "這首詩的主題是關於日月交替與心願實現。紅日照在門前，象徵新的開始與祝福；暗月再重圓，顯示黑暗過後仍有光明；遇珍須得寶，暗示要抓住機會獲得珍貴之物；頗有稱心田，說明事業與願望會得到滿意與收穫。",
+    "en": "The poem speaks of the cycle of sun and moon and the fulfillment of desires. The bright red sun at the gate represents a new beginning and blessing; the dark moon reappearing as a full circle shows that after darkness there is still light; encountering precious treasures reminds us to seize opportunities; the final line suggests that one's work and wishes will be gratifying and fruitful.",
+    "jp": "この詩は太陽と月の交代と願望の実現について語っています。門前に照らす赤い太陽は新たな始まりと祝福を象徴し、暗い月が再び満月になることは闇の後にも光があることを示します。貴重な宝物に出会うことは機会をつかむべきであるということを思い起こさせ、最後の行は自分の仕事や願いが満足と実りを得られることを示唆しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that:\n- The bright red sun at the gate signals a fresh start and auspicious blessings.\n- The moon, even when dark, eventually forms a full circle again, symbolising that light returns after darkness.\n- Meeting precious treasures urges the reader to seize opportunities and be open to valuable gains.\n- The concluding line indicates that one’s efforts and aspirations will be satisfying and yield fruitful outcomes.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 08:22:20",
+    "source_file": "chuck_99.json",
+    "raw_llm_response_preview": "{\"id\":99,\"title\":\"日本淺草觀音寺一百籤第九十九籤\",\"subtitle\":\"\",\"fortune\":\"大吉\",\"poem\":\"紅日當門照,暗月再重圓,遇珍須得寶,頗有稱心田\",\"analysis\":{\"zh\":\"這首詩的主題是關於日月交替與心願實現。紅日照在門前，象徵新的開始與祝福；暗月再重圓，顯示黑暗過後仍有光明；遇珍須得寶，暗示要抓住機會獲得珍貴之物；頗有稱心田，說明事業與願望會得到滿意與收穫。\",\"en\":\"The poem speaks of the cycle of sun and moon and the fulfillment of desires. The b"
+  }
+}

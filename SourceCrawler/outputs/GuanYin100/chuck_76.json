@@ -1,0 +1,20 @@
+{
+  "id": 76,
+  "title": "觀音一百籤第七十六籤",
+  "subtitle": "午宮",
+  "fortune": "中籤",
+  "poem": "魚龍混雜意和同、耐守寒潭未濟中、不覺一朝頭角聳、禹門一跳到天宮。",
+  "analysis": {
+    "zh": "這首詩的主題是魚龍混雜、意和同，描述在寒潭中耐守未濟之境，未覺之間，頭角聳起，最終如禹門一跳，躍升天宮。",
+    "en": "這首詩的主題是魚龍混雜、意和同，描述在寒潭中耐守未濟之境，未覺之間，頭角聳起，最終如禹門一跳，躍升天宮。",
+    "jp": "這首詩のテーマは魚と龍が混ざり合い、意和同を示すもので、寒い潭で守り続け、まだ完成していない状態で、気付かないうちに頭角が立ち、禹門が一跳びて天宮へ昇るという描写です。",
+    "reference": "*(未濟：六十四卦中之一卦，有無法通達之意)家宅　平安。自身　康泰。求財　有。交易　待時。婚姻　遲合。六甲　生男。行人　遲。田蠶　晚豐。六畜　尾利。尋人　未遇。公訟　延。移徙　守舊。失物　疾病　阻。山墳　發。1.洪武看牛洪武即明太祖朱元璋。小時家貧。替人看牛。後當過和尚。又行乞度日。最終參軍打敗元兵。建立明朝。喻英雄莫問出處。2.孫叔敖隱處海濱楚國孫叔敖為忠臣之後，為避殺身之禍隱居在海濱，一日見到兩頭蛇，聽說見到兩頭蛇將不久人世，故將兩頭蛇打死掩埋，以避免其他人受害，然後向其母訣別。其母認為其子善心必有善報，必然不會有難，果然楚王獲知孫叔敖為忠良之後，即命孫叔敖為官。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- The juxtaposition of fish and dragon symbolizes the mingling of the ordinary with the extraordinary, hinting at an underlying harmony.\n- The setting in a cold pool where the swimmer endures yet has not finished suggests perseverance amid adversity.\n- The sudden rise of the head and the leap of the \"Yu Gate\" represent an unexpected breakthrough or elevation.\n- Overall, the poem conveys that steady perseverance and readiness for change can lead to sudden, auspicious ascent.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 02:34:07",
+    "source_file": "chuck_76.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 76,\n  \"title\": \"觀音一百籤第七十六籤\",\n  \"subtitle\": \"午宮\",\n  \"fortune\": \"中籤\",\n  \"poem\": \"魚龍混雜意和同、耐守寒潭未濟中、不覺一朝頭角聳、禹門一跳到天宮。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是魚龍混雜、意和同，描述在寒潭中耐守未濟之境，未覺之間，頭角聳起，最終如禹門一跳，躍升天宮。\",\n    \"en\": \"這首詩的主題是魚龍混雜、意和同，描述在寒潭中耐守未濟之境，未覺之間，頭角聳起，最終如禹門一跳，躍升天宮。\",\n    \"jp\": \"這首詩のテーマは魚"
+  }
+}

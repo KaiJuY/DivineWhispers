@@ -1,0 +1,25 @@
+{
+  "id": 34,
+  "title": "關聖帝君一百籤第三十四籤",
+  "subtitle": "蕭何追韓信丁丁",
+  "fortune": "中平",
+  "poem": [
+    "春夏纔過秋又冬",
+    "紛紛謀慮攪心胸",
+    "貴人垂手來相援",
+    "休把私心情意濃"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是，時間的匆匆流逝與寬容胸懷的必要性。詩中以春夏過後即秋冬的轉變，映照一年之間的急速。作者在此期間感到種種謀慮纏身，卻因力不足而難以獲得成就；唯有貴人垂手相援，方能得以實現。於是詩句提醒人們不要執著於私心，保持開闊的心胸，才能迎來他人扶助與合作的機會。",
+    "en": "這首詩的主題是 the swift passage of time and the necessity of a generous heart. The verses portray the rapid transition from spring to summer and then to autumn and winter within a single year, emphasizing how quickly time flies. During this fleeting period the speaker feels overwhelmed by plans and worries, yet feels unable to achieve much without help. The poem highlights that a benefactor’s intervention can bring success, while selfish calculation hinders progress. It urges the reader to let go of narrow self‑interests and keep an open, broad perspective in order to attract assistance and cooperation.",
+    "jp": "この詩のテーマは、四季の速い巡りと寛大な心の必要性です。詩は春夏が過ぎ、秋冬へと急速に移り変わる様子を通して、時間の短さを示します。詩人はその期間に多くの計算や心配に苛まれ、力不足で成果を得られないと感じます。貴人が手を差し伸べてくれれば成就できると示され、自己中心的な思考は進歩を妨げると警告します。自分の利益にこだわらず、広い視野を保つことで助けを引き寄せ、協力を得ることができると説いています。",
+    "reference": "漢。蕭何。沛人。韓信。淮陰人。時漢王燒絕棧道。部下將士逃亡甚多。其時。信歸漢逃去。何知之。連夜追信回。翌日王知。怒曰將士逃亡過半。不聞丞相有所追。獨追信。何也。何曰大王如無意東伐。固罷。若與楚爭天下。非信莫當其任。乃拜信為大將。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- Time moves rapidly, represented by the quick shift from spring to winter, signifying a single year’s fleeting nature. \n- The speaker feels anxious and over‑planned, yet lacks the power to bring those plans to fruition without external aid. \n- A benefactor’s timely intervention is crucial; the poem emphasizes that assistance is only forthcoming when one’s outlook is broad and generous. \n- Self‑interest and narrow calculations block progress; openness and willingness to accept help are essential. \n- Practical takeaway: maintain fairness, avoid egoistic behavior, and be receptive to collaboration, as this invites support and success.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:38:34",
+    "source_file": "chuck_34.json",
+    "raw_llm_response_preview": "{\"id\":34,\"title\":\"關聖帝君一百籤第三十四籤\",\"subtitle\":\"蕭何追韓信丁丁\",\"fortune\":\"中平\",\"poem\":[\"春夏纔過秋又冬\",\"紛紛謀慮攪心胸\",\"貴人垂手來相援\",\"休把私心情意濃\"],\"analysis\":{\"zh\":\"這首詩的主題是，時間的匆匆流逝與寬容胸懷的必要性。詩中以春夏過後即秋冬的轉變，映照一年之間的急速。作者在此期間感到種種謀慮纏身，卻因力不足而難以獲得成就；唯有貴人垂手相援，方能得以實現。於是詩句提醒人們不要執著於私心，保持開闊的心胸，才能迎來他人扶助與合作的機會。\",\"en\":\"這首詩的主題是 the swift passage"
+  }
+}

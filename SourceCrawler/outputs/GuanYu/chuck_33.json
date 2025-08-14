@@ -1,0 +1,25 @@
+{
+  "id": 33,
+  "title": "關聖帝君一百籤第三十三籤",
+  "subtitle": "莊子慕道丁丙",
+  "fortune": "中平",
+  "poem": [
+    "不分南北與西東",
+    "眼底昏昏耳似聾",
+    "熟讀黃庭經一卷",
+    "不論貴賤與窮通"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是超越地域與社會階層的束縛，透過專注於《黃庭經》的學習，達到心靈的清淨與自在，並不被世俗的貴賤、窮通所牽絆。第一句「不分南北與西東」強調道無所限制；第二句「眼底昏昏耳似聾」描繪內心被雜念蒙蔽；第三句「熟讀黃庭經一卷」提示修道的具體方法；第四句「不論貴賤與窮通」則說明不受外在身份影響。",
+    "en": "This poem's theme is the transcendence of geographic and social constraints, achieved through focused study of the Huang Tingjing, which brings inner clarity and freedom, free from worldly status and wealth. The first line, \"不分南北與西東,\" signals that the Tao is beyond directions; the second line, \"眼底昏昏耳似聾,\" illustrates the inner vision clouded by mundane thoughts; the third line, \"熟讀黃庭經一卷,\" points to the concrete practice of studying the text; the fourth line, \"不論貴賤與窮通,\" stresses indifference to external rank.",
+    "jp": "この詩のテーマは、地理的・社会的な束縛を超え、黄庭経を集中して学ぶことで心の澄みや自由を得、世俗の貴賤や貧富にとらわれないことです。第一行の「不分南北与西東」は道が方向に縛られないことを示し、第二行の「眼底昏昏耳似聾」は世俗の思考に汚れた内観を描き、第三行の「熟読黄庭経一卷」は学びの具体的手段を示し、第四行の「不論貴賤与窮通」は外部の地位に左右されない姿勢を語ります。",
+    "reference": "莊子名周。蒙人。為周漆園使。其學無所不闚。楚威王聞其賢。遣使厚幣迎之。周曰。千金重利。卿相尊位也。子獨不見犧牛乎。我寧游戲以浹吾志。焉慕清靜。無為之道。師事老子。著南華經等書。十餘萬言。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a call to let go of worldly distinctions and to seek inner clarity through disciplined study of the Huang Tingjing. - Geographic direction is used metaphorically; the Tao is boundless and does not care about north‑south or east‑west. - Sensory obstructions (blurred vision, deafness) symbolize the mental fog caused by attachments and distractions. - The instruction to read the Huang Tingjing emphasizes a concrete practice for cultivating the mind and aligning with the Tao. - The final line reminds the practitioner that social rank, wealth, or poverty should not interfere with the pursuit of spiritual insight. - Overall, the poem conveys that true freedom comes from detachment, focused learning, and a heart that sees beyond external labels.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:38:06",
+    "source_file": "chuck_33.json",
+    "raw_llm_response_preview": "{\n  \"id\": 33,\n  \"title\": \"關聖帝君一百籤第三十三籤\",\n  \"subtitle\": \"莊子慕道丁丙\",\n  \"fortune\": \"中平\",\n  \"poem\": [\n    \"不分南北與西東\",\n    \"眼底昏昏耳似聾\",\n    \"熟讀黃庭經一卷\",\n    \"不論貴賤與窮通\"\n  ],\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是超越地域與社會階層的束縛，透過專注於《黃庭經》的學習，達到心靈的清淨與自在，並不被世俗的貴賤、窮通所牽絆。第一句「不分南北與西東」強調道無所限制；第二句「眼底昏昏耳似聾」描繪內心被雜念蒙蔽；第三句「熟讀黃庭經一卷"
+  }
+}

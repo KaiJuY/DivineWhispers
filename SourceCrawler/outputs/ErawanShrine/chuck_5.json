@@ -1,0 +1,20 @@
+{
+  "id": 5,
+  "title": "四面佛三十籤第五籤",
+  "subtitle": "",
+  "fortune": "下籤",
+  "poem": "不如意時事不成,不生意外恐破財,若問自身安穩否,急求土地保安詳。",
+  "analysis": {
+    "zh": "詩中說明，情緒不穩或遇到不如意之事，容易招致意外甚至破財。若想了解自身安穩與否，建議盡快前往土地公廟祈求保佑，以期財運與事業安定。",
+    "en": "The poem suggests that when one's emotions are unsettled or circumstances are unfavorable, it may lead to unexpected events or financial loss. To ascertain one's own stability, one should urgently seek the protection of the local Land God at a temple. This is advised to safeguard both wealth and business affairs.",
+    "jp": "この詩は、感情が不安定であったり、状況が思い通りにいかないとき、予期せぬ出来事や財産の損失につながる可能性があることを示しています。自分自身の安定を確認するには、急いで地域の土地神のお寺で保護を祈ることが推奨されます。これにより、財運と事業の安定を保つことができるとされています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is:\n- Emotional instability can trigger unforeseen mishaps and financial loss.\n- The speaker urges a prompt visit to the local Land God temple to seek protection and stability.\n- The focus is on securing financial security and smooth business operations rather than general fortune telling.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 03:38:03",
+    "source_file": "chuck_5.json",
+    "raw_llm_response_preview": "{\"id\":5,\"title\":\"四面佛三十籤第五籤\",\"subtitle\":\"\",\"fortune\":\"下籤\",\"poem\":\"不如意時事不成,不生意外恐破財,若問自身安穩否,急求土地保安詳。\",\"analysis\":{\"zh\":\"詩中說明，情緒不穩或遇到不如意之事，容易招致意外甚至破財。若想了解自身安穩與否，建議盡快前往土地公廟祈求保佑，以期財運與事業安定。\",\"en\":\"The poem suggests that when one's emotions are unsettled or circumstances are unfavorable, it may lead to unex"
+  }
+}

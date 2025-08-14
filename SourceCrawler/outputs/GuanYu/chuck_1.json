@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "title": "關聖帝君一百籤第一籤",
+  "subtitle": "漢高祖入關甲甲",
+  "fortune": "大吉",
+  "poem": [
+    "巍巍獨步向雲間",
+    "玉殿千官第一班",
+    "富貴榮華天付汝",
+    "福如東海壽如山"
+  ],
+  "analysis": {
+    "zh": "這首詩的主題是關於個人順遂與天赐的富贵。詩中先描绘主角独步云端、登上玉殿千官之首，暗示功名与地位的升迁；随后又以“富贵荣华天付汝”“福如东海寿如山”表达上天赐予的财富与寿命。整体而言，它预示着事业顺利、名誉显赫以及命运中富贵寿延的吉祥。",
+    "en": "This poem's theme is the harmonious progress of one's career and the blessings bestowed by destiny. The first two lines portray the speaker strolling alone among the clouds and ascending to the top of the jade hall, indicating the rise in reputation and position. The last two lines—'Wealth and glory are granted by heaven' and 'Fate like the Eastern Sea, longevity like a mountain'—emphasize the abundance of fortune and the promise of long life. Overall, it conveys the expectation of a successful career, renown, and a blessed fate filled with wealth and longevity.",
+    "jp": "この詩のテーマは、個人の順調な成長と天から与えられる富と長寿の祝福です。最初の二行は、主語が雲間を一人で歩き、玉殿の最高位に登る様子を描き、名誉や地位の上昇を示唆しています。最後の二行の『富貴栄華は天が授ける』、『福は東海のように、寿は山のように』という表現は、天命による豊かな財産と長寿を強調しています。全体として、成功したキャリア、名声、そして富と長寿に満ちた幸運を予示する詩です。",
+    "reference": "漢高祖。姓劉名邦。字季。沛人也。其時秦法苛暴。天下皆叛。楚人項梁起義。立懷王孫心。高祖率沛中子弟以從諸侯兵。皆西嚮攻秦。約以先入關者王之。獨高祖先入秦關除苛法。與父老約法三章。秦民大悅。秦王子嬰素車白馬只軹道以降。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is: \n- The opening lines symbolize a solitary ascent into the heavens, implying a unique path to fame and recognition. \n- The reference to the jade hall and the first rank among officials emphasizes an elevated social standing and political success. \n- The lines about wealth and glory being granted by heaven express divine blessing and the inevitability of material prosperity. \n- The final couplet likening fortune to the vast Eastern Sea and longevity to a mountain conveys enduring fortune and a long life. \n- Overall, the poem predicts a journey of professional achievement, public honor, and lasting personal well‑being.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-08-14 00:25:28",
+    "source_file": "chuck_1.json",
+    "raw_llm_response_preview": "{\"id\":1,\"title\":\"關聖帝君一百籤第一籤\",\"subtitle\":\"漢高祖入關甲甲\",\"fortune\":\"大吉\",\"poem\":[\"巍巍獨步向雲間\",\"玉殿千官第一班\",\"富貴榮華天付汝\",\"福如東海壽如山\"],\"analysis\":{\"zh\":\"這首詩的主題是關於個人順遂與天赐的富贵。詩中先描绘主角独步云端、登上玉殿千官之首，暗示功名与地位的升迁；随后又以“富贵荣华天付汝”“福如东海寿如山”表达上天赐予的财富与寿命。整体而言，它预示着事业顺利、名誉显赫以及命运中富贵寿延的吉祥。\",\"en\":\"This poem's theme is the harmonious progre"
+  }
+}
