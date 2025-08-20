@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(curl:*)",
+      "Bash(../venv/Scripts/python demo_system.py --demo)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
