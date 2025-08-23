@@ -49,12 +49,12 @@ class BaseInterpreter(ABC):
         # Step 6: Post-process interpretation
         interpretation = self._post_process_interpretation(interpretation, question)
         
-        # Step 7: Capture FAQ if enabled
-        if capture_faq:
-            self._capture_faq_interaction(question, interpretation, temple)
-        
-        # Step 8: Build result
+        # Step 7: Build result
         result = self._build_result(interpretation, temple, poem_id, selected_poem_chunks, additional_chunks, question)
+        
+        # Step 8: Capture FAQ if enabled (after result is built)
+        if capture_faq:
+            self._capture_faq_interaction(question, result)
         
         self.logger.info(f"Interpretation completed for {temple} poem #{poem_id}")
         return result
@@ -158,15 +158,43 @@ class BaseInterpreter(ABC):
         else:
             return "en"
     
-    def _capture_faq_interaction(self, question: str, interpretation: str, temple: str):
-        """Capture the interaction for potential FAQ creation."""
+    def _capture_faq_interaction(self, question: str, result: 'InterpretationResult'):
+        """Capture the complete consultation for potential FAQ creation."""
         try:
             session_id = str(uuid.uuid4())
             category = self._detect_category(question)
             language = self._detect_language(question)
             
-            # Add temple context to the answer for FAQ
-            faq_answer = f"Based on {temple} temple fortune interpretation:\n\n{interpretation}"
+            # Build comprehensive FAQ answer with complete consultation information
+            selected_poem = result.selected_poem
+            poem_info = ""
+            if selected_poem.chunks:
+                # Extract poem title and content from chunks
+                for chunk in selected_poem.chunks:
+                    if chunk.get('title'):
+                        poem_info = f"\n**Poem**: {chunk.get('title', 'Unknown')}\n"
+                        if chunk.get('content'):
+                            # Get first 200 chars of poem content
+                            poem_content = chunk['content'][:200] + "..." if len(chunk['content']) > 200 else chunk['content']
+                            poem_info += f"**Content**: {poem_content}\n"
+                        break
+            
+            # Build rich FAQ answer
+            faq_answer = f"""**Fortune Consultation Details**
+
+**Temple**: {selected_poem.temple}
+**Poem ID**: #{selected_poem.poem_id}{poem_info}
+**Confidence**: {result.confidence:.2f}
+**Additional Sources**: {result.sources['poems']} poems, {result.sources['faqs']} FAQs
+**Temple Sources**: {', '.join(result.temple_sources)}
+
+---
+
+**Interpretation**:
+{result.interpretation}
+
+---
+*This consultation was generated using the DivineWhispers fortune system with RAG-enhanced interpretation.*"""
             
             self.faq_pipeline.capture_interaction(
                 question=question,
@@ -176,7 +204,7 @@ class BaseInterpreter(ABC):
                 session_id=session_id
             )
             
-            self.logger.debug(f"Captured FAQ interaction: {session_id}")
+            self.logger.info(f"Captured comprehensive FAQ interaction: {session_id}")
             
         except Exception as e:
             self.logger.error(f"Failed to capture FAQ interaction: {e}")
@@ -305,7 +333,7 @@ Please provide your interpretation:"""
             interpretation = self.llm.generate(
                 prompt,
                 temperature=0.7,
-                max_tokens=800
+                max_tokens=2000
             )
             
             return interpretation

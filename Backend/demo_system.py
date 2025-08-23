@@ -407,30 +407,36 @@ def interactive_mode():
                     print(f"❌ Random consultation failed: {e}\n")
             
             elif command.lower().startswith('ask '):
-                question = command[4:].strip()
+                question, temple, chuckid = command.split('|')
+                question = question[4:].strip()
                 if not question:
                     print("❌ Please provide a question after 'ask'\n")
                     continue
-                
+                if not temple:
+                    print("❌ Please provide a temple after 'ask'\n")
+                    continue
+                if not chuckid:
+                    print("❌ Please provide a poem ID after 'ask'\n")
+                    continue
                 # Use first available temple and a random poem
-                import random
-                temple = random.choice(temples)
+                # import random
+                # temple = random.choice(temples)
                 poems = system.list_available_poems(temple)
                 
                 if not poems:
                     print(f"❌ No poems available for temple {temple}\n")
                     continue
                 
-                poem = random.choice(poems)
-                
+                # poem = random.choice(poems)
+
                 print(f"\n🔍 Consulting the wisdom of {temple}...")
-                print(f"📜 Selected poem: #{poem['poem_id']} - {poem['title'][:50]}...")
+                print(f"📜 Selected poem: #{chuckid} ...")
                 
                 try:
                     result = system.ask_fortune(
                         question=question,
                         temple=temple,
-                        poem_id=poem['poem_id']
+                        poem_id=int(chuckid)
                     )
                     
                     print(f"\n✨ Interpretation:")

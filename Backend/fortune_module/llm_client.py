@@ -139,7 +139,7 @@ class OllamaClient(BaseLLMClient):
             response = self.requests.post(
                 f"{self.base_url}/api/generate",
                 json=payload,
-                timeout=60  # 60 second timeout for generation
+                timeout=180  # 3 minute timeout for generation
             )
             response.raise_for_status()
             
