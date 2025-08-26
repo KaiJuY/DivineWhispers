@@ -1,0 +1,30 @@
+# Development Docker Compose Override
+# Use: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+version: '3.8'
+
+services:
+  app:
+    environment:
+      # Development settings
+      - DEBUG=true
+      - LLM_PROVIDER=mock
+      - ENVIRONMENT=development
+      
+    volumes:
+      # Additional development volumes
+      - ./:/app:delegated  # Mount entire project for hot reload
+      - /app/app/__pycache__  # Exclude pycache
+      
+    # Override command for development with auto-reload
+    command: ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+      
+  db:
+    # Expose database port for local development tools
+    ports:
+      - "${DB_PORT:-5433}:5432"
+      
+  # Enable pgAdmin for development
+  pgadmin:
+    profiles:
+      - development

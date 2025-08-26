@@ -3,9 +3,28 @@
     "allow": [
       "Bash(python:*)",
       "Bash(curl:*)",
-      "Bash(../venv/Scripts/python demo_system.py --demo)"
+      "Bash(../venv/Scripts/python demo_system.py --demo)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(alembic init:*)",
+      "Bash(pip install:*)",
+      "Bash(docker-compose:*)",
+      "Bash(docker logs:*)",
+      "Bash(grep:*)",
+      "Bash(docker exec:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_close",
+      "Bash(cat:*)",
+      "Read(/C:\\Users\\KaiJu\\Desktop\\WorkSpace\\My_Self/**)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\c\\Users\\KaiJu\\Desktop\\WorkSpace\\My_Self\\DivineWhispers"
+    ]
   }
 }

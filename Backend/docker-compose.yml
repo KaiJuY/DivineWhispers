@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+  # FastAPI Application
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # Database Configuration
+      - DATABASE_URL=postgresql+asyncpg://postgres:${POSTGRES_PASSWORD:-password}@db:5432/divine_whispers
+      
+      # JWT Configuration  
+      - SECRET_KEY=${SECRET_KEY:-your-super-secret-key-change-in-production}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      - REFRESH_TOKEN_EXPIRE_DAYS=${REFRESH_TOKEN_EXPIRE_DAYS:-7}
+      
+      # Fortune Service Configuration
+      - FORTUNE_DRAW_COST=${FORTUNE_DRAW_COST:-10}
+      - FORTUNE_INTERPRET_COST=${FORTUNE_INTERPRET_COST:-15}
+      - CHROMA_DB_PATH=/app/chroma_db
+      - CHROMA_COLLECTION_NAME=divine_whispers_poems
+      
+      # LLM Configuration (OpenAI)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - LLM_PROVIDER=${LLM_PROVIDER:-mock}
+      
+      # Application Settings
+      - DEBUG=${DEBUG:-false}
+      - DEFAULT_USER_POINTS=${DEFAULT_USER_POINTS:-100}
+      
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      # Mount source code for development
+      - ./app:/app/app
+      - ./alembic:/app/alembic
+      - ./alembic.ini:/app/alembic.ini
+      
+      # Persistent storage
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+      - chroma_data:/app/chroma_db
+      - poem_data:/app/poem_data
+      
+    restart: unless-stopped
+    networks:
+      - divine_whispers_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: divine_whispers
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    restart: unless-stopped
+    networks:
+      - divine_whispers_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # pgAdmin for database management (development only)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@divinewhispers.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - divine_whispers_network
+    profiles:
+      - development
+
+  # Nginx Reverse Proxy (production)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./logs:/var/log/nginx
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - divine_whispers_network
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
+    driver: local
+  chroma_data:
+    driver: local
+  poem_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  divine_whispers_network:
+    driver: bridge

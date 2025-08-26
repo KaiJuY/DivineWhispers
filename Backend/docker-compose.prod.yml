@@ -1,0 +1,45 @@
+# Production Docker Compose Override
+# Use: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
+version: '3.8'
+
+services:
+  app:
+    # Production build optimizations
+    environment:
+      - DEBUG=false
+      - ENVIRONMENT=production
+      
+    # Remove development volume mounts
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+      - chroma_data:/app/chroma_db
+      - poem_data:/app/poem_data
+      
+    # Production command (no auto-reload)
+    command: ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+    
+    # Production profiles
+    profiles:
+      - production
+      
+  db:
+    # Don't expose database port in production
+    ports: []
+    
+    # Production database settings
+    environment:
+      POSTGRES_SHARED_PRELOAD_LIBRARIES: 'pg_stat_statements'
+      POSTGRES_LOG_STATEMENT: 'all'
+      POSTGRES_LOG_MIN_DURATION_STATEMENT: '1000'
+      
+  # Enable nginx for production
+  nginx:
+    profiles:
+      - production
+      
+  # Disable pgAdmin in production
+  pgadmin:
+    profiles:
+      - disabled

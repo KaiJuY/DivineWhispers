@@ -1,0 +1,251 @@
+"""
+Authentication schema models for request/response validation
+"""
+
+from pydantic import BaseModel, EmailStr, Field, validator
+from typing import Optional
+from datetime import datetime
+from enum import Enum
+
+from app.models.user import UserRole, UserStatus
+
+
+class TokenType(str, Enum):
+    """Token type enumeration for responses"""
+    BEARER = "bearer"
+
+
+class UserRegister(BaseModel):
+    """User registration request schema"""
+    email: EmailStr = Field(..., description="User email address")
+    password: str = Field(
+        ...,
+        min_length=8,
+        max_length=100,
+        description="User password (minimum 8 characters)"
+    )
+    confirm_password: str = Field(..., description="Password confirmation")
+    
+    @validator('confirm_password')
+    def passwords_match(cls, v, values, **kwargs):
+        if 'password' in values and v != values['password']:
+            raise ValueError('Passwords do not match')
+        return v
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "user@example.com",
+                "password": "SecurePassword123",
+                "confirm_password": "SecurePassword123"
+            }
+        }
+
+
+class UserLogin(BaseModel):
+    """User login request schema"""
+    email: EmailStr = Field(..., description="User email address")
+    password: str = Field(..., description="User password")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "user@example.com",
+                "password": "SecurePassword123"
+            }
+        }
+
+
+class TokenRefresh(BaseModel):
+    """Token refresh request schema"""
+    refresh_token: str = Field(..., description="Refresh token")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            }
+        }
+
+
+class TokenRevoke(BaseModel):
+    """Token revocation request schema"""
+    token: Optional[str] = Field(None, description="Specific token to revoke (optional)")
+    revoke_all: bool = Field(False, description="Revoke all user tokens")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                "revoke_all": False
+            }
+        }
+
+
+class TokenResponse(BaseModel):
+    """JWT token response schema"""
+    access_token: str = Field(..., description="JWT access token")
+    refresh_token: str = Field(..., description="JWT refresh token")
+    token_type: TokenType = Field(TokenType.BEARER, description="Token type")
+    expires_in: int = Field(..., description="Access token expiration time in seconds")
+    refresh_expires_in: int = Field(..., description="Refresh token expiration time in seconds")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                "token_type": "bearer",
+                "expires_in": 1800,
+                "refresh_expires_in": 604800
+            }
+        }
+
+
+class UserResponse(BaseModel):
+    """User response schema"""
+    user_id: int = Field(..., description="User unique identifier")
+    email: str = Field(..., description="User email address")
+    role: UserRole = Field(..., description="User role")
+    status: UserStatus = Field(..., description="User account status")
+    points_balance: int = Field(..., description="User points balance")
+    created_at: datetime = Field(..., description="Account creation timestamp")
+    updated_at: datetime = Field(..., description="Last update timestamp")
+    
+    class Config:
+        from_attributes = True
+        schema_extra = {
+            "example": {
+                "user_id": 123,
+                "email": "user@example.com",
+                "role": "user",
+                "status": "active",
+                "points_balance": 100,
+                "created_at": "2023-01-01T00:00:00",
+                "updated_at": "2023-01-01T00:00:00"
+            }
+        }
+
+
+class LoginResponse(BaseModel):
+    """Login response schema combining tokens and user info"""
+    user: UserResponse = Field(..., description="User information")
+    tokens: TokenResponse = Field(..., description="Authentication tokens")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "user": {
+                    "user_id": 123,
+                    "email": "user@example.com",
+                    "role": "user",
+                    "status": "active",
+                    "points_balance": 100,
+                    "created_at": "2023-01-01T00:00:00",
+                    "updated_at": "2023-01-01T00:00:00"
+                },
+                "tokens": {
+                    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                    "token_type": "bearer",
+                    "expires_in": 1800,
+                    "refresh_expires_in": 604800
+                }
+            }
+        }
+
+
+class PasswordChange(BaseModel):
+    """Password change request schema"""
+    current_password: str = Field(..., description="Current password")
+    new_password: str = Field(
+        ...,
+        min_length=8,
+        max_length=100,
+        description="New password (minimum 8 characters)"
+    )
+    confirm_new_password: str = Field(..., description="New password confirmation")
+    
+    @validator('confirm_new_password')
+    def passwords_match(cls, v, values, **kwargs):
+        if 'new_password' in values and v != values['new_password']:
+            raise ValueError('New passwords do not match')
+        return v
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "current_password": "OldPassword123",
+                "new_password": "NewSecurePassword456",
+                "confirm_new_password": "NewSecurePassword456"
+            }
+        }
+
+
+class PasswordReset(BaseModel):
+    """Password reset request schema"""
+    email: EmailStr = Field(..., description="Email address for password reset")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "user@example.com"
+            }
+        }
+
+
+class PasswordResetConfirm(BaseModel):
+    """Password reset confirmation schema"""
+    reset_token: str = Field(..., description="Password reset token")
+    new_password: str = Field(
+        ...,
+        min_length=8,
+        max_length=100,
+        description="New password (minimum 8 characters)"
+    )
+    confirm_new_password: str = Field(..., description="New password confirmation")
+    
+    @validator('confirm_new_password')
+    def passwords_match(cls, v, values, **kwargs):
+        if 'new_password' in values and v != values['new_password']:
+            raise ValueError('New passwords do not match')
+        return v
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "reset_token": "secure-reset-token-here",
+                "new_password": "NewSecurePassword456",
+                "confirm_new_password": "NewSecurePassword456"
+            }
+        }
+
+
+class AuthErrorResponse(BaseModel):
+    """Authentication error response schema"""
+    error: dict = Field(..., description="Error details")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "error": {
+                    "code": 401,
+                    "message": "Invalid credentials",
+                    "type": "authentication_error"
+                }
+            }
+        }
+
+
+class MessageResponse(BaseModel):
+    """Generic message response schema"""
+    message: str = Field(..., description="Response message")
+    success: bool = Field(True, description="Operation success status")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "message": "Operation completed successfully",
+                "success": True
+            }
+        }
