@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Whispers - Fortune Telling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #ffffff;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        /* LANDING PAGE STYLES (Design 1.png) */
+        .landing-page {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .landing-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .landing-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.4) 0%, rgba(26, 15, 8, 0.6) 50%, rgba(13, 9, 5, 0.7) 100%);
+            z-index: 0;
+        }
+
+        /* Landing Header */
+        .landing-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .landing-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #d4af37;
+            letter-spacing: 1px;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #000;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .header-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .language-selector:hover {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Landing Hero Content */
+        .landing-hero {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .landing-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            text-shadow: 
+                0 0 10px rgba(212, 175, 55, 0.3),
+                0 0 20px rgba(212, 175, 55, 0.2),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.2), 2px 2px 4px rgba(0, 0, 0, 0.8); }
+            100% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.5), 0 0 30px rgba(212, 175, 55, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8); }
+        }
+
+        .learn-more-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 8px 25px rgba(212, 175, 55, 0.3),
+                0 0 0 1px rgba(212, 175, 55, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .learn-more-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 15px 35px rgba(212, 175, 55, 0.4),
+                0 0 0 2px rgba(212, 175, 55, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        
+
+        /* MAIN WEBSITE STYLES (Design 2.png) */
+        .main-website {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a1128 0%, #1e2749 50%, #2d3748 100%);
+        }
+
+        .main-website.active {
+            display: block;
+        }
+
+        /* Main Header Navigation */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(10, 17, 40, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .main-nav li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .main-nav li a:hover,
+        .main-nav li a.active {
+            color: #d4af37;
+        }
+
+        .main-nav li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: #d4af37;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .main-nav li a:hover::after,
+        .main-nav li a.active::after {
+            width: 100%;
+        }
+
+        /* Page Content */
+        .page-content {
+            width: 100%;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(10, 17, 40, 0.8) 0%, rgba(30, 39, 73, 0.6) 100%);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 40px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            width: 100%;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1440px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-section h1 .highlight {
+            color: #d4af37;
+            font-weight: 500;
+        }
+
+        .todays-whisper {
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            min-width: 320px;
+            backdrop-filter: blur(15px);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: border-breathe 3s ease-in-out infinite;
+        }
+
+        .todays-whisper:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        @keyframes border-breathe {
+            0%, 100% { 
+                border-color: rgba(212, 175, 55, 0.1);
+                box-shadow: 
+                    0 0 8px rgba(212, 175, 55, 0.05),
+                    0 0 15px rgba(212, 175, 55, 0.03),
+                    inset 0 0 8px rgba(212, 175, 55, 0.02);
+            }
+            10% {
+                border-color: rgba(212, 175, 55, 0.15);
+                box-shadow: 
+                    0 0 12px rgba(212, 175, 55, 0.08),
+                    0 0 20px rgba(212, 175, 55, 0.05),
+                    inset 0 0 10px rgba(212, 175, 55, 0.03);
+            }
+            20% {
+                border-color: rgba(212, 175, 55, 0.2);
+                box-shadow: 
+                    0 0 16px rgba(212, 175, 55, 0.12),
+                    0 0 25px rgba(212, 175, 55, 0.07),
+                    inset 0 0 12px rgba(212, 175, 55, 0.04);
+            }
+            30% {
+                border-color: rgba(212, 175, 55, 0.25);
+                box-shadow: 
+                    0 0 20px rgba(212, 175, 55, 0.16),
+                    0 0 30px rgba(212, 175, 55, 0.09),
+                    inset 0 0 15px rgba(212, 175, 55, 0.05);
+            }
+            40% {
+                border-color: rgba(212, 175, 55, 0.3);
+                box-shadow: 
+                    0 0 24px rgba(212, 175, 55, 0.2),
+                    0 0 35px rgba(212, 175, 55, 0.12),
+                    inset 0 0 18px rgba(212, 175, 55, 0.06);
+            }
+            50% { 
+                border-color: rgba(212, 175, 55, 0.35);
+                box-shadow: 
+                    0 0 28px rgba(212, 175, 55, 0.25),
+                    0 0 40px rgba(212, 175, 55, 0.15),
+                    inset 0 0 20px rgba(212, 175, 55, 0.08);
+            }
+            60% {
+                border-color: rgba(212, 175, 55, 0.3);
+                box-shadow: 
+                    0 0 24px rgba(212, 175, 55, 0.2),
+                    0 0 35px rgba(212, 175, 55, 0.12),
+                    inset 0 0 18px rgba(212, 175, 55, 0.06);
+            }
+            70% {
+                border-color: rgba(212, 175, 55, 0.25);
+                box-shadow: 
+                    0 0 20px rgba(212, 175, 55, 0.16),
+                    0 0 30px rgba(212, 175, 55, 0.09),
+                    inset 0 0 15px rgba(212, 175, 55, 0.05);
+            }
+            80% {
+                border-color: rgba(212, 175, 55, 0.2);
+                box-shadow: 
+                    0 0 16px rgba(212, 175, 55, 0.12),
+                    0 0 25px rgba(212, 175, 55, 0.07),
+                    inset 0 0 12px rgba(212, 175, 55, 0.04);
+            }
+            90% {
+                border-color: rgba(212, 175, 55, 0.15);
+                box-shadow: 
+                    0 0 12px rgba(212, 175, 55, 0.08),
+                    0 0 20px rgba(212, 175, 55, 0.05),
+                    inset 0 0 10px rgba(212, 175, 55, 0.03);
+            }
+        }
+
+        .moon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .moon-icon {
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 10px;
+            animation: breathe 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+            position: relative;
+        }
+
+        .moon-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: glow-pulse 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes breathe {
+            0%, 100% { 
+                transform: scale(0.98);
+                filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+            }
+            10% {
+                transform: scale(0.99);
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+            }
+            20% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.4));
+            }
+            30% {
+                transform: scale(1.01);
+                filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.5));
+            }
+            40% {
+                transform: scale(1.02);
+                filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.6));
+            }
+            50% { 
+                transform: scale(1.03);
+                filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.7));
+            }
+            60% {
+                transform: scale(1.02);
+                filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.6));
+            }
+            70% {
+                transform: scale(1.01);
+                filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.5));
+            }
+            80% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.4));
+            }
+            90% {
+                transform: scale(0.99);
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { 
+                opacity: 0.1;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            10% {
+                opacity: 0.15;
+                transform: translate(-50%, -50%) scale(0.92);
+            }
+            20% {
+                opacity: 0.2;
+                transform: translate(-50%, -50%) scale(0.94);
+            }
+            30% {
+                opacity: 0.25;
+                transform: translate(-50%, -50%) scale(0.96);
+            }
+            40% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(0.98);
+            }
+            50% { 
+                opacity: 0.4;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            60% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(0.98);
+            }
+            70% {
+                opacity: 0.25;
+                transform: translate(-50%, -50%) scale(0.96);
+            }
+            80% {
+                opacity: 0.2;
+                transform: translate(-50%, -50%) scale(0.94);
+            }
+            90% {
+                opacity: 0.15;
+                transform: translate(-50%, -50%) scale(0.92);
+            }
+        }
+
+        .todays-whisper h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+            font-size: 14px;
+        }
+
+        .todays-whisper.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .whisper-collapsed {
+            opacity: 0.9;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .whisper-expanded {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+
+        .todays-whisper.expanded .whisper-expanded {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .todays-whisper.expanded .whisper-collapsed {
+            display: none;
+        }
+
+        .whisper-poem {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .poem-chinese {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #d4af37;
+            font-weight: 500;
+        }
+
+        .poem-english {
+            font-size: 13px;
+            line-height: 1.4;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .try-now-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .try-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Choose Your Belief Section */
+        .belief-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #1e2749 0%, #2d3748 100%);
+        }
+
+        .belief-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .belief-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .belief-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+        }
+
+        .belief-card {
+            flex: 1;
+            width: 250px;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            transform: skewX(-10deg);
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .belief-grid:hover .belief-card:not(:hover) {
+            flex: 0.6;
+            opacity: 0.5;
+            transform: skewX(-10deg) scale(0.9);
+        }
+
+        .belief-card:hover {
+            flex: 1.2;
+            transform: skewX(-10deg) scale(1.1) translateY(-15px);
+            border-color: #d4af37;
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.5);
+            z-index: 10;
+            position: relative;
+        }
+
+        .belief-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .belief-card-content {
+            transform: skewX(10deg) translateX(-10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            z-index: 3;
+            position: relative;
+            padding-bottom: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .card-image-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            border-radius: 50%;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #000;
+            overflow: hidden;
+            transform: skewX(-10deg);
+        }
+
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 30;
+            width: 150%;
+            height: 150%;
+            object-fit: cover;
+            object-position: center 50%;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .belief-card:hover .card-image {
+            opacity: 1;
+        }
+        
+
+        .belief-card h3 {
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .belief-card p {
+            opacity: 0.9;
+            line-height: 1.3;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+        }
+
+        /* Fortune Grid */
+        .fortune-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #0a1128 0%, #1e2749 100%);
+            display: none;
+        }
+
+        .fortune-section.active {
+            display: block;
+        }
+
+        .fortune-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .deity-header {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .deity-wide-image {
+            width: 100%;
+            max-width: 800px;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 15px;
+            margin: 0 auto 20px auto;
+            display: block;
+            opacity: 0.9;
+            filter: brightness(0.85);
+            transition: all 0.3s ease;
+        }
+
+        .deity-wide-image:hover {
+            opacity: 1;
+            filter: brightness(1);
+        }
+
+        .fortune-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+            font-weight: 300;
+        }
+
+        .fortune-section p {
+            margin-bottom: 50px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .fortune-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .fortune-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #d4af37;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fortune-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #d4af37, #f4e99b, #d4af37, #f4e99b);
+            background-size: 400% 400%;
+            animation: glowing 3s ease-in-out infinite alternate;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .fortune-grid:hover .fortune-card:not(:hover) {
+            opacity: 0.6;
+            transform: scale(0.9);
+        }
+
+        .fortune-card:hover {
+            transform: scale(1.15) translateY(-5px);
+            border-color: #d4af37;
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            z-index: 10;
+            color: #fff;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+        }
+
+        .fortune-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Analysis Page */
+        .analysis-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #1e2749 0%, #2d3748 100%);
+            display: none;
+        }
+
+        .analysis-section.active {
+            display: block;
+        }
+
+        .analysis-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            padding: 60px 40px;
+            min-height: 70vh;
+        }
+
+        .poem-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+        }
+
+        .pentagon-shell {
+            width: 400px;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(240, 230, 180, 0.15) 0%, rgba(212, 175, 55, 0.25) 50%, rgba(160, 140, 60, 0.15) 100%);
+            clip-path: polygon(50% 5%, 90% 25%, 80% 85%, 20% 85%, 10% 25%);
+            border: 2px solid rgba(240, 220, 150, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 0 30px rgba(240, 220, 150, 0.4),
+                inset 0 2px 20px rgba(255, 255, 255, 0.1),
+                inset 0 -2px 20px rgba(0, 0, 0, 0.2);
+            transform: perspective(800px) rotateX(5deg);
+            margin: 0 auto;
+        }
+
+        .pentagon-shell::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+            clip-path: polygon(50% 5%, 90% 25%, 80% 85%, 20% 85%, 10% 25%);
+            z-index: -1;
+        }
+
+        .pentagon-content {
+            text-align: center;
+            max-width: 280px;
+            padding: 60px 30px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .pentagon-content h3 {
+            color: #f0dc96 !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 25px !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+        }
+
+        .pentagon-content .poem-text {
+            color: #fff !important;
+            font-size: 1rem !important;
+            line-height: 1.8 !important;
+            margin-bottom: 20px !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .poem-section h3 {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .poem-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .poem-translation {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .analysis-section-right {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 600px;
+        }
+
+        .analysis-header {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+
+        .analysis-header h3 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .analysis-header .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .fortune-info {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .fortune-info-item {
+            text-align: center;
+        }
+
+        .fortune-info-item .label {
+            color: #d4af37;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .fortune-info-item .value {
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .analysis-body {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0;
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            border-right: 2px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .vertical-text-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 0 0 15px 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            color: #d4af37;
+            font-size: 1.2rem;
+            line-height: 2;
+            letter-spacing: 2px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .analysis-text {
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .analysis-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .analysis-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Back button */
+        .back-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            color: #d4af37;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+            font-size: 14px;
+        }
+
+        /* New Analysis Page Layout */
+        .analysis-main-container {
+            display: flex;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            min-height: calc(100vh - 160px);
+        }
+
+        /* Left Side: Poem Details */
+        .poem-details-left {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .poem-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(15px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .poem-title {
+            color: #d4af37;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .poem-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .fortune-badge {
+            background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-align: center;
+            margin: 0 auto 30px;
+            width: fit-content;
+            font-size: 1.1rem;
+        }
+
+        .poem-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .poem-body {
+            color: #fff;
+            font-size: 1.4rem;
+            line-height: 2;
+            text-align: center;
+            font-family: serif;
+        }
+
+        /* Right Side: Analysis + Chat */
+        .analysis-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Analysis Top Part */
+        .analysis-top {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            flex: 1;
+        }
+
+        .analysis-heading {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .analysis-content-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Chat Section */
+        .chat-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .chat-header h4 {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .chat-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .teacher-message {
+            justify-content: flex-start;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .user-message .message-avatar {
+            background: linear-gradient(135deg, #4a90e2 0%, #7bb3f0 100%);
+        }
+
+        .message-content {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 12px 16px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 80%;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .user-message .message-content {
+            background: rgba(74, 144, 226, 0.1);
+            border-color: rgba(74, 144, 226, 0.2);
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+
+        .chat-send-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .back-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Purchase Section - Exact Design Match */
+        .purchase-section-new {
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #0a1128 0%, #1e2749 100%);
+            min-height: calc(100vh - 80px);
+        }
+
+        .purchase-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .purchase-left h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .purchase-left p {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .coin-packages-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .coin-package-item {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e4080 100%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .coin-package-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 90, 160, 0.4);
+        }
+
+        .coin-package-item.selected {
+            border-color: #d4af37;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .package-header .coin-count {
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .package-details {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            text-align: right;
+        }
+
+        .package-price {
+            font-size: 1.6rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+            color: #000;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+            z-index: 2;
+        }
+
+        .package-rate {
+            position: absolute;
+            bottom: 20px;
+            left: 24px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        /* Purchase Summary (Right Side) */
+        .purchase-right {
+            position: sticky;
+            top: 100px;
+        }
+
+        .purchase-summary {
+            background: linear-gradient(135deg, #1e2749 0%, #2d3748 100%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .purchase-summary h3 {
+            color: #d4af37;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .summary-details {
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-row.total {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 12px;
+            margin-top: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .purchase-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .purchase-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .policy-announcement {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .policy-announcement p {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .policy-announcement strong {
+            color: #d4af37;
+        }
+
+        /* Purchase Section */
+        .purchase-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #0a1128 0%, #1e2749 100%);
+            display: none;
+        }
+
+        .purchase-section.active {
+            display: block;
+        }
+
+        .purchase-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .purchase-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+
+        .purchase-section p {
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .coin-packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .coin-package {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .coin-package:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .coin-package.selected {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .coin-amount {
+            font-size: 2rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .coin-price {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .coin-description {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .landing-header {
+                padding: 20px 20px;
+            }
+            
+            .landing-hero h1 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .belief-grid {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .belief-card {
+                transform: skewX(0deg);
+                width: 90%;
+                max-width: 300px;
+                height: 200px;
+            }
+            
+            .belief-card-content {
+                transform: skewX(0deg);
+            }
+            
+            .belief-grid:hover .belief-card:not(:hover) {
+                flex: 1;
+                opacity: 0.8;
+                transform: none;
+            }
+            
+            .belief-card:hover {
+                flex: 1;
+                transform: scale(1.05);
+            }
+            
+            .fortune-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+            
+            .analysis-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .purchase-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Animation for page transitions */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Account Page Styles */
+        .account-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .account-title {
+            color: #d4af37;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .account-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .card-title {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .profile-avatar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .avatar-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .avatar-text {
+            color: #000;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .edit-avatar-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #d4af37;
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-avatar-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .profile-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .field-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .field-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .field-group.full-width {
+            flex: 2;
+        }
+
+        .field-group label {
+            color: #d4af37;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .profile-input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .profile-input:focus {
+            border-color: #d4af37;
+            outline: none;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .edit-btn {
+            position: absolute;
+            right: 10px;
+            top: 32px;
+            background: none;
+            border: none;
+            color: #d4af37;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .status-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .status-label {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .status-value {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .status-value.balance {
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+
+        .status-value.premium {
+            color: #d4af37;
+        }
+
+        .preferences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .pref-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .pref-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .pref-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #d4af37;
+        }
+
+        .account-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .save-btn, .change-password-btn, .logout-btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .save-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+            color: #000;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .change-password-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            color: #d4af37;
+        }
+
+        .change-password-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+        }
+
+        .logout-btn {
+            background: rgba(255, 69, 58, 0.2);
+            border: 2px solid rgba(255, 69, 58, 0.4);
+            color: #ff453a;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 69, 58, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .field-row {
+                flex-direction: column;
+            }
+            
+            .account-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .status-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hide all sections initially except landing */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: flex;
+        }
+
+        /* Sub-sections within POEM page */
+        .poem-sub-section {
+            display: none;
+        }
+
+        .poem-sub-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- LANDING PAGE (Design 1.png) -->
+    <div id="landing" class="landing-page">
+        <video class="landing-video" autoplay muted loop playsinline>
+            <source src="Asset/Landing.mp4" type="video/mp4">
+        </video>
+        <div class="landing-overlay"></div>
+        <div class="landing-header">
+            <div class="landing-logo">
+                <img src="Asset/divine whispers logo.png" alt="Divine Whispers" class="header-logo">
+            </div>
+            <div class="language-selector" onclick="switchLanguage()">
+                <span id="landing-lang-display">🌐 US ▼</span>
+            </div>
+        </div>
+        
+        <div class="wood-sticks">
+            <div class="stick"></div>
+            <div class="stick"></div>
+            <div class="stick"></div>
+            <div class="stick"></div>
+            <div class="stick"></div>
+        </div>
+        
+        <div class="landing-hero">
+            <h1>Hear the call of mystery<br>guiding your true path.</h1>
+            <button class="learn-more-btn" onclick="showMainWebsite()">Learn More</button>
+        </div>
+    </div>
+
+    <!-- MAIN WEBSITE (Design 2.png) -->
+    <div id="main-website" class="main-website">
+        <div class="main-header">
+            <div class="nav-container">
+                <div class="landing-logo">
+                    <img src="Asset/divine whispers logo.png" alt="Divine Whispers" class="header-logo">
+                </div>
+                <nav>
+                    <ul class="main-nav">
+                        <li><a href="#" onclick="showSection('home')" id="nav-home" class="active">HOME</a></li>
+                        <li><a href="#" onclick="showSection('poem')" id="nav-poem">POEM</a></li>
+                        <li><a href="#" onclick="showSection('purchase')" id="nav-purchase">PURCHASE</a></li>
+                        <li><a href="#" onclick="showSection('account')" id="nav-account">ACCOUNT</a></li>
+                        <li><a href="#" onclick="showSection('contact')" id="nav-contact">CONTACT</a></li>
+                    </ul>
+                </nav>
+                <div class="language-selector" onclick="switchLanguage()">
+                    <span id="lang-display">🌐 US ▼</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOME PAGE - Only hero section with Today's Whisper -->
+        <div id="home-section" class="section active">
+            <div class="page-content">
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <img src="Asset/HOME_MASK.png" alt="Beyond the Whisper lies a path shaped by fate. Step into the poems and uncover what awaits." class="hero-image">
+                        </div>
+                        <div class="todays-whisper" onclick="toggleTodaysWhisper()">
+                            <div class="moon-container">
+                                <div class="moon-icon">🌙</div>
+                                <h3>Today's Whisper</h3>
+                            </div>
+                            <div class="whisper-collapsed">
+                                <p>Click to reveal your divine guidance for today</p>
+                            </div>
+                            <div class="whisper-expanded">
+                                <div class="whisper-poem">
+                                    <div class="poem-chinese">
+                                        天道酬勤志不移<br>
+                                        福星高照事如意<br>
+                                        心誠則靈求必應<br>
+                                        前程似錦步步高
+                                    </div>
+                                    <div class="poem-english">
+                                        "Heaven rewards the diligent whose will remains unchanged,<br>
+                                        Fortune shines upon you, all affairs go as wished,<br>
+                                        Sincere hearts find divine response to their prayers,<br>
+                                        Your future is bright like brocade, ascending step by step."
+                                    </div>
+                                </div>
+                                <button class="try-now-btn" onclick="event.stopPropagation(); goToPoems()">Try Reading Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- POEM PAGE - Choose your belief first, then fortune grid, then analysis -->
+        <div id="poem-section" class="section">
+            <div class="page-content">
+                <!-- Step 1: Choose Your Belief Section -->
+                <div id="belief-selection" class="poem-sub-section active">
+                    <div class="belief-section">
+                        <div class="belief-content">
+                            <h2>Choose your belief</h2>
+                            <div class="belief-grid">
+                                <div class="belief-card" onclick="showFortuneGrid('Guan Yin', 'guanyin')">
+                                    <img src="Asset/GuanYin.jpg" alt="Guan Yin - Goddess of mercy" class="card-image">
+                                    <div class="belief-card-content">
+                                        <p>The Goddess</p>
+                                        <p>of</p>
+                                        <p>Mercy</p>
+                                        <h3>Guan Yin</h3>
+                                    </div>
+                                </div>
+                                <div class="belief-card" onclick="showFortuneGrid('Mazu', 'mazu')">
+                                    <img src="Asset/Mazu.png" alt="Mazu - Sea goddess" class="card-image">
+                                    <div class="belief-card-content">
+                                        <p>The Goddess</p>
+                                        <p>of</p>
+                                        <p>The sea</p>
+                                        <h3>Mazu</h3>
+                                    </div>
+                                </div>
+                                <div class="belief-card" onclick="showFortuneGrid('Guan Yu', 'guanyu')">
+                                    <img src="Asset/GuanYu.jpg" alt="Guan Yu - God of war and wealth" class="card-image">
+                                    <div class="belief-card-content">
+                                        <p>The God</p>
+                                        <p>of</p>
+                                        <p>War and Wealth</p>
+                                        <h3>Guan Yu</h3>
+                                    </div>
+                                </div>
+                                <div class="belief-card" onclick="showFortuneGrid('Yue Lao', 'yuelao')">
+                                    <img src="Asset/YueLao.png" alt="Yue Lao - God of marriage" class="card-image">
+                                    <div class="belief-card-content">
+                                        <p>The God</p>
+                                        <p>of</p>
+                                        <p>Marriage</p>
+                                        <h3>Yue Lao</h3>
+                                    </div>
+                                </div>
+                                <div class="belief-card" onclick="showFortuneGrid('Zhu sheng', 'zhusheng')">
+                                    <img src="Asset/The Goddess of Child Birth.jpg" alt="Zhu sheng - Goddess of Child Birth" class="card-image">
+                                    <div class="belief-card-content">
+                                        <p>The Goddess</p>
+                                        <p>of</p>
+                                        <p>Child Birth</p>
+                                        <h3>Zhu sheng</h3>
+                                    </div>
+                                </div>
+                                <div class="belief-card" onclick="showFortuneGrid('Asakusa', 'asakusa')">
+                                    <img src="Asset/Asakusa.jpg" alt="Asakusa - Buddhist Temple" class="card-image">
+                                    <div class="belief-card-content">
+                                        <p>Buddhist Temple</p>
+                                        <h3>Asakusa</h3>
+                                    </div>
+                                </div>
+                                <div class="belief-card" onclick="showFortuneGrid('ErawanShrine', 'erawanshrine')">
+                                    <img src="Asset/ErawanShrine.jpg" alt="Erawan Shrine - Buddhist Temple" class="card-image">
+                                    <div class="belief-card-content">
+                                        <p>Buddhist Temple</p>
+                                        <h3>Erawan Shrine</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Fortune Grid -->
+                <div id="fortune-grid-section" class="poem-sub-section">
+                    <div class="fortune-section active">
+                        <div class="fortune-content">
+                            <button class="back-btn" onclick="backToBelief()">← Back</button>
+                            <div class="deity-header">
+                                <img id="deity-wide-image" src="" alt="" class="deity-wide-image" style="display: none;">
+                                <h2 id="deity-title">The Guidance of Divinity</h2>
+                            </div>
+                            <p>Choose your fortune number</p>
+                            <div class="fortune-grid" id="fortune-grid">
+                                <!-- Generate 100 fortune cards -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Analysis Page -->
+                <div id="analysis-section" class="poem-sub-section">
+                    <div class="analysis-section active">
+                        <div class="analysis-main-container">
+                            <!-- Left Side: Poem Details -->
+                            <div class="poem-details-left">
+                                <div class="poem-card">
+                                    <button class="back-btn" onclick="backToGrid()">← Back</button>
+                                    <h2 id="poem-main-title" class="poem-title">第7首</h2>
+                                    <h3 id="poem-subtitle" class="poem-subtitle">Fortune 7</h3>
+                                    <div class="fortune-badge" id="fortune-badge">大吉</div>
+                                    
+                                    <div class="poem-content">
+                                        <div class="poem-body" id="poem-body">
+                                            一帆風順年年好<br>
+                                            萬事如意步步高<br>
+                                            家和萬事興旺盛<br>
+                                            財源廣進樂逍遙
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Side: Analysis + Chat -->
+                            <div class="analysis-right">
+                                <!-- Top Part: Analysis -->
+                                <div class="analysis-top">
+                                    <h3 class="analysis-heading">Divine Analysis</h3>
+                                    <div class="analysis-content-text" id="analysis-content">
+                                        This fortune speaks of harmony and prosperity in all aspects of life. The imagery of "smooth sailing" suggests that your current path is blessed and obstacles will be minimal. The emphasis on family harmony indicates that your relationships are a source of strength.
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Part: Chat Box -->
+                                <div class="chat-section">
+                                    <div class="chat-header">
+                                        <h4>Asking the Oracle Teacher</h4>
+                                        <div class="chat-subtitle">Get personalized insights about your fortune</div>
+                                    </div>
+                                    <div class="chat-messages" id="chat-messages">
+                                        <div class="message teacher-message">
+                                            <div class="message-avatar">🔮</div>
+                                            <div class="message-content">
+                                                Greetings, seeker. I am here to help you understand the deeper meanings of your fortune. What specific aspect of your life would you like guidance on?
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-input-container">
+                                        <input type="text" id="chat-input" placeholder="Ask about your fortune..." class="chat-input">
+                                        <button onclick="sendChatMessage()" class="chat-send-btn">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PURCHASE SECTION -->
+        <div id="purchase-section" class="section">
+            <div class="page-content">
+                <div class="purchase-section-new">
+                    <div class="purchase-container">
+                        <div class="purchase-left">
+                            <h2>Buy Divine Coin</h2>
+                            <p>Every Divine Coin gets you one fortune telling divination.</p>
+                            
+                            <div class="coin-packages-vertical">
+                                <div class="coin-package-item" onclick="selectPackage(5, 1)" data-coins="5" data-price="1">
+                                    <span class="package-badge">Perfect for trying</span>
+                                    <div class="package-header">
+                                        <span class="coin-count">5 Coins</span>
+                                    </div>
+                                    <div class="package-details">
+                                        <span class="package-price">$1</span>
+                                    </div>
+                                    <div class="package-rate">$1/time</div>
+                                </div>
+                                <div class="coin-package-item selected" onclick="selectPackage(25, 4)" data-coins="25" data-price="4">
+                                    <span class="package-badge">Most popular</span>
+                                    <div class="package-header">
+                                        <span class="coin-count">25 Coins</span>
+                                    </div>
+                                    <div class="package-details">
+                                        <span class="package-price">$4</span>
+                                    </div>
+                                    <div class="package-rate">$0.8/time</div>
+                                </div>
+                                <div class="coin-package-item" onclick="selectPackage(100, 10)" data-coins="100" data-price="10">
+                                    <span class="package-badge">Best value</span>
+                                    <div class="package-header">
+                                        <span class="coin-count">100 Coins</span>
+                                    </div>
+                                    <div class="package-details">
+                                        <span class="package-price">$10</span>
+                                    </div>
+                                    <div class="package-rate">$0.5/time</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-right">
+                            <div class="purchase-summary">
+                                <h3 id="selected-package">25 Coins</h3>
+                                <div class="summary-details">
+                                    <div class="summary-row">
+                                        <span>Coins to receive:</span>
+                                        <span id="coins-to-receive">25 Coins</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Coins after:</span>
+                                        <span id="coins-after">125 Coins</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Current coins:</span>
+                                        <span id="current-coins">100 Coins</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Coin currency rate:</span>
+                                        <span id="currency-rate">$0.8/time</span>
+                                    </div>
+                                </div>
+                                <button class="purchase-btn" onclick="completePurchase()">Purchase</button>
+                                <div class="policy-announcement">
+                                    <p><strong>Policy:</strong> All coin purchases are final and non-refundable. Coins do not expire and can be used anytime for divine fortune readings. By purchasing, you agree to our terms of service.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCOUNT SECTION -->
+        <div id="account-section" class="section">
+            <div class="page-content">
+                <div class="account-container">
+                    <h2 class="account-title">My Account</h2>
+                    
+                    <!-- Profile Information -->
+                    <div class="account-card">
+                        <h3 class="card-title">Profile Information</h3>
+                        <div class="profile-avatar">
+                            <div class="avatar-circle">
+                                <span class="avatar-text">JD</span>
+                            </div>
+                            <button class="edit-avatar-btn">Change Avatar</button>
+                        </div>
+                        
+                        <div class="profile-fields">
+                            <div class="field-row">
+                                <div class="field-group">
+                                    <label>Username</label>
+                                    <input type="text" value="DivineSeeker2024" readonly class="profile-input">
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                                <div class="field-group">
+                                    <label>Full Name</label>
+                                    <input type="text" value="John Dao" readonly class="profile-input">
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            
+                            <div class="field-row">
+                                <div class="field-group">
+                                    <label>Email</label>
+                                    <input type="email" value="john.dao@example.com" readonly class="profile-input">
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                                <div class="field-group">
+                                    <label>Phone</label>
+                                    <input type="tel" value="+1 (555) 123-4567" readonly class="profile-input">
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            
+                            <div class="field-row">
+                                <div class="field-group">
+                                    <label>Birth Date</label>
+                                    <input type="date" value="1990-03-15" readonly class="profile-input">
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                                <div class="field-group">
+                                    <label>Gender</label>
+                                    <select class="profile-input" disabled>
+                                        <option value="male" selected>Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="non-binary">Non-binary</option>
+                                        <option value="prefer-not-to-say">Prefer not to say</option>
+                                    </select>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            
+                            <div class="field-row">
+                                <div class="field-group full-width">
+                                    <label>Location</label>
+                                    <input type="text" value="San Francisco, CA, USA" readonly class="profile-input">
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            
+                            <div class="field-row">
+                                <div class="field-group full-width">
+                                    <label>Time Zone</label>
+                                    <select class="profile-input" disabled>
+                                        <option value="pst" selected>Pacific Standard Time (PST)</option>
+                                        <option value="est">Eastern Standard Time (EST)</option>
+                                        <option value="cst">Central Standard Time (CST)</option>
+                                        <option value="mst">Mountain Standard Time (MST)</option>
+                                    </select>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Status -->
+                    <div class="account-card">
+                        <h3 class="card-title">Account Status</h3>
+                        <div class="status-info">
+                            <div class="status-item">
+                                <span class="status-label">Current Balance</span>
+                                <span class="status-value balance">47 Coins</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Membership</span>
+                                <span class="status-value premium">Premium Member</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Member Since</span>
+                                <span class="status-value">January 2024</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Total Readings</span>
+                                <span class="status-value">127</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">This Month</span>
+                                <span class="status-value">3 readings</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Preferences -->
+                    <div class="account-card">
+                        <h3 class="card-title">Preferences</h3>
+                        <div class="preferences-grid">
+                            <div class="pref-item">
+                                <label class="pref-label">
+                                    <input type="checkbox" checked> Email Notifications
+                                </label>
+                            </div>
+                            <div class="pref-item">
+                                <label class="pref-label">
+                                    <input type="checkbox" checked> Fortune Reminders
+                                </label>
+                            </div>
+                            <div class="pref-item">
+                                <label class="pref-label">
+                                    <input type="checkbox"> Marketing Updates
+                                </label>
+                            </div>
+                            <div class="pref-item">
+                                <label class="pref-label">
+                                    <input type="checkbox" checked> Daily Wisdom
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Actions -->
+                    <div class="account-actions">
+                        <button class="save-btn">Save Changes</button>
+                        <button class="change-password-btn">Change Password</button>
+                        <button class="logout-btn">Log Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div id="contact-section" class="section">
+            <div class="page-content">
+                <div style="padding: 80px 40px; max-width: 1200px; margin: 0 auto;">
+                    <h2 style="color: #d4af37; font-size: 2.5rem; margin-bottom: 40px; text-align: center;">Contact Us</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px;">
+                        <!-- Contact Form -->
+                        <div style="background: rgba(0,0,0,0.3); padding: 40px; border-radius: 20px; border: 2px solid rgba(212, 175, 55, 0.2);">
+                            <h3 style="color: #d4af37; margin-bottom: 30px;">Send us a message</h3>
+                            <form>
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: #d4af37; margin-bottom: 5px;">Name</label>
+                                    <input type="text" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; color: #fff;">
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: #d4af37; margin-bottom: 5px;">Email</label>
+                                    <input type="email" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; color: #fff;">
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: #d4af37; margin-bottom: 5px;">Subject</label>
+                                    <input type="text" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; color: #fff;">
+                                </div>
+                                <div style="margin-bottom: 30px;">
+                                    <label style="display: block; color: #d4af37; margin-bottom: 5px;">Message</label>
+                                    <textarea style="width: 100%; height: 120px; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; color: #fff; resize: vertical;"></textarea>
+                                </div>
+                                <button type="submit" style="background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%); color: #000; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Send Message</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Contact Information -->
+                        <div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 40px; border-radius: 20px; border: 2px solid rgba(212, 175, 55, 0.2); margin-bottom: 30px;">
+                                <h3 style="color: #d4af37; margin-bottom: 30px;">Get in Touch</h3>
+                                <div style="margin-bottom: 20px;">
+                                    <div style="color: #d4af37; font-weight: bold; margin-bottom: 5px;">📧 Email</div>
+                                    <div>contact@divinewhispers.com</div>
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <div style="color: #d4af37; font-weight: bold; margin-bottom: 5px;">🕐 Business Hours</div>
+                                    <div>Monday - Friday: 9:00 AM - 6:00 PM</div>
+                                    <div>Saturday: 10:00 AM - 4:00 PM</div>
+                                    <div>Sunday: Closed</div>
+                                </div>
+                                <div>
+                                    <div style="color: #d4af37; font-weight: bold; margin-bottom: 5px;">🌍 Support Languages</div>
+                                    <div>English, 中文, 日本語</div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(0,0,0,0.3); padding: 40px; border-radius: 20px; border: 2px solid rgba(212, 175, 55, 0.2);">
+                                <h3 style="color: #d4af37; margin-bottom: 20px;">Frequently Asked Questions</h3>
+                                <div style="margin-bottom: 15px;">
+                                    <div style="color: #d4af37; font-weight: bold;">How do divine coins work?</div>
+                                    <div style="margin-top: 5px; line-height: 1.6;">Each coin provides access to one complete fortune reading including poem interpretation and personalized guidance.</div>
+                                </div>
+                                <div style="margin-bottom: 15px;">
+                                    <div style="color: #d4af37; font-weight: bold;">Are readings accurate?</div>
+                                    <div style="margin-top: 5px; line-height: 1.6;">Our system combines traditional wisdom with modern technology to provide meaningful insights for reflection.</div>
+                                </div>
+                                <div>
+                                    <div style="color: #d4af37; font-weight: bold;">Can I get a refund?</div>
+                                    <div style="margin-top: 5px; line-height: 1.6;">Divine coins are non-refundable, but we offer satisfaction guarantee with additional support if needed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current state tracking
+        let currentDeity = '';
+        let currentDeityKey = '';
+        let currentLanguage = 'US';
+        const languages = ['US', 'TW', 'JP'];
+
+        // Generate fortune grid
+        document.addEventListener('DOMContentLoaded', function() {
+            const grid = document.getElementById('fortune-grid');
+            if (grid) {
+                for (let i = 1; i <= 100; i++) {
+                    const card = document.createElement('div');
+                    card.className = 'fortune-card';
+                    card.textContent = i;
+                    card.onclick = () => showAnalysis(i);
+                    grid.appendChild(card);
+                }
+            }
+        });
+
+        // Navigation Functions
+        function showMainWebsite() {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('main-website').style.display = 'block';
+            document.getElementById('main-website').classList.add('active');
+        }
+
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => {
+                s.classList.remove('active');
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.main-nav a').forEach(a => {
+                a.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(section + '-section').classList.add('active');
+            document.getElementById('nav-' + section).classList.add('active');
+
+            // Reset POEM page to belief selection when navigating to POEM
+            if (section === 'poem') {
+                showPoemSubSection('belief-selection');
+            }
+        }
+
+        // POEM page sub-section navigation
+        function showPoemSubSection(subSection) {
+            // Hide all poem sub-sections
+            document.querySelectorAll('.poem-sub-section').forEach(s => {
+                s.classList.remove('active');
+            });
+            
+            // Show selected sub-section
+            document.getElementById(subSection).classList.add('active');
+        }
+
+        function showFortuneGrid(deityName, deityKey) {
+            currentDeity = deityName;
+            currentDeityKey = deityKey;
+            
+            // Update the title
+            document.getElementById('deity-title').textContent = `The Guidance of ${deityName} Divinity`;
+            
+            // Update deity wide image
+            const deityWideImage = document.getElementById('deity-wide-image');
+            const deityImageMap = {
+                'guanyu': 'Asset/GuanYu_W.jpg',
+                'guanyin': 'Asset/GuanYin_W.jpg',
+                'mazu': 'Asset/Mazu_W.png',
+                'yuelao': 'Asset/YueLao_W.png',
+                'zhusheng': 'Asset/The Goddess of Child Birth_W.jpg',
+                'asakusa': 'Asset/Asakusa_W.jpg',
+                'erawanshrine': 'Asset/ErawanShrine_W.jpg'
+            };
+            
+            if (deityImageMap[deityKey]) {
+                deityWideImage.src = deityImageMap[deityKey];
+                deityWideImage.alt = `${deityName} - Divine Guidance`;
+                deityWideImage.style.display = 'block';
+            } else {
+                deityWideImage.style.display = 'none';
+            }
+            
+            // Show fortune grid sub-section
+            showPoemSubSection('fortune-grid-section');
+        }
+
+        function showAnalysis(number) {
+            // Show analysis sub-section FIRST
+            showPoemSubSection('analysis-section');
+            
+            // Then update poem titles with new IDs (after elements are visible)
+            setTimeout(() => {
+                const mainTitle = document.getElementById('poem-main-title');
+                const subtitle = document.getElementById('poem-subtitle');
+                
+                if (mainTitle) mainTitle.textContent = `第${number}首`;
+                if (subtitle) subtitle.textContent = `Fortune ${number}`;
+            }, 10);
+        }
+
+        function backToBelief() {
+            showPoemSubSection('belief-selection');
+        }
+
+        function backToGrid() {
+            showPoemSubSection('fortune-grid-section');
+        }
+
+        function getDeepAnalysis() {
+            alert('Deep analysis feature will provide personalized insights based on your specific questions and current life situation.');
+        }
+
+        function selectPackage(coins, price) {
+            // Remove previous selection
+            document.querySelectorAll('.coin-package').forEach(p => {
+                p.classList.remove('selected');
+            });
+            
+            // Add selection to clicked package
+            event.currentTarget.classList.add('selected');
+            
+            // Show purchase confirmation
+            setTimeout(() => {
+                if (confirm(`Purchase ${coins} coins for $${price}?`)) {
+                    alert('Thank you for your purchase! Your divine coins have been added to your account.');
+                }
+            }, 200);
+        }
+
+        // Today's Whisper expand/collapse functionality
+        function toggleTodaysWhisper() {
+            const whisper = document.querySelector('.todays-whisper');
+            whisper.classList.toggle('expanded');
+        }
+
+        function goToPoems() {
+            showSection('poem');
+        }
+
+        // Add floating animation to wood sticks
+        document.addEventListener('DOMContentLoaded', function() {
+            const sticks = document.querySelectorAll('.stick');
+            sticks.forEach((stick, index) => {
+                const rotation = [15, -8, 22, -12, 18][index];
+                stick.style.setProperty('--rotation', rotation + 'deg');
+            });
+        });
+
+        // Language switching functionality
+        function switchLanguage() {
+            const currentIndex = languages.indexOf(currentLanguage);
+            const nextIndex = (currentIndex + 1) % languages.length;
+            currentLanguage = languages[nextIndex];
+            
+            // Update language display
+            const langFlag = currentLanguage === 'US' ? '🌐' : currentLanguage === 'TW' ? '🇹🇼' : '🇯🇵';
+            const displayText = `${langFlag} ${currentLanguage} ▼`;
+            
+            // Update both language selectors (landing and main website)
+            const landingLang = document.getElementById('landing-lang-display');
+            const mainLang = document.getElementById('lang-display');
+            
+            if (landingLang) landingLang.textContent = displayText;
+            if (mainLang) mainLang.textContent = displayText;
+            
+            // Here you would typically update all text content based on selected language
+            updateContentLanguage(currentLanguage);
+        }
+
+        function updateContentLanguage(lang) {
+            // This function would update all text content based on selected language
+            // For demonstration, we'll just show an alert
+            const messages = {
+                'US': 'Language switched to English (US)',
+                'TW': 'Language switched to Traditional Chinese (Taiwan)',
+                'JP': 'Language switched to Japanese'
+            };
+            
+            // In a real implementation, you would update all text elements
+            console.log(messages[lang]);
+        }
+
+        // Chat functionality
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addChatMessage(message, 'user');
+            
+            // Clear input
+            input.value = '';
+            
+            // Simulate teacher response after a delay
+            setTimeout(() => {
+                const response = generateTeacherResponse(message);
+                addChatMessage(response, 'teacher');
+            }, 1000);
+        }
+
+        function addChatMessage(content, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const avatar = sender === 'teacher' ? '🔮' : '👤';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function generateTeacherResponse(userMessage) {
+            const responses = [
+                "The cosmic energies surrounding your fortune suggest that patience will be your greatest virtue in the coming days.",
+                "Your question touches the heart of this divination. The symbols speak of transformation and new opportunities ahead.",
+                "The ancient wisdom contained in this poem reveals layers of meaning. Focus on the balance between action and contemplation.",
+                "This fortune carries the essence of prosperity, but remember that true wealth comes from inner harmony first.",
+                "The divine message here emphasizes the importance of family and community in your spiritual journey.",
+                "Your inquiry shows deep spiritual awareness. The fortune suggests that timing is crucial for your next steps."
+            ];
+            
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Allow Enter key to send message
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chat-input');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendChatMessage();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -19,7 +19,12 @@
       "mcp__playwright__browser_press_key",
       "mcp__playwright__browser_close",
       "Bash(cat:*)",
-      "Read(/C:\\Users\\KaiJu\\Desktop\\WorkSpace\\My_Self/**)"
+      "Read(/C:\\Users\\KaiJu\\Desktop\\WorkSpace\\My_Self/**)",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_handle_dialog",
+      "mcp__playwright__browser_evaluate",
+      "Read(C:\\Users\\KaiJu\\Desktop/**)",
+      "mcp__playwright__browser_type"
     ],
     "deny": [],
     "ask": [],
