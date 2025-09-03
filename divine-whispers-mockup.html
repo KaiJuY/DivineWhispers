@@ -1078,7 +1078,6 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            z-index: 9999;
             font-size: 14px;
         }
 
@@ -1853,6 +1852,149 @@
             accent-color: #d4af37;
         }
 
+        /* Purchase Records & Analysis Reports */
+        .records-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .record-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .record-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .record-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .record-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .record-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .record-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .record-amount {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .record-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .record-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .status-completed {
+            background: rgba(52, 199, 89, 0.2);
+            color: #34c759;
+            border: 1px solid rgba(52, 199, 89, 0.3);
+        }
+
+        .status-pending {
+            background: rgba(255, 149, 0, 0.2);
+            color: #ff9500;
+            border: 1px solid rgba(255, 149, 0, 0.3);
+        }
+
+        .analysis-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .analysis-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .analysis-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .analysis-title {
+            color: #d4af37;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .analysis-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+        }
+
+        .analysis-meta {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .analysis-action {
+            color: #d4af37;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .analysis-action:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
         .account-actions {
             display: flex;
             justify-content: center;
@@ -2273,22 +2415,12 @@
                                     <input type="text" value="DivineSeeker2024" readonly class="profile-input">
                                     <button class="edit-btn">✏️</button>
                                 </div>
-                                <div class="field-group">
-                                    <label>Full Name</label>
-                                    <input type="text" value="John Dao" readonly class="profile-input">
-                                    <button class="edit-btn">✏️</button>
-                                </div>
                             </div>
                             
                             <div class="field-row">
                                 <div class="field-group">
                                     <label>Email</label>
                                     <input type="email" value="john.dao@example.com" readonly class="profile-input">
-                                    <button class="edit-btn">✏️</button>
-                                </div>
-                                <div class="field-group">
-                                    <label>Phone</label>
-                                    <input type="tel" value="+1 (555) 123-4567" readonly class="profile-input">
                                     <button class="edit-btn">✏️</button>
                                 </div>
                             </div>
@@ -2319,18 +2451,6 @@
                                 </div>
                             </div>
                             
-                            <div class="field-row">
-                                <div class="field-group full-width">
-                                    <label>Time Zone</label>
-                                    <select class="profile-input" disabled>
-                                        <option value="pst" selected>Pacific Standard Time (PST)</option>
-                                        <option value="est">Eastern Standard Time (EST)</option>
-                                        <option value="cst">Central Standard Time (CST)</option>
-                                        <option value="mst">Mountain Standard Time (MST)</option>
-                                    </select>
-                                    <button class="edit-btn">✏️</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     
@@ -2350,40 +2470,114 @@
                                 <span class="status-label">Member Since</span>
                                 <span class="status-value">January 2024</span>
                             </div>
-                            <div class="status-item">
-                                <span class="status-label">Total Readings</span>
-                                <span class="status-value">127</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Purchase Records -->
+                    <div class="account-card">
+                        <h3 class="card-title">Recent Purchase Records</h3>
+                        <div class="records-list">
+                            <div class="record-item">
+                                <div class="record-left">
+                                    <div class="record-title">Premium Coin Package</div>
+                                    <div class="record-subtitle">50 Divine Coins</div>
+                                </div>
+                                <div class="record-right">
+                                    <div class="record-amount">$19.99</div>
+                                    <div class="record-date">Dec 28, 2024</div>
+                                    <div class="record-status status-completed">Completed</div>
+                                </div>
                             </div>
-                            <div class="status-item">
-                                <span class="status-label">This Month</span>
-                                <span class="status-value">3 readings</span>
+                            <div class="record-item">
+                                <div class="record-left">
+                                    <div class="record-title">Standard Coin Package</div>
+                                    <div class="record-subtitle">25 Divine Coins</div>
+                                </div>
+                                <div class="record-right">
+                                    <div class="record-amount">$9.99</div>
+                                    <div class="record-date">Dec 15, 2024</div>
+                                    <div class="record-status status-completed">Completed</div>
+                                </div>
+                            </div>
+                            <div class="record-item">
+                                <div class="record-left">
+                                    <div class="record-title">Basic Coin Package</div>
+                                    <div class="record-subtitle">10 Divine Coins</div>
+                                </div>
+                                <div class="record-right">
+                                    <div class="record-amount">$4.99</div>
+                                    <div class="record-date">Dec 08, 2024</div>
+                                    <div class="record-status status-completed">Completed</div>
+                                </div>
+                            </div>
+                            <div class="record-item">
+                                <div class="record-left">
+                                    <div class="record-title">Premium Coin Package</div>
+                                    <div class="record-subtitle">50 Divine Coins</div>
+                                </div>
+                                <div class="record-right">
+                                    <div class="record-amount">$19.99</div>
+                                    <div class="record-date">Nov 30, 2024</div>
+                                    <div class="record-status status-completed">Completed</div>
+                                </div>
+                            </div>
+                            <div class="record-item">
+                                <div class="record-left">
+                                    <div class="record-title">Standard Coin Package</div>
+                                    <div class="record-subtitle">25 Divine Coins</div>
+                                </div>
+                                <div class="record-right">
+                                    <div class="record-amount">$9.99</div>
+                                    <div class="record-date">Nov 22, 2024</div>
+                                    <div class="record-status status-completed">Completed</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Preferences -->
+                    <!-- My Analysis Reports -->
                     <div class="account-card">
-                        <h3 class="card-title">Preferences</h3>
-                        <div class="preferences-grid">
-                            <div class="pref-item">
-                                <label class="pref-label">
-                                    <input type="checkbox" checked> Email Notifications
-                                </label>
+                        <h3 class="card-title">My Analysis Reports</h3>
+                        <div class="records-list">
+                            <div class="analysis-item" onclick="viewAnalysisReport('guan-yin-2024-12-28')">
+                                <div class="analysis-info">
+                                    <div class="analysis-title">Guan Yin Divine Guidance - Fortune #27</div>
+                                    <div class="analysis-subtitle">"天道酬勤志不移，福星高照事如意" - Career & Life Path Analysis</div>
+                                    <div class="analysis-meta">Generated on Dec 28, 2024 • 2,340 words • Deep Analysis</div>
+                                </div>
+                                <div class="analysis-action">View Report</div>
                             </div>
-                            <div class="pref-item">
-                                <label class="pref-label">
-                                    <input type="checkbox" checked> Fortune Reminders
-                                </label>
+                            <div class="analysis-item" onclick="viewAnalysisReport('mazu-2024-12-20')">
+                                <div class="analysis-info">
+                                    <div class="analysis-title">Mazu Sea Goddess - Fortune #83</div>
+                                    <div class="analysis-subtitle">"風平浪靜渡難關，順水推舟到彼岸" - Relationship & Emotional Guidance</div>
+                                    <div class="analysis-meta">Generated on Dec 20, 2024 • 1,890 words • Deep Analysis</div>
+                                </div>
+                                <div class="analysis-action">View Report</div>
                             </div>
-                            <div class="pref-item">
-                                <label class="pref-label">
-                                    <input type="checkbox"> Marketing Updates
-                                </label>
+                            <div class="analysis-item" onclick="viewAnalysisReport('guan-yu-2024-12-15')">
+                                <div class="analysis-info">
+                                    <div class="analysis-title">Guan Yu War God - Fortune #42</div>
+                                    <div class="analysis-subtitle">"刀山火海不足懼，勇者無敵立功名" - Business & Financial Analysis</div>
+                                    <div class="analysis-meta">Generated on Dec 15, 2024 • 2,120 words • Deep Analysis</div>
+                                </div>
+                                <div class="analysis-action">View Report</div>
                             </div>
-                            <div class="pref-item">
-                                <label class="pref-label">
-                                    <input type="checkbox" checked> Daily Wisdom
-                                </label>
+                            <div class="analysis-item" onclick="viewAnalysisReport('yue-lao-2024-12-10')">
+                                <div class="analysis-info">
+                                    <div class="analysis-title">Yue Lao Marriage God - Fortune #91</div>
+                                    <div class="analysis-subtitle">"紅線牽動有緣人，月老祝福結良緣" - Love & Marriage Guidance</div>
+                                    <div class="analysis-meta">Generated on Dec 10, 2024 • 1,650 words • Deep Analysis</div>
+                                </div>
+                                <div class="analysis-action">View Report</div>
+                            </div>
+                            <div class="analysis-item" onclick="viewAnalysisReport('asakusa-2024-12-05')">
+                                <div class="analysis-info">
+                                    <div class="analysis-title">Asakusa Buddhist Temple - Fortune #18</div>
+                                    <div class="analysis-subtitle">"佛光普照眾生心，慈悲為懷渡有情" - Spiritual & Personal Growth</div>
+                                    <div class="analysis-meta">Generated on Dec 5, 2024 • 2,050 words • Deep Analysis</div>
+                                </div>
+                                <div class="analysis-action">View Report</div>
                             </div>
                         </div>
                     </div>
@@ -2477,6 +2671,12 @@
         let currentDeityKey = '';
         let currentLanguage = 'US';
         const languages = ['US', 'TW', 'JP'];
+        
+        // View analysis report function
+        function viewAnalysisReport(reportId) {
+            // In a real application, this would fetch and display the full report
+            alert(`Opening analysis report: ${reportId}\n\nIn a real application, this would navigate to the full detailed analysis report with:\n• Complete fortune interpretation\n• Personalized insights\n• Action recommendations\n• Historical context\n• Multi-language translations`);
+        }
 
         // Generate fortune grid
         document.addEventListener('DOMContentLoaded', function() {
