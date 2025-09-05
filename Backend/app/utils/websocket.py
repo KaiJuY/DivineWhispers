@@ -157,6 +157,50 @@ class WebSocketManager:
             "timestamp": datetime.utcnow().isoformat()
         }
         return await self.send_personal_message(message, user_id)
+    
+    # Chat-specific WebSocket methods
+    
+    async def send_chat_message(self, user_id: str, session_id: int, message_data: dict):
+        """Send chat message to user"""
+        message = {
+            "type": "chat_message",
+            "session_id": session_id,
+            "data": message_data,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        return await self.send_personal_message(message, user_id)
+    
+    async def send_chat_typing_indicator(self, user_id: str, session_id: int, is_typing: bool):
+        """Send typing indicator for chat"""
+        message = {
+            "type": "chat_typing",
+            "session_id": session_id,
+            "data": {"is_typing": is_typing},
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        return await self.send_personal_message(message, user_id)
+    
+    async def send_chat_response_stream(self, user_id: str, session_id: int, chunk: str, is_complete: bool = False):
+        """Send streaming chat response chunk"""
+        message = {
+            "type": "chat_response_stream",
+            "session_id": session_id,
+            "data": {
+                "chunk": chunk,
+                "is_complete": is_complete
+            },
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        return await self.send_personal_message(message, user_id)
+    
+    async def send_chat_session_update(self, user_id: str, session_data: dict):
+        """Send chat session update"""
+        message = {
+            "type": "chat_session_update", 
+            "data": session_data,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        return await self.send_personal_message(message, user_id)
 
 
 # Global WebSocket manager instance

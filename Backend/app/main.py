@@ -140,19 +140,102 @@ async def root():
     }
 
 
-# WebSocket endpoint for real-time notifications
+# WebSocket endpoint for real-time notifications and chat
 @app.websocket("/ws/{user_id}")
 async def websocket_endpoint(websocket, user_id: str):
-    """WebSocket endpoint for real-time user notifications"""
+    """WebSocket endpoint for real-time user notifications and chat"""
     await websocket_manager.connect(websocket, user_id)
     try:
         while True:
             # Keep connection alive and handle incoming messages
             data = await websocket.receive_text()
-            # Echo back for testing (can be removed in production)
-            await websocket_manager.send_personal_message(
-                f"Message received: {data}", user_id
-            )
+            
+            try:
+                # Parse incoming message
+                import json
+                message = json.loads(data)
+                message_type = message.get("type", "unknown")
+                
+                if message_type == "chat_message":
+                    # Handle incoming chat message
+                    from app.services.chat_service import chat_service
+                    from app.models.chat_message import MessageType
+                    from app.schemas.chat import ChatMessageCreate
+                    from app.core.database import get_db
+                    
+                    # Get database session
+                    async with get_db() as db:
+                        try:
+                            session_id = message.get("session_id")
+                            content = message.get("content", "")
+                            
+                            if session_id and content:
+                                # Send typing indicator
+                                await websocket_manager.send_chat_typing_indicator(
+                                    user_id, session_id, True
+                                )
+                                
+                                # Generate streaming response
+                                full_response = ""
+                                async for chunk in chat_service.generate_fortune_response(
+                                    session_id=session_id,
+                                    user_message=content,
+                                    user_id=int(user_id),
+                                    db=db
+                                ):
+                                    full_response += chunk + " "
+                                    await websocket_manager.send_chat_response_stream(
+                                        user_id, session_id, chunk, False
+                                    )
+                                
+                                # Send completion signal
+                                await websocket_manager.send_chat_response_stream(
+                                    user_id, session_id, "", True
+                                )
+                                
+                                # Save assistant response to database
+                                assistant_message_data = ChatMessageCreate(
+                                    content=full_response.strip(),
+                                    metadata={"generated_via": "websocket"}
+                                )
+                                
+                                await chat_service.add_message(
+                                    session_id=session_id,
+                                    user_id=int(user_id),
+                                    message_data=assistant_message_data,
+                                    message_type=MessageType.ASSISTANT,
+                                    db=db
+                                )
+                                
+                                # Turn off typing indicator
+                                await websocket_manager.send_chat_typing_indicator(
+                                    user_id, session_id, False
+                                )
+                                
+                        except Exception as e:
+                            logger.error(f"Error processing chat message: {e}")
+                            await websocket_manager.send_error_notification(
+                                user_id, "Failed to process your message"
+                            )
+                
+                elif message_type == "ping":
+                    # Handle ping/pong for connection health
+                    await websocket_manager.send_personal_message(
+                        {"type": "pong", "timestamp": data.get("timestamp")}, user_id
+                    )
+                
+                else:
+                    # Echo back for other message types
+                    await websocket_manager.send_personal_message(
+                        f"Message received: {data}", user_id
+                    )
+                    
+            except json.JSONDecodeError:
+                # Handle non-JSON messages (legacy support)
+                await websocket_manager.send_personal_message(
+                    f"Message received: {data}", user_id
+                )
+                
     except Exception as e:
         logger.error(f"WebSocket error for user {user_id}: {str(e)}")
     finally:
@@ -160,11 +243,14 @@ async def websocket_endpoint(websocket, user_id: str):
 
 
 # Include API routers
-from app.api.v1 import auth, admin, fortune, wallet
+from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Administration"]) 
 app.include_router(fortune.router, prefix="/api/v1", tags=["Fortune"])
 app.include_router(wallet.router, prefix="/api/v1", tags=["Wallet"])
+app.include_router(deities.router, prefix="/api/v1", tags=["Deities"])
+app.include_router(chat.router, prefix="/api/v1", tags=["Chat"])
+app.include_router(contact.router, prefix="/api/v1", tags=["Contact"])
 
 
 if __name__ == "__main__":

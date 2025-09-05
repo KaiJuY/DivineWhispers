@@ -21,7 +21,8 @@ from app.schemas.auth import (
     PasswordReset,
     PasswordResetConfirm,
     MessageResponse,
-    AuthErrorResponse
+    AuthErrorResponse,
+    UserProfileUpdate
 )
 
 # Create router
@@ -352,4 +353,117 @@ async def cleanup_expired_tokens(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Token cleanup failed due to server error"
+        )
+
+
+# Profile Management Endpoints
+
+@router.get(
+    "/profile",
+    response_model=UserResponse,
+    summary="Get user profile",
+    description="Get current user's profile information",
+    responses={
+        200: {"description": "User profile retrieved successfully"},
+        401: {"description": "Authentication required"}
+    }
+)
+async def get_user_profile(
+    current_user = Depends(get_current_user)
+):
+    """Get user profile information"""
+    return UserResponse.from_orm(current_user)
+
+
+@router.put(
+    "/profile", 
+    response_model=UserResponse,
+    summary="Update user profile",
+    description="Update current user's profile information",
+    responses={
+        200: {"description": "Profile updated successfully"},
+        401: {"description": "Authentication required"},
+        400: {"description": "Invalid profile data"}
+    }
+)
+async def update_user_profile(
+    profile_update: UserProfileUpdate,
+    db: AsyncSession = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    """Update user profile information"""
+    try:
+        updated_user = await AuthService.update_user_profile(
+            user_id=current_user.id,
+            profile_data=profile_update,
+            db=db
+        )
+        
+        if not updated_user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Profile update failed"
+            )
+        
+        return UserResponse.from_orm(updated_user)
+        
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Profile update failed due to server error"
+        )
+
+
+@router.get(
+    "/profile/reports",
+    summary="Get user fortune reports", 
+    description="Get current user's fortune consultation history and reports",
+    responses={
+        200: {"description": "Reports retrieved successfully"},
+        401: {"description": "Authentication required"}
+    }
+)
+async def get_user_reports(
+    limit: int = 10,
+    offset: int = 0,
+    current_user = Depends(get_current_user)
+):
+    """Get user's fortune consultation reports"""
+    # This endpoint integrates with the fortune history
+    from app.services.job_processor import job_processor
+    
+    try:
+        jobs = await job_processor.get_user_jobs(
+            user_id=str(current_user.id),
+            limit=limit,
+            offset=offset
+        )
+        
+        reports = []
+        for job_data in jobs:
+            if job_data.get("status") == "completed" and job_data.get("result_data"):
+                reports.append({
+                    "id": job_data["id"],
+                    "created_at": job_data["created_at"],
+                    "type": job_data.get("job_type", "fortune"),
+                    "title": f"Fortune Reading #{job_data['id'][:8]}",
+                    "summary": job_data.get("result_data", {}).get("interpretation", "")[:200] + "...",
+                    "status": job_data["status"]
+                })
+        
+        return {
+            "reports": reports,
+            "total_count": len(reports),
+            "has_more": len(jobs) == limit
+        }
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to retrieve reports"
         )

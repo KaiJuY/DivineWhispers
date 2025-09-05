@@ -249,3 +249,29 @@ class MessageResponse(BaseModel):
                 "success": True
             }
         }
+
+
+class UserProfileUpdate(BaseModel):
+    """User profile update request schema"""
+    email: Optional[EmailStr] = Field(None, description="Updated email address")
+    full_name: Optional[str] = Field(None, max_length=100, description="User's full name")
+    phone: Optional[str] = Field(None, max_length=20, description="Phone number")
+    birth_date: Optional[str] = Field(None, description="Birth date (YYYY-MM-DD format)")
+    location: Optional[str] = Field(None, max_length=100, description="User location")
+    preferred_language: Optional[str] = Field(None, max_length=10, description="Preferred language (zh, en, jp)")
+    notification_preferences: Optional[dict] = Field(None, description="Notification preferences")
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "full_name": "John Doe",
+                "phone": "+1234567890",
+                "birth_date": "1990-01-01",
+                "location": "New York, USA",
+                "preferred_language": "en",
+                "notification_preferences": {
+                    "email_notifications": True,
+                    "push_notifications": False
+                }
+            }
+        }

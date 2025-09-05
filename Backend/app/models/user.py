@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .wallet import Wallet
     from .job import Job
     from .audit_log import AuditLog
+    from .chat_message import ChatSession
 
 
 class UserRole(enum.Enum):
@@ -95,6 +96,13 @@ class User(BaseModel):
     
     audit_logs: Mapped[List["AuditLog"]] = relationship(
         "AuditLog",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        lazy="select"
+    )
+    
+    chat_sessions: Mapped[List["ChatSession"]] = relationship(
+        "ChatSession",
         back_populates="user",
         cascade="all, delete-orphan",
         lazy="select"

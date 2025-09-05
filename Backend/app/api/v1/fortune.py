@@ -29,6 +29,7 @@ from app.schemas.fortune import (
 from app.services.poem_service import poem_service
 from app.services.wallet_service import wallet_service
 from app.utils.deps import get_current_user, get_current_admin_user
+from app.services.deity_service import deity_service
 
 
 logger = logging.getLogger(__name__)
@@ -543,5 +544,141 @@ async def check_fortune_system_health(
     except Exception as e:
         logger.error(f"Error checking system health: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
+
+
+# Deity-based Fortune Endpoints (Synchronous for UI compatibility)
+
+@router.get("/fortunes/{deity_id}/numbers")
+async def get_deity_fortune_numbers(deity_id: str):
+    """
+    Get available fortune numbers for a specific deity (1-100 grid)
+    This is a convenience endpoint that wraps the deity service
+    """
+    try:
+        numbers_data = await deity_service.get_deity_fortune_numbers(deity_id)
+        
+        if not numbers_data:
+            raise HTTPException(status_code=404, detail="Deity not found or no fortunes available")
+        
+        return numbers_data
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting fortune numbers for deity {deity_id}: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+
+@router.get("/fortunes/{deity_id}/{number}")
+async def get_deity_fortune_by_number(deity_id: str, number: int):
+    """
+    Get a specific fortune by deity and number (synchronous for UI compatibility)
+    This provides immediate fortune data without async job processing
+    """
+    try:
+        if not (1 <= number <= 100):
+            raise HTTPException(status_code=400, detail="Fortune number must be between 1 and 100")
+        
+        # Get temple name from deity mapping
+        temple_name = deity_service.get_temple_name(deity_id)
+        if not temple_name:
+            raise HTTPException(status_code=404, detail="Deity not found")
+        
+        # Get the specific poem by temple and number
+        poem_id = f"{temple_name}_{number}"
+        poem_data = await poem_service.get_poem_by_id(poem_id)
+        
+        if not poem_data:
+            raise HTTPException(status_code=404, detail="Fortune not found for this deity and number")
+        
+        # Return the poem data directly (synchronous response)
+        return {
+            "deity_id": deity_id,
+            "deity_name": deity_service.deity_info[deity_id]["name"],
+            "number": number,
+            "poem": {
+                "id": poem_data.id,
+                "temple": poem_data.temple,
+                "title": poem_data.title,
+                "fortune": poem_data.fortune,
+                "poem": poem_data.poem,
+                "analysis": poem_data.analysis
+            },
+            "temple_source": temple_name
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting fortune {number} for deity {deity_id}: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+
+@router.get("/fortune/daily")
+async def get_daily_fortune():
+    """
+    Get today's daily fortune (free endpoint, no auth required)
+    Returns a randomly selected fortune that changes daily
+    """
+    try:
+        import hashlib
+        from datetime import date
+        
+        # Create deterministic seed based on today's date
+        today = date.today().isoformat()
+        seed_hash = hashlib.md5(today.encode()).hexdigest()
+        seed = int(seed_hash[:8], 16) % 1000
+        
+        # Use seed to select a consistent daily fortune
+        import random
+        random.seed(seed)
+        
+        # Get random deity and number for today
+        deity_ids = list(deity_service.deity_info.keys())
+        daily_deity_id = random.choice(deity_ids)
+        daily_number = random.randint(1, 100)
+        
+        # Get the fortune
+        temple_name = deity_service.get_temple_name(daily_deity_id)
+        poem_id = f"{temple_name}_{daily_number}"
+        poem_data = await poem_service.get_poem_by_id(poem_id)
+        
+        if not poem_data:
+            # Fallback to random poem if specific number not found
+            poem_data = await poem_service.get_random_poem(temple_name)
+            daily_number = poem_data.poem_id
+        
+        return {
+            "date": today,
+            "deity_id": daily_deity_id,
+            "deity_name": deity_service.deity_info[daily_deity_id]["name"],
+            "number": daily_number,
+            "poem": {
+                "id": poem_data.id,
+                "title": poem_data.title,
+                "fortune": poem_data.fortune,
+                "poem": poem_data.poem,
+                "analysis": poem_data.analysis.get("zh", "") or poem_data.analysis.get("en", "")
+            },
+            "message": "Today's guidance from the divine"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting daily fortune: {e}")
+        # Return fallback daily fortune
+        return {
+            "date": date.today().isoformat(),
+            "deity_id": "guan_yin",
+            "deity_name": "Guan Yin",
+            "number": 1,
+            "poem": {
+                "id": "fallback_1",
+                "title": "Daily Wisdom",
+                "fortune": "good_fortune",
+                "poem": "The path of wisdom unfolds with each step taken mindfully.",
+                "analysis": "Today brings opportunities for growth and reflection. Trust in your inner guidance."
+            },
+            "message": "Today's guidance from the divine"
+        }
 
 

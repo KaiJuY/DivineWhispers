@@ -444,3 +444,54 @@ class AuthService:
     async def cleanup_expired_tokens(db: AsyncSession) -> int:
         """Clean up expired blacklisted tokens"""
         return await SecurityManager.cleanup_expired_tokens(db)
+    
+    @staticmethod
+    async def update_user_profile(
+        user_id: int,
+        profile_data,  # UserProfileUpdate type
+        db: AsyncSession
+    ) -> Optional[User]:
+        """Update user profile information"""
+        # Get user
+        result = await db.execute(
+            select(User).where(User.user_id == user_id)
+        )
+        user = result.scalar_one_or_none()
+        
+        if not user:
+            return None
+        
+        # Update only provided fields
+        update_fields = profile_data.dict(exclude_unset=True)
+        
+        for field, value in update_fields.items():
+            if field == "email" and value != user.email:
+                # Check if new email is already taken
+                existing_result = await db.execute(
+                    select(User).where(User.email == value)
+                )
+                existing_user = existing_result.scalar_one_or_none()
+                if existing_user and existing_user.user_id != user_id:
+                    raise ValueError("Email address is already in use")
+            
+            # Handle special fields
+            if field == "birth_date" and value:
+                try:
+                    from datetime import datetime
+                    datetime.strptime(value, "%Y-%m-%d")
+                except ValueError:
+                    raise ValueError("Invalid birth_date format. Use YYYY-MM-DD")
+            
+            if field == "preferred_language" and value:
+                if value not in ["zh", "en", "jp"]:
+                    raise ValueError("Invalid preferred_language. Must be one of: zh, en, jp")
+            
+            # Update the field
+            if hasattr(user, field):
+                setattr(user, field, value)
+        
+        # Save changes
+        await db.commit()
+        await db.refresh(user)
+        
+        return user

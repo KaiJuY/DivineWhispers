@@ -496,3 +496,201 @@ async def wallet_health_check(
             "error": str(e),
             "timestamp": datetime.utcnow().isoformat()
         }
+
+
+# Coin Purchase System
+
+@router.get("/packages")
+async def get_coin_packages():
+    """Get available coin purchase packages"""
+    packages = [
+        {
+            "id": "starter_pack",
+            "name": "Starter Pack",
+            "coins": 50,
+            "price_usd": 4.99,
+            "bonus_coins": 0,
+            "description": "Perfect for trying out fortune readings",
+            "popular": False
+        },
+        {
+            "id": "value_pack", 
+            "name": "Value Pack",
+            "coins": 120,
+            "price_usd": 9.99,
+            "bonus_coins": 20,
+            "description": "Most popular choice with bonus coins",
+            "popular": True
+        },
+        {
+            "id": "premium_pack",
+            "name": "Premium Pack", 
+            "coins": 300,
+            "price_usd": 19.99,
+            "bonus_coins": 80,
+            "description": "Best value for frequent users",
+            "popular": False
+        },
+        {
+            "id": "mega_pack",
+            "name": "Mega Pack",
+            "coins": 650,
+            "price_usd": 39.99,
+            "bonus_coins": 200,
+            "description": "Ultimate package for dedicated users",
+            "popular": False
+        }
+    ]
+    
+    return {
+        "packages": packages,
+        "currency": "USD",
+        "payment_methods": ["credit_card", "paypal", "apple_pay", "google_pay"]
+    }
+
+
+@router.post("/purchase")
+async def initiate_coin_purchase(
+    package_id: str,
+    payment_method: str,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_database_session)
+):
+    """Initiate coin package purchase"""
+    try:
+        # Get package details
+        packages_response = await get_coin_packages()
+        package = next((p for p in packages_response["packages"] if p["id"] == package_id), None)
+        
+        if not package:
+            raise HTTPException(status_code=404, detail="Package not found")
+        
+        if payment_method not in packages_response["payment_methods"]:
+            raise HTTPException(status_code=400, detail="Invalid payment method")
+        
+        # Create pending purchase record (placeholder)
+        purchase_id = f"purchase_{current_user.user_id}_{datetime.utcnow().timestamp()}"
+        
+        # In a real implementation, you would:
+        # 1. Create payment session with Stripe/PayPal
+        # 2. Store purchase intent in database
+        # 3. Return payment URL/token for frontend
+        
+        return {
+            "purchase_id": purchase_id,
+            "package": package,
+            "payment_method": payment_method,
+            "total_amount": package["price_usd"],
+            "status": "pending",
+            # Mock payment URL for testing
+            "payment_url": f"https://mock-payment.example.com/pay/{purchase_id}",
+            "expires_at": (datetime.utcnow().timestamp() + 1800),  # 30 minutes
+            "message": "Please complete payment to receive your coins"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error initiating purchase for user {current_user.user_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to initiate purchase")
+
+
+@router.post("/purchase/{purchase_id}/complete")
+async def complete_coin_purchase(
+    purchase_id: str,
+    payment_confirmation: dict,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_database_session)
+):
+    """Complete coin purchase after successful payment"""
+    try:
+        # In a real implementation, you would:
+        # 1. Verify payment with payment provider
+        # 2. Check purchase record exists and belongs to user
+        # 3. Add coins to user wallet
+        # 4. Create transaction record
+        
+        # Mock successful purchase completion
+        wallet_service = WalletService(db)
+        
+        # For demo purposes, assume successful payment for 120 coins (Value Pack)
+        coins_purchased = 120
+        bonus_coins = 20
+        total_coins = coins_purchased + bonus_coins
+        
+        # Add coins to wallet
+        transaction = await wallet_service.credit_points(
+            user_id=current_user.user_id,
+            amount=total_coins,
+            description=f"Coin purchase: {coins_purchased} + {bonus_coins} bonus",
+            transaction_metadata={
+                "purchase_id": purchase_id,
+                "payment_method": payment_confirmation.get("method", "credit_card"),
+                "package_type": "value_pack"
+            }
+        )
+        
+        # Get updated balance
+        balance_info = await wallet_service.get_balance(current_user.user_id)
+        
+        logger.info(f"Successfully completed coin purchase for user {current_user.user_id}: +{total_coins} coins")
+        
+        return {
+            "purchase_id": purchase_id,
+            "status": "completed",
+            "coins_added": total_coins,
+            "breakdown": {
+                "purchased": coins_purchased,
+                "bonus": bonus_coins
+            },
+            "new_balance": balance_info.available_balance,
+            "transaction_id": transaction.transaction_id,
+            "message": f"Successfully added {total_coins} coins to your account!"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error completing purchase {purchase_id} for user {current_user.user_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to complete purchase")
+
+
+@router.get("/purchases")
+async def get_purchase_history(
+    limit: int = Query(10, ge=1, le=50),
+    offset: int = Query(0, ge=0),
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_database_session)
+):
+    """Get user's coin purchase history"""
+    try:
+        wallet_service = WalletService(db)
+        
+        # Get credit transactions (purchases)
+        transactions = await wallet_service.get_transaction_history(
+            user_id=current_user.user_id,
+            transaction_types=["CREDIT"],
+            limit=limit,
+            offset=offset
+        )
+        
+        purchases = []
+        for transaction in transactions.transactions:
+            if "purchase" in transaction.description.lower():
+                purchases.append({
+                    "purchase_id": transaction.metadata.get("purchase_id", f"legacy_{transaction.transaction_id}"),
+                    "amount": transaction.amount,
+                    "description": transaction.description,
+                    "payment_method": transaction.metadata.get("payment_method", "unknown"),
+                    "package_type": transaction.metadata.get("package_type", "unknown"),
+                    "created_at": transaction.created_at,
+                    "status": "completed"
+                })
+        
+        return {
+            "purchases": purchases,
+            "total_count": len(purchases),
+            "has_more": len(transactions.transactions) == limit
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting purchase history for user {current_user.user_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve purchase history")
