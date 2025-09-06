@@ -25,8 +25,16 @@ class Settings(BaseSettings):
     
     # Security settings
     SECRET_KEY: str = "your-super-secret-key-change-in-production-please"
+    ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    
+    # Password validation settings
+    PASSWORD_MIN_LENGTH: int = 8
+    PASSWORD_REQUIRE_UPPERCASE: bool = False
+    PASSWORD_REQUIRE_LOWERCASE: bool = False
+    PASSWORD_REQUIRE_NUMBERS: bool = False
+    PASSWORD_REQUIRE_SYMBOLS: bool = False
     
     # Payment system
     DEFAULT_USER_POINTS: int = 100
