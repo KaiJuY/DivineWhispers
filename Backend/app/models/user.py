@@ -5,7 +5,7 @@ User model for authentication and user management
 import enum
 from sqlalchemy import BigInteger, String, Integer, Enum, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from typing import List, TYPE_CHECKING
+from typing import List, Optional, TYPE_CHECKING
 
 from .base import BaseModel
 
@@ -77,6 +77,38 @@ class User(BaseModel):
         default=0,
         nullable=False,
         comment="目前剩餘點數"
+    )
+    
+    # Profile fields
+    full_name: Mapped[Optional[str]] = mapped_column(
+        String(100),
+        nullable=True,
+        comment="使用者全名"
+    )
+    
+    phone: Mapped[Optional[str]] = mapped_column(
+        String(20),
+        nullable=True,
+        comment="電話號碼"
+    )
+    
+    birth_date: Mapped[Optional[str]] = mapped_column(
+        String(10),
+        nullable=True,
+        comment="生日 (YYYY-MM-DD)"
+    )
+    
+    location: Mapped[Optional[str]] = mapped_column(
+        String(100),
+        nullable=True,
+        comment="居住地點"
+    )
+    
+    preferred_language: Mapped[Optional[str]] = mapped_column(
+        String(10),
+        nullable=True,
+        default="en",
+        comment="偏好語言"
     )
     
     # Relationships

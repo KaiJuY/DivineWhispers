@@ -394,7 +394,7 @@ async def update_user_profile(
     """Update user profile information"""
     try:
         updated_user = await AuthService.update_user_profile(
-            user_id=current_user.id,
+            user_id=current_user.user_id,
             profile_data=profile_update,
             db=db
         )
@@ -439,7 +439,7 @@ async def get_user_reports(
     
     try:
         jobs = await job_processor.get_user_jobs(
-            user_id=str(current_user.id),
+            user_id=str(current_user.user_id),
             limit=limit,
             offset=offset
         )
