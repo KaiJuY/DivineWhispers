@@ -27,7 +27,7 @@ class ContactFormSubmission(BaseModel):
     category: str = Field("general", description="Message category (general, support, bug_report, suggestion)")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "name": "John Doe",
                 "email": "john@example.com",
@@ -121,26 +121,30 @@ async def get_contact_categories():
     }
 
 
+class FeedbackSubmission(BaseModel):
+    feedback: str = Field(..., min_length=10, max_length=1000)
+    rating: int = Field(..., ge=1, le=5, description="Rating from 1-5 stars")
+    feature_area: str = Field("general", description="Area of the app being reviewed")
+
+
 @router.post("/feedback")
 async def submit_feedback(
-    feedback: str = Field(..., min_length=10, max_length=1000),
-    rating: int = Field(..., ge=1, le=5, description="Rating from 1-5 stars"),
-    feature_area: str = Field("general", description="Area of the app being reviewed"),
+    feedback_data: FeedbackSubmission,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
     """Submit user feedback and rating"""
     try:
-        feedback_data = {
+        feedback_record = {
             "user_id": current_user.id,
             "user_email": current_user.email,
-            "feedback": feedback,
-            "rating": rating,
-            "feature_area": feature_area,
+            "feedback": feedback_data.feedback,
+            "rating": feedback_data.rating,
+            "feature_area": feedback_data.feature_area,
             "submitted_at": datetime.utcnow().isoformat()
         }
         
-        logger.info(f"Feedback received from user {current_user.id}: {feedback_data}")
+        logger.info(f"Feedback received from user {current_user.id}: {feedback_record}")
         
         # Here you would save feedback to database
         # and potentially trigger analytics or notifications

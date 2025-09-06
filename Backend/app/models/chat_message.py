@@ -47,7 +47,7 @@ class ChatMessage(Base):
     
     message_type = Column(String(20), nullable=False, default=MessageType.USER)
     content = Column(Text, nullable=False)
-    metadata = Column(JSON, nullable=True)  # Store token count, model used, etc.
+    message_metadata = Column(JSON, nullable=True)  # Store token count, model used, etc.
     
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     is_deleted = Column(Boolean, default=False)

@@ -10,7 +10,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, and_, or_, desc, asc, delete
 from typing import List, Optional, Dict, Any
 from datetime import datetime, timedelta
+from app.models.faq import FAQ
+from app.schemas.faq import FAQCreate, FAQUpdate, FAQResponse
 
+import re
 from app.utils.deps import get_db, get_current_user
 from app.utils.rbac import (
     RequirePermission,
@@ -1396,10 +1399,6 @@ async def create_faq(
 ):
     """Create a new FAQ"""
     try:
-        from app.models.faq import FAQ
-        from app.schemas.faq import FAQCreate
-        import re
-        
         # Generate slug from question
         slug = re.sub(r'[^\w\s-]', '', faq_data.question.lower())
         slug = re.sub(r'[-\s]+', '-', slug)[:200]
@@ -1446,9 +1445,6 @@ async def update_faq(
 ):
     """Update an existing FAQ"""
     try:
-        from app.models.faq import FAQ
-        from app.schemas.faq import FAQUpdate, FAQResponse
-        
         # Get FAQ
         faq = await db.scalar(select(FAQ).where(FAQ.id == faq_id))
         if not faq:

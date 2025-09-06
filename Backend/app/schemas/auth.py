@@ -33,7 +33,7 @@ class UserRegister(BaseModel):
         return v
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "email": "user@example.com",
                 "password": "SecurePassword123",
@@ -48,7 +48,7 @@ class UserLogin(BaseModel):
     password: str = Field(..., description="User password")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "email": "user@example.com",
                 "password": "SecurePassword123"
@@ -61,7 +61,7 @@ class TokenRefresh(BaseModel):
     refresh_token: str = Field(..., description="Refresh token")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
             }
@@ -74,7 +74,7 @@ class TokenRevoke(BaseModel):
     revoke_all: bool = Field(False, description="Revoke all user tokens")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
                 "revoke_all": False
@@ -91,7 +91,7 @@ class TokenResponse(BaseModel):
     refresh_expires_in: int = Field(..., description="Refresh token expiration time in seconds")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
                 "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -114,7 +114,7 @@ class UserResponse(BaseModel):
     
     class Config:
         from_attributes = True
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "user_id": 123,
                 "email": "user@example.com",
@@ -133,7 +133,7 @@ class LoginResponse(BaseModel):
     tokens: TokenResponse = Field(..., description="Authentication tokens")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "user": {
                     "user_id": 123,
@@ -173,7 +173,7 @@ class PasswordChange(BaseModel):
         return v
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "current_password": "OldPassword123",
                 "new_password": "NewSecurePassword456",
@@ -187,7 +187,7 @@ class PasswordReset(BaseModel):
     email: EmailStr = Field(..., description="Email address for password reset")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "email": "user@example.com"
             }
@@ -212,7 +212,7 @@ class PasswordResetConfirm(BaseModel):
         return v
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "reset_token": "secure-reset-token-here",
                 "new_password": "NewSecurePassword456",
@@ -226,7 +226,7 @@ class AuthErrorResponse(BaseModel):
     error: dict = Field(..., description="Error details")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "error": {
                     "code": 401,
@@ -243,7 +243,7 @@ class MessageResponse(BaseModel):
     success: bool = Field(True, description="Operation success status")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "message": "Operation completed successfully",
                 "success": True
@@ -262,7 +262,7 @@ class UserProfileUpdate(BaseModel):
     notification_preferences: Optional[dict] = Field(None, description="Notification preferences")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "full_name": "John Doe",
                 "phone": "+1234567890",

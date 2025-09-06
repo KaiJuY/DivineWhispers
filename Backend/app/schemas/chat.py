@@ -15,7 +15,7 @@ class ChatSessionCreate(BaseModel):
     context_data: Optional[Dict[str, Any]] = Field(None, description="Context data (deity, fortune, etc.)")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "session_name": "Fortune Reading with Guan Yin",
                 "context_data": {
@@ -34,7 +34,7 @@ class ChatMessageCreate(BaseModel):
     metadata: Optional[Dict[str, Any]] = Field(None, description="Optional metadata")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "content": "Can you explain what this fortune means for my career?",
                 "metadata": {"source": "web", "language": "en"}
@@ -54,7 +54,7 @@ class ChatMessageResponse(BaseModel):
     
     class Config:
         from_attributes = True
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "id": 123,
                 "session_id": 45,
@@ -81,7 +81,7 @@ class ChatSessionResponse(BaseModel):
     
     class Config:
         from_attributes = True
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "id": 45,
                 "user_id": 67,
@@ -101,7 +101,7 @@ class ChatSessionListResponse(BaseModel):
     total_count: int
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "sessions": [
                     {
@@ -126,7 +126,7 @@ class ChatMessageListResponse(BaseModel):
     has_more: bool
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "messages": [
                     {
@@ -152,7 +152,7 @@ class WebSocketMessage(BaseModel):
     timestamp: Optional[datetime] = Field(None, description="Message timestamp")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "type": "chat_message",
                 "session_id": 45,
@@ -173,7 +173,7 @@ class FortuneConversationCreate(BaseModel):
     initial_question: str = Field(..., min_length=1, max_length=500, description="User's initial question")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "deity_id": "guan_yin",
                 "fortune_number": 42,

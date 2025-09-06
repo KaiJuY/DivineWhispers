@@ -19,7 +19,7 @@ class FAQCreate(BaseModel):
     is_published: Optional[bool] = Field(True, description="Whether FAQ is published")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "category": "fortune_reading",
                 "question": "How accurate are the fortune readings?",
@@ -69,7 +69,7 @@ class FAQListResponse(BaseModel):
     categories: List[str]
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "faqs": [
                     {
@@ -96,7 +96,7 @@ class FAQFeedbackCreate(BaseModel):
     feedback_text: Optional[str] = Field(None, max_length=1000, description="Optional feedback text")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "faq_id": 1,
                 "is_helpful": True,
@@ -129,7 +129,7 @@ class FAQAnalytics(BaseModel):
     recent_feedback: List[FAQFeedbackResponse]
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "total_faqs": 25,
                 "published_faqs": 23,
