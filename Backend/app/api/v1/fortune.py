@@ -63,8 +63,8 @@ async def draw_fortune(
             )
         
         # Check user points
-        user_points = await wallet_service.get_user_points(current_user.id, db)
-        required_points = settings.FORTUNE_DRAW_COST_POINTS
+        user_points = await wallet_service.get_user_points(current_user.user_id, db)
+        required_points = settings.FORTUNE_DRAW_COST
         
         if user_points < required_points:
             raise HTTPException(
@@ -78,7 +78,7 @@ async def draw_fortune(
         
         # Deduct points (atomic transaction)
         deduction_success = await wallet_service.deduct_points(
-            user_id=current_user.id,
+            user_id=current_user.user_id,
             amount=required_points,
             description=f"Fortune drawing service",
             db=db
@@ -92,12 +92,12 @@ async def draw_fortune(
         
         # Create fortune draw job
         job_id = await job_processor.create_fortune_draw_job(
-            user_id=str(current_user.id),
+            user_id=str(current_user.user_id),
             request=request,
             points_charged=required_points
         )
         
-        logger.info(f"Created fortune draw job {job_id} for user {current_user.id}")
+        logger.info(f"Created fortune draw job {job_id} for user {current_user.user_id}")
         
         return FortuneJobResponse(
             job_id=job_id,
@@ -139,8 +139,8 @@ async def interpret_poem(
             )
         
         # Check user points
-        user_points = await wallet_service.get_user_points(current_user.id, db)
-        required_points = settings.FORTUNE_INTERPRET_COST_POINTS
+        user_points = await wallet_service.get_user_points(current_user.user_id, db)
+        required_points = settings.FORTUNE_INTERPRET_COST
         
         if user_points < required_points:
             raise HTTPException(
@@ -154,7 +154,7 @@ async def interpret_poem(
         
         # Deduct points
         deduction_success = await wallet_service.deduct_points(
-            user_id=current_user.id,
+            user_id=current_user.user_id,
             amount=required_points,
             description=f"Poem interpretation: {poem_id}",
             db=db
@@ -165,13 +165,13 @@ async def interpret_poem(
         
         # Create fortune interpretation job
         job_id = await job_processor.create_fortune_interpret_job(
-            user_id=str(current_user.id),
+            user_id=str(current_user.user_id),
             poem_id=poem_id,
             request=request,
             points_charged=required_points
         )
         
-        logger.info(f"Created fortune interpret job {job_id} for user {current_user.id}")
+        logger.info(f"Created fortune interpret job {job_id} for user {current_user.user_id}")
         
         return FortuneJobResponse(
             job_id=job_id,
@@ -408,7 +408,7 @@ async def get_fortune_history(
     """
     try:
         jobs = await job_processor.get_user_jobs(
-            user_id=str(current_user.id),
+            user_id=str(current_user.user_id),
             limit=limit,
             offset=offset
         )

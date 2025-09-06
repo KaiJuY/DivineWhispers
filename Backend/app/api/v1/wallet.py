@@ -161,7 +161,7 @@ async def get_transaction_details(
                 detail="You can only view your own transactions"
             )
         
-        return TransactionResponse.from_orm(transaction)
+        return TransactionResponse.model_validate(transaction)
         
     except HTTPException:
         raise
@@ -206,7 +206,7 @@ async def spend_points(
         balance_info = await wallet_service.get_balance(current_user.user_id)
         
         response = SpendPointsResponse(
-            transaction=TransactionResponse.from_orm(transaction),
+            transaction=TransactionResponse.model_validate(transaction),
             job_id=job.job_id,
             remaining_balance=balance_info.available_balance,
             message=f"Successfully spent {format_amount(request.amount)} for {request.job_type}"
@@ -283,7 +283,7 @@ async def deposit_points(
         balance_info = await wallet_service.get_balance(current_user.user_id)
         
         response = DepositPointsResponse(
-            transaction=TransactionResponse.from_orm(transaction),
+            transaction=TransactionResponse.model_validate(transaction),
             new_balance=balance_info.balance,
             message=f"Successfully deposited {format_amount(request.amount)}"
         )
@@ -350,8 +350,8 @@ async def transfer_points(
         receiver_balance = await wallet_service.get_balance(request.to_user_id)
         
         response = TransferResponse(
-            sender_transaction=TransactionResponse.from_orm(sender_txn),
-            receiver_transaction=TransactionResponse.from_orm(receiver_txn),
+            sender_transaction=TransactionResponse.model_validate(sender_txn),
+            receiver_transaction=TransactionResponse.model_validate(receiver_txn),
             sender_balance=sender_balance.available_balance,
             receiver_balance=receiver_balance.balance,
             message=f"Successfully transferred {format_amount(request.amount)} to user {request.to_user_id}"

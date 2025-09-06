@@ -2,6 +2,7 @@
 from dataclasses import dataclass, field
 from typing import Dict, Any, Optional
 import threading
+import os
 
 class SingletonMeta(type):
     """Singleton metaclass for thread-safe singleton implementation."""
@@ -18,9 +19,9 @@ class SingletonMeta(type):
 class SystemConfig(metaclass=SingletonMeta):
     """Global configuration for the Fortune System using Singleton pattern."""
     
-    # ChromaDB settings
-    chroma_persist_path: str = "./chroma_db"
-    collection_name: str = "fortune_knowledge"
+    # ChromaDB settings - use environment variables
+    chroma_persist_path: str = os.getenv("CHROMA_DB_PATH", "./chroma_db")
+    collection_name: str = os.getenv("CHROMA_COLLECTION_NAME", "fortune_knowledge")
     
     # LLM settings
     default_llm_provider: str = "openai"
@@ -40,7 +41,7 @@ class SystemConfig(metaclass=SingletonMeta):
     auto_capture_faq: bool = True
     
     # Data ingestion settings
-    source_data_path: str = "../SourceCrawler/outputs/"
+    source_data_path: str = "/app/SourceCrawler/outputs/"
     temple_names: list = field(default_factory=lambda: [
         "GuanYin100", "GuanYu", "Mazu", "Asakusa", "ErawanShrine", "Tianhou"
     ])

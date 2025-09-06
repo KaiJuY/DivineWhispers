@@ -19,7 +19,9 @@ services:
       - FORTUNE_DRAW_COST=${FORTUNE_DRAW_COST:-10}
       - FORTUNE_INTERPRET_COST=${FORTUNE_INTERPRET_COST:-15}
       - CHROMA_DB_PATH=/app/chroma_db
-      - CHROMA_COLLECTION_NAME=divine_whispers_poems
+      - CHROMA_COLLECTION_NAME=fortune_knowledge
+      - TRANSFORMERS_CACHE=/app/transformers_cache
+      - SENTENCE_TRANSFORMERS_HOME=/app/sentence_transformers
       
       # LLM Configuration (OpenAI)
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
@@ -28,6 +30,7 @@ services:
       # Application Settings
       - DEBUG=${DEBUG:-false}
       - DEFAULT_USER_POINTS=${DEFAULT_USER_POINTS:-100}
+      - HOME=/app/home
       
     depends_on:
       db:
@@ -37,6 +40,8 @@ services:
       - ./app:/app/app
       - ./alembic:/app/alembic
       - ./alembic.ini:/app/alembic.ini
+      - ./fortune_module:/app/fortune_module
+      - ../SourceCrawler/outputs:/app/SourceCrawler/outputs
       
       # Persistent storage
       - ./logs:/app/logs

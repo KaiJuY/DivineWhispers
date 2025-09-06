@@ -193,7 +193,7 @@ class AuthService:
         await db.commit()
         
         # Create response objects
-        user_response = UserResponse.from_orm(user)
+        user_response = UserResponse.model_validate(user)
         tokens = TokenResponse(
             access_token=access_token,
             refresh_token=refresh_token,

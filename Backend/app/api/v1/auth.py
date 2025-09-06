@@ -208,7 +208,7 @@ async def get_current_user_info(
     current_user = Depends(get_current_user)
 ):
     """Get current user information"""
-    return UserResponse.from_orm(current_user)
+    return UserResponse.model_validate(current_user)
 
 
 @router.put(
@@ -318,7 +318,7 @@ async def verify_token(
     current_user = Depends(get_current_user)
 ):
     """Verify token validity and return user info"""
-    return UserResponse.from_orm(current_user)
+    return UserResponse.model_validate(current_user)
 
 
 # Admin endpoints (require admin role)
@@ -372,7 +372,7 @@ async def get_user_profile(
     current_user = Depends(get_current_user)
 ):
     """Get user profile information"""
-    return UserResponse.from_orm(current_user)
+    return UserResponse.model_validate(current_user)
 
 
 @router.put(
@@ -405,7 +405,7 @@ async def update_user_profile(
                 detail="Profile update failed"
             )
         
-        return UserResponse.from_orm(updated_user)
+        return UserResponse.model_validate(updated_user)
         
     except ValueError as e:
         raise HTTPException(

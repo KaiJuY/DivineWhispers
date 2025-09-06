@@ -43,15 +43,17 @@ class Settings(BaseSettings):
     
     # LLM settings
     OPENAI_API_KEY: Optional[str] = None
-    LLM_PROVIDER: str = "mock"  # openai, ollama, mock
+    LLM_PROVIDER: str = "ollama"  # openai, ollama, mock
+    LLM_MODEL: str = "gpt-oss:20b"  # Default Ollama model
     
-    # ChromaDB settings - adjusted for local development
-    CHROMA_DB_PATH: str = "./chroma_db"
-    CHROMA_COLLECTION_NAME: str = "fortune_knowledge"
+    # ChromaDB settings - use environment variables
+    CHROMA_DB_PATH: str = os.getenv("CHROMA_DB_PATH", "./chroma_db")
+    CHROMA_COLLECTION_NAME: str = os.getenv("CHROMA_COLLECTION_NAME", "fortune_knowledge")
     
     # Fortune Service settings
     FORTUNE_CACHE_TIMEOUT_SECONDS: int = 300
     FORTUNE_JOB_TIMEOUT_SECONDS: int = 300
+    FORTUNE_MAX_SEARCH_RESULTS: int = 10
     
     # Use simple configuration
     class Config:
