@@ -36,7 +36,7 @@ export interface PoemCollection {
 export interface Deity {
   id: string;
   name: string;
-  description: string;
+  description: string[];
   templateMapping: string;
   imageUrl: string;
   isActive: boolean;

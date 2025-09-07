@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { breathe, borderBreathe, glowPulse, skewFadeIn, floatUp, colors, gradients, media, cardStyles } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
-import { mockTodaysWhisper } from '../utils/mockData';
+import { mockTodaysWhisper, mockDeities } from '../utils/mockData';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -68,15 +68,17 @@ const TodaysWhisper = styled.div<{ expanded: boolean }>`
   background: rgba(212, 175, 55, 0.05);
   border: 2px solid rgba(212, 175, 55, 0.2);
   border-radius: 20px;
-  padding: 30px 20px;
+  padding: 20px 30px;
   text-align: center;
-  min-width: 320px;
+  width: 100%;
+  max-width: 1440px;
   backdrop-filter: blur(15px);
   cursor: pointer;
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
   animation: ${borderBreathe} 3s ease-in-out infinite;
+  margin: 0 auto;
 
   &:hover {
     background: rgba(212, 175, 55, 0.1);
@@ -85,9 +87,12 @@ const TodaysWhisper = styled.div<{ expanded: boolean }>`
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
   }
 
+  ${media.tablet} {
+    padding: 18px 25px;
+  }
+
   ${media.mobile} {
-    min-width: auto;
-    padding: 25px 15px;
+    padding: 15px 20px;
   }
 `;
 
@@ -220,10 +225,75 @@ const TryNowButton = styled.button`
 
 const HomePage: React.FC = () => {
   const [whisperExpanded, setWhisperExpanded] = useState(false);
-  const { setCurrentPage } = useAppStore();
+  const { setCurrentPage, setSelectedDeity, setSelectedCollection, setSelectedFortuneNumber, setCurrentConsultation } = useAppStore();
 
   const handleTryNow = () => {
-    setCurrentPage('deities');
+    // Create a mock consultation based on today's whisper
+    const randomDeity = mockDeities[Math.floor(Math.random() * mockDeities.length)];
+    const randomCollection = randomDeity.collections[0]; // Use first collection
+    const randomNumber = Math.floor(Math.random() * randomCollection.maxNumber) + 1;
+    
+    // Create a consultation response based on today's whisper
+    const todaysConsultation = {
+      id: `today_${Date.now()}`,
+      deity_id: randomDeity.id,
+      deity_name: randomDeity.name,
+      question: "Your Divine Whisper Reading",
+      selected_poem: {
+        id: randomNumber,
+        title: `Divine Whisper #${randomNumber}`,
+        fortune: "Your Blessing",
+        poem: mockTodaysWhisper.poem.chinese,
+        analysis: {
+          zh: {
+            overview: mockTodaysWhisper.interpretation.overview,
+            spiritual_aspect: mockTodaysWhisper.interpretation.advice,
+            career_aspect: "專注於內心平靜和善行，將為你的事業帶來正面能量。",
+            relationship_aspect: "保持心境平和，有助於改善人際關係。",
+            health_aspect: "身心平衡是今日的重點。",
+            financial_aspect: "善行會帶來意想不到的財富。"
+          },
+          en: {
+            overview: mockTodaysWhisper.interpretation.overview,
+            spiritual_aspect: mockTodaysWhisper.interpretation.advice,
+            career_aspect: "Focus on inner peace and good deeds to bring positive energy to your career.",
+            relationship_aspect: "Maintaining tranquility will help improve relationships.",
+            health_aspect: "Physical and mental balance is today's focus.",
+            financial_aspect: "Good deeds will bring unexpected wealth."
+          },
+          jp: {
+            overview: mockTodaysWhisper.interpretation.overview,
+            spiritual_aspect: mockTodaysWhisper.interpretation.advice,
+            career_aspect: "内なる平和と善行に集中することで、キャリアにポジティブなエネルギーをもたらします。",
+            relationship_aspect: "心の平穏を保つことが人間関係の改善に役立ちます。",
+            health_aspect: "心身のバランスが今日の焦点です。",
+            financial_aspect: "善行は予期しない富をもたらすでしょう。"
+          }
+        }
+      },
+      ai_interpretation: {
+        summary: mockTodaysWhisper.interpretation.overview,
+        detailed_analysis: {
+          spiritual: mockTodaysWhisper.interpretation.advice,
+          career: "Your professional path benefits from maintaining inner harmony and ethical practices.",
+          relationship: "Peaceful energy attracts positive connections and strengthens existing bonds.",
+          health: "Balance is key - nurture both body and spirit for optimal wellbeing.",
+          financial: "Virtuous actions create a foundation for abundance and prosperity."
+        },
+        advice: mockTodaysWhisper.interpretation.advice,
+        lucky_elements: mockTodaysWhisper.interpretation.lucky_elements,
+        cautions: ["Avoid rushed decisions", "Stay centered in challenging moments"]
+      },
+      created_at: new Date().toISOString(),
+      status: 'active' as const
+    };
+    
+    // Set the state to show this consultation
+    setSelectedDeity(randomDeity);
+    setSelectedCollection(randomCollection);
+    setSelectedFortuneNumber(randomNumber);
+    setCurrentConsultation(todaysConsultation);
+    setCurrentPage('fortune-analysis');
   };
 
   const toggleWhisper = () => {
@@ -243,7 +313,7 @@ const HomePage: React.FC = () => {
               <MoonContainer>
                 <MoonIcon>🌙</MoonIcon>
                 <WhisperTitle>
-                  Today's Whisper <ExpandIcon expanded={whisperExpanded}>▾</ExpandIcon>
+                  Your Whisper <ExpandIcon expanded={whisperExpanded}>▾</ExpandIcon>
                 </WhisperTitle>
               </MoonContainer>
               
@@ -257,7 +327,7 @@ const HomePage: React.FC = () => {
                   <PoemEnglish>{mockTodaysWhisper.poem.english}</PoemEnglish>
                 </WhisperPoem>
                 <TryNowButton onClick={handleTryNow}>
-                  Try Divine Reading
+                  Read Your Whisper
                 </TryNowButton>
               </WhisperExpanded>
             </TodaysWhisper>
