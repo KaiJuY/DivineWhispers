@@ -10,6 +10,7 @@ import FortuneSelectionPage from './pages/FortuneSelectionPage';
 import FortuneAnalysisPage from './pages/FortuneAnalysisPage';
 import ContactPage from './pages/ContactPage';
 import PurchasePage from './pages/PurchasePage';
+import AccountPage from './pages/AccountPage';
 
 // Theme object for styled-components
 const theme = {
@@ -54,8 +55,7 @@ const App: React.FC = () => {
       case 'purchase':
         return <PurchasePage />;
       case 'account':
-        // TODO: Implement AccountPage
-        return <HomePage />;
+        return <AccountPage />;
       case 'contact':
         return <ContactPage />;
       default:
