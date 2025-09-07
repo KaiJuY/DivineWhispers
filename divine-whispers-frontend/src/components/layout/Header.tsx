@@ -94,7 +94,7 @@ const MainNav = styled.nav<{ isLanding: boolean }>`
 const NavLink = styled.a<{ active?: boolean }>`
   color: ${props => props.active ? colors.primary : colors.white};
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -122,7 +122,7 @@ const NavLink = styled.a<{ active?: boolean }>`
   }
 
   ${media.desktop} {
-    font-size: 14px;
+    font-size: 16px;
   }
 `;
 
@@ -197,6 +197,12 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
             onClick={() => setCurrentPage('account')}
           >
             Account
+          </NavLink>
+          <NavLink 
+            active={currentPage === 'contact'} 
+            onClick={() => setCurrentPage('contact')}
+          >
+            Contact
           </NavLink>
         </MainNav>
 

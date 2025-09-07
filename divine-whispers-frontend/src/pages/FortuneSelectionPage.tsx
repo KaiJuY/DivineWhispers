@@ -55,18 +55,18 @@ const HeroImage = styled.img`
 
 const FortuneTitle = styled.h2`
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin-bottom: 20px;
   color: ${colors.primary};
   font-weight: 300;
 
   ${media.tablet} {
-    font-size: 2rem;
+    font-size: 2.8rem;
     margin-bottom: 15px;
   }
 
   ${media.mobile} {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 10px;
   }
 `;

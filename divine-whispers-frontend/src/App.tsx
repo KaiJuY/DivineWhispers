@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import DeitiesPage from './pages/DeitiesPage';
 import FortuneSelectionPage from './pages/FortuneSelectionPage';
 import FortuneAnalysisPage from './pages/FortuneAnalysisPage';
+import ContactPage from './pages/ContactPage';
 
 // Theme object for styled-components
 const theme = {
@@ -54,6 +55,8 @@ const App: React.FC = () => {
       case 'account':
         // TODO: Implement AccountPage
         return <HomePage />;
+      case 'contact':
+        return <ContactPage />;
       default:
         return <LandingPage />;
     }

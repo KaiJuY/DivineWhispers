@@ -139,7 +139,7 @@ export interface ContactMessage {
 }
 
 // Navigation Types - Updated for deities page
-export type PageType = 'landing' | 'home' | 'deities' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account';
+export type PageType = 'landing' | 'home' | 'deities' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'contact';
 
 // Store Types
 export interface AppStore {

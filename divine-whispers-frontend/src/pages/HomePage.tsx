@@ -134,12 +134,12 @@ const MoonIcon = styled.div`
 const WhisperTitle = styled.h3`
   color: ${colors.primary};
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 40px;
   font-weight: 400;
   letter-spacing: 1px;
 
   ${media.mobile} {
-    font-size: 16px;
+    font-size: 20px;
   }
 `;
 

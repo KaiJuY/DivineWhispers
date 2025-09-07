@@ -12,15 +12,15 @@ const AnalysisContainer = styled.div`
 `;
 
 const AnalysisSection = styled.section`
-  padding: 80px 40px;
+  padding: 120px 40px 80px;
   background: ${gradients.heroSection};
 
   ${media.tablet} {
-    padding: 60px 20px;
+    padding: 100px 20px 60px;
   }
 
   ${media.mobile} {
-    padding: 40px 20px;
+    padding: 80px 20px 40px;
   }
 `;
 

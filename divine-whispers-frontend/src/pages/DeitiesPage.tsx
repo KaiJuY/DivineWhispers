@@ -34,18 +34,18 @@ const DeitiesContent = styled.div`
 
 const DeitiesTitle = styled.h2`
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin-bottom: 60px;
   color: ${colors.white};
   font-weight: 300;
 
   ${media.tablet} {
-    font-size: 2rem;
+    font-size: 2.8rem;
     margin-bottom: 40px;
   }
 
   ${media.mobile} {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 30px;
   }
 `;
