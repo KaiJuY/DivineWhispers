@@ -158,6 +158,70 @@ const NavLink = styled.a<{ active?: boolean }>`
   }
 `;
 
+const AuthSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  ${media.tablet} {
+    gap: 10px;
+  }
+`;
+
+const AuthButton = styled.button<{ secondary?: boolean }>`
+  padding: 10px 20px;
+  background: ${props => props.secondary ? 'transparent' : colors.primary};
+  color: ${props => props.secondary ? colors.white : colors.black};
+  border: ${props => props.secondary ? `1px solid ${colors.primary}` : 'none'};
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: ${props => props.secondary ? colors.primary : 'rgba(212, 175, 55, 0.9)'};
+    color: ${colors.black};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  }
+
+  ${media.tablet} {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+`;
+
+const UserEmail = styled.span`
+  color: ${colors.white};
+  font-size: 14px;
+  font-weight: 500;
+
+  ${media.tablet} {
+    font-size: 12px;
+  }
+`;
+
+const UserRole = styled.span<{ isAdmin?: boolean }>`
+  color: ${props => props.isAdmin ? colors.primary : 'rgba(255, 255, 255, 0.7)'};
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  ${media.tablet} {
+    font-size: 10px;
+  }
+`;
+
 const LanguageSelector = styled.div`
   display: flex;
   align-items: center;
@@ -182,7 +246,12 @@ const LanguageSelector = styled.div`
 `;
 
 const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
-  const { currentPage, setCurrentPage } = useAppStore();
+  const { currentPage, setCurrentPage, auth, setAuth } = useAppStore();
+
+  // Check user authentication and role
+  const isAuthenticated = auth.isAuthenticated;
+  const isAdmin = isAuthenticated && auth.user?.role === 'admin';
+  const userEmail = auth.user?.email;
 
   const handleNavClick = (page: string) => {
     if (page === 'home') {
@@ -190,6 +259,75 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
     } else if (page === 'landing') {
       setCurrentPage('landing');
     }
+  };
+
+  const handleLogin = () => {
+    // For demo purposes, simulate different user types
+    const userType = prompt('Login as:\n1. Regular user (enter "user")\n2. Admin (enter "admin")\n3. Cancel (press Cancel)');
+    
+    if (userType === 'user') {
+      setAuth({
+        user: {
+          user_id: 123,
+          email: "user@example.com",
+          username: "RegularUser",
+          role: "user",
+          points_balance: 25,
+          created_at: "2024-01-15T10:30:00Z",
+          birth_date: "1990-03-15",
+          gender: "Male",
+          location: "San Francisco, CA, USA"
+        },
+        tokens: {
+          access_token: "user_token_here",
+          refresh_token: "user_refresh_token",
+          expires_in: 3600
+        },
+        isAuthenticated: true,
+        loading: false
+      });
+      alert('✅ Logged in as Regular User');
+    } else if (userType === 'admin') {
+      setAuth({
+        user: {
+          user_id: 1,
+          email: "admin@divinewhispers.com",
+          username: "AdminUser",
+          role: "admin",
+          points_balance: 999,
+          created_at: "2024-01-01T00:00:00Z",
+          birth_date: "1985-01-01",
+          gender: "Admin",
+          location: "Divine Realm"
+        },
+        tokens: {
+          access_token: "admin_token_here",
+          refresh_token: "admin_refresh_token",
+          expires_in: 3600
+        },
+        isAuthenticated: true,
+        loading: false
+      });
+      alert('✅ Logged in as Admin');
+    }
+  };
+
+  const handleSignup = () => {
+    // Navigate to a signup page or show signup modal
+    alert('🚀 Signup functionality - would redirect to signup form');
+    setCurrentPage('home');
+  };
+
+  const handleLogout = () => {
+    setAuth({
+      user: null,
+      tokens: null,
+      isAuthenticated: false,
+      loading: false
+    });
+    // Redirect to home after logout
+    setCurrentPage('home');
+    alert('👋 Logged out successfully');
   };
 
   const handleLanguageChange = () => {
@@ -223,25 +361,68 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
           >
             Purchase
           </NavLink>
-          <NavLink 
-            active={currentPage === 'account'} 
-            onClick={() => setCurrentPage('account')}
-          >
-            Account
-          </NavLink>
+          
+          {/* Show Account link only when user is logged in */}
+          {isAuthenticated && (
+            <NavLink 
+              active={currentPage === 'account'} 
+              onClick={() => setCurrentPage('account')}
+            >
+              Account
+            </NavLink>
+          )}
+          
           <NavLink 
             active={currentPage === 'contact'} 
             onClick={() => setCurrentPage('contact')}
           >
             Contact
           </NavLink>
+          
+          {/* Show Admin link only for admin users */}
+          {isAdmin && (
+            <NavLink 
+              active={currentPage === 'admin'} 
+              onClick={() => setCurrentPage('admin')}
+            >
+              Admin
+            </NavLink>
+          )}
         </MainNav>
 
-        <LanguageSelector onClick={handleLanguageChange}>
-          <span>🌐</span>
-          <span>EN</span>
-          <span>▾</span>
-        </LanguageSelector>
+        {/* Auth Section - replaces language selector */}
+        <AuthSection>
+          {!isAuthenticated ? (
+            // Show Login/Signup when not authenticated
+            <>
+              <AuthButton onClick={handleLogin}>
+                Login
+              </AuthButton>
+              <AuthButton secondary onClick={handleSignup}>
+                Sign Up
+              </AuthButton>
+            </>
+          ) : (
+            // Show user info and logout when authenticated
+            <>
+              <UserInfo>
+                <UserEmail>{userEmail}</UserEmail>
+                <UserRole isAdmin={isAdmin}>
+                  {isAdmin ? '👑 Admin' : '👤 User'}
+                </UserRole>
+              </UserInfo>
+              <AuthButton secondary onClick={handleLogout}>
+                Logout
+              </AuthButton>
+            </>
+          )}
+          
+          <LanguageSelector onClick={handleLanguageChange}>
+            <span>🌐</span>
+            <span>EN</span>
+            <span>▾</span>
+          </LanguageSelector>
+        </AuthSection>
       </NavContainer>
     </HeaderContainer>
   );

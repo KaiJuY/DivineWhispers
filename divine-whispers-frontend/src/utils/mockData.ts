@@ -34,7 +34,16 @@ export const mockDeities = [
     templateMapping: "GuanYin100",
     imageUrl: "/GuanYin.jpg",
     isActive: true,
-    totalPoems: 100
+    totalPoems: 100,
+    collections: [
+      {
+        id: "guanyin_standard",
+        name: "Standard Collection",
+        description: "Traditional 100 fortune poems",
+        maxNumber: 100,
+        templateMapping: "GuanYin100"
+      }
+    ]
   },
   {
     id: "mazu",
@@ -43,7 +52,23 @@ export const mockDeities = [
     templateMapping: "Mazu",
     imageUrl: "/Mazu.png",
     isActive: true,
-    totalPoems: 100
+    totalPoems: 163,
+    collections: [
+      {
+        id: "mazu_classic",
+        name: "Classic Collection",
+        description: "Traditional 63 fortune poems",
+        maxNumber: 63,
+        templateMapping: "MazuClassic"
+      },
+      {
+        id: "mazu_extended",
+        name: "Extended Collection",
+        description: "Extended 100 fortune poems",
+        maxNumber: 100,
+        templateMapping: "MazuExtended"
+      }
+    ]
   },
   {
     id: "guan_yu",
@@ -52,7 +77,16 @@ export const mockDeities = [
     templateMapping: "GuanYu",
     imageUrl: "/GuanYu.jpg",
     isActive: true,
-    totalPoems: 100
+    totalPoems: 100,
+    collections: [
+      {
+        id: "guanyu_standard",
+        name: "Standard Collection",
+        description: "Traditional 100 fortune poems",
+        maxNumber: 100,
+        templateMapping: "GuanYu"
+      }
+    ]
   },
   {
     id: "yue_lao",
@@ -61,7 +95,16 @@ export const mockDeities = [
     templateMapping: "YueLao",
     imageUrl: "/YueLao.png",
     isActive: true,
-    totalPoems: 100
+    totalPoems: 100,
+    collections: [
+      {
+        id: "yuelao_standard",
+        name: "Standard Collection",
+        description: "Traditional 100 fortune poems",
+        maxNumber: 100,
+        templateMapping: "YueLao"
+      }
+    ]
   },
   {
     id: "zhusheng",
@@ -70,7 +113,16 @@ export const mockDeities = [
     templateMapping: "ZhuSheng",
     imageUrl: "/TheGoddessofChildBirth.jpg",
     isActive: true,
-    totalPoems: 100
+    totalPoems: 100,
+    collections: [
+      {
+        id: "zhusheng_standard",
+        name: "Standard Collection",
+        description: "Traditional 100 fortune poems",
+        maxNumber: 100,
+        templateMapping: "ZhuSheng"
+      }
+    ]
   },
   {
     id: "asakusa",
@@ -79,7 +131,16 @@ export const mockDeities = [
     templateMapping: "Asakusa",
     imageUrl: "/Asakusa.jpg",
     isActive: true,
-    totalPoems: 100
+    totalPoems: 100,
+    collections: [
+      {
+        id: "asakusa_standard",
+        name: "Standard Collection",
+        description: "Traditional 100 fortune poems",
+        maxNumber: 100,
+        templateMapping: "Asakusa"
+      }
+    ]
   },
   {
     id: "erawan",
@@ -88,7 +149,16 @@ export const mockDeities = [
     templateMapping: "ErawanShrine",
     imageUrl: "/ErawanShrine.jpg",
     isActive: true,
-    totalPoems: 100
+    totalPoems: 100,
+    collections: [
+      {
+        id: "erawan_standard",
+        name: "Standard Collection",
+        description: "Traditional 100 fortune poems",
+        maxNumber: 100,
+        templateMapping: "ErawanShrine"
+      }
+    ]
   }
 ];
 

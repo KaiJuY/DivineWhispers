@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import type { AppStore, AuthState, Deity, ConsultationResponse, PageType } from '../types';
+import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType } from '../types';
 import { mockAuth } from '../utils/mockData';
 
 const useAppStore = create<AppStore>()(
@@ -21,6 +21,10 @@ const useAppStore = create<AppStore>()(
         // Deity Selection
         selectedDeity: null,
         setSelectedDeity: (deity: Deity | null) => set({ selectedDeity: deity }),
+
+        // Collection Selection
+        selectedCollection: null,
+        setSelectedCollection: (collection: PoemCollection | null) => set({ selectedCollection: collection }),
 
         // Fortune Number Selection
         selectedFortuneNumber: null,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { skewFadeIn, glowing, colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
@@ -202,20 +202,70 @@ const BackButton = styled.button`
   }
 `;
 
+const CollectionSection = styled.div`
+  margin-bottom: 50px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const CollectionHeader = styled.div`
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+`;
+
+const CollectionTitle = styled.h3`
+  font-size: 1.8rem;
+  color: ${colors.primary};
+  margin-bottom: 10px;
+  font-weight: 600;
+  
+  ${media.tablet} {
+    font-size: 1.6rem;
+  }
+  
+  ${media.mobile} {
+    font-size: 1.4rem;
+  }
+`;
+
+const CollectionDescription = styled.p`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 10px;
+`;
+
+const CollectionRange = styled.div`
+  color: ${colors.primary};
+  font-size: 1.1rem;
+  font-weight: 500;
+`;
+
 const FortuneSelectionPage: React.FC = () => {
-  const { selectedDeity, setCurrentPage, setSelectedFortuneNumber } = useAppStore();
+  const { selectedDeity, setCurrentPage, setSelectedFortuneNumber, setSelectedCollection } = useAppStore();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleBackClick = () => {
     setCurrentPage('deities');
   };
 
-  const handleNumberSelect = (number: number) => {
+  const handleNumberSelect = (number: number, collection: any) => {
+    setSelectedCollection(collection);
     setSelectedFortuneNumber(number);
     setCurrentPage('fortune-analysis');
   };
 
   if (!selectedDeity) {
-    // If no deity is selected, redirect back to deities page
     setCurrentPage('deities');
     return null;
   }
@@ -238,19 +288,32 @@ const FortuneSelectionPage: React.FC = () => {
             />
             <FortuneTitle>Choose Your Fortune Number</FortuneTitle>
             <FortuneSubtitle>
-              {selectedDeity.name} - Select a number from 1 to 100
+              {selectedDeity.name} - Select a number from the collections below
             </FortuneSubtitle>
-            <NumbersGrid>
-              {mockFortuneNumbers.availableNumbers.map((number, index) => (
-                <NumberCard
-                  key={number}
-                  style={{ animationDelay: `${index * 0.005}s` }}
-                  onClick={() => handleNumberSelect(number)}
-                >
-                  <NumberText>{number}</NumberText>
-                </NumberCard>
-              ))}
-            </NumbersGrid>
+            
+            {selectedDeity.collections.map((collection, collectionIndex) => {
+              const availableNumbers = Array.from({length: collection.maxNumber}, (_, i) => i + 1);
+              return (
+                <CollectionSection key={collection.id}>
+                  <CollectionHeader>
+                    <CollectionTitle>{collection.name}</CollectionTitle>
+                    <CollectionDescription>{collection.description}</CollectionDescription>
+                    <CollectionRange>Numbers 1 - {collection.maxNumber}</CollectionRange>
+                  </CollectionHeader>
+                  <NumbersGrid>
+                    {availableNumbers.map((number, index) => (
+                      <NumberCard
+                        key={`${collection.id}-${number}`}
+                        style={{ animationDelay: `${(collectionIndex * 100 + index) * 0.005}s` }}
+                        onClick={() => handleNumberSelect(number, collection)}
+                      >
+                        <NumberText>{number}</NumberText>
+                      </NumberCard>
+                    ))}
+                  </NumbersGrid>
+                </CollectionSection>
+              );
+            })}
           </FortuneContent>
         </FortuneSection>
       </FortuneContainer>

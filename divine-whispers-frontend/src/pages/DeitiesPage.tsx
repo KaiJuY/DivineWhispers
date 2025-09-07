@@ -184,7 +184,7 @@ const CardDescription = styled.p`
 
 // Fixed design to match mockup
 const DeitiesPage: React.FC = () => {
-  const { setCurrentPage, setSelectedDeity } = useAppStore();
+  const { setCurrentPage, setSelectedDeity, setSelectedCollection } = useAppStore();
 
   const handleDeitySelect = (deity: any) => {
     setSelectedDeity(deity);

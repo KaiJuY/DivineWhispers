@@ -25,6 +25,14 @@ export interface AuthState {
   loading: boolean;
 }
 
+export interface PoemCollection {
+  id: string;
+  name: string;
+  description: string;
+  maxNumber: number;
+  templateMapping: string;
+}
+
 export interface Deity {
   id: string;
   name: string;
@@ -33,6 +41,7 @@ export interface Deity {
   imageUrl: string;
   isActive: boolean;
   totalPoems: number;
+  collections: PoemCollection[];
 }
 
 export interface FortunePoem {
@@ -139,7 +148,7 @@ export interface ContactMessage {
 }
 
 // Navigation Types - Updated for all pages
-export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'contact';
+export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'admin' | 'contact';
 
 // Store Types
 export interface AppStore {
@@ -149,6 +158,8 @@ export interface AppStore {
   setAuth: (auth: Partial<AuthState>) => void;
   selectedDeity: Deity | null;
   setSelectedDeity: (deity: Deity | null) => void;
+  selectedCollection: PoemCollection | null;
+  setSelectedCollection: (collection: PoemCollection | null) => void;
   selectedFortuneNumber: number | null;
   setSelectedFortuneNumber: (number: number | null) => void;
   currentConsultation: ConsultationResponse | null;
