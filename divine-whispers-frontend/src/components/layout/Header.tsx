@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { colors, gradients, media } from '../../assets/styles/globalStyles';
 import useAppStore from '../../stores/appStore';
 
@@ -91,6 +91,14 @@ const MainNav = styled.nav<{ isLanding: boolean }>`
   }
 `;
 
+const shimmer = keyframes`
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+`;
 const NavLink = styled.a<{ active?: boolean }>`
   color: ${props => props.active ? colors.primary : colors.white};
   text-decoration: none;
@@ -101,6 +109,15 @@ const NavLink = styled.a<{ active?: boolean }>`
   padding: 8px 0;
   position: relative;
 
+  ${props => props.active && css`
+    background: linear-gradient(45deg, ${colors.primary}, #f2d06b, ${colors.primary});
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ${shimmer} 15s linear infinite;
+  `}
+
   &::after {
     content: '';
     position: absolute;
@@ -108,16 +125,31 @@ const NavLink = styled.a<{ active?: boolean }>`
     height: 2px;
     bottom: -5px;
     left: 50%;
-    background: ${colors.primary};
+    background: ${props => props.active ? 
+      'linear-gradient(90deg, transparent, ' + colors.primary + ', transparent)' : 
+      colors.primary};
+    background-size: ${props => props.active ? '200% 100%' : 'auto'};
     transition: all 0.3s ease;
     transform: translateX(-50%);
+    ${props => props.active && css`
+      animation: ${shimmer} 15s linear infinite;
+    `}
   }
 
   &:hover {
     color: ${colors.primary};
+    background: linear-gradient(45deg, ${colors.primary}, #f2d06b, ${colors.primary});
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ${shimmer} 15s linear infinite;
 
     &::after {
       width: 100%;
+      background: linear-gradient(90deg, transparent, ${colors.primary}, transparent);
+      background-size: 200% 100%;
+      animation: ${shimmer} 15s linear infinite;
     }
   }
 
@@ -137,7 +169,6 @@ const LanguageSelector = styled.div`
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 14px;
-
   &:hover {
     background: rgba(212, 175, 55, 0.25);
     border-color: rgba(212, 175, 55, 0.5);

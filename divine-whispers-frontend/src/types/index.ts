@@ -138,8 +138,8 @@ export interface ContactMessage {
   message: string;
 }
 
-// Navigation Types - Updated for deities page
-export type PageType = 'landing' | 'home' | 'deities' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'contact';
+// Navigation Types - Updated for all pages
+export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'contact';
 
 // Store Types
 export interface AppStore {

@@ -9,6 +9,7 @@ import DeitiesPage from './pages/DeitiesPage';
 import FortuneSelectionPage from './pages/FortuneSelectionPage';
 import FortuneAnalysisPage from './pages/FortuneAnalysisPage';
 import ContactPage from './pages/ContactPage';
+import PurchasePage from './pages/PurchasePage';
 
 // Theme object for styled-components
 const theme = {
@@ -44,14 +45,14 @@ const App: React.FC = () => {
       case 'home':
         return <HomePage />;
       case 'deities':
+      case 'deity-selection':
         return <DeitiesPage />;
       case 'fortune-selection':
         return <FortuneSelectionPage />;
       case 'fortune-analysis':
         return <FortuneAnalysisPage />;
       case 'purchase':
-        // TODO: Implement PurchasePage
-        return <HomePage />;
+        return <PurchasePage />;
       case 'account':
         // TODO: Implement AccountPage
         return <HomePage />;
