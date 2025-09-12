@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
+import useAppStore from '../stores/appStore';
 
 interface PurchaseRecord {
   id: string;
@@ -564,6 +565,7 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
 `;
 
 const AccountPage: React.FC = () => {
+  const { reports, userCoins, setSelectedReport, setCurrentPage } = useAppStore();
   const [editingFields, setEditingFields] = useState<string[]>([]);
   const [profileData, setProfileData] = useState({
     username: 'DivineSeeker2024',
@@ -605,8 +607,11 @@ const AccountPage: React.FC = () => {
   };
 
   const handleViewReport = (reportId: string) => {
-    console.log('Viewing report:', reportId);
-    alert(`Opening analysis report ${reportId}...`);
+    const report = reports.find(r => r.id === reportId);
+    if (report) {
+      setSelectedReport(report);
+      setCurrentPage('report');
+    }
   };
 
   return (
@@ -697,7 +702,7 @@ const AccountPage: React.FC = () => {
               <StatusInfo>
                 <StatusItem>
                   <StatusLabel>Current Balance</StatusLabel>
-                  <StatusValue highlight>47 Coins</StatusValue>
+                  <StatusValue highlight>{userCoins} Coins</StatusValue>
                 </StatusItem>
                 <StatusItem>
                   <StatusLabel>Membership</StatusLabel>
@@ -734,20 +739,34 @@ const AccountPage: React.FC = () => {
 
             {/* My Analysis Reports */}
             <AccountCard>
-              <CardTitle>My Analysis Reports</CardTitle>
-              {analysisReports.map((report) => (
-                <AnalysisItem 
-                  key={report.id}
-                  onClick={() => handleViewReport(report.id)}
-                >
-                  <AnalysisInfo>
-                    <AnalysisTitle>{report.title}</AnalysisTitle>
-                    <AnalysisSubtitle>{report.subtitle}</AnalysisSubtitle>
-                    <AnalysisMeta>{report.meta}</AnalysisMeta>
-                  </AnalysisInfo>
-                  <AnalysisAction>View Report</AnalysisAction>
-                </AnalysisItem>
-              ))}
+              <CardTitle>Report History ({reports.length})</CardTitle>
+              {reports.length === 0 ? (
+                <div style={{ 
+                  textAlign: 'center', 
+                  padding: '40px', 
+                  color: 'rgba(255, 255, 255, 0.6)' 
+                }}>
+                  No reports generated yet. Start a conversation on the fortune analysis page to generate your first report!
+                </div>
+              ) : (
+                reports.map((report) => (
+                  <AnalysisItem 
+                    key={report.id}
+                    onClick={() => handleViewReport(report.id)}
+                  >
+                    <AnalysisInfo>
+                      <AnalysisTitle>{report.title} - {report.deity_name}</AnalysisTitle>
+                      <AnalysisSubtitle>"{report.question}" • Fortune #{report.fortune_number}</AnalysisSubtitle>
+                      <AnalysisMeta>
+                        Generated on {new Date(report.created_at).toLocaleDateString()} • 
+                        Cost: {report.cost} coins • 
+                        Status: {report.status === 'completed' ? 'Completed' : 'Generating...'}
+                      </AnalysisMeta>
+                    </AnalysisInfo>
+                    <AnalysisAction>View Report</AnalysisAction>
+                  </AnalysisItem>
+                ))
+              )}
             </AccountCard>
 
             {/* Action Buttons */}

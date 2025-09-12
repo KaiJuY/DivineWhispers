@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType } from '../types';
-import { mockAuth } from '../utils/mockData';
+import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType, Report } from '../types';
+import { mockAuth, mockReports } from '../utils/mockData';
 
 const useAppStore = create<AppStore>()(
   devtools(
@@ -38,6 +38,17 @@ const useAppStore = create<AppStore>()(
         consultationHistory: [],
         setConsultationHistory: (history: ConsultationResponse[]) => 
           set({ consultationHistory: history }),
+
+        // Reports
+        reports: mockReports,
+        setReports: (reports: Report[]) => set({ reports }),
+
+        selectedReport: null,
+        setSelectedReport: (report: Report | null) => set({ selectedReport: report }),
+
+        // User Coins
+        userCoins: 50, // Start with 50 coins for demo
+        setUserCoins: (coins: number) => set({ userCoins: coins }),
       }),
       {
         name: 'divine-whispers-store',

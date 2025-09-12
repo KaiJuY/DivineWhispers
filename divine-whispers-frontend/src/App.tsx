@@ -12,6 +12,7 @@ import ContactPage from './pages/ContactPage';
 import PurchasePage from './pages/PurchasePage';
 import AccountPage from './pages/AccountPage';
 import AdminPage from './pages/AdminPage';
+import ReportPage from './pages/ReportPage';
 
 // Theme object for styled-components
 const theme = {
@@ -61,6 +62,8 @@ const App: React.FC = () => {
         return <AdminPage />;
       case 'contact':
         return <ContactPage />;
+      case 'report':
+        return <ReportPage />;
       default:
         return <LandingPage />;
     }

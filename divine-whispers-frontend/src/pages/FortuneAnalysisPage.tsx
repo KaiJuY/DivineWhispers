@@ -4,6 +4,7 @@ import { colors, gradients, media, skewFadeIn, floatUp } from '../assets/styles/
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { mockFortunes, mockChatMessages } from '../utils/mockData';
+import type { Report } from '../types';
 
 const AnalysisContainer = styled.div`
   width: 100%;
@@ -387,15 +388,94 @@ const SendButton = styled.button`
   }
 `;
 
+const ReportMessage = styled.div`
+  background: linear-gradient(135deg, rgba(100, 200, 100, 0.2) 0%, rgba(50, 150, 50, 0.1) 100%);
+  border: 2px solid rgba(100, 200, 100, 0.4);
+  border-radius: 15px;
+  padding: 15px 20px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+const ReportHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+const ReportTitle = styled.span`
+  color: rgba(100, 255, 100, 0.9);
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const ReportButton = styled.button`
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: ${colors.black};
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+  }
+`;
+
+const CoinDisplay = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(212, 175, 55, 0.2);
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: ${colors.primary};
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  ${media.mobile} {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+`;
+
 interface ChatMessage {
   id: string;
-  type: 'user' | 'assistant';
+  type: 'user' | 'assistant' | 'system' | 'report';
   message: string;
   timestamp: string;
+  reportId?: string;
 }
 
 const FortuneAnalysisPage: React.FC = () => {
-  const { selectedDeity, selectedFortuneNumber, setCurrentPage } = useAppStore();
+  const { 
+    selectedDeity, 
+    selectedFortuneNumber, 
+    setCurrentPage, 
+    userCoins, 
+    setUserCoins,
+    reports,
+    setReports,
+    setSelectedReport
+  } = useAppStore();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "msg_001",
@@ -434,10 +514,11 @@ const FortuneAnalysisPage: React.FC = () => {
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
 
+    const userQuestion = inputMessage.trim();
     const newMessage: ChatMessage = {
       id: `msg_${Date.now()}`,
       type: 'user',
-      message: inputMessage.trim(),
+      message: userQuestion,
       timestamp: new Date().toISOString()
     };
 
@@ -445,23 +526,79 @@ const FortuneAnalysisPage: React.FC = () => {
     setInputMessage('');
     setIsLoading(true);
 
-    // Simulate AI response after a delay
+    // Check if user has enough coins for report generation
+    if (userCoins < 5) {
+      // Insufficient coins response
+      setTimeout(() => {
+        const insufficientCoinsResponse: ChatMessage = {
+          id: `msg_${Date.now() + 1}`,
+          type: 'system',
+          message: '⚠️ You need at least 5 coins to generate a detailed report. Please purchase more coins or ask a general question that doesn\'t require report generation.',
+          timestamp: new Date().toISOString()
+        };
+        setMessages(prev => [...prev, insufficientCoinsResponse]);
+        setIsLoading(false);
+      }, 1000);
+      return;
+    }
+
+    // Simulate report generation process
     setTimeout(() => {
-      const aiResponse: ChatMessage = {
-        id: `msg_${Date.now() + 1}`,
-        type: 'assistant',
-        message: `Thank you for your question about "${inputMessage.trim()}". Based on this fortune's wisdom, I can offer some insights. The divine message suggests reflection and patience. Consider how this guidance applies to your current situation and trust in the process of spiritual growth.`,
-        timestamp: new Date().toISOString()
+      // Create a new report
+      const reportId = `report_${Date.now()}`;
+      const newReport: Report = {
+        id: reportId,
+        title: `Personal Reading Report`,
+        question: userQuestion,
+        deity_id: selectedDeity!.id,
+        deity_name: selectedDeity!.name,
+        fortune_number: selectedFortuneNumber!,
+        cost: 5,
+        status: 'completed',
+        created_at: new Date().toISOString(),
+        analysis: {
+          overview: `Based on your question "${userQuestion}" and the divine wisdom of ${selectedDeity!.name}, this comprehensive analysis reveals key insights for your path forward.`,
+          career_analysis: `Your professional endeavors are blessed with divine guidance. The fortune suggests that your dedication and hard work will soon bear fruit. Trust in your abilities and remain focused on your goals.`,
+          relationship_analysis: `In matters of the heart, balance and understanding are key. The divine wisdom suggests that open communication and patience will strengthen your bonds with others.`,
+          health_analysis: `Your physical and spiritual well-being require attention. Take time for self-care and meditation to maintain harmony between body and soul.`,
+          lucky_elements: ['Water', 'East Direction', 'Green Color', 'Number 7', 'Morning Hours'],
+          cautions: ['Avoid hasty decisions', 'Be mindful of negative energy', 'Trust your intuition'],
+          advice: `The divine message emphasizes the importance of patience and perseverance. Your question shows wisdom in seeking guidance, and the answer lies within your own inner strength combined with divine blessing.`
+        }
       };
-      setMessages(prev => [...prev, aiResponse]);
+
+      // Add report to store
+      setReports([...reports, newReport]);
+
+      // Deduct coins
+      setUserCoins(userCoins - 5);
+
+      // Send report message
+      const reportMessage: ChatMessage = {
+        id: `msg_${Date.now() + 2}`,
+        type: 'report',
+        message: 'Your personalized report has been generated successfully! Click below to view your detailed divine analysis.',
+        timestamp: new Date().toISOString(),
+        reportId: reportId
+      };
+
+      setMessages(prev => [...prev, reportMessage]);
       setIsLoading(false);
-    }, 2000);
+    }, 3000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
+    }
+  };
+
+  const handleViewReport = (reportId: string) => {
+    const report = reports.find(r => r.id === reportId);
+    if (report) {
+      setSelectedReport(report);
+      setCurrentPage('report');
     }
   };
 
@@ -482,6 +619,10 @@ const FortuneAnalysisPage: React.FC = () => {
             <BackButton onClick={handleBackClick}>
               ← Back to Numbers
             </BackButton>
+            
+            <CoinDisplay>
+              🪙 {userCoins} Coins
+            </CoinDisplay>
             
             <FortuneCard>
               {/* Deity Info at the top */}
@@ -541,17 +682,46 @@ const FortuneAnalysisPage: React.FC = () => {
               </ChatHeader>
               
               <ChatMessages>
-                {messages.map((message) => (
-                  <Message key={message.id} isUser={message.type === 'user'}>
-                    <MessageBubble isUser={message.type === 'user'}>
-                      {message.message}
-                    </MessageBubble>
-                  </Message>
-                ))}
+                {messages.map((message) => {
+                  if (message.type === 'report') {
+                    return (
+                      <div key={message.id}>
+                        <ReportMessage>
+                          <ReportHeader>
+                            <ReportTitle>
+                              📊 Report Generated
+                            </ReportTitle>
+                            <ReportButton onClick={() => handleViewReport(message.reportId!)}>
+                              View Report
+                            </ReportButton>
+                          </ReportHeader>
+                          <div style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                            {message.message}
+                          </div>
+                        </ReportMessage>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <Message key={message.id} isUser={message.type === 'user'}>
+                      <MessageBubble 
+                        isUser={message.type === 'user'}
+                        style={message.type === 'system' ? {
+                          background: 'linear-gradient(135deg, rgba(255, 100, 100, 0.2) 0%, rgba(200, 50, 50, 0.1) 100%)',
+                          border: '2px solid rgba(255, 100, 100, 0.4)',
+                          color: 'rgba(255, 200, 200, 0.9)'
+                        } : {}}
+                      >
+                        {message.message}
+                      </MessageBubble>
+                    </Message>
+                  );
+                })}
                 {isLoading && (
                   <Message isUser={false}>
                     <MessageBubble isUser={false}>
-                      Divine wisdom is contemplating your question...
+                      🔮 Generating your personalized report...
                     </MessageBubble>
                   </Message>
                 )}

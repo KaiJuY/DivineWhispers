@@ -147,8 +147,29 @@ export interface ContactMessage {
   message: string;
 }
 
+export interface Report {
+  id: string;
+  title: string;
+  question: string;
+  deity_id: string;
+  deity_name: string;
+  fortune_number: number;
+  cost: number;
+  status: 'generating' | 'completed';
+  created_at: string;
+  analysis: {
+    overview: string;
+    career_analysis: string;
+    relationship_analysis: string;
+    health_analysis: string;
+    lucky_elements: string[];
+    cautions: string[];
+    advice: string;
+  };
+}
+
 // Navigation Types - Updated for all pages
-export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'admin' | 'contact';
+export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'admin' | 'contact' | 'report';
 
 // Store Types
 export interface AppStore {
@@ -166,4 +187,10 @@ export interface AppStore {
   setCurrentConsultation: (consultation: ConsultationResponse | null) => void;
   consultationHistory: ConsultationResponse[];
   setConsultationHistory: (history: ConsultationResponse[]) => void;
+  reports: Report[];
+  setReports: (reports: Report[]) => void;
+  selectedReport: Report | null;
+  setSelectedReport: (report: Report | null) => void;
+  userCoins: number;
+  setUserCoins: (coins: number) => void;
 }
