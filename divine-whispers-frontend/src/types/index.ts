@@ -168,6 +168,9 @@ export interface Report {
   };
 }
 
+// Language Types
+export type Language = 'en' | 'zh' | 'jp';
+
 // Navigation Types - Updated for all pages
 export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'admin' | 'contact' | 'report';
 
@@ -175,6 +178,11 @@ export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'for
 export interface AppStore {
   currentPage: PageType;
   setCurrentPage: (page: PageType) => void;
+  
+  // Language
+  currentLanguage: Language;
+  setCurrentLanguage: (language: Language) => void;
+  
   auth: AuthState;
   setAuth: (auth: Partial<AuthState>) => void;
   selectedDeity: Deity | null;

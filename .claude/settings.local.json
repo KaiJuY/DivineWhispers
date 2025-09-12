@@ -24,7 +24,9 @@
       "mcp__playwright__browser_evaluate",
       "Read(C:\\Users\\KaiJu\\Desktop/**)",
       "mcp__playwright__browser_type",
-      "Read(/C:\\Users\\KaiJu\\Desktop\\WorkSpace\\My_Self\\DivineWhispers/**)"
+      "Read(/C:\\Users\\KaiJu\\Desktop\\WorkSpace\\My_Self\\DivineWhispers/**)",
+      "Bash(npm start)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": [],

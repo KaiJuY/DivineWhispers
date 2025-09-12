@@ -1,7 +1,27 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType, Report } from '../types';
+import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType, Report, Language } from '../types';
 import { mockAuth, mockReports } from '../utils/mockData';
+
+// Language detection function
+const detectInitialLanguage = (): Language => {
+  // Check localStorage first
+  const storedLanguage = localStorage.getItem('divine-whispers-language');
+  if (storedLanguage && ['en', 'zh', 'jp'].includes(storedLanguage)) {
+    return storedLanguage as Language;
+  }
+  
+  // Check browser language
+  const browserLang = navigator.language.split('-')[0];
+  switch (browserLang) {
+    case 'zh':
+      return 'zh';
+    case 'ja':
+      return 'jp';
+    default:
+      return 'en';
+  }
+};
 
 const useAppStore = create<AppStore>()(
   devtools(
@@ -10,6 +30,14 @@ const useAppStore = create<AppStore>()(
         // Navigation
         currentPage: 'landing' as PageType,
         setCurrentPage: (page: PageType) => set({ currentPage: page }),
+
+        // Language
+        currentLanguage: detectInitialLanguage(),
+        setCurrentLanguage: (language: Language) => {
+          // Store language in localStorage for persistence
+          localStorage.setItem('divine-whispers-language', language);
+          set({ currentLanguage: language });
+        },
 
         // Authentication
         auth: mockAuth as AuthState,
@@ -53,6 +81,7 @@ const useAppStore = create<AppStore>()(
       {
         name: 'divine-whispers-store',
         partialize: (state) => ({
+          currentLanguage: state.currentLanguage,
           auth: state.auth,
           consultationHistory: state.consultationHistory,
         }),

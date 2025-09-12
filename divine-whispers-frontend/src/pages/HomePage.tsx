@@ -4,6 +4,7 @@ import { breathe, borderBreathe, glowPulse, skewFadeIn, floatUp, colors, gradien
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { mockTodaysWhisper, mockDeities, mockDemoReport } from '../utils/mockData';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -262,6 +263,7 @@ const TryNowButton = styled.button`
 const HomePage: React.FC = () => {
   const [whisperExpanded, setWhisperExpanded] = useState(false);
   const { setCurrentPage, setSelectedDeity, setSelectedCollection, setSelectedFortuneNumber, setCurrentConsultation, setSelectedReport } = useAppStore();
+  const { t } = usePagesTranslation();
 
   const handleTryNow = () => {
     // Create a mock consultation based on today's whisper
@@ -350,7 +352,7 @@ const HomePage: React.FC = () => {
             <HeroText>
               <HeroImage src="/assets/HOME_MASK.png" alt="Divine Whispers Hero" />
               <DemoReportButton onClick={handleDemoReport}>
-                Know Your Fate
+                {t('home.knowYourFate')}
               </DemoReportButton>
             </HeroText>
             
@@ -358,7 +360,7 @@ const HomePage: React.FC = () => {
               <MoonContainer>
                 <MoonIcon>🌙</MoonIcon>
                 <WhisperTitle>
-                  Your Whisper <ExpandIcon expanded={whisperExpanded}>▾</ExpandIcon>
+                  {t('home.yourFortune')} <ExpandIcon expanded={whisperExpanded}>▾</ExpandIcon>
                 </WhisperTitle>
               </MoonContainer>
               
@@ -372,7 +374,7 @@ const HomePage: React.FC = () => {
                   <PoemEnglish>{mockTodaysWhisper.poem.english}</PoemEnglish>
                 </WhisperPoem>
                 <TryNowButton onClick={handleTryNow}>
-                  Read Your Whisper
+                  {t('home.readWhisper')}
                 </TryNowButton>
               </WhisperExpanded>
             </TodaysWhisper>

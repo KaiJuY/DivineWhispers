@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { colors, gradients, media } from '../../assets/styles/globalStyles';
 import useAppStore from '../../stores/appStore';
+import { useCommonTranslation, availableLanguages } from '../../hooks/useTranslation';
 
 interface HeaderProps {
   isLanding?: boolean;
@@ -247,6 +248,7 @@ const LanguageSelector = styled.div`
 
 const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
   const { currentPage, setCurrentPage, auth, setAuth } = useAppStore();
+  const { t, currentLanguage, changeLanguage } = useCommonTranslation();
 
   // Check user authentication and role
   const isAuthenticated = auth.isAuthenticated;
@@ -331,8 +333,11 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
   };
 
   const handleLanguageChange = () => {
-    // TODO: Implement language switching logic
-    console.log('Language switch clicked');
+    // Cycle through available languages
+    const currentIndex = availableLanguages.findIndex(lang => lang.code === currentLanguage);
+    const nextIndex = (currentIndex + 1) % availableLanguages.length;
+    const nextLanguage = availableLanguages[nextIndex].code;
+    changeLanguage(nextLanguage);
   };
 
   return (
@@ -347,19 +352,19 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
             active={currentPage === 'home'} 
             onClick={() => handleNavClick('home')}
           >
-            Home
+            {t('navigation.home')}
           </NavLink>
           <NavLink 
             active={currentPage === 'deities'} 
             onClick={() => setCurrentPage('deities')}
           >
-            Deities
+            {t('navigation.deities')}
           </NavLink>
           <NavLink 
             active={currentPage === 'purchase'} 
             onClick={() => setCurrentPage('purchase')}
           >
-            Purchase
+            {t('navigation.purchase')}
           </NavLink>
           
           {/* Show Account link only when user is logged in */}
@@ -368,7 +373,7 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
               active={currentPage === 'account'} 
               onClick={() => setCurrentPage('account')}
             >
-              Account
+              {t('navigation.account')}
             </NavLink>
           )}
           
@@ -376,7 +381,7 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
             active={currentPage === 'contact'} 
             onClick={() => setCurrentPage('contact')}
           >
-            Contact
+            {t('navigation.contact')}
           </NavLink>
           
           {/* Show Admin link only for admin users */}
@@ -385,7 +390,7 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
               active={currentPage === 'admin'} 
               onClick={() => setCurrentPage('admin')}
             >
-              Admin
+              {t('navigation.admin')}
             </NavLink>
           )}
         </MainNav>
@@ -396,10 +401,10 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
             // Show Login/Signup when not authenticated
             <>
               <AuthButton onClick={handleLogin}>
-                Login
+                {t('auth.login')}
               </AuthButton>
               <AuthButton secondary onClick={handleSignup}>
-                Sign Up
+                {t('auth.signup')}
               </AuthButton>
             </>
           ) : (
@@ -408,18 +413,18 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
               <UserInfo>
                 <UserEmail>{userEmail}</UserEmail>
                 <UserRole isAdmin={isAdmin}>
-                  {isAdmin ? '👑 Admin' : '👤 User'}
+                  {isAdmin ? `👑 ${t('auth.adminRole')}` : `👤 ${t('auth.userRole')}`}
                 </UserRole>
               </UserInfo>
               <AuthButton secondary onClick={handleLogout}>
-                Logout
+                {t('auth.logout')}
               </AuthButton>
             </>
           )}
           
           <LanguageSelector onClick={handleLanguageChange}>
             <span>🌐</span>
-            <span>EN</span>
+            <span>{currentLanguage.toUpperCase()}</span>
             <span>▾</span>
           </LanguageSelector>
         </AuthSection>

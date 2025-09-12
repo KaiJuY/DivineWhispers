@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './assets/styles/globalStyles';
 import RouterProvider from './contexts/RouterContext';
 import useAppStore from './stores/appStore';
+import './i18n/config'; // Initialize i18n
 import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
 import DeitiesPage from './pages/DeitiesPage';
