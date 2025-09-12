@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors, gradients, media, skewFadeIn } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 const ReportContainer = styled.div`
   width: 100%;
@@ -219,6 +220,7 @@ const Tag = styled.span`
 
 const ReportPage: React.FC = () => {
   const { selectedReport, setCurrentPage } = useAppStore();
+  const { t } = usePagesTranslation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -248,7 +250,7 @@ const ReportPage: React.FC = () => {
         <ReportSection>
           <ReportContent>
             <BackButton onClick={handleBackClick}>
-              ← Back to {isDemoReport ? 'Home' : 'Account'}
+              {isDemoReport ? t('report.backToHome') : t('report.backToAccount')}
             </BackButton>
             
             <ReportCard>
@@ -256,48 +258,48 @@ const ReportPage: React.FC = () => {
                 <ReportTitle>{selectedReport.title}</ReportTitle>
                 <ReportSubtitle>
                   <ReportInfo>
-                    🏛️ {selectedReport.deity_name}
+                    {t('report.deityName', { deity: selectedReport.deity_name })}
                   </ReportInfo>
                   <ReportInfo>
-                    🔢 Fortune #{selectedReport.fortune_number}
+                    {t('report.fortuneNumber', { number: selectedReport.fortune_number })}
                   </ReportInfo>
                   <ReportInfo>
-                    💰 {selectedReport.cost} coins
+                    {t('report.coinsCost', { cost: selectedReport.cost })}
                   </ReportInfo>
                   <ReportInfo>
-                    📅 {new Date(selectedReport.created_at).toLocaleDateString()}
+                    {t('report.date', { date: new Date(selectedReport.created_at).toLocaleDateString() })}
                   </ReportInfo>
                 </ReportSubtitle>
               </ReportHeader>
 
               <ReportQuestion>
-                <QuestionLabel>Your Question</QuestionLabel>
+                <QuestionLabel>{t('report.yourQuestion')}</QuestionLabel>
                 <QuestionText>"{selectedReport.question}"</QuestionText>
               </ReportQuestion>
 
               <AnalysisSection>
-                <AnalysisTitle>📊 Divine Analysis Overview</AnalysisTitle>
+                <AnalysisTitle>{t('report.divineAnalysisOverview')}</AnalysisTitle>
                 <AnalysisContent>{selectedReport.analysis.overview}</AnalysisContent>
               </AnalysisSection>
 
               <ElementsList>
                 <ElementCard>
-                  <ElementTitle>💼 Career Analysis</ElementTitle>
+                  <ElementTitle>{t('report.careerAnalysis')}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.career_analysis}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>❤️ Relationship Analysis</ElementTitle>
+                  <ElementTitle>{t('report.relationshipAnalysis')}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.relationship_analysis}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>🌿 Health Analysis</ElementTitle>
+                  <ElementTitle>{t('report.healthAnalysis')}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.health_analysis}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>✨ Lucky Elements</ElementTitle>
+                  <ElementTitle>{t('report.luckyElements')}</ElementTitle>
                   <ElementContent>
                     <TagList>
                       {selectedReport.analysis.lucky_elements.map((element, index) => (
@@ -308,7 +310,7 @@ const ReportPage: React.FC = () => {
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>⚠️ Cautions</ElementTitle>
+                  <ElementTitle>{t('report.cautions')}</ElementTitle>
                   <ElementContent>
                     <TagList>
                       {selectedReport.analysis.cautions.map((caution, index) => (
@@ -323,7 +325,7 @@ const ReportPage: React.FC = () => {
                 </ElementCard>
 
                 <ElementCard style={{ gridColumn: '1 / -1' }}>
-                  <ElementTitle>🌟 Divine Advice</ElementTitle>
+                  <ElementTitle>{t('report.divineAdvice')}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.advice}</ElementContent>
                 </ElementCard>
               </ElementsList>

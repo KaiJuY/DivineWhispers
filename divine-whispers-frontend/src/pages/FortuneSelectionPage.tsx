@@ -4,6 +4,7 @@ import { skewFadeIn, glowing, colors, gradients, media } from '../assets/styles/
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { mockFortuneNumbers } from '../utils/mockData';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 const FortuneContainer = styled.div`
   width: 100%;
@@ -249,6 +250,7 @@ const CollectionRange = styled.div`
 
 const FortuneSelectionPage: React.FC = () => {
   const { selectedDeity, setCurrentPage, setSelectedFortuneNumber, setSelectedCollection } = useAppStore();
+  const { t } = usePagesTranslation();
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -276,7 +278,7 @@ const FortuneSelectionPage: React.FC = () => {
         <FortuneSection>
           <FortuneContent>
             <BackButton onClick={handleBackClick}>
-              ← Back to Deities
+              {t('fortuneSelection.backToDeities')}
             </BackButton>
             <HeroImage 
               src={`/assets${selectedDeity.imageUrl.replace(/\.(jpg|png)$/, '_W.$1')}`} 
@@ -286,9 +288,9 @@ const FortuneSelectionPage: React.FC = () => {
                 target.src = '/assets/GuanYin_W.jpg'; // Fallback wide image
               }}
             />
-            <FortuneTitle>Choose Your Fortune Number</FortuneTitle>
+            <FortuneTitle>{t('fortuneSelection.title')}</FortuneTitle>
             <FortuneSubtitle>
-              {selectedDeity.name} - Select a number from the collections below
+              {t('fortuneSelection.subtitle', { deityName: selectedDeity.name })}
             </FortuneSubtitle>
             
             {selectedDeity.collections.map((collection, collectionIndex) => {
@@ -298,7 +300,7 @@ const FortuneSelectionPage: React.FC = () => {
                   <CollectionHeader>
                     <CollectionTitle>{collection.name}</CollectionTitle>
                     <CollectionDescription>{collection.description}</CollectionDescription>
-                    <CollectionRange>Numbers 1 - {collection.maxNumber}</CollectionRange>
+                    <CollectionRange>{t('fortuneSelection.numbersRange', { max: collection.maxNumber })}</CollectionRange>
                   </CollectionHeader>
                   <NumbersGrid>
                     {availableNumbers.map((number, index) => (

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, gradients, media, skewFadeIn } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
+import { usePagesTranslation, useFormsTranslation } from '../hooks/useTranslation';
 
 const ContactContainer = styled.div`
   width: 100%;
@@ -285,6 +286,8 @@ const ContactPage: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { t: tPage } = usePagesTranslation();
+  const { t: tForm } = useFormsTranslation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -312,145 +315,133 @@ const ContactPage: React.FC = () => {
           <ContactContent>
             <ParallelSection>
               <LeftColumn>
-                <ContactTitle>Contact Us</ContactTitle>
+                <ContactTitle>{tPage('contact.title')}</ContactTitle>
                 <ContactForm onSubmit={handleSubmit}>
                   {isSubmitted && (
                     <SuccessMessage>
-                      Thank you for your message! We'll get back to you soon.
+                      {tPage('contact.thankYouMessage')}
                     </SuccessMessage>
                   )}
                   
                   <FormGroup>
-                    <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="name">{tForm('labels.name')}</Label>
                     <Input
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Your full name"
+                      placeholder={tForm('placeholders.name')}
                       required
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">{tForm('labels.email')}</Label>
                     <Input
                       type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="your.email@example.com"
+                      placeholder={tForm('placeholders.email')}
                       required
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label htmlFor="subject">Subject</Label>
+                    <Label htmlFor="subject">{tForm('labels.subject')}</Label>
                     <Input
                       type="text"
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="What can we help you with?"
+                      placeholder={tForm('placeholders.subject')}
                       required
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message">{tForm('labels.message')}</Label>
                     <TextArea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Tell us more about your inquiry..."
+                      placeholder={tForm('placeholders.message')}
                       required
                     />
                   </FormGroup>
 
                   <SubmitButton type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? tPage('contact.sending') : tPage('contact.sendMessage')}
                   </SubmitButton>
                 </ContactForm>
 
                 <ContactInfo>
-                  <InfoTitle>Get in Touch</InfoTitle>
+                  <InfoTitle>{tPage('contact.getInTouch')}</InfoTitle>
                   <InfoText>
-                    Have questions about your fortune reading or need help with our services?
+                    {tPage('contact.haveQuestions')}
                   </InfoText>
                   <InfoText>
                     📧 Email: <a href="mailto:support@divinewhispers.com">support@divinewhispers.com</a>
                   </InfoText>
                   <InfoText>
-                    🕐 Working Hours: Monday - Friday, 9:00 AM - 6:00 PM (PST)
+                    🕐 {tPage('contact.workingHours')}
                   </InfoText>
                   <InfoText>
-                    📞 Customer Support: Available during business hours
+                    📞 {tPage('contact.customerSupport')}
                   </InfoText>
                   <InfoText>
-                    ⏱️ Response Time: We typically respond within 4-6 hours during business days
+                    ⏱️ {tPage('contact.responseTime')}
                   </InfoText>
                 </ContactInfo>
               </LeftColumn>
 
               <RightColumn>
                 <FAQSection>
-                  <FAQTitle>Frequently Asked Questions</FAQTitle>
+                  <FAQTitle>{tPage('contact.faqTitle')}</FAQTitle>
                   
                   <FAQItem>
-                    <FAQQuestion>How accurate are the fortune readings?</FAQQuestion>
+                    <FAQQuestion>{tForm('faq.q1')}</FAQQuestion>
                     <FAQAnswer>
-                      Our fortune readings combine traditional Chinese divination methods with AI interpretation. 
-                      While we strive for meaningful insights, remember that fortunes are guidance tools and 
-                      should be considered alongside your own judgment.
+                      {tForm('faq.a1')}
                     </FAQAnswer>
                   </FAQItem>
 
                   <FAQItem>
-                    <FAQQuestion>How much does a fortune reading cost?</FAQQuestion>
+                    <FAQQuestion>{tForm('faq.q2')}</FAQQuestion>
                     <FAQAnswer>
-                      Basic fortune readings are free for registered users. Premium readings with detailed 
-                      analysis and personalized insights are available through our points system. 
-                      Check our Purchase page for current pricing.
+                      {tForm('faq.a2')}
                     </FAQAnswer>
                   </FAQItem>
 
                   <FAQItem>
-                    <FAQQuestion>Can I get multiple readings for the same question?</FAQQuestion>
+                    <FAQQuestion>{tForm('faq.q3')}</FAQQuestion>
                     <FAQAnswer>
-                      We recommend waiting at least 24 hours before asking the same question again. 
-                      Traditional divination suggests that asking the same question repeatedly may 
-                      lead to unclear or conflicting guidance.
+                      {tForm('faq.a3')}
                     </FAQAnswer>
                   </FAQItem>
 
                   <FAQItem>
-                    <FAQQuestion>Which deity should I choose for my reading?</FAQQuestion>
+                    <FAQQuestion>{tForm('faq.q4')}</FAQQuestion>
                     <FAQAnswer>
-                      Each deity specializes in different aspects of life. Guan Yin focuses on compassion and 
-                      relationships, Guan Yu on courage and career, Mazu on protection and travel. 
-                      Choose based on your question's nature or trust your intuition.
+                      {tForm('faq.a4')}
                     </FAQAnswer>
                   </FAQItem>
 
                   <FAQItem>
-                    <FAQQuestion>Is my personal information secure?</FAQQuestion>
+                    <FAQQuestion>{tForm('faq.q5')}</FAQQuestion>
                     <FAQAnswer>
-                      Yes, we take privacy seriously. Your personal information, questions, and readings are 
-                      encrypted and stored securely. We never share your data with third parties without 
-                      your explicit consent.
+                      {tForm('faq.a5')}
                     </FAQAnswer>
                   </FAQItem>
 
                   <FAQItem>
-                    <FAQQuestion>Can I save my reading results?</FAQQuestion>
+                    <FAQQuestion>{tForm('faq.q6')}</FAQQuestion>
                     <FAQAnswer>
-                      Yes! All your readings are automatically saved to your account history. 
-                      You can access them anytime from your Account page to review past insights 
-                      and track your spiritual journey.
+                      {tForm('faq.a6')}
                     </FAQAnswer>
                   </FAQItem>
                 </FAQSection>

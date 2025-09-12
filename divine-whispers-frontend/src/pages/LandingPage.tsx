@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { glow, buttonStyles, gradients, colors, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 const LandingContainer = styled.div`
   position: relative;
@@ -83,6 +84,7 @@ const LearnMoreButton = styled.button`
 
 const LandingPage: React.FC = () => {
   const { setCurrentPage } = useAppStore();
+  const { t } = usePagesTranslation();
 
   const handleLearnMore = () => {
     setCurrentPage('home');
@@ -104,17 +106,15 @@ const LandingPage: React.FC = () => {
           onLoadedData={() => console.log('Video loaded data')}
         >
           <source src="/assets/Landing.mp4" type="video/mp4" />
-          <p>Your browser does not support the video tag.</p>
+          <p>{t('landing.videoError')}</p>
         </LandingVideo>
         <LandingOverlay />
         <LandingHero>
           <HeroTitle>
-            Hear the call of mystery
-            <br />
-            guiding your true path
+            {t('landing.heroTitle')}
           </HeroTitle>
           <LearnMoreButton onClick={handleLearnMore}>
-            Learn More
+            {t('landing.learnMore')}
           </LearnMoreButton>
         </LandingHero>
       </LandingContainer>

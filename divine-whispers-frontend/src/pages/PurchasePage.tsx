@@ -3,6 +3,7 @@ import styled, { keyframes, css } from 'styled-components';
 import { colors, gradients, media, skewFadeIn, floatUp } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 interface CoinPackage {
   id: string;
@@ -19,53 +20,53 @@ interface PaymentMethod {
   description?: string;
 }
 
-const paymentMethods: PaymentMethod[] = [
+const getPaymentMethods = (t: (key: string) => string): PaymentMethod[] => [
   {
     id: 'card',
-    name: 'Credit/Debit Card',
+    name: t('purchase.paymentMethods.card.name'),
     icon: '💳',
-    description: 'Visa, Mastercard, American Express'
+    description: t('purchase.paymentMethods.card.description')
   },
   {
     id: 'paypal',
-    name: 'PayPal',
+    name: t('purchase.paymentMethods.paypal.name'),
     icon: '🅿️',
-    description: 'Pay with your PayPal account'
+    description: t('purchase.paymentMethods.paypal.description')
   },
   {
     id: 'apple-pay',
-    name: 'Apple Pay',
+    name: t('purchase.paymentMethods.applePay.name'),
     icon: '🍎',
-    description: 'Touch ID or Face ID'
+    description: t('purchase.paymentMethods.applePay.description')
   },
   {
     id: 'google-pay',
-    name: 'Google Pay',
+    name: t('purchase.paymentMethods.googlePay.name'),
     icon: '🟢',
-    description: 'Google account payment'
+    description: t('purchase.paymentMethods.googlePay.description')
   }
 ];
 
-const coinPackages: CoinPackage[] = [
+const getCoinPackages = (t: (key: string) => string): CoinPackage[] => [
   {
     id: 'small',
     coins: 5,
     price: 1,
-    badge: 'Perfect for trying',
+    badge: t('purchase.packages.small.badge'),
     pricePerCoin: 1
   },
   {
     id: 'popular',
     coins: 25,
     price: 4,
-    badge: 'Most popular',
+    badge: t('purchase.packages.popular.badge'),
     pricePerCoin: 0.8
   },
   {
     id: 'best',
     coins: 100,
     price: 10,
-    badge: 'Best value',
+    badge: t('purchase.packages.best.badge'),
     pricePerCoin: 0.5
   }
 ];
@@ -527,9 +528,13 @@ const PolicyAnnouncement = styled.div`
 
 const PurchasePage: React.FC = () => {
   const { auth } = useAppStore();
+  const { t } = usePagesTranslation();
   const [selectedPackage, setSelectedPackage] = useState<string>('popular');
   const [selectedPayment, setSelectedPayment] = useState<string>('card');
   const currentCoins = 100; // Mock current coins
+  
+  const paymentMethods = getPaymentMethods(t);
+  const coinPackages = getCoinPackages(t);
 
   const handlePackageSelect = (packageId: string) => {
     setSelectedPackage(packageId);
@@ -542,7 +547,7 @@ const PurchasePage: React.FC = () => {
   const handlePurchase = () => {
     // TODO: Implement actual payment processing
     console.log('Purchase initiated for package:', selectedPackage, 'with payment method:', selectedPayment);
-    alert(`Processing payment via ${paymentMethods.find(p => p.id === selectedPayment)?.name}. This is a demo.`);
+    alert(`${t('purchase.processingPayment')} ${paymentMethods.find(p => p.id === selectedPayment)?.name}. ${t('purchase.demoNotice')}`);
   };
 
   const getSelectedPackage = () => {
@@ -557,9 +562,9 @@ const PurchasePage: React.FC = () => {
         <PurchaseSection>
           <PurchaseContent>
             <LeftSection>
-              <PurchaseTitle>Buy Divine Coin</PurchaseTitle>
+              <PurchaseTitle>{t('purchase.title')}</PurchaseTitle>
               <PurchaseSubtitle>
-                Every Divine Coin gets you one fortune telling divination.
+                {t('purchase.subtitle')}
               </PurchaseSubtitle>
 
               <CoinPackagesList>
@@ -573,14 +578,14 @@ const PurchasePage: React.FC = () => {
                     {pkg.badge && <PackageBadge>{pkg.badge}</PackageBadge>}
                     
                     <PackageHeader>
-                      <CoinCount>{pkg.coins} Coins</CoinCount>
+                      <CoinCount>{pkg.coins} {t('purchase.coins')}</CoinCount>
                     </PackageHeader>
 
                     <PackageDetails>
                       <PackagePrice>${pkg.price}</PackagePrice>
                     </PackageDetails>
 
-                    <PackageRate>${pkg.pricePerCoin.toFixed(2)} / time</PackageRate>
+                    <PackageRate>${pkg.pricePerCoin.toFixed(2)} / {t('purchase.perTime')}</PackageRate>
                   </CoinPackageItem>
                 ))}
               </CoinPackagesList>
@@ -588,33 +593,33 @@ const PurchasePage: React.FC = () => {
 
             <RightSection>
               <PurchaseSummary>
-                <SummaryTitle>{selectedPkg.coins} Coins</SummaryTitle>
+                <SummaryTitle>{selectedPkg.coins} {t('purchase.coins')}</SummaryTitle>
                 
                 <SummaryDetails>
                   <SummaryRow>
-                    <span>Coins to receive:</span>
-                    <span>{selectedPkg.coins} Coins</span>
+                    <span>{t('purchase.summary.coinsToReceive')}:</span>
+                    <span>{selectedPkg.coins} {t('purchase.coins')}</span>
                   </SummaryRow>
                   <SummaryRow>
-                    <span>Coins after:</span>
-                    <span>{currentCoins + selectedPkg.coins} Coins</span>
+                    <span>{t('purchase.summary.coinsAfter')}:</span>
+                    <span>{currentCoins + selectedPkg.coins} {t('purchase.coins')}</span>
                   </SummaryRow>
                   <SummaryRow>
-                    <span>Current coins:</span>
-                    <span>{currentCoins} Coins</span>
+                    <span>{t('purchase.summary.currentCoins')}:</span>
+                    <span>{currentCoins} {t('purchase.coins')}</span>
                   </SummaryRow>
                   <SummaryRow>
-                    <span>Transaction cost:</span>
+                    <span>{t('purchase.summary.transactionCost')}:</span>
                     <span>${selectedPkg.price}</span>
                   </SummaryRow>
                   <SummaryRow className="total">
-                    <span>Coin currency rate:</span>
-                    <span>${(selectedPkg.price / selectedPkg.coins).toFixed(2)} / Coin</span>
+                    <span>{t('purchase.summary.coinCurrencyRate')}:</span>
+                    <span>${(selectedPkg.price / selectedPkg.coins).toFixed(2)} / {t('purchase.coin')}</span>
                   </SummaryRow>
                 </SummaryDetails>
 
                 <PaymentMethodSection>
-                  <PaymentMethodTitle>Choose Payment Method</PaymentMethodTitle>
+                  <PaymentMethodTitle>{t('purchase.choosePaymentMethod')}</PaymentMethodTitle>
                   <PaymentMethodGrid>
                     {paymentMethods.map((method) => (
                       <PaymentMethodOption
@@ -631,14 +636,12 @@ const PurchasePage: React.FC = () => {
                 </PaymentMethodSection>
 
                 <PurchaseBtn onClick={handlePurchase}>
-                  Purchase with {paymentMethods.find(p => p.id === selectedPayment)?.name}
+                  {t('purchase.purchaseWith')} {paymentMethods.find(p => p.id === selectedPayment)?.name}
                 </PurchaseBtn>
 
                 <PolicyAnnouncement>
                   <p>
-                    <strong>Policy:</strong> All coin purchases are final and non-refundable. 
-                    Coins do not expire and can be used anytime for divine fortune readings. 
-                    By purchasing, you agree to our terms of service.
+                    <strong>{t('purchase.policy.title')}:</strong> {t('purchase.policy.text')}
                   </p>
                 </PolicyAnnouncement>
               </PurchaseSummary>

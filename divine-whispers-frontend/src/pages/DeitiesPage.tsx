@@ -4,6 +4,7 @@ import { skewFadeIn, colors, gradients, media } from '../assets/styles/globalSty
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { mockDeities } from '../utils/mockData';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 const DeitiesContainer = styled.div`
   width: 100%;
@@ -185,6 +186,7 @@ const CardDescription = styled.p`
 // Fixed design to match mockup
 const DeitiesPage: React.FC = () => {
   const { setCurrentPage, setSelectedDeity, setSelectedCollection } = useAppStore();
+  const { t } = usePagesTranslation();
 
   const handleDeitySelect = (deity: any) => {
     setSelectedDeity(deity);
@@ -196,7 +198,7 @@ const DeitiesPage: React.FC = () => {
       <DeitiesContainer>
         <DeitiesSection>
           <DeitiesContent>
-            <DeitiesTitle>Choose your belief</DeitiesTitle>
+            <DeitiesTitle>{t('deities.chooseYourBelief')}</DeitiesTitle>
             <DeitiesGrid>
               {mockDeities.map((deity, index) => (
                 <DeityCard 

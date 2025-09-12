@@ -5,6 +5,7 @@ import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { mockFortunes, mockChatMessages } from '../utils/mockData';
 import type { Report } from '../types';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 const AnalysisContainer = styled.div`
   width: 100%;
@@ -476,6 +477,7 @@ const FortuneAnalysisPage: React.FC = () => {
     setReports,
     setSelectedReport
   } = useAppStore();
+  const { t } = usePagesTranslation();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "msg_001",
@@ -533,7 +535,7 @@ const FortuneAnalysisPage: React.FC = () => {
         const insufficientCoinsResponse: ChatMessage = {
           id: `msg_${Date.now() + 1}`,
           type: 'system',
-          message: '⚠️ You need at least 5 coins to generate a detailed report. Please purchase more coins or ask a general question that doesn\'t require report generation.',
+          message: t('fortuneAnalysis.insufficientCoins'),
           timestamp: new Date().toISOString()
         };
         setMessages(prev => [...prev, insufficientCoinsResponse]);
@@ -577,7 +579,7 @@ const FortuneAnalysisPage: React.FC = () => {
       const reportMessage: ChatMessage = {
         id: `msg_${Date.now() + 2}`,
         type: 'report',
-        message: 'Your personalized report has been generated successfully! Click below to view your detailed divine analysis.',
+        message: t('fortuneAnalysis.reportMessage'),
         timestamp: new Date().toISOString(),
         reportId: reportId
       };
@@ -617,11 +619,11 @@ const FortuneAnalysisPage: React.FC = () => {
         <AnalysisSection>
           <AnalysisContent>
             <BackButton onClick={handleBackClick}>
-              ← Back to Numbers
+              {t('fortuneAnalysis.backToNumbers')}
             </BackButton>
             
             <CoinDisplay>
-              🪙 {userCoins} Coins
+              {t('fortuneAnalysis.coinsDisplay', { coins: userCoins })}
             </CoinDisplay>
             
             <FortuneCard>
@@ -653,32 +655,32 @@ const FortuneAnalysisPage: React.FC = () => {
                   marginBottom: '10px',
                   lineHeight: '1.2'
                 }}>
-                  Divine Fortune Reading
+                  {t('fortuneAnalysis.title')}
                 </h1>
                 <p style={{ 
                   color: 'rgba(255, 255, 255, 0.8)', 
                   fontSize: '1.1rem',
                   marginBottom: '0'
                 }}>
-                  Fortune #{selectedFortuneNumber} - {fortune.fortuneLevel}
+                  {t('fortuneAnalysis.subtitle', { number: selectedFortuneNumber, fortuneLevel: fortune.fortuneLevel })}
                 </p>
               </div>
 
               <PoemSection>
-                <PoemTitle>Fortune Poem</PoemTitle>
+                <PoemTitle>{t('fortuneAnalysis.poemTitle')}</PoemTitle>
                 <PoemText>{fortune.poem}</PoemText>
               </PoemSection>
 
               <AnalysisTextSection>
-                <AnalysisTitle>Divine Interpretation</AnalysisTitle>
+                <AnalysisTitle>{t('fortuneAnalysis.analysisTitle')}</AnalysisTitle>
                 <AnalysisText>{fortune.analysis}</AnalysisText>
               </AnalysisTextSection>
             </FortuneCard>
 
             <ChatSection>
               <ChatHeader>
-                <ChatTitle>Ask for Guidance</ChatTitle>
-                <ChatSubtitle>Discuss this fortune with divine wisdom</ChatSubtitle>
+                <ChatTitle>{t('fortuneAnalysis.chatTitle')}</ChatTitle>
+                <ChatSubtitle>{t('fortuneAnalysis.chatSubtitle')}</ChatSubtitle>
               </ChatHeader>
               
               <ChatMessages>
@@ -689,10 +691,10 @@ const FortuneAnalysisPage: React.FC = () => {
                         <ReportMessage>
                           <ReportHeader>
                             <ReportTitle>
-                              📊 Report Generated
+                              {t('fortuneAnalysis.reportGenerated')}
                             </ReportTitle>
                             <ReportButton onClick={() => handleViewReport(message.reportId!)}>
-                              View Report
+                              {t('fortuneAnalysis.viewReportButton')}
                             </ReportButton>
                           </ReportHeader>
                           <div style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
@@ -721,7 +723,7 @@ const FortuneAnalysisPage: React.FC = () => {
                 {isLoading && (
                   <Message isUser={false}>
                     <MessageBubble isUser={false}>
-                      🔮 Generating your personalized report...
+                      {t('fortuneAnalysis.generatingReport')}
                     </MessageBubble>
                   </Message>
                 )}
@@ -734,14 +736,14 @@ const FortuneAnalysisPage: React.FC = () => {
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Ask about this fortune..."
+                    placeholder={t('fortuneAnalysis.chatPlaceholder')}
                     rows={1}
                   />
                   <SendButton 
                     onClick={handleSendMessage}
                     disabled={!inputMessage.trim() || isLoading}
                   >
-                    Send
+                    {t('fortuneAnalysis.sendButton')}
                   </SendButton>
                 </ChatInputContainer>
               </ChatInputSection>

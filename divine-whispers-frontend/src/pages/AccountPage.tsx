@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
+import { usePagesTranslation } from '../hooks/useTranslation';
 
 interface PurchaseRecord {
   id: string;
@@ -566,6 +567,7 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
 
 const AccountPage: React.FC = () => {
   const { reports, userCoins, setSelectedReport, setCurrentPage } = useAppStore();
+  const { t } = usePagesTranslation();
   const [editingFields, setEditingFields] = useState<string[]>([]);
   const [profileData, setProfileData] = useState({
     username: 'DivineSeeker2024',
@@ -593,17 +595,17 @@ const AccountPage: React.FC = () => {
   const handleSaveChanges = () => {
     console.log('Saving changes:', profileData);
     setEditingFields([]);
-    alert('Profile updated successfully!');
+    alert(t('account.profileUpdated'));
   };
 
   const handleChangePassword = () => {
     console.log('Change password requested');
-    alert('Password change functionality would be implemented here.');
+    alert(t('account.passwordChangePrompt'));
   };
 
   const handleLogOut = () => {
     console.log('Logging out...');
-    alert('Logout functionality would be implemented here.');
+    alert(t('account.logoutPrompt'));
   };
 
   const handleViewReport = (reportId: string) => {
@@ -619,22 +621,22 @@ const AccountPage: React.FC = () => {
       <AccountContainer>
         <AccountSection>
           <AccountContent>
-            <AccountTitle>My Account</AccountTitle>
+            <AccountTitle>{t('account.title')}</AccountTitle>
 
             {/* Profile Information */}
             <AccountCard>
-              <CardTitle>Profile Information</CardTitle>
+              <CardTitle>{t('account.profileInfo')}</CardTitle>
               
               <ProfileAvatar>
                 <AvatarCircle>
                   <AvatarText>JD</AvatarText>
                 </AvatarCircle>
-                <EditAvatarBtn>Change Avatar</EditAvatarBtn>
+                <EditAvatarBtn>{t('account.changeAvatar')}</EditAvatarBtn>
               </ProfileAvatar>
 
               <ProfileFields>
                 <FieldGroup>
-                  <FieldLabel>Username</FieldLabel>
+                  <FieldLabel>{t('account.username')}</FieldLabel>
                   <ProfileInput
                     type="text"
                     value={profileData.username}
@@ -645,7 +647,7 @@ const AccountPage: React.FC = () => {
                 </FieldGroup>
 
                 <FieldGroup>
-                  <FieldLabel>Email</FieldLabel>
+                  <FieldLabel>{t('account.email')}</FieldLabel>
                   <ProfileInput
                     type="email"
                     value={profileData.email}
@@ -657,7 +659,7 @@ const AccountPage: React.FC = () => {
 
                 <FieldRow>
                   <FieldGroup>
-                    <FieldLabel>Birth Date</FieldLabel>
+                    <FieldLabel>{t('account.birthDate')}</FieldLabel>
                     <ProfileInput
                       type="date"
                       value={profileData.birthDate}
@@ -668,23 +670,23 @@ const AccountPage: React.FC = () => {
                   </FieldGroup>
 
                   <FieldGroup>
-                    <FieldLabel>Gender</FieldLabel>
+                    <FieldLabel>{t('account.gender')}</FieldLabel>
                     <ProfileSelect
                       value={profileData.gender}
                       disabled={!editingFields.includes('gender')}
                       onChange={(e) => handleInputChange('gender', e.target.value)}
                     >
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Non-binary">Non-binary</option>
-                      <option value="Prefer not to say">Prefer not to say</option>
+                      <option value="Male">{t('account.genderOptions.male')}</option>
+                      <option value="Female">{t('account.genderOptions.female')}</option>
+                      <option value="Non-binary">{t('account.genderOptions.nonBinary')}</option>
+                      <option value="Prefer not to say">{t('account.genderOptions.preferNotToSay')}</option>
                     </ProfileSelect>
                     <EditBtn onClick={() => toggleEdit('gender')}>✏️</EditBtn>
                   </FieldGroup>
                 </FieldRow>
 
                 <FieldGroup fullWidth>
-                  <FieldLabel>Location</FieldLabel>
+                  <FieldLabel>{t('account.location')}</FieldLabel>
                   <ProfileInput
                     type="text"
                     value={profileData.location}
@@ -698,18 +700,18 @@ const AccountPage: React.FC = () => {
 
             {/* Account Status */}
             <AccountCard>
-              <CardTitle>Account Status</CardTitle>
+              <CardTitle>{t('account.accountStatus')}</CardTitle>
               <StatusInfo>
                 <StatusItem>
-                  <StatusLabel>Current Balance</StatusLabel>
-                  <StatusValue highlight>{userCoins} Coins</StatusValue>
+                  <StatusLabel>{t('account.currentBalance')}</StatusLabel>
+                  <StatusValue highlight>{userCoins} {t('account.coins')}</StatusValue>
                 </StatusItem>
                 <StatusItem>
-                  <StatusLabel>Membership</StatusLabel>
-                  <StatusValue highlight>Premium Member</StatusValue>
+                  <StatusLabel>{t('account.membership')}</StatusLabel>
+                  <StatusValue highlight>{t('account.premiumMember')}</StatusValue>
                 </StatusItem>
                 <StatusItem>
-                  <StatusLabel>Member Since</StatusLabel>
+                  <StatusLabel>{t('account.memberSince')}</StatusLabel>
                   <StatusValue>January 2024</StatusValue>
                 </StatusItem>
               </StatusInfo>
@@ -717,7 +719,7 @@ const AccountPage: React.FC = () => {
 
             {/* Recent Purchase Records */}
             <AccountCard>
-              <CardTitle>Recent Purchase Records</CardTitle>
+              <CardTitle>{t('account.purchaseRecords')}</CardTitle>
               <RecordsList>
                 {purchaseRecords.map((record) => (
                   <RecordItem key={record.id}>
@@ -739,14 +741,14 @@ const AccountPage: React.FC = () => {
 
             {/* My Analysis Reports */}
             <AccountCard>
-              <CardTitle>Report History ({reports.length})</CardTitle>
+              <CardTitle>{t('account.reportHistory', { count: reports.length })}</CardTitle>
               {reports.length === 0 ? (
                 <div style={{ 
                   textAlign: 'center', 
                   padding: '40px', 
                   color: 'rgba(255, 255, 255, 0.6)' 
                 }}>
-                  No reports generated yet. Start a conversation on the fortune analysis page to generate your first report!
+                  {t('account.noReports')}
                 </div>
               ) : (
                 reports.map((report) => (
@@ -760,10 +762,10 @@ const AccountPage: React.FC = () => {
                       <AnalysisMeta>
                         Generated on {new Date(report.created_at).toLocaleDateString()} • 
                         Cost: {report.cost} coins • 
-                        Status: {report.status === 'completed' ? 'Completed' : 'Generating...'}
+                        Status: {report.status === 'completed' ? t('account.statusLabels.completed') : t('account.statusLabels.generating')}
                       </AnalysisMeta>
                     </AnalysisInfo>
-                    <AnalysisAction>View Report</AnalysisAction>
+                    <AnalysisAction>{t('account.viewReport')}</AnalysisAction>
                   </AnalysisItem>
                 ))
               )}
@@ -772,13 +774,13 @@ const AccountPage: React.FC = () => {
             {/* Action Buttons */}
             <AccountActions>
               <ActionButton variant="primary" onClick={handleSaveChanges}>
-                Save Changes
+                {t('account.saveChanges')}
               </ActionButton>
               <ActionButton variant="secondary" onClick={handleChangePassword}>
-                Change Password
+                {t('account.changePassword')}
               </ActionButton>
               <ActionButton variant="danger" onClick={handleLogOut}>
-                Log Out
+                {t('account.logOut')}
               </ActionButton>
             </AccountActions>
           </AccountContent>
