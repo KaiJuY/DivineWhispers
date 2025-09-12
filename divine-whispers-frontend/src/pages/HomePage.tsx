@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { breathe, borderBreathe, glowPulse, skewFadeIn, floatUp, colors, gradients, media, cardStyles } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
-import { mockTodaysWhisper, mockDeities } from '../utils/mockData';
+import { mockTodaysWhisper, mockDeities, mockDemoReport } from '../utils/mockData';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -53,8 +53,8 @@ const HeroContent = styled.div`
 
 const HeroText = styled.div`
   width: 100%;
+  position: relative;
 `;
-
 
 const HeroImage = styled.img`
   width: 100%;
@@ -62,6 +62,42 @@ const HeroImage = styled.img`
   height: auto;
   display: block;
   margin: 0 auto;
+`;
+
+const DemoReportButton = styled.button`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  color: ${colors.primary};
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  z-index: 10;
+
+  &:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: ${colors.primary};
+    transform: translateY(-2px);
+  }
+
+  ${media.tablet} {
+    bottom: 15px;
+    right: 15px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  ${media.mobile} {
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
 `;
 
 const TodaysWhisper = styled.div<{ expanded: boolean }>`
@@ -225,7 +261,7 @@ const TryNowButton = styled.button`
 
 const HomePage: React.FC = () => {
   const [whisperExpanded, setWhisperExpanded] = useState(false);
-  const { setCurrentPage, setSelectedDeity, setSelectedCollection, setSelectedFortuneNumber, setCurrentConsultation } = useAppStore();
+  const { setCurrentPage, setSelectedDeity, setSelectedCollection, setSelectedFortuneNumber, setCurrentConsultation, setSelectedReport } = useAppStore();
 
   const handleTryNow = () => {
     // Create a mock consultation based on today's whisper
@@ -300,6 +336,12 @@ const HomePage: React.FC = () => {
     setWhisperExpanded(!whisperExpanded);
   };
 
+  const handleDemoReport = () => {
+    // Set the demo report as selected and navigate to report page
+    setSelectedReport(mockDemoReport);
+    setCurrentPage('report');
+  };
+
   return (
     <Layout>
       <HomeContainer>
@@ -307,6 +349,9 @@ const HomePage: React.FC = () => {
           <HeroContent>
             <HeroText>
               <HeroImage src="/assets/HOME_MASK.png" alt="Divine Whispers Hero" />
+              <DemoReportButton onClick={handleDemoReport}>
+                Know Your Fate
+              </DemoReportButton>
             </HeroText>
             
             <TodaysWhisper expanded={whisperExpanded} onClick={toggleWhisper}>

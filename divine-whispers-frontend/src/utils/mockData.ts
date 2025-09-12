@@ -634,6 +634,28 @@ export const mockTodaysWhisper = {
   }
 };
 
+// Demo Report for showcasing report style
+export const mockDemoReport = {
+  id: "demo_report",
+  title: "Divine Guidance Demo Report",
+  question: "What does the future hold for my personal growth and happiness?",
+  deity_id: "guan_yin",
+  deity_name: "Guan Yin",
+  fortune_number: 88,
+  cost: 5,
+  status: "completed" as const,
+  created_at: "2024-12-28T10:00:00Z",
+  analysis: {
+    overview: "The goddess of mercy, Guan Yin, reveals that your path toward personal growth is illuminated with divine blessing. Your sincere desire for self-improvement and genuine happiness resonates with the cosmic energies. This fortune speaks of transformation, inner wisdom, and the blossoming of your true potential.",
+    career_analysis: "Your professional journey is entering a phase of remarkable growth. The divine energies suggest that your authentic self-expression and compassionate approach will open new doors. Consider roles that allow you to help others while fulfilling your own aspirations. Leadership opportunities may present themselves in the coming months.",
+    relationship_analysis: "Harmony in relationships flows from inner peace. Your growing self-awareness will naturally improve your connections with others. Be open to deep, meaningful conversations that can heal old wounds and strengthen bonds. A significant relationship may undergo positive transformation.",
+    health_analysis: "Balance is key to your wellbeing. Pay attention to both physical and mental health through mindful practices. Regular meditation, gentle exercise, and connecting with nature will support your energy levels. Listen to your body's wisdom and honor its needs for rest and nourishment.",
+    lucky_elements: ["Lotus", "White Light", "Morning Dew", "Gentle Breeze", "Compassionate Heart"],
+    cautions: ["Avoid self-doubt", "Don't rush major decisions", "Be patient with change", "Trust your intuition"],
+    advice: "Like a lotus blooming from muddy waters, your greatest growth often comes through challenges. Trust in your inherent wisdom and the divine support that surrounds you. Your journey toward happiness is not a destination but a beautiful unfolding of your soul's purpose."
+  }
+};
+
 // Reports Mock Data
 export const mockReports = [
   {
@@ -710,6 +732,8 @@ export default {
   mockTransactions,
   mockFortuneHistory,
   mockAnalysisReports,
+  mockReports,
+  mockDemoReport,
   mockChatMessages,
   mockAdminStats,
   mockAdminUsers,

@@ -225,7 +225,13 @@ const ReportPage: React.FC = () => {
   }, []);
 
   const handleBackClick = () => {
-    setCurrentPage('account');
+    // If it's the demo report, go back to home page
+    if (selectedReport?.id === 'demo_report') {
+      setCurrentPage('home');
+    } else {
+      // For regular reports, go back to account page
+      setCurrentPage('account');
+    }
   };
 
   if (!selectedReport) {
@@ -233,13 +239,16 @@ const ReportPage: React.FC = () => {
     return null;
   }
 
+  // Check if this is the demo report to adjust UI accordingly
+  const isDemoReport = selectedReport.id === 'demo_report';
+
   return (
     <Layout>
       <ReportContainer>
         <ReportSection>
           <ReportContent>
             <BackButton onClick={handleBackClick}>
-              ← Back to Account
+              ← Back to {isDemoReport ? 'Home' : 'Account'}
             </BackButton>
             
             <ReportCard>
