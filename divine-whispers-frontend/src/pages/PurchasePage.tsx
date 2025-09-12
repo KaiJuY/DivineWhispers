@@ -636,7 +636,7 @@ const PurchasePage: React.FC = () => {
                 </PaymentMethodSection>
 
                 <PurchaseBtn onClick={handlePurchase}>
-                  {t('purchase.purchaseWith')} {paymentMethods.find(p => p.id === selectedPayment)?.name}
+                  {t('purchase.purchaseWith', { method: paymentMethods.find(p => p.id === selectedPayment)?.name })}
                 </PurchaseBtn>
 
                 <PolicyAnnouncement>

@@ -8,7 +8,7 @@ const enTranslations = {
     appName: "Divine Whispers",
     navigation: {
       home: "Home",
-      deities: "Deities",
+      deities: "Poems",
       purchase: "Purchase",
       account: "Account",
       contact: "Contact",
@@ -82,42 +82,62 @@ const enTranslations = {
       sending: "Sending..."
     },
     purchase: {
-      title: "Buy Divine Coin",
+      title: "Buy Divine Coins",
       subtitle: "Every Divine Coin gets you one fortune telling divination.",
       selectedPackage: "Selected Package",
       totalPrice: "Total Price",
       pricePerCoin: "Price Per Coin",
       paymentMethod: "Choose Payment Method",
       purchaseWith: "Purchase with {{method}}",
-      coinsToReceive: "Coins to receive:",
-      coinsAfter: "Coins after:",
-      currentCoins: "Current coins:",
-      transactionCost: "Transaction cost:",
-      coinCurrencyRate: "Coin currency rate:",
+      coin: "coin",
       coins: "Coins",
-      perTime: "/ time",
-      policyTitle: "Policy:",
-      policyText: "All coin purchases are final and non-refundable. Coins do not expire and can be used anytime for divine fortune readings. By purchasing, you agree to our terms of service.",
-      coinPackages: {
-        perfectForTrying: "Perfect for trying",
-        mostPopular: "Most popular",
-        bestValue: "Best value"
+      perTime: "time",
+      choosePaymentMethod: "Choose Payment Method",
+      packages: {
+        small: {
+          badge: "Perfect for trying"
+        },
+        popular: {
+          badge: "Most popular"
+        },
+        best: {
+          badge: "Best value"
+        }
+      },
+      summary: {
+        coinsToReceive: "Coins to receive",
+        coinsAfter: "Coins after",
+        currentCoins: "Current coins",
+        transactionCost: "Transaction cost",
+        coinCurrencyRate: "Coin currency rate"
       },
       paymentMethods: {
-        creditCard: "Credit/Debit Card",
-        paypal: "PayPal",
-        applePay: "Apple Pay",
-        googlePay: "Google Pay",
-        creditCardDesc: "Visa, Mastercard, American Express",
-        paypalDesc: "Pay with your PayPal account",
-        applePayDesc: "Touch ID or Face ID",
-        googlePayDesc: "Google account payment"
+        card: {
+          name: "Credit/Debit Card",
+          description: "Visa, Mastercard, American Express"
+        },
+        paypal: {
+          name: "PayPal",
+          description: "Pay with your PayPal account"
+        },
+        applePay: {
+          name: "Apple Pay",
+          description: "Touch ID or Face ID"
+        },
+        googlePay: {
+          name: "Google Pay",
+          description: "Google account payment"
+        }
+      },
+      policy: {
+        title: "Policy",
+        text: "All coin purchases are final and non-refundable. Coins do not expire and can be used anytime for divine fortune readings. By purchasing, you agree to our terms of service."
       }
     },
     fortuneSelection: {
       title: "Choose Your Fortune Number",
       subtitle: "{{deityName}} - Select a number from the collections below",
-      backToDeities: "← Back to Deities",
+      backToDeities: "← Back to Poems",
       chooseNumber: "Choose Your Fortune Number",
       numbersRange: "Numbers 1 - {{max}}"
     },
@@ -294,7 +314,7 @@ const enTranslations = {
         completed: "Completed",
         pending: "Pending",
         refunded: "Refunded",
-        allDeities: "All Deities"
+        allDeities: "All Poems"
       }
     },
     report: {
@@ -358,7 +378,7 @@ const zhTranslations = {
     appName: "神明私語",
     navigation: {
       home: "首頁",
-      deities: "神明",
+      deities: "籤詩",
       purchase: "購買",
       account: "帳戶",
       contact: "聯絡我們",
@@ -433,22 +453,68 @@ const zhTranslations = {
     },
     purchase: {
       title: "購買神聖錢幣",
-      subtitle: "選擇您的錢幣套餐以獲得進階運勢解讀並解鎖更深層的靈性洞察。",
+      subtitle: "每個神聖錢幣都能為您提供一次運勢占卜解讀。",
       selectedPackage: "選擇的套餐",
       totalPrice: "總價格",
       pricePerCoin: "每枚錢幣價格",
-      paymentMethod: "付款方式",
-      purchaseWith: "使用{{method}}購買",
-      coinPackages: {
-        starter: "入門套餐",
-        popular: "熱門選擇",
-        premium: "最佳價值"
+      paymentMethod: "選擇付款方式",
+      purchaseWith: "使用 {{method}} 購買",
+      coinsToReceive: "將收到的錢幣",
+      coinsAfter: "購買後錢幣",
+      currentCoins: "當前錢幣",
+      transactionCost: "交易費用",
+      coinCurrencyRate: "錢幣兌換率",
+      coins: "錢幣",
+      coin: "錢幣",
+      perTime: "次",
+      choosePaymentMethod: "選擇付款方式",
+      processingPayment: "正在處理付款",
+      demoNotice: "這是一個演示。",
+      packages: {
+        small: {
+          badge: "適合嘗試"
+        },
+        popular: {
+          badge: "最受歡迎"
+        },
+        best: {
+          badge: "最超值"
+        }
+      },
+      summary: {
+        coinsToReceive: "將收到的錢幣",
+        coinsAfter: "購買後錢幣",
+        currentCoins: "當前錢幣",
+        transactionCost: "交易費用",
+        coinCurrencyRate: "錢幣兌換率"
+      },
+      paymentMethods: {
+        card: {
+          name: "信用卡/Debit Card",
+          description: "Visa, Mastercard, American Express"
+        },
+        paypal: {
+          name: "PayPal",
+          description: "使用您的PayPal帳戶付款"
+        },
+        applePay: {
+          name: "Apple Pay",
+          description: "Touch ID 或 Face ID"
+        },
+        googlePay: {
+          name: "Google Pay",
+          description: "Google 帳戶付款"
+        }
+      },
+      policy: {
+        title: "政策",
+        text: "所有錢幣購買均為最終交易，不可退款。錢幣不會過期，可隨時用於神聖運勢解讀。購買即表示您同意我們的服務條款。"
       }
     },
     fortuneSelection: {
       title: "選擇您的運勢號碼",
       subtitle: "{{deityName}} - 從下面的集合中選擇一個號碼",
-      backToDeities: "← 返回神明",
+      backToDeities: "← 返回籤詩",
       chooseNumber: "選擇您的運勢號碼",
       numbersRange: "號碼 1 - {{max}}"
     },
@@ -566,7 +632,7 @@ const jpTranslations = {
     appName: "神々の囁き",
     navigation: {
       home: "ホーム",
-      deities: "神々",
+      deities: "おみくじ",
       purchase: "購入",
       account: "アカウント",
       contact: "お問い合わせ",
@@ -641,22 +707,68 @@ const jpTranslations = {
     },
     purchase: {
       title: "神聖コインを購入",
-      subtitle: "プレミアム運勢鑑定にアクセスし、より深い精神的洞察を解き放つためのコインパッケージをお選びください。",
+      subtitle: "神聖コイン1枚で運勢占い1回をご利用いただけます。",
       selectedPackage: "選択されたパッケージ",
       totalPrice: "総価格",
       pricePerCoin: "コインあたりの価格",
-      paymentMethod: "支払い方法",
+      paymentMethod: "支払い方法を選択",
       purchaseWith: "{{method}}で購入",
-      coinPackages: {
-        starter: "スターターパック",
-        popular: "人気の選択",
-        premium: "最高の価値"
+      coinsToReceive: "受け取るコイン",
+      coinsAfter: "購入後のコイン",
+      currentCoins: "現在のコイン",
+      transactionCost: "取引費用",
+      coinCurrencyRate: "コイン換算レート",
+      coins: "コイン",
+      coin: "コイン",
+      perTime: "回",
+      choosePaymentMethod: "支払い方法を選択",
+      processingPayment: "支払いを処理中",
+      demoNotice: "これはデモです。",
+      packages: {
+        small: {
+          badge: "お試しに最適"
+        },
+        popular: {
+          badge: "最も人気"
+        },
+        best: {
+          badge: "最高の価値"
+        }
+      },
+      summary: {
+        coinsToReceive: "受け取るコイン",
+        coinsAfter: "購入後のコイン",
+        currentCoins: "現在のコイン",
+        transactionCost: "取引費用",
+        coinCurrencyRate: "コイン換算レート"
+      },
+      paymentMethods: {
+        card: {
+          name: "クレジット/Debit Card",
+          description: "Visa, Mastercard, American Express"
+        },
+        paypal: {
+          name: "PayPal",
+          description: "PayPalアカウントでお支払い"
+        },
+        applePay: {
+          name: "Apple Pay",
+          description: "Touch ID または Face ID"
+        },
+        googlePay: {
+          name: "Google Pay",
+          description: "Googleアカウント決済"
+        }
+      },
+      policy: {
+        title: "ポリシー",
+        text: "すべてのコイン購入は最終的なもので、返金不可です。コインに有効期限はなく、いつでも神聖な運勢鑑定にご利用いただけます。購入により、利用規約に同意したものとみなされます。"
       }
     },
     fortuneSelection: {
       title: "運勢番号を選択",
       subtitle: "{{deityName}} - 以下のコレクションから番号を選択してください",
-      backToDeities: "← 神々に戻る",
+      backToDeities: "← おみくじに戻る",
       chooseNumber: "運勢番号を選択",
       numbersRange: "番号 1 - {{max}}"
     },
