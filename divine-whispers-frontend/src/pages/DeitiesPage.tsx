@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { skewFadeIn, colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
-import { mockDeities } from '../utils/mockData';
+import deityService from '../services/deityService';
 import { usePagesTranslation } from '../hooks/useTranslation';
 
 const DeitiesContainer = styled.div`
@@ -187,11 +187,43 @@ const CardDescription = styled.p`
 const DeitiesPage: React.FC = () => {
   const { setCurrentPage, setSelectedDeity, setSelectedCollection } = useAppStore();
   const { t } = usePagesTranslation();
+  const [deities, setDeities] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDeities = async () => {
+      try {
+        setLoading(true);
+        const fetchedDeities = await deityService.getDeities();
+        setDeities(fetchedDeities);
+      } catch (error) {
+        console.error('Failed to fetch deities:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDeities();
+  }, []);
 
   const handleDeitySelect = (deity: any) => {
     setSelectedDeity(deity);
     setCurrentPage('fortune-selection');
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <DeitiesContainer>
+          <DeitiesSection>
+            <DeitiesContent>
+              <DeitiesTitle>Loading...</DeitiesTitle>
+            </DeitiesContent>
+          </DeitiesSection>
+        </DeitiesContainer>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -200,7 +232,7 @@ const DeitiesPage: React.FC = () => {
           <DeitiesContent>
             <DeitiesTitle>{t('deities.chooseYourBelief')}</DeitiesTitle>
             <DeitiesGrid>
-              {mockDeities.map((deity, index) => (
+              {deities.map((deity, index) => (
                 <DeityCard 
                   key={deity.id} 
                   image={`/assets${deity.imageUrl}`}
@@ -210,7 +242,7 @@ const DeitiesPage: React.FC = () => {
                 >
                   <CardContent>
                     {Array.isArray(deity.description) ? (
-                      deity.description.map((line, idx) => (
+                      deity.description.map((line: string, idx: number) => (
                         <CardDescription key={idx}>{line}</CardDescription>
                       ))
                     ) : (

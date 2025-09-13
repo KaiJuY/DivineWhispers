@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { colors, gradients, media, skewFadeIn, floatUp } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
-import { mockFortunes, mockChatMessages } from '../utils/mockData';
+import fortuneService from '../services/fortuneService';
+import chatService from '../services/chatService';
 import type { Report } from '../types';
 import { usePagesTranslation } from '../hooks/useTranslation';
 
@@ -478,20 +479,10 @@ const FortuneAnalysisPage: React.FC = () => {
     setSelectedReport
   } = useAppStore();
   const { t } = usePagesTranslation();
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: "msg_001",
-      type: "user",
-      message: "What does this fortune mean for my career?",
-      timestamp: "2024-12-28T15:30:00Z"
-    },
-    {
-      id: "msg_002",
-      type: "assistant",
-      message: "Your question touches the heart of this divination. The fortune speaks of 'Heaven rewards the diligent' - this is particularly auspicious for career matters. The poem suggests that your hard work and unwavering determination will soon be recognized and rewarded. Consider this a sign that any career moves you're contemplating are divinely supported.",
-      timestamp: "2024-12-28T15:30:15Z"
-    }
-  ]);
+  const [fortune, setFortune] = useState<any>(null);
+  const [fortuneLoading, setFortuneLoading] = useState(true);
+  const [chatSession, setChatSession] = useState<any>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -508,6 +499,75 @@ const FortuneAnalysisPage: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Fetch fortune data when component mounts
+  useEffect(() => {
+    const fetchFortune = async () => {
+      if (!selectedDeity || !selectedFortuneNumber) return;
+
+      try {
+        setFortuneLoading(true);
+        const fortuneData = await fortuneService.getFortuneByDeityAndNumber(
+          selectedDeity.id,
+          selectedFortuneNumber
+        );
+        setFortune(fortuneData);
+      } catch (error) {
+        console.error('Failed to fetch fortune:', error);
+      } finally {
+        setFortuneLoading(false);
+      }
+    };
+
+    fetchFortune();
+  }, [selectedDeity, selectedFortuneNumber]);
+
+  // Initialize chat session when fortune is loaded
+  useEffect(() => {
+    const initializeChat = async () => {
+      if (!fortune || !selectedDeity || !selectedFortuneNumber) return;
+
+      try {
+        // Try to start a fortune conversation
+        const conversation = await chatService.startFortuneConversation({
+          deity_id: selectedDeity.id,
+          fortune_number: selectedFortuneNumber,
+          initial_question: 'What does this fortune mean for me?',
+          context: {
+            fortune_id: fortune.id,
+            deity_name: selectedDeity.name,
+            fortune_number: selectedFortuneNumber
+          }
+        });
+
+        setChatSession(conversation);
+        
+        // Add initial assistant message
+        const initialMessage: ChatMessage = {
+          id: 'initial_001',
+          type: 'assistant',
+          message: `Welcome! I'm here to help you understand the wisdom of ${selectedDeity.name}'s fortune #${selectedFortuneNumber}. Feel free to ask me anything about this divine guidance - its meaning, how it applies to your life, or any specific questions you have.`,
+          timestamp: new Date().toISOString()
+        };
+        
+        setMessages([initialMessage]);
+      } catch (error) {
+        console.error('Failed to initialize chat:', error);
+        
+        // Fallback to mock chat if API fails
+        const fallbackMessage: ChatMessage = {
+          id: 'fallback_001',
+          type: 'assistant',
+          message: `I'm here to help you understand the wisdom of ${selectedDeity?.name}'s fortune #${selectedFortuneNumber}. What would you like to know about this divine guidance?`,
+          timestamp: new Date().toISOString()
+        };
+        
+        setMessages([fallbackMessage]);
+      }
+    };
+
+    initializeChat();
+  }, [fortune, selectedDeity, selectedFortuneNumber]);
 
   const handleBackClick = () => {
     setCurrentPage('fortune-selection');
@@ -528,65 +588,113 @@ const FortuneAnalysisPage: React.FC = () => {
     setInputMessage('');
     setIsLoading(true);
 
-    // Check if user has enough coins for report generation
+    try {
+      // If we have a chat session, use the real API
+      if (chatSession?.session_id) {
+        try {
+          await chatService.sendMessage(chatSession.session_id, userQuestion);
+          // Note: In a real implementation, you would listen for WebSocket responses
+          // For now, we'll use the mock response system
+        } catch (error) {
+          console.error('Failed to send message via API:', error);
+        }
+      }
+
+      // Get AI response (using mock for now, but structure for real API)
+      const aiResponse = await chatService.mockFortuneResponse(
+        userQuestion,
+        selectedDeity?.id || 'guan_yin',
+        selectedFortuneNumber || 7
+      );
+
+      const responseMessage: ChatMessage = {
+        id: `msg_${Date.now() + 1}`,
+        type: 'assistant',
+        message: aiResponse,
+        timestamp: new Date().toISOString()
+      };
+
+      setMessages(prev => [...prev, responseMessage]);
+
+      // Occasionally offer to generate a report (every 3-4 messages)
+      if (messages.length > 0 && (messages.length + 1) % 3 === 0) {
+        setTimeout(() => {
+          const reportOfferMessage: ChatMessage = {
+            id: `msg_${Date.now() + 2}`,
+            type: 'system',
+            message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
+            timestamp: new Date().toISOString()
+          };
+          setMessages(prev => [...prev, reportOfferMessage]);
+        }, 1500);
+      }
+
+    } catch (error) {
+      console.error('Failed to get AI response:', error);
+      const errorMessage: ChatMessage = {
+        id: `msg_${Date.now() + 1}`,
+        type: 'system',
+        message: 'I apologize, but I am having trouble processing your message right now. Please try again in a moment.',
+        timestamp: new Date().toISOString()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Handle report generation when user requests it
+  const handleGenerateReport = async (userQuestion: string) => {
     if (userCoins < 5) {
-      // Insufficient coins response
-      setTimeout(() => {
-        const insufficientCoinsResponse: ChatMessage = {
-          id: `msg_${Date.now() + 1}`,
-          type: 'system',
-          message: t('fortuneAnalysis.insufficientCoins'),
-          timestamp: new Date().toISOString()
-        };
-        setMessages(prev => [...prev, insufficientCoinsResponse]);
-        setIsLoading(false);
-      }, 1000);
+      const insufficientCoinsResponse: ChatMessage = {
+        id: `msg_${Date.now()}`,
+        type: 'system',
+        message: t('fortuneAnalysis.insufficientCoins'),
+        timestamp: new Date().toISOString()
+      };
+      setMessages(prev => [...prev, insufficientCoinsResponse]);
       return;
     }
 
-    // Simulate report generation process
-    setTimeout(() => {
-      // Create a new report
-      const reportId = `report_${Date.now()}`;
-      const newReport: Report = {
-        id: reportId,
-        title: `Personal Reading Report`,
-        question: userQuestion,
-        deity_id: selectedDeity!.id,
-        deity_name: selectedDeity!.name,
-        fortune_number: selectedFortuneNumber!,
-        cost: 5,
-        status: 'completed',
-        created_at: new Date().toISOString(),
-        analysis: {
-          overview: `Based on your question "${userQuestion}" and the divine wisdom of ${selectedDeity!.name}, this comprehensive analysis reveals key insights for your path forward.`,
-          career_analysis: `Your professional endeavors are blessed with divine guidance. The fortune suggests that your dedication and hard work will soon bear fruit. Trust in your abilities and remain focused on your goals.`,
-          relationship_analysis: `In matters of the heart, balance and understanding are key. The divine wisdom suggests that open communication and patience will strengthen your bonds with others.`,
-          health_analysis: `Your physical and spiritual well-being require attention. Take time for self-care and meditation to maintain harmony between body and soul.`,
-          lucky_elements: ['Water', 'East Direction', 'Green Color', 'Number 7', 'Morning Hours'],
-          cautions: ['Avoid hasty decisions', 'Be mindful of negative energy', 'Trust your intuition'],
-          advice: `The divine message emphasizes the importance of patience and perseverance. Your question shows wisdom in seeking guidance, and the answer lies within your own inner strength combined with divine blessing.`
-        }
-      };
+    // Create a new report
+    const reportId = `report_${Date.now()}`;
+    const newReport: Report = {
+      id: reportId,
+      title: `Personal Reading Report`,
+      question: userQuestion,
+      deity_id: selectedDeity!.id,
+      deity_name: selectedDeity!.name,
+      fortune_number: selectedFortuneNumber!,
+      cost: 5,
+      status: 'completed',
+      created_at: new Date().toISOString(),
+      analysis: {
+        overview: `Based on your question "${userQuestion}" and the divine wisdom of ${selectedDeity!.name}, this comprehensive analysis reveals key insights for your path forward.`,
+        career_analysis: `Your professional endeavors are blessed with divine guidance. The fortune suggests that your dedication and hard work will soon bear fruit. Trust in your abilities and remain focused on your goals.`,
+        relationship_analysis: `In matters of the heart, balance and understanding are key. The divine wisdom suggests that open communication and patience will strengthen your bonds with others.`,
+        health_analysis: `Your physical and spiritual well-being require attention. Take time for self-care and meditation to maintain harmony between body and soul.`,
+        lucky_elements: ['Water', 'East Direction', 'Green Color', 'Number 7', 'Morning Hours'],
+        cautions: ['Avoid hasty decisions', 'Be mindful of negative energy', 'Trust your intuition'],
+        advice: `The divine message emphasizes the importance of patience and perseverance. Your question shows wisdom in seeking guidance, and the answer lies within your own inner strength combined with divine blessing.`
+      }
+    };
 
-      // Add report to store
-      setReports([...reports, newReport]);
+    // Add report to store
+    setReports([...reports, newReport]);
 
-      // Deduct coins
-      setUserCoins(userCoins - 5);
+    // Deduct coins
+    setUserCoins(userCoins - 5);
 
-      // Send report message
-      const reportMessage: ChatMessage = {
-        id: `msg_${Date.now() + 2}`,
-        type: 'report',
-        message: t('fortuneAnalysis.reportMessage'),
-        timestamp: new Date().toISOString(),
-        reportId: reportId
-      };
+    // Send report message
+    const reportMessage: ChatMessage = {
+      id: `msg_${Date.now()}`,
+      type: 'report',
+      message: t('fortuneAnalysis.reportMessage'),
+      timestamp: new Date().toISOString(),
+      reportId: reportId
+    };
 
-      setMessages(prev => [...prev, reportMessage]);
-      setIsLoading(false);
-    }, 3000);
+    setMessages(prev => [...prev, reportMessage]);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -609,9 +717,40 @@ const FortuneAnalysisPage: React.FC = () => {
     return null;
   }
 
-  // Get fortune data based on selected deity and number
-  const fortuneKey = `${selectedDeity.id}_${selectedFortuneNumber}`;
-  const fortune = mockFortunes[fortuneKey as keyof typeof mockFortunes] || mockFortunes.guan_yin_7;
+  if (fortuneLoading) {
+    return (
+      <Layout>
+        <AnalysisContainer>
+          <AnalysisSection>
+            <AnalysisContent>
+              <div style={{ textAlign: 'center', color: colors.primary, fontSize: '2rem' }}>
+                Loading Your Fortune...
+              </div>
+            </AnalysisContent>
+          </AnalysisSection>
+        </AnalysisContainer>
+      </Layout>
+    );
+  }
+
+  if (!fortune) {
+    return (
+      <Layout>
+        <AnalysisContainer>
+          <AnalysisSection>
+            <AnalysisContent>
+              <div style={{ textAlign: 'center', color: colors.primary, fontSize: '1.5rem' }}>
+                Fortune not found. Please try selecting a different number.
+              </div>
+              <BackButton onClick={handleBackClick} style={{ margin: '20px auto', position: 'relative', top: 'auto' }}>
+                {t('fortuneAnalysis.backToNumbers')}
+              </BackButton>
+            </AnalysisContent>
+          </AnalysisSection>
+        </AnalysisContainer>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { skewFadeIn, glowing, colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
-import { mockFortuneNumbers } from '../utils/mockData';
+import deityService from '../services/deityService';
 import { usePagesTranslation } from '../hooks/useTranslation';
 
 const FortuneContainer = styled.div`
@@ -91,15 +91,19 @@ const FortuneSubtitle = styled.p`
 `;
 
 
-const NumberCard = styled.div`
+const NumberCard = styled.div<{ isAvailable?: boolean }>`
   aspect-ratio: 1;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
-  border: 2px solid rgba(212, 175, 55, 0.4);
+  background: ${props => props.isAvailable 
+    ? 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)'
+    : 'linear-gradient(135deg, rgba(128, 128, 128, 0.15) 0%, rgba(128, 128, 128, 0.05) 100%)'};
+  border: 2px solid ${props => props.isAvailable 
+    ? 'rgba(212, 175, 55, 0.4)'
+    : 'rgba(128, 128, 128, 0.4)'};
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${props => props.isAvailable ? 'pointer' : 'not-allowed'};
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(15px);
   position: relative;
@@ -123,12 +127,14 @@ const NumberCard = styled.div`
   }
   
   &:hover {
-    transform: scale(1.15) translateY(-5px);
-    border-color: #d4af37;
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
-    z-index: 10;
-    color: #fff;
-    background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+    transform: ${props => props.isAvailable ? 'scale(1.15) translateY(-5px)' : 'none'};
+    border-color: ${props => props.isAvailable ? '#d4af37' : 'rgba(128, 128, 128, 0.4)'};
+    box-shadow: ${props => props.isAvailable ? '0 15px 30px rgba(212, 175, 55, 0.4)' : 'none'};
+    z-index: ${props => props.isAvailable ? '10' : '1'};
+    color: ${props => props.isAvailable ? '#fff' : 'rgba(128, 128, 128, 0.6)'};
+    background: ${props => props.isAvailable 
+      ? 'linear-gradient(135deg, #d4af37 0%, #f4e99b 100%)'
+      : 'linear-gradient(135deg, rgba(128, 128, 128, 0.15) 0%, rgba(128, 128, 128, 0.05) 100%)'};
   }
 
   &:hover::before {
@@ -167,10 +173,10 @@ const NumbersGrid = styled.div`
   }
 `;
 
-const NumberText = styled.span`
+const NumberText = styled.span<{ isAvailable?: boolean }>`
   font-size: 1.4rem;
   font-weight: 600;
-  color: ${colors.primary};
+  color: ${props => props.isAvailable ? colors.primary : 'rgba(128, 128, 128, 0.6)'};
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 
   ${media.mobile} {
@@ -251,17 +257,40 @@ const CollectionRange = styled.div`
 const FortuneSelectionPage: React.FC = () => {
   const { selectedDeity, setCurrentPage, setSelectedFortuneNumber, setSelectedCollection } = useAppStore();
   const { t } = usePagesTranslation();
+  const [fortuneNumbers, setFortuneNumbers] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Fetch fortune numbers when deity is selected
+  useEffect(() => {
+    const fetchFortuneNumbers = async () => {
+      if (!selectedDeity) return;
+      
+      try {
+        setLoading(true);
+        const numbers = await deityService.getDeityFortuneNumbers(selectedDeity.id);
+        setFortuneNumbers(numbers);
+      } catch (error) {
+        console.error('Failed to fetch fortune numbers:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFortuneNumbers();
+  }, [selectedDeity]);
+
   const handleBackClick = () => {
     setCurrentPage('deities');
   };
 
-  const handleNumberSelect = (number: number, collection: any) => {
+  const handleNumberSelect = (number: number, collection: any, isAvailable: boolean) => {
+    if (!isAvailable) return; // Prevent selection of unavailable numbers
+    
     setSelectedCollection(collection);
     setSelectedFortuneNumber(number);
     setCurrentPage('fortune-analysis');
@@ -270,6 +299,20 @@ const FortuneSelectionPage: React.FC = () => {
   if (!selectedDeity) {
     setCurrentPage('deities');
     return null;
+  }
+
+  if (loading) {
+    return (
+      <Layout>
+        <FortuneContainer>
+          <FortuneSection>
+            <FortuneContent>
+              <FortuneTitle>Loading Fortune Numbers...</FortuneTitle>
+            </FortuneContent>
+          </FortuneSection>
+        </FortuneContainer>
+      </Layout>
+    );
   }
 
   return (
@@ -294,22 +337,32 @@ const FortuneSelectionPage: React.FC = () => {
             </FortuneSubtitle>
             
             {selectedDeity.collections.map((collection, collectionIndex) => {
-              const availableNumbers = Array.from({length: collection.maxNumber}, (_, i) => i + 1);
+              const numbersData = fortuneNumbers?.numbers || [];
               return (
                 <CollectionSection key={collection.id}>
                   <CollectionHeader>
                     <CollectionTitle>{collection.name}</CollectionTitle>
                     <CollectionDescription>{collection.description}</CollectionDescription>
-                    <CollectionRange>{t('fortuneSelection.numbersRange', { max: collection.maxNumber })}</CollectionRange>
+                    <CollectionRange>
+                      {t('fortuneSelection.numbersRange', { max: collection.maxNumber })} 
+                      {fortuneNumbers && (
+                        <span style={{ display: 'block', marginTop: '5px', fontSize: '0.9rem', opacity: 0.8 }}>
+                          Available: {fortuneNumbers.totalAvailable} / {collection.maxNumber}
+                        </span>
+                      )}
+                    </CollectionRange>
                   </CollectionHeader>
                   <NumbersGrid>
-                    {availableNumbers.map((number, index) => (
+                    {numbersData.map((numberData: any, index: number) => (
                       <NumberCard
-                        key={`${collection.id}-${number}`}
+                        key={`${collection.id}-${numberData.number}`}
+                        isAvailable={numberData.isAvailable}
                         style={{ animationDelay: `${(collectionIndex * 100 + index) * 0.005}s` }}
-                        onClick={() => handleNumberSelect(number, collection)}
+                        onClick={() => handleNumberSelect(numberData.number, collection, numberData.isAvailable)}
                       >
-                        <NumberText>{number}</NumberText>
+                        <NumberText isAvailable={numberData.isAvailable}>
+                          {numberData.number}
+                        </NumberText>
                       </NumberCard>
                     ))}
                   </NumbersGrid>
