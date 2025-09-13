@@ -1,13 +1,33 @@
 import apiClient from './apiClient';
 
 // Types for backend API responses
+interface NumberRange {
+  start: number;
+  end: number;
+}
+
+interface FortuneNumber {
+  number: number;
+  is_available: boolean;
+  fortune_category: string | null;
+  title: string | null;
+}
+
+interface Collection {
+  id: string;
+  name: string;
+  description: string;
+  number_range: NumberRange;
+  temple_mapping: string;
+  numbers: FortuneNumber[];
+}
+
 interface DeityApiResponse {
   id: string;
   name: string;
   chinese_name: string;
   description: string;
-  temple_mapping: string;
-  available_numbers: number[];
+  collections: Collection[];
   total_fortunes: number;
   deity_image_url: string | null;
 }
@@ -23,19 +43,34 @@ const transformDeityData = (apiDeity: DeityApiResponse) => {
     id: apiDeity.id,
     name: apiDeity.name,
     description: [apiDeity.chinese_name], // Split description for frontend display
-    templateMapping: apiDeity.temple_mapping,
+    templateMapping: (apiDeity.collections && apiDeity.collections.length > 0) ? apiDeity.collections[0].temple_mapping : apiDeity.id,
     imageUrl: apiDeity.deity_image_url || `/assets/${apiDeity.name}.jpg`, // Fallback to asset path
     isActive: true,
     totalPoems: apiDeity.total_fortunes,
-    collections: [
-      {
-        id: `${apiDeity.id}_standard`,
-        name: "Standard Collection",
-        description: `Traditional ${apiDeity.total_fortunes} fortune poems`,
-        maxNumber: apiDeity.total_fortunes,
-        templateMapping: apiDeity.temple_mapping
-      }
-    ]
+    collections: (apiDeity.collections || []).map(collection => ({
+      id: collection.id,
+      name: collection.name,
+      description: collection.description,
+      maxNumber: collection.number_range.end,
+      templateMapping: collection.temple_mapping,
+      // Use embedded numbers data if available, fallback to generating from range
+      numbers: collection.numbers && collection.numbers.length > 0
+        ? collection.numbers.map(num => ({
+            number: num.number,
+            isAvailable: num.is_available,
+            category: num.fortune_category,
+            title: num.title
+          }))
+        : Array.from(
+            { length: collection.number_range.end - collection.number_range.start + 1 },
+            (_, i) => ({
+              number: collection.number_range.start + i,
+              isAvailable: true, // Default to available if no embedded data
+              category: null,
+              title: null
+            })
+          )
+    }))
   };
 };
 
@@ -67,26 +102,44 @@ class DeityService {
     }
   }
 
-  // Fetch available fortune numbers for a deity
-  async getDeityFortuneNumbers(deityId: string) {
+  // Fetch available fortune collections for a deity
+  async getDeityCollections(deityId: string) {
     try {
-      const response = await apiClient.get(`/api/v1/deities/${deityId}/numbers`);
+      const response = await apiClient.get(`/api/v1/deities/${deityId}/collections`);
       return {
         deityId: response.deity_id,
         deityName: response.deity_name,
-        numbers: response.numbers.map((num: any) => ({
-          number: num.number,
-          isAvailable: num.is_available,
-          category: num.fortune_category,
-          title: num.title
-        })),
-        totalAvailable: response.total_available
+        collections: response.collections.map((collection: Collection) => ({
+          id: collection.id,
+          name: collection.name,
+          description: collection.description,
+          numberRange: collection.number_range,
+          templateMapping: collection.temple_mapping,
+          // Use embedded numbers data if available, fallback to generating from range
+          numbers: collection.numbers && collection.numbers.length > 0
+            ? collection.numbers.map(num => ({
+                number: num.number,
+                isAvailable: num.is_available,
+                category: num.fortune_category,
+                title: num.title
+              }))
+            : Array.from(
+                { length: collection.number_range.end - collection.number_range.start + 1 },
+                (_, i) => ({
+                  number: collection.number_range.start + i,
+                  isAvailable: true, // Default to available if no embedded data
+                  category: null,
+                  title: null
+                })
+              )
+        }))
       };
     } catch (error) {
-      console.error(`Error fetching fortune numbers for deity ${deityId}:`, error);
+      console.error(`Error fetching collections for deity ${deityId}:`, error);
       return null;
     }
   }
+
 }
 
 // Create singleton instance

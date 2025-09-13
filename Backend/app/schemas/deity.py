@@ -7,17 +7,40 @@ from typing import Dict, List, Optional
 from pydantic import BaseModel
 
 
+class NumberRange(BaseModel):
+    """Number range representation"""
+    start: int
+    end: int
+
+
+class FortuneNumber(BaseModel):
+    """Individual fortune number information"""
+    number: int
+    is_available: bool
+    fortune_category: Optional[str] = None
+    title: Optional[str] = None
+
+
+class Collection(BaseModel):
+    """Fortune collection information"""
+    id: str
+    name: str
+    description: str
+    number_range: NumberRange
+    temple_mapping: str
+    numbers: List[FortuneNumber] = []  # Always include individual numbers
+
+
 class DeityInfo(BaseModel):
     """Basic deity information"""
     id: str
     name: str
     chinese_name: str
     description: str
-    temple_mapping: str  # Maps to actual temple in the backend
-    available_numbers: List[int]
+    collections: List[Collection]
     total_fortunes: int
     deity_image_url: Optional[str] = None
-    
+
 
 class DeityResponse(BaseModel):
     """Detailed deity response"""
@@ -32,17 +55,8 @@ class DeityListResponse(BaseModel):
     total_count: int
 
 
-class FortuneNumberInfo(BaseModel):
-    """Information about a specific fortune number"""
-    number: int
-    is_available: bool
-    fortune_category: Optional[str] = None
-    title: Optional[str] = None
-
-
-class FortuneNumbersResponse(BaseModel):
-    """Response for deity fortune numbers (1-100 grid)"""
+class CollectionNumbersResponse(BaseModel):
+    """Response for collection fortune numbers"""
     deity_id: str
     deity_name: str
-    numbers: List[FortuneNumberInfo]  # All numbers 1-100
-    total_available: int
+    collections: List[Collection]

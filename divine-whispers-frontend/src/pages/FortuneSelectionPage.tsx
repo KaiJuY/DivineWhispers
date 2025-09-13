@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { skewFadeIn, glowing, colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
-import deityService from '../services/deityService';
 import { usePagesTranslation } from '../hooks/useTranslation';
 
 const FortuneContainer = styled.div`
@@ -265,23 +264,38 @@ const FortuneSelectionPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Fetch fortune numbers when deity is selected
+  // Use embedded numbers data from selected deity
   useEffect(() => {
-    const fetchFortuneNumbers = async () => {
-      if (!selectedDeity) return;
-      
-      try {
-        setLoading(true);
-        const numbers = await deityService.getDeityFortuneNumbers(selectedDeity.id);
-        setFortuneNumbers(numbers);
-      } catch (error) {
-        console.error('Failed to fetch fortune numbers:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (!selectedDeity) {
+      setFortuneNumbers(null);
+      setLoading(false);
+      return;
+    }
 
-    fetchFortuneNumbers();
+    try {
+      setLoading(true);
+
+      // Use embedded numbers data from the first collection
+      const firstCollection = selectedDeity.collections?.[0];
+      if (firstCollection && firstCollection.numbers) {
+        const numbers = {
+          deityId: selectedDeity.id,
+          deityName: selectedDeity.name,
+          numbers: firstCollection.numbers,
+          totalAvailable: firstCollection.numbers.filter(num => num.isAvailable).length
+        };
+        setFortuneNumbers(numbers);
+      } else {
+        // Fallback: if no embedded numbers, set to null
+        console.warn('No embedded numbers data found for deity:', selectedDeity.name);
+        setFortuneNumbers(null);
+      }
+    } catch (error) {
+      console.error('Error processing embedded fortune numbers:', error);
+      setFortuneNumbers(null);
+    } finally {
+      setLoading(false);
+    }
   }, [selectedDeity]);
 
   const handleBackClick = () => {
@@ -324,7 +338,7 @@ const FortuneSelectionPage: React.FC = () => {
               {t('fortuneSelection.backToDeities')}
             </BackButton>
             <HeroImage 
-              src={`/assets${selectedDeity.imageUrl.replace(/\.(jpg|png)$/, '_W.$1')}`} 
+              src={`${selectedDeity.imageUrl.replace(/\.(jpg|png)$/, '_W.$1')}`} 
               alt={selectedDeity.name}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -344,7 +358,7 @@ const FortuneSelectionPage: React.FC = () => {
                     <CollectionTitle>{collection.name}</CollectionTitle>
                     <CollectionDescription>{collection.description}</CollectionDescription>
                     <CollectionRange>
-                      {t('fortuneSelection.numbersRange', { max: collection.maxNumber })} 
+                      {t('fortuneSelection.numbersRange', { max: collection.maxNumber })}
                       {fortuneNumbers && (
                         <span style={{ display: 'block', marginTop: '5px', fontSize: '0.9rem', opacity: 0.8 }}>
                           Available: {fortuneNumbers.totalAvailable} / {collection.maxNumber}

@@ -40,12 +40,26 @@ export interface RegisterCredentials {
   location?: string;
 }
 
+export interface NumberRange {
+  start: number;
+  end: number;
+}
+
+export interface FortuneNumber {
+  number: number;
+  isAvailable: boolean;
+  category: string | null;
+  title: string | null;
+}
+
 export interface PoemCollection {
   id: string;
   name: string;
   description: string;
   maxNumber: number;
   templateMapping: string;
+  numberRange?: NumberRange; // Optional for backward compatibility
+  numbers?: FortuneNumber[]; // Embedded numbers data from API
 }
 
 export interface Deity {
