@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType, Report, Language } from '../types';
-import { mockAuth, mockReports } from '../utils/mockData';
+import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType, Report, Language, LoginCredentials, RegisterCredentials } from '../types';
+import { mockReports } from '../utils/mockData';
+import authService from '../services/authService';
 
 // Language detection function
 const detectInitialLanguage = (): Language => {
@@ -40,11 +41,118 @@ const useAppStore = create<AppStore>()(
         },
 
         // Authentication
-        auth: mockAuth as AuthState,
+        auth: {
+          user: null,
+          tokens: null,
+          isAuthenticated: false,
+          loading: false
+        } as AuthState,
         setAuth: (authUpdates: Partial<AuthState>) => 
           set((state) => ({ 
             auth: { ...state.auth, ...authUpdates } 
           })),
+        
+        // Authentication Actions
+        login: async (credentials: LoginCredentials) => {
+          set((state) => ({ 
+            auth: { ...state.auth, loading: true } 
+          }));
+          
+          try {
+            const authState = await authService.login(credentials);
+            set({ auth: authState });
+            return authState;
+          } catch (error: any) {
+            set((state) => ({ 
+              auth: { ...state.auth, loading: false, isAuthenticated: false } 
+            }));
+            throw error;
+          }
+        },
+
+        register: async (credentials: RegisterCredentials) => {
+          set((state) => ({ 
+            auth: { ...state.auth, loading: true } 
+          }));
+          
+          try {
+            const authState = await authService.register(credentials);
+            set({ auth: authState });
+            return authState;
+          } catch (error: any) {
+            set((state) => ({ 
+              auth: { ...state.auth, loading: false, isAuthenticated: false } 
+            }));
+            throw error;
+          }
+        },
+
+        logout: async () => {
+          set((state) => ({ 
+            auth: { ...state.auth, loading: true } 
+          }));
+          
+          try {
+            await authService.logout();
+            set({ 
+              auth: {
+                user: null,
+                tokens: null,
+                isAuthenticated: false,
+                loading: false
+              }
+            });
+          } catch (error: any) {
+            console.error('Logout error:', error);
+            // Clear auth state even if logout API fails
+            set({ 
+              auth: {
+                user: null,
+                tokens: null,
+                isAuthenticated: false,
+                loading: false
+              }
+            });
+          }
+        },
+
+        verifyAuth: async () => {
+          // Check if we have stored tokens
+          if (!authService.hasValidSession()) {
+            return false;
+          }
+
+          set((state) => ({ 
+            auth: { ...state.auth, loading: true } 
+          }));
+
+          try {
+            const user = await authService.getCurrentUser();
+            set({ 
+              auth: {
+                user,
+                tokens: {
+                  access_token: authService.getStoredToken() || '',
+                  refresh_token: localStorage.getItem('divine-whispers-refresh-token') || '',
+                  expires_in: 3600 // Default value
+                },
+                isAuthenticated: true,
+                loading: false
+              }
+            });
+            return true;
+          } catch (error) {
+            set({ 
+              auth: {
+                user: null,
+                tokens: null,
+                isAuthenticated: false,
+                loading: false
+              }
+            });
+            return false;
+          }
+        },
 
         // Deity Selection
         selectedDeity: null,

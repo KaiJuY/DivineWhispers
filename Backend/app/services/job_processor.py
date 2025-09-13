@@ -29,7 +29,8 @@ class JobProcessor:
     def __init__(self):
         self.running = False
         self.worker_tasks = []
-        self.max_concurrent_jobs = 5
+        self.max_concurrent_jobs = 2  # Reduced from 5 to 2 to decrease polling frequency
+        self.poll_counter = 0  # Counter for periodic logging
         
     async def start_processing(self):
         """Start background job processing workers"""
@@ -198,6 +199,7 @@ class JobProcessor:
     async def _worker_loop(self, worker_name: str):
         """Main worker loop for processing jobs"""
         logger.info(f"Job worker {worker_name} started")
+        local_poll_counter = 0
         
         while self.running:
             try:
@@ -209,7 +211,11 @@ class JobProcessor:
                     await self._process_job(job)
                 else:
                     # No jobs available, wait before checking again
-                    await asyncio.sleep(2)
+                    local_poll_counter += 1
+                    # Only log every 30 polls (5 minutes with 10s interval)
+                    if local_poll_counter % 30 == 0:
+                        logger.debug(f"Worker {worker_name} checked for jobs, none available")
+                    await asyncio.sleep(10)  # Increased from 2 to 10 seconds
                     
             except Exception as e:
                 logger.error(f"Error in worker {worker_name}: {e}")

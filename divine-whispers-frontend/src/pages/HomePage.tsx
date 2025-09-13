@@ -67,7 +67,7 @@ const HeroImage = styled.img`
 
 const DemoReportButton = styled.button`
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   right: 20px;
   background: rgba(212, 175, 55, 0.1);
   border: 2px solid rgba(212, 175, 55, 0.3);
@@ -78,28 +78,29 @@ const DemoReportButton = styled.button`
   font-size: 1rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(15px);
-  z-index: 10;
 
   &:hover {
     background: rgba(212, 175, 55, 0.2);
     border-color: ${colors.primary};
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
   }
 
   ${media.tablet} {
-    bottom: 15px;
+    bottom: 45px;
     right: 15px;
     padding: 10px 16px;
     font-size: 0.9rem;
   }
 
   ${media.mobile} {
-    bottom: 10px;
+    bottom: 30px;
     right: 10px;
     padding: 8px 14px;
     font-size: 0.85rem;
   }
 `;
+
 
 const TodaysWhisper = styled.div<{ expanded: boolean }>`
   background: rgba(212, 175, 55, 0.05);
@@ -343,6 +344,7 @@ const HomePage: React.FC = () => {
     setSelectedReport(mockDemoReport);
     setCurrentPage('report');
   };
+
 
   return (
     <Layout>

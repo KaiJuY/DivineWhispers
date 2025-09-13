@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from enum import Enum
 
-from app.core.database import Base
+from .base import Base
 
 
 class MessageType(str, Enum):

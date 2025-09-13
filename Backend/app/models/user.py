@@ -37,7 +37,7 @@ class User(BaseModel):
     
     # Primary Key
     user_id: Mapped[int] = mapped_column(
-        BigInteger,
+        Integer,
         primary_key=True,
         autoincrement=True,
         comment="使用者唯一 ID"

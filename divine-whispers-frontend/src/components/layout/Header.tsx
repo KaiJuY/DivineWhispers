@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { colors, gradients, media } from '../../assets/styles/globalStyles';
 import useAppStore from '../../stores/appStore';
 import { useCommonTranslation, availableLanguages } from '../../hooks/useTranslation';
+import LoginForm from '../auth/LoginForm';
+import SignupForm from '../auth/SignupForm';
 
 interface HeaderProps {
   isLanding?: boolean;
@@ -246,9 +248,66 @@ const LanguageSelector = styled.div`
   }
 `;
 
+const LoginModal = styled.div<{ isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: ${props => props.isOpen ? 'flex' : 'none'};
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(10px);
+`;
+
+const LoginModalContent = styled.div`
+  background: rgba(10, 17, 40, 0.95);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 95%;
+  backdrop-filter: blur(15px);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  ${media.tablet} {
+    padding: 30px;
+    max-width: 500px;
+  }
+
+  ${media.mobile} {
+    padding: 20px;
+    max-width: 90%;
+    width: 90%;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: ${colors.white};
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${colors.primary};
+  }
+`;
+
 const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
-  const { currentPage, setCurrentPage, auth, setAuth } = useAppStore();
+  const { currentPage, setCurrentPage, auth, login, logout } = useAppStore();
   const { t, currentLanguage, changeLanguage } = useCommonTranslation();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
 
   // Check user authentication and role
   const isAuthenticated = auth.isAuthenticated;
@@ -264,72 +323,30 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
   };
 
   const handleLogin = () => {
-    // For demo purposes, simulate different user types
-    const userType = prompt('Login as:\n1. Regular user (enter "user")\n2. Admin (enter "admin")\n3. Cancel (press Cancel)');
-    
-    if (userType === 'user') {
-      setAuth({
-        user: {
-          user_id: 123,
-          email: "user@example.com",
-          username: "RegularUser",
-          role: "user",
-          points_balance: 25,
-          created_at: "2024-01-15T10:30:00Z",
-          birth_date: "1990-03-15",
-          gender: "Male",
-          location: "San Francisco, CA, USA"
-        },
-        tokens: {
-          access_token: "user_token_here",
-          refresh_token: "user_refresh_token",
-          expires_in: 3600
-        },
-        isAuthenticated: true,
-        loading: false
-      });
-      alert('✅ Logged in as Regular User');
-    } else if (userType === 'admin') {
-      setAuth({
-        user: {
-          user_id: 1,
-          email: "admin@divinewhispers.com",
-          username: "AdminUser",
-          role: "admin",
-          points_balance: 999,
-          created_at: "2024-01-01T00:00:00Z",
-          birth_date: "1985-01-01",
-          gender: "Admin",
-          location: "Divine Realm"
-        },
-        tokens: {
-          access_token: "admin_token_here",
-          refresh_token: "admin_refresh_token",
-          expires_in: 3600
-        },
-        isAuthenticated: true,
-        loading: false
-      });
-      alert('✅ Logged in as Admin');
-    }
+    setShowLoginModal(true);
   };
 
   const handleSignup = () => {
-    // Navigate to a signup page or show signup modal
-    alert('🚀 Signup functionality - would redirect to signup form');
-    setCurrentPage('home');
+    setShowSignupModal(true);
   };
 
-  const handleLogout = () => {
-    setAuth({
-      user: null,
-      tokens: null,
-      isAuthenticated: false,
-      loading: false
-    });
-    // Redirect to home after logout
-    setCurrentPage('home');
-    alert('👋 Logged out successfully');
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setCurrentPage('home');
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Still redirect home even if logout API fails
+      setCurrentPage('home');
+    }
+  };
+
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false);
+  };
+
+  const handleSignupSuccess = () => {
+    setShowSignupModal(false);
   };
 
   const handleLanguageChange = () => {
@@ -341,95 +358,117 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
   };
 
   return (
-    <HeaderContainer isLanding={isLanding}>
-      <NavContainer>
-        <Logo onClick={() => handleNavClick('landing')}>
-          <HeaderLogo src="/assets/divine whispers logo.png" alt="Divine Whispers" />
-        </Logo>
+    <>
+      <HeaderContainer isLanding={isLanding}>
+        <NavContainer>
+          <Logo onClick={() => handleNavClick('landing')}>
+            <HeaderLogo src="/assets/divine whispers logo.png" alt="Divine Whispers" />
+          </Logo>
 
-        <MainNav isLanding={isLanding}>
-          <NavLink 
-            active={currentPage === 'home'} 
-            onClick={() => handleNavClick('home')}
-          >
-            {t('navigation.home')}
-          </NavLink>
-          <NavLink 
-            active={currentPage === 'deities'} 
-            onClick={() => setCurrentPage('deities')}
-          >
-            {t('navigation.deities')}
-          </NavLink>
-          <NavLink 
-            active={currentPage === 'purchase'} 
-            onClick={() => setCurrentPage('purchase')}
-          >
-            {t('navigation.purchase')}
-          </NavLink>
-          
-          {/* Show Account link only when user is logged in */}
-          {isAuthenticated && (
+          <MainNav isLanding={isLanding}>
             <NavLink 
-              active={currentPage === 'account'} 
-              onClick={() => setCurrentPage('account')}
+              active={currentPage === 'home'} 
+              onClick={() => handleNavClick('home')}
             >
-              {t('navigation.account')}
+              {t('navigation.home')}
             </NavLink>
-          )}
-          
-          <NavLink 
-            active={currentPage === 'contact'} 
-            onClick={() => setCurrentPage('contact')}
-          >
-            {t('navigation.contact')}
-          </NavLink>
-          
-          {/* Show Admin link only for admin users */}
-          {isAdmin && (
             <NavLink 
-              active={currentPage === 'admin'} 
-              onClick={() => setCurrentPage('admin')}
+              active={currentPage === 'deities'} 
+              onClick={() => setCurrentPage('deities')}
             >
-              {t('navigation.admin')}
+              {t('navigation.deities')}
             </NavLink>
-          )}
-        </MainNav>
+            <NavLink 
+              active={currentPage === 'purchase'} 
+              onClick={() => setCurrentPage('purchase')}
+            >
+              {t('navigation.purchase')}
+            </NavLink>
+            
+            {/* Show Account link only when user is logged in */}
+            {isAuthenticated && (
+              <NavLink 
+                active={currentPage === 'account'} 
+                onClick={() => setCurrentPage('account')}
+              >
+                {t('navigation.account')}
+              </NavLink>
+            )}
+            
+            <NavLink 
+              active={currentPage === 'contact'} 
+              onClick={() => setCurrentPage('contact')}
+            >
+              {t('navigation.contact')}
+            </NavLink>
+            
+            {/* Show Admin link only for admin users */}
+            {isAdmin && (
+              <NavLink 
+                active={currentPage === 'admin'} 
+                onClick={() => setCurrentPage('admin')}
+              >
+                {t('navigation.admin')}
+              </NavLink>
+            )}
+          </MainNav>
 
-        {/* Auth Section - replaces language selector */}
-        <AuthSection>
-          {!isAuthenticated ? (
-            // Show Login/Signup when not authenticated
-            <>
-              <AuthButton onClick={handleLogin}>
-                {t('auth.login')}
-              </AuthButton>
-              <AuthButton secondary onClick={handleSignup}>
-                {t('auth.signup')}
-              </AuthButton>
-            </>
-          ) : (
-            // Show user info and logout when authenticated
-            <>
-              <UserInfo>
-                <UserEmail>{userEmail}</UserEmail>
-                <UserRole isAdmin={isAdmin}>
-                  {isAdmin ? `👑 ${t('auth.adminRole')}` : `👤 ${t('auth.userRole')}`}
-                </UserRole>
-              </UserInfo>
-              <AuthButton secondary onClick={handleLogout}>
-                {t('auth.logout')}
-              </AuthButton>
-            </>
-          )}
-          
-          <LanguageSelector onClick={handleLanguageChange}>
-            <span>🌐</span>
-            <span>{currentLanguage.toUpperCase()}</span>
-            <span>▾</span>
-          </LanguageSelector>
-        </AuthSection>
-      </NavContainer>
-    </HeaderContainer>
+          {/* Auth Section - replaces language selector */}
+          <AuthSection>
+            {!isAuthenticated ? (
+              // Show Login/Signup when not authenticated
+              <>
+                <AuthButton onClick={handleLogin}>
+                  {t('auth.login')}
+                </AuthButton>
+                <AuthButton secondary onClick={handleSignup}>
+                  {t('auth.signup')}
+                </AuthButton>
+              </>
+            ) : (
+              // Show user info and logout when authenticated
+              <>
+                <UserInfo>
+                  <UserEmail>{userEmail}</UserEmail>
+                  <UserRole isAdmin={isAdmin}>
+                    {isAdmin ? `👑 ${t('auth.adminRole')}` : `👤 ${t('auth.userRole')}`}
+                  </UserRole>
+                </UserInfo>
+                <AuthButton secondary onClick={handleLogout}>
+                  {t('auth.logout')}
+                </AuthButton>
+              </>
+            )}
+            
+            <LanguageSelector onClick={handleLanguageChange}>
+              <span>🌐</span>
+              <span>{currentLanguage.toUpperCase()}</span>
+              <span>▾</span>
+            </LanguageSelector>
+          </AuthSection>
+        </NavContainer>
+      </HeaderContainer>
+
+      {/* Login Modal */}
+      <LoginModal isOpen={showLoginModal}>
+        <LoginModalContent>
+          <CloseButton onClick={() => setShowLoginModal(false)}>
+            ×
+          </CloseButton>
+          <LoginForm onSuccess={handleLoginSuccess} />
+        </LoginModalContent>
+      </LoginModal>
+
+      {/* Signup Modal */}
+      <LoginModal isOpen={showSignupModal}>
+        <LoginModalContent>
+          <CloseButton onClick={() => setShowSignupModal(false)}>
+            ×
+          </CloseButton>
+          <SignupForm onSuccess={handleSignupSuccess} />
+        </LoginModalContent>
+      </LoginModal>
+    </>
   );
 };
 

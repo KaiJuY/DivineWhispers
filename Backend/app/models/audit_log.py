@@ -4,7 +4,7 @@ AuditLog model for tracking user actions and system events
 
 from datetime import datetime
 from enum import Enum
-from sqlalchemy import BigInteger, String, Text, ForeignKey, DateTime, func, Index, JSON
+from sqlalchemy import BigInteger, Integer, String, Text, ForeignKey, DateTime, func, Index, JSON
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import Optional, Dict, Any, TYPE_CHECKING
 
@@ -44,7 +44,7 @@ class AuditLog(Base):
     
     # Primary Key
     log_id: Mapped[int] = mapped_column(
-        BigInteger,
+        Integer,
         primary_key=True,
         autoincrement=True,
         comment="Log 唯一 ID"

@@ -14,6 +14,7 @@ import PurchasePage from './pages/PurchasePage';
 import AccountPage from './pages/AccountPage';
 import AdminPage from './pages/AdminPage';
 import ReportPage from './pages/ReportPage';
+import AuthTestPage from './pages/AuthTestPage';
 
 // Theme object for styled-components
 const theme = {
@@ -65,6 +66,8 @@ const App: React.FC = () => {
         return <ContactPage />;
       case 'report':
         return <ReportPage />;
+      case 'auth-test':
+        return <AuthTestPage />;
       default:
         return <LandingPage />;
     }

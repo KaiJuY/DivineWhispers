@@ -66,16 +66,21 @@ async def register(
     
     try:
         user, tokens = await AuthService.register_user(db, user_data, client_ip)
-        user_response = UserResponse.from_orm(user)
+        user_response = UserResponse.model_validate(user)
         
         return LoginResponse(user=user_response, tokens=tokens)
         
     except HTTPException:
         raise
     except Exception as e:
+        import logging
+        import traceback
+        logger = logging.getLogger(__name__)
+        logger.error(f"Registration error: {type(e).__name__}: {str(e)}")
+        logger.error(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Registration failed due to server error"
+            detail=f"Registration failed: {str(e)}"
         )
 
 

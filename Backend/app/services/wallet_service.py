@@ -520,7 +520,7 @@ class WalletService:
             
             # Convert to response objects
             transaction_responses = [
-                TransactionResponse.from_orm(txn) for txn in transactions
+                TransactionResponse.model_validate(txn) for txn in transactions
             ]
             
             # Calculate summary metrics

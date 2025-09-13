@@ -25,6 +25,21 @@ export interface AuthState {
   loading: boolean;
 }
 
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterCredentials {
+  email: string;
+  password: string;
+  confirm_password: string;
+  username?: string;
+  birth_date?: string;
+  gender?: string;
+  location?: string;
+}
+
 export interface PoemCollection {
   id: string;
   name: string;
@@ -172,7 +187,7 @@ export interface Report {
 export type Language = 'en' | 'zh' | 'jp';
 
 // Navigation Types - Updated for all pages
-export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'admin' | 'contact' | 'report';
+export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'admin' | 'contact' | 'report' | 'auth-test';
 
 // Store Types
 export interface AppStore {
@@ -185,6 +200,10 @@ export interface AppStore {
   
   auth: AuthState;
   setAuth: (auth: Partial<AuthState>) => void;
+  login: (credentials: LoginCredentials) => Promise<AuthState>;
+  register: (credentials: RegisterCredentials) => Promise<AuthState>;
+  logout: () => Promise<void>;
+  verifyAuth: () => Promise<boolean>;
   selectedDeity: Deity | null;
   setSelectedDeity: (deity: Deity | null) => void;
   selectedCollection: PoemCollection | null;

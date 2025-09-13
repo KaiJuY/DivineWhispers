@@ -1378,7 +1378,7 @@ async def get_admin_faqs(
         )
         categories = [cat[0] for cat in categories_result.all()]
         
-        faq_responses = [FAQResponse.from_orm(faq) for faq in faqs]
+        faq_responses = [FAQResponse.model_validate(faq) for faq in faqs]
         
         return FAQListResponse(
             faqs=faq_responses,
@@ -1429,7 +1429,7 @@ async def create_faq(
         logger.info(f"Admin {current_user.user_id} created FAQ {faq.id}")
         
         from app.schemas.faq import FAQResponse
-        return FAQResponse.from_orm(faq)
+        return FAQResponse.model_validate(faq)
         
     except Exception as e:
         logger.error(f"Error creating FAQ: {e}")
@@ -1478,7 +1478,7 @@ async def update_faq(
         
         logger.info(f"Admin {current_user.user_id} updated FAQ {faq_id}")
         
-        return FAQResponse.from_orm(faq)
+        return FAQResponse.model_validate(faq)
         
     except HTTPException:
         raise
@@ -1567,7 +1567,7 @@ async def get_faq_analytics(
             .limit(10)
         )
         recent_feedback = [
-            FAQFeedbackResponse.from_orm(feedback)
+            FAQFeedbackResponse.model_validate(feedback)
             for feedback in recent_feedback_result.scalars().all()
         ]
         

@@ -11,7 +11,7 @@ from fastapi import HTTPException, status
 from app.core.config import settings
 from app.core.security import SecurityManager
 from app.models.user import User, UserRole, UserStatus
-from app.models.audit_log import AuditLog
+from app.models.audit_log import AuditLog, ActionType
 from app.schemas.auth import (
     UserRegister,
     UserLogin,
@@ -63,7 +63,11 @@ class AuthService:
             password_hash=hashed_password,
             role=UserRole.USER,
             status=UserStatus.ACTIVE,
-            points_balance=settings.DEFAULT_USER_POINTS
+            points_balance=settings.DEFAULT_USER_POINTS,
+            # Optional profile fields
+            full_name=user_data.username,  # Use username as full_name for now
+            birth_date=user_data.birth_date,
+            location=user_data.location
         )
         
         db.add(new_user)
@@ -82,7 +86,7 @@ class AuthService:
         # Create audit log entry
         audit_log = AuditLog(
             user_id=new_user.user_id,
-            action="user_register",
+            action=ActionType.USER_REGISTER,
             resource_type="user",
             resource_id=str(new_user.user_id),
             ip_address=client_ip,
@@ -119,7 +123,7 @@ class AuthService:
         if not user:
             # Log failed login attempt
             audit_log = AuditLog(
-                action="login_failed",
+                action=ActionType.ACCESS_DENIED,
                 resource_type="user",
                 ip_address=client_ip,
                 details={"email": login_data.email, "reason": "user_not_found"}
@@ -137,7 +141,7 @@ class AuthService:
             # Log failed login attempt
             audit_log = AuditLog(
                 user_id=user.user_id,
-                action="login_failed",
+                action=ActionType.ACCESS_DENIED,
                 resource_type="user",
                 resource_id=str(user.user_id),
                 ip_address=client_ip,
@@ -156,7 +160,7 @@ class AuthService:
             # Log failed login attempt
             audit_log = AuditLog(
                 user_id=user.user_id,
-                action="login_failed",
+                action=ActionType.ACCESS_DENIED,
                 resource_type="user",
                 resource_id=str(user.user_id),
                 ip_address=client_ip,
@@ -183,7 +187,7 @@ class AuthService:
         # Log successful login
         audit_log = AuditLog(
             user_id=user.user_id,
-            action="login_success",
+            action=ActionType.LOGIN,
             resource_type="user",
             resource_id=str(user.user_id),
             ip_address=client_ip,
@@ -219,7 +223,7 @@ class AuthService:
         except HTTPException as e:
             # Log failed token refresh
             audit_log = AuditLog(
-                action="token_refresh_failed",
+                action=ActionType.ACCESS_DENIED,
                 resource_type="token",
                 ip_address=client_ip,
                 details={"reason": str(e.detail)}
@@ -275,7 +279,7 @@ class AuthService:
         # Log successful token refresh
         audit_log = AuditLog(
             user_id=user.user_id,
-            action="token_refresh_success",
+            action=ActionType.ACCESS,
             resource_type="token",
             resource_id=payload["jti"],
             ip_address=client_ip,
@@ -337,7 +341,7 @@ class AuthService:
             # Log successful logout
             audit_log = AuditLog(
                 user_id=user_id,
-                action="logout_success",
+                action=ActionType.LOGOUT,
                 resource_type="user",
                 resource_id=str(user_id),
                 ip_address=client_ip,
@@ -349,7 +353,7 @@ class AuthService:
         except HTTPException as e:
             # Log failed logout
             audit_log = AuditLog(
-                action="logout_failed",
+                action=ActionType.ACCESS_DENIED,
                 resource_type="token",
                 ip_address=client_ip,
                 details={"reason": str(e.detail)}
@@ -384,7 +388,7 @@ class AuthService:
             # Log failed password change
             audit_log = AuditLog(
                 user_id=user_id,
-                action="password_change_failed",
+                action=ActionType.ACCESS_DENIED,
                 resource_type="user",
                 resource_id=str(user_id),
                 ip_address=client_ip,
@@ -415,7 +419,7 @@ class AuthService:
         # Log successful password change
         audit_log = AuditLog(
             user_id=user_id,
-            action="password_change_success",
+            action=ActionType.PASSWORD_CHANGE,
             resource_type="user",
             resource_id=str(user_id),
             ip_address=client_ip,

@@ -20,11 +20,17 @@ class UserRegister(BaseModel):
     email: EmailStr = Field(..., description="User email address")
     password: str = Field(
         ...,
-        min_length=8,
+        min_length=6,
         max_length=100,
-        description="User password (minimum 8 characters)"
+        description="User password (minimum 6 characters)"
     )
     confirm_password: str = Field(..., description="Password confirmation")
+    
+    # Optional profile fields
+    username: Optional[str] = Field(None, max_length=50, description="Username (optional)")
+    birth_date: Optional[str] = Field(None, description="Birth date (YYYY-MM-DD format)")
+    gender: Optional[str] = Field(None, max_length=20, description="Gender (optional)")
+    location: Optional[str] = Field(None, max_length=100, description="Location (optional)")
     
     @validator('confirm_password')
     def passwords_match(cls, v, values, **kwargs):
@@ -37,7 +43,11 @@ class UserRegister(BaseModel):
             "example": {
                 "email": "user@example.com",
                 "password": "SecurePassword123",
-                "confirm_password": "SecurePassword123"
+                "confirm_password": "SecurePassword123",
+                "username": "JohnDoe",
+                "birth_date": "1990-01-01",
+                "gender": "Male",
+                "location": "San Francisco, CA"
             }
         }
 
