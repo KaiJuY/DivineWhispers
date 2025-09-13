@@ -19,7 +19,6 @@ interface Collection {
   description: string;
   number_range: NumberRange;
   temple_mapping: string;
-  numbers: FortuneNumber[];
 }
 
 interface DeityApiResponse {
@@ -53,23 +52,7 @@ const transformDeityData = (apiDeity: DeityApiResponse) => {
       description: collection.description,
       maxNumber: collection.number_range.end,
       templateMapping: collection.temple_mapping,
-      // Use embedded numbers data if available, fallback to generating from range
-      numbers: collection.numbers && collection.numbers.length > 0
-        ? collection.numbers.map(num => ({
-            number: num.number,
-            isAvailable: num.is_available,
-            category: num.fortune_category,
-            title: num.title
-          }))
-        : Array.from(
-            { length: collection.number_range.end - collection.number_range.start + 1 },
-            (_, i) => ({
-              number: collection.number_range.start + i,
-              isAvailable: true, // Default to available if no embedded data
-              category: null,
-              title: null
-            })
-          )
+      numberRange: collection.number_range
     }))
   };
 };
@@ -113,25 +96,9 @@ class DeityService {
           id: collection.id,
           name: collection.name,
           description: collection.description,
-          numberRange: collection.number_range,
+          maxNumber: collection.number_range.end,
           templateMapping: collection.temple_mapping,
-          // Use embedded numbers data if available, fallback to generating from range
-          numbers: collection.numbers && collection.numbers.length > 0
-            ? collection.numbers.map(num => ({
-                number: num.number,
-                isAvailable: num.is_available,
-                category: num.fortune_category,
-                title: num.title
-              }))
-            : Array.from(
-                { length: collection.number_range.end - collection.number_range.start + 1 },
-                (_, i) => ({
-                  number: collection.number_range.start + i,
-                  isAvailable: true, // Default to available if no embedded data
-                  category: null,
-                  title: null
-                })
-              )
+          numberRange: collection.number_range
         }))
       };
     } catch (error) {

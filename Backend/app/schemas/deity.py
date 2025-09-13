@@ -28,7 +28,6 @@ class Collection(BaseModel):
     description: str
     number_range: NumberRange
     temple_mapping: str
-    numbers: List[FortuneNumber] = []  # Always include individual numbers
 
 
 class DeityInfo(BaseModel):

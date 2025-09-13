@@ -264,7 +264,7 @@ const FortuneSelectionPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Use embedded numbers data from selected deity
+  // Generate numbers data from range
   useEffect(() => {
     if (!selectedDeity) {
       setFortuneNumbers(null);
@@ -275,23 +275,52 @@ const FortuneSelectionPage: React.FC = () => {
     try {
       setLoading(true);
 
-      // Use embedded numbers data from the first collection
+      // Generate numbers from the first collection's range
       const firstCollection = selectedDeity.collections?.[0];
-      if (firstCollection && firstCollection.numbers) {
+      if (firstCollection && firstCollection.numberRange) {
+        const { start, end } = firstCollection.numberRange;
+
+        // Generate numbers array from range (all available for demo)
+        const generatedNumbers = Array.from(
+          { length: end - start + 1 },
+          (_, i) => ({
+            number: start + i,
+            isAvailable: true, // All numbers available for demo
+            category: null,
+            title: null
+          })
+        );
+
         const numbers = {
           deityId: selectedDeity.id,
           deityName: selectedDeity.name,
-          numbers: firstCollection.numbers,
-          totalAvailable: firstCollection.numbers.filter(num => num.isAvailable).length
+          numbers: generatedNumbers,
+          totalAvailable: generatedNumbers.length
         };
         setFortuneNumbers(numbers);
       } else {
-        // Fallback: if no embedded numbers, set to null
-        console.warn('No embedded numbers data found for deity:', selectedDeity.name);
-        setFortuneNumbers(null);
+        // Fallback: generate from maxNumber if numberRange doesn't exist
+        const maxNumber = firstCollection?.maxNumber || 100;
+        const generatedNumbers = Array.from(
+          { length: maxNumber },
+          (_, i) => ({
+            number: i + 1,
+            isAvailable: true,
+            category: null,
+            title: null
+          })
+        );
+
+        const numbers = {
+          deityId: selectedDeity.id,
+          deityName: selectedDeity.name,
+          numbers: generatedNumbers,
+          totalAvailable: generatedNumbers.length
+        };
+        setFortuneNumbers(numbers);
       }
     } catch (error) {
-      console.error('Error processing embedded fortune numbers:', error);
+      console.error('Error generating fortune numbers from range:', error);
       setFortuneNumbers(null);
     } finally {
       setLoading(false);

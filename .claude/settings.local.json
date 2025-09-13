@@ -27,7 +27,8 @@
       "Read(/C:\\Users\\KaiJu\\Desktop\\WorkSpace\\My_Self\\DivineWhispers/**)",
       "Bash(npm start)",
       "Bash(npm run build:*)",
-      "mcp__playwright__browser_network_requests"
+      "mcp__playwright__browser_network_requests",
+      "Bash(time curl:*)"
     ],
     "deny": [],
     "ask": [],

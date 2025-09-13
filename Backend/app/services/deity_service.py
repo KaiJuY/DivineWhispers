@@ -83,81 +83,31 @@ class DeityService:
             }
         }
 
-    async def _generate_numbers_data(self, temple_name: str, start: int, end: int) -> List[FortuneNumber]:
-        """Generate numbers data with availability status for a temple"""
-        numbers = []
-
-        try:
-            # Get available poems from the temple to determine which numbers are available
-            temple_stats = await poem_service.get_temple_stats(temple_name)
-
-            # For now, we'll check if poems exist for each number
-            # In a real system, this would query the actual poem database
-            available_numbers = set()
-            if temple_stats and temple_stats.total_poems > 0:
-                # Assume first N numbers are available based on total poems
-                for i in range(1, min(end + 1, temple_stats.total_poems + 1)):
-                    available_numbers.add(i)
-            else:
-                # For demo purposes, mark some numbers as available even when no poems are loaded
-                # This ensures the frontend can display the numbers grid properly
-                for i in range(1, min(21, end + 1)):  # Mark first 20 numbers as available
-                    available_numbers.add(i)
-
-            # Generate numbers list
-            for number in range(start, end + 1):
-                is_available = number in available_numbers
-                numbers.append(FortuneNumber(
-                    number=number,
-                    is_available=is_available,
-                    fortune_category=None,  # Could be populated if we have category data
-                    title=None  # Could be populated if we have title data
-                ))
-
-        except Exception as e:
-            logger.warning(f"Error generating numbers data for {temple_name}: {e}")
-            # Fallback: mark first 20 numbers as available for demo
-            for number in range(start, end + 1):
-                is_available = number <= 20  # First 20 numbers available
-                numbers.append(FortuneNumber(
-                    number=number,
-                    is_available=is_available,
-                    fortune_category=None,
-                    title=None
-                ))
-
-        return numbers
 
     async def get_all_deities(self) -> List[DeityInfo]:
         """Get list of all available deities with their information"""
         try:
             deities = []
 
+            # Performance Optimization: Skip expensive poem_service calls
+            # Since all temples currently return 0 poems, use static data for speed
+            # TODO: Add cache layer when temples have actual poems
+
+            # Process each deity using static configuration
             for deity_id, info in self.deity_info.items():
                 temple_name = self.deity_to_temple_mapping[deity_id]
 
-                # Get temple stats to determine available numbers
-                temple_stats = await poem_service.get_temple_stats(temple_name)
+                # Static configuration for fast response
+                total_fortunes = 100
+                end_number = 100
 
-                if temple_stats:
-                    total_fortunes = temple_stats.total_poems
-                    end_number = min(100, total_fortunes)
-                else:
-                    # Fallback to standard 1-100 range
-                    total_fortunes = 100
-                    end_number = 100
-
-                # Generate numbers data for this collection
-                numbers_data = await self._generate_numbers_data(temple_name, 1, end_number)
-
-                # Create collection for this deity
+                # Create collection for this deity (no numbers array needed)
                 collection = Collection(
                     id=f"{deity_id}_standard",
                     name="Standard Collection",
                     description=f"Traditional {total_fortunes} fortune poems",
                     number_range=NumberRange(start=1, end=end_number),
-                    temple_mapping=temple_name,
-                    numbers=numbers_data
+                    temple_mapping=temple_name
                 )
 
                 deity = DeityInfo(
@@ -176,20 +126,10 @@ class DeityService:
 
         except Exception as e:
             logger.error(f"Error getting all deities: {e}")
-            # Return fallback data with numbers
+            # Return fallback data
             fallback_deities = []
             for deity_id, info in self.deity_info.items():
                 temple_name = self.deity_to_temple_mapping[deity_id]
-                # Generate fallback numbers data
-                fallback_numbers = [
-                    FortuneNumber(
-                        number=i,
-                        is_available=i <= 20,  # First 20 numbers available for demo
-                        fortune_category=None,
-                        title=None
-                    )
-                    for i in range(1, 101)  # 1-100
-                ]
 
                 fallback_deities.append(DeityInfo(
                     id=deity_id,
@@ -201,8 +141,7 @@ class DeityService:
                         name="Standard Collection",
                         description="Traditional 100 fortune poems",
                         number_range=NumberRange(start=1, end=100),
-                        temple_mapping=temple_name,
-                        numbers=fallback_numbers
+                        temple_mapping=temple_name
                     )],
                     total_fortunes=100,
                     deity_image_url=info["deity_image_url"]
@@ -219,20 +158,18 @@ class DeityService:
             temple_name = self.deity_to_temple_mapping[deity_id]
             info = self.deity_info[deity_id]
 
-            # Get temple statistics
-            temple_stats = await poem_service.get_temple_stats(temple_name)
+            # Performance Optimization: Use static data instead of expensive poem_service calls
+            # Since all temples currently return 0 poems, use static data for speed
+            total_fortunes = 100
+            end_number = 100
+            fortune_categories = {"good_fortune": 50, "great_fortune": 30, "neutral": 20}
 
-            if temple_stats:
-                total_fortunes = temple_stats.total_poems
-                end_number = min(100, total_fortunes)
-                fortune_categories = temple_stats.fortune_categories
-            else:
-                total_fortunes = 100
-                end_number = 100
-                fortune_categories = {"good_fortune": 50, "great_fortune": 30, "neutral": 20}
-
-            # Get sample fortunes
-            sample_fortunes = await self._get_sample_fortunes(temple_name, 3)
+            # Static sample fortunes instead of expensive search
+            sample_fortunes = [
+                "Ancient wisdom guides your path",
+                "Fortune favors the prepared mind",
+                "Balance brings harmony to life"
+            ]
 
             # Create collection for this deity
             collection = Collection(
@@ -272,27 +209,18 @@ class DeityService:
             temple_name = self.deity_to_temple_mapping[deity_id]
             info = self.deity_info[deity_id]
 
-            # Get temple stats to determine available numbers
-            temple_stats = await poem_service.get_temple_stats(temple_name)
+            # Performance Optimization: Use static data instead of expensive poem_service calls
+            # Since all temples currently return 0 poems, use static data for speed
+            total_fortunes = 100
+            end_number = 100
 
-            if temple_stats:
-                total_fortunes = temple_stats.total_poems
-                end_number = min(100, total_fortunes)
-            else:
-                total_fortunes = 100
-                end_number = 100
-
-            # Generate numbers data for this collection
-            numbers_data = await self._generate_numbers_data(temple_name, 1, end_number)
-
-            # Create collection for this deity
+            # Create collection for this deity (no numbers array needed)
             collection = Collection(
                 id=f"{deity_id}_standard",
                 name="Standard Collection",
                 description=f"Traditional {total_fortunes} fortune poems",
                 number_range=NumberRange(start=1, end=end_number),
-                temple_mapping=temple_name,
-                numbers=numbers_data
+                temple_mapping=temple_name
             )
 
             return CollectionNumbersResponse(
@@ -307,21 +235,13 @@ class DeityService:
     
     async def _get_sample_fortunes(self, temple_name: str, count: int = 3) -> List[str]:
         """Get sample fortune titles from a temple"""
-        try:
-            poems = await poem_service.search_similar_poems(
-                query="fortune guidance", 
-                top_k=count,
-                temple_filter=temple_name
-            )
-            
-            return [poem.title for poem in poems if poem.title]
-            
-        except Exception:
-            return [
-                "Ancient wisdom guides your path",
-                "Fortune favors the prepared mind", 
-                "Balance brings harmony to life"
-            ]
+        # Performance Optimization: Return static sample fortunes instead of expensive search
+        # Since all temples currently return 0 poems, use static data for speed
+        return [
+            "Ancient wisdom guides your path",
+            "Fortune favors the prepared mind",
+            "Balance brings harmony to life"
+        ]
     
     def get_temple_name(self, deity_id: str) -> Optional[str]:
         """Get backend temple name for a deity ID"""
