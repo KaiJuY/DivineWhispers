@@ -29,7 +29,119 @@ interface FortuneConversationRequest {
   context?: any;
 }
 
+// WebSocket message types
+interface WebSocketMessage {
+  type: string;
+  session_id?: number;
+  content?: string;
+  timestamp?: number;
+}
+
+interface WebSocketResponse {
+  type: string;
+  content?: string;
+  is_complete?: boolean;
+  is_typing?: boolean;
+  error?: string;
+}
+
 class ChatService {
+  private websocket: WebSocket | null = null;
+  private reconnectAttempts = 0;
+  private maxReconnectAttempts = 5;
+  private messageHandlers: Map<string, Function[]> = new Map();
+  private currentUserId: string | null = null;
+  
+  // WebSocket connection management
+  async connectWebSocket(userId: string): Promise<void> {
+    if (this.websocket?.readyState === WebSocket.OPEN) {
+      return;
+    }
+
+    this.currentUserId = userId;
+    const wsUrl = `ws://localhost:8080/ws/${userId}`;
+    
+    return new Promise((resolve, reject) => {
+      this.websocket = new WebSocket(wsUrl);
+      
+      this.websocket.onopen = () => {
+        console.log('WebSocket connected');
+        this.reconnectAttempts = 0;
+        resolve();
+      };
+      
+      this.websocket.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          this.handleWebSocketMessage(data);
+        } catch (error) {
+          console.error('Error parsing WebSocket message:', error);
+        }
+      };
+      
+      this.websocket.onclose = () => {
+        console.log('WebSocket disconnected');
+        this.websocket = null;
+        this.attemptReconnect();
+      };
+      
+      this.websocket.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        reject(error);
+      };
+    });
+  }
+
+  private handleWebSocketMessage(data: any) {
+    const handlers = this.messageHandlers.get(data.type) || [];
+    handlers.forEach(handler => handler(data));
+  }
+
+  onMessage(type: string, handler: Function) {
+    if (!this.messageHandlers.has(type)) {
+      this.messageHandlers.set(type, []);
+    }
+    this.messageHandlers.get(type)!.push(handler);
+  }
+
+  offMessage(type: string, handler: Function) {
+    const handlers = this.messageHandlers.get(type);
+    if (handlers) {
+      const index = handlers.indexOf(handler);
+      if (index !== -1) {
+        handlers.splice(index, 1);
+      }
+    }
+  }
+
+  private attemptReconnect() {
+    if (this.reconnectAttempts < this.maxReconnectAttempts && this.currentUserId) {
+      this.reconnectAttempts++;
+      console.log(`Attempting to reconnect WebSocket (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
+      setTimeout(() => {
+        this.connectWebSocket(this.currentUserId!);
+      }, 2000 * this.reconnectAttempts);
+    }
+  }
+
+  sendWebSocketMessage(message: WebSocketMessage): boolean {
+    if (this.websocket?.readyState === WebSocket.OPEN) {
+      this.websocket.send(JSON.stringify(message));
+      return true;
+    }
+    console.warn('WebSocket not connected');
+    return false;
+  }
+
+  disconnectWebSocket() {
+    if (this.websocket) {
+      this.websocket.close();
+      this.websocket = null;
+    }
+    this.messageHandlers.clear();
+    this.currentUserId = null;
+  }
+
   // Create a new chat session
   async createChatSession(sessionName: string, contextData?: any) {
     try {
@@ -55,7 +167,7 @@ class ChatService {
     }
   }
 
-  // Send a message in a session
+  // Send a message in a session (REST API)
   async sendMessage(sessionId: number, content: string, metadata?: any) {
     try {
       const response = await apiClient.post(`/api/v1/chat/sessions/${sessionId}/messages`, {
@@ -67,6 +179,15 @@ class ChatService {
       console.error('Error sending message:', error);
       throw error;
     }
+  }
+
+  // Send real-time message via WebSocket
+  sendRealtimeMessage(sessionId: number, content: string): boolean {
+    return this.sendWebSocketMessage({
+      type: 'chat_message',
+      session_id: sessionId,
+      content: content
+    });
   }
 
   // Get messages for a session
@@ -126,16 +247,61 @@ class ChatService {
     return responses[Math.floor(Math.random() * responses.length)];
   }
 
-  // Generate streaming response (mock for development)
-  async* generateStreamingResponse(sessionId: number, userMessage: string): AsyncGenerator<string, void, unknown> {
-    const fullResponse = await this.mockFortuneResponse(userMessage, 'guan_yin', 7);
-    const words = fullResponse.split(' ');
-    
-    for (let i = 0; i < words.length; i++) {
-      const chunk = words.slice(0, i + 1).join(' ');
-      yield JSON.stringify({ content: chunk, complete: i === words.length - 1 });
-      await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
-    }
+  // Set up streaming response handlers (for real-time WebSocket streaming)
+  setupStreamingHandlers(): {
+    onChunk: (handler: (chunk: string) => void) => void;
+    onComplete: (handler: () => void) => void;
+    onTyping: (handler: (isTyping: boolean) => void) => void;
+    onError: (handler: (error: string) => void) => void;
+    cleanup: () => void;
+  } {
+    const chunkHandlers: ((chunk: string) => void)[] = [];
+    const completeHandlers: (() => void)[] = [];
+    const typingHandlers: ((isTyping: boolean) => void)[] = [];
+    const errorHandlers: ((error: string) => void)[] = [];
+
+    const chunkHandler = (data: any) => {
+      if (data.type === 'chat_response_stream') {
+        if (data.is_complete) {
+          completeHandlers.forEach(handler => handler());
+        } else if (data.content) {
+          chunkHandlers.forEach(handler => handler(data.content));
+        }
+      }
+    };
+
+    const typingHandler = (data: any) => {
+      if (data.type === 'chat_typing_indicator') {
+        typingHandlers.forEach(handler => handler(data.is_typing));
+      }
+    };
+
+    const errorHandler = (data: any) => {
+      if (data.type === 'error_notification') {
+        errorHandlers.forEach(handler => handler(data.error || 'Unknown error'));
+      }
+    };
+
+    // Register handlers
+    this.onMessage('chat_response_stream', chunkHandler);
+    this.onMessage('chat_typing_indicator', typingHandler);
+    this.onMessage('error_notification', errorHandler);
+
+    return {
+      onChunk: (handler) => chunkHandlers.push(handler),
+      onComplete: (handler) => completeHandlers.push(handler),
+      onTyping: (handler) => typingHandlers.push(handler),
+      onError: (handler) => errorHandlers.push(handler),
+      cleanup: () => {
+        this.offMessage('chat_response_stream', chunkHandler);
+        this.offMessage('chat_typing_indicator', typingHandler);
+        this.offMessage('error_notification', errorHandler);
+        chunkHandlers.length = 0;
+        completeHandlers.length = 0;
+        typingHandlers.length = 0;
+        errorHandlers.length = 0;
+      }
+    };
   }
 }
 

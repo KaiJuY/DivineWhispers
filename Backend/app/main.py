@@ -6,8 +6,10 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 import logging
+import os
 
 from app.core.config import settings
 from app.core.database import engine, create_tables
@@ -88,6 +90,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount static files
+asset_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Asset")
+if os.path.exists(asset_dir):
+    app.mount("/images", StaticFiles(directory=asset_dir), name="images")
+    app.mount("/static", StaticFiles(directory=asset_dir), name="static")
+    logger.info(f"Static files mounted from: {asset_dir}")
+else:
+    logger.warning(f"Asset directory not found: {asset_dir}")
 
 
 # Exception handlers

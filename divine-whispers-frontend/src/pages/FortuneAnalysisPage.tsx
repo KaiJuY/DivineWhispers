@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { colors, gradients, media, skewFadeIn, floatUp } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
@@ -7,6 +7,18 @@ import fortuneService from '../services/fortuneService';
 import chatService from '../services/chatService';
 import type { Report } from '../types';
 import { usePagesTranslation } from '../hooks/useTranslation';
+
+// Animation for typing indicator
+const pulse = keyframes`
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
 
 const AnalysisContainer = styled.div`
   width: 100%;
@@ -476,7 +488,8 @@ const FortuneAnalysisPage: React.FC = () => {
     setUserCoins,
     reports,
     setReports,
-    setSelectedReport
+    setSelectedReport,
+    auth
   } = useAppStore();
   const { t } = usePagesTranslation();
   const [fortune, setFortune] = useState<any>(null);
@@ -485,7 +498,10 @@ const FortuneAnalysisPage: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [streamingMessage, setStreamingMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const streamHandlersRef = useRef<any>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -493,7 +509,7 @@ const FortuneAnalysisPage: React.FC = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, streamingMessage, isTyping]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -522,12 +538,54 @@ const FortuneAnalysisPage: React.FC = () => {
     fetchFortune();
   }, [selectedDeity, selectedFortuneNumber]);
 
-  // Initialize chat session when fortune is loaded
+  // Initialize chat session and WebSocket when fortune is loaded
   useEffect(() => {
     const initializeChat = async () => {
-      if (!fortune || !selectedDeity || !selectedFortuneNumber) return;
+      if (!fortune || !selectedDeity || !selectedFortuneNumber || !auth.user) return;
 
       try {
+        // Connect WebSocket first
+        await chatService.connectWebSocket(auth.user.user_id.toString());
+        
+        // Set up streaming handlers
+        streamHandlersRef.current = chatService.setupStreamingHandlers();
+        
+        streamHandlersRef.current.onChunk((chunk: string) => {
+          setStreamingMessage(prev => prev + chunk + ' ');
+        });
+        
+        streamHandlersRef.current.onComplete(() => {
+          // Move streaming message to messages and clear
+          setMessages(prev => [...prev, {
+            id: `msg_${Date.now()}`,
+            type: 'assistant',
+            message: streamingMessage.trim(),
+            timestamp: new Date().toISOString()
+          }]);
+          setStreamingMessage('');
+          setIsTyping(false);
+          setIsLoading(false);
+        });
+        
+        streamHandlersRef.current.onTyping((typing: boolean) => {
+          setIsTyping(typing);
+        });
+        
+        streamHandlersRef.current.onError((error: string) => {
+          console.error('WebSocket streaming error:', error);
+          setIsLoading(false);
+          setIsTyping(false);
+          setStreamingMessage('');
+          
+          const errorMessage: ChatMessage = {
+            id: `msg_${Date.now()}`,
+            type: 'system',
+            message: 'I apologize, but I am having trouble processing your message right now. Please try again.',
+            timestamp: new Date().toISOString()
+          };
+          setMessages(prev => [...prev, errorMessage]);
+        });
+        
         // Try to start a fortune conversation
         const conversation = await chatService.startFortuneConversation({
           deity_id: selectedDeity.id,
@@ -551,6 +609,7 @@ const FortuneAnalysisPage: React.FC = () => {
         };
         
         setMessages([initialMessage]);
+        
       } catch (error) {
         console.error('Failed to initialize chat:', error);
         
@@ -567,7 +626,16 @@ const FortuneAnalysisPage: React.FC = () => {
     };
 
     initializeChat();
-  }, [fortune, selectedDeity, selectedFortuneNumber]);
+
+    // Cleanup on unmount
+    return () => {
+      if (streamHandlersRef.current) {
+        streamHandlersRef.current.cleanup();
+        streamHandlersRef.current = null;
+      }
+      chatService.disconnectWebSocket();
+    };
+  }, [fortune, selectedDeity, selectedFortuneNumber, auth.user]);
 
   const handleBackClick = () => {
     setCurrentPage('fortune-selection');
@@ -587,20 +655,47 @@ const FortuneAnalysisPage: React.FC = () => {
     setMessages(prev => [...prev, newMessage]);
     setInputMessage('');
     setIsLoading(true);
+    setStreamingMessage(''); // Clear any previous streaming message
 
     try {
-      // If we have a chat session, use the real API
+      // If we have a chat session and WebSocket connection, use real-time messaging
       if (chatSession?.session_id) {
-        try {
-          await chatService.sendMessage(chatSession.session_id, userQuestion);
-          // Note: In a real implementation, you would listen for WebSocket responses
-          // For now, we'll use the mock response system
-        } catch (error) {
-          console.error('Failed to send message via API:', error);
+        const messagesent = chatService.sendRealtimeMessage(chatSession.session_id, userQuestion);
+        
+        if (messagesent) {
+          // WebSocket message sent successfully
+          // Responses will be handled by the streaming handlers
+          console.log('Real-time message sent via WebSocket');
+          
+          // Occasionally offer to generate a report (every 3-4 messages)
+          if (messages.length > 0 && (messages.length + 1) % 3 === 0) {
+            setTimeout(() => {
+              const reportOfferMessage: ChatMessage = {
+                id: `msg_${Date.now() + 2}`,
+                type: 'system',
+                message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
+                timestamp: new Date().toISOString()
+              };
+              setMessages(prev => [...prev, reportOfferMessage]);
+            }, 3000); // Give more time for AI response to complete
+          }
+          
+          return; // Exit early since WebSocket will handle the response
+        } else {
+          console.warn('WebSocket not available, falling back to REST API');
         }
       }
 
-      // Get AI response (using mock for now, but structure for real API)
+      // Fallback to REST API + mock response if WebSocket fails
+      try {
+        if (chatSession?.session_id) {
+          await chatService.sendMessage(chatSession.session_id, userQuestion);
+        }
+      } catch (error) {
+        console.error('Failed to send message via REST API:', error);
+      }
+
+      // Get AI response using mock (fallback)
       const aiResponse = await chatService.mockFortuneResponse(
         userQuestion,
         selectedDeity?.id || 'guan_yin',
@@ -639,7 +734,10 @@ const FortuneAnalysisPage: React.FC = () => {
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
-      setIsLoading(false);
+      // Only set loading to false if we're not using WebSocket (WebSocket handlers will manage this)
+      if (!chatService.sendWebSocketMessage({ type: 'ping' })) {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -866,6 +964,53 @@ const FortuneAnalysisPage: React.FC = () => {
                     </MessageBubble>
                   </Message>
                 )}
+                
+                {/* Streaming message display */}
+                {streamingMessage && (
+                  <Message isUser={false}>
+                    <MessageBubble isUser={false}>
+                      {streamingMessage}
+                      <span style={{ opacity: 0.7 }}>▋</span>
+                    </MessageBubble>
+                  </Message>
+                )}
+                
+                {/* Typing indicator */}
+                {isTyping && !streamingMessage && (
+                  <Message isUser={false}>
+                    <MessageBubble isUser={false}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span>{t('fortuneAnalysis.aiThinking')}</span>
+                        <div style={{ display: 'flex', gap: '2px' }}>
+                          <div style={{ 
+                            width: '6px', 
+                            height: '6px', 
+                            borderRadius: '50%', 
+                            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                            animation: `${pulse} 1.4s ease-in-out infinite both`,
+                            animationDelay: '-0.32s'
+                          }} />
+                          <div style={{ 
+                            width: '6px', 
+                            height: '6px', 
+                            borderRadius: '50%', 
+                            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                            animation: `${pulse} 1.4s ease-in-out infinite both`,
+                            animationDelay: '-0.16s'
+                          }} />
+                          <div style={{ 
+                            width: '6px', 
+                            height: '6px', 
+                            borderRadius: '50%', 
+                            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                            animation: `${pulse} 1.4s ease-in-out infinite both`
+                          }} />
+                        </div>
+                      </div>
+                    </MessageBubble>
+                  </Message>
+                )}
+                
                 <div ref={messagesEndRef} />
               </ChatMessages>
 

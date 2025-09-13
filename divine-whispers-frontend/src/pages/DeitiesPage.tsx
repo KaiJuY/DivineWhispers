@@ -82,7 +82,7 @@ const DeitiesGrid = styled.div`
   }
 `;
 
-const DeityCard = styled.div<{ image: string }>`
+const DeityCard = styled.div<{ $image: string }>`
   flex: 1;
   width: 250px;
   height: 450px;
@@ -109,7 +109,7 @@ const DeityCard = styled.div<{ image: string }>`
     left: -50px;
     width: 150%;
     height: 150%;
-    background-image: url(${props => props.image});
+    background-image: url(${props => props.$image});
     background-size: cover;
     background-position: center 50%;
     background-repeat: no-repeat;
@@ -233,9 +233,9 @@ const DeitiesPage: React.FC = () => {
             <DeitiesTitle>{t('deities.chooseYourBelief')}</DeitiesTitle>
             <DeitiesGrid>
               {deities.map((deity, index) => (
-                <DeityCard 
-                  key={deity.id} 
-                  image={`/assets${deity.imageUrl}`}
+                <DeityCard
+                  key={deity.id}
+                  $image={deity.imageUrl}
                   style={{ animationDelay: `${index * 0.2}s` }}
                   className="belief-card"
                   onClick={() => handleDeitySelect(deity)}
