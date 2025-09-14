@@ -58,7 +58,8 @@ export interface PoemCollection {
   description: string;
   maxNumber: number;
   templateMapping: string;
-  numberRange?: NumberRange; // Optional for backward compatibility
+  numberRange: NumberRange; // Required based on usage in FortuneSelectionPage
+  numbers?: FortuneNumber[]; // Optional embedded numbers data
 }
 
 export interface Deity {

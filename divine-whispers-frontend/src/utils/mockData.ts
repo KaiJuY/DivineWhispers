@@ -41,7 +41,8 @@ export const mockDeities = [
         name: "Standard Collection",
         description: "Traditional 100 fortune poems",
         maxNumber: 100,
-        templateMapping: "GuanYin100"
+        templateMapping: "GuanYin100",
+        numberRange: { start: 1, end: 100 }
       }
     ]
   },
@@ -59,14 +60,16 @@ export const mockDeities = [
         name: "Classic Collection",
         description: "Traditional 63 fortune poems",
         maxNumber: 63,
-        templateMapping: "MazuClassic"
+        templateMapping: "MazuClassic",
+        numberRange: { start: 1, end: 63 }
       },
       {
         id: "mazu_extended",
         name: "Extended Collection",
         description: "Extended 100 fortune poems",
         maxNumber: 100,
-        templateMapping: "MazuExtended"
+        templateMapping: "MazuExtended",
+        numberRange: { start: 1, end: 100 }
       }
     ]
   },
@@ -84,7 +87,8 @@ export const mockDeities = [
         name: "Standard Collection",
         description: "Traditional 100 fortune poems",
         maxNumber: 100,
-        templateMapping: "GuanYu"
+        templateMapping: "GuanYu",
+        numberRange: { start: 1, end: 100 }
       }
     ]
   },
@@ -102,7 +106,8 @@ export const mockDeities = [
         name: "Standard Collection",
         description: "Traditional 100 fortune poems",
         maxNumber: 100,
-        templateMapping: "YueLao"
+        templateMapping: "YueLao",
+        numberRange: { start: 1, end: 100 }
       }
     ]
   },
@@ -120,7 +125,8 @@ export const mockDeities = [
         name: "Standard Collection",
         description: "Traditional 100 fortune poems",
         maxNumber: 100,
-        templateMapping: "ZhuSheng"
+        templateMapping: "ZhuSheng",
+        numberRange: { start: 1, end: 100 }
       }
     ]
   },
@@ -138,7 +144,8 @@ export const mockDeities = [
         name: "Standard Collection",
         description: "Traditional 100 fortune poems",
         maxNumber: 100,
-        templateMapping: "Asakusa"
+        templateMapping: "Asakusa",
+        numberRange: { start: 1, end: 100 }
       }
     ]
   },
@@ -156,7 +163,8 @@ export const mockDeities = [
         name: "Standard Collection",
         description: "Traditional 100 fortune poems",
         maxNumber: 100,
-        templateMapping: "ErawanShrine"
+        templateMapping: "ErawanShrine",
+        numberRange: { start: 1, end: 100 }
       }
     ]
   }

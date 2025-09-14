@@ -480,19 +480,42 @@ interface ChatMessage {
 }
 
 const FortuneAnalysisPage: React.FC = () => {
-  const { 
-    selectedDeity, 
-    selectedFortuneNumber, 
-    setCurrentPage, 
-    userCoins, 
+  const {
+    selectedDeity,
+    selectedFortuneNumber,
+    setCurrentPage,
+    userCoins,
     setUserCoins,
     reports,
     setReports,
     setSelectedReport,
-    auth
+    auth,
+    currentLanguage
   } = useAppStore();
   const { t } = usePagesTranslation();
   const [fortune, setFortune] = useState<any>(null);
+
+  // Helper function to get analysis text in current language
+  const getAnalysisText = (fortune: any) => {
+    if (!fortune?.poem?.analysis) return '';
+
+    const analysis = fortune.poem.analysis;
+
+    // Try to get analysis in current language
+    if (analysis[currentLanguage]) {
+      return analysis[currentLanguage];
+    }
+
+    // Fallback to available languages in order: zh > en > jp
+    if (analysis.zh) return analysis.zh;
+    if (analysis.en) return analysis.en;
+    if (analysis.jp) return analysis.jp;
+
+    // If analysis is a string (legacy format), return as-is
+    if (typeof analysis === 'string') return analysis;
+
+    return '';
+  };
   const [fortuneLoading, setFortuneLoading] = useState(true);
   const [chatSession, setChatSession] = useState<any>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -868,7 +891,7 @@ const FortuneAnalysisPage: React.FC = () => {
               <FortuneHeader>
                 <DeityInfo>
                   <DeityAvatar 
-                    src={`/assets${selectedDeity.imageUrl}`}
+                    src={`${selectedDeity.imageUrl}`}
                     alt={selectedDeity.name}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -879,7 +902,7 @@ const FortuneAnalysisPage: React.FC = () => {
                 </DeityInfo>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px', flexWrap: 'wrap' }}>
                   <FortuneNumber>#{selectedFortuneNumber}</FortuneNumber>
-                  <FortuneLevel>{fortune.fortuneLevel}</FortuneLevel>
+                  <FortuneLevel>{fortune.poem?.fortune || fortune.fortuneLevel}</FortuneLevel>
                 </div>
               </FortuneHeader>
 
@@ -899,18 +922,18 @@ const FortuneAnalysisPage: React.FC = () => {
                   fontSize: '1.1rem',
                   marginBottom: '0'
                 }}>
-                  {t('fortuneAnalysis.subtitle', { number: selectedFortuneNumber, fortuneLevel: fortune.fortuneLevel })}
+                  {t('fortuneAnalysis.subtitle', { number: selectedFortuneNumber, fortuneLevel: fortune.poem?.fortune || fortune.fortuneLevel })}
                 </p>
               </div>
 
               <PoemSection>
                 <PoemTitle>{t('fortuneAnalysis.poemTitle')}</PoemTitle>
-                <PoemText>{fortune.poem}</PoemText>
+                <PoemText>{fortune.poem?.poem || fortune.poem}</PoemText>
               </PoemSection>
 
               <AnalysisTextSection>
                 <AnalysisTitle>{t('fortuneAnalysis.analysisTitle')}</AnalysisTitle>
-                <AnalysisText>{fortune.analysis}</AnalysisText>
+                <AnalysisText>{getAnalysisText(fortune)}</AnalysisText>
               </AnalysisTextSection>
             </FortuneCard>
 

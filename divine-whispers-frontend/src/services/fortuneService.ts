@@ -31,31 +31,21 @@ interface DailyFortuneApiResponse {
   message: string;
 }
 
-// Transform backend API data to frontend format
+// Transform backend API data to frontend format - preserve multilingual analysis
 const transformFortuneData = (apiResponse: FortuneApiResponse) => {
-  // Handle both string and object analysis formats
-  let analysis = '';
-  if (typeof apiResponse.poem.analysis === 'string') {
-    analysis = apiResponse.poem.analysis;
-  } else if (typeof apiResponse.poem.analysis === 'object') {
-    // Prefer English, then Chinese, then first available
-    analysis = apiResponse.poem.analysis.en || 
-               apiResponse.poem.analysis.zh || 
-               Object.values(apiResponse.poem.analysis)[0] || '';
-  }
-
   return {
-    id: apiResponse.poem.id,
-    title: apiResponse.poem.title,
-    poem: apiResponse.poem.poem,
-    fortuneLevel: mapFortuneLevel(apiResponse.poem.fortune),
-    analysis: analysis,
-    deity: {
-      id: apiResponse.deity_id,
-      name: apiResponse.deity_name
-    },
+    deity_id: apiResponse.deity_id,
+    deity_name: apiResponse.deity_name,
     number: apiResponse.number,
-    temple: apiResponse.temple_source
+    poem: {
+      id: apiResponse.poem.id,
+      temple: apiResponse.poem.temple,
+      title: apiResponse.poem.title,
+      fortune: apiResponse.poem.fortune,
+      poem: apiResponse.poem.poem,
+      analysis: apiResponse.poem.analysis // Preserve original multilingual structure
+    },
+    temple_source: apiResponse.temple_source
   };
 };
 
