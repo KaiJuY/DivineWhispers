@@ -70,9 +70,10 @@ class PoemService:
                 
             try:
                 logger.info("Initializing poem service...")
-                
+
                 # Initialize RAG handler
                 config = SystemConfig()
+                logger.info(f"RAG Config - Collection: {settings.CHROMA_COLLECTION_NAME}, Path: {settings.CHROMA_DB_PATH}")
                 self.rag_handler = UnifiedRAGHandler(
                     collection_name=settings.CHROMA_COLLECTION_NAME,
                     persist_path=settings.CHROMA_DB_PATH
