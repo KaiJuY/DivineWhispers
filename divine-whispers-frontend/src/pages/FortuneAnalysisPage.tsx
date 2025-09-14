@@ -567,9 +567,13 @@ const FortuneAnalysisPage: React.FC = () => {
       if (!fortune || !selectedDeity || !selectedFortuneNumber || !auth.user) return;
 
       try {
-        // Connect WebSocket first
-        await chatService.connectWebSocket(auth.user.user_id.toString());
-        
+        // Try WebSocket connection first (optional)
+        try {
+          await chatService.connectWebSocket(auth.user.user_id.toString());
+        } catch (wsError) {
+          console.warn('WebSocket connection failed, using fallback mode:', wsError);
+        }
+
         // Set up streaming handlers
         streamHandlersRef.current = chatService.setupStreamingHandlers();
         
@@ -609,19 +613,23 @@ const FortuneAnalysisPage: React.FC = () => {
           setMessages(prev => [...prev, errorMessage]);
         });
         
-        // Try to start a fortune conversation
-        const conversation = await chatService.startFortuneConversation({
-          deity_id: selectedDeity.id,
-          fortune_number: selectedFortuneNumber,
-          initial_question: 'What does this fortune mean for me?',
-          context: {
-            fortune_id: fortune.id,
-            deity_name: selectedDeity.name,
-            fortune_number: selectedFortuneNumber
-          }
-        });
-
-        setChatSession(conversation);
+        // Try to start a fortune conversation (optional)
+        try {
+          const conversation = await chatService.startFortuneConversation({
+            deity_id: selectedDeity.id,
+            fortune_number: selectedFortuneNumber,
+            initial_question: 'What does this fortune mean for me?',
+            context: {
+              fortune_id: fortune.id,
+              deity_name: selectedDeity.name,
+              fortune_number: selectedFortuneNumber
+            }
+          });
+          setChatSession(conversation);
+        } catch (conversationError) {
+          console.warn('Fortune conversation API failed, using fallback mode:', conversationError);
+          setChatSession(null);
+        }
         
         // Add initial assistant message
         const initialMessage: ChatMessage = {
@@ -635,16 +643,17 @@ const FortuneAnalysisPage: React.FC = () => {
         
       } catch (error) {
         console.error('Failed to initialize chat:', error);
-        
-        // Fallback to mock chat if API fails
+
+        // Always fallback to mock chat if anything fails
         const fallbackMessage: ChatMessage = {
           id: 'fallback_001',
           type: 'assistant',
           message: `I'm here to help you understand the wisdom of ${selectedDeity?.name}'s fortune #${selectedFortuneNumber}. What would you like to know about this divine guidance?`,
           timestamp: new Date().toISOString()
         };
-        
+
         setMessages([fallbackMessage]);
+        setChatSession(null);
       }
     };
 

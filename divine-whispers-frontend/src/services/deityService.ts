@@ -25,7 +25,7 @@ interface DeityApiResponse {
   id: string;
   name: string;
   chinese_name: string;
-  description: string;
+  description: string[];
   collections: Collection[];
   total_fortunes: number;
   deity_image_url: string | null;
@@ -41,7 +41,8 @@ const transformDeityData = (apiDeity: DeityApiResponse) => {
   return {
     id: apiDeity.id,
     name: apiDeity.name,
-    description: [apiDeity.chinese_name], // Split description for frontend display
+    chinese_name: apiDeity.chinese_name,
+    description: apiDeity.description, // Use actual description array from API
     templateMapping: (apiDeity.collections && apiDeity.collections.length > 0) ? apiDeity.collections[0].temple_mapping : apiDeity.id,
     imageUrl: apiDeity.deity_image_url || `/assets/${apiDeity.name}.jpg`, // Fallback to asset path
     isActive: true,

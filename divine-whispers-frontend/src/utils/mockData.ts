@@ -30,6 +30,7 @@ export const mockDeities = [
   {
     id: "guan_yin",
     name: "Guan Yin",
+    chinese_name: "觀音",
     description: ["The Goddess", "of", "Mercy"],
     templateMapping: "GuanYin100",
     imageUrl: "/GuanYin.jpg",
@@ -49,6 +50,7 @@ export const mockDeities = [
   {
     id: "mazu",
     name: "Mazu",
+    chinese_name: "媽祖",
     description: ["The Goddess", "of", "The sea"],
     templateMapping: "Mazu",
     imageUrl: "/Mazu.png",

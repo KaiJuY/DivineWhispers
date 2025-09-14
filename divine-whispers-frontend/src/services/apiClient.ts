@@ -50,9 +50,9 @@ class ApiClient {
             }
             return this.client(originalRequest);
           } catch (refreshError) {
-            // Token refresh failed, redirect to login
+            // Token refresh failed, clear tokens but don't force redirect
             this.clearTokens();
-            window.location.href = '/';
+            console.warn('Authentication failed, user needs to re-login');
             return Promise.reject(refreshError);
           }
         }

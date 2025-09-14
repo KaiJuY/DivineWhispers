@@ -35,7 +35,7 @@ class DeityInfo(BaseModel):
     id: str
     name: str
     chinese_name: str
-    description: str
+    description: List[str]
     collections: List[Collection]
     total_fortunes: int
     deity_image_url: Optional[str] = None

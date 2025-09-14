@@ -185,7 +185,7 @@ const CardDescription = styled.p`
 
 // Fixed design to match mockup
 const DeitiesPage: React.FC = () => {
-  const { setCurrentPage, setSelectedDeity, setSelectedCollection } = useAppStore();
+  const { setCurrentPage, setSelectedDeity, setSelectedCollection, currentLanguage } = useAppStore();
   const { t } = usePagesTranslation();
   const [deities, setDeities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -205,6 +205,14 @@ const DeitiesPage: React.FC = () => {
 
     fetchDeities();
   }, []);
+
+  // Helper function to get the display name based on current language
+  const getDisplayName = (deity: any) => {
+    if (currentLanguage === 'zh' && deity.chinese_name) {
+      return deity.chinese_name;
+    }
+    return deity.name;
+  };
 
   const handleDeitySelect = (deity: any) => {
     setSelectedDeity(deity);
@@ -248,7 +256,7 @@ const DeitiesPage: React.FC = () => {
                     ) : (
                       <CardDescription>{deity.description}</CardDescription>
                     )}
-                    <CardTitle>{deity.name}</CardTitle>
+                    <CardTitle>{getDisplayName(deity)}</CardTitle>
                   </CardContent>
                 </DeityCard>
               ))}

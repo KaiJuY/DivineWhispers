@@ -192,6 +192,9 @@ const useAppStore = create<AppStore>()(
           currentLanguage: state.currentLanguage,
           auth: state.auth,
           consultationHistory: state.consultationHistory,
+          selectedDeity: state.selectedDeity,
+          selectedFortuneNumber: state.selectedFortuneNumber,
+          selectedCollection: state.selectedCollection,
         }),
       }
     ),

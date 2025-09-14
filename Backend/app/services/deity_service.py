@@ -36,49 +36,49 @@ class DeityService:
                 "id": "guan_yin",
                 "name": "Guan Yin",
                 "chinese_name": "觀音",
-                "description": "Goddess of Mercy and Compassion. Provides guidance for life decisions, relationships, and spiritual growth.",
+                "description": ["The Goddess", "of", "Mercy"],
                 "deity_image_url": "/assets/GuanYin.jpg"
             },
             "mazu": {
                 "id": "mazu",
                 "name": "Mazu",
                 "chinese_name": "媽祖",
-                "description": "Sea Goddess and protector of fishermen. Offers guidance for travel, safety, and protection.",
+                "description": ["The Goddess", "of", "The sea"],
                 "deity_image_url": "/assets/Mazu.png"
             },
             "guan_yu": {
                 "id": "guan_yu",
                 "name": "Guan Yu",
                 "chinese_name": "關羽",
-                "description": "God of War, Loyalty, and Justice. Provides counsel on business, loyalty, and righteous decisions.",
+                "description": ["The God", "of", "War and Wealth"],
                 "deity_image_url": "/assets/GuanYu.jpg"
             },
             "yue_lao": {
                 "id": "yue_lao",
                 "name": "Yue Lao",
                 "chinese_name": "月老",
-                "description": "God of Love and Marriage. Specializes in matters of romance, relationships, and matchmaking.",
+                "description": ["The God", "of", "Marriage"],
                 "deity_image_url": "/assets/YueLao.png"
             },
             "zhu_sheng": {
                 "id": "zhu_sheng",
                 "name": "Zhu Sheng",
-                "chinese_name": "朱聖",
-                "description": "Patron of Students and Learning. Offers guidance for academic success and career advancement.",
+                "chinese_name": "註生娘娘",
+                "description": ["The Goddess", "of", "Child Birth"],
                 "deity_image_url": "/assets/TheGoddessofChildBirth.jpg"
             },
             "asakusa": {
                 "id": "asakusa",
                 "name": "Asakusa Kannon",
                 "chinese_name": "淺草觀音",
-                "description": "Buddhist temple deity. Provides wisdom for general life guidance and spiritual enlightenment.",
+                "description": ["Buddhist Temple"],
                 "deity_image_url": "/assets/Asakusa.jpg"
             },
             "erawan_shrine": {
                 "id": "erawan_shrine",
                 "name": "Erawan Shrine",
                 "chinese_name": "四面佛",
-                "description": "Four-faced Buddha. Offers comprehensive guidance covering love, career, health, and fortune.",
+                "description": ["Buddhist Temple"],
                 "deity_image_url": "/assets/ErawanShrine.jpg"
             }
         }

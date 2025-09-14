@@ -59,7 +59,7 @@ class ChatService {
     }
 
     this.currentUserId = userId;
-    const wsUrl = `ws://localhost:8080/ws/${userId}`;
+    const wsUrl = `ws://localhost:8000/ws/${userId}`;
     
     return new Promise((resolve, reject) => {
       this.websocket = new WebSocket(wsUrl);
@@ -86,8 +86,10 @@ class ChatService {
       };
       
       this.websocket.onerror = (error) => {
-        console.error('WebSocket error:', error);
-        reject(error);
+        const errorMessage = 'WebSocket connection failed - falling back to REST API';
+        console.warn('WebSocket error:', errorMessage);
+        // Don't reject - allow fallback to REST API
+        resolve();
       };
     });
   }
@@ -119,8 +121,12 @@ class ChatService {
       this.reconnectAttempts++;
       console.log(`Attempting to reconnect WebSocket (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
       setTimeout(() => {
-        this.connectWebSocket(this.currentUserId!);
+        this.connectWebSocket(this.currentUserId!).catch(() => {
+          // Silently handle reconnection failures - app will use REST API
+        });
       }, 2000 * this.reconnectAttempts);
+    } else if (this.reconnectAttempts >= this.maxReconnectAttempts) {
+      console.warn('WebSocket reconnection attempts exhausted - using REST API only');
     }
   }
 
