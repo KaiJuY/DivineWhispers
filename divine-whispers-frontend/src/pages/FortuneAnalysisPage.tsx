@@ -447,29 +447,6 @@ const ReportButton = styled.button`
   }
 `;
 
-const CoinDisplay = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(212, 175, 55, 0.2);
-  border: 2px solid rgba(212, 175, 55, 0.4);
-  border-radius: 20px;
-  padding: 8px 16px;
-  color: ${colors.primary};
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  ${media.mobile} {
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-bottom: 20px;
-    justify-content: center;
-  }
-`;
 
 interface ChatMessage {
   id: string;
@@ -890,16 +867,12 @@ const FortuneAnalysisPage: React.FC = () => {
             <BackButton onClick={handleBackClick}>
               {t('fortuneAnalysis.backToNumbers')}
             </BackButton>
-            
-            <CoinDisplay>
-              {t('fortuneAnalysis.coinsDisplay', { coins: userCoins })}
-            </CoinDisplay>
-            
+
             <FortuneCard>
               {/* Deity Info at the top */}
               <FortuneHeader>
                 <DeityInfo>
-                  <DeityAvatar 
+                  <DeityAvatar
                     src={`${selectedDeity.imageUrl}`}
                     alt={selectedDeity.name}
                     onError={(e) => {
@@ -917,17 +890,17 @@ const FortuneAnalysisPage: React.FC = () => {
 
               {/* Main Title and Subtitle */}
               <div style={{ textAlign: 'center', marginBottom: '30px', marginTop: '20px' }}>
-                <h1 style={{ 
-                  color: '#d4af37', 
-                  fontSize: '2rem', 
-                  fontWeight: '600', 
+                <h1 style={{
+                  color: '#d4af37',
+                  fontSize: '2rem',
+                  fontWeight: '600',
                   marginBottom: '10px',
                   lineHeight: '1.2'
                 }}>
                   {t('fortuneAnalysis.title')}
                 </h1>
-                <p style={{ 
-                  color: 'rgba(255, 255, 255, 0.8)', 
+                <p style={{
+                  color: 'rgba(255, 255, 255, 0.8)',
                   fontSize: '1.1rem',
                   marginBottom: '0'
                 }}>
@@ -946,7 +919,7 @@ const FortuneAnalysisPage: React.FC = () => {
               </AnalysisTextSection>
             </FortuneCard>
 
-            <ChatSection>
+              <ChatSection>
               <ChatHeader>
                 <ChatTitle>{t('fortuneAnalysis.chatTitle')}</ChatTitle>
                 <ChatSubtitle>{t('fortuneAnalysis.chatSubtitle')}</ChatSubtitle>
