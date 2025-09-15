@@ -1,0 +1,20 @@
+{
+  "id": 18,
+  "title": "月老聖籤一百籤第十八籤",
+  "subtitle": "",
+  "fortune": "上平",
+  "poem": "非獨內德茂也，蓋亦以外感之助焉。",
+  "analysis": {
+    "zh": "這首詩的主題是內在德行與外在感召的相互輔佐。詩句「非獨內德茂也，蓋亦以外感之助焉」指出，人的品德雖源自內心深處，但往往需要外在環境與他人之感召，才能真正發揮並得到世人的認可。內在之德若孤立，往往顯得黯淡；而外在之感召若能與內心之真誠結合，便能化為力量，讓人格光彩更為耀眼。詩中亦蘊含對自我修養與社會交往的提醒，提醒人們在修身的同時，也不可忽略外部的正向影響與互動。",
+    "en": "This poem's theme is the mutual support between inner virtue and external influence. The lines \"It is not only inner virtue that flourishes; rather, it is aided by external感召\" indicate that a person's character originates from within but is often amplified by the surrounding environment and others' impressions, thereby enabling its true manifestation and recognition by society. Inner virtue alone may appear dim; when combined with sincere external resonance, it transforms into strength that further illuminates one's personality. The poem also contains a reminder about personal cultivation and social interaction, urging individuals to balance inner development with external positive influence and engagement.",
+    "jp": "この詩のテーマは内なる徳と外からの感召の相互扶助である。詩句『非独内德茂也，盖亦以外感之助焉』は、人の品性は内面から生まれるが、外の環境や他者の感召によって真に発揮され、世間からの認められることを示している。内なる徳だけでは暗い印象になるが、真摯な外部感召と結合すると力となり、人格をさらに輝かせる。詩は自らの修養と社会交流の重要性を訴えており、内面の発展と外部からの正の影響と相互作用を両立させるべきだと告げている。",
+    "reference": "《外戚世家》"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a person's virtue is not solely an intrinsic quality; rather, it thrives through the interplay between inner moral cultivation and the supportive forces of the surrounding environment and others. This duality underscores the necessity of cultivating one's character while remaining receptive to external influences that can amplify and legitimize that virtue. 1. **Health** – The balance of inner virtue and external encouragement mirrors a healthy mindset; by aligning inner values with external support, one can maintain emotional equilibrium and prevent burnout. 2. **Love and Relationships** – A relationship thrives when both partners nurture personal growth and mutually reinforce each other’s strengths; the poem suggests that love is amplified when personal virtues are publicly acknowledged and appreciated. 3. **Career and Ambition** – Professional success depends not only on skill but also on the positive perception of others; this piece advises that showcasing one’s competence in a supportive environment can accelerate career momentum. 4. **Wealth and Finances** – Financial well-being is fostered by ethical conduct combined with the constructive guidance of mentors or peers; the poem implies that moral integrity, when recognized externally, attracts resources. 5. **Family and Harmony** – Within families, the shared reinforcement of values promotes cohesion; honoring each member’s inner virtue through collective acknowledgment strengthens familial bonds. 6. **Social Connections and Reputation** – Social standing is cultivated through the synergistic relationship between personal excellence and external validation; the poem teaches that reputation is built when one’s intrinsic merits are highlighted by the community.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 13:48:36",
+    "source_file": "chuck_18.json",
+    "raw_llm_response_preview": "{\"id\":18,\"title\":\"月老聖籤一百籤第十八籤\",\"subtitle\":\"\",\"fortune\":\"上平\",\"poem\":\"非獨內德茂也，蓋亦以外感之助焉。\",\"analysis\":{\"zh\":\"這首詩的主題是內在德行與外在感召的相互輔佐。詩句「非獨內德茂也，蓋亦以外感之助焉」指出，人的品德雖源自內心深處，但往往需要外在環境與他人之感召，才能真正發揮並得到世人的認可。內在之德若孤立，往往顯得黯淡；而外在之感召若能與內心之真誠結合，便能化為力量，讓人格光彩更為耀眼。詩中亦蘊含對自我修養與社會交往的提醒，提醒人們在修身的同時，也不可忽略外部的正向影響與互動。\",\"en\":\"This p"
+  }
+}

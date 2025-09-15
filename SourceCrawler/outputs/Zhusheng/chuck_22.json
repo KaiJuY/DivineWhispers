@@ -1,0 +1,20 @@
+{
+  "id": 22,
+  "title": "註生娘娘三十籤第二十二籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "漢外黑雲飛,雷霆霹靂推,人心皆似鐵,官法火爐開。",
+  "analysis": {
+    "zh": "這首詩的主題是關於外在風暴與內在堅韌的對照。漢外黑雲飛覆蓋天空，象徵外界危險與突如其來的變故；雷霆霹靂推擊，暗示緊急衝突與不可抗拒的力量。人心皆似鐵，描述眾人堅硬的意志與不易動搖的性格，或許也隱含對外部挑戰的鎖定抵抗。官法火爐開，則以熱烈之火象徵司法與社會秩序的激化，警示權力與法律將對此事作出嚴厲裁決。整體而言，詩句以天象與人心的映射，勾畫出可能的衝突情境，提醒人們在面對不可預見的變動時，保持清晰的判斷與冷靜的行動。",
+    "en": "This poem's theme is about the contrast between external storms and internal resilience. Dark clouds fly outside Han, symbolizing external dangers and sudden changes; thunder and lightning strike, suggesting urgent conflicts and unstoppable forces. All hearts are like iron, depicting stubborn wills and steadfast nature, perhaps also implying a determination to resist external challenges. Official law as a furnace opens, representing the judiciary and societal order burning, warning that power and law will deliver a harsh verdict. Overall, the poem paints a likely conflict scenario through metaphors of sky and heart, urging clarity of judgment and calm action in face of unforeseen changes.",
+    "jp": "この詩のテーマは、外部の嵐と内部の粘り強さの対照についてです。漢の外に黒い雲が飛び、外部の危険と突如の変化を象徴しています。雷鳴と稲妻が打ち込み、急激な衝突と止められない力を示唆します。すべての心は鉄のようで、頑固な意思と揺るぎない性質を描いており、外部の挑戦に対抗する決意を示唆しているかもしれません。官法は炉として開くことで、司法と社会秩序が燃えることを示し、権力と法律が厳しい判決を下すことを警告します。全体として、詩は空と心の比喩を通じて、起こり得る衝突シナリオを描き、予測不可能な変化に直面したときに明確な判断と冷静な行動を促します。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is a vivid portrayal of imminent conflict brought on by external turmoil, symbolized by dark clouds and thunder, and the steadfast nature of individuals, likened to iron hearts. The poem warns that such circumstances will trigger a stern legal response, represented by the furnace of law, and calls for clear judgment and calm action amidst unpredictable change. \n\n1. **Health** – The poem suggests that external chaos can strain mental well-being; maintaining composure and avoiding rash reactions preserves emotional health. \n\n2. **Love and Relationships** – The iron-hearted imagery advises partners to stay firm yet open, fostering resilience while allowing for mutual support during crises. \n\n3. **Career and Ambition** – Facing sudden obstacles, the poem encourages decisive action and steadfast pursuit of goals, recognizing that authority may intervene harshly if standards are ignored. \n\n4. **Wealth and Finances** – Sudden legal challenges can threaten financial stability; prudent budgeting and contingency planning are essential to withstand potential punitive outcomes. \n\n5. **Family and Harmony** – Strong, iron-like bonds within the family can act as a protective shield against external disturbances; nurturing mutual respect helps maintain unity. \n\n6. **Social Connections and Reputation** – Public perception can intensify during turbulent times; upholding integrity and transparency mitigates the risk of harsh judgment from authorities and society alike.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:47:37",
+    "source_file": "chuck_22.json",
+    "raw_llm_response_preview": "{\n  \"id\": 22,\n  \"title\": \"註生娘娘三十籤第二十二籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"漢外黑雲飛,雷霆霹靂推,人心皆似鐵,官法火爐開。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於外在風暴與內在堅韌的對照。漢外黑雲飛覆蓋天空，象徵外界危險與突如其來的變故；雷霆霹靂推擊，暗示緊急衝突與不可抗拒的力量。人心皆似鐵，描述眾人堅硬的意志與不易動搖的性格，或許也隱含對外部挑戰的鎖定抵抗。官法火爐開，則以熱烈之火象徵司法與社會秩序的激化，警示權力與法律將對此事作出嚴厲裁決。整體而言，詩句"
+  }
+}

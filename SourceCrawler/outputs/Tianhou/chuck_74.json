@@ -1,0 +1,20 @@
+{
+  "id": 74,
+  "title": "天后宮一百籤第七十四籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "與子當年有宿因、同舟共濟勝周親、若能竟把真心托、添喜添財熟比倫。",
+  "analysis": {
+    "zh": "這首詩的主題是關於與親友之間的宿命相遇、共同奮鬥以及真誠相托所帶來的喜悅與財富。詩中提到「與子當年有宿因」暗示兩人自古相連，因緣注定；「同舟共濟勝周親」強調團結合作能戰勝外在阻礙；「若能竟把真心托」則提醒若能以誠實與信任對待彼此，心意相投；最後「添喜添財熟比倫」指出真心相托不僅能帶來歡樂，亦可收穫財富，甚至比鄰居還優。整體而言，詩句寓意：堅守誠信、同心協力，方能在生活與事業中獲得心靈與物質雙重豐盛。",
+    "en": "This poem's theme revolves around a destined encounter between close companions, their joint struggle, and the joy and wealth that arise from sincere trust. The line \"與子當年有宿因\" indicates a preordained bond that has existed since ancient times; \"同舟共濟勝周親\" emphasizes that united effort can overcome external obstacles; \"若能竟把真心托\" advises that by treating each other with honesty and faith, one can achieve mutual understanding; finally, \"添喜添財熟比倫\" suggests that heartfelt trust not only brings happiness but also yields prosperity, even surpassing that of neighbors. Overall, the poem conveys that steadfast integrity and teamwork are the keys to achieving both spiritual and material abundance in life and career.",
+    "jp": "この詩のテーマは、親しい仲間との宿命の出会い、共に奮闘し、真摯な信頼がもたらす喜びと富に焦点を当てています。『与子当年有宿因』は、古来から存在する宿命の絆を示し、『同舟共濟勝周親』は、団結した努力が外部の障害を乗り越えることを強調しています。『若能竟把真心托』は、相互に正直さと信頼を持って接することで相互理解が得られると助言し、最後の『添喜添財熟比倫』は、心からの信頼が喜びだけでなく富をもたらし、近隣よりも優れることを示唆しています。総じて、この詩は、誠実さとチームワークを堅持することで、人生や仕事で精神的・物質的な豊かさを両立できると伝えています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that sincere trust and collective effort between people who share a predestined bond can lead to both emotional satisfaction and material prosperity. The verses emphasize that a longstanding connection (“與子當年有宿因”) is foundational, that unity in purpose (“同舟共濟勝周親”) can overcome obstacles, and that genuine sincerity (“若能竟把真心托”) unlocks mutual understanding. The final line notes that such honesty not only brings joy but also yields wealth surpassing that of neighbors. The underlying philosophy advocates integrity, teamwork, and mutual confidence as pathways to a balanced life.\n\n1. **Health** – The poem suggests that a harmonious relationship built on trust can reduce stress and promote mental well‑being, which in turn supports physical health. When people share their burdens openly, they experience less anxiety and feel more supported, leading to better overall health.\n\n2. **Love and Relationships** – It underscores the importance of sincerity and mutual respect. By truly “托” (entrusting) one’s heart, partners strengthen their bond, fostering deeper affection and stability in romantic or close friendships.\n\n3. **Career and Ambition** – The imagery of “同舟共濟” illustrates teamwork’s power in professional settings. Collaboration and shared goals can help overcome workplace challenges, leading to recognition, promotions, and a more fulfilling career path.\n\n4. **Wealth and Finances** – The final line explicitly links genuine trust with financial gain, implying that ethical conduct and cooperation attract prosperity. Honest partnerships and transparent dealings create opportunities for wealth accumulation and economic security.\n\n5. **Family and Harmony** – A predestined connection suggests generational ties and inherited values. Maintaining trust within the family preserves harmony, ensures smooth communication, and strengthens the support network that sustains all family members.\n\n6. **Social Connections and Reputation** – By emphasizing sincerity and unity, the poem advises that a reputation built on trust and teamwork will attract positive social interactions, broaden networks, and enhance personal credibility, which in turn opens doors to new opportunities.\n",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:54:28",
+    "source_file": "chuck_74.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 74,\n  \"title\": \"天后宮一百籤第七十四籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"與子當年有宿因、同舟共濟勝周親、若能竟把真心托、添喜添財熟比倫。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於與親友之間的宿命相遇、共同奮鬥以及真誠相托所帶來的喜悅與財富。詩中提到「與子當年有宿因」暗示兩人自古相連，因緣注定；「同舟共濟勝周親」強調團結合作能戰勝外在阻礙；「若能竟把真心托」則提醒若能以誠實與信任對待彼此，心意相投；最後「添喜添財熟比倫」指出真心相托不僅能帶來歡樂"
+  }
+}

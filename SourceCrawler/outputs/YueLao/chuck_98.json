@@ -1,0 +1,20 @@
+{
+  "id": 98,
+  "title": "月老聖籤一百籤第九十八籤",
+  "subtitle": "",
+  "fortune": "中平",
+  "poem": "他思已窮，恨不窮，是為嬌鸞鶵鳳失雌雄。",
+  "analysis": {
+    "zh": "這首詩的主題是人對失去情感與未竟期望的深切哀愁。詩中以「他思已窮」描寫一個人對愛的渴求已經陷入絕境，情感已無可挽回；「恨不窮」則表明對此境地的不甘與怨憤，仿佛心中仍有未盡的欲望。隨後以「嬌鸞鶵鳳失雌雄」作比喻，將自己比作美麗的鸞鳳，卻失去了配偶，象徵愛情失去對等的存在，形容孤寂與無奈。全詩呈現出一種對失落情感的無奈嘆息與對未來失衡關係的深切反省。此情此景，提醒人們在失落之際，亦可從內在自省中尋得慰藉，並以積極面對未來。",
+    "en": "This poem's theme is the profound sorrow over lost feelings and unmet expectations. The poem depicts with \"his longing is exhausted\" a person's yearning for love has entered a state of despair, feelings are beyond recovery; \"hate not to be exhausted\" indicates a sense of unwillingness and resentment towards this situation, as if there's still unfulfilled desire in the heart. Then it uses \"lovely phoenix loses male and female\" as a metaphor, comparing oneself to a beautiful phoenix that has lost its partner, symbolizing love lacking a counterpart, portraying loneliness and helplessness. The entire poem presents a sigh of helplessness towards lost feelings and a profound reflection on the future imbalance of relationships. This situation reminds people that even in loss, one can find comfort through inner reflection and face the future positively.",
+    "jp": "この詩のテーマは、失った感情と未達成の期待に対する深い哀愁です。詩は「彼の思いは尽きた」と描写し、愛への渇望が絶望状態に陥り、感情が回復不可能であることを示します。「尽きない恨み」はこの境地への不満と憤りを示し、心に未だ残る欲望があるかのようです。続いて「美しい鳳凰が雄と雌を失った」という比喩を用い、自己を美しい鳳凰にたとえ、伴侶を失ったことを象徴し、愛が対等な存在を欠くことを示し、孤独と無力感を描きます。全体として、失われた感情に対する無力な嘆きと、将来の不均衡な関係への深い省察を示しています。この情景は、失望の中でも内省から慰めを見いだし、前向きに未来に向かうことを人々に促します。",
+    "reference": "他思已窮，恨不窮，是為嬌鸞鶵鳳失雌雄。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a profound lamentation over unfulfilled longing and the sense of loss that arises when a person’s emotional hopes seem unreachable. The poet uses a layered metaphor—“the beloved phoenix has lost its male and female”—to convey the emptiness felt when companionship is absent, suggesting that love requires a reciprocal counterpart to sustain itself. The text invites reflection on how such emptiness can provoke resentment, sorrow, and ultimately a call to seek inner solace and proactive resolution. \n\n1. **Health** – The poem signals the emotional exhaustion of the heart, urging readers to pay attention to mental fatigue caused by unreciprocated affection and to address it with self-care or therapy. \n\n2. **Love and Relationships** – It underscores the fragility of relationships when reciprocity is missing, encouraging open communication and the cultivation of mutual support to avoid the feelings of “exhaustion.” \n\n3. **Career and Ambition** – The metaphor of an unbalanced partner can be applied to professional goals that feel incomplete without collaboration; it advises aligning aspirations with supportive teams or mentors. \n\n4. **Wealth and Finances** – While the poem does not mention money directly, the sense of loss parallels financial imbalance, prompting careful budgeting and partnership management to prevent future disparities. \n\n5. **Family and Harmony** – The longing for a balanced family dynamic is evident; readers are encouraged to nurture reciprocal bonds within the household to maintain harmony and avoid the isolation expressed in the poem. \n\n6. **Social Connections and Reputation** – The piece warns against the loneliness that stems from social disconnection; it advises building networks that value mutual exchange to sustain a healthy social reputation and personal fulfillment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 18:51:31",
+    "source_file": "chuck_98.json",
+    "raw_llm_response_preview": "{\"id\":98,\"title\":\"月老聖籤一百籤第九十八籤\",\"subtitle\":\"\",\"fortune\":\"中平\",\"poem\":\"他思已窮，恨不窮，是為嬌鸞鶵鳳失雌雄。\",\"analysis\":{\"zh\":\"這首詩的主題是人對失去情感與未竟期望的深切哀愁。詩中以「他思已窮」描寫一個人對愛的渴求已經陷入絕境，情感已無可挽回；「恨不窮」則表明對此境地的不甘與怨憤，仿佛心中仍有未盡的欲望。隨後以「嬌鸞鶵鳳失雌雄」作比喻，將自己比作美麗的鸞鳳，卻失去了配偶，象徵愛情失去對等的存在，形容孤寂與無奈。全詩呈現出一種對失落情感的無奈嘆息與對未來失衡關係的深切反省。此情此景，提醒人們在失落之際，亦可從"
+  }
+}

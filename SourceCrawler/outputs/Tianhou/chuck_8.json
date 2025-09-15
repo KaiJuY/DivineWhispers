@@ -1,0 +1,20 @@
+{
+  "id": 8,
+  "title": "天后宮一百籤第八籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "積德如君幾十年、何須禮拜問神仙、一帆順境誰能及、利有攸往涉大川。",
+  "analysis": {
+    "zh": "這首詩的主題是積累善行所帶來的自然回報與順遂之勢。作者以「積德如君幾十年」開篇，指出長期修身與行善不必透過祭祀或祈求神靈，善行本身便能形成內在的力量。第二句「何須禮拜問神仙」直接否定了對外在神靈的依賴，強調人與自身修養的關係。第三句「一帆順境誰能及」以順風順水的比喻，說明善行的累積能讓生活如乘風破浪般順暢，難以匹敵。最後一句「利有攸往涉大川」則提醒即使身處順境，也須持續進取，因為善行能帶來機會，幫助人跨越更大的人生關口。整體而言，詩句以簡潔的四句構成，呈現出一條從修養到福報，再到積極進取的正向循環。",
+    "en": "",
+    "jp": "",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that consistent moral cultivation naturally yields harmonious fortunes without the need for external divine intervention. The poem succinctly illustrates a virtuous cycle: long‑term good deeds generate internal strength, which leads to smooth and unparalleled progress, and eventually opens doors to broader opportunities. This message encourages self‑reliance, disciplined effort, and a proactive mindset toward life's challenges.\n\n1. Health\n   The poem implies that moral virtue fosters inner balance, which translates to physical well‑being. When one cultivates kindness and integrity, stress and illness are mitigated, promoting a healthier body.\n\n2. Love and Relationships\n   By emphasizing self‑discipline over reliance on external forces, the verse encourages building relationships based on mutual respect and genuine affection rather than superstition or ritual. This yields deeper, more authentic connections.\n\n3. Career and Ambition\n   The lines about \"一帆順境\" and \"利有攸往\" highlight that sustained effort and virtuous conduct create smooth career paths. Ambitious individuals who maintain ethical practices are more likely to achieve recognition and progress.\n\n4. Wealth and Finances\n   The imagery of a favorable wind and a vast river suggests that financial prosperity flows naturally when one consistently practices good deeds. It encourages prudent stewardship, generosity, and long‑term planning rather than short‑term speculation.\n\n5. Family and Harmony\n   The poem’s focus on internal cultivation promotes harmonious family dynamics. When parents and relatives embody virtue, the household experiences peace, understanding, and collective resilience.\n\n6. Social Connections and Reputation\n   The call to move beyond external worship underscores the importance of reputation built on integrity. A person known for consistent moral behavior attracts allies, support, and lasting respect within their community.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:56:50",
+    "source_file": "chuck_8.json",
+    "raw_llm_response_preview": "{\n  \"id\": 8,\n  \"title\": \"天后宮一百籤第八籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"積德如君幾十年、何須禮拜問神仙、一帆順境誰能及、利有攸往涉大川。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是積累善行所帶來的自然回報與順遂之勢。作者以「積德如君幾十年」開篇，指出長期修身與行善不必透過祭祀或祈求神靈，善行本身便能形成內在的力量。第二句「何須禮拜問神仙」直接否定了對外在神靈的依賴，強調人與自身修養的關係。第三句「一帆順境誰能及」以順風順水的比喻，說明善行的累積能讓生活如乘風破浪般順暢，難"
+  }
+}

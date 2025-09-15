@@ -1,0 +1,20 @@
+{
+  "id": 59,
+  "title": "月老聖籤一百籤第五十九籤",
+  "subtitle": "",
+  "fortune": "上",
+  "poem": "心茍不愆，何惜於人言。",
+  "analysis": {
+    "zh": "這首詩的主題是內心潔淨與自我肯定。作者以「心茍不愆」為核心，表達若人之心不犯不違道德，即使外界有言語指責，亦不必過度憂慮。此種心境能使人心安理得，免於外來的噪音與猜疑。詩中亦暗示，當內心無負擔，便能長久安康、得享人生。它提醒人們，重點不在他人眼光，而在於自我修養與心態調整。若能保持純正之心，便能抵擋外來的質疑與負面評論，實現個人內在的安寧與自信。",
+    "en": "This poem's theme is the purity of heart and self-affirmation. The author centers on the idea that if a person's heart remains unblemished and does not deviate from moral principles, even when faced with external criticism, one need not overconcern oneself. Such a mindset allows one to be calm and content, free from external noise and suspicion. The poem also hints that when the inner self bears no burden, it can enjoy lasting health and fulfillment. It reminds readers that the focus should not be on others' gaze, but on personal cultivation and attitude adjustment. By maintaining a pure heart, one can withstand external doubts and negative commentary, achieving inner peace and confidence.",
+    "jp": "この詩のテーマは心の清浄と自己肯定である。作者は「心茍不愆」を中心に、人の心が道徳に違わず欠点がなければ、外部からの批判に直面しても過度に心配する必要はないと表現している。このような心構えがあれば、外部の騒音や疑いから解放され、心安らかにできる。詩はまた、内面に負担が無ければ長期にわたり健康と充実を享受できることを示唆している。読者に対しては、他人の視線ではなく、自身の修養と態度調整に焦点を当てるべきだと伝えている。純粋な心を保つことで、外部の疑念や否定的なコメントを乗り越え、内なる平安と自信を実現できる。",
+    "reference": "心茍不愆，何惜於人言。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the purity of one's inner heart—remaining free from moral transgression—trumps external criticism, fostering inner peace and resilience. By focusing on personal integrity rather than external judgment, a person cultivates tranquility, health, and confidence, enabling long‑lasting happiness and harmony. 1. **Health**: The poem suggests that an unburdened heart protects physical well‑being. By eliminating inner guilt, one reduces stress and its physiological impacts, thereby promoting longevity and vitality. 2. **Love and Relationships**: With inner steadiness, one becomes less reactive to criticism. This steadiness fosters trust and compassion in intimate ties, allowing partners to appreciate a balanced, supportive presence that values mutual growth. 3. **Career and Ambition**: A mind unshaken by external noise sharpens focus on goals. Integrity and calm reduce workplace conflict and increase productivity, enabling ambition to thrive when guided by sincere values rather than external approval. 4. **Wealth and Finances**: The poem’s emphasis on internal steadiness translates into prudent financial decisions. Without the influence of envy or fear, one pursues sustainable wealth‑building strategies, leading to financial stability and a sense of security. 5. **Family and Harmony**: Family relationships benefit when members maintain a pure, respectful heart. Mutual respect grows when each person is free from resentment or judgment, resulting in harmonious family life and a supportive domestic environment. 6. **Social Connections and Reputation**: By staying true to inner principles, one earns authentic respect from peers. A reputation built on integrity outlasts fleeting popularity, and social networks thrive on trust, reducing gossip and fostering lasting friendships.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:13:20",
+    "source_file": "chuck_59.json",
+    "raw_llm_response_preview": "{\"id\":59,\"title\":\"月老聖籤一百籤第五十九籤\",\"subtitle\":\"\",\"fortune\":\"上\",\"poem\":\"心茍不愆，何惜於人言。\",\"analysis\":{\"zh\":\"這首詩的主題是內心潔淨與自我肯定。作者以「心茍不愆」為核心，表達若人之心不犯不違道德，即使外界有言語指責，亦不必過度憂慮。此種心境能使人心安理得，免於外來的噪音與猜疑。詩中亦暗示，當內心無負擔，便能長久安康、得享人生。它提醒人們，重點不在他人眼光，而在於自我修養與心態調整。若能保持純正之心，便能抵擋外來的質疑與負面評論，實現個人內在的安寧與自信。\",\"en\":\"This poem's theme i"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 23,
+  "title": "註生娘娘三十籤第二十三籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "聖帝行符勅,流名傳世間,凶星盡迴避,國泰與民安。",
+  "analysis": {
+    "zh": "這首詩的主題是皇帝以符勅施政，透過流名傳世與星象調節，消除凶煞，達致國泰民安之境。詩中所描繪的「聖帝行符勅」象徵政治秩序與威嚴；「流名傳世間」則暗示名聲與施政之影響會持續傳播；「凶星盡迴避」指出透過神聖儀式與正直統治，可避免災禍與不祥；最後「國泰與民安」表明此種治理能帶來社會穩定與民眾幸福。整體而言，此詩提醒人們，恆久之治與福祉需以正道與善政為基礎。詩句結合歷史與星象象徵，呈現一種神聖而又現實的治理藍圖，提醒我們，只有在道德與秩序相結合之下，國家才能持續昌盛。",
+    "en": "This poem's theme is the emperor issuing a decree, using a talismanic edict to govern, and through fame spread and star regulation, eliminating ominous influences to achieve national prosperity and public peace. The verse depicts the \"holy emperor's talismanic edict\" as symbolizing political order and authority; \"fame spreads throughout the world\" indicates that the reputation and governance will continue to propagate; \"all ominous stars are avoided\" shows that through sacred rituals and upright rule, disasters and misfortune can be prevented; finally \"national prosperity and public peace\" demonstrates that such governance brings social stability and the people's happiness. Overall, this poem reminds us that lasting governance and welfare must be based on righteousness and benevolent policy. The lines combine historical and celestial symbolism, presenting a divine yet realistic blueprint of governance, reminding us that only when morality and order are united can a nation prosper continuously.",
+    "jp": "この詩のテーマは、皇帝が符勅を発し、名声の流れと星象調整を通じて凶煞を避け、国泰民安を達成することである。詩は「聖帝の符勅」が政治秩序と威厳を象徴し、「名声が世に広がる」がその名と施政が持続的に伝播することを示し、「凶星を全て回避する」が神聖な儀式と正直な統治により災厄と不祥を防げることを示し、最後に「国泰民安」がこうした統治が社会の安定と民衆の幸福をもたらすことを示す。全体として、この詩は永続的な治めと福祉は正義と善政に基づくべきであることを思い起こさせる。歴史と星象の象徴を組み合わせ、神聖で現実的な統治計画を提示し、道徳と秩序が結びつくと国が継続的に繁栄することを教えている。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a ruler who issues a holy decree, employs celestial signs to ward off misfortune, and disseminates his reputation through history can secure national prosperity and public peace. The verse emphasizes the interplay between divine symbolism, political authority, and societal harmony.\n\n1. Health\nThe eradication of ominous stars implies that spiritual or moral well‑being prevails; communities experience reduced illness as the protective decree curtails harmful energies. Individuals should maintain a balanced mindset, aligning personal health with collective welfare.\n\n2. Love and Relationships\nThe spread of a noble name across generations fosters mutual respect and trust among people. Relationships thrive when guided by honor, suggesting that sincere conduct strengthens bonds.\n\n3. Career and Ambition\nThe poem signals that righteous authority opens pathways for advancement. Aspiring individuals are encouraged to pursue goals with integrity, knowing that fair governance supports merit.\n\n4. Wealth and Finances\nNational stability reflected in \"國泰與民安\" indicates that economic prosperity follows peace. Economic policies rooted in justice and transparency attract confidence and sustainable growth.\n\n5. Family and Harmony\nFamily units mirror the national order; harmony achieved at home reflects broader peace. Maintaining ethical standards within the family supports communal stability.\n\n6. Social Connections and Reputation\nThe decree's fame propagating through history showcases the lasting impact of reputation. Cultivating a trustworthy persona enhances social capital and fosters enduring alliances.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:48:02",
+    "source_file": "chuck_23.json",
+    "raw_llm_response_preview": "{\n  \"id\": 23,\n  \"title\": \"註生娘娘三十籤第二十三籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"聖帝行符勅,流名傳世間,凶星盡迴避,國泰與民安。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是皇帝以符勅施政，透過流名傳世與星象調節，消除凶煞，達致國泰民安之境。詩中所描繪的「聖帝行符勅」象徵政治秩序與威嚴；「流名傳世間」則暗示名聲與施政之影響會持續傳播；「凶星盡迴避」指出透過神聖儀式與正直統治，可避免災禍與不祥；最後「國泰與民安」表明此種治理能帶來社會穩定與民眾幸福。整體而言，此詩提醒人們，恆"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 87,
+  "title": "月老聖籤一百籤第八十七籤",
+  "subtitle": "",
+  "fortune": "中",
+  "poem": "是非吾所謂情也。",
+  "analysis": {
+    "zh": "这首诗的主題是人际关系中情与是非的辩证。诗句用“是非吾所謂情也。”概括了人们在爱情与友情中所面对的非黑即白、相互冲突的判断。作者认为，情感并非单纯的善恶、爱恨，而是包容了不可预料的冲突与考验。正因为如此，真正的友情与爱情都需要在“是非”中寻找真实的面貌，才能经受住风浪的冲击。诗人借此提醒读者，在人生旅途中，应以宽容、理性之眼看待他人，避免因主观判断而失去真诚与信任。整体上，诗强调情感本质是复杂多元的，而不是单一情感标签所能界定的。",
+    "en": "This poem’s theme is the dialectic of emotion and right‑or‑wrong in human relationships. The line “是非吾所謂情也” summarizes how people confront black‑and‑white judgments and conflicts in love and friendship. The poet argues that affection is not merely good or bad, love or hate, but rather includes inevitable clashes and tests. Therefore, true friendship and love must find their genuine face amid the disputes to withstand storms. The poem urges readers, in life’s journey, to view others with tolerance and rationality, so as not to lose sincerity and trust through subjective judgment. Overall, it stresses that the essence of emotion is complex and multi‑dimensional, not confined to a single label.",
+    "jp": "この詩の主題は、人間関係における感情と正誤の弁証法である。『是非吾所謂情也』という句は、愛情や友情で直面する二値的判断や衝突をまとめている。作者は、感情は単なる善悪や愛憎ではなく、避けられない衝突や試練を含むと主張する。したがって、真の友情や恋愛は争いの中で本当の姿を見つけ、嵐を乗り越える必要がある。この詩は、人生の旅路で、主観的判断によって誠実さと信頼を失わないよう、寛容で理性的な目で他者を観察するよう読者に促している。全体として、感情の本質は複雑で多面的であり、一つのラベルに収められるものではないと強調している。",
+    "reference": "《道家》《莊子》《內篇》《德充符》惠子謂莊子曰：「人故無情乎？」莊子曰：「然。」惠子曰：「人而無情，何以謂之人？」莊子曰：「道與之貌，天與之形，惡得不謂之人？」惠子曰：「既謂之人，惡得無情？」莊子曰：「是非吾所謂情也。吾所謂無情者，言人之不以好惡內傷其身，常因自然而不益生也。」惠子曰：「不益生，何以有其身？」莊子曰：「道與之貌，天與之形，無以好惡內傷其身。今子外乎子之神，勞乎子之精，倚樹而吟，據槁梧而瞑。天選子之形，子以堅白鳴！」"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that human emotions, whether love or friendship, are never purely black or white; they exist within a realm of right‑or‑wrong judgments that test the true nature of relationships. The poet reminds us that genuine affection survives the turbulence of conflict only when it is examined honestly and stripped of superficial labels. By acknowledging that emotion is complex and multidimensional, the verse invites readers to treat others with tolerance, reason, and openness, thereby fostering sincerity and trust.\n\n1. Health – The poem’s emphasis on confronting “是非” (right‑or‑wrong) can be applied to personal wellbeing by encouraging mindful awareness of one’s thoughts and feelings. Recognizing and accepting the gray areas of emotion helps prevent the self‑destructive patterns that arise from rigid judgments.\n2. Love and Relationships – The passage teaches that real love and friendship endure through conflicts, suggesting that partners should face disagreements openly and validate each other’s viewpoints before resolving.\n3. Career and Ambition – In the workplace, the same principle of honest scrutiny of “right‑or‑wrong” can guide decision‑making. By weighing competing perspectives, managers can avoid pitfalls that come from oversimplified success metrics.\n4. Wealth and Finances – The poem’s caution against hasty emotional labeling can translate into prudent financial behaviour. Discouraging impulsive decisions and promoting balanced assessment of risk helps build long‑term stability.\n5. Family and Harmony – Within family units, acknowledging that relationships are not binary encourages compassionate listening. This practice nurtures cohesion and reduces conflicts that could otherwise erode familial bonds.\n6. Social Connections and Reputation – The idea that true friendship endures “是非” implies that social reputation should be measured by consistency and depth rather than surface impressions. Cultivating authentic relationships therefore sustains a positive public standing.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:33:51",
+    "source_file": "chuck_87.json",
+    "raw_llm_response_preview": "{\"id\":87,\"title\":\"月老聖籤一百籤第八十七籤\",\"subtitle\":\"\",\"fortune\":\"中\",\"poem\":\"是非吾所謂情也。\",\"analysis\":{\"zh\":\"这首诗的主題是人际关系中情与是非的辩证。诗句用“是非吾所謂情也。”概括了人们在爱情与友情中所面对的非黑即白、相互冲突的判断。作者认为，情感并非单纯的善恶、爱恨，而是包容了不可预料的冲突与考验。正因为如此，真正的友情与爱情都需要在“是非”中寻找真实的面貌，才能经受住风浪的冲击。诗人借此提醒读者，在人生旅途中，应以宽容、理性之眼看待他人，避免因主观判断而失去真诚与信任。整体上，诗强调情感本质是复杂多元的，而不"
+  }
+}

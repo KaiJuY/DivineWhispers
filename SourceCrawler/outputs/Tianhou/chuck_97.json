@@ -1,0 +1,20 @@
+{
+  "id": 97,
+  "title": "天后宮一百籤第九十七籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "目今雖遇颶風狂、雞犬逢時免禍殃、依舊一天晴色好、教君安穩樂徜徉。",
+  "analysis": {
+    "zh": "這首詩的主題是逆風中的安寧與心態的調適。詩中以颶風狂的比喻呈現外在的困難與變化，卻指出即便在風暴之中，雞犬仍能及時避禍，暗示人能以智慧與預見降低風險。隨後說明即便風暴過後，天色依舊晴朗，象徵困境結束後，日常仍可恢復安定。最後以「教君安穩樂徜徉」作結，勸導人們在面對風雨時保持內心平靜，讓生活充滿自在與愉悅。",
+    "en": "This poem's theme is the tranquility amid adversity and the adjustment of one's mindset. The poem uses the metaphor of a violent typhoon to depict external difficulties and changes, yet points out that even in the storm, chickens and dogs can avoid disaster in time, implying that wisdom and foresight can reduce risk. Afterwards it notes that even after the storm, the sky remains clear, symbolizing that after hardship, life can return to stability. Finally, with the line \"teach you to be steady and enjoy leisure,\" it advises that facing rain, one should keep inner calm so life can be full of ease and pleasure.",
+    "jp": "この詩のテーマは、逆境の中での静寂と心構えの調整です。詩は荒れ狂う台風を比喩として使い、外的な困難や変化を表現しながら、嵐の中でも鶏犬がタイムリーに災害を避けられることを示し、知恵と予見がリスクを減らすことを暗示します。その後、嵐が去っても空は晴れたままであると述べ、困難が終わった後、生活が安定に戻ることを象徴します。最後に「安定して楽しく漂うように教える」という一文で、雨に直面したときには内面の平静を保ち、生活を楽しく、ゆとりのあるものにするよう勧めています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that even in the midst of fierce adversity, inner calm and foresight allow one to avoid calamity and ultimately return to a peaceful state. The poet likens the external turmoil to a violent typhoon, yet shows that the timely actions of the smallest creatures—chickens and dogs—serve as a reminder that vigilance can avert danger. After the storm passes, the sky remains clear, symbolizing that hardships are transient and that normalcy can resume. The final exhortation to “teach you to be steady and enjoy leisure” urges readers to maintain serenity in the face of life’s uncertainties, thereby finding joy and ease in everyday life.\n\n1. Health\nThe poem’s image of a storm implies potential health challenges; however, the notion that chickens and dogs escape harm suggests that careful monitoring and preventive measures can avert illness. Maintaining a balanced routine and paying attention to early signs will preserve well‑being.\n\n2. Love and Relationships\nThe gentle protection offered to animals during turbulence reflects the importance of empathy and support within partnerships. By staying attentive and considerate, one can help loved ones navigate difficulties without causing harm.\n\n3. Career and Ambition\nFacing a typhoon symbolizes the unpredictable nature of professional life. The poem advises vigilance and adaptability—qualities that enable career advancement while preventing missteps. Keeping a steady focus on long‑term goals will lead to sustained progress.\n\n4. Wealth and Finances\nThe mention of avoiding calamity hints at prudent financial stewardship. Just as the creatures avoid disaster, wise budgeting and risk management protect one’s resources, ensuring stability when external circumstances fluctuate.\n\n5. Family and Harmony\nThe calm that follows the storm indicates the restoration of harmony at home. By fostering open communication and shared resilience, families can rebound from crises and preserve a peaceful domestic environment.\n\n6. Social Connections and Reputation\nThe poem’s counsel to remain steady and enjoy leisure underscores the value of a composed presence in society. A measured, calm demeanor builds trust and respect, allowing one to navigate social networks with confidence and grace.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 17:06:59",
+    "source_file": "chuck_97.json",
+    "raw_llm_response_preview": "{\"id\":97,\"title\":\"天后宮一百籤第九十七籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"目今雖遇颶風狂、雞犬逢時免禍殃、依舊一天晴色好、教君安穩樂徜徉。\",\"analysis\":{\"zh\":\"這首詩的主題是逆風中的安寧與心態的調適。詩中以颶風狂的比喻呈現外在的困難與變化，卻指出即便在風暴之中，雞犬仍能及時避禍，暗示人能以智慧與預見降低風險。隨後說明即便風暴過後，天色依舊晴朗，象徵困境結束後，日常仍可恢復安定。最後以「教君安穩樂徜徉」作結，勸導人們在面對風雨時保持內心平靜，讓生活充滿自在與愉悅。\",\"en\":\"This poem's theme is "
+  }
+}

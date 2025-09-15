@@ -1,0 +1,20 @@
+{
+  "id": 43,
+  "title": "月老聖籤一百籤第四十三籤",
+  "subtitle": "",
+  "fortune": "上",
+  "poem": "遐邇一體，率賓舊王。",
+  "analysis": {
+    "zh": "這首詩的主題是遐邇一體、舊主領導的哲理。『遐邇』象徵遠與近，指出無論距離遠近，事物本質相同，皆屬同一體。『率賓舊王』則說明人應以往昔的典範、老練的領袖為引導，避免盲目跟隨新興勢力。詩句藉由簡短的四字構造，呈現古代對「天人合一」與「傳統價值」的敬重，強調人與天地、舊與新之間的和諧統一。",
+    "en": "This poem's theme is the unity of distant and near, and the guidance of the old master. '遐邇' symbolizes far and near, indicating that regardless of distance, the essence of things remains the same, belonging to the same body. '率賓舊王' demonstrates that people should follow the models of the past and seasoned leaders, avoiding blindly following new powers. Through its concise four‑character structure, the poem presents the ancient reverence for 'heavenly‑human unity' and traditional values, emphasizing the harmonious unity between humans, nature, old and new.",
+    "jp": "この詩のテーマは遠近が一体であることと、古いリーダーが導くという哲学です。「遐邇」は遠くと近くを象徴し、距離に関係なく物事の本質は同じであり、同一体に属することを示します。「率賓舊王」は、人々が過去の典型や経験豊かな指導者を導き手として従い、新しい勢力に盲目的に従うことを避けるべきだと示しています。四文字の簡潔な構造を通じて、この詩は「天地一体」と「伝統的価値観」に対する古代の敬意を表し、人と自然、古と新の間の調和と統一を強調しています。",
+    "reference": "《司馬相如傳下》"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that distance and proximity are fundamentally the same, and that guidance should come from seasoned leaders rather than fleeting trends. The poem reminds us that external differences—whether far or near—do not alter the underlying unity of existence. It also underscores the importance of learning from established traditions and elders, suggesting that stability arises from continuity rather than novelty. The brief, four‑character structure enhances the sense of timelessness and invites reflection on how personal choices align with universal patterns.\n\n1. Health\n   The emphasis on unity of all things encourages holistic well‑being. Recognizing that “far” and “near” are one body can inspire balanced care of both physical and mental health. By following the wisdom of seasoned mentors, one may adopt proven health practices rather than chasing uncertain fads.\n\n2. Love and Relationships\n   Mutual harmony between distant and close relationships is implied. It advises that affection and respect should transcend distance, fostering bonds that feel both familiar and expansive. Learning from long‑standing partners or elders can strengthen emotional resilience.\n\n3. Career and Ambition\n   The poem signals that success often follows tradition. Rather than chasing untested ventures, aligning career steps with the guidance of experienced leaders ensures steady progress. Seeing distant and near opportunities as one can broaden strategic vision.\n\n4. Wealth and Finances\n   Financial stability is linked to respecting established economic patterns. By treating all resources as part of a unified system, one can avoid reckless spending. Heeding the counsel of seasoned advisors helps secure long‑term wealth.\n\n5. Family and Harmony\n   Family ties are portrayed as naturally united across generations. The message supports maintaining close bonds while acknowledging the continuity of family traditions. Elder guidance helps preserve harmony amid changing circumstances.\n\n6. Social Connections and Reputation\n   Social networks benefit from recognizing that “far” and “near” relationships share the same underlying trust. Cultivating genuine interactions, guided by the wisdom of long‑term connections, builds lasting reputation. The poem encourages staying rooted in enduring social norms rather than fleeting trends.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:03:39",
+    "source_file": "chuck_43.json",
+    "raw_llm_response_preview": "{\n  \"id\": 43,\n  \"title\": \"月老聖籤一百籤第四十三籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上\",\n  \"poem\": \"遐邇一體，率賓舊王。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是遐邇一體、舊主領導的哲理。『遐邇』象徵遠與近，指出無論距離遠近，事物本質相同，皆屬同一體。『率賓舊王』則說明人應以往昔的典範、老練的領袖為引導，避免盲目跟隨新興勢力。詩句藉由簡短的四字構造，呈現古代對「天人合一」與「傳統價值」的敬重，強調人與天地、舊與新之間的和諧統一。\",\n    \"en\": \"This poem's them"
+  }
+}

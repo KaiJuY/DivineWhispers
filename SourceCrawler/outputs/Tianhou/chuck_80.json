@@ -1,0 +1,20 @@
+{
+  "id": 80,
+  "title": "天后宮一百籤第八十籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "前生逋欠我深知、此日償還數適宜、莫便生嗔兼悔恨、塞翁失馬未為寄。",
+  "analysis": {
+    "zh": "這首詩的主題是關於前世所欠的心靈負債與現世的償還。作者透過簡練的語句提醒讀者：儘管在前生曾有遺憾或失誤，現在是該彌補的時機，並且不應因小失而生怨憎。詩中引用了《塞翁失馬》典故，暗示失去並不一定帶來不幸，而是可能轉為順境。整體語氣平和，呼籲心胸放寬、以寬容的心態面對人生的跌宕。",
+    "en": "This poem's theme is about the soul‑debt from a former life and the present‑day repayment. The poet, with concise language, urges readers that, though past regrets or mistakes exist, now is the time to make amends, and one should not harbour resentment over small losses. By alluding to the classic fable of the old man who lost a horse, the verse suggests that loss is not inherently unlucky, but may transform into fortune. The overall tone is calm, encouraging a generous outlook toward life’s ups and downs.",
+    "jp": "この詩のテーマは前世の心の負債と現世の償還に関するものです。作者は簡潔な表現で読者に、過去の後悔や過ちがあっても今こそ償うべき時であり、小さな失敗に対して恨みを抱くべきではないと促しています。『塞翁失馬』という古典の寓話を引用し、失うことが必ずしも不運を意味するわけではなく、逆に幸運へと変わる可能性があることを示唆しています。全体として穏やかな調子で、人生の浮き沈みに対して寛容な心構えを持つよう呼びかけています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the soul carries debts from a past life, and the present day is an appropriate time to settle them. The poem cautions against harboring anger or regret over small losses, echoing the fable of the old man who loses a horse, which reminds us that what seems like a setback may actually be a disguised blessing. The tone is calm and reflective, encouraging a generous perspective toward life’s ups and downs.\n\n1. Health – The poem encourages releasing inner tension. By forgiving past wrongs, one reduces emotional stress that can negatively impact physical well‑being. A calm mind supports the body’s natural healing processes.\n\n2. Love and Relationships – The message stresses letting go of resentment. In close relationships, unhealed grudges hinder intimacy; relinquishing anger fosters trust and mutual understanding.\n\n3. Career and Ambition – Acknowledging past mistakes prepares you to move forward. A clear conscience and humility improve decision‑making and allow you to pursue goals without the burden of hidden guilt.\n\n4. Wealth and Finances – The poem implies that misfortune is not fixed. By accepting what has been lost, you open space for new opportunities, and by avoiding petty disputes you conserve resources for constructive endeavors.\n\n5. Family and Harmony – The advice to avoid anger promotes a harmonious family environment. A forgiving stance strengthens bonds and creates a supportive, peaceful home.\n\n6. Social Connections and Reputation – Maintaining a generous and forgiving attitude enhances social standing. People value those who do not hold grudges, and a reputation for compassion can open doors to wider networks.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:57:04",
+    "source_file": "chuck_80.json",
+    "raw_llm_response_preview": "{\"id\":80,\"title\":\"天后宮一百籤第八十籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"前生逋欠我深知、此日償還數適宜、莫便生嗔兼悔恨、塞翁失馬未為寄。\",\"analysis\":{\"zh\":\"這首詩的主題是關於前世所欠的心靈負債與現世的償還。作者透過簡練的語句提醒讀者：儘管在前生曾有遺憾或失誤，現在是該彌補的時機，並且不應因小失而生怨憎。詩中引用了《塞翁失馬》典故，暗示失去並不一定帶來不幸，而是可能轉為順境。整體語氣平和，呼籲心胸放寬、以寬容的心態面對人生的跌宕。\",\"en\":\"This poem's theme is about the soul‑d"
+  }
+}

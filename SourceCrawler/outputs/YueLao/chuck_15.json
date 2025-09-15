@@ -1,0 +1,20 @@
+{
+  "id": 15,
+  "title": "月老聖籤一百籤第十五籤",
+  "subtitle": "",
+  "fortune": "上平",
+  "poem": "君子審禮，不可誣以訐詐。",
+  "analysis": {
+    "zh": "這首詩的主題是君子以禮為基，警戒於真誠與公正。詩句指出，君子在處理人際關係時，必須審慎辨別禮節，避免因不當言行被誤解或被他人以詐言陷害。君子堅守正道，將禮節作為衡量道德與行為的標準；因而，無論身處何種境遇，皆能以清白之姿面對外來指控，維護自身名節。這種態度不僅是個人修養之體現，更是一種對社會秩序與人際信任的守護，提醒人們在日常交往中秉持真誠、謹慎與尊重。",
+    "en": "This poem's theme is that the gentleman takes propriety as the foundation, warning against falsehood and injustice. The verse points out that when a gentleman handles interpersonal relationships, he must carefully discern propriety to avoid being misunderstood or trapped by others' deceitful words. The gentleman steadfastly follows the righteous path, treating propriety as the benchmark for morality and conduct; therefore, no matter what circumstances he faces, he can confront external accusations with a pure posture, preserving his own reputation. This attitude is not only an embodiment of personal cultivation, but also a safeguard for social order and interpersonal trust, reminding people to maintain sincerity, prudence, and respect in everyday interactions.",
+    "jp": "この詩のテーマは、君子が礼を基にして真実と公正を警戒することである。詩は、君子が人間関係を扱う際に礼を慎重に見分け、誤解や他者の詐欺的言葉に陥らないようにしなければならないと指摘している。君子は正道を堅守し、礼を道徳と行為の基準とする。したがって、どんな状況にあっても外部からの告発に対し清らかな姿勢で臨み、名誉を守る。この態度は個人修養の表れにとどまらず、社会秩序と人間関係の信頼を守るものでもあり、日常の交流において真摯さ、慎重さ、尊重を保つよう人々に促す。",
+    "reference": "君子審禮，不可誣以訐詐。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a person of integrity uses proper conduct as a shield against deceit and maintains an unwavering stance in the face of false allegations. The verse emphasizes the importance of discerning etiquette, treating it as a moral yardstick, and thereby preserving personal honor and public trust.\n\n1. Health: The poem suggests that maintaining moral clarity and avoiding deception promotes mental well‑being. By steering clear of unethical behavior, an individual reduces psychological distress and cultivates inner calm. Consistent adherence to propriety can foster resilience against stressors that arise from social misunderstandings.\n\n2. Love and Relationships: In intimate bonds, proper conduct prevents misinterpretation and builds trust. The stanza indicates that a thoughtful approach to etiquette safeguards against false rumors that could damage affection. Demonstrating sincerity and respect therefore strengthens relationships and averts emotional harm.\n\n3. Career and Ambition: Professional advancement depends on reputation and integrity. The text advises that a steadfast commitment to propriety keeps one above the fray of deception, allowing skill and effort to be recognized. This ethical foundation also guards against wrongful accusations that might stall ambition.\n\n4. Wealth and Finances: Ethical conduct protects financial standing by averting fraud and scandal. By honoring proper behavior, one avoids pitfalls such as fraudulent partnerships or false claims that could jeopardize assets. A reputation for integrity attracts honest investors and stable economic opportunities.\n\n5. Family and Harmony: Within the family, respecting rituals and honest dialogue preserves harmony. The poem’s warning against deceitful words reminds family members to act transparently. This clarity nurtures cohesion, preventing conflict rooted in mistrust.\n\n6. Social Connections and Reputation: The stanza directly addresses the preservation of social standing. By keeping propriety at the core, a person safeguards against defamatory slander and maintains communal respect. A reputation for fairness ensures continued support from peers and the broader community.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 13:47:07",
+    "source_file": "chuck_15.json",
+    "raw_llm_response_preview": "{\"id\":15,\"title\":\"月老聖籤一百籤第十五籤\",\"subtitle\":\"\",\"fortune\":\"上平\",\"poem\":\"君子審禮，不可誣以訐詐。\",\"analysis\":{\"zh\":\"這首詩的主題是君子以禮為基，警戒於真誠與公正。詩句指出，君子在處理人際關係時，必須審慎辨別禮節，避免因不當言行被誤解或被他人以詐言陷害。君子堅守正道，將禮節作為衡量道德與行為的標準；因而，無論身處何種境遇，皆能以清白之姿面對外來指控，維護自身名節。這種態度不僅是個人修養之體現，更是一種對社會秩序與人際信任的守護，提醒人們在日常交往中秉持真誠、謹慎與尊重。\",\"en\":\"This poem's th"
+  }
+}

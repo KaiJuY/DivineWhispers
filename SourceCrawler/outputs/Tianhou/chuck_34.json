@@ -1,0 +1,20 @@
+{
+  "id": 34,
+  "title": "天后宮一百籤第三十四籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "人生定業固無訛、引頸迎刀復奈何、若向空門閑寄蹟、恩波雨露不勝多。",
+  "analysis": {
+    "zh": "這首詩的主題是人生的宿命與對抗。詩中說「人生定業固無訛」，指出每個人的職業和命運皆已定格，無法輕易改變。第二句「引頸迎刀復奈何」以刀作比，象徵面臨危險與挑戰時的無奈與必須面對的現實。最後兩句則提醒人們即使在空無的門前閑逛，也能收穫恩惠與雨露，強調在命運之外仍有心態與選擇的空間。詩中亦透過「恩波雨露不勝多」表達即使困境層出不窮，仍有無盡的慈悲與機會，提醒讀者保持心存善念，才能把握隨機的善意。",
+    "en": "This poem's theme is the destiny of life and the struggle against it. The poem says, \"人生定業固無訛\", indicating that each person's occupation and fate are already fixed and cannot be easily altered. The second line, \"引頸迎刀復奈何\", uses the knife as a metaphor, symbolizing the helplessness and necessity of facing danger and challenges. The final two lines remind us that even wandering idly at an empty gate can bring blessings and rain, emphasizing that there is still space for attitude and choice beyond destiny. Through \"恩波雨露不勝多\", the poem conveys that even amid endless hardships, there remains boundless compassion and opportunities, urging readers to keep a kind heart to seize the occasional goodwill.",
+    "jp": "この詩のテーマは人生の宿命とそれに対抗することです。詩は「人生定業固無訛」と述べ、各人の職業と運命は既に定まり、簡単に変えられないと示しています。第二句「引頸迎刀復奈何」は刀を比喩に使い、危険や挑戦に直面したときの無力感と向き合わなければならない現実を象徴しています。最後の二句は、空の門でさまよっても恩恵と雨露を受け取ることができると告げ、運命以外にも心構えや選択の余地があることを強調しています。「恩波雨露不勝多」を通じて、詩は困難が絶え間なく続く中でも、無限の慈悲と機会があることを伝え、読者に善意を抱き続ければ偶発的な好意をつかめると促しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that while the course of one’s life may appear predetermined, there remains a space for attitude and choice, and that adversity can be tempered by compassion and perseverance. \n\n1. Health: The poem implies that a person’s fate is fixed, yet health can be influenced by how one confronts danger. Facing metaphorical knives with courage can help maintain physical and mental well‑being.\n2. Love and Relationships: The emptiness of the gate symbolizes the unpredictable nature of relationships. By remaining kind and receptive, one can attract goodwill and support from others.\n3. Career and Ambition: It stresses that career paths are pre‑set, yet proactive engagement—“迎刀”—and a calm mindset can secure success even within those constraints.\n4. Wealth and Finances: The mention of abundant “rain” and “恩波” suggests that fortunes may appear unexpectedly. A balanced, generous attitude attracts financial blessings.\n5. Family and Harmony: The poem’s theme of destiny versus choice underscores the importance of harmonious family dynamics, where mutual support helps navigate unavoidable hardships.\n6. Social Connections and Reputation: By facing challenges with integrity and by embracing kindness, one can cultivate a respected reputation and forge valuable social ties, turning adversities into opportunities for connection.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:27:03",
+    "source_file": "chuck_34.json",
+    "raw_llm_response_preview": "{\"id\":34,\"title\":\"天后宮一百籤第三十四籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"人生定業固無訛、引頸迎刀復奈何、若向空門閑寄蹟、恩波雨露不勝多。\",\"analysis\":{\"zh\":\"這首詩的主題是人生的宿命與對抗。詩中說「人生定業固無訛」，指出每個人的職業和命運皆已定格，無法輕易改變。第二句「引頸迎刀復奈何」以刀作比，象徵面臨危險與挑戰時的無奈與必須面對的現實。最後兩句則提醒人們即使在空無的門前閑逛，也能收穫恩惠與雨露，強調在命運之外仍有心態與選擇的空間。詩中亦透過「恩波雨露不勝多」表達即使困境層出不窮，仍有無盡的慈悲與機會，提醒讀者保持心"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 12,
+  "title": "月老聖籤一百籤第十二籤",
+  "subtitle": "",
+  "fortune": "中",
+  "poem": "一則以喜，一則以懼。",
+  "analysis": {
+    "zh": "這首詩的主題是關於人生情感與現實之間的矛盾與調和。詩句「一則以喜，一則以懼」揭示了每一個決定都帶有喜悅與恐懼的雙重性。作者提醒人們在面對生活的起伏時，應以平衡的心態，既不盲目追求幸福，也不因小挫折而消沉。透過對事物的細緻分析與判斷，選擇合適的取捨，才能在尘世中保持內心的安定與自我成長。 此外，詩中亦隱含對情感波動的警示：過度沉溺於喜悅可能導致忽略潛在危險，而過度恐懼則可能使人失去前進的動力。作者倡導理性與情感並重，以期在變化莫測的世事中尋得一種持續的平衡與自我掌控。",
+    "en": "This poem's theme is about the conflict and harmony between emotional feelings and reality in life. The line “one is joy, one is fear” reveals that every decision carries a duality of happiness and terror. The author reminds people that when facing life’s ups and downs, they should maintain a balanced mindset, neither blindly chasing happiness nor despairing at small setbacks. Through careful analysis and judgment of things, and choosing appropriate compromises, one can maintain inner stability and personal growth in the world. Moreover, the poem subtly warns against emotional volatility. Overindulgence in joy may lead to overlooking potential dangers, while excessive fear can deprive people of the motivation to move forward. The author advocates a rational and emotional balance, hoping to achieve sustained equilibrium and self-control amid ever-changing circumstances.",
+    "jp": "この詩のテーマは、人生における感情と現実の間の葛藤と調和についてである。『一則以喜、一則以懼』という行は、すべての決断に喜びと恐怖という二重性があることを示している。作者は、人生の浮き沈みと向き合う際に、盲目的に幸福を追い求 Tunない、小さな挫折に落ち込まずにバランスの取れた心構えを保つべきだと告げている。事柄を細やかに分析し、判断し、適切な取捨選択を行うことで、世の中で内面的な安定と自己成長を保つことができる。さらに、詩は感情の揺れ動きを警告している。喜びに溺れると潜在的な危険を見逃す可能性があり、過度の恐怖は人々が前進する動機を失わせる恐れがある。作者は理性と感情のバランスを提唱し、変化に満ちた世事の中で持続的な均衡と自己制御を追求することを望んでいる。",
+    "reference": "《里仁第四》"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that every life choice carries both joy and fear, and true balance is achieved by thoughtful analysis rather than blind pursuit or despair. It teaches that emotional volatility can mask danger and that fear can halt progress, urging a rational yet compassionate stance. The lesson encourages resilience, self‑awareness, and the cultivation of equilibrium in uncertainty.\n\n1. Health: Recognize that emotional stress can affect physical well‑being; practice balanced coping strategies to maintain vitality.\n2. Love and Relationships: Be mindful that both affection and anxiety shape relationships; strive for open communication and mutual support.\n3. Career and Ambition: Decision‑making should weigh enthusiasm against realistic risk; adopt a measured approach to advance.\n4. Wealth and Finances: Avoid reckless pursuit of gains; consider long‑term stability and prudent risk assessment.\n5. Family and Harmony: Balance expectations and apprehensions to nurture peaceful home life; avoid letting fear dominate.\n6. Social Connections and Reputation: Maintain integrity while navigating social dynamics; a steady, reasoned presence fosters respect.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 13:45:25",
+    "source_file": "chuck_12.json",
+    "raw_llm_response_preview": "{\n  \"id\": 12,\n  \"title\": \"月老聖籤一百籤第十二籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"中\",\n  \"poem\": \"一則以喜，一則以懼。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於人生情感與現實之間的矛盾與調和。詩句「一則以喜，一則以懼」揭示了每一個決定都帶有喜悅與恐懼的雙重性。作者提醒人們在面對生活的起伏時，應以平衡的心態，既不盲目追求幸福，也不因小挫折而消沉。透過對事物的細緻分析與判斷，選擇合適的取捨，才能在尘世中保持內心的安定與自我成長。 此外，詩中亦隱含對情感波動的警示：過度沉溺於喜悅可能導致忽"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 21,
+  "title": "天后宮一百籤第二十一籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "汝今行運未全通、且待來春萬象融、疾病漸瘳元氣復、自然事事稱心冒。",
+  "analysis": {
+    "zh": "這首詩的主題是關於人生運勢的變化與未來的期盼。詩句中提到「汝今行運未全通」，顯示目前的運氣尚未完全順利，仍需等待春季的到來以求得萬象融和。隨著春風來臨，疾病漸漸痊癒，元氣得以恢復，從而自然地達成心中所想。詩中強調的是順應時節、堅持健康與心態的調整，並以春天作為重新啟動與實現願望的象徵。",
+    "en": "This poem's theme is about the changes in one's life fortunes and the anticipation for the future. The verse mentions \"you now are not entirely fortunate,\" indicating that current luck is not entirely smooth, and one must wait for the arrival of spring to achieve harmony among all things. As spring arrives, illness gradually heals, vitality is restored, and naturally one achieves what one desires. The poem emphasizes following the season, maintaining health and mental adjustment, and using spring as a symbol of restarting and realizing one's wishes.",
+    "jp": "この詩のテーマは人生の運勢の変化と将来への期待についてです。詩中に「汝今行運未全通」とあるように、現在の運が完全に順調ではなく、春の到来を待って万象が融和することを求めるべきであることを示しています。春が訪れれば、病気は徐々に治り、元気が回復し、自然と心の望みを成し遂げることができるという意味です。詩は季節に従い、健康と心の調整を堅持し、春を再出発と願いを実現する象徴として用いることを強調しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that life’s fortunes are in flux, and the hopeful resolution lies in patiently awaiting the rejuvenating energy of spring. It conveys that current circumstances may feel incomplete, yet with the arrival of spring—symbolizing renewal and harmony—physical ailments heal, vitality returns, and aspirations are naturally fulfilled. The message urges alignment with nature’s rhythm, prioritizing health, and adopting a positive mindset as pathways to personal success.\n\n1. **Health**: The poem explicitly mentions illness gradually subsiding as spring arrives, underscoring the importance of nurturing physical well-being. Consistent self-care and attentive monitoring of health conditions are implied as essential steps toward recovery.\n\n2. **Love and Relationships**: By referencing the harmonious merging of all things in spring, the text encourages cultivating harmonious connections with others. It suggests that patience and nurturing of emotional bonds can lead to mutual understanding and deeper affection.\n\n3. **Career and Ambition**: The notion of “restoring vitality” signals that professional endeavors may be revitalized with renewed energy. A patient, long‑term perspective can help align career goals with personal values and environmental cycles.\n\n4. **Wealth and Finances**: While not directly financial, the imagery of all aspects aligning hints at achieving material stability when personal energies are balanced. Careful planning and disciplined savings are implied as foundations for financial resilience.\n\n5. **Family and Harmony**: The poem’s emphasis on unity and harmony during spring points to strengthening family bonds. Regular communication, shared rituals, and mutual support can create a cohesive and stable home environment.\n\n6. **Social Connections and Reputation**: The overall message of gradual healing and alignment encourages fostering respectful and authentic interactions. Maintaining integrity, patience, and openness in social circles can positively influence one's reputation and social standing.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 19:17:24",
+    "source_file": "chuck_21.json",
+    "raw_llm_response_preview": "{\"id\":21,\"title\":\"天后宮一百籤第二十一籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"汝今行運未全通、且待來春萬象融、疾病漸瘳元氣復、自然事事稱心冒。\",\"analysis\":{\"zh\":\"這首詩的主題是關於人生運勢的變化與未來的期盼。詩句中提到「汝今行運未全通」，顯示目前的運氣尚未完全順利，仍需等待春季的到來以求得萬象融和。隨著春風來臨，疾病漸漸痊癒，元氣得以恢復，從而自然地達成心中所想。詩中強調的是順應時節、堅持健康與心態的調整，並以春天作為重新啟動與實現願望的象徵。\",\"en\":\"This poem's theme is about the "
+  }
+}

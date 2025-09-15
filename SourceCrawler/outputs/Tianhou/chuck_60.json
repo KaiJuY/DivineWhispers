@@ -1,0 +1,20 @@
+{
+  "id": 60,
+  "title": "天后宮一百籤第六十籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "常憑寶劍斬妖邪、十五年來事足誇、此去更宜韜晦好、磽磽易缺理無差。",
+  "analysis": {
+    "zh": "這首詩的主題是關於在經歷長期努力後取得成功，卻仍須謙遜低調、警惕嫉妒與祕密的重要性。詩中以「寶劍斬妖邪」象徵勤奮與正義，十五年之功雖可驕傲，卻也提醒不要因慶功而輕忽潛在危險。此後更宜韜晦好，提示持續保持低調、藏於內心，防止外界誤解與妒忌。磽磽易缺理無差則表現出事物的易變與需細心，提醒人們即使成功，也不可掉以輕心。整體而言，詩作勸人於成就之後，仍需謹慎自守，以維持平衡與長久之勢。",
+    "en": "The theme of this poem is about achieving success after long effort yet still requiring humility, vigilance against envy, and secrecy. The line \"a precious sword cuts evil\" symbolizes diligence and justice; the fifteen years of achievement can be a cause for pride but also a reminder not to overlook potential dangers. \"Going forward, it is better to hide\" suggests maintaining low profile and keeping the triumph within oneself to prevent misunderstandings and jealousy from others. \"Stone-stone is easy to miss\" indicates the fleeting nature of things and the need for care, reminding that even with success one must not be careless. Overall, the poem advises that after accomplishment one must guard oneself carefully to maintain balance and lasting influence.",
+    "jp": "この詩のテーマは長期の努力の結果得た成功を、謙虚さと嫉妬・秘密に対する警戒心を持って守ることの重要性を歌っている。『宝剣で妖邪を斬る』は勤勉と正義を象徴し、十五年間の功績は誇りになる一方、潜在的な危険を見逃さないよう警告している。『これからは隠し、身を守る』は低調を保ち、成果を内に秘めて外部の誤解や妬みに対処することを示唆している。『磽磽易欠理無差』は物事の易変さと注意の必要性を表し、成功していても油断してはならないと訴えている。総じて、詩は達成後も慎重に自らを守り、バランスと長期的な勢力を維持するべきだと勧めている。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that after achieving long‑term success, one must remain humble, conceal potential threats, and guard against envy or misinterpretation. The precious sword metaphor emphasizes the power of diligent effort to eliminate obstacles, yet the admonition to stay low suggests that triumph attracts attention and risk. The phrase about stone being fragile underscores that even accomplished people must pay constant attention to detail and avoid complacency. Overall, the verse urges a balance between confidence and caution to preserve stability and growth.\n\n1. **Health** – Maintaining humility reduces stress and protects against anxiety that may arise from unwanted scrutiny or jealousy.\n2. **Love and Relationships** – Keeping achievements private can prevent rivalry, fostering trust and harmonious bonds within close circles.\n3. **Career and Ambition** – A low‑profile approach after success helps avoid attracting hostile competition and allows continued steady progress.\n4. **Wealth and Finances** – Guarding successes from public exposure can protect against opportunistic exploitation and financial misdeeds.\n5. **Family and Harmony** – By avoiding public boasting, one preserves family unity and prevents external pressures that could disrupt domestic peace.\n6. **Social Connections and Reputation** – Discretion maintains a reputation of integrity and prudence, leading to lasting respect rather than fleeting acclaim.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:43:39",
+    "source_file": "chuck_60.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 60,\n  \"title\": \"天后宮一百籤第六十籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"常憑寶劍斬妖邪、十五年來事足誇、此去更宜韜晦好、磽磽易缺理無差。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於在經歷長期努力後取得成功，卻仍須謙遜低調、警惕嫉妒與祕密的重要性。詩中以「寶劍斬妖邪」象徵勤奮與正義，十五年之功雖可驕傲，卻也提醒不要因慶功而輕忽潛在危險。此後更宜韜晦好，提示持續保持低調、藏於內心，防止外界誤解與妒忌。磽磽易缺理無差則表現出事物的易變與需細心，提醒人們即"
+  }
+}

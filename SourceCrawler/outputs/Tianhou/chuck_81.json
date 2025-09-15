@@ -1,0 +1,20 @@
+{
+  "id": 81,
+  "title": "天后宮一百籤第八十一籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "季子歸來意氣驕、家人匍伏畏雄豪、豈知富貴榮華事、一似朝潮與暮潮。",
+  "analysis": {
+    "zh": "這首詩的主題是對於驕傲與富貴的短暫性，與人際關係的脆弱性所作的警示。春秋更迭如潮水般，正如詩中所寫，富貴與榮華像朝潮般湧來，暮潮則悄然退去，提醒人們不可因一時得意而忘卻謙遜與對家人的關懷。詩人以季子歸來為例，描繪其意氣驕傲，家人卻被其壓制，進而映射出在權勢與成就面前，親情與友情的易失。整首詩以自然景象作比，暗示人世間的變遷與無常，呼籲在追求功名、富貴之際，仍需保持平和之心，莫因浮躁而失去自我與他人的連結。",
+    "en": "This poem's theme is a warning about the fleeting nature of pride and wealth, and the fragility of interpersonal relationships. As seasons change like tides, the poem illustrates that fortune and glory surge like morning currents, only to recede like evening tides, reminding us not to forget humility and care for family when momentarily proud. By using the example of the returning son, it portrays his haughty spirit suppressing family, reflecting how easily affection can be lost under power and achievement. Overall, the poem employs natural imagery to suggest the impermanence of life, urging that in pursuit of fame and fortune one must maintain composure and avoid ego that erodes self and others.",
+    "jp": "この詩のテーマは、傲慢さと富の儚さ、そして人間関係の脆弱性に対する警告です。四季の移り変わりは潮のようで、詩は富と栄光が朝の潮のように湧き上がり、夜の潮のように退くことを示し、短い得意を楽しむ際に謙遜と家族への思いやりを忘れないように促します。帰ってきた季子を例に、彼の傲慢な精神が家族を押しつぶす様子を描き、権力と成功の前で愛情が失われる様子を映し出します。全体として、自然の比喩で人生の無常を示し、名声や富を追い求める中でも落ち着きを保ち、自己や他者を失うことのないように戒めます。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is a reminder of the transient nature of pride and wealth, and the fragile bonds of family and friendship. The tide‑like imagery of rising and falling fortunes illustrates that moments of success can be fleeting, urging humility and mindful attention to those around us.\n\n1. **Health** – The poem’s depiction of swift tides suggests that one’s well‑being can change rapidly; maintaining a steady, humble approach to life helps safeguard both mental and physical health.\n\n2. **Love and Relationships** – It warns against allowing personal ambition to dominate, which can erode the trust and affection of family members. Cultivating respect and patience is essential.\n\n3. **Career and Ambition** – While striving for success is natural, the text cautions that the joy of achievement may be temporary; balanced ambition, tempered by humility, leads to sustainable career growth.\n\n4. **Wealth and Finances** – Wealth is portrayed as a tide that rises and falls; prudent financial planning and modest living habits are advised to mitigate the volatility of riches.\n\n5. **Family and Harmony** – The returning son’s arrogance brings his family to a state of fear and subservience. A harmonious home requires leaders to act with humility and consideration for loved ones.\n\n6. **Social Connections and Reputation** – Exuberant pride can damage one's social standing, as the poem suggests that reputational success is as unstable as a tide. Maintaining respectful, thoughtful interactions preserves one’s reputation over the long term.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:57:19",
+    "source_file": "chuck_81.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 81,\n  \"title\": \"天后宮一百籤第八十一籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"季子歸來意氣驕、家人匍伏畏雄豪、豈知富貴榮華事、一似朝潮與暮潮。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對於驕傲與富貴的短暫性，與人際關係的脆弱性所作的警示。春秋更迭如潮水般，正如詩中所寫，富貴與榮華像朝潮般湧來，暮潮則悄然退去，提醒人們不可因一時得意而忘卻謙遜與對家人的關懷。詩人以季子歸來為例，描繪其意氣驕傲，家人卻被其壓制，進而映射出在權勢與成就面前，親情與友情的易失。整"
+  }
+}

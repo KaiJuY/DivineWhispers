@@ -22,19 +22,23 @@ PROMPT_TEMPLATE = """
 規則：
 1. 不要修改輸入 JSON 中的 id, title, subtitle, fortune, poem。
 2. analysis 物件需包含 zh, en, jp 三個欄位：
-   - 開頭必須是 "這首詩的主題是..."。
-   - 僅針對詩詞本身的內容進行解讀與說明，不包含其他常見的問卜或卦象解釋。
-   - 若已存在，保留原意並用更通順、一致的風格重述。
-   - 若缺失，先嘗試從其他語言翻譯補上。
-   - 若完全沒有，根據 poem 生成三語版本。
-3. 在 JSON 中新增 rag_analysis 欄位：
-   - 使用英文。
-   - Start with According to the poem, the core meaning is...
-   - 條列化說明詩詞的核心意涵、主要象徵、隱含的哲理或情境，並以流暢自然的語言呈現。
-4. reference 欄位：若原來存在就保留；若不存在就維持空。
+   - 以 zh 為主進行完整撰寫，長度約 200–300 字，風格需正式、流暢、帶解釋性，避免過度口語化。
+   - en 與 jp 必須嚴格根據 zh 翻譯，保持結構與字數大致一致，不可自行改寫或省略。
+   - 三個欄位開頭皆須為「這首詩的主題是...」的對應語言版本。
+   - 僅針對詩詞內容進行解讀，不加入其他傳統卜卦或外部典故。
+3. rag_analysis 欄位需以英文撰寫：
+   - 開頭必須是 "According to the poem, the core meaning is..."
+   - 全文長度約 300–500 字。
+   - 先總結詩詞的核心意涵與哲理，再依序條列出六個方向的啟示：
+     1. Health  
+     2. Love and Relationships  
+     3. Career and Ambition  
+     4. Wealth and Finances  
+     5. Family and Harmony  
+     6. Social Connections and Reputation  
+   - 每個方向需有 2–3 句完整說明，保持正式、清晰的分析風格。
+4. reference 欄位：若原來存在就保留；若不存在則維持空陣列。
 5. 回傳格式：純 JSON，必須包含 analysis.zh, analysis.en, analysis.jp 與 rag_analysis。
-6. zh 用正式清晰中文，en 用自然流暢英文，jp 用自然且尊重語感的日文。
-7. 不要加入未驗證的事實或額外推測。
 
 輸入 JSON：
 {json_data}
@@ -128,35 +132,38 @@ def safe_json_loads(raw_text):
     
 if __name__ == "__main__":
     output_base = Path("outputs")  # 假設 outputs 資料夾在當前目錄
-    
-    for input_dir in INPUT_DIRS:
-        input_path = Path(input_dir)
-        if not input_path.exists():
-            print(f"Input directory {input_dir} does not exist, skipping.")
-            continue
-            
-        files = list(input_path.glob("*.json"))
-        if not files:
-            print(f"No JSON files found in {input_dir}, skipping.")
-            continue
-            
-        # 建立對應的 output 目錄
-        output_dir = output_base / input_path.name
-        output_dir.mkdir(parents=True, exist_ok=True)
-        
-        for file in files:
-            # 檢查 output 中是否已經存在對應檔案
-            output_file = output_dir / file.name
-            if output_file.exists():
-                print(f"Output file {output_file} already exists, skipping {file.name}")
+    retry_count = 0
+    while True and retry_count < 5:
+        for input_dir in INPUT_DIRS:
+            input_path = Path(input_dir)
+            if not input_path.exists():
+                print(f"Input directory {input_dir} does not exist, skipping.")
                 continue
                 
-            print(f"Processing missing file: {file.name}")
-            process_file(input_dir, file, dry_run=False)
+            files = list(input_path.glob("*.json"))
+            if not files:
+                print(f"No JSON files found in {input_dir}, skipping.")
+                continue
+                
+            # 建立對應的 output 目錄
+            output_dir = output_base / input_path.name
+            output_dir.mkdir(parents=True, exist_ok=True)
+            
+            for file in files:
+                # 檢查 output 中是否已經存在對應檔案
+                output_file = output_dir / file.name
+                if output_file.exists():
+                    print(f"Output file {output_file} already exists, skipping {file.name}")
+                    continue
+                    
+                print(f"Processing missing file: {file.name}")
+                process_file(input_dir, file, dry_run=False)
 
-    if error_files:
-        print("\n=== 以下檔案解析失敗，請重跑 ===")
-        for ef in error_files:
-            print(ef)
-    else:
-        print("\n所有檔案處理成功 ✅")
+        if error_files:
+            retry_count += 1
+            print("\n=== 以下檔案解析失敗，請重跑 ===")
+            for ef in error_files:
+                print(ef)
+        else:
+            print("\n所有檔案處理成功 ✅")
+            break  # 全部成功，跳出迴圈

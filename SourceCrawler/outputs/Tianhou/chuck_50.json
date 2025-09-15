@@ -1,0 +1,20 @@
+{
+  "id": 50,
+  "title": "天后宮一百籤第五十籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "神仙事業由前定、行向東來更向南、取坎填離成大業、長生不死是奇男。",
+  "analysis": {
+    "zh": "這首詩的主題是關於命運與事業的預定與成就。詩中說明「神仙事業由前定」，暗示此人職業道路早已注定，將以天道為指引，行於東方之路，進而向南發展，象徵進步與擴張。 \"取坎填離\" 的字眼則表現出在遭遇障礙與距離時，能夠轉化為動力，完成大業；此語亦提醒人須以堅定的決心解決難題。最後一句「長生不死是奇男」更是將此人描繪為命中注定長壽且能突破常人界限的罕見存在，暗示其潛力無窮。整首詩以簡潔的四句揭示了一段自信而長遠的職業旅程，並隱示個人將以堅持與智慧克服挑戰，獲得非凡成就與長壽。",
+    "en": "This poem's theme is about destiny and career preordained and achievement. The poem states \"The immortal career is predetermined\", indicating that the person’s professional path is already set, guided by the Tao, traveling eastward and then moving south, symbolizing progress and expansion. The phrase \"taking obstacles to fill gaps\" expresses that when facing difficulties and distance, one can transform them into momentum to accomplish great works, reminding that determination is needed to solve problems. Finally, \"Longevity and immortality are extraordinary men\" depicts the individual as destined for long life and beyond ordinary limits, hinting at limitless potential. The entire poem, in just four lines, reveals a confident and long‑term career journey, implicitly showing that perseverance and wisdom will overcome challenges, leading to extraordinary achievements and longevity.",
+    "jp": "この詩のテーマは運命と職業の前定と成就についてです。詩は「神仙事業は前定である」と述べ、個人の職業経路が既に定められ、道に従い東へ進み、さらに南へ展開することを示し、進歩と拡大を象徴します。\"取坎填離\"という言葉は、障害や距離に直面したときにそれを力に変えて大業を成し遂げることを示し、問題解決に決意が必要であることを思い出させます。最後の句「長生不死は奇男」は、個人を長寿であり、一般人を超える存在として描き、無限の潜在力を示唆しています。全体として、わずか四句で自信に満ちた長期的な職業旅程を示し、粘り強さと知恵で困難を乗り越え、卓越した成果と長寿を得ることを暗示しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the individual’s career is predetermined and destined for great success through perseverance, strategic adaptation, and overcoming obstacles, culminating in extraordinary longevity. The imagery of moving east and then south symbolizes a progressive expansion of influence and ambition. The phrase \"取坎填離\" underscores the ability to transform challenges into opportunities, suggesting a proactive mindset. The concluding line about longevity and immortality presents the person as an exceptional figure, implying lasting impact and resilience beyond ordinary limits.\n\n1. Health: The reference to longevity indicates a strong physical foundation; however, maintaining balance through steady progress is crucial to avoid fatigue from rapid expansion.\n2. Love and Relationships: As the poem emphasizes predetermined paths, partnerships should align with the individual’s mission, requiring mutual support for both personal growth and shared goals.\n3. Career and Ambition: The narrative encourages a strategic approach—start in the east, broaden horizons to the south, and convert obstacles into stepping stones—leading to a sustained trajectory of professional excellence.\n4. Wealth and Finances: Implicit in the successful completion of a “great enterprise” is financial prosperity, yet prudent management of resources ensures that wealth supports continued growth rather than stagnation.\n5. Family and Harmony: The focus on predetermined destiny and overcoming barriers suggests the need for a supportive family environment; shared vision and resilience strengthen intra-family bonds.\n6. Social Connections and Reputation: Expanding influence from east to south indicates growing social networks; building reputation through integrity and turning adversity into achievements will cement lasting respect and goodwill.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:37:40",
+    "source_file": "chuck_50.json",
+    "raw_llm_response_preview": "{\"id\":50,\"title\":\"天后宮一百籤第五十籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"神仙事業由前定、行向東來更向南、取坎填離成大業、長生不死是奇男。\",\"analysis\":{\"zh\":\"這首詩的主題是關於命運與事業的預定與成就。詩中說明「神仙事業由前定」，暗示此人職業道路早已注定，將以天道為指引，行於東方之路，進而向南發展，象徵進步與擴張。 \\\"取坎填離\\\" 的字眼則表現出在遭遇障礙與距離時，能夠轉化為動力，完成大業；此語亦提醒人須以堅定的決心解決難題。最後一句「長生不死是奇男」更是將此人描繪為命中注定長壽且能突破常人界限的罕見存在，暗示其潛力無"
+  }
+}

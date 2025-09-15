@@ -1,0 +1,20 @@
+{
+  "id": 29,
+  "title": "天后宮一百籤第二十九籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "作善應須降百祥、門庭具盛事非常、濟人初願君無負、看此堂前桂子香。",
+  "analysis": {
+    "zh": "這首詩的主題是善行帶來的福祉與家宅的安泰。它指出：行善之人必然能降下百般祥瑞，家庭門庭便會有盛事盈門，彷彿世俗的榮華富貴都在此顯現。更重要的是，初衷純粹地幫助他人，將不會承受任何負擔，善行的結果是心無負累，精神得以淨化。詩中提及的「桂子香」象徵著純潔與祥和，置於堂前，預示著此人或其家族將長享平安與吉祥。總體而言，詩句以簡練的語言勾勒出一幅「善行即福，善果即安」的圖景，提醒人們只要以善為本，便能得到天賜的福祉與世間的尊重。",
+    "en": "This poem’s theme is the blessings that come from doing good and the tranquility of the household. It states that a good deed will bring a hundred auspices; the family’s courtyard will be filled with extraordinary affairs, as if worldly prosperity appears before it. Importantly, with a pure intention to help others, one bears no burden; the result of goodness is a clean heart and unencumbered spirit. The mentioned \"cassia fragrance\" symbolizes purity and peace, placed at the front of the hall, indicating that the individual or family will enjoy long-lasting safety and fortune. Overall, the poem sketches a picture of \"goodness brings blessing, good results bring peace,\" urging people that keeping to goodness will earn divine blessings and worldly respect.",
+    "jp": "この詩のテーマは善行がもたらす福祉と家宅の安寧である。善行をすれば百の祥瑞が降りてくると述べ、家の門庭は非常な盛事で満ちる。重要なのは、初めから他人を助ける純粋な意志であれば、負担を背負わず、善の結果は心が清められ、負の荷を持たないということである。詩に登場する\"桂子香\"は純粋さと平和を象徴し、堂前に置かれ、個人または家族が長く安全と吉祥を享受することを示唆している。全体として、この詩は「善行は福をもたらし、善果は安寧をもたらす」ことを簡潔に描き、善に従えば天からの祝福と世間からの敬意を得られると訴えている。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that virtuous deeds attract countless blessings and establish a harmonious, prosperous household. The imagery of the cassia fragrance in the hall evokes purity, peace, and enduring good fortune. The text also emphasizes that genuine assistance to others brings no personal burden, and that benevolence naturally leads to a clean, untroubled life.\n\n1. Health\nThe poem suggests that the cultivation of goodness fosters a balanced inner state, leading to physical and mental wellness. By acting selflessly, one avoids stress and the negative effects that accompany personal grievances.\n\n2. Love and Relationships\nThe presence of auspicious events in the household signals favorable conditions for interpersonal bonds. When individuals conduct themselves with integrity, they attract supportive partners and maintain harmony with friends and colleagues.\n\n3. Career and Ambition\nA prosperous household and the attainment of many blessings indicate that professional endeavors will receive positive recognition. By consistently practicing good deeds, one creates a reputation that opens doors and secures advancement.\n\n4. Wealth and Finances\nThe poem alludes to the flow of fortune through the imagery of “百祥”. Generosity and thoughtful assistance lay the groundwork for financial stability, as others respond with kindness, creating a mutually beneficial cycle.\n\n5. Family and Harmony\nThe cassia fragrance symbolizes the serenity of the family environment. The poem warns that the true key to a peaceful home lies in shared benevolence and mutual support, which ensures that all members thrive together.\n\n6. Social Connections and Reputation\nFinally, the text underscores that a virtuous path leads to a reputation built on trust and respect. When one consistently gives without expecting return, society perceives them as a pillar of community, thereby reinforcing social bonds and standing.\n\nOverall, the poem provides a holistic guide: by nurturing a spirit of kindness, one creates a conducive environment for health, love, career, wealth, family unity, and positive social interactions.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:23:57",
+    "source_file": "chuck_29.json",
+    "raw_llm_response_preview": "{\n  \"id\": 29,\n  \"title\": \"天后宮一百籤第二十九籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"作善應須降百祥、門庭具盛事非常、濤人初願君無負、看此堂前桂子香。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是善行帶來的福祉與家宅的安泰。它指出：行善之人必然能降下百般祥瑞，家庭門庭便會有盛事盈門，彷彿世俗的榮華富貴都在此顯現。更重要的是，初衷純粹地幫助他人，將不會承受任何負擔，善行的結果是心無負累，精神得以淨化。詩中提及的「桂子香」象徵著純潔與祥和，置於堂前，預示著此人或其家族將長享平安與吉祥。"
+  }
+}

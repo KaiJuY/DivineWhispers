@@ -1,0 +1,20 @@
+{
+  "id": 84,
+  "title": "天后宮一百籤第八十四籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "青蚨盈萬積如邱、收拾無從嘆不休、好把一繩穿貫去、教君怕足更何求。",
+  "analysis": {
+    "zh": "這首詩的主題是關於財富的聚散與心態調適。以“青蚨”作為金錢象徵，形容財富如山高，滿足其間卻難以止息悲嘆；作者提醒人們，若僅為財物而執著，便會陷入無盡焦慮。詩中建議把“一繩”穿貫，寓意以簡單、可持續的方式管理財富，避免過度追求。最後以“教君怕足更何求”作結，勸示即便已具足足，仍不必畏懼，更應尋求心靈的充足。",
+    "en": "The theme of this poem is about the accumulation and dispersion of wealth and the adjustment of one’s mindset. Using “青蚨” as a symbol of money, the poem likens riches to a towering hill, yet even when one gathers them, sorrow never ceases; the author warns that obsessive attachment to wealth can lead to endless anxiety. It advises tying a single string to manage wealth simply and sustainably, avoiding excessive pursuit. Finally, the line “教君怕足更何求” urges that even when one has enough, there is no need to fear; rather, seek fulfillment in the soul.",
+    "jp": "この詩のテーマは、財の集積と散逸、そして心態の調整について語っています。『青蚨』を金銭の象徴として用い、富を山のように比喩しつつ、蓄えるとしても悲嘆は止まらないと描き、金銭への執着が無限の不安を生むと警告します。詩は、一縄を通すことで財を簡潔かつ持続的に管理し、過度な追求を避けるよう助言します。最後に『教君怕足更何求』と締めくくり、十分があっても恐れる必要はなく、心の充足を求めるべきだと説いています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is a meditation on how wealth accumulates like a hill and yet, even when gathered, it can never fully satisfy, leading to endless lamentation. The poet cautions against an obsessive chase for money, suggesting instead that a simple, sustained approach—symbolized by tying a single thread—can bring order and peace. Ultimately, the message is that true fulfillment comes not from material abundance alone, but from a balanced mindset that transcends fear and craving.\n\n1. **Health** – The poem’s reference to a continuous sorrow even after wealth accrues warns of the hidden stress that can manifest physically. Maintaining a balanced approach to material gain can reduce anxiety, protect heart health, and support overall vitality.\n\n2. **Love and Relationships** – A single thread tying wealth together can be likened to a steady, reliable connection with a partner. By avoiding excessive materialism, one can nurture deeper intimacy, reduce jealousy, and foster trust.\n\n3. **Career and Ambition** – The admonition that “fear of sufficiency is unnecessary” invites professionals to pursue their goals with a calm confidence, focusing on sustainable progress rather than frantic accumulation of accolades.\n\n4. **Wealth and Finances** – The central metaphor of wealth as a hill illustrates that abundance can be overwhelming. The suggested strategy of managing finances with a single, clear plan helps prevent overspending, encourages disciplined saving, and supports long‑term financial security.\n\n5. **Family and Harmony** – By prioritizing inner fulfillment over material excess, one can allocate more time and resources to family life. This can strengthen bonds, promote shared values, and create a harmonious home environment.\n\n6. **Social Connections and Reputation** – A balanced, modest stance on wealth prevents social isolation caused by envy or jealousy. It allows individuals to cultivate authentic friendships, gain respect, and maintain a reputation of integrity and humility.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:59:01",
+    "source_file": "chuck_84.json",
+    "raw_llm_response_preview": "{\"id\":84,\"title\":\"天后宮一百籤第八十四籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"青蚨盈萬積如邱、收拾無從嘆不休、好把一繩穿貫去、教君怕足更何求。\",\"analysis\":{\"zh\":\"這首詩的主題是關於財富的聚散與心態調適。以“青蚨”作為金錢象徵，形容財富如山高，滿足其間卻難以止息悲嘆；作者提醒人們，若僅為財物而執著，便會陷入無盡焦慮。詩中建議把“一繩”穿貫，寓意以簡單、可持續的方式管理財富，避免過度追求。最後以“教君怕足更何求”作結，勸示即便已具足足，仍不必畏懼，更應尋求心靈的充足。\",\"en\":\"The theme of this poe"
+  }
+}

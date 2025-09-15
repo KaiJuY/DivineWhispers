@@ -1,0 +1,20 @@
+{
+  "id": 47,
+  "title": "月老聖籤一百籤第四十七籤",
+  "subtitle": "",
+  "fortune": "上吉",
+  "poem": "五百英雄都在此，不知誰是狀元郎？",
+  "analysis": {
+    "zh": "這首詩的主題是評選心目中理想之伴。全文以英雄集聚之景象作比喻，指出在人世間尋找配偶如尋找英雄，需以品德為先，學識次之，考量家庭與門戶，避免因輕率選擇而後悔。詩人透過英雄比擬，提醒現代人應以人格、才智與家庭背景為評估標準。選擇伴侶不僅是感情決定，更是長遠生活的基礎。若忽視品德與門第，將難以維持和諧與幸福，最後必將因輕率所致之錯誤，遲來悔悟。",
+    "en": "This poem's theme is selecting an ideal partner in one's mind. The whole poem uses the imagery of heroes gathering as a metaphor, pointing out that searching for a spouse in the world is like searching for a hero; one must prioritize virtue, followed by knowledge, consider family and household, and avoid regretting a hasty choice. The poet, through the hero comparison, reminds modern people to evaluate partners based on character, intelligence, and family background. Choosing a partner is not only a romantic decision but also the foundation for long-term life. If one neglects virtue and status, it will be difficult to maintain harmony and happiness, and ultimately one will regret the mistake caused by haste.",
+    "jp": "この詩のテーマは、心の中で理想的なパートナーを選ぶことです。全体として、英雄が集まる光景を比喩に用い、世間で配偶者を探すことは英雄を探すことに似ており、まずは徳を優先し、次に知識を重視し、家族と門第を考慮し、軽率な選択を避けて後悔しないようにと指摘しています。詩人は英雄の比喩を通じて、現代人に人格、知恵、家柄を評価基準にすべきと警告しています。伴侶を選ぶことは、単なる恋愛決断にとどまらず、長期的な生活の基盤でもあります。徳と門第を無視すれば、調和と幸福を維持することが難しく、結局は軽率によって生じた過ちを遅れて後悔することになるでしょう。",
+    "reference": "琵琶記 第八齣 文場選士"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the search for a life partner should be guided by virtuous character, intellectual capability, and familial standing, much like selecting a hero from a gathering of champions. The poem warns against hasty choices that overlook these essential qualities, as such decisions can lead to regret and discord. It emphasizes the long-term impact of partnership on harmony, happiness, and mutual growth.\n\n1. **Health** – A partner chosen with virtue and intellectual respect tends to support healthier habits, creating an environment where both individuals prioritize well-being. Their balanced outlook promotes regular physical activity and balanced nutrition, thereby sustaining vitality.\n\n2. **Love and Relationships** – The poem underscores that love is not merely romantic but a partnership built on shared values. When a relationship is founded on character and mutual respect, it becomes resilient, enabling deeper emotional connection and sustained intimacy.\n\n3. **Career and Ambition** – Selecting a spouse who values knowledge and self‑development encourages joint ambition. This shared drive supports career advancement, as partners motivate each other, share networks, and balance professional responsibilities.\n\n4. **Wealth and Finances** – A partnership grounded in mutual respect and prudence tends to manage finances responsibly. The poem’s caution against hasty decisions translates into careful budgeting, shared goals, and collective investment decisions that build long‑term wealth.\n\n5. **Family and Harmony** – The emphasis on family background signals the importance of harmonious domestic life. When both partners respect each other’s lineage and household traditions, they create a stable environment that nurtures offspring and maintains communal harmony.\n\n6. **Social Connections and Reputation** – The poem’s analogy to heroes implies that a respectable partner enhances social standing. Mutual respect and shared virtues elevate both individuals’ reputations, fostering trust and admiration within their social circles.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:06:19",
+    "source_file": "chuck_47.json",
+    "raw_llm_response_preview": "{\n  \"id\": 47,\n  \"title\": \"月老聖籤一百籤第四十七籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上吉\",\n  \"poem\": \"五百英雄都在此，不知誰是狀元郎？\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是評選心目中理想之伴。全文以英雄集聚之景象作比喻，指出在人世間尋找配偶如尋找英雄，需以品德為先，學識次之，考量家庭與門戶，避免因輕率選擇而後悔。詩人透過英雄比擬，提醒現代人應以人格、才智與家庭背景為評估標準。選擇伴侶不僅是感情決定，更是長遠生活的基礎。若忽視品德與門第，將難以維持和諧與幸福，最後必將因輕率所致之錯誤，"
+  }
+}

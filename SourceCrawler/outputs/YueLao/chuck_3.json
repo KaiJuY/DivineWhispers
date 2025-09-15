@@ -1,0 +1,20 @@
+{
+  "id": 3,
+  "title": "月老聖籤一百籤第三籤",
+  "subtitle": "",
+  "fortune": "上",
+  "poem": "宗廟享之，子孫保人。",
+  "analysis": {
+    "zh": "這首詩的主題是延續與守護。詩中以宗廟作為象徵，指出先人的福祉與禍災皆會一代一代相繼。作者提醒我們，要將先人留下的恩惠與責任，傳遞給下一代，並在此過程中不斷修煉與守護，才能使家庭與社會長久繁榮。詩句「享之」與「保人」強調的是既要享受先人的精神財富，也要保護後代免於災禍。此詩鼓勵人們以敬祖、重責的態度，讓幸福與和諧得以延續。",
+    "en": "This poem’s theme is continuity and guardianship. It uses the ancestral temple as a symbol, indicating that blessings and calamities of the ancestors pass from one generation to the next. The author reminds us to transmit the benefits and responsibilities left by our forebears to the next generation, continually cultivating and protecting them so that family and society may prosper for the long term. The lines “enjoy” and “protect” emphasize both benefiting from ancestral spiritual wealth and shielding descendants from misfortune. This poem encourages a respectful and responsible attitude toward ancestors, ensuring that happiness and harmony endure.",
+    "jp": "この詩のテーマは継承と守護です。祖先の寺院を象徴として用い、先祖の福祉と災厄が世代を越えて継がれることを示しています。筆者は、先祖が残した恩恵と責任を次世代に伝え、継続的に育み守ることで、家族と社会が長期にわたって繁栄できると呼びかけています。「享受」と「保護」という言葉は、祖先の精神財産を享受するだけでなく、子孫を災害から守ることを強調しています。この詩は、祖先に敬意と責任を持つ姿勢を促し、幸福と調和を永続させることを訴えています。",
+    "reference": "《禮記·中庸》"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the blessings and misfortunes of ancestors flow through generations, and individuals must honor this cycle by preserving and passing on the benefits while guarding the next generation from harm. The poem underscores the importance of ancestral reverence, continuity, and collective responsibility. It reminds us that personal prosperity is intertwined with the well‑being of family and society.\n\n1. Health\n   - The poem implies that a healthy lineage relies on the spiritual and moral guidance of forebears. By honoring ancestors, one cultivates a resilient mindset that mitigates illness.\n   - Physical well‑being is linked to the emotional stability fostered by maintaining a strong familial bond.\n   \n2. Love and Relationships\n   - Love is portrayed as an inherited virtue; nurturing it is a duty passed down through generations.\n   - Mutual respect within relationships mirrors the reverence due to ancestors, ensuring harmonious interactions.\n   \n3. Career and Ambition\n   - Professional success is viewed as a continuation of ancestral achievements, motivating individuals to uphold family honor.\n   - Ambition should be balanced with duty to family; excessive pursuit may disrupt the generational harmony.\n   \n4. Wealth and Finances\n   - Financial prosperity is seen as a blessing from ancestors, and it must be managed responsibly for future heirs.\n   - The poem encourages prudent stewardship, avoiding extravagance that could harm the lineage’s future.\n   \n5. Family and Harmony\n   - The central motif is familial continuity; peace at home is achieved by respecting ancestral customs and protecting the next generation.\n   - Harmonious family dynamics are sustained through shared rituals and mutual support.\n   \n6. Social Connections and Reputation\n   - Reputation is tied to one’s lineage; maintaining honor reflects positively on the community.\n   - Social connections thrive when individuals act as good stewards of their ancestral legacy, earning respect from peers.\n",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 13:55:50",
+    "source_file": "chuck_3.json",
+    "raw_llm_response_preview": "{\"id\":3,\"title\":\"月老聖籤一百籤第三籤\",\"subtitle\":\"\",\"fortune\":\"上\",\"poem\":\"宗廟享之，子孫保人。\",\"analysis\":{\"zh\":\"這首詩的主題是延續與守護。詩中以宗廟作為象徵，指出先人的福祉與禍災皆會一代一代相繼。作者提醒我們，要將先人留下的恩惠與責任，傳遞給下一代，並在此過程中不斷修煉與守護，才能使家庭與社會長久繁榮。詩句「享之」與「保人」強調的是既要享受先人的精神財富，也要保護後代免於災禍。此詩鼓勵人們以敬祖、重責的態度，讓幸福與和諧得以延續。\",\"en\":\"This poem’s theme is continuity and "
+  }
+}

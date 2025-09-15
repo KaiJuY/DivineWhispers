@@ -1,0 +1,20 @@
+{
+  "id": 35,
+  "title": "天后宮一百籤第三十五籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "蓬窗草舍暫淹留、知命樂天休謾秋、竚看震雷驚曲竇、直教群蟄盡回頭。",
+  "analysis": {
+    "zh": "這首詩的主題是對於身處淺世簡屋之人的內心寧靜與順從命運的肯定。作者以蓬窗草舍的短暫停留，勾勒俯身隨緣的生活態度。『知命樂天休謾秋』說明對命運的無畏與對秋季凋零的坦然接受；『竚看震雷驚曲竇』以雷鳴突變象徵外在打擊，提醒人在突發變故中不失本色；『直教群蟄盡回頭』描繪群眾因恐懼退避，實際為自我保守行為。整體而言，詩句傳遞在逆境中保持心靜、以自然為導的修為。",
+    "en": "This poem's theme is the affirmation of inner tranquility and submission to fate for those dwelling in a modest thatched dwelling. The author, through the brief pause in a thatched shed, sketches a life attitude of bowing and following fate. 'Knowing fate, joy in heaven, rest with autumn' explains the fearless acceptance of destiny and the calm reception of autumn's decay; 'Looking at the thunder, startled by the twisted cave' uses the thunder's sudden change as a symbol of external blow, reminding that in sudden turmoil one should not lose one's nature; 'directly makes the swarm of insects retreat' depicts the crowd retreating from fear, in fact a self-preserving action. Overall, the poem conveys maintaining inner calm and following nature as a cultivation in adversity.",
+    "jp": "この詩のテーマは、素朴な茅葺き小屋に住む人々の内なる静けさと運命への服従を肯定することです。作者は、茅葺き小屋での短い停留を通じて、伏せて運命に従う生き方を描いています。「命を知り、天に喜び、秋に休む」は、運命への恐れなく秋の衰えを受け入れることを示し、\"竚看震雷驚曲竇\"は雷鳴の突発的な変化を外部の打撃の象徴とし、突発的な変化の中で本性を失わないように促す。\"直教群蟄盡回頭\"は恐怖で群衆が退く様子を描き、実際は自己防衛行為です。全体として、詩は逆境の中で内なる平静を保ち、自然に従う修養を伝えています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that life’s challenges should be met with calm acceptance, recognizing the transient nature of circumstances and the importance of inner steadiness. The verses paint a humble dwelling as a refuge where the individual learns to let go of worry, embrace fate, and remain true to oneself amid sudden disturbances. The poem conveys that genuine strength lies not in controlling every event, but in maintaining serenity and aligning with natural rhythm, thus turning adversity into an opportunity for personal growth.\n\n1. Health: The imagery of thunder and the return of insects illustrates the necessity of mental resilience. By staying composed, one reduces stress, thereby preserving both physical and mental well‑being.\n2. Love and Relationships: The poem suggests that true affection stems from calm understanding rather than reactive fear. A steady heart fosters deeper, more compassionate connections with others.\n3. Career and Ambition: The brief pause in the thatched shed symbolizes the pause needed before action. By observing circumstances calmly, one can make wiser career choices that align with authentic goals.\n4. Wealth and Finances: The focus on accepting fate rather than chasing material gain encourages prudent financial decisions. Stability arises from contentment, not from constant accumulation.\n5. Family and Harmony: The collective retreat of the insects reflects family dynamics that rely on mutual restraint. Harmonious relationships flourish when each member remains centered amid external pressures.\n6. Social Connections and Reputation: The poem warns against reactionary behavior. Maintaining composure preserves a reputation of reliability and earns respect within the community.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 19:17:52",
+    "source_file": "chuck_35.json",
+    "raw_llm_response_preview": "{\"id\":35,\"title\":\"天后宮一百籤第三十五籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"蓬窗草舍暫淹留、知命樂天休謾秋、竚看震雷驚曲竇、直教群蟄盡回頭。\",\"analysis\":{\"zh\":\"這首詩的主題是對於身處淺世簡屋之人的內心寧靜與順從命運的肯定。作者以蓬窗草舍的短暫停留，勾勒俯身隨緣的生活態度。『知命樂天休謾秋』說明對命運的無畏與對秋季凋零的坦然接受；『竚看震雷驚曲竇』以雷鳴突變象徵外在打擊，提醒人在突發變故中不失本色；『直教群蟄盡回頭』描繪群眾因恐懼退避，實際為自我保守行為。整體而言，詩句傳遞在逆境中保持心靜、以自然為導的修為。\",\"en\""
+  }
+}

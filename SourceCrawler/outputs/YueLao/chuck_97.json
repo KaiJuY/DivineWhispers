@@ -1,0 +1,20 @@
+{
+  "id": 97,
+  "title": "月老聖籤一百籤第九十七籤",
+  "subtitle": "",
+  "fortune": "上",
+  "poem": "昨夜江邊春草生，艨艟巨艦一毛輕，",
+  "analysis": {
+    "zh": "這首詩的主題是春季的生機與順遂。詩中描寫昨夜江邊春草剛生，隨後把巨艦與江面上輕巧之感並列，暗示在經歷嚴冬後，萬物復甦，行事不再艱難。作者以「艨艟」之名喻大事，卻說「一毛輕」，說明大計亦可如同一顆輕微的力量，輕易推進。此象徵人生道路順暢，舊有障礙得以消散，良運即將到來。整體寓意在於以春日之勢，化解過往困頓，迎向順遂與安康。此籤示意於此刻，宜以平和之態度接受變化，並將過往困頓視為短暫，趨向更高之境界。",
+    "en": "This poem's theme is the vitality of spring and smooth progress. The poem depicts that last night the spring grass by the riverbank just sprouted, followed by comparing the huge warship and the lightness on the river, suggesting that after enduring a harsh winter, all things revive and tasks no longer feel difficult. The author uses the name '艨艟' to symbolize great affairs, yet says 'just a hair's weight', indicating that big plans can move forward as easily as a slight force. This symbolizes that life's path becomes smooth, past obstacles dissolve, and good fortune approaches. Overall, it conveys the use of spring's momentum to dissolve previous hardships and embrace ease and health. This slip indicates that at this moment one should accept change with a calm attitude and see past difficulties as temporary, moving toward a higher state.",
+    "jp": "この詩のテーマは春の活気と順調な進展である。詩は、昨夜江辺の春草が芽吹き、巨大艦船と軽やかな印象を並べ、寒冬を乗り越えた後に万物が蘇り、事が楽に進むことを示唆する。作者は『艨艟』という名前で大きな事柄を比喩しつつ、『毛一重の軽さ』と述べ、巨大計画でも軽い力で前進できると示す。これは人生の道が円滑になり、古い障害が消え、良い運が近づくことを象徴している。全体として、春の勢いで過去の苦難を解消し、順遂と安康を迎えることを示唆している。",
+    "reference": "昨夜江邊春草生，艨艟巨艦一毛輕，向來枉費推移力，此日中流自在行。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the renewal of spring, symbolized by the freshly sprouted grass along the riverside, heralds a period of ease and progress after a long winter of hardship. The image of the enormous warship, described as weighing only a hair's thickness, illustrates that even the most daunting endeavors can become light when approached with the right mindset. The poem encourages the reader to embrace this newfound momentum, dispel lingering obstacles, and welcome favorable circumstances in all aspects of life.\n\n1. Health – The poem’s depiction of spring’s gentle growth suggests restoration and vitality in the body. A calm mind and fresh surroundings promote well‑being, while the notion of “lightness” implies reduced physical strain.\n\n2. Love and Relationships – The lightness of the ship reflects the ease of communication. When past resentments are released, relationships flow smoothly and bonds strengthen, fostering mutual support.\n\n3. Career and Ambition – The image of a massive vessel moving effortlessly conveys that ambitious goals, though large, can be achieved with steady effort. Perseverance coupled with confidence removes roadblocks and accelerates progress.\n\n4. Wealth and Finances – The poem’s assurance that even heavy burdens become light implies that financial worries may ease. Prudent planning and a flexible attitude allow one to navigate fluctuations without stress.\n\n5. Family and Harmony – The transformation from a harsh winter to blossoming spring mirrors the family’s potential for renewal. Nurturing patience and gratitude fosters harmony at home and resolves lingering tensions.\n\n6. Social Connections and Reputation – The gentle progress of the ship indicates that a good reputation grows organically. Treating others kindly and staying true to oneself attracts respect, support, and lasting social bonds.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:39:44",
+    "source_file": "chuck_97.json",
+    "raw_llm_response_preview": "{\n  \"id\": 97,\n  \"title\": \"月老聖籤一百籤第九十七籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上\",\n  \"poem\": \"昨夜江邊春草生，艨艟巨艦一毛輕，\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是春季的生機與順遂。詩中描寫昨夜江邊春草剛生，隨後把巨艦與江面上輕巧之感並列，暗示在經歷嚴冬後，萬物復甦，行事不再艱難。作者以「艨艟」之名喻大事，卻說「一毛輕」，說明大計亦可如同一顆輕微的力量，輕易推進。此象徵人生道路順暢，舊有障礙得以消散，良運即將到來。整體寓意在於以春日之勢，化解過往困頓，迎向順遂與安康。此籤示意於"
+  }
+}

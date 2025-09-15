@@ -1,0 +1,20 @@
+{
+  "id": 63,
+  "title": "月老聖籤一百籤第六十三籤",
+  "subtitle": "",
+  "fortune": "中平",
+  "poem": "齊大非吾耦也。",
+  "analysis": {
+    "zh": "這首詩的主題是關於在大勢與豪華之中保持謙遜與慎重。詩句「齊大非吾耦也」指出，雖然世上有許多財富與權勢，但並非所有高大事物皆適合自己。若妄圖攀附其光華，往往會因不合自身條件而遭遇失敗或挫折。古語「門不當戶不對」提醒人們，選擇環境與伴侶應合適，過度追求並非明智之舉。因而，適度放棄、回歸本質，乃是走向幸運與安寧的正道。",
+    "en": "This poem's theme is about maintaining humility and prudence amid great forces and grandeur. The line '齊大非吾耦也' points out that while there are many wealth and power in the world, not all great things suit oneself. Trying to grasp their glory often leads to failure or setbacks because of misfit with one's own conditions. The ancient saying '門不當戶不對' reminds us that choosing environment and companions should be appropriate; excessive pursuit is unwise. Therefore, moderate renunciation and returning to one's nature is the proper path toward luck and peace.",
+    "jp": "この詩のテーマは、大きな勢いや豪華さの中で謙虚さと慎重さを保つことに関するものです。『齊大非吾耦也』という句は、世の中に多くの富や権力があるが、すべての大きなものが自分に適しているわけではないと示しています。光栄を手に入れようとするあまり、自分の条件に合わないために失敗や挫折につながることがあります。『門不当戶不對』という古い諺は、環境や伴侶を選ぶ際に適合しているべきだと示しており、過度な追求は賢明ではありません。したがって、適度な放棄と本質への帰還が、幸運と平穏へと導く正しい道であるという結論です。",
+    "reference": "《史書》《春秋左傳》《春秋左傳》"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that while great achievements and fortunes exist, they are not automatically suited to everyone; one must recognize personal limits, choose compatible paths, and sometimes relinquish ambition to find true harmony and luck. 1. Health: The poem advises against forcing one into unsuitable pursuits, suggesting that overstretching oneself can lead to fatigue and illness. It encourages adopting a balanced lifestyle that respects the body’s natural rhythms. Ultimately, health benefits from moderation rather than excess. 2. Love and Relationships: The line \"門不當戶不對\" highlights the importance of compatibility in choosing a partner or close associates. A mismatched relationship may bring conflict, while harmony arises when partners align with each other’s values. Love thrives on mutual understanding rather than forceful alignment. 3. Career and Ambition: The warning that great wealth is not everyone’s match urges cautious ambition. Pursuing a lofty goal without proper foundation can result in failure. A prudent path involves aligning career aspirations with personal strengths and realistic opportunities. 4. Wealth and Finances: The poem suggests that acquiring wealth through sheer ambition may backfire. It recommends prudent financial planning and aligning spending with realistic means. True prosperity comes from sustainable and suitable financial habits. 5. Family and Harmony: Family cohesion is strengthened when each member respects their own role and limits. Overreaching expectations can strain relationships. Harmony is achieved by maintaining realistic expectations and appreciating individual contributions. 6. Social Connections and Reputation: The caution about not forcing one into unsuitable situations warns against overextending social networks for status. Building genuine relationships based on mutual respect preserves reputation. A well‑balanced social life, rooted in authenticity, leads to lasting influence.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:17:03",
+    "source_file": "chuck_63.json",
+    "raw_llm_response_preview": "{\n  \"id\": 63,\n  \"title\": \"月老聖籤一百籤第六十三籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"中平\",\n  \"poem\": \"齊大非吾耦也。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於在大勢與豪華之中保持謙遜與慎重。詩句「齊大非吾耦也」指出，雖然世上有許多財富與權勢，但並非所有高大事物皆適合自己。若妄圖攀附其光華，往往會因不合自身條件而遭遇失敗或挫折。古語「門不當戶不對」提醒人們，選擇環境與伴侶應合適，過度追求並非明智之舉。因而，適度放棄、回歸本質，乃是走向幸運與安寧的正道。\",\n    \"en\": \"Thi"
+  }
+}

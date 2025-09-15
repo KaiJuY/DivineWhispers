@@ -1,0 +1,20 @@
+{
+  "id": 25,
+  "title": "註生娘娘三十籤第二十五籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "無翼豈自飛,無足豈自行,遠來皆不泰,恐怕向前程。",
+  "analysis": {
+    "zh": "這首詩的主題是關於自身能力不足所帶來的前進困難與未來的不確定性。詩中以「無翼豈自飛、無足豈自行」比喻缺乏天賦或外在條件，無法自行成長。接著說「遠來皆不泰」，指出外來的機會與挑戰都難以把握，因而缺乏安寧。最後以「恐怕向前程」提醒讀者對未來抱持謹慎與警惕。整體而言，詩句傳達了要先自我檢視、修養不足之處，才能為未來的道路鋪陳穩固基礎的訊息。詩句以簡潔的四句呈現，語言精煉卻意象豐富。「無翼豈自飛」強調個人若缺少創造力或資源，無法主動突破；「無足豈自行」則暗示缺乏行動力或實務能力，難以自行前進。『遠來皆不泰』描繪外界機會雖多，但因自身條件不足，仍難以安心抓住；『恐怕向前程』則以恐懼之語提醒人們，未來的道路充滿變數，需謹慎規劃與自我提升。此詩對於目前停滯或受限的人來說，具有警醒與啟發作用，敦促其先行檢視自身缺陷，積極尋求突破與成長。",
+    "en": "This poem's theme is the difficulty of moving forward and the uncertainty of the future caused by one's lack of ability. The verses use 'without wings, how can one fly; without feet, how can one walk' to metaphorically indicate the lack of talent or external conditions that prevent personal growth. Then, 'all who come from afar are not at ease' points out that opportunities and challenges from outside are difficult to grasp, thus lacking tranquility. Finally, 'I fear the future ahead' reminds readers to approach the future with caution and vigilance. Overall, the poem conveys the message that one must first examine and remedy deficiencies before laying a solid foundation for future paths.",
+    "jp": "この詩のテーマは、自分の能力不足がもたらす前進の困難さと未来への不確実性についてである。詩では「翼が無ければ飛べず、足が無ければ歩けず」という表現で、天賦や外部条件の不足が自己成長を妨げることを比喩している。続いて「遠くから来る者は安泰でない」と述べ、外部からの機会や挑戦も把握しにくく、安心感が得られないことを指摘する。最後に「前途を恐れる」と恐怖を語ることで、未来への道が不確かなものであると警戒しつつ計画する必要があると示唆している。全体として、この詩はまず自己を見直し、欠点を改善し、将来の道に安定した基盤を築くべきだというメッセージを伝えている。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a lack of essential abilities—whether talent, resources, or motivation—creates an inability to progress forward, and that the future remains uncertain and fraught with fear. The imagery of wings and feet emphasizes the necessity of both creative and practical capacities to move, while the lines about distant arrivals reflect the challenge of seizing external opportunities when internal foundations are weak. The final cautionary note urges readers to adopt prudence in anticipating what lies ahead. \n\n1. Health: The poem metaphorically warns that a lack of vitality (wings) or mobility (feet) can hinder physical progress. Readers are encouraged to nurture both mental and bodily well‑being to avoid stagnation.\n\n2. Love and Relationships: Without the emotional ‘wings’ of empathy and the practical ‘feet’ of communication, partnerships may falter. Cultivating these qualities can strengthen intimacy and resilience.\n\n3. Career and Ambition: A career path that lacks skill or initiative will fail to launch. The poem advises early self‑assessment, skill development, and proactive networking to create upward momentum.\n\n4. Wealth and Finances: The fear of an uncertain future underscores the importance of prudent financial planning. Building a solid economic foundation reduces anxiety about tomorrow’s prospects.\n\n5. Family and Harmony: Family dynamics may suffer when individuals lack the capacity to adapt or support one another. Strengthening relational skills can foster stability and mutual care.\n\n6. Social Connections and Reputation: Without the ability to act confidently, one’s reputation can be fragile. Investing in personal growth and community involvement can secure a reliable social standing.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 18:51:59",
+    "source_file": "chuck_25.json",
+    "raw_llm_response_preview": "{\n  \"id\": 25,\n  \"title\": \"註生娘娘三十籤第二十五籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"無翼豈自飛,無足豈自行,遠來皆不泰,恐怕向前程。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於自身能力不足所帶來的前進困難與未來的不確定性。詩中以「無翼豈自飛、無足豈自行」比喻缺乏天賦或外在條件，無法自行成長。接著說「遠來皆不泰」，指出外來的機會與挑戰都難以把握，因而缺乏安寧。最後以「恐怕向前程」提醒讀者對未來抱持謹慎與警惕。整體而言，詩句傳達了要先自我檢視、修養不足之處，才能為未來的道路鋪"
+  }
+}

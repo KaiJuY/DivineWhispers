@@ -1,0 +1,20 @@
+{
+  "id": 71,
+  "title": "天后宮一百籤第七十一籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "今年坐賈勝行商、莫向江頭趁野航、待得陽生冬至後、出門事事見榮昌。",
+  "analysis": {
+    "zh": "這首詩的主題是商業運勢與時機把握。詩中說今年「坐賈勝行商」，暗示從事貿易或商業活動會有不錯的成績，商機將會湧現。卻又提醒「莫向江頭趁野航」，不要在風險較高的市場或不熟悉的領域冒險，應保持謹慎與理性。之後說「待得陽生冬至後」，表明需要等待天時地利合適的時節，冬至後陽光回升象徵新的開始，之後「出門事事見榮昌」則預示一旦進入正確時機，業務將會順風順水、成就顯著。整體而言，詩句勸誡先行計畫、慎重選擇，再適時出擊，方能把握商機、迎來繁榮。",
+    "en": "This poem’s theme is business fortune and timing. It states that this year, \"the trader’s venture will succeed,\" suggesting that engaging in trade or commerce will bring good results and opportunities will arise. Yet it warns, \"Do not take wild ventures at the river mouth,\" urging caution against risky markets or unfamiliar fields. Then it says, \"Wait until after the winter solstice when the sun rises,\" implying the need to wait for favorable conditions; the return of light after the solstice symbolizes a new beginning. Finally, \"When you go out, everything will prosper,\" foretells that once you step into the right moment, your business will go smoothly and flourish. Overall, the poem advises planning first, choosing wisely, and acting at the right time to seize opportunities and achieve prosperity.",
+    "jp": "この詩のテーマは商業運勢とタイミングの掴み方である。詩では今年「商人は成功して商売を行う」と述べ、貿易や商売を行えば良い結果が得られ、機会が生まれることを示唆している。しかし「江の頭で野船を出すな」と警告し、リスクの高い市場や未知の領域で冒険しないように注意するよう促している。次に「冬至後に太陽が昇るまで待て」と言い、適切な時期を待つ必要があることを示し、冬至後の太陽の復活は新しい始まりを象徴する。最後に「門出すると事事が繁栄する」と予言し、正しいタイミングで動けば商売は順調に進み、繁栄すると示している。全体として、詩は計画を立て、賢明に選択し、適切な時期に行動することで機会を掴み、繁栄を迎えることを勧めている。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the timing of action and prudent decision-making are essential for success in business. The verse encourages embracing opportunities while avoiding risky ventures and waiting for the right season, specifically after the winter solstice when the sun returns, before embarking on new endeavors. By aligning one’s actions with favorable conditions, the speaker predicts that all business affairs will prosper, symbolizing a harmonious and prosperous future.\n\n1. Health: The poem’s emphasis on waiting for the proper time before action reflects the importance of patience and self‑care. By not rushing into stressful situations, one can maintain a balanced lifestyle and reduce the risk of burnout.\n\n2. Love and Relationships: The advice to avoid impulsive choices parallels the need for mindful decisions in relationships. Patience and timing can strengthen bonds and prevent hasty misunderstandings.\n\n3. Career and Ambition: The verses suggest that career advancement comes from strategic planning and choosing the right moment. By avoiding premature moves, professionals can achieve sustainable growth.\n\n4. Wealth and Finances: The promise of prosperity after the winter solstice underscores the value of financial prudence. Waiting for the opportune moment can lead to profitable ventures and a solid financial foundation.\n\n5. Family and Harmony: The message of careful timing and patience extends to family life. Harmonious relationships are nurtured when actions are deliberate, allowing families to flourish together.\n\n6. Social Connections and Reputation: The poem’s call to avoid risky ventures indicates the importance of maintaining a strong reputation. By choosing reliable paths and acting responsibly, one can cultivate trust and long‑lasting social networks.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 19:21:30",
+    "source_file": "chuck_71.json",
+    "raw_llm_response_preview": "{\n  \"id\": 71,\n  \"title\": \"天后宮一百籤第七十一籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"今年坐賈勝行商、莫向江頭趁野航、待得陽生冬至後、出門事事見榮昌。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是商業運勢與時機把握。詩中說今年「坐賈勝行商」，暗示從事貿易或商業活動會有不錯的成績，商機將會湧現。卻又提醒「莫向江頭趁野航」，不要在風險較高的市場或不熟悉的領域冒險，應保持謹慎與理性。之後說「待得陽生冬至後」，表明需要等待天時地利合適的時節，冬至後陽光回升象徵新的開始，之後「出門事事見榮昌"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 71,
+  "title": "月老聖籤一百籤第七十一籤",
+  "subtitle": "",
+  "fortune": "下",
+  "poem": "以若所為，求若所欲，猶緣木求魚也。",
+  "analysis": {
+    "zh": "這首詩的主題是對於欲望與行動的深思。詩中以「若」作為代稱，暗示人欲以若之所為、若之所欲，卻如同緣木求魚，徒勞無功。這顯示了行動若不符合內心真正願望，將會陷入徒勞。詩句的語言簡潔而富含哲理，借用了「緣木求魚」的典故，暗示在人生決策中若無先明確自身需求，任何努力都可能成為盲目。此處的「若」不僅是語法代詞，更是行動與內心願望之間的橋梁，若失衡則失去目標。因而，詩人告誡讀者應先審視自己的願望，將其作為行動的指南，方能避免盲目之失，達成真正的滿足。",
+    "en": "This poem's theme is a deep reflection on desire and action. In the poem, the word 'ruo' serves as a stand-in, suggesting that people pursue what 'ruo' dictates, yet like fishing from a tree, it is futile. This shows that actions that do not align with true inner desires become futile. The language of the verse is concise yet full of philosophy, borrowing the idiom 'fishing from a tree' to imply that without first clarifying one's own needs, any effort may become blind. Here, 'ruo' is not only a grammatical placeholder but a bridge between action and inner longing; imbalance loses its goal ազ Therefore, the poet warns readers to first examine their desires, make them a guide for action, and thus avoid blind mistakes and achieve true satisfaction.",
+    "jp": "この詩のテーマは欲望と行動に対する深い省察である。詩では「若」が代名詞として用いられ、人は「若」が示す行動や欲望を追求するが、木から魚を捕ろうとするように無駄になる。これにより、行動が本当の内なる欲望と合わなければ徒労になることが示される。詩の言葉は簡潔で哲学に満ち、典型的な「木から魚を捕ろう」という格言を借用し、人生の決断において自らのニーズを先に明確にしないと、どんな努力も盲目的になり得ることを暗示する。ここでの「若」は語法代名詞にとどまらず、行動と内なる願いの橋渡しであり、バランスを欠けば目標を失う。したがって、詩人は読者に自らの欲望をまず検証し、それを行動の指針とし、盲目的な失敗を避け、真の満足を達成するよう促す。",
+    "reference": "孟子 梁惠王上   以若所為求若所欲，猶緣木而求魚也。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a caution that actions pursued without genuine alignment to one's true desires are akin to fishing from a tree—efforts that are futile and misguided. The poem urges introspection to ensure that one's actions are guided by a clear understanding of inner wants, lest they become blind and unproductive.\n\n- **Health:** The poem suggests that without a clear intention, efforts to maintain health may be wasted. Aligning one’s inner motivation with health goals ensures more effective habits.\n- **Love and Relationships:** In relationships, pursuing what one thinks others want rather than one’s own authentic desires can lead to disappointment. Recognizing true needs fosters mutual understanding.\n- **Career and Ambition:** Career pursuits driven by external expectations rather than internal passion may feel unfulfilling. Identifying personal aspirations aligns work with purpose.\n- **Wealth and Finances:** Financial decisions made without clear personal values can result in misguided investments. A deliberate, value‑based approach prevents waste.\n- **Family and Harmony:** Family commitments pursued merely for obligation risk alienation. Listening to genuine family desires supports harmony.\n- **Social Connections and Reputation:** Gaining reputation through superficial acts may be unsatisfying. Genuine engagement grounded in authentic goals builds lasting respect.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:21:49",
+    "source_file": "chuck_71.json",
+    "raw_llm_response_preview": "{\"id\":71,\"title\":\"月老聖籤一百籤第七十一籤\",\"subtitle\":\"\",\"fortune\":\"下\",\"poem\":\"以若所為，求若所欲，猶緣木求魚也。\",\"analysis\":{\"zh\":\"這首詩的主題是對於欲望與行動的深思。詩中以「若」作為代稱，暗示人欲以若之所為、若之所欲，卻如同緣木求魚，徒勞無功。這顯示了行動若不符合內心真正願望，將會陷入徒勞。詩句的語言簡潔而富含哲理，借用了「緣木求魚」的典故，暗示在人生決策中若無先明確自身需求，任何努力都可能成為盲目。此處的「若」不僅是語法代詞，更是行動與內心願望之間的橋梁，若失衡則失去目標。因而，詩人告誡讀者應先審視自己的願望，將"
+  }
+}

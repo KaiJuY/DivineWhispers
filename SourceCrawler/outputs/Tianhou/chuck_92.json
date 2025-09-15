@@ -1,0 +1,20 @@
+{
+  "id": 92,
+  "title": "天后宮一百籤第九十二籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "萬事如無忍最宜、勸君三覆細尋思、逢人切莫輕唐突、須學留侯進履時。",
+  "analysis": {
+    "zh": "這首詩的主題是以忍耐與慎思為人處世之道。作者勸人於萬事之際，最宜先行審慎，莫因急躁而失衡。詩中以『三覆細尋思』提醒行動前需反覆檢視，確保決策正確。更以『留侯進履時』舉張良處世之圓融，勉勵人應學其謙恭慎密，避免冒進。整體傳遞出先思後行、以平和之心面對人際關係與事業挑戰之哲理。",
+    "en": "This poem's theme is to treat life with patience and careful thought. The author advises that in all matters, it is best to act with prudence first, lest haste cause imbalance. The line \"Three coverings, meticulous contemplation\" reminds the reader to review actions repeatedly to ensure sound judgment. Furthermore, referencing \"Zhang Liang's prudent entry,\" the poem encourages emulating his humility and meticulousness to avoid rashness. Overall, it conveys a philosophy of thinking before acting and approaching relationships and career challenges with calm composure.",
+    "jp": "この詩のテーマは忍耐と慎重な思索によって人間関係を整えることです。作者は、すべての事柄において先に慎重さを重視し、焦って不安定になるのを避けるように勧めています。「三覆細尋思」という句は、行動前に何度も検証し、判断を確実にするよう促します。また「留侯進履時」を引用し、張良の謙虚で慎密な姿勢を模倣し、軽率さを避けるよう励まします。全体として、思考を先にし、平和な心で人間関係や職業の挑戦に対処する哲学を伝えています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that patience, thorough contemplation, and the wisdom of historical exemplars such as Zhang Liang (留侯) guide one toward balanced action in all facets of life. The verses caution against impulsive decisions, urging repeated review and careful consideration before proceeding. By invoking the sage’s measured approach, the poem emphasizes humility, respect for others, and the importance of steady progress over sudden ambition.\n\n1. **Health** – The poem’s advice to refrain from rash actions implies a prudent lifestyle that safeguards physical well‑being. By consistently assessing one’s plans, one can avoid stressful or hazardous decisions, fostering a stable, health‑conducive routine.\n\n2. **Love and Relationships** – The admonition against “輕唐突” (light, abrupt behavior) underlines the value of thoughtful communication. Maintaining a calm, reflective stance nurtures trust and reduces conflicts within intimate bonds.\n\n3. **Career and Ambition** – The counsel to “三覆細尋思” mirrors professional diligence: evaluating goals multiple times before committing. This methodical path leads to long‑term success rather than fleeting, ill‑fated endeavors.\n\n4. **Wealth and Finances** – Impulsive financial moves are discouraged; instead, a measured, review‑heavy strategy is promoted. This reduces risk, ensures sound investments, and allows for steady wealth accumulation.\n\n5. **Family and Harmony** – The poem’s emphasis on humility and patience resonates with family dynamics. By approaching family matters with calm deliberation, one supports harmony and mutual respect among members.\n\n6. **Social Connections and Reputation** – Acting with restraint and careful reflection enhances one’s reputation. The model of Zhang Liang, who earned respect through prudence, serves as a reminder that consistency and thoughtfulness are key to positive social standing.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 17:03:09",
+    "source_file": "chuck_92.json",
+    "raw_llm_response_preview": "{\n  \"id\": 92,\n  \"title\": \"天后宮一百籤第九十二籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"萬事如無忍最宜、勸君三覆細尋思、逢人切莫輕唐突、須學留侯進履時。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是以忍耐與慎思為人處世之道。作者勸人於萬事之際，最宜先行審慎，莫因急躁而失衡。詩中以『三覆細尋思』提醒行動前需反覆檢視，確保決策正確。更以『留侯進履時』舉張良處世之圓融，勉勵人應學其謙恭慎密，避免冒進。整體傳遞出先思後行、以平和之心面對人際關係與事業挑戰之哲理。\",\n    \"en\": \"T"
+  }
+}

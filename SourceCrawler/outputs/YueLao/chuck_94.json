@@ -1,0 +1,20 @@
+{
+  "id": 94,
+  "title": "月老聖籤一百籤第九十四籤",
+  "subtitle": "",
+  "fortune": "上上",
+  "poem": "螽斯羽，薨薨兮，宜爾子孫，繩繩兮。",
+  "analysis": {
+    "zh": "這首詩的主題是以螽斯之羽作比喻，象徵行動與精神的自由展翅。螽斯輕羽飄逸，聲音哼啭，顯示活力與自在；其「薨薨」意為柔和而安詳。第二句「宜爾子孫」暗示祝福與期許，寓意世代傳承；「繩繩兮」則比擬緊密相連、持續延伸之緣份，提醒此喜與福將長存。整體寓意人生順遂、縱橫有度，且與家族、親眾的和諧相結合，為未來的福祉奠基。此詩亦提醒，雖身處世事喧囂，亦可以淡然姿態迎接命運，保持內心的平和與熱情，從而使得每一次相遇都能成為福祉的契機。",
+    "en": "The theme of this poem is the use of the cicada's feather as a metaphor, symbolizing the freedom of action and spirit. The light, fluttering feather and the soft, tranquil sound illustrate vitality and calm. The second line wishes blessings for descendants and continuity, likening tight bonds and lasting ties, reminding that joy and fortune will endure. The overall meaning suggests a smooth life, harmonious relations, and a foundation for future blessings. It also reminds that even amid worldly noise one can meet fate with a calm posture, maintaining inner peace and enthusiasm so that each encounter becomes an opportunity for good fortune.",
+    "jp": "この詩のテーマは、蝉の羽を比喩として用い、行動と精神の自由を象徴することである。軽やかに揺れる羽と柔らかく安らかな音は、活力と落ち着きを示す。第二節は子孫への祝福と継続を願い、強い結びつきと永続的な縁をたとえ、喜びと幸福が続くことを思い起こさせる。全体として、順調で調和の取れた人生と、将来の福祉の基盤を示唆する。",
+    "reference": "《詩經》《國風》《周南》《螽斯》螽斯羽、薨薨兮。宜爾子孫、繩繩兮。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the brief image of the cicada’s feather serves as an allegory for personal freedom and the continuous flow of good fortune, encouraging harmony with one’s lineage and sustaining positive connections. The poem is concise, yet it conveys a layered optimism: the gentle flutter of the feather evokes tranquility, while the soft, resonant sound of the cicada reminds the reader that even in the midst of life’s noise, one can maintain inner peace. The wish for descendants and the mention of a “rope‑like” continuity suggest that blessings are not isolated events but threads that bind generations together, offering guidance for living a life that is both prosperous and harmonious.\n\n1. Health: The poem’s emphasis on a calm and steady existence implies that a balanced lifestyle will safeguard one’s physical wellbeing. By fostering inner tranquility, it encourages proactive self‑care and mindful habits.\n2. Love and Relationships: The imagery of a tightly bound rope indicates strong, enduring bonds. It advises nurturing relationships through trust, patience, and mutual support, which will nurture lasting affection.\n3. Career and Ambition: The notion of the feather’s free flight symbolizes ambition coupled with grace. Success comes from pursuing goals with both enthusiasm and measured prudence, allowing one to soar while staying grounded.\n4. Wealth and Finances: The “rope‑like” continuity signals that prosperity is a continuous thread, not a fleeting spike. Wise stewardship and gradual accumulation will sustain long‑term financial stability.\n5. Family and Harmony: The blessing for descendants underscores the importance of family legacy. Maintaining harmony and sharing values ensures that each generation benefits from the previous one’s virtues.\n6. Social Connections and Reputation: The soft cicada sound suggests that reputation is built on subtle, consistent efforts rather than grand gestures. Cultivating a reputation for integrity and reliability will strengthen social ties and open doors to future opportunities.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:38:15",
+    "source_file": "chuck_94.json",
+    "raw_llm_response_preview": "{\n  \"id\": 94,\n  \"title\": \"月老聖籤一百籤第九十四籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上上\",\n  \"poem\": \"螽斯羽，薨薨兮，宜爾子孫，繩繩兮。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是以螽斯之羽作比喻，象徵行動與精神的自由展翅。螽斯輕羽飄逸，聲音哼啭，顯示活力與自在；其「薨薨」意為柔和而安詳。第二句「宜爾子孫」暗示祝福與期許，寓意世代傳承；「繩繩兮」則比擬緊密相連、持續延伸之緣份，提醒此喜與福將長存。整體寓意人生順遂、縱橫有度，且與家族、親眾的和諧相結合，為未來的福祉奠基。此詩亦提醒，雖身處世"
+  }
+}

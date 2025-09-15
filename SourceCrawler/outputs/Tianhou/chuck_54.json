@@ -1,0 +1,20 @@
+{
+  "id": 54,
+  "title": "天后宮一百籤第五十四籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "從前作事總糊塗、此後修為要切磋、若得一心行正道、自然災悔盡消磨。",
+  "analysis": {
+    "zh": "這首詩的主題是關於個人修養與心靈淨化的指導。作者回顧過去行事時的糊塗與失誤，提醒人們必須進一步修練內在修為。若能以一心守正道，心中懷抱正直與善念，則各種災難與悔恨自然會被淡化，最終達成心靈平和與生活安定。詩中以簡潔而富含哲理的語句，勉勵讀者以實踐正道為前提，從而化解困難，迎接更穩定、光明的未來。",
+    "en": "This poem's theme is the guidance toward personal cultivation and spiritual purification. The author reflects on past confusion and mistakes in conduct, urging individuals to further refine inner cultivation. By steadfastly following a righteous path with sincerity and virtuous intent, all disasters and regrets naturally subside, ultimately achieving inner peace and a stable life. The poem, concise yet rich in philosophy, encourages readers to practice the righteous way as a prerequisite, thereby resolving difficulties and embracing a steadier, brighter future.",
+    "jp": "この詩のテーマは、個人の修養と心の浄化に関する指導です。作者は過去の行動における混乱と失敗を振り返り、内なる修練をさらに深めるよう人々に促します。一心で正しい道を守り、正直と善意を抱けば、あらゆる災難と後悔は自然に和らぎ、最終的に心の平安と安定した生活へと至ります。詩は簡潔で哲学的な言葉で、読者に正しい道を実践することを前提に、困難を解決し、より安定した明るい未来へと導くよう励まします.",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that personal growth and steadfastness in pursuing a righteous path can dissolve past errors, prevent future setbacks, and usher in peace and stability. The verses highlight a transition from confusion to focused cultivation, underscoring the belief that sincere, disciplined effort leads to the natural mitigation of calamities and regrets.\n\n1. **Health** – The poem implies that a disciplined mind reduces mental strain, leading to better physical well‑being. By clearing past missteps, one can relieve stress that often manifests as illness.\n2. **Love and Relationships** – It suggests that honest, single‑hearted effort improves interpersonal harmony. When a person acts with integrity, partners and friends feel secure, strengthening bonds.\n3. **Career and Ambition** – A focused, righteous mindset is equated with professional diligence. Overcoming past confusion through cultivation fosters clearer goals and steadier progress in work.\n4. **Wealth and Finances** – The poem links calmness and discipline with financial prudence. By removing regrets and misjudgments, one can avoid costly mistakes and invest wisely.\n5. **Family and Harmony** – The message stresses that personal purification benefits the household. A leader who has resolved inner turmoil brings steadiness and reduces domestic conflict.\n6. **Social Connections and Reputation** – Finally, a life lived with integrity attracts supportive peers and enhances reputation. The verses advise that sincere practice yields respect and reliable allies, ensuring social resilience.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:39:41",
+    "source_file": "chuck_54.json",
+    "raw_llm_response_preview": "{\"id\":54,\"title\":\"天后宮一百籤第五十四籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"從前作事總糊塗、此後修為要切磋、若得一心行正道、自然災悔盡消磨。\",\"analysis\":{\"zh\":\"這首詩的主題是關於個人修養與心靈淨化的指導。作者回顧過去行事時的糊塗與失誤，提醒人們必須進一步修練內在修為。若能以一心守正道，心中懷抱正直與善念，則各種災難與悔恨自然會被淡化，最終達成心靈平和與生活安定。詩中以簡潔而富含哲理的語句，勉勵讀者以實踐正道為前提，從而化解困難，迎接更穩定、光明的未來。\",\"en\":\"This poem's theme is the g"
+  }
+}

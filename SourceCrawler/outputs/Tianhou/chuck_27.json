@@ -1,0 +1,20 @@
+{
+  "id": 27,
+  "title": "天后宮一百籤第二十七籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "公子王孫作主人、豈愁豪俠與頑器、官清馬瘦休懷恨、到底身貧道不貧。",
+  "analysis": {
+    "zh": "這首詩的主題是關於身世與命運的掙扎，描繪了一位高貴血脈的公子，雖處於貧寒之境，卻以清廉與不屈的精神迎接命運。詩中強調官禮清瘦、馬瘦但精神旺盛，暗示外在條件不等於內在價值。雖身負恨，仍不因貧乏而喪志，體現了“貧不貧道”之人生觀，鼓勵在逆境中保持品格與理想。",
+    "en": "The theme of this poem is about the struggle between lineage and destiny, depicting a noble-born young master who, though living in poverty, faces fate with integrity and perseverance. The poem emphasizes that a clean official attire and a lean horse do not determine inner value, hinting that external conditions do not equal internal worth. Despite harboring resentment, he does not lose hope due to poverty, reflecting the life philosophy of 'poverty does not impoverish the soul' and encouraging the maintenance of character and ideals in adversity. This portrayal encourages steadfastness in adversity and underscores the importance of preserving dignity and aspirations.",
+    "jp": "この詩のテーマは、身分と運命の闘いに関するもので、高貴な血統を持つ若者が貧困の中で正直と忍耐を持って運命に立ち向かう姿を描いています。詩は、清潔な官服と痩せた馬が内面的価値を決めるわけではないと強調し、外部条件が内面的価値と等しくないことを示唆しています。怒りを抱えていても、貧困のせいで希望を失わないことは、「貧しいことは魂を貧しくしない」という人生観を示し、逆境の中で品格と理想を保つよう励ましています。この描写は逆境での粘り強さを奨励し、人格と志の保持の重要性を強調しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is an exhortation to uphold integrity and resilience when faced with the harsh realities of social status and personal fortunes. It presents a young noble who, despite poverty and resentment, refuses to let material deprivation diminish his spirit, thus illustrating the principle that true worth lies beyond external conditions. The poem’s imagery of a lean horse and spotless attire further emphasizes that appearances can be deceptive, encouraging the reader to focus on inner virtue rather than outward success.\n\n1. Health: The poem subtly reminds the reader that physical well‑being is inseparable from moral health. A clear, disciplined appearance, symbolized by the “clean official attire,” reflects inner equilibrium, encouraging regular self‑care and mindfulness. Maintaining mental strength in adversity promotes a stable constitution that withstands hardship.\n\n2. Love and Relationships: The narrator’s steadfastness serves as a model for loyalty and honesty in personal ties. Even when resentment lingers, refusing to surrender to bitterness nurtures trust and fosters lasting bonds. Relationships thrive when partners honor each other’s inner values above external status.\n\n3. Career and Ambition: The poem encourages pursuing purpose over prestige. The young prince’s refusal to be defined by wealth teaches that true ambition is measured by perseverance and ethical conduct. A career built on integrity gains resilience, allowing one to endure setbacks.\n\n4. Wealth and Finances: Material riches are portrayed as transient, whereas a strong moral compass yields enduring prosperity. The verses urge prudent financial choices grounded in honesty, suggesting that wealth gained through integrity will sustain long‑term security.\n\n5. Family and Harmony: By demonstrating that one’s origin does not dictate destiny, the poem promotes familial unity beyond socioeconomic divisions. Siblings and parents can support each other regardless of wealth, reinforcing harmony through shared values.\n\n6. Social Connections and Reputation: The young master’s example highlights that reputation stems from character rather than external accolades. Social influence grows when individuals act with sincerity and dignity. A person who maintains integrity will attract genuine admiration and trustworthy alliances.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:23:01",
+    "source_file": "chuck_27.json",
+    "raw_llm_response_preview": "{\"id\":27,\"title\":\"天后宮一百籤第二十七籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"公子王孫作主人、豈愁豪俠與頑器、官清馬瘦休懷恨、到底身貧道不貧。\",\"analysis\":{\"zh\":\"這首詩的主題是關於身世與命運的掙扎，描繪了一位高貴血脈的公子，雖處於貧寒之境，卻以清廉與不屈的精神迎接命運。詩中強調官禮清瘦、馬瘦但精神旺盛，暗示外在條件不等於內在價值。雖身負恨，仍不因貧乏而喪志，體現了“貧不貧道”之人生觀，鼓勵在逆境中保持品格與理想。\",\"en\":\"The theme of this poem is about the struggle be"
+  }
+}

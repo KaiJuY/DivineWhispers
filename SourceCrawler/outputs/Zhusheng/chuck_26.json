@@ -1,0 +1,20 @@
+{
+  "id": 26,
+  "title": "註生娘娘三十籤第二十六籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "畫燭當風炎,無風燭自搖,臨官不用早,花發落地空。",
+  "analysis": {
+    "zh": "這首詩的主題是關於時間與自然的自律與順應。畫燭象徵光明與人生的照耀，當風炎之時，烛光被吹起，暗示外在環境的動盪；而無風時，烛光自搖，顯示內在平衡可自維持。臨官不用早則提醒不必急於求成，順應天時方能穩定；花發落地空則象徵事物循環無常，若無根基，終將凋零。整體而言，詩以燭與花作為比喻，勸人把握節奏，聆聽內在與外在的呼應，並以平和心態面對變化。",
+    "en": "The theme of this poem is about the harmony of time and nature, and how one can maintain self‑regulation by aligning with the natural rhythm. The painted candle symbolizes illumination and life’s guidance; when the wind flares, the flame quivers, indicating external turbulence, whereas in stillness the flame sways of its own accord, showing that inner equilibrium can sustain itself. The line about not rushing to an official appointment reminds us to avoid haste and to follow the natural timing for stability. The image of flowers falling to the ground empty speaks to the cycle of impermanence—without a foundation, everything withers. Overall, the poem uses the candle and flowers as metaphors to urge the reader to match rhythm, listen to the interplay between inner and outer forces, and face change with calmness.",
+    "jp": "この詩の主題は、時間と自然の調和と、自然のリズムに沿って自己規律を保つ方法について語られています。描かれたろうそくは光と人生の導きを象徴し、風が炎を揺らすと外部の揺れを示し、静かに光が自ら揺れると内なる均衡が保てることを示しています。官職に急がずに済むという節では、焦らずに自然なタイミングを待つ重要性が語られています。花が地面に落ちて空になるイメージは、根拠がなければすべてが枯れる無常のサイクルを表しています。全体として、ろうそくと花を比喩に用い、リズムを合わせ、内外の相互作用を聴き、穏やかな心で変化に対処するよう勧めています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that one should live in harmony with the natural rhythm, maintaining inner stability while being responsive to external changes. The candle that moves with the wind yet steadies itself when calm illustrates how external turbulence can shake us, but true balance arises from within. The advice to not rush to official duties emphasizes timing, suggesting success comes from patience. The image of flowers falling into emptiness warns of impermanence, reminding us to establish solid foundations. Overall, the poem advocates a composed, mindful approach to life's fluctuations.\n\n1. Health – By valuing balance between inner equilibrium and external influences, the poem encourages regular self‑care and calmness, reducing stress and improving wellbeing.\n2. Love and Relationships – The message warns against impulsive decisions and stresses the need to wait for the right moment, fostering deeper, more harmonious connections.\n3. Career and Ambition – It advises patience in career advancement, suggesting that hurrying can lead to instability; steady progress aligned with timing yields lasting success.\n4. Wealth and Finances – The poem’s counsel to avoid haste in pursuits parallels prudent financial management: deliberate investment and cautious spending lead to sustainable prosperity.\n5. Family and Harmony – The emphasis on internal steadiness and listening to external rhythms implies that family cohesion thrives when members respect natural cycles and communicate calmly.\n6. Social Connections and Reputation – By advocating for a calm, measured demeanor, the poem hints that reputation is built through consistent, steady behavior rather than flashiness or hurried actions.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 18:52:29",
+    "source_file": "chuck_26.json",
+    "raw_llm_response_preview": "{\n  \"id\": 26,\n  \"title\": \"註生娘娘三十籤第二十六籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"畫燭當風炎,無風燭自搖,臨官不用早,花發落地空。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是關於時間與自然的自律與順應。畫燭象徵光明與人生的照耀，當風炎之時，烛光被吹起，暗示外在環境的動盪；而無風時，烛光自搖，顯示內在平衡可自維持。臨官不用早則提醒不必急於求成，順應天時方能穩定；花發落地空則象徵事物循環無常，若無根基，終將凋零。整體而言，詩以燭與花作為比喻，勸人把握節奏，聆聽內在與外在的呼應，"
+  }
+}

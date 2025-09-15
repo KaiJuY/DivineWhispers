@@ -1,0 +1,20 @@
+{
+  "id": 13,
+  "title": "天后宮一百籤第十三籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "靝生富貴洵堪誇、畢竟相承積善家、告汝要言無別事、再能培植慶無涯。",
+  "analysis": {
+    "zh": "這首詩的主題是對天命與家族善行所帶來的無盡福祉與永續繁榮的讚頌。首句以「靝」作為天的同義字，寓意天命降臨，帶來財富與地位，足以自豪宣揚。第二句指出，雖然世事變遷，但相承與積善的家族傳統將持續延續，形成一股不竭的善德力量。第三句則以「告汝要言無別事」的方式，表明此禱文已經無需再添其他言語，意即這段福氣已足夠滿足。最後一句「再能培植慶無涯」勾畫出能在此基礎上不斷培養與慶祝，永不止息的繁榮景象。整體而言，詩篇強調天意與善行的結合所創造的持久幸福，並鼓勵持續修行與慶祝，讓福氣在世代間流轉，達到永恆的滿足。",
+    "en": "This poem's theme is a tribute to the boundless blessings and perpetual prosperity that arise from heavenly grace and the enduring virtue of family legacy. The opening line employs the synonym \"靝\" for heaven, symbolizing divine destiny bestowing wealth and status worthy of proud proclamation. The second line acknowledges that, despite the flux of worldly affairs, the inherited goodness of a family continues, forming an inexhaustible force of benevolence. The third line—\"I tell you, there are no other matters to say\"—expresses that the prayer already suffices, no further words needed. The closing line, \"Again can cultivate and celebrate without limits,\" paints a vision of continuous cultivation and rejoicing that never ceases. Overall, the poem underscores the fusion of divine will and moral deeds that generate lasting happiness, encouraging ongoing practice and celebration so that fortune circulates across generations, achieving everlasting fulfillment.",
+    "jp": "この詩のテーマは、天の恩恵と家族の善行がもたらす無限の福祉と永続的な繁栄を讃えることです。最初の行では「靝」を天の同義語として用い、天命が富と地位を授け、自慢して語るに値することを象徴します。第二の行は、世の変遷にもかかわらず、家族の相承と善行が継続し、尽きることのない善徳の力を形成すると指摘しています。第三の行「告汝要言無別事」は、この祈りだけで十分であり、他に言うことはないと表しています。最後の行「再能培植慶無涯」は、基盤の上で不断に育み、祝福を続け、終わりのない繁栄を描きます。全体として、詩は天意と善行の結合が永続的な幸福を生み出すことを強調し、継続的な修行と祝福を促し、世代を越えて福祉が循環し、永遠の充足を達成することを示しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that heavenly destiny combined with inherited virtue brings everlasting prosperity and happiness, encouraging continuous cultivation and celebration to maintain this blessings cycle across generations. \n\n1. **Health** – The poem implies that when a family upholds virtuous deeds, physical well-being naturally follows; good fortune and health are interwoven, suggesting a harmonious body and spirit nurtured by moral living.\n\n2. **Love and Relationships** – By stressing the continuity of family goodness, the poem emphasizes strong bonds and mutual respect, which foster stable, loving relationships. The sense of shared purpose strengthens affection and unity.\n\n3. **Career and Ambition** – The lines that mention wealth and status underscore that professional success is a manifestation of divine favor when aligned with righteous conduct, guiding one to pursue ambitions with integrity.\n\n4. **Wealth and Finances** – The verses celebrating abundant fortune point to material prosperity as a natural outcome of virtuous lineage. It advises that wealth should be cultivated thoughtfully and shared, ensuring it remains limitless.\n\n5. **Family and Harmony** – The poem’s focus on inherited virtue and continual cultivation underscores the importance of maintaining harmonious family dynamics, encouraging nurturing of positive values across generations.\n\n6. **Social Connections and Reputation** – By highlighting the divine endorsement of a good family line, the poem suggests that reputation and social standing are built upon consistent moral practice, inviting one to uphold integrity so that social relationships flourish naturally.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:15:30",
+    "source_file": "chuck_13.json",
+    "raw_llm_response_preview": "{\n  \"id\": 13,\n  \"title\": \"天后宮一百籤第十三籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"靝生富貴洵堪誇、畢竟相承積善家、告汝要言無別事、再能培植慶無涯。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對天命與家族善行所帶來的無盡福祉與永續繁榮的讚頌。首句以「靝」作為天的同義字，寓意天命降臨，帶來財富與地位，足以自豪宣揚。第二句指出，雖然世事變遷，但相承與積善的家族傳統將持續延續，形成一股不竭的善德力量。第三句則以「告汝要言無別事」的方式，表明此禱文已經無需再添其他言語，意即這段福氣已足夠"
+  }
+}

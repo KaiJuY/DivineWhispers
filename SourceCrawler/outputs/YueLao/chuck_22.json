@@ -1,0 +1,20 @@
+{
+  "id": 22,
+  "title": "月老聖籤一百籤第二十二籤",
+  "subtitle": "",
+  "fortune": "上上",
+  "poem": "久旱逢甘雨，他鄉遇故知；洞房花燭夜，金榜題名時。",
+  "analysis": {
+    "zh": "這首詩的主題是關於順遂與圓滿。首句描寫長久乾旱後突然降下甘甜的雨，暗示事業或情感的突發好運。次句中的「他鄉遇故知」說明不管身處何地，舊友相聚仍能帶來溫暖與支持。接著的「洞房花燭夜」以新婚之夜的燭光象徵情感的純潔與喜悅，暗含婚姻中的和諧與美好。最後一句「金榜題名時」則把學業成就納入其中，表明個人在學術或職業上也將取得佳績。整首詩以四個畫面構成，既描繪了婚姻喜悅，也突顯了學術突破，呈現一幅多重成功、喜事連連的吉祥景象。",
+    "en": "This poem's theme is the smoothness and completeness of life. The first line describes the sudden sweet rain after a long drought, hinting at unexpected good fortune in career or affection. The second line, 'meeting an old acquaintance in another country,' indicates that no matter where one is, the warmth and support of a longtime friend will come. The following 'the night of the wedding with candles' symbolizes the purity and joy of feelings, implying harmony and beauty in marriage. Finally, 'the time of ranking on the examination list' brings academic success into the picture, indicating that the individual will also achieve excellence in study or profession. The poem uses four images, depicting marriage happiness and academic breakthroughs, presenting a scene of multiple successes and continuous joy, a favorable auspice.",
+    "jp": "この詩のテーマは人生のスムーズさと完結さです。最初の行は長い干ばつの後に突然降る甘い雨を描き、キャリアや感情の予期しない幸運を示唆しています。次の行の「他国で旧友に会う」は、どこにいても長年の友人の温かさと支援がもたらされることを示しています。「花火の夜の洞房」では、結婚式の夜のキャンドルの光が感情の純粋さと喜びを象徴し、結婚の調和と美しさを暗示しています。最後に「試験リストに名前が載る時」は、学術的な成功を含め、個人が学業や職業で卓越性を達成することを示しています。詩は四つのイメージを使い、結婚の幸せと学術的な突破を描き、複数の成功と継続的な喜びの風景を提示しています。",
+    "reference": "《金瓶梅》"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a harmonious convergence of personal milestones—marital bliss, rekindled friendships, and academic success—that together paint a portrait of comprehensive fortune. The imagery of sudden rainfall after a prolonged drought signals an unexpected shift from hardship to abundance, while the reunion with an old acquaintance in a foreign land underscores the enduring power of relational bonds. The candlelit wedding night evokes intimacy and the sanctity of new commitment, and the appearance of one’s name on the official ranking list signifies professional recognition and personal validation.\n\n1. **Health**: The sudden rain after a long drought symbolizes renewal and rejuvenation, suggesting that any health setbacks may soon resolve and vitality will be restored. 2. **Love and Relationships**: The wedding candle scene highlights deep affection and harmony, encouraging partners to nurture trust, mutual respect, and emotional openness. 3. **Career and Ambition**: The mention of a name on the ranking list points to professional competence, hinting that hard work will be acknowledged and advancement is likely. 4. **Wealth and Finances**: While not explicitly financial, the overall sense of abundance and achievement implies that opportunities for economic stability and growth will emerge. 5. **Family and Harmony**: Reuniting with an old friend in a new place reflects strong family or kinship ties, reminding one to cherish long‑term bonds and maintain peaceful home life. 6. **Social Connections and Reputation**: The poem’s depiction of public success (rank list) and personal joy (wedding) suggests that a balanced reputation—both socially and professionally—will flourish, fostering mutual support and respect within one’s community.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 13:50:56",
+    "source_file": "chuck_22.json",
+    "raw_llm_response_preview": "{\"id\":22,\"title\":\"月老聖籤一百籤第二十二籤\",\"subtitle\":\"\",\"fortune\":\"上上\",\"poem\":\"久旱逢甘雨，他鄉遇故知；洞房花燭夜，金榜題名時。\",\"analysis\":{\"zh\":\"這首詩的主題是關於順遂與圓滿。首句描寫長久乾旱後突然降下甘甜的雨，暗示事業或情感的突發好運。次句中的「他鄉遇故知」說明不管身處何地，舊友相聚仍能帶來溫暖與支持。接著的「洞房花燭夜」以新婚之夜的燭光象徵情感的純潔與喜悅，暗含婚姻中的和諧與美好。最後一句「金榜題名時」則把學業成就納入其中，表明個人在學術或職業上也將取得佳績。整首詩以四個畫面構成，既描繪了婚姻喜悅，也突顯了學術"
+  }
+}

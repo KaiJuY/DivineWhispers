@@ -1,0 +1,20 @@
+{
+  "id": 24,
+  "title": "天后宮一百籤第二十四籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "共道今年勝舊年、家門氣象覺熙恬、勤君得隴莫望蜀、却省中懷似火煎。",
+  "analysis": {
+    "zh": "这首詩的主題是關於對過去與現在的對照與自我心境的映照。詩中以“共道今年勝舊年”指出新的一年在成就與氣氛上均有進步，家門氣象顯得熙恬安寧；“勤君得隴莫望蜀”則暗示只要努力於當下，便可獲得豐碩成果，不必羨慕他地。最後“却省中懷似火煎”提醒心中雖滿足，仍有激烈渴望，需調節內心平衡，以免焦躁。整體而言，詩歌勉勵人們在現實中奮進的同時，保持內在平和與自我調適。",
+    "en": "This poem's theme is a reflection on the contrast between past and present, and the internal state of the self. The line \"共道今年勝舊年\" suggests that the new year brings greater achievements and a calmer atmosphere, with the family home appearing bright and peaceful. \"勤君得隴莫望蜀\" indicates that diligent effort in the present yields rich results, and there is no need to envy distant places. Finally, \"却省中懷似火煎\" reminds us that, even though we feel satisfied, there is still a fierce longing inside; we must adjust our inner balance to avoid agitation. Overall, the poem encourages people to strive in reality while maintaining inner peace and self‑adjustment.",
+    "jp": "This poem's theme is about comparing past and present and reflecting inner feelings. The line \"共道今年勝舊年\" expresses that this year is better than last year in terms of achievements and atmosphere, with the family feeling bright and calm. \"勤君得隴莫望蜀\" means that hard work in the present yields fruitful results, and there is no need to long for distant lands. Lastly, \"却省中懷似火煎\" reminds that, though content, there remains a burning desire inside, so one must adjust inner balance to avoid restlessness. In total, the poem urges us to pursue progress in reality while keeping inner harmony and self‑regulation.",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that personal growth and fulfillment come from diligent effort, comparing one’s present state to the past, and managing inner restlessness to maintain harmony. Health: The poem subtly hints at the importance of inner calm; just as the home atmosphere is described as \"熙恬\", one’s physical wellbeing benefits from a peaceful mind. Love and Relationships: The imagery of a bright, harmonious household suggests that nurturing a calm, supportive environment strengthens bonds and fosters mutual understanding. Career and Ambition: The line \"勤君得隴莫望蜀\" emphasizes that sustained hard work in the current realm yields fruitful results, encouraging focus on present responsibilities rather than longing for distant opportunities. Wealth and Finances: By highlighting the benefits of diligence over envy, the poem advises prudent financial stewardship and the avoidance of speculative pursuits. Family and Harmony: The depiction of a calm family setting underscores the value of maintaining harmony at home, reminding that stability is rooted in collective contentment. Social Connections and Reputation: The poem implies that a tranquil inner state enhances one’s social interactions, fostering a reputation of reliability and composure, while preventing the restlessness that could tarnish public perception.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:21:48",
+    "source_file": "chuck_24.json",
+    "raw_llm_response_preview": "{\"id\":24,\"title\":\"天后宮一百籤第二十四籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"共道今年勝舊年、家門氣象覺熙恬、勤君得隴莫望蜀、却省中懷似火煎。\",\"analysis\":{\"zh\":\"这首詩的主題是關於對過去與現在的對照與自我心境的映照。詩中以“共道今年勝舊年”指出新的一年在成就與氣氛上均有進步，家門氣象顯得熙恬安寧；“勤君得隴莫望蜀”則暗示只要努力於當下，便可獲得豐碩成果，不必羨慕他地。最後“却省中懷似火煎”提醒心中雖滿足，仍有激烈渴望，需調節內心平衡，以免焦躁。整體而言，詩歌勉勵人們在現實中奮進的同時，保持內在平和與自我調適。\",\"en\""
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": 51,
+  "title": "月老聖籤一百籤第五十一籤",
+  "subtitle": "",
+  "fortune": "上上大吉",
+  "poem": "雲從龍，風從虎，聖人作而萬物覩。",
+  "analysis": {
+    "zh": "這首詩的主題是天地運勢與順應之道。雲隨龍而翔，風隨虎而振，象徵高壓與勢力相互呼應；聖人以淡定之心，順勢而作，從而使萬物皆顯。此詩暗示，若能掌握自然之勢，順其所長，則可達成事業之成功與心安。龍象徵創造力與高昂氣勢，虎代表堅固勢力。雲與風皆為順勢而動，提醒人們在變幻莫測的環境中保持靈活與適應，方能與天地相合。",
+    "en": "This poem's theme is the path of aligning with the forces of heaven and earth. Clouds follow the dragon, and wind follows the tiger, symbolizing the interaction of powerful currents; the sage, with a calm heart, acts in accordance with these forces, making all things visible. The poem suggests that by mastering the natural flow and following one’s own strengths, one can achieve career success and inner peace. The dragon represents creativity and soaring spirit, while the tiger embodies firm power. Clouds and wind both move with the prevailing currents, reminding people to remain flexible and adaptable in a changing environment, thereby harmonizing with heaven and earth.",
+    "jp": "この詩のテーマは天地の運勢と順応の道である。雲は龍に従い、風は虎に従うことは、強力な流れの相互作用を象徴する。聖人は落ち着いた心で、これらの力に従い行動し、すべてのものを顕わさせる。詩は、自然の流れを把握し、自らの長所に従うことで、事業の成功と内面の安らぎを達成できると示唆している。龍は創造力と高揚する精神を、虎は堅固な力を表す。雲と風はともに主導的な流れに従って動き、変わりゆく環境の中で柔軟で適応力を保ち、天地と調和することを人々に思い起こさせる。",
+    "reference": "雲從龍，風從虎，聖人作而萬物覩。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that success is achieved by aligning with the natural flow of powerful forces—represented by the dragon and the tiger—and by acting with the calm composure of a sage. The clouds followingguest dragon and the wind following the tiger suggest that even the most subtle elements are guided by the dominant currents of power. When a wise person harnesses these currents without force, all aspects of creation become visible, symbolizing the manifestation of one's efforts into tangible results. This passage encourages readers to observe the larger patterns around them, adapt flexibly, and pursue their goals with humility and patience.\n\n1. Health: The poem underscores the importance of attuning one's body to natural rhythms. By following the fluidity of clouds and the steady pace of wind, one cultivates balance and resilience, reducing stress and promoting overall well‑being.\n\n2. Love and Relationships: Harmony in relationships mirrors the synergy between dragon and tiger. When partners listen to each other's strengths and move in complementary directions, mutual understanding deepens, fostering lasting affection.\n\n3. Career and Ambition: Success comes from recognizing the prevailing forces in one's industry and aligning strategies accordingly. A career path that respects market momentum, like a sage following wind, yields steady progress and accomplishment.\n\n4. Wealth and Finances: Fiscal prudence is likened to the clouds’ lightness and the wind’s unobtrusiveness. Wise investors heed market currents rather than impose force, thereby accumulating wealth sustainably and avoiding volatility.\n\n5. Family and Harmony: Family unity thrives when members adapt to shared rhythms, just as the poem illustrates natural harmony. By respecting each other's roles and supporting collective growth, the household remains peaceful and prosperous.\n\n6. Social Connections and Reputation: Public standing grows when one's conduct aligns with societal currents. Demonstrating calm, thoughtful action—akin to the sage’s response to wind and cloud—builds a reputation for reliability and grace.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:09:47",
+    "source_file": "chuck_51.json",
+    "raw_llm_response_preview": "{\n  \"id\": 51,\n  \"title\": \"月老聖籤一百籤第五十一籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上上大吉\",\n  \"poem\": \"雲從龍，風從虎，聖人作而萬物覩。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是天地運勢與順應之道。雲隨龍而翔，風隨虎而振，象徵高壓與勢力相互呼應；聖人以淡定之心，順勢而作，從而使萬物皆顯。此詩暗示，若能掌握自然之勢，順其所長，則可達成事業之成功與心安。龍象徵創造力與高昂氣勢，虎代表堅固勢力。雲與風皆為順勢而動，提醒人們在變幻莫測的環境中保持靈活與適應，方能與天地相合。\",\n    \"en"
+  }
+}

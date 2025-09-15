@@ -1,0 +1,20 @@
+{
+  "id": 84,
+  "title": "月老聖籤一百籤第八十四籤",
+  "subtitle": "",
+  "fortune": "上上大吉",
+  "poem": "得其所哉，得其所哉。",
+  "analysis": {
+    "zh": "這首詩的主題是對命運與婚姻之適配與選擇。詩句『得其所哉，得其所哉』強調把握機遇、與所屬之人相守，暗示人應在對的時候、對的地方安定。作者認為此乃人生的最佳安排，若能即時決斷，便能得到穩定與和諧；若延遲，則可能失去機會。整體訊息鼓勵求子者勿畏懼承諾，應勇於追尋心中所屬，並以真誠對待彼此，才能建立長久幸福。在此詩中，『得其所』同時暗含自我實現與共同生活的理想。若能與合適之人共度歲月，則能在彼此支持中成長；若不慎失去此機，則易陷於孤立。此籤提示，婚姻不只是情感的結合，更是人生選擇的結果。",
+    "en": "This poem's theme is the compatibility and choice of fate and marriage. The line \"Be content, be content\" emphasizes seizing opportunities and staying with the one you belong to, suggesting that one should find stability at the right time and place. The author believes this is the best arrangement in life; if one decides promptly, one will achieve stability and harmony; if delayed, one may lose the chance. Overall, the message encourages those seeking a child not to fear commitments, to boldly pursue the one in their heart, and to treat each other sincerely in order to build lasting happiness. In this poem, \"Be content\" simultaneously implies the ideal of self-fulfillment and shared life. If one can spend years with a suitable person, one will grow with mutual support; if one fails to seize this opportunity, one will easily fall into isolation. This fortune card reminds us that marriage is not just an emotional union but the result of life choices.",
+    "jp": "この詩のテーマは、運命と結婚の適合性と選択に関する理想を示しています。『得其所哉、得其所哉』という句は、機会をつかみ、属する者と共に安定を築くべきであると暗示し、適切な時期と場所での安定を求めます。作者はこれを人生で最高の配置とみなし、即座に決断すれば安定と和諧を得られ、遅れると機会を失う可能性があると考えます。全体として、子どもを望む者に対し、約束を恐れず、心の属する者を大胆に追い求め、互いに誠実に対し、長久の幸福を築くことを促します。この詩において、『得其所』は自己実現と共同生活の理想を暗示しています。適切な相手と年を共にすれば、互いに支え合い成長でき、機会を逃すと孤立しやすくなります。この運命カードは、結婚は感情的な結合だけでなく、人生の選択の結果であると示唆しています。",
+    "reference": "《宋明》《四書章句集注》《孟子集注》《萬章章句上》"
+  },
+  "rag_analysis": "According to the poem, the core meaning is that the ideal of harmonious marriage is achieved by recognizing and seizing the right moment and place, aligning oneself with the appropriate partner, and committing sincerely to mutual growth. \n1. Health: The poem indirectly encourages mental and emotional well-being through the stability of committed relationships; staying in the right partnership supports resilience against stress. \n2. Love and Relationships: It highlights that love flourishes when both parties recognize their compatibility and act decisively; hesitation can lead to missed connections. \n3. Career and Ambition: By fostering a stable personal foundation, individuals can pursue professional goals with clarity and confidence, avoiding distraction. \n4. Wealth and Finances: A harmonious partnership reduces financial strain by sharing resources and making joint financial decisions, promoting economic stability. \n5. Family and Harmony: The emphasis on shared life and mutual support translates into nurturing family environments where children thrive. \n6. Social Connections and Reputation: Maintaining reliable relationships enhances social standing and cultivates a reputation of reliability and commitment.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:31:56",
+    "source_file": "chuck_84.json",
+    "raw_llm_response_preview": "{\n  \"id\": 8,\n  \"title\": \"八八得其所\",\n  \"subtitle\": \"\",\n  \"fortune\": \"大吉\",\n  \"poem\": \"得其所哉，得其所哉；若能與合適之人相守，並以真誠對待彼此，才能建立長久幸福。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是對命運與婚姻之適配與選擇。詩句『得其所哉，得其所哉』強調把握機遇、與所屬之人相守，暗示人應在對的時候、對的地方安定。作者認為此乃人生的最佳安排，若能即時決斷，便能得到穩定與和諧；若延遲，則可能失去機會。整體訊息鼓勵求子者勿畏懼承諾，應勇於追尋心中所屬，並以真誠對待彼此，才能建立長久幸福。"
+  }
+}

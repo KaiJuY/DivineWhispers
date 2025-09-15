@@ -1,0 +1,20 @@
+{
+  "id": 58,
+  "title": "月老聖籤一百籤第五十八籤",
+  "subtitle": "",
+  "fortune": "中",
+  "poem": "膾炙所同好，羊棗所獨也。",
+  "analysis": {
+    "zh": "這首詩的主題是關於個人喜好與人際相遇之間的差異與相對寬容。詩中以『膾炙所同好，羊棗所獨也』為主線，暗示大眾對美味之熱衷是共通的，而特定的喜好則屬於個體的獨特選擇。作者以食物作比，表明在婚姻、友誼或合作中，雖有共同喜好，但也存在無法統一的個人特質。詩意在提醒人們尊重差異、擁抱多元，避免因追求一致而忽略個體的價值。",
+    "en": "This poem's theme is about the difference between personal preferences and interpersonal encounters, and the tolerance between them. The line '膾炙所同好，羊棗所獨也' indicates that the general enthusiasm for delicious food is common, while specific tastes belong to individual uniqueness. The author uses food as a metaphor to suggest that in marriage, friendship, or collaboration, although there are shared likes, there are also individual traits that cannot be unified. The poem reminds us to respect differences, embrace diversity, and avoid overlooking individual value by seeking uniformity.",
+    "jp": "この詩のテーマは、個人の好みと対人関係の相違点、そして相互の寛容についてです。『膾炙所同好，羊棗所獨也』という行は、一般的な美味しい食べ物への熱意が共通している一方で、特定の好みは個体の独自性に属することを示しています。作者は食べ物を比喩として使い、結婚・友情・協力において、共通の好みがあるものの、統一できない個人特性も存在することを示唆しています。この詩は、差異を尊重し、多様性を受け入れ、一致を追求しすぎて個々の価値を見失わないようにすることを促しています。",
+    "reference": "《孟子》《盡心下》公孫丑曰：「然則曾子何為食膾炙而不食羊棗？」公孫丑曰：「然則曾子何為食膾炙而不食羊棗？」"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a reflection on how shared interests coexist with unique personal preferences, urging readers to appreciate individual differences and maintain harmony within relationships. The poet uses the imagery of popular dishes and a singular delicacy to illustrate the balance between common tastes and individualized choices. This metaphor extends beyond culinary contexts to encompass broader human interactions such as love, work, and community life.\n\n1. Health: The poem reminds us that while communal activities promote collective well‑being, personalized health choices—diet, exercise, rest—must be respected. A balanced life requires both social engagement and individual care.\n\n2. Love and Relationships: The line highlights that couples may share common interests yet maintain distinct personalities. Successful partnerships honor both shared values and personal uniqueness, fostering mutual respect.\n\n3. Career and Ambition: In professional settings, collaboration thrives when team members recognize both common goals and individual strengths. Balancing shared objectives with personal aspirations drives innovation.\n\n4. Wealth and Finances: The metaphor encourages financial decisions that consider collective goals—like community projects—and personal savings plans, ensuring both group stability and individual security.\n\n5. Family and Harmony: Families often have shared traditions, but each member has personal likes and dislikes. Embracing these differences strengthens familial bonds and reduces conflict.\n\n6. Social Connections and Reputation: Public image is built on common values, yet authentic individuality distinguishes one from another. Maintaining a reputation that reflects both shared morals and personal uniqueness cultivates genuine social influence.\n\nOverall, the poem serves as a timeless reminder that harmony arises from recognizing and honoring both the communal and the personal aspects of human experience.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:12:54",
+    "source_file": "chuck_58.json",
+    "raw_llm_response_preview": "{\"id\":58,\"title\":\"月老聖籤一百籤第五十八籤\",\"subtitle\":\"\",\"fortune\":\"中\",\"poem\":\"膾炙所同好，羊棗所獨也。\",\"analysis\":{\"zh\":\"這首詩的主題是關於個人喜好與人際相遇之間的差異與相對寬容。詩中以『膾炙所同好，羊棗所獨也』為主線，暗示大眾對美味之熱衷是共通的，而特定的喜好則屬於個體的獨特選擇。作者以食物作比，表明在婚姻、友誼或合作中，雖有共同喜好，但也存在無法統一的個人特質。詩意在提醒人們尊重差異、擁抱多元，避免因追求一致而忽略個體的價值。\",\"en\":\"This poem's theme is about the diffe"
+  }
+}

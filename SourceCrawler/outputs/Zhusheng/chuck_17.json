@@ -1,0 +1,20 @@
+{
+  "id": 17,
+  "title": "註生娘娘三十籤第十七籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "兩年不豐登,今年見太平,久仇寃未改,禍去福重迎。",
+  "analysis": {
+    "zh": "這首詩的主題是描述一年中的變遷與福祿。詩中先說「兩年不豐登」顯示前段時間財富與成果不足；接著「今年見太平」表明今年將迎來安定與平和。後半部「久仇寃未改」提醒仍有舊怨未消，可能帶來不安；最後「禍去福重迎」則以逆境為契機，祸終將消除，福祿將重新到來。整首詩以時間推移為脈絡，從困頓到安泰，再轉向未解之怨與最終的福報，傳達的是雖有波折，但命運仍可逆轉，需以正面態度迎接。",
+    "en": "This poem's theme is the depiction of changes and fortunes over a year. It begins with 'two years have not been fruitful', indicating a period of scarcity and lack of success; then 'this year sees peace', suggesting an upcoming calm and stability. The latter part, 'old grudges remain unresolved', reminds that lingering resentments may cause unease; finally 'misfortune leaves, fortune returns', turning adversity into an opportunity, with misfortune ending and blessings restored. The entire poem uses the passage of time as a thread, moving from hardship to tranquility, then to unresolved grievances and ultimately to renewed blessings, conveying that despite setbacks, destiny can reverse, and one must face it with a positive attitude.",
+    "jp": "この詩のテーマは、年を通じた変化と福運の描写です。まず「二年間豊かにいられなかった」とあり、前の期間に財産や成果が不足していたことを示しています。続いて「今年は平和を見る」と、今年は安定と平和が訪れることを示唆しています。後半では「長い仇がまだ改らず」と、過去の恨みが解消されていないことが不安をもたらす可能性を警告します。最後に「災いは去り、福は重く戻る」と、逆境が転機となり、災いが消えて福が再び訪れることを意味しています。全体として時間の流れを糸口に、苦境から安らぎへ、そして未解決の恨みから最終的に祝福へと進む構造で、挫折があっても運命は逆転し得ること、そして前向きに受け止めるべきだと伝えています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that a period of scarcity and unresolved grievances can give way to peace, prosperity, and a renewed sense of fortune when approached with patience and resilience. The four lines progress from a two‑year lack of abundance, to a present year of calm, to a lingering old hatred that has not yet been healed, and finally to the disappearance of misfortune and the re‑arrival of blessings. The structure underscores that while adversity may linger, time and a willingness to let go can transform hardships into a hopeful future.\n\n1. Health: The poem suggests that periods of hardship, like the two years of lack, can be seen as a testing ground for resilience. By maintaining patience, one can ultimately reach a state of peace, signifying improved well‑being and reduced stress.\n\n2. Love and Relationships: The unresolved grudge highlighted in the poem implies that lingering conflicts can negatively affect relationships. Resolving such tensions can bring about harmony and emotional balance.\n\n3. Career and Ambition: The phrase “two years not fruitful” warns that professional progress may stall. However, the subsequent “peace” indicates a forthcoming period of stability, encouraging persistence and strategic planning for long‑term success.\n\n4. Wealth and Finances: The poem explicitly contrasts scarcity with forthcoming prosperity. It advises careful management during lean times, as this will set the stage for future gains once the misfortune has faded.\n\n5. Family and Harmony: The reference to old grudges underscores the importance of addressing family disputes. When these are reconciled, the family unit can experience renewed blessings and unity.\n\n6. Social Connections and Reputation: The shift from adversity to blessings illustrates that a reputation tarnished by conflict can recover. Maintaining integrity during difficult times paves the way for restored trust and social respect.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:44:43",
+    "source_file": "chuck_17.json",
+    "raw_llm_response_preview": "{\n  \"id\": 17,\n  \"title\": \"註生娘娘三十籤第十七籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"\",\n  \"poem\": \"兩年不豐登,今年見太平,久仇寃未改,禍去福重迎。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是描述一年中的變遷與福祿。詩中先說「兩年不豐登」顯示前段時間財富與成果不足；接著「今年見太平」表明今年將迎來安定與平和。後半部「久仇寃未改」提醒仍有舊怨未消，可能帶來不安；最後「禍去福重迎」則以逆境為契機，祸終將消除，福祿將重新到來。整首詩以時間推移為脈絡，從困頓到安泰，再轉向未解之怨與最終的福報，傳達的是"
+  }
+}

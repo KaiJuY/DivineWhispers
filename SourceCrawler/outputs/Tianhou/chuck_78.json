@@ -1,0 +1,20 @@
+{
+  "id": 78,
+  "title": "天后宮一百籤第七十八籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "龍宮貝闕最莊嚴、君去行商趁一航、財積如山人共羨、到家正值燕呢喃。",
+  "analysis": {
+    "zh": "這首詩的主題是對於商機與財運的洞察，以及在旅途中與家園之間的平衡。詩中以龍宮的莊嚴象徵高貴與命運的召喚，隨即敘述君子趁著航行之際出行，寓意把握時機。財積如山，暗示因勤勞與慧眼而聚財，令旁人羨慕。最後提及到家正值燕子呢喃，寓意歸來之際得到家人與自然的和諧，象徵收穫與安寧。整體上此詩提醒人們，成功需同時把握市場機會與內心平衡，並在適時歸鄉與家人相聚，才能獲得長遠的福祉。",
+    "en": "This poem's theme is the insight into business opportunities and wealth, as well as the balance between the journey and home life. The poem uses the solemnity of the Dragon Palace to symbolize nobility and destiny’s call, then describes the gentleman setting out on a voyage, implying the importance of seizing the right moment. The wealth is likened to a mountain, suggesting that diligent work and keen insight bring abundance, which arouses the envy of others. Finally, the arrival at home coincides with the chirping of swallows, signifying harmony with family and nature upon return, symbolizing harvest and peace. Overall, the poem reminds us that success requires both seizing market opportunities and maintaining inner equilibrium, and that timely return to one’s hometown and family leads to lasting well‑being.",
+    "jp": "この詩のテーマは、商機と財運への洞察、および旅と家の間のバランスにあります。詩は龍宮の荘厳さを高貴と運命の呼び声の象徴として用い、続いて商人が航海の機会を利用して出発する様子を描写し、タイミングを掴む重要性を示しています。財は山のように積もり、勤勉と鋭い洞察が豊かさをもたらすことを暗示し、他者の羨望を呼びます。最後に、家に到着したときに燕のさえずりが聞こえると、帰還と家族や自然との調和が示され、収穫と平和を象徴します。全体として、詩は成功が市場機会を掴むことと内なるバランスを保つことの両方を要求し、タイムリーに故郷や家族と再会することで長期的な幸福を得られると示唆しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that success in life comes from a balanced integration of seizing market opportunities, accumulating wealth through diligent effort, and returning home to enjoy harmony with family and nature. The dragon palace symbolizes nobility and destiny, while the traveler’s voyage suggests timely action and the importance of timing in business. The mountain‑like wealth indicates sustainable financial growth that can inspire envy. The arrival coinciding with the swallows’ chatter underscores the value of homecoming and the serenity that follows a period of prosperity.\n\n1. Health: The poem implies that prosperity is achieved without sacrificing personal well‑being. By balancing work with time at home, one avoids the burnout that can accompany relentless pursuit of wealth.\n\n2. Love and Relationships: Returning home during the swallows’ song hints at nurturing family bonds. The harmony between business success and family life encourages emotional stability and mutual support.\n\n3. Career and Ambition: The traveler’s prompt departure during the voyage highlights the necessity of recognizing and acting upon timely opportunities. Ambition, coupled with strategic timing, leads to career advancement.\n\n4. Wealth and Finances: The metaphor of wealth as a mountain emphasizes accumulation through consistent effort and wise decisions. Such steady growth can become a source of admiration and secure financial footing.\n\n5. Family and Harmony: The arrival at home while the swallows sing portrays a serene, supportive environment. It suggests that familial support plays a vital role in sustaining long‑term prosperity.\n\n6. Social Connections and Reputation: By gathering wealth that draws others’ envy, the narrator demonstrates a strong reputation. The poem underscores the value of maintaining respectful social ties while advancing personal goals.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:56:00",
+    "source_file": "chuck_78.json",
+    "raw_llm_response_preview": "{\"id\":78,\"title\":\"天后宮一百籤第七十八籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"龍宮貝闕最莊嚴、君去行商趁一航、財積如山人共羨、到家正值燕呢喃。\",\"analysis\":{\"zh\":\"這首詩的主題是對於商機與財運的洞察，以及在旅途中與家園之間的平衡。詩中以龍宮的莊嚴象徵高貴與命運的召喚，隨即敘述君子趁著航行之際出行，寓意把握時機。財積如山，暗示因勤勞與慧眼而聚財，令旁人羨慕。最後提及到家正值燕子呢喃，寓意歸來之際得到家人與自然的和諧，象徵收穫與安寧。整體上此詩提醒人們，成功需同時把握市場機會與內心平衡，並在適時歸鄉與家人相聚，才能獲得長遠的福"
+  }
+}

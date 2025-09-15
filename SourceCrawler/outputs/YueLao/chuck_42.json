@@ -1,0 +1,20 @@
+{
+  "id": 42,
+  "title": "月老聖籤一百籤第四十二籤",
+  "subtitle": "",
+  "fortune": "上",
+  "poem": "投我以木桃，報之以瓊瑤。",
+  "analysis": {
+    "zh": "這首詩的主題是以誠實與善意互相回報的道理。作者以「投我以木桃，報之以瓊瑤」的句式，比喻他人對自己的善意行為，應以同等真摯回應。木桃象徵質樸的禮物，而瓊瑤則代表珍貴的回報，暗示回贈的質量須與原禮相稱。詩中強調的是「一己之待人以誠，將得善果者無疑」，顯示誠實待人所帶來的善果是不可否認的。最後提到「必守之人之守則也」，提醒人們在行善時亦需堅守原則，才能獲得長久之益。",
+    "en": "This poem's theme is the principle of reciprocating kindness with sincerity. The author uses the line “投我以木桃，報之以瓊瑤” to compare a generous act with an equally genuine return. The wooden peach symbolizes a modest offering, while the jade pearl represents a precious response, implying that the return must match the quality of the original gift. The poem stresses that “one who treats others sincerely will certainly reap good fruits”, illustrating the undeniable benefits of honest conduct. Finally, it reminds us that those who guard their principles while doing good will enjoy lasting benefits.",
+    "jp": "この詩のテーマは、誠実さと善意を互いに返すことの原理です。作者は「投我以木桃、報之以瓊瑤」という句を用いて、他者からの親切な行為に対して同等の誠実な返礼を示します。木桃は質素な贈り物を象徴し、瓊瑤は貴重な返礼を表し、返礼の質は元の贈り物に相当するべきであることを示唆しています。詩は「一己之待人以誠、將得善果者無疑」と強調し、正直な人は善い結果を得られることを示します。最後に「必守之人之守則也」と述べ、善行を行う際に原則を守るべきだと警告しています。",
+    "reference": "《詩經》《國風》  《衛風》《木瓜》投我以木桃、報之以瓊瑤。匪報也、永以為好也。"
+  },
+  "rag_analysis": "According to the poem, the core meaning is a concise expression of reciprocity and sincerity in human interactions. By juxtaposing the modest wooden peach with the precious jade pearl, the verse illustrates that kindness should be met with equal genuine regard. It emphasizes that honest intent produces positive outcomes and that maintaining steadfast principles is essential for enduring benefit.\n\n1. Health\nA sincere heart fosters emotional well‑being. When one responds with genuine care, stress levels diminish and a sense of inner calm is nurtured. Consistent reciprocity can also encourage healthier lifestyle choices.\n\n2. Love and Relationships\nThe principle of mutual return strengthens bonds. Expressing affection with genuine intent deepens trust and intimacy. Couples who honor this balance experience more resilience during conflicts.\n\n3. Career and Ambition\nProfessional success thrives on honest collaboration. By offering sincere support, one gains goodwill and collaborative opportunities. This reciprocity paves the way for promotions and recognition.\n\n4. Wealth and Finances\nFinancial prosperity is linked to fair dealings. Treating partners with honesty attracts equitable transactions. Long‑term wealth is secured when generosity is paired with measured reciprocity.\n\n5. Family and Harmony\nFamily cohesion benefits from equal reciprocity. Parents who respond to children with genuine appreciation reinforce mutual respect. Such balance cultivates a harmonious home environment.\n\n6. Social Connections and Reputation\nReputation is built on consistent sincerity. Public interactions that reflect genuine reciprocity enhance social standing. This fosters trust and invites new relationships within the community.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 14:03:12",
+    "source_file": "chuck_42.json",
+    "raw_llm_response_preview": "```json\n{\n  \"id\": 42,\n  \"title\": \"月老聖籤一百籤第四十二籤\",\n  \"subtitle\": \"\",\n  \"fortune\": \"上\",\n  \"poem\": \"投我以木桃，報之以瓊瑤。\",\n  \"analysis\": {\n    \"zh\": \"這首詩的主題是以誠實與善意互相回報的道理。作者以「投我以木桃，報之以瓊瑤」的句式，比喻他人對自己的善意行為，應以同等真摯回應。木桃象徵質樸的禮物，而瓊瑤則代表珍貴的回報，暗示回贈的質量須與原禮相稱。詩中強調的是「一己之待人以誠，將得善果者無疑」，顯示誠實待人所帶來的善果是不可否認的。最後提到「必守之人之守則也」，提醒人們在"
+  }
+}

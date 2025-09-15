@@ -1,0 +1,20 @@
+{
+  "id": 65,
+  "title": "天后宮一百籤第六十五籤",
+  "subtitle": "",
+  "fortune": "",
+  "poem": "褻瀆三光造孽多、汝今祈禱嘆無因、欲逃此日風波險、改過虔誠奉斗真。",
+  "analysis": {
+    "zh": "這首詩的主題是對尊敬天道與修身之道的呼喚。詩中先以『褻瀆三光造孽多』警示，對天、地、人三光的輕視會酿成種種不幸與罪惡；隨後以『汝今祈禱嘆無因』呈現因自私或疏忽所致的無奈與悔恨；『欲逃此日風波險』則表明人們在困境中想逃離風波，卻因心中不安而陷入更深的危險；最後以『改過虔誠奉斗真』勸人回歸正道，虔誠修行、奉行真理，才能化解災禍、重建安寧。整體而言，詩意在於提醒人心若偏離道德與正義，則自招祸患；唯有悔改、修身、真誠，方能脫離痛苦、迎向光明。",
+    "en": "This poem's theme is a call to respect the divine order and cultivate moral rectitude. It warns that 'insulting the Three Lights brings many sins,' indicating that disrespecting the heavenly, earthly, and human principles will generate misfortune and guilt. The line 'you now pray and lament without cause' reflects the helplessness and remorse caused by selfishness or negligence. 'Desiring to escape today's stormy danger' shows that people, in adversity, try to flee but due to inner unease end up in deeper peril. Finally, 'rectify, sincerely devote to the truth' urges returning to the righteous path, sincerely practicing and embracing truth to dissolve calamities and restore peace. Overall, the poem reminds us that deviating from morality and justice invites disaster; only through repentance, cultivation, and sincerity can we escape suffering and welcome light.",
+    "jp": "この詩のテーマは、天道への敬意と修身の重要性を訴えることです。『三光を冒涜すれば多くの罪が生まれる』と警告し、天・地・人の三光を軽視すると不運と罪悪が生じることを示しています。『今、祈り苦しんで理由がない』は、利己的あるいは怠慢から生じる無力感と後悔を表します。『今日の風波から逃れたい』は、困難に直面して逃げようとするが、心の不安がさらに危険へと導くことを示しています。最後に『改めて真実を虔実に奉仕せよ』と呼びかけ、正しい道へ戻り、真実を奉じることで災いを解消し安寧を取り戻すことができると説いています。全体として、道徳と正義から逸れれば災いが生じると警告し、悔い改め、修行、真摯な態度で苦痛を脱し光を迎えることができると示唆しています。",
+    "reference": []
+  },
+  "rag_analysis": "According to the poem, the core meaning is that disrespecting divine principles brings misfortune, and sincere repentance coupled with righteous practice can restore harmony. The verses warn that neglect of the Three Lights—heavenly, earthly, and human realms—creates sin and suffering, while longing to escape daily turmoil leads to deeper peril. The remedy offered is a heartfelt return to truth, a call to self-correction and devout practice. \n\n1. **Health** – The poem suggests that moral neglect can manifest as physical ailments; restoring faith and repentance may cleanse spiritual and bodily toxins, leading to renewed vitality. \n\n2. **Love and Relationships** – A disregard for sacred values can strain partnerships; by cultivating sincerity and humility, couples can rebuild trust and foster mutual respect. \n\n3. **Career and Ambition** – Ambition without ethical grounding invites setbacks. Aligning professional pursuits with truth and integrity can bring stability and long‑term success. \n\n4. **Wealth and Finances** – Wealth gained through disrespectful means is unstable; disciplined, honest conduct is advised to secure lasting prosperity. \n\n5. **Family and Harmony** – Family bonds weaken when members act selfishly; sincere repentance and shared devotion can heal rifts and strengthen cohesion. \n\n6. **Social Connections and Reputation** – A reputation tarnished by moral lapses can isolate one socially; returning to righteous behavior and genuine service can restore community respect and influence. In sum, the poem underscores the necessity of aligning actions with divine and moral truths to achieve overall well-being and societal harmony.",
+  "_llm_meta": {
+    "model": "gpt-oss:20b",
+    "timestamp": "2025-09-15 16:46:02",
+    "source_file": "chuck_65.json",
+    "raw_llm_response_preview": "{\"id\":65,\"title\":\"天后宮一百籤第六十五籤\",\"subtitle\":\"\",\"fortune\":\"\",\"poem\":\"褻瀆三光造孽多、汝今祈禱嘆無因、欲逃此日風波險、改過虔誠奉斗真。\",\"analysis\":{\"zh\":\"這首詩的主題是對尊敬天道與修身之道的呼喚。詩中先以『褻瀆三光造孽多』警示，對天、地、人三光的輕視會酿成種種不幸與罪惡；隨後以『汝今祈禱嘆無因』呈現因自私或疏忽所致的無奈與悔恨；『欲逃此日風波險』則表明人們在困境中想逃離風波，卻因心中不安而陷入更深的危險；最後以『改過虔誠奉斗真』勸人回歸正道，虔誠修行、奉行真理，才能化解災禍、重建安寧。整體而言，詩意在於提醒人心若"
+  }
+}
