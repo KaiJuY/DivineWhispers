@@ -884,7 +884,7 @@ const FortuneAnalysisPage: React.FC = () => {
                 </DeityInfo>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px', flexWrap: 'wrap' }}>
                   <FortuneNumber>#{selectedFortuneNumber}</FortuneNumber>
-                  <FortuneLevel>{fortune.poem?.fortune || fortune.fortuneLevel}</FortuneLevel>
+                  <FortuneLevel>{fortune.poem?.fortune || fortune.fortuneLevel || ''}</FortuneLevel>
                 </div>
               </FortuneHeader>
 
@@ -904,13 +904,13 @@ const FortuneAnalysisPage: React.FC = () => {
                   fontSize: '1.1rem',
                   marginBottom: '0'
                 }}>
-                  {t('fortuneAnalysis.subtitle', { number: selectedFortuneNumber, fortuneLevel: fortune.poem?.fortune || fortune.fortuneLevel })}
+                  {t('fortuneAnalysis.subtitle', { number: selectedFortuneNumber, fortuneLevel: fortune.poem?.fortune || fortune.fortuneLevel || '' })}
                 </p>
               </div>
 
               <PoemSection>
                 <PoemTitle>{t('fortuneAnalysis.poemTitle')}</PoemTitle>
-                <PoemText>{fortune.poem?.poem || fortune.poem}</PoemText>
+                <PoemText>{fortune.poem?.poem || ''}</PoemText>
               </PoemSection>
 
               <AnalysisTextSection>

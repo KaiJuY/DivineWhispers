@@ -207,41 +207,49 @@ class PoemService:
     async def get_poem_by_id(self, poem_id: str) -> Optional[PoemData]:
         """
         Get specific poem by ID
-        
+
         Args:
             poem_id: Poem identifier in format "temple_poem_id" or just poem_id
-            
+
         Returns:
             PoemData object or None if not found
         """
         await self.ensure_initialized()
-        
+
         cache_key = f"poem_{poem_id}"
         if cache_key in self.cache:
             return self.cache[cache_key]
-        
+
         try:
             # Parse poem ID
             temple, numeric_id = await self._parse_poem_id(poem_id)
-            
+
             if not temple or not numeric_id:
                 logger.warning(f"Invalid poem ID format: {poem_id}")
                 return None
-            
+
             # Get poem chunks
             poem_chunks = self.rag_handler.get_poem_by_temple_and_id(temple, numeric_id)
-            
+
             if not poem_chunks:
                 logger.warning(f"Poem not found: {temple}#{numeric_id}")
-                return None
-            
+                # Try fallback to direct file reading
+                return await self._try_direct_file_read(temple, numeric_id)
+
             poem_data = await self._create_poem_data_from_chunks(poem_chunks)
-            
+
+            # Validate the analysis structure - if it's corrupted, try direct file read
+            if poem_data and not self._is_analysis_valid(poem_data.analysis):
+                logger.warning(f"Invalid analysis structure for {poem_id}, trying direct file read")
+                direct_data = await self._try_direct_file_read(temple, numeric_id)
+                if direct_data and self._is_analysis_valid(direct_data.analysis):
+                    poem_data = direct_data
+
             # Cache result
             self.cache[cache_key] = poem_data
-            
+
             return poem_data
-            
+
         except Exception as e:
             logger.error(f"Error getting poem by ID {poem_id}: {e}")
             return None
@@ -583,42 +591,94 @@ class PoemService:
         """Create PoemData from poem chunks"""
         if not chunks:
             raise ValueError("No chunks provided")
-        
+
         # Use first chunk for basic info
         chunk = chunks[0]
-        
-        # Reconstruct analysis from multiple chunks if available
+
+        # Initialize analysis with proper structure
         analysis = {"zh": "", "en": "", "jp": ""}
-        
+        poem_text = ""
+
+        # Look for original analysis in the chunk metadata
+        # The original JSON structure should be preserved in chunk metadata
+        if "analysis" in chunk:
+            # If analysis is already structured properly, use it directly
+            original_analysis = chunk["analysis"]
+            if isinstance(original_analysis, dict):
+                analysis.update(original_analysis)
+            elif isinstance(original_analysis, str):
+                # If it's a string, try to parse it as JSON
+                try:
+                    import json
+                    parsed_analysis = json.loads(original_analysis)
+                    if isinstance(parsed_analysis, dict):
+                        analysis.update(parsed_analysis)
+                    else:
+                        # Fallback: put string content in zh field
+                        analysis["zh"] = original_analysis
+                except json.JSONDecodeError:
+                    analysis["zh"] = original_analysis
+
+        # Extract poem text from chunk content
+        if "poem" in chunk:
+            poem_text = chunk["poem"]
+
+        # Look through all chunks for poem text
         for chunk_data in chunks:
             content = chunk_data.get("content", "")
-            language = chunk_data.get("language", "zh")
-            
-            if language in analysis:
-                if analysis[language]:
-                    analysis[language] += "\n\n" + content
-                else:
-                    analysis[language] = content
-        
-        # Extract poem text (assume it's in the content)
-        poem_text = ""
-        for chunk_data in chunks:
-            if "Poem:" in chunk_data.get("content", ""):
-                content_lines = chunk_data["content"].split("\n")
-                for line in content_lines:
-                    if line.startswith("Poem:"):
+
+            # Try to extract poem from content patterns
+            if "Poem:" in content:
+                lines = content.split("\n")
+                for line in lines:
+                    if line.strip().startswith("Poem:"):
                         poem_text = line.replace("Poem:", "").strip()
                         break
-                if poem_text:
-                    break
-        
+            # Try to extract from "詩文:" pattern
+            elif content.startswith("詩文:"):
+                poem_text = content.replace("詩文:", "").strip()
+            # Try to extract array pattern like "['今行到此實難推', ...]"
+            elif content.startswith("['") and content.endswith("']"):
+                poem_text = content
+
+            # If we found poem text, break
+            if poem_text:
+                break
+
+        # Extract analysis from chunks based on content patterns instead of language field
+        if not any(analysis.values()):
+            for chunk_data in chunks:
+                content = chunk_data.get("content", "")
+
+                # Parse analysis by content patterns (more reliable than language field)
+                if content.startswith("ZH Analysis:"):
+                    analysis["zh"] = content.replace("ZH Analysis:", "").strip()
+                elif content.startswith("EN Analysis:"):
+                    analysis["en"] = content.replace("EN Analysis:", "").strip()
+                elif content.startswith("JP Analysis:"):
+                    analysis["jp"] = content.replace("JP Analysis:", "").strip()
+                # Also check for pattern in combined content
+                elif "Analysis:" in content and not content.startswith("RAG Analysis:"):
+                    # Try to detect language from content after "Analysis:"
+                    content_after_analysis = content.split("Analysis:", 1)[1].strip()
+                    if content_after_analysis:
+                        # Simple detection based on character patterns
+                        if any('\u4e00' <= char <= '\u9fff' for char in content_after_analysis[:50]):
+                            if not analysis["zh"]:  # Only if zh is still empty
+                                analysis["zh"] = content_after_analysis
+                        elif any('\u3040' <= char <= '\u30ff' for char in content_after_analysis[:50]):
+                            if not analysis["jp"]:  # Only if jp is still empty
+                                analysis["jp"] = content_after_analysis
+                        elif not analysis["en"]:  # Fallback to English if not detected as CJK
+                            analysis["en"] = content_after_analysis
+
         return PoemData(
             id=f"{chunk['temple']}_{chunk['poem_id']}",
             temple=chunk["temple"],
             poem_id=chunk["poem_id"],
             title=chunk.get("title", ""),
             fortune=chunk.get("fortune", ""),
-            poem=poem_text or chunk.get("content", "")[:200],
+            poem=poem_text or str(chunk.get("poem", "")),
             analysis=analysis
         )
     
@@ -679,6 +739,100 @@ May this ancient wisdom bring clarity to your journey.
         
         return interpretation
     
+    def _is_analysis_valid(self, analysis: Dict[str, str]) -> bool:
+        """Check if analysis structure is valid and contains clean language-specific content"""
+        if not isinstance(analysis, dict):
+            return False
+
+        # Check if analysis has the expected language keys
+        expected_languages = {"zh", "en", "jp"}
+        if not any(lang in analysis for lang in expected_languages):
+            return False
+
+        # Check for contamination patterns in analysis content
+        for lang, content in analysis.items():
+            if not content:
+                continue
+
+            # Look for signs that the content is corrupted/mixed
+            contamination_patterns = [
+                "RAG Analysis:", "According to the poem", "Health –", "Love and Relationships –",
+                "Career and Ambition –", "Wealth and Finances –", "Family and Harmony –",
+                "詩文:", "Title:", "Poem:"
+            ]
+
+            # Allow "Analysis:" prefix since we're parsing it correctly now
+            # But check for the old mixed format patterns
+            if any(pattern in content for pattern in contamination_patterns):
+                return False
+
+            # Check for language-specific contamination
+            if lang == "zh" and any(pattern in content for pattern in ["EN Analysis:", "JP Analysis:"]):
+                return False
+            elif lang == "en" and any(pattern in content for pattern in ["ZH Analysis:", "JP Analysis:"]):
+                return False
+            elif lang == "jp" and any(pattern in content for pattern in ["ZH Analysis:", "EN Analysis:"]):
+                return False
+
+        return True
+
+    async def _try_direct_file_read(self, temple: str, poem_id: int) -> Optional[PoemData]:
+        """Try to read poem data directly from JSON files as fallback"""
+        try:
+            import json
+            from pathlib import Path
+
+            # Try to find the JSON file in SourceCrawler directory
+            source_crawler_path = Path(__file__).parent.parent.parent.parent / "SourceCrawler"
+
+            # Look for the file in multiple possible locations
+            possible_paths = [
+                source_crawler_path / temple / f"chuck_{poem_id}.json",
+                source_crawler_path / "outputs" / temple / f"chuck_{poem_id}.json",
+                source_crawler_path / temple / f"poem_{poem_id}.json",
+                source_crawler_path / "outputs" / temple / f"poem_{poem_id}.json"
+            ]
+
+            for file_path in possible_paths:
+                if file_path.exists():
+                    logger.info(f"Reading poem directly from: {file_path}")
+
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        json_data = json.load(f)
+
+                    # Extract poem text - handle both string and array formats
+                    poem_text = json_data.get("poem", "")
+                    if isinstance(poem_text, list):
+                        poem_text = str(poem_text)  # Keep as string representation of array
+
+                    # Extract analysis - ensure it's properly structured
+                    analysis = json_data.get("analysis", {})
+                    if isinstance(analysis, dict):
+                        # Clean the analysis structure
+                        clean_analysis = {"zh": "", "en": "", "jp": ""}
+                        for lang in ["zh", "en", "jp"]:
+                            if lang in analysis and isinstance(analysis[lang], str):
+                                clean_analysis[lang] = analysis[lang].strip()
+                    else:
+                        clean_analysis = {"zh": str(analysis) if analysis else "", "en": "", "jp": ""}
+
+                    return PoemData(
+                        id=f"{temple}_{poem_id}",
+                        temple=temple,
+                        poem_id=poem_id,
+                        title=json_data.get("title", ""),
+                        fortune=json_data.get("fortune", ""),
+                        poem=poem_text,
+                        analysis=clean_analysis
+                    )
+
+            logger.warning(f"No direct file found for {temple} poem #{poem_id}")
+            return None
+
+        except Exception as e:
+            logger.error(f"Failed to read direct file for {temple} poem #{poem_id}: {e}")
+            return None
+
     async def _create_mock_poem_data(self, temple_preference: Optional[str] = None) -> PoemData:
         """Create mock poem data when real data is unavailable"""
         import random
