@@ -4,7 +4,7 @@ Chat-related Pydantic schemas for API requests and responses
 
 from datetime import datetime
 from typing import Dict, List, Optional, Any
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 from app.models.chat_message import MessageType
 
@@ -51,7 +51,22 @@ class ChatMessageResponse(BaseModel):
     content: str
     metadata: Optional[Dict[str, Any]] = None
     created_at: datetime
-    
+
+    @model_validator(mode='before')
+    @classmethod
+    def map_message_metadata(cls, values):
+        """Map message_metadata from model to metadata for schema"""
+        if hasattr(values, 'message_metadata'):
+            # Handle SQLAlchemy model objects
+            values_dict = values.__dict__.copy() if hasattr(values, '__dict__') else values
+            if 'message_metadata' in values_dict:
+                values_dict['metadata'] = values_dict.get('message_metadata')
+            return values_dict
+        elif isinstance(values, dict) and 'message_metadata' in values:
+            # Handle dict inputs
+            values['metadata'] = values.get('message_metadata')
+        return values
+
     class Config:
         from_attributes = True
         json_schema_extra = {

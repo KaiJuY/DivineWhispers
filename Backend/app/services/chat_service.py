@@ -134,7 +134,7 @@ class ChatService:
             user_id=user_id,
             message_type=message_type,
             content=message_data.content,
-            metadata=message_data.metadata or {}
+            message_metadata=message_data.metadata or {}
         )
         
         db.add(message)
@@ -155,17 +155,39 @@ class ChatService:
         db: AsyncSession
     ) -> tuple[ChatSession, ChatMessage]:
         """Start a new fortune conversation with context"""
-        # Get deity information
-        deity = await deity_service.get_deity_by_id(conversation_data.deity_id)
-        if not deity:
-            raise ValueError("Invalid deity ID")
+        try:
+            logger.info(f"Starting fortune conversation for user {user_id} with deity_id: {conversation_data.deity_id}")
+            # Get deity information
+            deity = await deity_service.get_deity_by_id(conversation_data.deity_id)
+            logger.info(f"Deity service returned: {deity}")
+            if not deity:
+                logger.error(f"Invalid deity ID: {conversation_data.deity_id}")
+                raise ValueError("Invalid deity ID")
+        except Exception as e:
+            logger.error(f"Error in start_fortune_conversation: {e}", exc_info=True)
+            raise
         
         # Get fortune data if specific number provided
         fortune_data = None
         if conversation_data.fortune_number:
-            temple_name = deity_service.get_temple_name(conversation_data.deity_id)
-            poem_id = f"{temple_name}_{conversation_data.fortune_number}"
-            fortune_data = await poem_service.get_poem_by_id(poem_id)
+            try:
+                temple_name = deity_service.get_temple_name(conversation_data.deity_id)
+                poem_id = f"{temple_name}_{conversation_data.fortune_number}"
+                logger.info(f"[DEBUG] Looking for poem: {poem_id}")
+
+                # Check if poem service is available (might not be initialized)
+                if hasattr(poem_service, '_initialized') and poem_service._initialized:
+                    fortune_data = await poem_service.get_poem_by_id(poem_id)
+                    if fortune_data:
+                        logger.info(f"[DEBUG] Found poem: {fortune_data.title}")
+                    else:
+                        logger.warning(f"[DEBUG] Poem not found: {poem_id} - continuing without fortune data")
+                else:
+                    logger.warning(f"[DEBUG] Poem service not initialized - skipping poem lookup for {poem_id}")
+
+            except Exception as poem_error:
+                logger.error(f"[DEBUG] Error getting poem {poem_id}: {poem_error}", exc_info=True)
+                logger.info("[DEBUG] Continuing conversation without poem data due to service error")
         
         # Create session with context
         context_data = {

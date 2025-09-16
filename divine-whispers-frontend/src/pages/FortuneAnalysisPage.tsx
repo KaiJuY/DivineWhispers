@@ -507,9 +507,9 @@ const FortuneAnalysisPage: React.FC = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, streamingMessage, isTyping]);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages, streamingMessage, isTyping]);
 
   // Scroll to top when component mounts
   useEffect(() => {

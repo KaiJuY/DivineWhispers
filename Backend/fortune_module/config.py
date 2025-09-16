@@ -41,9 +41,9 @@ class SystemConfig(metaclass=SingletonMeta):
     auto_capture_faq: bool = True
     
     # Data ingestion settings
-    source_data_path: str = "/app/SourceCrawler/outputs/"
+    source_data_path: str = os.getenv("SOURCE_DATA_PATH", "../SourceCrawler/outputs/")
     temple_names: list = field(default_factory=lambda: [
-        "GuanYin100", "GuanYu", "Mazu", "Asakusa", "ErawanShrine", "Tianhou"
+        "GuanYin100", "GuanYu", "Mazu", "Asakusa", "ErawanShrine", "Tianhou", "YueLao", "Zhusheng"
     ])
     
     # Embedding settings

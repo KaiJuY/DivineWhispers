@@ -182,6 +182,104 @@ async def send_chat_message(
         raise HTTPException(status_code=500, detail="Failed to send message")
 
 
+@router.post("/fortune-conversation-test")
+async def start_fortune_conversation_test():
+    """Test endpoint without dependencies"""
+    print("CLAUDE DEBUG: TEST ENDPOINT HIT - NO DEPENDENCIES!")
+    return {"status": "success", "message": "Test endpoint reached"}
+
+@router.post("/test-db-only")
+async def test_db_dependency(db: AsyncSession = Depends(get_db)):
+    """Test only database dependency"""
+    print("CLAUDE DEBUG: DB DEPENDENCY TEST - SUCCESS!")
+    return {"status": "success", "message": "Database dependency works"}
+
+@router.post("/test-auth-only")
+async def test_auth_dependency(current_user: User = Depends(get_current_user)):
+    """Test only authentication dependency"""
+    print(f"CLAUDE DEBUG: AUTH DEPENDENCY TEST - USER: {current_user.id}")
+    return {"status": "success", "message": f"Auth dependency works for user {current_user.id}"}
+
+@router.post("/test-steps")
+async def test_steps(
+    conversation_data: FortuneConversationCreate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Test each step individually"""
+    print("="*50)
+    print("CLAUDE DEBUG: TESTING EACH STEP")
+    print("="*50)
+
+    try:
+        # Step 1: Test dependency injection
+        print(f"STEP 1 - Dependencies OK - User: {current_user.id}, DB: {type(db)}")
+
+        # Step 2: Test data parsing
+        print(f"STEP 2 - Data parsed OK: deity_id={conversation_data.deity_id}, fortune_number={conversation_data.fortune_number}")
+
+        # Step 3: Test deity service
+        print("STEP 3 - Testing deity service...")
+        deity = await deity_service.get_deity_by_id(conversation_data.deity_id)
+        print(f"STEP 3 - Deity service result: {deity is not None}")
+        if deity:
+            print(f"STEP 3 - Deity name: {deity.deity.name}")
+
+        # Step 4: Test temple name lookup
+        print("STEP 4 - Testing temple name lookup...")
+        temple_name = deity_service.get_temple_name(conversation_data.deity_id)
+        print(f"STEP 4 - Temple name: {temple_name}")
+
+        # Step 5: Test poem service if fortune number provided
+        poem_service_working = False
+        if conversation_data.fortune_number:
+            print("STEP 5 - Testing poem service...")
+            poem_id = f"{temple_name}_{conversation_data.fortune_number}"
+            print(f"STEP 5 - Looking for poem: {poem_id}")
+
+            try:
+                # Check if poem service is initialized
+                from app.services.poem_service import poem_service
+                print(f"STEP 5 - Poem service initialized: {getattr(poem_service, '_initialized', False)}")
+
+                if hasattr(poem_service, '_initialized') and poem_service._initialized:
+                    fortune_data = await poem_service.get_poem_by_id(poem_id)
+                    print(f"STEP 5 - Poem found: {fortune_data is not None}")
+                    poem_service_working = True
+                else:
+                    print("STEP 5 - Poem service not initialized - this is likely the issue!")
+
+            except Exception as poem_error:
+                print(f"STEP 5 - Poem error: {type(poem_error).__name__}: {poem_error}")
+
+        # Step 6: Test session creation
+        print("STEP 6 - Testing session creation...")
+        session_create = ChatSessionCreate(
+            session_name=f"Test Session - {deity.deity.name}",
+            context_data={"test": True}
+        )
+        session = await chat_service.create_session(current_user.id, session_create, db)
+        print(f"STEP 6 - Session created: {session.id}")
+
+        print("="*50)
+        print("CLAUDE DEBUG: ALL STEPS COMPLETED!")
+        print("="*50)
+
+        return {
+            "status": "success",
+            "steps_completed": 6,
+            "session_id": session.id,
+            "deity_name": deity.deity.name if deity else None,
+            "temple_name": temple_name,
+            "poem_service_working": poem_service_working,
+            "diagnosis": "Poem service initialization failure is likely the root cause" if not poem_service_working else "All services working"
+        }
+
+    except Exception as e:
+        print(f"CLAUDE DEBUG: ERROR in step test: {type(e).__name__}: {e}")
+        logger.error(f"CLAUDE DEBUG: ERROR in step test: {type(e).__name__}: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Step test error: {str(e)}")
+
 @router.post("/fortune-conversation", response_model=Dict[str, Any])
 async def start_fortune_conversation(
     conversation_data: FortuneConversationCreate,
@@ -189,19 +287,35 @@ async def start_fortune_conversation(
     db: AsyncSession = Depends(get_db)
 ):
     """Start a new fortune reading conversation"""
+    print("="*80)
+    print("CLAUDE ENDPOINT CALLED - FORTUNE CONVERSATION")
+    print(f"Data received: {conversation_data}")
+    print(f"User ID: {current_user.id}")
+    print("="*80)
+
+    logger.info(f"[FORTUNE-ENDPOINT] Called with data: {conversation_data}")
+    logger.info(f"[FORTUNE-ENDPOINT] User: {current_user.id}")
+
     try:
+        logger.info(f"[DEBUG] About to call chat_service.start_fortune_conversation")
+
         # Check if user has enough points (if this is a paid feature)
         # user_points = await wallet_service.get_user_points(current_user.id, db)
         # required_points = 5  # Points cost for interactive chat
         # if user_points < required_points:
         #     raise HTTPException(status_code=402, detail="Insufficient points")
-        
+
         session, initial_message = await chat_service.start_fortune_conversation(
             user_id=current_user.id,
             conversation_data=conversation_data,
             db=db
         )
-        
+
+        logger.info(f"[DEBUG] Successfully got session {session.id} and message {initial_message.id}")
+
+        # Check if we have poem data in the session context
+        poem_available = session.context_data.get("poem_content") is not None
+
         return {
             "session_id": session.id,
             "session_name": session.session_name,
@@ -211,14 +325,117 @@ async def start_fortune_conversation(
                 "content": initial_message.content,
                 "created_at": initial_message.created_at
             },
-            "message": "Fortune conversation started. You can now chat interactively!"
+            "message": "Fortune conversation started. You can now chat interactively!",
+            "poem_available": poem_available,
+            "poem_service_status": "available" if poem_available else "unavailable"
         }
-        
+
     except ValueError as e:
+        logger.error(f"[DEBUG] ValueError in fortune conversation: {e}", exc_info=True)
         raise HTTPException(status_code=400, detail=str(e))
+    except RuntimeError as e:
+        # Specific handling for poem service initialization failures
+        if "Failed to initialize poem service" in str(e):
+            logger.warning(f"[DEBUG] Poem service unavailable, creating conversation without poems: {e}")
+            # Try to create a basic conversation without poem service
+            try:
+                # This should work even without poem service
+                from app.schemas.chat import ChatSessionCreate, ChatMessageCreate
+                deity = await deity_service.get_deity_by_id(conversation_data.deity_id)
+                if not deity:
+                    raise HTTPException(status_code=400, detail="Invalid deity ID")
+
+                session_create = ChatSessionCreate(
+                    session_name=f"Fortune Reading - {deity.deity.name}",
+                    context_data={
+                        "deity_id": conversation_data.deity_id,
+                        "deity_name": deity.deity.name,
+                        "deity_chinese_name": deity.deity.chinese_name,
+                        "fortune_number": conversation_data.fortune_number,
+                        "conversation_type": "fortune_reading",
+                        "poem_service_available": False
+                    }
+                )
+
+                session = await chat_service.create_session(current_user.id, session_create, db)
+
+                initial_message_data = ChatMessageCreate(
+                    content=conversation_data.initial_question,
+                    metadata={"conversation_starter": True, "poem_service_unavailable": True}
+                )
+
+                initial_message = await chat_service.add_message(
+                    session.id, current_user.id, initial_message_data, MessageType.USER, db
+                )
+
+                return {
+                    "session_id": session.id,
+                    "session_name": session.session_name,
+                    "context": session.context_data,
+                    "initial_message": {
+                        "id": initial_message.id,
+                        "content": initial_message.content,
+                        "created_at": initial_message.created_at
+                    },
+                    "message": "Fortune conversation started in basic mode. Poem service is temporarily unavailable.",
+                    "poem_available": False,
+                    "poem_service_status": "initialization_failed"
+                }
+            except Exception as fallback_error:
+                logger.error(f"[DEBUG] Fallback conversation creation failed: {fallback_error}", exc_info=True)
+                raise HTTPException(status_code=500, detail="Unable to start fortune conversation")
+        else:
+            raise HTTPException(status_code=500, detail=f"Runtime error: {str(e)}")
     except Exception as e:
-        logger.error(f"Error starting fortune conversation: {e}")
+        logger.error(f"[DEBUG] Exception in fortune conversation: {type(e).__name__}: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail="Failed to start fortune conversation")
+
+
+@router.post("/fortune-conversation-debug", response_model=Dict[str, Any])
+async def start_fortune_conversation_debug(
+    conversation_data: FortuneConversationCreate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Debug version with detailed error tracking"""
+    try:
+        print("CLAUDE DEBUG: ENDPOINT HIT!")
+        logger.info("CLAUDE DEBUG: ENDPOINT HIT!")
+
+        print(f"CLAUDE DEBUG: Data: {conversation_data}")
+        logger.info(f"CLAUDE DEBUG: Data: {conversation_data}")
+
+        print(f"CLAUDE DEBUG: User: {current_user.id}")
+        logger.info(f"CLAUDE DEBUG: User: {current_user.id}")
+
+        # Test deity service call
+        print("CLAUDE DEBUG: Testing deity service...")
+        logger.info("CLAUDE DEBUG: Testing deity service...")
+
+        deity = await deity_service.get_deity_by_id(conversation_data.deity_id)
+        if deity:
+            print(f"CLAUDE DEBUG: Deity found: {deity.deity.name}")
+            logger.info(f"CLAUDE DEBUG: Deity found: {deity.deity.name}")
+        else:
+            print(f"CLAUDE DEBUG: Deity NOT found for ID: {conversation_data.deity_id}")
+            logger.error(f"CLAUDE DEBUG: Deity NOT found for ID: {conversation_data.deity_id}")
+            return {"error": "Deity not found", "deity_id": conversation_data.deity_id}
+
+        print("CLAUDE DEBUG: All checks passed - endpoint working!")
+        logger.info("CLAUDE DEBUG: All checks passed - endpoint working!")
+
+        return {
+            "status": "success",
+            "deity_id": conversation_data.deity_id,
+            "deity_name": deity.deity.name,
+            "user_id": current_user.id,
+            "message": "Debug endpoint completed successfully"
+        }
+
+    except Exception as e:
+        print(f"CLAUDE DEBUG: ERROR in debug endpoint: {type(e).__name__}: {e}")
+        logger.error(f"CLAUDE DEBUG: ERROR in debug endpoint: {type(e).__name__}: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Debug error: {str(e)}")
 
 
 @router.get("/sessions/{session_id}/stream")

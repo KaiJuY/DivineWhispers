@@ -56,5 +56,6 @@ class ChatMessage(Base):
     session = relationship("ChatSession", back_populates="messages")
     user = relationship("User")
     
+
     def __repr__(self):
         return f"<ChatMessage(id={self.id}, type={self.message_type}, content='{self.content[:50]}...')>"
