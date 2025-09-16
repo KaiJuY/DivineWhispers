@@ -67,6 +67,7 @@ async def create_tables():
             from app.models.token_blacklist import TokenBlacklist
             from app.models.fortune_job import FortuneJob
             from app.models.chat_message import ChatSession, ChatMessage
+            from app.models.chat_task import ChatTask
             
             # Now create all tables
             await conn.run_sync(Base.metadata.create_all)

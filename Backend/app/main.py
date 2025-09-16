@@ -36,23 +36,28 @@ async def lifespan(app: FastAPI):
     try:
         from app.services.poem_service import poem_service
         from app.services.job_processor import job_processor, cleanup_jobs
+        from app.services.task_queue_service import task_queue_service
         import asyncio
-        
+
         # Initialize poem service
         poem_init_success = await poem_service.initialize_system()
         if poem_init_success:
             logger.info("Poem service initialized successfully")
         else:
             logger.warning("Poem service initialization failed - some features may be unavailable")
-        
+
         # Start job processor
         await job_processor.start_processing()
         logger.info("Job processor started")
-        
+
+        # Start task queue service
+        asyncio.create_task(task_queue_service.start_processing())
+        logger.info("Task queue service started")
+
         # Start cleanup task
         cleanup_task = asyncio.create_task(cleanup_jobs())
         logger.info("Job cleanup task started")
-        
+
     except Exception as e:
         logger.error(f"Error initializing services: {e}")
     
@@ -64,10 +69,12 @@ async def lifespan(app: FastAPI):
     # Stop services
     try:
         from app.services.job_processor import job_processor
+        from app.services.task_queue_service import task_queue_service
         await job_processor.stop_processing()
-        logger.info("Job processor stopped")
+        await task_queue_service.stop_processing()
+        logger.info("Services stopped")
     except Exception as e:
-        logger.error(f"Error stopping job processor: {e}")
+        logger.error(f"Error stopping services: {e}")
     
     await engine.dispose()
 
@@ -258,14 +265,15 @@ async def websocket_endpoint(websocket, user_id: str):
 
 
 # Include API routers
-from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact
+from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact, async_chat
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
-app.include_router(admin.router, prefix="/api/v1/admin", tags=["Administration"]) 
+app.include_router(admin.router, prefix="/api/v1/admin", tags=["Administration"])
 app.include_router(fortune.router, prefix="/api/v1", tags=["Fortune"])
 app.include_router(wallet.router, prefix="/api/v1", tags=["Wallet"])
 app.include_router(deities.router, prefix="/api/v1", tags=["Deities"])
 app.include_router(chat.router, prefix="/api/v1", tags=["Chat"])
 app.include_router(contact.router, prefix="/api/v1", tags=["Contact"])
+app.include_router(async_chat.router, prefix="/api/v1", tags=["Async Chat"])
 
 
 if __name__ == "__main__":

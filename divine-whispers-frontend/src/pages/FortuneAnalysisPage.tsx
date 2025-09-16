@@ -4,7 +4,7 @@ import { colors, gradients, media, skewFadeIn, floatUp } from '../assets/styles/
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import fortuneService from '../services/fortuneService';
-import chatService from '../services/chatService';
+import { asyncChatService, type TaskProgress, type ChatHistoryItem } from '../services/asyncChatService';
 import type { Report } from '../types';
 import { usePagesTranslation } from '../hooks/useTranslation';
 
@@ -447,13 +447,41 @@ const ReportButton = styled.button`
   }
 `;
 
+const ProgressBar = styled.div<{ progress: number }>`
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+
+  &::after {
+    content: '';
+    display: block;
+    width: ${props => props.progress}%;
+    height: 100%;
+    background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
+    transition: width 0.3s ease;
+  }
+`;
+
+const ProgressMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+`;
+
 
 interface ChatMessage {
   id: string;
-  type: 'user' | 'assistant' | 'system' | 'report';
+  type: 'user' | 'assistant' | 'system' | 'report' | 'progress';
   message: string;
   timestamp: string;
   reportId?: string;
+  progress?: number;
+  status?: string;
 }
 
 const FortuneAnalysisPage: React.FC = () => {
@@ -494,22 +522,20 @@ const FortuneAnalysisPage: React.FC = () => {
     return '';
   };
   const [fortuneLoading, setFortuneLoading] = useState(true);
-  const [chatSession, setChatSession] = useState<any>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
-  const [streamingMessage, setStreamingMessage] = useState('');
+  const [currentTaskId, setCurrentTaskId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const streamHandlersRef = useRef<any>(null);
+  const sseCleanupRef = useRef<(() => void) | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [messages, streamingMessage, isTyping]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -538,111 +564,30 @@ const FortuneAnalysisPage: React.FC = () => {
     fetchFortune();
   }, [selectedDeity, selectedFortuneNumber]);
 
-  // Initialize chat session and WebSocket when fortune is loaded
+  // Initialize chat when fortune is loaded
   useEffect(() => {
-    const initializeChat = async () => {
+    const initializeChat = () => {
       if (!fortune || !selectedDeity || !selectedFortuneNumber || !auth.user) return;
 
-      try {
-        // Try WebSocket connection first (optional)
-        try {
-          await chatService.connectWebSocket(auth.user.user_id.toString());
-        } catch (wsError) {
-          console.warn('WebSocket connection failed, using fallback mode:', wsError);
-        }
+      // Add initial assistant message
+      const initialMessage: ChatMessage = {
+        id: 'initial_001',
+        type: 'assistant',
+        message: `Welcome! I'm here to help you understand the wisdom of ${selectedDeity.name}'s fortune #${selectedFortuneNumber}. Feel free to ask me anything about this divine guidance - its meaning, how it applies to your life, or any specific questions you have.`,
+        timestamp: new Date().toISOString()
+      };
 
-        // Set up streaming handlers
-        streamHandlersRef.current = chatService.setupStreamingHandlers();
-        
-        streamHandlersRef.current.onChunk((chunk: string) => {
-          setStreamingMessage(prev => prev + chunk + ' ');
-        });
-        
-        streamHandlersRef.current.onComplete(() => {
-          // Move streaming message to messages and clear
-          setMessages(prev => [...prev, {
-            id: `msg_${Date.now()}`,
-            type: 'assistant',
-            message: streamingMessage.trim(),
-            timestamp: new Date().toISOString()
-          }]);
-          setStreamingMessage('');
-          setIsTyping(false);
-          setIsLoading(false);
-        });
-        
-        streamHandlersRef.current.onTyping((typing: boolean) => {
-          setIsTyping(typing);
-        });
-        
-        streamHandlersRef.current.onError((error: string) => {
-          console.error('WebSocket streaming error:', error);
-          setIsLoading(false);
-          setIsTyping(false);
-          setStreamingMessage('');
-          
-          const errorMessage: ChatMessage = {
-            id: `msg_${Date.now()}`,
-            type: 'system',
-            message: 'I apologize, but I am having trouble processing your message right now. Please try again.',
-            timestamp: new Date().toISOString()
-          };
-          setMessages(prev => [...prev, errorMessage]);
-        });
-        
-        // Try to start a fortune conversation (optional)
-        try {
-          const conversation = await chatService.startFortuneConversation({
-            deity_id: selectedDeity.id,
-            fortune_number: selectedFortuneNumber,
-            initial_question: 'What does this fortune mean for me?',
-            context: {
-              fortune_id: fortune.id,
-              deity_name: selectedDeity.name,
-              fortune_number: selectedFortuneNumber
-            }
-          });
-          setChatSession(conversation);
-        } catch (conversationError) {
-          console.warn('Fortune conversation API failed, using fallback mode:', conversationError);
-          setChatSession(null);
-        }
-        
-        // Add initial assistant message
-        const initialMessage: ChatMessage = {
-          id: 'initial_001',
-          type: 'assistant',
-          message: `Welcome! I'm here to help you understand the wisdom of ${selectedDeity.name}'s fortune #${selectedFortuneNumber}. Feel free to ask me anything about this divine guidance - its meaning, how it applies to your life, or any specific questions you have.`,
-          timestamp: new Date().toISOString()
-        };
-        
-        setMessages([initialMessage]);
-        
-      } catch (error) {
-        console.error('Failed to initialize chat:', error);
-
-        // Always fallback to mock chat if anything fails
-        const fallbackMessage: ChatMessage = {
-          id: 'fallback_001',
-          type: 'assistant',
-          message: `I'm here to help you understand the wisdom of ${selectedDeity?.name}'s fortune #${selectedFortuneNumber}. What would you like to know about this divine guidance?`,
-          timestamp: new Date().toISOString()
-        };
-
-        setMessages([fallbackMessage]);
-        setChatSession(null);
-      }
+      setMessages([initialMessage]);
     };
 
     initializeChat();
 
     // Cleanup on unmount
     return () => {
-      if (streamHandlersRef.current) {
-        streamHandlersRef.current.cleanup();
-        streamHandlersRef.current = null;
+      if (sseCleanupRef.current) {
+        sseCleanupRef.current();
+        sseCleanupRef.current = null;
       }
-      chatService.disconnectWebSocket();
     };
   }, [fortune, selectedDeity, selectedFortuneNumber, auth.user]);
 
@@ -664,89 +609,117 @@ const FortuneAnalysisPage: React.FC = () => {
     setMessages(prev => [...prev, newMessage]);
     setInputMessage('');
     setIsLoading(true);
-    setStreamingMessage(''); // Clear any previous streaming message
 
     try {
-      // If we have a chat session and WebSocket connection, use real-time messaging
-      if (chatSession?.session_id) {
-        const messagesent = chatService.sendRealtimeMessage(chatSession.session_id, userQuestion);
-        
-        if (messagesent) {
-          // WebSocket message sent successfully
-          // Responses will be handled by the streaming handlers
-          console.log('Real-time message sent via WebSocket');
-          
-          // Occasionally offer to generate a report (every 3-4 messages)
-          if (messages.length > 0 && (messages.length + 1) % 3 === 0) {
-            setTimeout(() => {
-              const reportOfferMessage: ChatMessage = {
-                id: `msg_${Date.now() + 2}`,
-                type: 'system',
-                message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
-                timestamp: new Date().toISOString()
-              };
-              setMessages(prev => [...prev, reportOfferMessage]);
-            }, 3000); // Give more time for AI response to complete
-          }
-          
-          return; // Exit early since WebSocket will handle the response
-        } else {
-          console.warn('WebSocket not available, falling back to REST API');
+      // Submit question to async chat service
+      const taskResponse = await asyncChatService.askQuestion({
+        deity_id: selectedDeity!.id,
+        fortune_number: selectedFortuneNumber!,
+        question: userQuestion,
+        context: {
+          fortune_id: fortune.id,
+          deity_name: selectedDeity!.name
         }
-      }
+      });
 
-      // Fallback to REST API + mock response if WebSocket fails
-      try {
-        if (chatSession?.session_id) {
-          await chatService.sendMessage(chatSession.session_id, userQuestion);
-        }
-      } catch (error) {
-        console.error('Failed to send message via REST API:', error);
-      }
+      setCurrentTaskId(taskResponse.task_id);
 
-      // Get AI response using mock (fallback)
-      const aiResponse = await chatService.mockFortuneResponse(
-        userQuestion,
-        selectedDeity?.id || 'guan_yin',
-        selectedFortuneNumber || 7
-      );
-
-      const responseMessage: ChatMessage = {
-        id: `msg_${Date.now() + 1}`,
-        type: 'assistant',
-        message: aiResponse,
-        timestamp: new Date().toISOString()
+      // Add progress tracking message
+      const progressMessage: ChatMessage = {
+        id: `progress_${taskResponse.task_id}`,
+        type: 'progress',
+        message: taskResponse.message,
+        timestamp: new Date().toISOString(),
+        status: taskResponse.status,
+        progress: 0
       };
 
-      setMessages(prev => [...prev, responseMessage]);
+      setMessages(prev => [...prev, progressMessage]);
 
-      // Occasionally offer to generate a report (every 3-4 messages)
-      if (messages.length > 0 && (messages.length + 1) % 3 === 0) {
-        setTimeout(() => {
-          const reportOfferMessage: ChatMessage = {
-            id: `msg_${Date.now() + 2}`,
+      // Subscribe to progress updates via SSE
+      const cleanup = asyncChatService.subscribeToProgress(
+        taskResponse.task_id,
+        (progressData: TaskProgress) => {
+          if (progressData.type === 'progress') {
+            // Update progress message
+            setMessages(prev => prev.map(msg =>
+              msg.id === `progress_${taskResponse.task_id}`
+                ? { ...msg, message: progressData.message || 'Processing...', progress: progressData.progress }
+                : msg
+            ));
+          } else if (progressData.type === 'complete' && progressData.result) {
+            // Remove progress message and add response
+            setMessages(prev => prev.filter(msg => msg.id !== `progress_${taskResponse.task_id}`));
+
+            const responseMessage: ChatMessage = {
+              id: `msg_${Date.now()}`,
+              type: 'assistant',
+              message: progressData.result.response,
+              timestamp: new Date().toISOString()
+            };
+
+            setMessages(prev => [...prev, responseMessage]);
+
+            // Occasionally offer to generate a report
+            if (messages.length > 0 && (messages.length + 1) % 3 === 0 && progressData.result.can_generate_report) {
+              setTimeout(() => {
+                const reportOfferMessage: ChatMessage = {
+                  id: `msg_${Date.now() + 1}`,
+                  type: 'system',
+                  message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
+                  timestamp: new Date().toISOString()
+                };
+                setMessages(prev => [...prev, reportOfferMessage]);
+              }, 1500);
+            }
+
+            setIsLoading(false);
+            setCurrentTaskId(null);
+          } else if (progressData.type === 'error') {
+            // Remove progress message and add error
+            setMessages(prev => prev.filter(msg => msg.id !== `progress_${taskResponse.task_id}`));
+
+            const errorMessage: ChatMessage = {
+              id: `msg_${Date.now()}`,
+              type: 'system',
+              message: progressData.error || 'Failed to process your message. Please try again.',
+              timestamp: new Date().toISOString()
+            };
+
+            setMessages(prev => [...prev, errorMessage]);
+            setIsLoading(false);
+            setCurrentTaskId(null);
+          }
+        },
+        (error) => {
+          console.error('SSE error:', error);
+          setIsLoading(false);
+          setCurrentTaskId(null);
+
+          const errorMessage: ChatMessage = {
+            id: `msg_${Date.now()}`,
             type: 'system',
-            message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
+            message: 'Connection lost. Please try again.',
             timestamp: new Date().toISOString()
           };
-          setMessages(prev => [...prev, reportOfferMessage]);
-        }, 1500);
-      }
+          setMessages(prev => [...prev, errorMessage]);
+        }
+      );
+
+      // Store cleanup function
+      sseCleanupRef.current = cleanup;
 
     } catch (error) {
-      console.error('Failed to get AI response:', error);
+      console.error('Failed to submit question:', error);
+      setIsLoading(false);
+
       const errorMessage: ChatMessage = {
-        id: `msg_${Date.now() + 1}`,
+        id: `msg_${Date.now()}`,
         type: 'system',
-        message: 'I apologize, but I am having trouble processing your message right now. Please try again in a moment.',
+        message: error instanceof Error ? error.message : 'Failed to submit your question. Please try again.',
         timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      // Only set loading to false if we're not using WebSocket (WebSocket handlers will manage this)
-      if (!chatService.sendWebSocketMessage({ type: 'ping' })) {
-        setIsLoading(false);
-      }
     }
   };
 
@@ -947,9 +920,34 @@ const FortuneAnalysisPage: React.FC = () => {
                     );
                   }
 
+                  if (message.type === 'progress') {
+                    return (
+                      <Message key={message.id} isUser={false}>
+                        <MessageBubble
+                          isUser={false}
+                          style={{
+                            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%)',
+                            border: '2px solid rgba(212, 175, 55, 0.4)'
+                          }}
+                        >
+                          <ProgressMessage>
+                            <span>{message.message}</span>
+                            <ProgressBar progress={message.progress || 0} />
+                            <small style={{ opacity: 0.7 }}>
+                              {message.status === 'analyzing_rag' && 'Analyzing fortune context...'}
+                              {message.status === 'generating_llm' && 'Consulting divine wisdom...'}
+                              {message.status === 'processing' && 'Processing your question...'}
+                              {!message.status && 'Preparing response...'}
+                            </small>
+                          </ProgressMessage>
+                        </MessageBubble>
+                      </Message>
+                    );
+                  }
+
                   return (
                     <Message key={message.id} isUser={message.type === 'user'}>
-                      <MessageBubble 
+                      <MessageBubble
                         isUser={message.type === 'user'}
                         style={message.type === 'system' ? {
                           background: 'linear-gradient(135deg, rgba(255, 100, 100, 0.2) 0%, rgba(200, 50, 50, 0.1) 100%)',
@@ -962,60 +960,6 @@ const FortuneAnalysisPage: React.FC = () => {
                     </Message>
                   );
                 })}
-                {isLoading && (
-                  <Message isUser={false}>
-                    <MessageBubble isUser={false}>
-                      {t('fortuneAnalysis.generatingReport')}
-                    </MessageBubble>
-                  </Message>
-                )}
-                
-                {/* Streaming message display */}
-                {streamingMessage && (
-                  <Message isUser={false}>
-                    <MessageBubble isUser={false}>
-                      {streamingMessage}
-                      <span style={{ opacity: 0.7 }}>▋</span>
-                    </MessageBubble>
-                  </Message>
-                )}
-                
-                {/* Typing indicator */}
-                {isTyping && !streamingMessage && (
-                  <Message isUser={false}>
-                    <MessageBubble isUser={false}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>{t('fortuneAnalysis.aiThinking')}</span>
-                        <div style={{ display: 'flex', gap: '2px' }}>
-                          <div style={{ 
-                            width: '6px', 
-                            height: '6px', 
-                            borderRadius: '50%', 
-                            backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                            animation: `${pulse} 1.4s ease-in-out infinite both`,
-                            animationDelay: '-0.32s'
-                          }} />
-                          <div style={{ 
-                            width: '6px', 
-                            height: '6px', 
-                            borderRadius: '50%', 
-                            backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                            animation: `${pulse} 1.4s ease-in-out infinite both`,
-                            animationDelay: '-0.16s'
-                          }} />
-                          <div style={{ 
-                            width: '6px', 
-                            height: '6px', 
-                            borderRadius: '50%', 
-                            backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                            animation: `${pulse} 1.4s ease-in-out infinite both`
-                          }} />
-                        </div>
-                      </div>
-                    </MessageBubble>
-                  </Message>
-                )}
-                
                 <div ref={messagesEndRef} />
               </ChatMessages>
 
