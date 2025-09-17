@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { skewFadeIn, glowing, colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
+import { useAppNavigate } from '../contexts/RouterContext';
 import { usePagesTranslation } from '../hooks/useTranslation';
 
 const FortuneContainer = styled.div`
@@ -254,7 +255,8 @@ const CollectionRange = styled.div`
 `;
 
 const FortuneSelectionPage: React.FC = () => {
-  const { selectedDeity, setCurrentPage, setSelectedFortuneNumber, setSelectedCollection } = useAppStore();
+  const navigate = useAppNavigate();
+  const { selectedDeity, setSelectedFortuneNumber, setSelectedCollection } = useAppStore();
   const { t } = usePagesTranslation();
   const [fortuneNumbers, setFortuneNumbers] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -328,7 +330,7 @@ const FortuneSelectionPage: React.FC = () => {
   }, [selectedDeity]);
 
   const handleBackClick = () => {
-    setCurrentPage('deities');
+    navigate('/deities');
   };
 
   const handleNumberSelect = (number: number, collection: any, isAvailable: boolean) => {
@@ -336,11 +338,11 @@ const FortuneSelectionPage: React.FC = () => {
     
     setSelectedCollection(collection);
     setSelectedFortuneNumber(number);
-    setCurrentPage('fortune-analysis');
+    navigate('/fortune-analysis');
   };
 
   if (!selectedDeity) {
-    setCurrentPage('deities');
+    navigate('/deities');
     return null;
   }
 

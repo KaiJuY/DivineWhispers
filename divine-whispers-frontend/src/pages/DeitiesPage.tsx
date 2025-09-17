@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { skewFadeIn, colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
+import { useAppNavigate } from '../contexts/RouterContext';
 import deityService from '../services/deityService';
 import { usePagesTranslation } from '../hooks/useTranslation';
 
@@ -185,7 +186,8 @@ const CardDescription = styled.p`
 
 // Fixed design to match mockup
 const DeitiesPage: React.FC = () => {
-  const { setCurrentPage, setSelectedDeity, setSelectedCollection, currentLanguage } = useAppStore();
+  const navigate = useAppNavigate();
+  const { setSelectedDeity, setSelectedCollection, currentLanguage } = useAppStore();
   const { t } = usePagesTranslation();
   const [deities, setDeities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -216,7 +218,7 @@ const DeitiesPage: React.FC = () => {
 
   const handleDeitySelect = (deity: any) => {
     setSelectedDeity(deity);
-    setCurrentPage('fortune-selection');
+    navigate('/fortune-selection');
   };
 
   if (loading) {
