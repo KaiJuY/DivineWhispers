@@ -159,8 +159,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
 
   const fillTestCredentials = () => {
     setFormData({
-      email: 'test@example.com',
-      password: 'testpassword'
+      email: 'newuser2@example.com',
+      password: 'password123'
     });
   };
 

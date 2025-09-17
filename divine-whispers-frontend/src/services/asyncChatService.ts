@@ -51,17 +51,40 @@ export class AsyncChatService {
   private baseUrl = '/api/v1/async-chat';
   private activeConnections = new Map<string, EventSource>();
 
+  // Map frontend deity IDs to backend deity IDs
+  private mapDeityId(frontendDeityId: string): string {
+    const deityMapping: Record<string, string> = {
+      'zhusheng': 'mazu',
+      'mazu': 'mazu',
+      'guan_yin': 'guan_yin',
+      'guan_yu': 'guan_yu',
+      'yue_lao': 'yue_lao',
+      'tianhou': 'mazu', // Tianhou is another name for Mazu
+      'guanyin100': 'guan_yin', // GuanYin variations
+      'asakusa': 'guan_yin', // Japanese temple, map to GuanYin
+      'erawan': 'guan_yin', // Thai shrine, map to GuanYin
+    };
+
+    return deityMapping[frontendDeityId] || 'mazu'; // Default to mazu if unknown
+  }
+
   /**
    * Submit a fortune question for async processing
    */
   async askQuestion(request: FortuneQuestionRequest): Promise<TaskResponse> {
+    // Map frontend deity ID to backend deity ID
+    const mappedRequest = {
+      ...request,
+      deity_id: this.mapDeityId(request.deity_id)
+    };
+
     const response = await fetch(`${this.baseUrl}/ask-question`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Authorization': `Bearer ${localStorage.getItem('divine-whispers-access-token')}`,
       },
-      body: JSON.stringify(request),
+      body: JSON.stringify(mappedRequest),
     });
 
     if (!response.ok) {
@@ -83,8 +106,9 @@ export class AsyncChatService {
     // Close existing connection for this task
     this.unsubscribeFromProgress(taskId);
 
+    const token = localStorage.getItem('divine-whispers-access-token');
     const eventSource = new EventSource(
-      `/api/v1/async-chat/sse/${taskId}`,
+      `/api/v1/async-chat/sse/${taskId}?token=${encodeURIComponent(token || '')}`,
       {
         withCredentials: true,
       }
@@ -134,7 +158,7 @@ export class AsyncChatService {
   async getTaskStatus(taskId: string): Promise<any> {
     const response = await fetch(`${this.baseUrl}/task/${taskId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Authorization': `Bearer ${localStorage.getItem('divine-whispers-access-token')}`,
       },
     });
 
@@ -158,7 +182,7 @@ export class AsyncChatService {
       `${this.baseUrl}/history?limit=${limit}&offset=${offset}`,
       {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('divine-whispers-access-token')}`,
         },
       }
     );

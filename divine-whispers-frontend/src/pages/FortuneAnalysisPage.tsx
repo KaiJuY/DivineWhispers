@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { colors, gradients, media, skewFadeIn, floatUp } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
+import { useAppNavigate } from '../contexts/RouterContext';
 import fortuneService from '../services/fortuneService';
 import { asyncChatService, type TaskProgress, type ChatHistoryItem } from '../services/asyncChatService';
 import type { Report } from '../types';
@@ -485,10 +486,10 @@ interface ChatMessage {
 }
 
 const FortuneAnalysisPage: React.FC = () => {
+  const navigate = useAppNavigate();
   const {
     selectedDeity,
     selectedFortuneNumber,
-    setCurrentPage,
     userCoins,
     setUserCoins,
     reports,
@@ -533,9 +534,9 @@ const FortuneAnalysisPage: React.FC = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -592,7 +593,7 @@ const FortuneAnalysisPage: React.FC = () => {
   }, [fortune, selectedDeity, selectedFortuneNumber, auth.user]);
 
   const handleBackClick = () => {
-    setCurrentPage('fortune-selection');
+    navigate('/fortune-selection');
   };
 
   const handleSendMessage = async () => {
@@ -788,12 +789,12 @@ const FortuneAnalysisPage: React.FC = () => {
     const report = reports.find(r => r.id === reportId);
     if (report) {
       setSelectedReport(report);
-      setCurrentPage('report');
+      navigate('/report');
     }
   };
 
   if (!selectedDeity || !selectedFortuneNumber) {
-    setCurrentPage('deities');
+    navigate('/deities');
     return null;
   }
 

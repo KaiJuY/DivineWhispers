@@ -28,9 +28,36 @@ const useAppStore = create<AppStore>()(
   devtools(
     persist(
       (set, get) => ({
-        // Navigation
+        // Navigation (now deprecated - use React Router instead)
         currentPage: 'landing' as PageType,
         setCurrentPage: (page: PageType) => set({ currentPage: page }),
+
+        // New navigation function that will use React Router
+        navigateToPage: (page: PageType, navigate?: (path: string) => void) => {
+          // Update store state for backward compatibility
+          set({ currentPage: page });
+
+          // Navigate using React Router if navigate function is provided
+          if (navigate) {
+            const pageRoutes: Record<PageType, string> = {
+              'landing': '/',
+              'home': '/home',
+              'deities': '/deities',
+              'deity-selection': '/deities',
+              'fortune-selection': '/fortune-selection',
+              'fortune-analysis': '/fortune-analysis',
+              'purchase': '/purchase',
+              'account': '/account',
+              'admin': '/admin',
+              'contact': '/contact',
+              'report': '/report',
+              'auth-test': '/auth-test'
+            };
+
+            const route = pageRoutes[page] || '/';
+            navigate(route);
+          }
+        },
 
         // Language
         currentLanguage: detectInitialLanguage(),

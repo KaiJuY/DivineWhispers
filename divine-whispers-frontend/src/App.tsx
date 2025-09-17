@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { GlobalStyle } from './assets/styles/globalStyles';
 import RouterProvider from './contexts/RouterContext';
 import useAppStore from './stores/appStore';
@@ -41,43 +42,37 @@ const theme = {
 };
 
 const App: React.FC = () => {
-  const { currentPage } = useAppStore();
-
-  const renderCurrentPage = () => {
-    switch (currentPage) {
-      case 'landing':
-        return <LandingPage />;
-      case 'home':
-        return <HomePage />;
-      case 'deities':
-      case 'deity-selection':
-        return <DeitiesPage />;
-      case 'fortune-selection':
-        return <FortuneSelectionPage />;
-      case 'fortune-analysis':
-        return <FortuneAnalysisPage />;
-      case 'purchase':
-        return <PurchasePage />;
-      case 'account':
-        return <AccountPage />;
-      case 'admin':
-        return <AdminPage />;
-      case 'contact':
-        return <ContactPage />;
-      case 'report':
-        return <ReportPage />;
-      case 'auth-test':
-        return <AuthTestPage />;
-      default:
-        return <LandingPage />;
-    }
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <RouterProvider>
         <GlobalStyle />
-        {renderCurrentPage()}
+        <Routes>
+          {/* Landing/Home Routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomePage />} />
+
+          {/* Fortune Telling Flow */}
+          <Route path="/deities" element={<DeitiesPage />} />
+          <Route path="/deity-selection" element={<DeitiesPage />} />
+          <Route path="/fortune-selection" element={<FortuneSelectionPage />} />
+          <Route path="/fortune-analysis" element={<FortuneAnalysisPage />} />
+          <Route path="/poem" element={<DeitiesPage />} />
+          <Route path="/poem/:deity" element={<FortuneSelectionPage />} />
+          <Route path="/poem/:deity/:number" element={<FortuneAnalysisPage />} />
+
+          {/* Other Pages */}
+          <Route path="/purchase" element={<PurchasePage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/report" element={<ReportPage />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/auth-test" element={<AuthTestPage />} />
+
+          {/* Catch-all redirect to landing */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </RouterProvider>
     </ThemeProvider>
   );

@@ -207,6 +207,7 @@ export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'for
 export interface AppStore {
   currentPage: PageType;
   setCurrentPage: (page: PageType) => void;
+  navigateToPage: (page: PageType, navigate?: (path: string) => void) => void;
   
   // Language
   currentLanguage: Language;

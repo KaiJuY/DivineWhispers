@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update
 from app.models.chat_task import ChatTask, TaskStatus
 from app.services.poem_service import poem_service
-from app.utils.deps import get_db
+from app.core.database import get_database_session
 import uuid
 
 
@@ -98,7 +98,7 @@ class TaskQueueService:
     async def process_queued_tasks(self):
         """Process queued tasks"""
         # Get database session
-        async for db in get_db():
+        async for db in get_database_session():
             try:
                 # Find queued tasks
                 result = await db.execute(

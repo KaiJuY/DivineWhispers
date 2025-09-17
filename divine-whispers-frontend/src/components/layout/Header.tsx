@@ -3,6 +3,7 @@ import styled, { keyframes, css } from 'styled-components';
 import { colors, gradients, media } from '../../assets/styles/globalStyles';
 import useAppStore from '../../stores/appStore';
 import { useCommonTranslation, availableLanguages } from '../../hooks/useTranslation';
+import { useAppNavigate, useAppLocation } from '../../contexts/RouterContext';
 import LoginForm from '../auth/LoginForm';
 import SignupForm from '../auth/SignupForm';
 
@@ -304,8 +305,10 @@ const CloseButton = styled.button`
 `;
 
 const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
-  const { currentPage, setCurrentPage, auth, login, logout } = useAppStore();
+  const { auth, logout } = useAppStore();
   const { t, currentLanguage, changeLanguage } = useCommonTranslation();
+  const navigate = useAppNavigate();
+  const location = useAppLocation();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
@@ -314,12 +317,8 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
   const isAdmin = isAuthenticated && auth.user?.role === 'admin';
   const userEmail = auth.user?.email;
 
-  const handleNavClick = (page: string) => {
-    if (page === 'home') {
-      setCurrentPage('home');
-    } else if (page === 'landing') {
-      setCurrentPage('landing');
-    }
+  const handleNavClick = (path: string) => {
+    navigate(path);
   };
 
   const handleLogin = () => {
@@ -333,11 +332,11 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
   const handleLogout = async () => {
     try {
       await logout();
-      setCurrentPage('home');
+      navigate('/home');
     } catch (error) {
       console.error('Logout error:', error);
       // Still redirect home even if logout API fails
-      setCurrentPage('home');
+      navigate('/home');
     }
   };
 
@@ -361,52 +360,52 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
     <>
       <HeaderContainer isLanding={isLanding}>
         <NavContainer>
-          <Logo onClick={() => handleNavClick('landing')}>
+          <Logo onClick={() => handleNavClick('/')}>
             <HeaderLogo src="/assets/divine whispers logo.png" alt="Divine Whispers" />
           </Logo>
 
           <MainNav isLanding={isLanding}>
-            <NavLink 
-              active={currentPage === 'home'} 
-              onClick={() => handleNavClick('home')}
+            <NavLink
+              active={location.pathname === '/home'}
+              onClick={() => handleNavClick('/home')}
             >
               {t('navigation.home')}
             </NavLink>
-            <NavLink 
-              active={currentPage === 'deities'} 
-              onClick={() => setCurrentPage('deities')}
+            <NavLink
+              active={location.pathname === '/deities'}
+              onClick={() => handleNavClick('/deities')}
             >
               {t('navigation.deities')}
             </NavLink>
-            <NavLink 
-              active={currentPage === 'purchase'} 
-              onClick={() => setCurrentPage('purchase')}
+            <NavLink
+              active={location.pathname === '/purchase'}
+              onClick={() => handleNavClick('/purchase')}
             >
               {t('navigation.purchase')}
             </NavLink>
-            
+
             {/* Show Account link only when user is logged in */}
             {isAuthenticated && (
-              <NavLink 
-                active={currentPage === 'account'} 
-                onClick={() => setCurrentPage('account')}
+              <NavLink
+                active={location.pathname === '/account'}
+                onClick={() => handleNavClick('/account')}
               >
                 {t('navigation.account')}
               </NavLink>
             )}
-            
-            <NavLink 
-              active={currentPage === 'contact'} 
-              onClick={() => setCurrentPage('contact')}
+
+            <NavLink
+              active={location.pathname === '/contact'}
+              onClick={() => handleNavClick('/contact')}
             >
               {t('navigation.contact')}
             </NavLink>
-            
+
             {/* Show Admin link only for admin users */}
             {isAdmin && (
-              <NavLink 
-                active={currentPage === 'admin'} 
-                onClick={() => setCurrentPage('admin')}
+              <NavLink
+                active={location.pathname === '/admin'}
+                onClick={() => handleNavClick('/admin')}
               >
                 {t('navigation.admin')}
               </NavLink>

@@ -5,16 +5,15 @@ Async Chat API endpoints with task queue and SSE support
 import logging
 from datetime import datetime
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import BaseModel, Field
 
-from app.utils.deps import get_db
+from app.utils.deps import get_db, get_current_user
 from app.models.user import User
 from app.models.chat_task import ChatTask, TaskStatus
 from app.services.task_queue_service import task_queue_service
-from app.utils.deps import get_current_user
 from app.services.deity_service import deity_service
 
 
@@ -99,12 +98,73 @@ async def ask_fortune_question(
 async def stream_task_progress(
     task_id: str,
     request: Request,
-    current_user: User = Depends(get_current_user),
+    token: Optional[str] = None,
     db: AsyncSession = Depends(get_db)
 ):
     """
     SSE endpoint for real-time task progress updates
     """
+
+    # Manual token authentication for SSE (matching deps.py pattern)
+    from app.core.security import verify_token_with_blacklist
+    from app.models.user import User
+    from sqlalchemy import select
+
+    # Get token from query parameter or Authorization header
+    auth_token = token
+    if not auth_token:
+        auth_header = request.headers.get("authorization")
+        if auth_header and auth_header.startswith("Bearer "):
+            auth_token = auth_header.split(" ")[1]
+
+    if not auth_token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authorization header missing",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    try:
+        # Verify token (same as get_current_user_token)
+        payload = await verify_token_with_blacklist(db, auth_token, "access")
+        user_id = payload.get("sub")
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token payload",
+            )
+
+        # Convert user_id to int (same as get_current_user)
+        try:
+            user_id = int(user_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid user ID in token",
+            )
+
+        # Get user (same as get_current_user)
+        result = await db.execute(select(User).where(User.user_id == user_id))
+        current_user = result.scalar_one_or_none()
+
+        if not current_user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+
+        # Check if user is active (MISSING FROM ORIGINAL!)
+        if not current_user.is_active():
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Inactive user"
+            )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Authentication failed: {str(e)}")
+
     # Verify task exists and belongs to user
     task = await task_queue_service.get_task(task_id, db)
     if not task:
