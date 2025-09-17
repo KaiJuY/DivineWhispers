@@ -187,17 +187,20 @@ async def stream_task_progress(
 
         # Create a response object for SSE
         class SSEResponse:
-            def __init__(self):
+            def __init__(self, generator_ref):
                 self.closed = False
+                self.generator_ref = generator_ref
 
             async def send(self, data):
-                if not self.closed:
-                    yield data
+                if not self.closed and self.generator_ref:
+                    await self.generator_ref.put(data)
 
             def close(self):
                 self.closed = True
 
-        response_obj = SSEResponse()
+        # Create an async queue for SSE events
+        event_queue = asyncio.Queue()
+        response_obj = SSEResponse(event_queue)
 
         try:
             # Add connection to task queue service
@@ -241,23 +244,58 @@ async def stream_task_progress(
             # Keep connection alive and wait for updates
             timeout_counter = 0
             max_timeout = 300  # 5 minutes
+            ping_interval = 30  # Send ping every 30 seconds
 
             while not response_obj.closed and timeout_counter < max_timeout:
                 # Check if client disconnected
                 if await request.is_disconnected():
                     break
 
-                # Send keepalive ping
-                if timeout_counter % 30 == 0:  # Every 30 seconds
-                    yield f"data: {json.dumps({'type': 'ping'})}\n\n"
+                try:
+                    # Wait for events from the queue with timeout
+                    event_data = await asyncio.wait_for(event_queue.get(), timeout=1.0)
+                    yield event_data
+                    timeout_counter = 0  # Reset timeout on activity
 
-                await asyncio.sleep(1)
-                timeout_counter += 1
+                    # Check if this is a completion event
+                    try:
+                        event_json = json.loads(event_data.replace("data: ", "").strip())
+                        if event_json.get("type") in ["complete", "error"]:
+                            break
+                    except (json.JSONDecodeError, AttributeError):
+                        pass
 
-                # Check if task is completed
-                current_task = await task_queue_service.get_task(task_id, db)
-                if current_task and current_task.status in [TaskStatus.COMPLETED, TaskStatus.FAILED]:
-                    break
+                except asyncio.TimeoutError:
+                    # No events received, increment timeout and send ping if needed
+                    timeout_counter += 1
+
+                    if timeout_counter % ping_interval == 0:  # Every 30 seconds
+                        yield f"data: {json.dumps({'type': 'ping'})}\n\n"
+
+                    # Check if task is completed (fallback)
+                    current_task = await task_queue_service.get_task(task_id, db)
+                    if current_task and current_task.status in [TaskStatus.COMPLETED, TaskStatus.FAILED]:
+                        # Send final event if not already sent
+                        if current_task.status == TaskStatus.COMPLETED:
+                            final_data = {
+                                "type": "complete",
+                                "result": {
+                                    "response": current_task.response_text,
+                                    "confidence": current_task.confidence,
+                                    "sources_used": current_task.sources_used,
+                                    "processing_time_ms": current_task.processing_time_ms,
+                                    "can_generate_report": current_task.can_generate_report == "true"
+                                }
+                            }
+                            yield f"data: {json.dumps(final_data)}\n\n"
+                        else:  # FAILED
+                            error_data = {
+                                "type": "error",
+                                "error": current_task.error_message,
+                                "retry_allowed": True
+                            }
+                            yield f"data: {json.dumps(error_data)}\n\n"
+                        break
 
         except Exception as e:
             logger.error(f"SSE error for task {task_id}: {e}")

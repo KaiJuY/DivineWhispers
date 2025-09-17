@@ -11,6 +11,7 @@ from .job import Job, JobStatus
 from .job_result import JobResult
 from .audit_log import AuditLog
 from .token_blacklist import TokenBlacklist, TokenType
+from .chat_task import ChatTask, TaskStatus
 
 # Export all models and enums for easy importing
 __all__ = [
@@ -21,18 +22,20 @@ __all__ = [
     
     # Models
     "User",
-    "Wallet", 
+    "Wallet",
     "Transaction",
     "Job",
     "JobResult",
     "AuditLog",
     "TokenBlacklist",
-    
+    "ChatTask",
+
     # Enums
     "UserRole",
-    "UserStatus", 
+    "UserStatus",
     "TransactionType",
     "TransactionStatus",
     "JobStatus",
     "TokenType",
+    "TaskStatus",
 ]

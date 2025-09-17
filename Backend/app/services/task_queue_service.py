@@ -152,13 +152,38 @@ class TaskQueueService:
                     "yue_lao": "YueLao",
                     "guan_yin": "GuanYin",
                     "mazu": "Mazu",
-                    "guan_yu": "GuanYu"
+                    "guan_yu": "GuanYu",
+                    # Add additional mappings for common variations
+                    "yueLao": "YueLao",
+                    "guanYin": "GuanYin",
+                    "guanYu": "GuanYu"
                 }
+
+                # Debug logging to trace the mapping issue
+                logger.info(f"[MAPPING] Original deity_id: '{task.deity_id}'")
                 temple_name = deity_to_temple_map.get(task.deity_id, task.deity_id.title())
+                logger.info(f"[MAPPING] Mapped temple_name: '{temple_name}'")
+
                 poem_id = f"{temple_name}_{task.fortune_number}"
-                poem_data = await poem_service.get_poem_by_id(poem_id)
-                if not poem_data:
-                    raise Exception(f"Fortune not found: {poem_id}")
+                logger.info(f"[MAPPING] Generated poem_id: '{poem_id}'")
+
+                # Ensure poem service is initialized before lookup
+                try:
+                    await poem_service.ensure_initialized()
+                    poem_data = await poem_service.get_poem_by_id(poem_id)
+                    if not poem_data:
+                        logger.error(f"[MAPPING] Poem not found with ID: '{poem_id}' - checking available poems")
+                        # Try to get available poems for debugging
+                        from fortune_module.unified_rag import UnifiedRAGHandler
+                        rag = UnifiedRAGHandler()
+                        available_temples = rag.get_collection_stats().get("temple_list", [])
+                        logger.error(f"[MAPPING] Available temples: {available_temples}")
+                        raise Exception(f"Fortune not found: {poem_id} (Available temples: {available_temples})")
+                    else:
+                        logger.info(f"[MAPPING] Successfully found poem: {poem_data.temple}#{poem_data.poem_id}")
+                except Exception as poem_error:
+                    logger.error(f"[MAPPING] Poem service error: {poem_error}")
+                    raise Exception(f"Poem service error for {poem_id}: {poem_error}")
 
                 # Step 2: Generate LLM response
                 await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 70, "Consulting divine wisdom...", db)
