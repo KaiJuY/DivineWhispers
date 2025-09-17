@@ -4,13 +4,14 @@ Async Chat API endpoints with task queue and SSE support
 
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import Optional, AsyncGenerator
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import BaseModel, Field
 
-from app.utils.deps import get_db, get_current_user
+from app.utils.deps import get_current_user
+from app.core.database import get_database_session
 from app.models.user import User
 from app.models.chat_task import ChatTask, TaskStatus
 from app.services.task_queue_service import task_queue_service
@@ -51,13 +52,19 @@ class TaskStatusResponse(BaseModel):
     processing_time_ms: Optional[int] = None
 
 
+# Database dependency
+async def get_db_session():
+    """Database session dependency for this module"""
+    async for session in get_database_session():
+        yield session
+
 # API Endpoints
 
 @router.post("/ask-question", response_model=TaskResponse)
 async def ask_fortune_question(
     request: FortuneQuestionRequest,
     current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db_session)
 ):
     """
     Submit a fortune question for async processing
@@ -99,7 +106,7 @@ async def stream_task_progress(
     task_id: str,
     request: Request,
     token: Optional[str] = None,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db_session)
 ):
     """
     SSE endpoint for real-time task progress updates
@@ -153,7 +160,7 @@ async def stream_task_progress(
                 detail="User not found"
             )
 
-        # Check if user is active (MISSING FROM ORIGINAL!)
+        # Check if user is active
         if not current_user.is_active():
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
@@ -163,6 +170,7 @@ async def stream_task_progress(
     except HTTPException:
         raise
     except Exception as e:
+        logger.error(f"Authentication failed for SSE endpoint: {e}")
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Authentication failed: {str(e)}")
 
     # Verify task exists and belongs to user
@@ -282,7 +290,7 @@ async def stream_task_progress(
 async def get_task_status(
     task_id: str,
     current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db_session)
 ):
     """
     Get current status of a task (fallback for SSE)
@@ -328,7 +336,7 @@ async def get_user_chat_history(
     limit: int = 10,
     offset: int = 0,
     current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db_session)
 ):
     """
     Get user's chat history

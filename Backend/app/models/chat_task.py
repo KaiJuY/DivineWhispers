@@ -2,11 +2,13 @@
 Chat Task Model for async fortune question processing
 """
 
-from sqlalchemy import Column, String, Integer, DateTime, Text, JSON, Enum
+from sqlalchemy import String, Integer, Text, Enum, JSON
+from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
+from typing import Optional, Dict, Any
 import enum
 import uuid
-from app.models.base import Base
+from app.models.base import BaseModel
 
 
 class TaskStatus(enum.Enum):
@@ -19,40 +21,47 @@ class TaskStatus(enum.Enum):
     FAILED = "failed"
 
 
-class ChatTask(Base):
+class ChatTask(BaseModel):
     """Chat task model for async processing"""
 
     __tablename__ = "chat_tasks"
 
-    task_id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    user_id = Column(Integer, nullable=False)
+    task_id: Mapped[str] = mapped_column(
+        String(36),
+        primary_key=True,
+        default=lambda: str(uuid.uuid4())
+    )
+    user_id: Mapped[int] = mapped_column(Integer, nullable=False)
 
     # Request data
-    deity_id = Column(String(50), nullable=False)
-    fortune_number = Column(Integer, nullable=False)
-    question = Column(Text, nullable=False)
-    context = Column(JSON, nullable=True)
+    deity_id: Mapped[str] = mapped_column(String(50), nullable=False)
+    fortune_number: Mapped[int] = mapped_column(Integer, nullable=False)
+    question: Mapped[str] = mapped_column(Text, nullable=False)
+    context = mapped_column(JSON, default=None)
 
     # Task status
-    status = Column(Enum(TaskStatus), default=TaskStatus.QUEUED, nullable=False)
-    progress = Column(Integer, default=0)  # 0-100
-    status_message = Column(String(255), default="Task queued")
+    status: Mapped[TaskStatus] = mapped_column(
+        Enum(TaskStatus),
+        default=TaskStatus.QUEUED,
+        nullable=False
+    )
+    progress: Mapped[int] = mapped_column(Integer, default=0)  # 0-100
+    status_message: Mapped[str] = mapped_column(String(255), default="Task queued")
 
     # Results
-    response_text = Column(Text, nullable=True)
-    confidence = Column(Integer, nullable=True)  # 0-100
-    sources_used = Column(JSON, nullable=True)
-    processing_time_ms = Column(Integer, nullable=True)
-    error_message = Column(Text, nullable=True)
+    response_text: Mapped[Optional[str]] = mapped_column(Text, default=None)
+    confidence: Mapped[Optional[int]] = mapped_column(Integer, default=None)  # 0-100
+    sources_used = mapped_column(JSON, default=None)
+    processing_time_ms: Mapped[Optional[int]] = mapped_column(Integer, default=None)
+    error_message: Mapped[Optional[str]] = mapped_column(Text, default=None)
 
     # Metadata
-    created_at = Column(DateTime, default=datetime.utcnow)
-    started_at = Column(DateTime, nullable=True)
-    completed_at = Column(DateTime, nullable=True)
+    started_at: Mapped[Optional[datetime]] = mapped_column(default=None)
+    completed_at: Mapped[Optional[datetime]] = mapped_column(default=None)
 
     # Report generation
-    can_generate_report = Column(String(10), default="true")  # "true"/"false" as string
-    report_generated = Column(String(10), default="false")
+    can_generate_report: Mapped[str] = mapped_column(String(10), default="true")  # "true"/"false" as string
+    report_generated: Mapped[str] = mapped_column(String(10), default="false")
 
     def to_dict(self):
         """Convert to dictionary for JSON serialization"""
