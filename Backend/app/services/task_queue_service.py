@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update
 from app.models.chat_task import ChatTask, TaskStatus
 from app.services.poem_service import poem_service
-from app.core.database import get_database_session
+from app.core.database import get_database_session, get_async_session
 import uuid
 
 
@@ -109,95 +109,112 @@ class TaskQueueService:
                 )
                 queued_tasks = result.scalars().all()
 
-                # Process each task
+                # Process each task (each task gets its own DB session)
                 for task in queued_tasks:
                     if task.task_id not in self.active_tasks:
-                        asyncio.create_task(self.process_task(task.task_id, db))
+                        asyncio.create_task(self.process_task(task.task_id))
 
                 break  # Exit the async generator
             except Exception as e:
                 logger.error(f"Error getting queued tasks: {e}")
 
-    async def process_task(self, task_id: str, db: AsyncSession):
+    async def process_task(self, task_id: str):
         """Process a single task"""
+        task = None
+        start_time = time.time()
+
         try:
-            # Get task
-            task = await self.get_task(task_id, db)
-            if not task:
-                logger.warning(f"Task {task_id} not found")
-                return
+            # Create dedicated database session for this task
+            async with get_async_session() as db:
+                # Get task
+                task = await self.get_task(task_id, db)
+                if not task:
+                    logger.warning(f"Task {task_id} not found")
+                    return
 
-            if task.status != TaskStatus.QUEUED:
-                logger.warning(f"Task {task_id} is not queued (status: {task.status})")
-                return
+                if task.status != TaskStatus.QUEUED:
+                    logger.warning(f"Task {task_id} is not queued (status: {task.status})")
+                    return
 
-            self.active_tasks[task_id] = task
-            start_time = time.time()
+                self.active_tasks[task_id] = task
+                logger.info(f"Processing task {task_id}: {task.question[:50]}...")
 
-            logger.info(f"Processing task {task_id}: {task.question[:50]}...")
+                # Update status to processing
+                await self.update_task_progress(task, TaskStatus.PROCESSING, 10, "Starting analysis...", db)
 
-            # Update status to processing
-            await self.update_task_progress(task, TaskStatus.PROCESSING, 10, "Starting analysis...", db)
+                # Step 1: Analyze RAG context
+                await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 30, "Analyzing fortune context...", db)
+                await asyncio.sleep(1)  # Simulate RAG processing time
 
-            # Step 1: Analyze RAG context
-            await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 30, "Analyzing fortune context...", db)
-            await asyncio.sleep(1)  # Simulate RAG processing time
-
-            # Get fortune data for context
-            poem_data = await poem_service.get_poem_by_id(f"{task.deity_id}_{task.fortune_number}")
-            if not poem_data:
-                raise Exception(f"Fortune not found: {task.deity_id}_{task.fortune_number}")
-
-            # Step 2: Generate LLM response
-            await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 70, "Consulting divine wisdom...", db)
-
-            # Generate response using the poem service or mock
-            response_text = await self.generate_response(task, poem_data)
-            confidence = 75 + (hash(task.question) % 25)  # Mock confidence 75-99
-
-            # Step 3: Complete
-            await self.update_task_progress(task, TaskStatus.COMPLETED, 100, "Response generated successfully", db)
-
-            # Set result
-            task.set_result(
-                response_text=response_text,
-                confidence=confidence,
-                sources_used=["RAG Analysis", "Traditional Interpretation", poem_data.temple]
-            )
-
-            # Save final result
-            await db.commit()
-
-            processing_time = int((time.time() - start_time) * 1000)
-            logger.info(f"Completed task {task_id} in {processing_time}ms")
-
-            # Send completion event to SSE clients
-            await self.send_sse_event(task_id, {
-                "type": "complete",
-                "result": {
-                    "response": response_text,
-                    "confidence": confidence,
-                    "sources_used": task.sources_used,
-                    "processing_time_ms": processing_time,
-                    "can_generate_report": True
+                # Get fortune data for context
+                # Convert deity_id to temple name format for poem service
+                deity_to_temple_map = {
+                    "yue_lao": "YueLao",
+                    "guan_yin": "GuanYin",
+                    "mazu": "Mazu",
+                    "guan_yu": "GuanYu"
                 }
-            })
+                temple_name = deity_to_temple_map.get(task.deity_id, task.deity_id.title())
+                poem_id = f"{temple_name}_{task.fortune_number}"
+                poem_data = await poem_service.get_poem_by_id(poem_id)
+                if not poem_data:
+                    raise Exception(f"Fortune not found: {poem_id}")
+
+                # Step 2: Generate LLM response
+                await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 70, "Consulting divine wisdom...", db)
+
+                # Generate response using the poem service or mock
+                response_text = await self.generate_response(task, poem_data)
+                confidence = 75 + (hash(task.question) % 25)  # Mock confidence 75-99
+
+                # Step 3: Complete
+                await self.update_task_progress(task, TaskStatus.COMPLETED, 100, "Response generated successfully", db)
+
+                # Set result
+                task.set_result(
+                    response_text=response_text,
+                    confidence=confidence,
+                    sources_used=["RAG Analysis", "Traditional Interpretation", poem_data.temple]
+                )
+
+                # Save final result
+                await db.commit()
+
+                processing_time = int((time.time() - start_time) * 1000)
+                logger.info(f"Completed task {task_id} in {processing_time}ms")
+
+                # Send completion event to SSE clients
+                await self.send_sse_event(task_id, {
+                    "type": "complete",
+                    "result": {
+                        "response": response_text,
+                        "confidence": confidence,
+                        "sources_used": task.sources_used,
+                        "processing_time_ms": processing_time,
+                        "can_generate_report": True
+                    }
+                })
 
         except Exception as e:
             logger.error(f"Error processing task {task_id}: {e}")
 
-            # Update task with error
-            if task_id in self.active_tasks:
-                task = self.active_tasks[task_id]
-                task.set_error(str(e))
-                await db.commit()
+            # Update task with error using a new session
+            try:
+                async with get_async_session() as db:
+                    if task_id in self.active_tasks:
+                        task = self.active_tasks[task_id]
+                        task.set_error(str(e))
+                        await db.merge(task)  # Use merge to handle detached instance
+                        await db.commit()
 
-                # Send error event to SSE clients
-                await self.send_sse_event(task_id, {
-                    "type": "error",
-                    "error": str(e),
-                    "retry_allowed": True
-                })
+                    # Send error event to SSE clients
+                    await self.send_sse_event(task_id, {
+                        "type": "error",
+                        "error": str(e),
+                        "retry_allowed": True
+                    })
+            except Exception as commit_error:
+                logger.error(f"Failed to save error state for task {task_id}: {commit_error}")
 
         finally:
             # Remove from active tasks

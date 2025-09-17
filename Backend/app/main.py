@@ -183,10 +183,10 @@ async def websocket_endpoint(websocket, user_id: str):
                     from app.services.chat_service import chat_service
                     from app.models.chat_message import MessageType
                     from app.schemas.chat import ChatMessageCreate
-                    from app.core.database import get_db
-                    
+                    from app.core.database import get_async_session
+
                     # Get database session
-                    async with get_db() as db:
+                    async with get_async_session() as db:
                         try:
                             session_id = message.get("session_id")
                             content = message.get("content", "")

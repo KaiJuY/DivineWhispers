@@ -8,6 +8,8 @@ class ApiClient {
   private client: any;
   private tokenRefreshInProgress = false;
   private tokenRefreshTimer: NodeJS.Timeout | null = null;
+  private tokenRefreshPromise: Promise<void> | null = null;
+  private pendingRequests: Array<{ resolve: Function; reject: Function; originalRequest: any }> = [];
 
   constructor() {
     this.client = axios.create({
@@ -40,23 +42,32 @@ class ApiClient {
       (response: any) => response,
       async (error: any) => {
         const originalRequest = error.config as any;
-        
-        if (error.response?.status === 401 && !originalRequest._retry && !this.tokenRefreshInProgress) {
+
+        if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
-          
-          try {
-            await this.refreshToken();
-            const token = this.getStoredToken();
-            if (token && originalRequest.headers) {
-              originalRequest.headers.Authorization = `Bearer ${token}`;
+
+          return new Promise((resolve, reject) => {
+            // Add the failed request to pending queue
+            this.pendingRequests.push({
+              resolve,
+              reject,
+              originalRequest
+            });
+
+            // If a refresh is already in progress, just wait for it
+            if (this.tokenRefreshPromise) {
+              this.tokenRefreshPromise
+                .then(() => {
+                  this.processPendingRequests();
+                })
+                .catch(() => {
+                  this.processPendingRequests(true);
+                });
+            } else {
+              // Start a new refresh process
+              this.performTokenRefresh();
             }
-            return this.client(originalRequest);
-          } catch (refreshError) {
-            // Token refresh failed, clear tokens but don't force redirect
-            this.clearTokens();
-            console.warn('Authentication failed, user needs to re-login');
-            return Promise.reject(refreshError);
-          }
+          });
         }
 
         return Promise.reject(error);
@@ -109,6 +120,9 @@ class ApiClient {
     localStorage.removeItem('divine-whispers-refresh-token');
     // Clear the refresh timer when tokens are cleared
     this.clearTokenRefreshTimer();
+    // Clear any pending refresh operations
+    this.tokenRefreshPromise = null;
+    this.pendingRequests = [];
   }
 
   private decodeJWT(token: string): any {
@@ -166,6 +180,56 @@ class ApiClient {
     } else {
       console.warn('Token expires too soon, cannot schedule refresh');
     }
+  }
+
+  private async performTokenRefresh(): Promise<void> {
+    if (this.tokenRefreshPromise) {
+      return this.tokenRefreshPromise;
+    }
+
+    console.log('Starting concurrent-safe token refresh...');
+
+    this.tokenRefreshPromise = this.refreshToken()
+      .then(() => {
+        console.log('Token refresh completed successfully');
+        this.processPendingRequests();
+      })
+      .catch((error) => {
+        console.error('Token refresh failed:', error);
+        this.processPendingRequests(true);
+      })
+      .finally(() => {
+        this.tokenRefreshPromise = null;
+      });
+
+    return this.tokenRefreshPromise;
+  }
+
+  private processPendingRequests(isError: boolean = false): void {
+    console.log(`Processing ${this.pendingRequests.length} pending requests (error: ${isError})`);
+
+    const requests = [...this.pendingRequests];
+    this.pendingRequests = [];
+
+    requests.forEach(({ resolve, reject, originalRequest }) => {
+      if (isError) {
+        // Token refresh failed, clear tokens and redirect to login
+        this.clearTokens();
+        const error = new Error('Authentication failed, please log in again');
+        (error as any).code = 'AUTH_FAILED';
+        reject(error);
+      } else {
+        // Token refresh succeeded, retry the original request
+        const token = this.getStoredToken();
+        if (token && originalRequest.headers) {
+          originalRequest.headers.Authorization = `Bearer ${token}`;
+        }
+
+        this.client(originalRequest)
+          .then(resolve)
+          .catch(reject);
+      }
+    });
   }
 
   // Authentication Methods

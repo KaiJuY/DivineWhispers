@@ -3,6 +3,8 @@
  * Replaces the complex WebSocket implementation
  */
 
+import apiClient from './apiClient';
+
 // Types
 export interface FortuneQuestionRequest {
   deity_id: string;
@@ -50,6 +52,8 @@ export interface ChatHistoryItem {
 export class AsyncChatService {
   private baseUrl = '/api/v1/async-chat';
   private activeConnections = new Map<string, EventSource>();
+  private retryAttempts = new Map<string, number>();
+  private maxRetries = 3;
 
   // Map frontend deity IDs to backend deity IDs
   private mapDeityId(frontendDeityId: string): string {
@@ -78,25 +82,21 @@ export class AsyncChatService {
       deity_id: this.mapDeityId(request.deity_id)
     };
 
-    const response = await fetch(`${this.baseUrl}/ask-question`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('divine-whispers-access-token')}`,
-      },
-      body: JSON.stringify(mappedRequest),
-    });
+    try {
+      return await apiClient.post(`${this.baseUrl}/ask-question`, mappedRequest);
+    } catch (error: any) {
+      // Handle authentication errors specifically
+      if (error.code === 'AUTH_FAILED') {
+        throw new Error('Authentication failed, please log in again');
+      }
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ detail: 'Request failed' }));
-      throw new Error(error.detail || 'Failed to submit question');
+      const errorMessage = error.response?.data?.detail || error.message || 'Failed to submit question';
+      throw new Error(errorMessage);
     }
-
-    return response.json();
   }
 
   /**
-   * Subscribe to task progress updates via SSE
+   * Subscribe to task progress updates via SSE with automatic token refresh
    */
   subscribeToProgress(
     taskId: string,
@@ -106,9 +106,34 @@ export class AsyncChatService {
     // Close existing connection for this task
     this.unsubscribeFromProgress(taskId);
 
+    // Reset retry counter for this task
+    this.retryAttempts.set(taskId, 0);
+
+    this.createSSEConnection(taskId, onProgress, onError);
+
+    // Return cleanup function
+    return () => this.unsubscribeFromProgress(taskId);
+  }
+
+  /**
+   * Create SSE connection with token refresh handling
+   */
+  private createSSEConnection(
+    taskId: string,
+    onProgress: (progress: TaskProgress) => void,
+    onError?: (error: Error) => void
+  ): void {
     const token = localStorage.getItem('divine-whispers-access-token');
+
+    if (!token) {
+      onError?.(new Error('No authentication token available'));
+      return;
+    }
+
+    console.log(`Creating SSE connection for task ${taskId}`);
+
     const eventSource = new EventSource(
-      `/api/v1/async-chat/sse/${taskId}?token=${encodeURIComponent(token || '')}`,
+      `/api/v1/async-chat/sse/${taskId}?token=${encodeURIComponent(token)}`,
       {
         withCredentials: true,
       }
@@ -117,6 +142,11 @@ export class AsyncChatService {
     eventSource.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data) as TaskProgress;
+        console.log('SSE message received:', data);
+
+        // Reset retry counter on successful message
+        this.retryAttempts.set(taskId, 0);
+
         onProgress(data);
 
         // Auto-close connection when task is complete or failed
@@ -129,16 +159,44 @@ export class AsyncChatService {
       }
     };
 
-    eventSource.onerror = (event) => {
-      console.error('SSE connection error:', event);
-      onError?.(new Error('Connection to server lost'));
-      this.unsubscribeFromProgress(taskId);
+    eventSource.onerror = (event: any) => {
+      console.error('SSE connection error for task', taskId, ':', event);
+
+      // Check if this is a 401 error (token expired)
+      if (event.target?.readyState === EventSource.CLOSED) {
+        // Connection was closed, check if we should retry with token refresh
+        const retryCount = this.retryAttempts.get(taskId) || 0;
+
+        if (retryCount < this.maxRetries) {
+          console.log(`Attempting SSE connection retry ${retryCount + 1}/${this.maxRetries} for task ${taskId}`);
+          this.retryAttempts.set(taskId, retryCount + 1);
+
+          // Close current connection
+          this.unsubscribeFromProgress(taskId);
+
+          // Try to refresh token and reconnect
+          setTimeout(async () => {
+            try {
+              // Force token refresh by making a test API call
+              await apiClient.get('/api/v1/auth/me');
+
+              // Recreate connection with fresh token
+              this.createSSEConnection(taskId, onProgress, onError);
+            } catch (refreshError) {
+              console.error('Token refresh failed during SSE retry:', refreshError);
+              onError?.(new Error('Authentication failed, please log in again'));
+            }
+          }, 1000 * retryCount); // Exponential backoff
+        } else {
+          console.error(`Max SSE retry attempts reached for task ${taskId}`);
+          onError?.(new Error('Connection failed after multiple attempts'));
+        }
+      } else {
+        onError?.(new Error('Connection to server lost'));
+      }
     };
 
     this.activeConnections.set(taskId, eventSource);
-
-    // Return cleanup function
-    return () => this.unsubscribeFromProgress(taskId);
   }
 
   /**
@@ -150,24 +208,24 @@ export class AsyncChatService {
       eventSource.close();
       this.activeConnections.delete(taskId);
     }
+    // Clean up retry counter
+    this.retryAttempts.delete(taskId);
   }
 
   /**
    * Get task status (fallback for SSE)
    */
   async getTaskStatus(taskId: string): Promise<any> {
-    const response = await fetch(`${this.baseUrl}/task/${taskId}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('divine-whispers-access-token')}`,
-      },
-    });
+    try {
+      return await apiClient.get(`${this.baseUrl}/task/${taskId}`);
+    } catch (error: any) {
+      if (error.code === 'AUTH_FAILED') {
+        throw new Error('Authentication failed, please log in again');
+      }
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ detail: 'Request failed' }));
-      throw new Error(error.detail || 'Failed to get task status');
+      const errorMessage = error.response?.data?.detail || error.message || 'Failed to get task status';
+      throw new Error(errorMessage);
     }
-
-    return response.json();
   }
 
   /**
@@ -178,21 +236,16 @@ export class AsyncChatService {
     total_count: number;
     has_more: boolean;
   }> {
-    const response = await fetch(
-      `${this.baseUrl}/history?limit=${limit}&offset=${offset}`,
-      {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('divine-whispers-access-token')}`,
-        },
+    try {
+      return await apiClient.get(`${this.baseUrl}/history`, { limit, offset });
+    } catch (error: any) {
+      if (error.code === 'AUTH_FAILED') {
+        throw new Error('Authentication failed, please log in again');
       }
-    );
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ detail: 'Request failed' }));
-      throw new Error(error.detail || 'Failed to get chat history');
+      const errorMessage = error.response?.data?.detail || error.message || 'Failed to get chat history';
+      throw new Error(errorMessage);
     }
-
-    return response.json();
   }
 
   /**
