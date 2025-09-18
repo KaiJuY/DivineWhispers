@@ -239,36 +239,55 @@ class PoemService:
         Returns:
             PoemData object or None if not found
         """
+        logger.info(f"[GET_POEM] Retrieving poem by ID: '{poem_id}'")
         await self.ensure_initialized()
 
         cache_key = f"poem_{poem_id}"
         if cache_key in self.cache:
+            logger.debug(f"[GET_POEM] Found poem in cache: {poem_id}")
             return self.cache[cache_key]
 
         try:
             # Parse poem ID
+            logger.debug(f"[GET_POEM] Parsing poem ID: '{poem_id}'")
             temple, numeric_id = await self._parse_poem_id(poem_id)
+            logger.debug(f"[GET_POEM] Parsed result - temple: '{temple}', numeric_id: {numeric_id}")
 
             if not temple or not numeric_id:
-                logger.warning(f"Invalid poem ID format: {poem_id}")
+                logger.warning(f"[GET_POEM] Invalid poem ID format: {poem_id}")
                 return None
 
             # Get poem chunks
+            logger.debug(f"[GET_POEM] Retrieving chunks for {temple}#{numeric_id}")
             poem_chunks = self.rag_handler.get_poem_by_temple_and_id(temple, numeric_id)
+            logger.debug(f"[GET_POEM] Retrieved {len(poem_chunks) if poem_chunks else 0} chunks")
 
             if not poem_chunks:
-                logger.warning(f"Poem not found: {temple}#{numeric_id}")
+                logger.warning(f"[GET_POEM] Poem not found in RAG: {temple}#{numeric_id}")
                 # Try fallback to direct file reading
+                logger.info(f"[GET_POEM] Attempting direct file read for {temple}#{numeric_id}")
                 return await self._try_direct_file_read(temple, numeric_id)
 
+            logger.debug(f"[GET_POEM] Creating poem data from {len(poem_chunks)} chunks")
             poem_data = await self._create_poem_data_from_chunks(poem_chunks)
 
+            if not poem_data:
+                logger.error(f"[GET_POEM] Failed to create poem data from chunks for {temple}#{numeric_id}")
+                return None
+
             # Validate the analysis structure - if it's corrupted, try direct file read
-            if poem_data and not self._is_analysis_valid(poem_data.analysis):
-                logger.warning(f"Invalid analysis structure for {poem_id}, trying direct file read")
+            logger.debug(f"[GET_POEM] Validating analysis structure for {poem_id}")
+            is_valid = self._is_analysis_valid(poem_data.analysis)
+            logger.debug(f"[GET_POEM] Analysis validation result: {is_valid}")
+
+            if not is_valid:
+                logger.warning(f"[GET_POEM] Invalid analysis structure for {poem_id}, trying direct file read")
                 direct_data = await self._try_direct_file_read(temple, numeric_id)
                 if direct_data and self._is_analysis_valid(direct_data.analysis):
+                    logger.info(f"[GET_POEM] Successfully retrieved valid data from direct file read")
                     poem_data = direct_data
+                else:
+                    logger.warning(f"[GET_POEM] Direct file read also failed or invalid for {poem_id}")
 
             # Cache result
             self.cache[cache_key] = poem_data
@@ -276,7 +295,8 @@ class PoemService:
             return poem_data
 
         except Exception as e:
-            logger.error(f"Error getting poem by ID {poem_id}: {e}")
+            logger.error(f"[GET_POEM] Critical error getting poem by ID {poem_id}: {e}", exc_info=True)
+            logger.error(f"[GET_POEM] Error context - poem_id: '{poem_id}', cache_key: '{cache_key}'")
             return None
     
     async def search_similar_poems(
@@ -415,53 +435,105 @@ class PoemService:
             return []
     
     async def generate_fortune_interpretation(
-        self, 
-        poem_data: PoemData, 
+        self,
+        poem_data: PoemData,
         question: str,
         language: str = "zh",
         user_context: Optional[str] = None
     ) -> FortuneResult:
         """
         Generate personalized fortune interpretation
-        
+
         Args:
             poem_data: Selected poem data
             question: User's question
             language: Target language
             user_context: Additional user context
-            
+
         Returns:
             FortuneResult with interpretation
         """
+        # Input validation and logging
+        logger.info(f"[INTERPRET] Starting interpretation for {poem_data.temple} poem #{poem_data.poem_id}")
+        logger.debug(f"[INTERPRET] Input parameters: question='{question[:50]}...', language='{language}', user_context={bool(user_context)}")
+
         await self.ensure_initialized()
-        
+
         try:
+            # Log system availability
+            logger.debug(f"[INTERPRET] Fortune system available: {self.fortune_system is not None}")
+
             # Use Fortune System if available
             if self.fortune_system:
-                result = self.fortune_system.ask_fortune(
-                    question=question,
-                    temple=poem_data.temple,
-                    poem_id=poem_data.poem_id,
-                    additional_context=bool(user_context)
-                )
-                
-                return FortuneResult(
-                    poem=poem_data,
-                    interpretation=result.interpretation,
-                    confidence=result.confidence,
-                    additional_sources=result.sources.get("poems", []),
-                    temple_sources=result.temple_sources,
-                    generated_at=datetime.now(),
-                    language=language,
-                    job_id=""  # Will be set by job system
-                )
-            
+                logger.info(f"[INTERPRET] Using Fortune System for {poem_data.temple}#{poem_data.poem_id}")
+
+                try:
+                    logger.debug(f"[INTERPRET] Calling fortune_system.ask_fortune with temple='{poem_data.temple}', poem_id={poem_data.poem_id}")
+                    result = self.fortune_system.ask_fortune(
+                        question=question,
+                        temple=poem_data.temple,
+                        poem_id=poem_data.poem_id,
+                        additional_context=bool(user_context)
+                    )
+                    logger.info(f"[INTERPRET] Fortune system returned result with confidence: {result.confidence}")
+
+                    # Log result details
+                    logger.debug(f"[INTERPRET] Result temple_sources: {result.temple_sources}")
+                    logger.debug(f"[INTERPRET] Result sources: {result.sources}")
+                    logger.debug(f"[INTERPRET] Interpretation length: {len(result.interpretation)} characters")
+
+                    # Convert sources count to list of source references
+                    logger.debug(f"[INTERPRET] Converting sources count to reference list")
+                    additional_sources = []
+                    if result.sources:
+                        poem_count = result.sources.get("poems", 0)
+                        faq_count = result.sources.get("faqs", 0)
+                        logger.debug(f"[INTERPRET] Source counts - poems: {poem_count}, faqs: {faq_count}")
+
+                        if poem_count > 0:
+                            poem_refs = [f"Related poem reference {i+1}" for i in range(min(poem_count, 5))]
+                            additional_sources.extend(poem_refs)
+                            logger.debug(f"[INTERPRET] Added {len(poem_refs)} poem references")
+                        if faq_count > 0:
+                            faq_refs = [f"FAQ reference {i+1}" for i in range(min(faq_count, 3))]
+                            additional_sources.extend(faq_refs)
+                            logger.debug(f"[INTERPRET] Added {len(faq_refs)} FAQ references")
+                    else:
+                        logger.warning(f"[INTERPRET] No sources found in result")
+
+                    logger.debug(f"[INTERPRET] Final additional_sources: {additional_sources} (type: {type(additional_sources)})")
+
+                    # Create FortuneResult
+                    logger.debug(f"[INTERPRET] Creating FortuneResult object")
+                    fortune_result = FortuneResult(
+                        poem=poem_data,
+                        interpretation=result.interpretation,
+                        confidence=result.confidence,
+                        additional_sources=additional_sources,
+                        temple_sources=result.temple_sources,
+                        generated_at=datetime.now(),
+                        language=language,
+                        job_id=""  # Will be set by job system
+                    )
+                    logger.info(f"[INTERPRET] Successfully created FortuneResult for {poem_data.temple}#{poem_data.poem_id}")
+                    return fortune_result
+
+                except Exception as fortune_error:
+                    logger.error(f"[INTERPRET] Fortune system error: {fortune_error}", exc_info=True)
+                    logger.info(f"[INTERPRET] Falling back to simple interpretation due to fortune system error")
+                    # Continue to fallback
+            else:
+                logger.warning(f"[INTERPRET] No Fortune System available, using fallback interpretation")
+
             # Fallback interpretation
+            logger.info(f"[INTERPRET] Generating fallback interpretation for {poem_data.temple}#{poem_data.poem_id}")
             interpretation = await self._generate_fallback_interpretation(
                 poem_data, question, language
             )
-            
-            return FortuneResult(
+            logger.debug(f"[INTERPRET] Fallback interpretation length: {len(interpretation)} characters")
+
+            logger.debug(f"[INTERPRET] Creating fallback FortuneResult object")
+            fallback_result = FortuneResult(
                 poem=poem_data,
                 interpretation=interpretation,
                 confidence=0.7,
@@ -471,9 +543,12 @@ class PoemService:
                 language=language,
                 job_id=""
             )
-            
+            logger.info(f"[INTERPRET] Successfully created fallback FortuneResult for {poem_data.temple}#{poem_data.poem_id}")
+            return fallback_result
+
         except Exception as e:
-            logger.error(f"Error generating interpretation: {e}")
+            logger.error(f"[INTERPRET] Critical error in generate_fortune_interpretation: {e}", exc_info=True)
+            logger.error(f"[INTERPRET] Failed parameters - temple: {poem_data.temple}, poem_id: {poem_data.poem_id}, question: '{question[:100]}...'")
             raise RuntimeError(f"Failed to generate interpretation: {str(e)}")
     
     async def health_check(self) -> FortuneSystemHealthResponse:
@@ -614,98 +689,114 @@ class PoemService:
     
     async def _create_poem_data_from_chunks(self, chunks: List[Dict]) -> PoemData:
         """Create PoemData from poem chunks"""
+        logger.debug(f"[CREATE_POEM] Creating poem data from {len(chunks)} chunks")
+
         if not chunks:
+            logger.error("[CREATE_POEM] No chunks provided")
             raise ValueError("No chunks provided")
 
-        # Use first chunk for basic info
-        chunk = chunks[0]
+        try:
+            # Use first chunk for basic info
+            chunk = chunks[0]
+            logger.debug(f"[CREATE_POEM] Using chunk for basic info: {chunk.get('chunk_id', 'unknown')}")
 
-        # Initialize analysis with proper structure
-        analysis = {"zh": "", "en": "", "jp": ""}
-        poem_text = ""
+            # Initialize analysis with proper structure
+            analysis = {"zh": "", "en": "", "jp": ""}
+            poem_text = ""
 
-        # Look for original analysis in the chunk metadata
-        # The original JSON structure should be preserved in chunk metadata
-        if "analysis" in chunk:
-            # If analysis is already structured properly, use it directly
-            original_analysis = chunk["analysis"]
-            if isinstance(original_analysis, dict):
-                analysis.update(original_analysis)
-            elif isinstance(original_analysis, str):
-                # If it's a string, try to parse it as JSON
-                try:
-                    import json
-                    parsed_analysis = json.loads(original_analysis)
-                    if isinstance(parsed_analysis, dict):
-                        analysis.update(parsed_analysis)
-                    else:
-                        # Fallback: put string content in zh field
+            # Look for original analysis in the chunk metadata
+            # The original JSON structure should be preserved in chunk metadata
+            if "analysis" in chunk:
+                # If analysis is already structured properly, use it directly
+                original_analysis = chunk["analysis"]
+                if isinstance(original_analysis, dict):
+                    analysis.update(original_analysis)
+                elif isinstance(original_analysis, str):
+                    # If it's a string, try to parse it as JSON
+                    try:
+                        import json
+                        parsed_analysis = json.loads(original_analysis)
+                        if isinstance(parsed_analysis, dict):
+                            analysis.update(parsed_analysis)
+                        else:
+                            # Fallback: put string content in zh field
+                            analysis["zh"] = original_analysis
+                    except json.JSONDecodeError:
                         analysis["zh"] = original_analysis
-                except json.JSONDecodeError:
-                    analysis["zh"] = original_analysis
 
-        # Extract poem text from chunk content
-        if "poem" in chunk:
-            poem_text = chunk["poem"]
+            # Extract poem text from chunk content
+            if "poem" in chunk:
+                poem_text = chunk["poem"]
 
-        # Look through all chunks for poem text
-        for chunk_data in chunks:
-            content = chunk_data.get("content", "")
-
-            # Try to extract poem from content patterns
-            if "Poem:" in content:
-                lines = content.split("\n")
-                for line in lines:
-                    if line.strip().startswith("Poem:"):
-                        poem_text = line.replace("Poem:", "").strip()
-                        break
-            # Try to extract from "詩文:" pattern
-            elif content.startswith("詩文:"):
-                poem_text = content.replace("詩文:", "").strip()
-            # Try to extract array pattern like "['今行到此實難推', ...]"
-            elif content.startswith("['") and content.endswith("']"):
-                poem_text = content
-
-            # If we found poem text, break
-            if poem_text:
-                break
-
-        # Extract analysis from chunks based on content patterns instead of language field
-        if not any(analysis.values()):
+            # Look through all chunks for poem text
             for chunk_data in chunks:
                 content = chunk_data.get("content", "")
 
-                # Parse analysis by content patterns (more reliable than language field)
-                if content.startswith("ZH Analysis:"):
-                    analysis["zh"] = content.replace("ZH Analysis:", "").strip()
-                elif content.startswith("EN Analysis:"):
-                    analysis["en"] = content.replace("EN Analysis:", "").strip()
-                elif content.startswith("JP Analysis:"):
-                    analysis["jp"] = content.replace("JP Analysis:", "").strip()
-                # Also check for pattern in combined content
-                elif "Analysis:" in content and not content.startswith("RAG Analysis:"):
-                    # Try to detect language from content after "Analysis:"
-                    content_after_analysis = content.split("Analysis:", 1)[1].strip()
-                    if content_after_analysis:
-                        # Simple detection based on character patterns
-                        if any('\u4e00' <= char <= '\u9fff' for char in content_after_analysis[:50]):
-                            if not analysis["zh"]:  # Only if zh is still empty
-                                analysis["zh"] = content_after_analysis
-                        elif any('\u3040' <= char <= '\u30ff' for char in content_after_analysis[:50]):
-                            if not analysis["jp"]:  # Only if jp is still empty
-                                analysis["jp"] = content_after_analysis
-                        elif not analysis["en"]:  # Fallback to English if not detected as CJK
-                            analysis["en"] = content_after_analysis
+                # Try to extract poem from content patterns
+                if "Poem:" in content:
+                    lines = content.split("\n")
+                    for line in lines:
+                        if line.strip().startswith("Poem:"):
+                            poem_text = line.replace("Poem:", "").strip()
+                            break
+                # Try to extract from "詩文:" pattern
+                elif content.startswith("詩文:"):
+                    poem_text = content.replace("詩文:", "").strip()
+                # Try to extract array pattern like "['今行到此實難推', ...]"
+                elif content.startswith("['") and content.endswith("']"):
+                    poem_text = content
 
-        return PoemData(
-            id=f"{chunk['temple']}_{chunk['poem_id']}",
-            temple=chunk["temple"],
-            poem_id=chunk["poem_id"],
-            title=chunk.get("title", ""),
-            fortune=chunk.get("fortune", ""),
-            poem=poem_text or str(chunk.get("poem", "")),
-            analysis=analysis
-        )
+                # If we found poem text, break
+                if poem_text:
+                    break
+
+            # Extract analysis from chunks based on content patterns instead of language field
+            if not any(analysis.values()):
+                for chunk_data in chunks:
+                    content = chunk_data.get("content", "")
+
+                    # Parse analysis by content patterns (more reliable than language field)
+                    if content.startswith("ZH Analysis:"):
+                        analysis["zh"] = content.replace("ZH Analysis:", "").strip()
+                    elif content.startswith("EN Analysis:"):
+                        analysis["en"] = content.replace("EN Analysis:", "").strip()
+                    elif content.startswith("JP Analysis:"):
+                        analysis["jp"] = content.replace("JP Analysis:", "").strip()
+                    # Also check for pattern in combined content
+                    elif "Analysis:" in content and not content.startswith("RAG Analysis:"):
+                        # Try to detect language from content after "Analysis:"
+                        content_after_analysis = content.split("Analysis:", 1)[1].strip()
+                        if content_after_analysis:
+                            # Simple detection based on character patterns
+                            if any('\u4e00' <= char <= '\u9fff' for char in content_after_analysis[:50]):
+                                if not analysis["zh"]:  # Only if zh is still empty
+                                    analysis["zh"] = content_after_analysis
+                            elif any('\u3040' <= char <= '\u30ff' for char in content_after_analysis[:50]):
+                                if not analysis["jp"]:  # Only if jp is still empty
+                                    analysis["jp"] = content_after_analysis
+                            elif not analysis["en"]:  # Fallback to English if not detected as CJK
+                                analysis["en"] = content_after_analysis
+
+                logger.debug(f"[CREATE_POEM] Final poem data - temple: {chunk.get('temple')}, poem_id: {chunk.get('poem_id')}")
+                logger.debug(f"[CREATE_POEM] Analysis keys filled: {[k for k, v in analysis.items() if v]}")
+                logger.debug(f"[CREATE_POEM] Poem text length: {len(poem_text)} characters")
+
+                poem_data = PoemData(
+                    id=f"{chunk['temple']}_{chunk['poem_id']}",
+                    temple=chunk["temple"],
+                    poem_id=chunk["poem_id"],
+                    title=chunk.get("title", ""),
+                    fortune=chunk.get("fortune", ""),
+                    poem=poem_text or str(chunk.get("poem", "")),
+                    analysis=analysis
+                )
+                logger.debug(f"[CREATE_POEM] Successfully created PoemData for {poem_data.temple}#{poem_data.poem_id}")
+                return poem_data
+
+        except Exception as e:
+            logger.error(f"[CREATE_POEM] Error creating poem data from chunks: {e}", exc_info=True)
+            logger.error(f"[CREATE_POEM] Chunk info - first chunk: {chunks[0] if chunks else 'No chunks'}")
+            raise
     
     async def _create_poem_data_from_basic(self, poem_info: Dict) -> PoemData:
         """Create PoemData from basic poem info"""
@@ -720,37 +811,46 @@ class PoemService:
         )
     
     async def _generate_fallback_interpretation(
-        self, 
-        poem_data: PoemData, 
-        question: str, 
+        self,
+        poem_data: PoemData,
+        question: str,
         language: str
     ) -> str:
         """Generate fallback interpretation when LLM is not available"""
-        
-        # Template-based interpretation
-        fortune_interpretations = {
-            "great_fortune": "This is an auspicious time filled with great potential. Your question touches on matters that are likely to unfold favorably.",
-            "good_fortune": "Positive energy surrounds your inquiry. With patience and right action, good outcomes are indicated.",
-            "small_fortune": "Small but meaningful progress is suggested. Trust in gradual improvement and steady steps forward.",
-            "fortune": "The signs are generally positive. Maintain a balanced approach to achieve your desired outcomes.",
-            "neutral": "This represents a time of balance and careful consideration. Neither rushing nor delaying is advised.",
-            "bad_fortune": "Challenges may be present, but they serve as opportunities for growth and learning.",
-            "great_misfortune": "This period calls for extra caution and patience. Focus on inner strength and wisdom."
-        }
-        
-        fortune_type = parse_fortune_type(poem_data.fortune)
-        base_interpretation = fortune_interpretations.get(
-            fortune_type, 
-            "The ancient wisdom of this poem offers guidance for your current situation."
-        )
-        
-        # Create contextual interpretation
-        interpretation = f"""
+        logger.info(f"[FALLBACK] Generating fallback interpretation for {poem_data.temple}#{poem_data.poem_id}")
+        logger.debug(f"[FALLBACK] Input - question: '{question[:50]}...', language: '{language}', fortune: '{poem_data.fortune}'")
+
+        try:
+            # Parse fortune type
+            logger.debug(f"[FALLBACK] Parsing fortune type from: '{poem_data.fortune}'")
+            fortune_type = parse_fortune_type(poem_data.fortune)
+            logger.debug(f"[FALLBACK] Parsed fortune type: '{fortune_type}'")
+
+            # Template-based interpretation
+            fortune_interpretations = {
+                "great_fortune": "This is an auspicious time filled with great potential. Your question touches on matters that are likely to unfold favorably.",
+                "good_fortune": "Positive energy surrounds your inquiry. With patience and right action, good outcomes are indicated.",
+                "small_fortune": "Small but meaningful progress is suggested. Trust in gradual improvement and steady steps forward.",
+                "fortune": "The signs are generally positive. Maintain a balanced approach to achieve your desired outcomes.",
+                "neutral": "This represents a time of balance and careful consideration. Neither rushing nor delaying is advised.",
+                "bad_fortune": "Challenges may be present, but they serve as opportunities for growth and learning.",
+                "great_misfortune": "This period calls for extra caution and patience. Focus on inner strength and wisdom."
+            }
+
+            base_interpretation = fortune_interpretations.get(
+                fortune_type,
+                "The ancient wisdom of this poem offers guidance for your current situation."
+            )
+            logger.debug(f"[FALLBACK] Selected base interpretation for fortune type '{fortune_type}': '{base_interpretation[:50]}...'")
+
+            # Create contextual interpretation
+            logger.debug(f"[FALLBACK] Creating contextual interpretation")
+            interpretation = f"""
 Based on the fortune poem "{poem_data.title}" from {poem_data.temple} temple, here is your interpretation:
 
 {base_interpretation}
 
-The poem's wisdom suggests that your question about "{question[:100]}..." is important to consider at this time. 
+The poem's wisdom suggests that your question about "{question[:100]}..." is important to consider at this time.
 
 Regarding your specific inquiry:
 - Reflect on the deeper meanings within your current circumstances
@@ -760,9 +860,20 @@ Regarding your specific inquiry:
 Remember that fortune readings offer guidance for reflection, and your own wisdom and choices ultimately shape your path forward.
 
 May this ancient wisdom bring clarity to your journey.
-        """.strip()
-        
-        return interpretation
+            """.strip()
+
+            logger.debug(f"[FALLBACK] Generated interpretation length: {len(interpretation)} characters")
+            logger.info(f"[FALLBACK] Successfully generated fallback interpretation for {poem_data.temple}#{poem_data.poem_id}")
+            return interpretation
+
+        except Exception as e:
+            logger.error(f"[FALLBACK] Error generating fallback interpretation: {e}", exc_info=True)
+            logger.error(f"[FALLBACK] Failed parameters - temple: {poem_data.temple}, poem_id: {poem_data.poem_id}, fortune: '{poem_data.fortune}'")
+
+            # Final fallback
+            basic_interpretation = f"Based on the wisdom of {poem_data.temple} temple, this poem offers guidance for your question. Please consider its meaning in the context of your current circumstances."
+            logger.warning(f"[FALLBACK] Using basic interpretation due to error")
+            return basic_interpretation
     
     def _is_analysis_valid(self, analysis: Dict[str, str]) -> bool:
         """Check if analysis structure is valid and contains clean language-specific content"""
