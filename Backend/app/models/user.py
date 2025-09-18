@@ -133,12 +133,6 @@ class User(BaseModel):
         lazy="select"
     )
     
-    chat_sessions: Mapped[List["ChatSession"]] = relationship(
-        "ChatSession",
-        back_populates="user",
-        cascade="all, delete-orphan",
-        lazy="select"
-    )
     
     # Indexes for performance
     __table_args__ = (

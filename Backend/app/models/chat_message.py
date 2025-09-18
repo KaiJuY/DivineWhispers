@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from enum import Enum
 
-from .base import Base
+from .base import BaseModel
 
 
 class MessageType(str, Enum):
@@ -17,7 +17,7 @@ class MessageType(str, Enum):
     SYSTEM = "system"
 
 
-class ChatSession(Base):
+class ChatSession(BaseModel):
     """Chat session model for grouping related messages"""
     __tablename__ = "chat_sessions"
     
@@ -25,8 +25,6 @@ class ChatSession(Base):
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False, index=True)
     session_name = Column(String(200), nullable=True)
     context_data = Column(JSON, nullable=True)  # Store fortune context, deity info, etc.
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
     is_active = Column(Boolean, default=True)
     
     # Relationships
@@ -37,7 +35,7 @@ class ChatSession(Base):
         return f"<ChatSession(id={self.id}, user_id={self.user_id}, name='{self.session_name}')>"
 
 
-class ChatMessage(Base):
+class ChatMessage(BaseModel):
     """Chat message model for storing individual messages"""
     __tablename__ = "chat_messages"
     
@@ -48,8 +46,6 @@ class ChatMessage(Base):
     message_type = Column(String(20), nullable=False, default=MessageType.USER)
     content = Column(Text, nullable=False)
     message_metadata = Column(JSON, nullable=True)  # Store token count, model used, etc.
-    
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
     is_deleted = Column(Boolean, default=False)
     
     # Relationships
