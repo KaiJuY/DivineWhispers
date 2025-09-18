@@ -64,3 +64,4 @@ pip install chromadb sentence-transformers beautifulsoup4 urllib3
 - ChromaDB system handles both data ingestion and similarity search
 - The system is designed for multilingual support (Chinese, English, Japanese)
 - Output files are organized by temple name in separate directories
+- Focus on current job don't summary previous request again.

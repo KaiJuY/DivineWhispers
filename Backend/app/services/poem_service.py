@@ -17,6 +17,7 @@ from typing import Dict, List, Optional, Union
 from cachetools import TTLCache
 
 from app.core.config import settings
+from app.utils.logging_config import get_logger
 from app.schemas.fortune import (
     PoemData, PoemSearchResult, FortuneResult, 
     TempleStatsResponse, FortuneSystemHealthResponse
@@ -42,7 +43,7 @@ except ImportError as e:
     raise
 
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class PoemService:
@@ -97,40 +98,64 @@ class PoemService:
                 return False
     
     async def _initialize_fortune_system(self):
-        """Initialize the Fortune System with available LLM providers"""
+        """Initialize the Fortune System according to configured LLM provider."""
+        provider = (settings.LLM_PROVIDER or "ollama").lower()
+        logger.info(f"Initializing Fortune System (provider={provider})...")
+
+        # Preferred provider
         try:
-            # Try OpenAI first if API key is available
-            if settings.OPENAI_API_KEY:
-                logger.info("Initializing Fortune System with OpenAI...")
+            if provider == "openai":
+                if not settings.OPENAI_API_KEY:
+                    raise RuntimeError("OPENAI_API_KEY not set")
                 self.fortune_system = create_openai_system(
                     api_key=settings.OPENAI_API_KEY,
                     model=settings.LLM_MODEL
                 )
+                logger.info("Fortune System initialized with OpenAI")
+                return
+
+            if provider == "ollama":
+                self.fortune_system = create_ollama_system(
+                    model=settings.LLM_MODEL or "gpt-oss:20b",
+                    base_url=settings.OLLAMA_BASE_URL or "http://localhost:11434"
+                )
+                logger.info("Fortune System initialized with Ollama")
+                return
+
+            if provider == "mock":
+                raise Exception("Force mock provider")
+        except Exception as e:
+            logger.warning(f"Preferred LLM provider initialization failed ({provider}): {e}")
+
+        # Fallback chain
+        try:
+            if settings.OPENAI_API_KEY:
+                self.fortune_system = create_openai_system(
+                    api_key=settings.OPENAI_API_KEY,
+                    model=settings.LLM_MODEL
+                )
+                logger.info("Fortune System fallback to OpenAI succeeded")
                 return
         except Exception as e:
-            logger.warning(f"OpenAI initialization failed: {e}")
-        
+            logger.warning(f"OpenAI fallback failed: {e}")
+
         try:
-            # Try Ollama as fallback
-            logger.info("Initializing Fortune System with Ollama...")
             self.fortune_system = create_ollama_system(
-                model="gpt-oss:20b",
-                base_url="http://localhost:11434"
+                model=settings.LLM_MODEL or "gpt-oss:20b",
+                base_url=settings.OLLAMA_BASE_URL or "http://localhost:11434"
             )
+            logger.info("Fortune System fallback to Ollama succeeded")
             return
         except Exception as e:
-            logger.warning(f"Ollama initialization failed: {e}")
-        
-        # Create mock system for development/testing
-        logger.info("Creating mock Fortune System for development...")
+            logger.warning(f"Ollama fallback failed: {e}")
+
+        # Final mock fallback to ensure system runs
+        logger.info("Falling back to mock Fortune System (development mode)")
         from fortune_module import FortuneSystem, LLMProvider
-        
         self.fortune_system = FortuneSystem(
             llm_provider=LLMProvider.OPENAI,
             llm_config={"api_key": "mock"}
         )
-        
-        # Replace with mock client
         mock_client = LLMClientFactory.create_mock_client(
             "Based on the selected fortune poem, I can offer you this interpretation: "
             "The poem suggests a time of transition and growth. Trust in your inner wisdom "

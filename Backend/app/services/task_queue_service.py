@@ -146,22 +146,10 @@ class TaskQueueService:
                 await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 30, "Analyzing fortune context...", db)
                 await asyncio.sleep(1)  # Simulate RAG processing time
 
-                # Get fortune data for context
-                # Convert deity_id to temple name format for poem service
-                deity_to_temple_map = {
-                    "yue_lao": "YueLao",
-                    "guan_yin": "GuanYin",
-                    "mazu": "Mazu",
-                    "guan_yu": "GuanYu",
-                    # Add additional mappings for common variations
-                    "yueLao": "YueLao",
-                    "guanYin": "GuanYin",
-                    "guanYu": "GuanYu"
-                }
-
-                # Debug logging to trace the mapping issue
+                # Get fortune data for context using central deity mapping
+                from app.services.deity_service import deity_service
                 logger.info(f"[MAPPING] Original deity_id: '{task.deity_id}'")
-                temple_name = deity_to_temple_map.get(task.deity_id, task.deity_id.title())
+                temple_name = deity_service.get_temple_name(task.deity_id) or task.deity_id
                 logger.info(f"[MAPPING] Mapped temple_name: '{temple_name}'")
 
                 poem_id = f"{temple_name}_{task.fortune_number}"
@@ -267,32 +255,29 @@ class TaskQueueService:
         })
 
     async def generate_response(self, task: ChatTask, poem_data) -> str:
-        """Generate AI response for the task"""
-        # This would integrate with your LLM service
-        # For now, using a mock response similar to the original
+        """Generate AI response for the task using the poem service (RAG + LLM)."""
+        try:
+            # Determine language preference if provided
+            language = "en"
+            try:
+                if isinstance(task.context, dict) and task.context.get("language"):
+                    language = str(task.context.get("language"))
+            except Exception:
+                pass
 
-        await asyncio.sleep(2)  # Simulate processing time
-
-        deity_name = {
-            "yue_lao": "Yue Lao",
-            "guan_yin": "Guan Yin",
-            "mazu": "Mazu",
-            "guan_yu": "Guan Yu"
-        }.get(task.deity_id, task.deity_id.title())
-
-        responses = [
-            f'Regarding your question "{task.question}", the divine wisdom of {deity_name} through fortune #{task.fortune_number} suggests that patience and perseverance are your greatest allies. The ancient poem speaks of transformation and renewal - trust in the process and remain open to guidance.',
-
-            f'Your inquiry "{task.question}" resonates deeply with the energy of fortune #{task.fortune_number}. The celestial signs indicate that positive changes are approaching. The poem\'s wisdom reminds us that every ending brings a new beginning.',
-
-            f'The sacred wisdom of fortune #{task.fortune_number} illuminates your question: "{task.question}". Balance is essential in your current situation - neither force nor complete passivity, but mindful action guided by inner wisdom.',
-
-            f'Through the lens of fortune #{task.fortune_number}, your question "{task.question}" reveals hidden opportunities. {deity_name} suggests focusing on what you can influence while releasing attachment to specific outcomes.',
-
-            f'The divine teachings within fortune #{task.fortune_number} offer profound guidance for "{task.question}". Your intuition is particularly strong now - trust it to guide your decisions, as it is aligned with universal wisdom.'
-        ]
-
-        return responses[hash(task.question) % len(responses)]
+            result = await poem_service.generate_fortune_interpretation(
+                poem_data=poem_data,
+                question=task.question,
+                language=language
+            )
+            return result.interpretation
+        except Exception as e:
+            logger.error(f"LLM generation failed, falling back to simple response: {e}")
+            # Fallback simple message to avoid empty output
+            return (
+                f"Regarding your question '{task.question}', this fortune emphasizes patience, clarity, "
+                f"and steady progress. Reflect on the poem '{poem_data.title}' for guidance."
+            )
 
     def add_sse_connection(self, task_id: str, response_obj):
         """Add SSE connection for a task"""

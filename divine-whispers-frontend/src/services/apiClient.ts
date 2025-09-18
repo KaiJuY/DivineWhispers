@@ -43,7 +43,11 @@ class ApiClient {
       async (error: any) => {
         const originalRequest = error.config as any;
 
-        if (error.response?.status === 401 && !originalRequest._retry) {
+        // Ignore 401s from auth endpoints themselves to avoid loops
+        const url: string = originalRequest?.url || '';
+        const isAuthEndpoint = url.includes('/api/v1/auth/refresh') || url.includes('/api/v1/auth/login');
+
+        if (!isAuthEndpoint && error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
 
           return new Promise((resolve, reject) => {
@@ -190,8 +194,11 @@ class ApiClient {
     console.log('Starting concurrent-safe token refresh...');
 
     this.tokenRefreshPromise = this.refreshToken()
-      .then(() => {
+      .then((expiresIn) => {
         console.log('Token refresh completed successfully');
+        if (typeof expiresIn === 'number' && expiresIn > 0) {
+          this.scheduleTokenRefresh(expiresIn);
+        }
         this.processPendingRequests();
       })
       .catch((error) => {
@@ -316,7 +323,7 @@ class ApiClient {
     }
   }
 
-  async refreshToken(): Promise<void> {
+  async refreshToken(): Promise<number | void> {
     if (this.tokenRefreshInProgress) {
       return;
     }
@@ -333,8 +340,19 @@ class ApiClient {
         refresh_token: refreshToken
       });
 
-      const { tokens } = response.data;
+      const tokens = response.data as {
+        access_token: string;
+        refresh_token: string;
+        expires_in: number;
+        refresh_expires_in: number;
+      };
+
+      if (!tokens?.access_token || !tokens?.refresh_token) {
+        throw new Error('Invalid refresh response');
+      }
+
       this.setTokens(tokens.access_token, tokens.refresh_token);
+      return tokens.expires_in;
     } finally {
       this.tokenRefreshInProgress = false;
     }

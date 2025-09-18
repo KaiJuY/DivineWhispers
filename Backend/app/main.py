@@ -14,14 +14,16 @@ import os
 from app.core.config import settings
 from app.core.database import engine, create_tables
 from app.utils.websocket import websocket_manager
+from app.utils.logging_config import setup_logging, get_logger
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-# Reduce SQLAlchemy logging verbosity
-logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING)
-logging.getLogger('sqlalchemy.pool').setLevel(logging.WARNING)
+setup_logging(
+    log_level=settings.LOG_LEVEL,
+    log_dir=settings.LOG_DIR,
+    max_bytes=settings.LOG_MAX_BYTES,
+    backup_count=settings.LOG_BACKUP_COUNT
+)
+logger = get_logger(__name__)
 
 
 @asynccontextmanager

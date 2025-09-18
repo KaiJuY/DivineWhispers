@@ -45,6 +45,7 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: Optional[str] = None
     LLM_PROVIDER: str = "ollama"  # openai, ollama, mock
     LLM_MODEL: str = "gpt-oss:20b"  # Default Ollama model
+    OLLAMA_BASE_URL: Optional[str] = "http://localhost:11434"
     
     # ChromaDB settings - use environment variables
     CHROMA_DB_PATH: str = os.getenv("CHROMA_DB_PATH", "./chroma_db")
@@ -54,6 +55,12 @@ class Settings(BaseSettings):
     FORTUNE_CACHE_TIMEOUT_SECONDS: int = 300
     FORTUNE_JOB_TIMEOUT_SECONDS: int = 300
     FORTUNE_MAX_SEARCH_RESULTS: int = 10
+
+    # Logging settings
+    LOG_LEVEL: str = "INFO"
+    LOG_DIR: str = "logs"
+    LOG_MAX_BYTES: int = 10 * 1024 * 1024  # 10MB
+    LOG_BACKUP_COUNT: int = 5
     
     # Use simple configuration
     class Config:
