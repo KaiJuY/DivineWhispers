@@ -67,17 +67,31 @@ async def lifespan(app: FastAPI):
     
     # Shutdown
     logger.info("Shutting down Divine Whispers Backend...")
-    
+
     # Stop services
     try:
         from app.services.job_processor import job_processor
         from app.services.task_queue_service import task_queue_service
+        from app.services.poem_service import poem_service
+
         await job_processor.stop_processing()
         await task_queue_service.stop_processing()
+
+        # Clean up poem service resources
+        poem_service.cleanup()
+
+        # Clean up ChromaDB connection pool
+        try:
+            from fortune_module.unified_rag import UnifiedRAGHandler
+            UnifiedRAGHandler.cleanup_connection_pool()
+            logger.info("ChromaDB connection pool cleaned up")
+        except Exception as cleanup_error:
+            logger.warning(f"Error cleaning up ChromaDB pool: {cleanup_error}")
+
         logger.info("Services stopped")
     except Exception as e:
         logger.error(f"Error stopping services: {e}")
-    
+
     await engine.dispose()
 
 
@@ -267,7 +281,7 @@ async def websocket_endpoint(websocket, user_id: str):
 
 
 # Include API routers
-from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact, async_chat
+from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact, async_chat, monitoring
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Administration"])
 app.include_router(fortune.router, prefix="/api/v1", tags=["Fortune"])
@@ -276,6 +290,7 @@ app.include_router(deities.router, prefix="/api/v1", tags=["Deities"])
 app.include_router(chat.router, prefix="/api/v1", tags=["Chat"])
 app.include_router(contact.router, prefix="/api/v1", tags=["Contact"])
 app.include_router(async_chat.router, prefix="/api/v1", tags=["Async Chat"])
+app.include_router(monitoring.router, prefix="/api/v1", tags=["System Monitoring"])
 
 
 if __name__ == "__main__":

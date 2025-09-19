@@ -409,3 +409,105 @@ async def get_user_chat_history(
     except Exception as e:
         logger.error(f"Error getting chat history: {e}")
         raise HTTPException(status_code=500, detail="Failed to get chat history")
+
+
+@router.get("/metrics")
+async def get_service_metrics(
+    hours: int = 24,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db_session)
+):
+    """
+    Get comprehensive service metrics (requires authentication)
+    """
+    try:
+        # Get real-time metrics
+        service_metrics = task_queue_service.get_service_metrics()
+
+        # Get historical statistics
+        task_statistics = await task_queue_service.get_task_statistics(db, hours)
+
+        # Get circuit breaker status
+        from app.utils.timeout_utils import (
+            rag_circuit_breaker, llm_circuit_breaker, chromadb_circuit_breaker
+        )
+
+        circuit_breakers = {
+            "rag_circuit_breaker": {
+                "state": rag_circuit_breaker.state,
+                "failure_count": rag_circuit_breaker.failure_count,
+                "failure_threshold": rag_circuit_breaker.failure_threshold,
+                "recovery_timeout": rag_circuit_breaker.recovery_timeout
+            },
+            "llm_circuit_breaker": {
+                "state": llm_circuit_breaker.state,
+                "failure_count": llm_circuit_breaker.failure_count,
+                "failure_threshold": llm_circuit_breaker.failure_threshold,
+                "recovery_timeout": llm_circuit_breaker.recovery_timeout
+            },
+            "chromadb_circuit_breaker": {
+                "state": chromadb_circuit_breaker.state,
+                "failure_count": chromadb_circuit_breaker.failure_count,
+                "failure_threshold": chromadb_circuit_breaker.failure_threshold,
+                "recovery_timeout": chromadb_circuit_breaker.recovery_timeout
+            }
+        }
+
+        return {
+            "service_metrics": service_metrics,
+            "task_statistics": task_statistics,
+            "circuit_breakers": circuit_breakers,
+            "user_id": current_user.user_id,
+            "generated_at": datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting service metrics: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get service metrics")
+
+
+@router.get("/health")
+async def service_health_check():
+    """
+    Public health check endpoint for the async chat service
+    """
+    try:
+        # Check if task queue service is running
+        is_healthy = task_queue_service.is_processing
+
+        # Get basic worker pool status
+        pool_metrics = task_queue_service.worker_pool.get_metrics()
+        active_workers = pool_metrics['pool_status']['active_workers']
+        total_workers = pool_metrics['pool_status']['max_workers']
+
+        # Check circuit breaker states
+        from app.utils.timeout_utils import (
+            rag_circuit_breaker, llm_circuit_breaker, chromadb_circuit_breaker
+        )
+
+        circuit_breakers_healthy = all([
+            cb.state != "OPEN" for cb in [
+                rag_circuit_breaker, llm_circuit_breaker, chromadb_circuit_breaker
+            ]
+        ])
+
+        overall_status = "healthy" if (is_healthy and circuit_breakers_healthy) else "degraded"
+
+        return {
+            "status": overall_status,
+            "service": "async-chat",
+            "task_queue_running": is_healthy,
+            "active_workers": active_workers,
+            "total_workers": total_workers,
+            "circuit_breakers_healthy": circuit_breakers_healthy,
+            "timestamp": datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        logger.error(f"Health check failed: {e}")
+        return {
+            "status": "error",
+            "service": "async-chat",
+            "error": str(e),
+            "timestamp": datetime.now().isoformat()
+        }

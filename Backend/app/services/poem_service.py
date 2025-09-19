@@ -18,12 +18,17 @@ from cachetools import TTLCache
 
 from app.core.config import settings
 from app.utils.logging_config import get_logger
+from app.utils.timeout_utils import (
+    with_timeout, timeout_context, TimeoutError,
+    rag_circuit_breaker, llm_circuit_breaker, chromadb_circuit_breaker,
+    with_circuit_breaker
+)
 from app.schemas.fortune import (
-    PoemData, PoemSearchResult, FortuneResult, 
+    PoemData, PoemSearchResult, FortuneResult,
     TempleStatsResponse, FortuneSystemHealthResponse
 )
 from app.utils.poem_utils import (
-    format_poem_for_llm_context, parse_fortune_type, 
+    format_poem_for_llm_context, parse_fortune_type,
     normalize_temple_name, get_random_poem_selection,
     validate_poem_data
 )
@@ -58,65 +63,87 @@ class PoemService:
         self._initialized = False
         self._lock = asyncio.Lock()
         
+    @with_circuit_breaker(chromadb_circuit_breaker, fallback_value=False)
     async def initialize_system(self) -> bool:
         """
-        Initialize ChromaDB and Fortune System
-        
+        Initialize ChromaDB and Fortune System with timeout protection
+
         Returns:
             True if initialization successful, False otherwise
         """
         async with self._lock:
             if self._initialized:
                 return True
-                
+
             try:
-                logger.info("Initializing poem service...")
+                async with timeout_context(30.0, "poem_service_initialization"):
+                    logger.info("Initializing poem service...")
 
-                # Debug environment
-                import os
-                logger.info(f"Current working directory: {os.getcwd()}")
-                logger.info(f"ChromaDB path exists: {os.path.exists(settings.CHROMA_DB_PATH)}")
-                if os.path.exists(settings.CHROMA_DB_PATH):
-                    logger.info(f"ChromaDB path contents: {os.listdir(settings.CHROMA_DB_PATH)}")
+                    # Debug environment
+                    import os
+                    logger.info(f"Current working directory: {os.getcwd()}")
+                    logger.info(f"ChromaDB path exists: {os.path.exists(settings.CHROMA_DB_PATH)}")
+                    if os.path.exists(settings.CHROMA_DB_PATH):
+                        logger.info(f"ChromaDB path contents: {os.listdir(settings.CHROMA_DB_PATH)}")
 
-                # Initialize RAG handler
-                config = SystemConfig()
-                logger.info(f"RAG Config - Collection: {settings.CHROMA_COLLECTION_NAME}, Path: {settings.CHROMA_DB_PATH}")
+                    # Initialize RAG handler with timeout
+                    await self._initialize_rag_handler_async()
 
-                # Try multiple initialization approaches
-                try:
-                    logger.info("Attempting UnifiedRAGHandler with default parameters...")
-                    self.rag_handler = UnifiedRAGHandler()
-                    logger.info("SUCCESS: UnifiedRAGHandler initialized with defaults")
-                except Exception as e:
-                    logger.warning(f"Default initialization failed: {e}")
-                    try:
-                        logger.info("Attempting UnifiedRAGHandler with explicit parameters...")
-                        self.rag_handler = UnifiedRAGHandler(
-                            collection_name=settings.CHROMA_COLLECTION_NAME,
-                            persist_path=settings.CHROMA_DB_PATH
-                        )
-                        logger.info("SUCCESS: UnifiedRAGHandler initialized with explicit parameters")
-                    except Exception as e2:
-                        logger.error(f"Both initialization methods failed: {e2}")
-                        raise e2
-                
-                # Initialize Fortune System
-                await self._initialize_fortune_system()
-                
-                # Validate initialization
-                health_check = await self.health_check()
-                if health_check.chroma_db_status != "healthy":
-                    logger.error("ChromaDB initialization failed health check")
-                    return False
-                
-                self._initialized = True
-                logger.info("Poem service initialized successfully")
-                return True
-                
+                    # Initialize Fortune System
+                    await self._initialize_fortune_system()
+
+                    # Validate initialization with timeout
+                    health_check = await self.health_check()
+                    if health_check.chroma_db_status != "healthy":
+                        logger.error("ChromaDB initialization failed health check")
+                        return False
+
+                    self._initialized = True
+                    logger.info("Poem service initialized successfully")
+                    return True
+
+            except TimeoutError:
+                logger.error("Poem service initialization timed out")
+                return False
             except Exception as e:
                 logger.error(f"Failed to initialize poem service: {e}")
                 return False
+
+    async def _initialize_rag_handler_async(self):
+        """Initialize RAG handler in async context"""
+        # Run RAG handler initialization in thread pool to avoid blocking
+        loop = asyncio.get_event_loop()
+
+        def init_rag():
+            config = SystemConfig()
+            logger.info(f"RAG Config - Collection: {settings.CHROMA_COLLECTION_NAME}, Path: {settings.CHROMA_DB_PATH}")
+
+            # Try multiple initialization approaches
+            try:
+                logger.info("Attempting UnifiedRAGHandler with default parameters...")
+                return UnifiedRAGHandler()
+            except Exception as e:
+                logger.warning(f"Default initialization failed: {e}")
+                try:
+                    logger.info("Attempting UnifiedRAGHandler with explicit parameters...")
+                    return UnifiedRAGHandler(
+                        collection_name=settings.CHROMA_COLLECTION_NAME,
+                        persist_path=settings.CHROMA_DB_PATH
+                    )
+                except Exception as e2:
+                    logger.error(f"Both initialization methods failed: {e2}")
+                    raise e2
+
+        # Run in thread pool with timeout
+        try:
+            self.rag_handler = await asyncio.wait_for(
+                loop.run_in_executor(None, init_rag),
+                timeout=20.0
+            )
+            logger.info("SUCCESS: UnifiedRAGHandler initialized")
+        except asyncio.TimeoutError:
+            logger.error("RAG handler initialization timed out")
+            raise TimeoutError("RAG handler initialization timed out")
     
     async def _initialize_fortune_system(self):
         """Initialize the Fortune System according to configured LLM provider."""
@@ -186,11 +213,16 @@ class PoemService:
         self.fortune_system.llm = mock_client
     
     async def ensure_initialized(self):
-        """Ensure the service is initialized before use"""
+        """Ensure the service is initialized before use with timeout"""
         if not self._initialized:
-            success = await self.initialize_system()
-            if not success:
-                raise RuntimeError("Failed to initialize poem service")
+            try:
+                async with timeout_context(10.0, "ensure_initialized"):
+                    success = await self.initialize_system()
+                    if not success:
+                        raise RuntimeError("Failed to initialize poem service")
+            except TimeoutError:
+                logger.error("Poem service initialization timed out")
+                raise RuntimeError("Poem service initialization timed out")
 
     def cleanup(self):
         """Clean up service resources"""
@@ -278,9 +310,10 @@ class PoemService:
             logger.warning("Database error, creating mock poem data")
             return await self._create_mock_poem_data(temple_preference)
     
+    @with_circuit_breaker(rag_circuit_breaker, fallback_value=None)
     async def get_poem_by_id(self, poem_id: str) -> Optional[PoemData]:
         """
-        Get specific poem by ID
+        Get specific poem by ID with timeout protection
 
         Args:
             poem_id: Poem identifier in format "temple_poem_id" or just poem_id
@@ -297,18 +330,48 @@ class PoemService:
             return self.cache[cache_key]
 
         try:
-            # Parse poem ID
-            logger.debug(f"[GET_POEM] Parsing poem ID: '{poem_id}'")
-            temple, numeric_id = await self._parse_poem_id(poem_id)
-            logger.debug(f"[GET_POEM] Parsed result - temple: '{temple}', numeric_id: {numeric_id}")
+            async with timeout_context(15.0, f"get_poem_by_id_{poem_id}"):
+                # Parse poem ID
+                logger.debug(f"[GET_POEM] Parsing poem ID: '{poem_id}'")
+                temple, numeric_id = await self._parse_poem_id(poem_id)
+                logger.debug(f"[GET_POEM] Parsed result - temple: '{temple}', numeric_id: {numeric_id}")
 
-            if not temple or not numeric_id:
-                logger.warning(f"[GET_POEM] Invalid poem ID format: {poem_id}")
-                return None
+                if not temple or not numeric_id:
+                    logger.warning(f"[GET_POEM] Invalid poem ID format: {poem_id}")
+                    return None
 
-            # Get poem chunks
-            logger.debug(f"[GET_POEM] Retrieving chunks for {temple}#{numeric_id}")
-            poem_chunks = self.rag_handler.get_poem_by_temple_and_id(temple, numeric_id)
+                # Get poem chunks with timeout
+                poem_data = await self._get_poem_chunks_async(temple, numeric_id, poem_id)
+
+                if poem_data:
+                    # Cache result
+                    self.cache[cache_key] = poem_data
+                    return poem_data
+                else:
+                    return None
+
+        except TimeoutError:
+            logger.warning(f"[GET_POEM] Timeout getting poem {poem_id}")
+            return None
+        except Exception as e:
+            logger.error(f"[GET_POEM] Critical error getting poem by ID {poem_id}: {e}", exc_info=True)
+            logger.error(f"[GET_POEM] Error context - poem_id: '{poem_id}', cache_key: '{cache_key}'")
+            return None
+
+    async def _get_poem_chunks_async(self, temple: str, numeric_id: int, poem_id: str) -> Optional[PoemData]:
+        """Get poem chunks asynchronously with timeout protection"""
+        loop = asyncio.get_event_loop()
+
+        def get_chunks():
+            return self.rag_handler.get_poem_by_temple_and_id(temple, numeric_id)
+
+        try:
+            # Run RAG query in thread pool to avoid blocking
+            poem_chunks = await asyncio.wait_for(
+                loop.run_in_executor(None, get_chunks),
+                timeout=10.0
+            )
+
             logger.debug(f"[GET_POEM] Retrieved {len(poem_chunks) if poem_chunks else 0} chunks")
 
             if not poem_chunks:
@@ -338,14 +401,10 @@ class PoemService:
                 else:
                     logger.warning(f"[GET_POEM] Direct file read also failed or invalid for {poem_id}")
 
-            # Cache result
-            self.cache[cache_key] = poem_data
-
             return poem_data
 
-        except Exception as e:
-            logger.error(f"[GET_POEM] Critical error getting poem by ID {poem_id}: {e}", exc_info=True)
-            logger.error(f"[GET_POEM] Error context - poem_id: '{poem_id}', cache_key: '{cache_key}'")
+        except asyncio.TimeoutError:
+            logger.error(f"[GET_POEM] Timeout getting chunks for {temple}#{numeric_id}")
             return None
     
     async def search_similar_poems(
@@ -625,6 +684,7 @@ class PoemService:
         # For now, return basic categorization
         return ", ".join(topics) if topics else "Fortune Analysis"
 
+    @with_circuit_breaker(llm_circuit_breaker, fallback_value=None)
     async def generate_fortune_interpretation(
         self,
         poem_data: PoemData,
@@ -633,7 +693,7 @@ class PoemService:
         user_context: Optional[str] = None
     ) -> FortuneResult:
         """
-        Generate personalized fortune interpretation
+        Generate personalized fortune interpretation with timeout protection
 
         Args:
             poem_data: Selected poem data
@@ -651,92 +711,118 @@ class PoemService:
         await self.ensure_initialized()
 
         try:
-            # Log system availability
-            logger.debug(f"[INTERPRET] Fortune system available: {self.fortune_system is not None}")
+            async with timeout_context(45.0, f"fortune_interpretation_{poem_data.temple}_{poem_data.poem_id}"):
+                # Log system availability
+                logger.debug(f"[INTERPRET] Fortune system available: {self.fortune_system is not None}")
 
-            # Use Fortune System if available
-            if self.fortune_system:
-                logger.info(f"[INTERPRET] Using Fortune System for {poem_data.temple}#{poem_data.poem_id}")
+                # Use Fortune System if available
+                if self.fortune_system:
+                    logger.info(f"[INTERPRET] Using Fortune System for {poem_data.temple}#{poem_data.poem_id}")
 
-                try:
-                    logger.debug(f"[INTERPRET] Calling fortune_system.ask_fortune with temple='{poem_data.temple}', poem_id={poem_data.poem_id}")
-                    result = self.fortune_system.ask_fortune(
-                        question=question,
-                        temple=poem_data.temple,
-                        poem_id=poem_data.poem_id,
-                        additional_context=bool(user_context)
-                    )
-                    logger.info(f"[INTERPRET] Fortune system returned result with confidence: {result.confidence}")
+                    try:
+                        # Run LLM call in thread pool to avoid blocking
+                        loop = asyncio.get_event_loop()
 
-                    # Log result details
-                    logger.debug(f"[INTERPRET] Result temple_sources: {result.temple_sources}")
-                    logger.debug(f"[INTERPRET] Result sources: {result.sources}")
-                    logger.debug(f"[INTERPRET] Interpretation length: {len(result.interpretation)} characters")
+                        def call_fortune_system():
+                            return self.fortune_system.ask_fortune(
+                                question=question,
+                                temple=poem_data.temple,
+                                poem_id=poem_data.poem_id,
+                                additional_context=bool(user_context)
+                            )
 
-                    # Convert sources count to list of source references
-                    logger.debug(f"[INTERPRET] Converting sources count to reference list")
-                    additional_sources = []
-                    if result.sources:
-                        poem_count = result.sources.get("poems", 0)
-                        faq_count = result.sources.get("faqs", 0)
-                        logger.debug(f"[INTERPRET] Source counts - poems: {poem_count}, faqs: {faq_count}")
+                        logger.debug(f"[INTERPRET] Calling fortune_system.ask_fortune with temple='{poem_data.temple}', poem_id={poem_data.poem_id}")
+                        result = await asyncio.wait_for(
+                            loop.run_in_executor(None, call_fortune_system),
+                            timeout=40.0
+                        )
+                        logger.info(f"[INTERPRET] Fortune system returned result with confidence: {result.confidence}")
 
-                        if poem_count > 0:
-                            poem_refs = [f"Related poem reference {i+1}" for i in range(min(poem_count, 5))]
-                            additional_sources.extend(poem_refs)
-                            logger.debug(f"[INTERPRET] Added {len(poem_refs)} poem references")
-                        if faq_count > 0:
-                            faq_refs = [f"FAQ reference {i+1}" for i in range(min(faq_count, 3))]
-                            additional_sources.extend(faq_refs)
-                            logger.debug(f"[INTERPRET] Added {len(faq_refs)} FAQ references")
-                    else:
-                        logger.warning(f"[INTERPRET] No sources found in result")
+                        # Log result details
+                        logger.debug(f"[INTERPRET] Result temple_sources: {result.temple_sources}")
+                        logger.debug(f"[INTERPRET] Result sources: {result.sources}")
+                        logger.debug(f"[INTERPRET] Interpretation length: {len(result.interpretation)} characters")
 
-                    logger.debug(f"[INTERPRET] Final additional_sources: {additional_sources} (type: {type(additional_sources)})")
+                        # Convert sources count to list of source references
+                        logger.debug(f"[INTERPRET] Converting sources count to reference list")
+                        additional_sources = []
+                        if result.sources:
+                            poem_count = result.sources.get("poems", 0)
+                            faq_count = result.sources.get("faqs", 0)
+                            logger.debug(f"[INTERPRET] Source counts - poems: {poem_count}, faqs: {faq_count}")
 
-                    # Create FortuneResult
-                    logger.debug(f"[INTERPRET] Creating FortuneResult object")
-                    fortune_result = FortuneResult(
-                        poem=poem_data,
-                        interpretation=result.interpretation,
-                        confidence=result.confidence,
-                        additional_sources=additional_sources,
-                        temple_sources=result.temple_sources,
-                        generated_at=datetime.now(),
-                        language=language,
-                        job_id=""  # Will be set by job system
-                    )
-                    logger.info(f"[INTERPRET] Successfully created FortuneResult for {poem_data.temple}#{poem_data.poem_id}")
-                    return fortune_result
+                            if poem_count > 0:
+                                poem_refs = [f"Related poem reference {i+1}" for i in range(min(poem_count, 5))]
+                                additional_sources.extend(poem_refs)
+                                logger.debug(f"[INTERPRET] Added {len(poem_refs)} poem references")
+                            if faq_count > 0:
+                                faq_refs = [f"FAQ reference {i+1}" for i in range(min(faq_count, 3))]
+                                additional_sources.extend(faq_refs)
+                                logger.debug(f"[INTERPRET] Added {len(faq_refs)} FAQ references")
+                        else:
+                            logger.warning(f"[INTERPRET] No sources found in result")
 
-                except Exception as fortune_error:
-                    logger.error(f"[INTERPRET] Fortune system error: {fortune_error}", exc_info=True)
-                    logger.info(f"[INTERPRET] Falling back to simple interpretation due to fortune system error")
-                    # Continue to fallback
-            else:
-                logger.warning(f"[INTERPRET] No Fortune System available, using fallback interpretation")
+                        logger.debug(f"[INTERPRET] Final additional_sources: {additional_sources} (type: {type(additional_sources)})")
 
-            # Fallback interpretation
-            logger.info(f"[INTERPRET] Generating fallback interpretation for {poem_data.temple}#{poem_data.poem_id}")
-            interpretation = await self._generate_fallback_interpretation(
-                poem_data, question, language
-            )
-            logger.debug(f"[INTERPRET] Fallback interpretation length: {len(interpretation)} characters")
+                        # Create FortuneResult
+                        logger.debug(f"[INTERPRET] Creating FortuneResult object")
+                        fortune_result = FortuneResult(
+                            poem=poem_data,
+                            interpretation=result.interpretation,
+                            confidence=result.confidence,
+                            additional_sources=additional_sources,
+                            temple_sources=result.temple_sources,
+                            generated_at=datetime.now(),
+                            language=language,
+                            job_id=""  # Will be set by job system
+                        )
+                        logger.info(f"[INTERPRET] Successfully created FortuneResult for {poem_data.temple}#{poem_data.poem_id}")
+                        return fortune_result
 
-            logger.debug(f"[INTERPRET] Creating fallback FortuneResult object")
-            fallback_result = FortuneResult(
+                    except asyncio.TimeoutError:
+                        logger.warning(f"[INTERPRET] Fortune system call timed out, falling back")
+                        # Continue to fallback
+                    except Exception as fortune_error:
+                        logger.error(f"[INTERPRET] Fortune system error: {fortune_error}", exc_info=True)
+                        logger.info(f"[INTERPRET] Falling back to simple interpretation due to fortune system error")
+                        # Continue to fallback
+                else:
+                    logger.warning(f"[INTERPRET] No Fortune System available, using fallback interpretation")
+
+                # Fallback interpretation
+                logger.info(f"[INTERPRET] Generating fallback interpretation for {poem_data.temple}#{poem_data.poem_id}")
+                interpretation = await self._generate_fallback_interpretation(
+                    poem_data, question, language
+                )
+                logger.debug(f"[INTERPRET] Fallback interpretation length: {len(interpretation)} characters")
+
+                logger.debug(f"[INTERPRET] Creating fallback FortuneResult object")
+                fallback_result = FortuneResult(
+                    poem=poem_data,
+                    interpretation=interpretation,
+                    confidence=0.7,
+                    additional_sources=[],
+                    temple_sources=[poem_data.temple],
+                    generated_at=datetime.now(),
+                    language=language,
+                    job_id=""
+                )
+                logger.info(f"[INTERPRET] Successfully created fallback FortuneResult for {poem_data.temple}#{poem_data.poem_id}")
+                return fallback_result
+
+        except TimeoutError:
+            logger.error(f"[INTERPRET] Interpretation timed out for {poem_data.temple}#{poem_data.poem_id}")
+            # Return emergency fallback
+            return FortuneResult(
                 poem=poem_data,
-                interpretation=interpretation,
-                confidence=0.7,
+                interpretation="I apologize, but the interpretation is taking longer than expected. Please try again.",
+                confidence=0.5,
                 additional_sources=[],
                 temple_sources=[poem_data.temple],
                 generated_at=datetime.now(),
                 language=language,
                 job_id=""
             )
-            logger.info(f"[INTERPRET] Successfully created fallback FortuneResult for {poem_data.temple}#{poem_data.poem_id}")
-            return fallback_result
-
         except Exception as e:
             logger.error(f"[INTERPRET] Critical error in generate_fortune_interpretation: {e}", exc_info=True)
             logger.error(f"[INTERPRET] Failed parameters - temple: {poem_data.temple}, poem_id: {poem_data.poem_id}, question: '{question[:100]}...'")
