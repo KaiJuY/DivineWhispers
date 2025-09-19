@@ -72,13 +72,34 @@ class PoemService:
             try:
                 logger.info("Initializing poem service...")
 
+                # Debug environment
+                import os
+                logger.info(f"Current working directory: {os.getcwd()}")
+                logger.info(f"ChromaDB path exists: {os.path.exists(settings.CHROMA_DB_PATH)}")
+                if os.path.exists(settings.CHROMA_DB_PATH):
+                    logger.info(f"ChromaDB path contents: {os.listdir(settings.CHROMA_DB_PATH)}")
+
                 # Initialize RAG handler
                 config = SystemConfig()
                 logger.info(f"RAG Config - Collection: {settings.CHROMA_COLLECTION_NAME}, Path: {settings.CHROMA_DB_PATH}")
-                self.rag_handler = UnifiedRAGHandler(
-                    collection_name=settings.CHROMA_COLLECTION_NAME,
-                    persist_path=settings.CHROMA_DB_PATH
-                )
+
+                # Try multiple initialization approaches
+                try:
+                    logger.info("Attempting UnifiedRAGHandler with default parameters...")
+                    self.rag_handler = UnifiedRAGHandler()
+                    logger.info("SUCCESS: UnifiedRAGHandler initialized with defaults")
+                except Exception as e:
+                    logger.warning(f"Default initialization failed: {e}")
+                    try:
+                        logger.info("Attempting UnifiedRAGHandler with explicit parameters...")
+                        self.rag_handler = UnifiedRAGHandler(
+                            collection_name=settings.CHROMA_COLLECTION_NAME,
+                            persist_path=settings.CHROMA_DB_PATH
+                        )
+                        logger.info("SUCCESS: UnifiedRAGHandler initialized with explicit parameters")
+                    except Exception as e2:
+                        logger.error(f"Both initialization methods failed: {e2}")
+                        raise e2
                 
                 # Initialize Fortune System
                 await self._initialize_fortune_system()
@@ -433,7 +454,149 @@ class PoemService:
         except Exception as e:
             logger.error(f"Error getting poems by category {category}: {e}")
             return []
-    
+
+    async def get_all_poems_for_admin(
+        self,
+        page: int = 1,
+        limit: int = 20,
+        deity_filter: Optional[str] = None,
+        search: Optional[str] = None
+    ) -> Dict:
+        """
+        Get all poems for admin management with pagination and filtering
+
+        Args:
+            page: Page number (1-based)
+            limit: Number of poems per page
+            deity_filter: Filter by deity/temple name
+            search: Search in title or poem content
+
+        Returns:
+            Dictionary with poems list and pagination info
+        """
+        await self.ensure_initialized()
+
+        try:
+            logger.info(f"[ADMIN_POEMS] Getting poems for admin - page: {page}, limit: {limit}, deity: {deity_filter}, search: {search}")
+
+            # Get all available poems from ChromaDB
+            if deity_filter:
+                # Filter by specific temple/deity
+                all_poems = self.rag_handler.list_available_poems(deity_filter)
+                logger.debug(f"[ADMIN_POEMS] Retrieved {len(all_poems)} poems for deity: {deity_filter}")
+            else:
+                # Get all poems
+                all_poems = self.rag_handler.list_available_poems()
+                logger.debug(f"[ADMIN_POEMS] Retrieved {len(all_poems)} total poems")
+
+            # Apply search filter if provided
+            if search and search.strip():
+                search_term = search.strip().lower()
+                filtered_poems = []
+                for poem in all_poems:
+                    # Search in title, poem content, and fortune type
+                    title = poem.get("title", "").lower()
+                    poem_text = poem.get("poem", "").lower()
+                    fortune = poem.get("fortune", "").lower()
+
+                    if (search_term in title or
+                        search_term in poem_text or
+                        search_term in fortune):
+                        filtered_poems.append(poem)
+
+                all_poems = filtered_poems
+                logger.debug(f"[ADMIN_POEMS] After search filter: {len(all_poems)} poems")
+
+            # Calculate pagination
+            total_count = len(all_poems)
+            total_pages = (total_count + limit - 1) // limit
+            start_idx = (page - 1) * limit
+            end_idx = start_idx + limit
+            paginated_poems = all_poems[start_idx:end_idx]
+
+            logger.debug(f"[ADMIN_POEMS] Pagination - total: {total_count}, page: {page}/{total_pages}, showing: {len(paginated_poems)}")
+
+            # Format poems for admin interface
+            poems_data = []
+            for poem in paginated_poems:
+                poem_data = {
+                    "id": f"{poem.get('temple', 'unknown')}_{poem.get('id', poem.get('poem_id', 'unknown'))}",
+                    "title": poem.get("title", "Untitled Poem"),
+                    "deity": poem.get("temple", "Unknown Temple"),
+                    "chinese": poem.get("poem", ""),
+                    "fortune": poem.get("fortune", ""),
+                    "topics": self._extract_topics(poem),
+                    "last_modified": datetime.now().isoformat(),
+                    "usage_count": 0,  # Would need tracking system for real usage
+                    "status": "active",
+                    "poem_id": poem.get("id", poem.get("poem_id", 0))
+                }
+                poems_data.append(poem_data)
+
+            # Get unique deities/temples for filter options
+            all_temples = set()
+            for poem in all_poems:
+                temple = poem.get("temple")
+                if temple:
+                    all_temples.add(temple)
+
+            return {
+                "poems": poems_data,
+                "pagination": {
+                    "page": page,
+                    "limit": limit,
+                    "total": total_count,
+                    "pages": total_pages
+                },
+                "filters": {
+                    "deity": deity_filter,
+                    "search": search
+                },
+                "summary": {
+                    "total_poems": total_count,
+                    "active_deities": sorted(list(all_temples))
+                }
+            }
+
+        except Exception as e:
+            logger.error(f"[ADMIN_POEMS] Error getting poems for admin: {e}", exc_info=True)
+            # Return empty structure on error
+            return {
+                "poems": [],
+                "pagination": {
+                    "page": page,
+                    "limit": limit,
+                    "total": 0,
+                    "pages": 0
+                },
+                "filters": {
+                    "deity": deity_filter,
+                    "search": search
+                },
+                "summary": {
+                    "total_poems": 0,
+                    "active_deities": ["GuanYin", "Mazu", "GuanYu", "YueLao", "Asakusa"]  # Fallback
+                }
+            }
+
+    def _extract_topics(self, poem: Dict) -> str:
+        """Extract relevant topics from poem data"""
+        topics = []
+
+        # Add fortune type as topic
+        fortune = poem.get("fortune", "")
+        if fortune:
+            topics.append(fortune)
+
+        # Add temple as topic
+        temple = poem.get("temple", "")
+        if temple:
+            topics.append(temple)
+
+        # Could add more sophisticated topic extraction here
+        # For now, return basic categorization
+        return ", ".join(topics) if topics else "Fortune Analysis"
+
     async def generate_fortune_interpretation(
         self,
         poem_data: PoemData,

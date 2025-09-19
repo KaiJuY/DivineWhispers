@@ -16,17 +16,50 @@ class UnifiedRAGHandler:
         self.persist_path = persist_path or self.config.chroma_persist_path
         self.logger = logging.getLogger(__name__)
         
-        # Initialize ChromaDB client
-        try:
-            self.client = chromadb.PersistentClient(path=self.persist_path)
-            self.collection = self.client.get_or_create_collection(
-                name=self.collection_name,
-                metadata={"hnsw:space": "cosine"}
-            )
-            self.logger.info(f"Connected to ChromaDB collection: {self.collection_name}")
-        except Exception as e:
-            self.logger.error(f"Failed to initialize ChromaDB: {e}")
-            raise
+        # Initialize ChromaDB client with retry logic
+        self.client = None
+        self.collection = None
+        self._initialize_chromadb_with_retry()
+
+    def _initialize_chromadb_with_retry(self):
+        """Initialize ChromaDB with retry logic and cleanup."""
+        import gc
+
+        for attempt in range(3):
+            try:
+                # Force cleanup of any existing clients
+                if hasattr(self, 'client') and self.client:
+                    try:
+                        self.client.reset()
+                    except:
+                        pass
+                    self.client = None
+
+                # Force garbage collection
+                gc.collect()
+
+                # Create new client
+                self.logger.info(f"ChromaDB initialization attempt {attempt + 1}/3")
+                self.client = chromadb.PersistentClient(path=self.persist_path)
+                self.collection = self.client.get_or_create_collection(
+                    name=self.collection_name,
+                    metadata={"hnsw:space": "cosine"}
+                )
+                self.logger.info(f"Connected to ChromaDB collection: {self.collection_name}")
+                return
+
+            except Exception as e:
+                self.logger.warning(f"ChromaDB init attempt {attempt + 1} failed: {e}")
+                if attempt == 2:  # Last attempt
+                    self.logger.error(f"Failed to initialize ChromaDB after 3 attempts: {e}")
+                    raise
+
+                # Clean up before retry
+                if hasattr(self, 'client'):
+                    self.client = None
+                gc.collect()
+                import time
+                time.sleep(0.5)
     
     def _sanitize_metadata(self, metadata: Dict) -> Dict:
         """Sanitize metadata to ensure all values are ChromaDB-compatible primitive types."""
