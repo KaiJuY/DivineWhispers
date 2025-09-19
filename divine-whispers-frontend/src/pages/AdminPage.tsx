@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
+import adminService, { DashboardOverview, Customer as ApiCustomer, FAQ as ApiFAQ } from '../services/adminService';
 
 const AdminContainer = styled.div`
   width: 100%;
@@ -368,25 +369,7 @@ const ChartPlaceholder = styled.div`
   }
 `;
 
-interface Customer {
-  id: string;
-  name: string;
-  email: string;
-  status: 'active' | 'premium' | 'inactive';
-  balance: string;
-  joinDate: string;
-}
-
-interface Poem {
-  id: string;
-  title: string;
-  deity: string;
-  chinese: string;
-  topics: string;
-  lastModified: string;
-  usageCount: number;
-}
-
+// Legacy interfaces for mock data - keeping for orders only
 interface Order {
   id: string;
   customer: string;
@@ -396,27 +379,15 @@ interface Order {
   date: string;
 }
 
-interface Report {
-  id: string;
-  title: string;
-  customer: string;
-  source: string;
-  question: string;
-  generated: string;
-  wordCount: number;
-}
-
-interface FAQ {
-  id: string;
-  question: string;
-  category: string;
-  status: 'published' | 'pending';
-  views: number;
-  lastUpdated: string;
-  userEmail?: string;
-  received?: string;
-  userQuestion?: string;
-}
+// interface Report {
+//   id: string;
+//   title: string;
+//   customer: string;
+//   source: string;
+//   question: string;
+//   generated: string;
+//   wordCount: number;
+// }
 
 interface PendingFAQ {
   id: string;
@@ -429,54 +400,134 @@ interface PendingFAQ {
 
 const AdminPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState('customers');
+  const [dashboardData, setDashboardData] = useState<DashboardOverview | null>(null);
+  const [customers, setCustomers] = useState<ApiCustomer[]>([]);
+  const [faqs, setFaqs] = useState<ApiFAQ[]>([]);
+  const [poems, setPoems] = useState<any[]>([]);
+  const [reports, setReports] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const mockCustomers: Customer[] = [
-    {
-      id: 'DW001',
-      name: 'John Dao',
-      email: 'john.dao@example.com',
-      status: 'premium',
-      balance: '47 Coins',
-      joinDate: '2024-01-15'
-    },
-    {
-      id: 'DW002',
-      name: 'Sarah Chen',
-      email: 'sarah.chen@example.com',
-      status: 'active',
-      balance: '23 Coins',
-      joinDate: '2024-02-08'
-    },
-    {
-      id: 'DW003',
-      name: 'Mike Johnson',
-      email: 'mike.j@example.com',
-      status: 'inactive',
-      balance: '0 Coins',
-      joinDate: '2024-03-22'
-    }
-  ];
+  // Pagination and filters
+  const [customerPage, setCustomerPage] = useState(1);
+  const [customerSearch, setCustomerSearch] = useState('');
+  const [customerStatus, setCustomerStatus] = useState('');
+  const [faqCategory, setFaqCategory] = useState('');
+  const [poemDeity, setPoemDeity] = useState('');
+  const [poemSearch, setPoemSearch] = useState('');
+  const [reportSearch, setReportSearch] = useState('');
+  const [reportDeity, setReportDeity] = useState('');
+  const [reportDate, setReportDate] = useState('');
 
-  const mockPoems: Poem[] = [
-    {
-      id: 'guan-yin-27',
-      title: 'Guan Yin Fortune #27 - 天道酬勤志不移',
-      deity: 'Guan Yin',
-      chinese: '天道酬勤志不移，福星高照事如意',
-      topics: 'Career & Life Path',
-      lastModified: '2024-12-28',
-      usageCount: 47
-    },
-    {
-      id: 'mazu-83',
-      title: 'Mazu Fortune #83 - 風平浪靜渡難關',
-      deity: 'Mazu',
-      chinese: '風平浪靜渡難關，順水推舟到彼岸',
-      topics: 'Relationship & Emotional Guidance',
-      lastModified: '2024-12-20',
-      usageCount: 32
+  // Load dashboard data
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      try {
+        setLoading(true);
+        const data = await adminService.getDashboardOverview();
+        setDashboardData(data);
+      } catch (err) {
+        console.error('Error loading dashboard data:', err);
+        setError('Failed to load dashboard data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDashboardData();
+  }, []);
+
+  // Load customers data
+  useEffect(() => {
+    const loadCustomers = async () => {
+      try {
+        const response = await adminService.getCustomers({
+          page: customerPage,
+          limit: 20,
+          search: customerSearch || undefined,
+          status_filter: customerStatus || undefined,
+          sort_by: 'created_at',
+          sort_order: 'desc'
+        });
+        setCustomers(response.customers);
+      } catch (err) {
+        console.error('Error loading customers:', err);
+        setError('Failed to load customers');
+      }
+    };
+
+    if (activeSection === 'customers') {
+      loadCustomers();
     }
-  ];
+  }, [activeSection, customerPage, customerSearch, customerStatus]);
+
+  // Load FAQs data
+  useEffect(() => {
+    const loadFAQs = async () => {
+      try {
+        const response = await adminService.getFAQs({
+          category: faqCategory || undefined,
+          page: 1,
+          limit: 50
+        });
+        setFaqs(response.faqs);
+      } catch (err) {
+        console.error('Error loading FAQs:', err);
+        setError('Failed to load FAQs');
+      }
+    };
+
+    if (activeSection === 'faqs') {
+      loadFAQs();
+    }
+  }, [activeSection, faqCategory]);
+
+  // Load poems data
+  useEffect(() => {
+    const loadPoems = async () => {
+      try {
+        const response = await adminService.getPoems({
+          page: 1,
+          limit: 20,
+          deity_filter: poemDeity || undefined,
+          search: poemSearch || undefined
+        });
+        setPoems(response.poems);
+      } catch (err) {
+        console.error('Error loading poems:', err);
+        setError('Failed to load poems');
+      }
+    };
+
+    if (activeSection === 'poems') {
+      loadPoems();
+    }
+  }, [activeSection, poemDeity, poemSearch]);
+
+  // Load reports data
+  useEffect(() => {
+    const loadReports = async () => {
+      try {
+        const response = await adminService.getReports({
+          page: 1,
+          limit: 20,
+          user_search: reportSearch || undefined,
+          deity_filter: reportDeity || undefined,
+          date_filter: reportDate || undefined
+        });
+        setReports(response.reports);
+      } catch (err) {
+        console.error('Error loading reports:', err);
+        setError('Failed to load reports');
+      }
+    };
+
+    if (activeSection === 'reports') {
+      loadReports();
+    }
+  }, [activeSection, reportSearch, reportDeity, reportDate]);
+
+  // Mock data for sections not yet fully implemented
 
   const mockOrders: Order[] = [
     {
@@ -497,53 +548,6 @@ const AdminPage: React.FC = () => {
     }
   ];
 
-  const mockReports: Report[] = [
-    {
-      id: 'RPT001',
-      title: 'Career Guidance Report - John Dao',
-      customer: 'John Dao',
-      source: 'Guan Yin Fortune #27',
-      question: '"I\'ve been feeling lost in my career path lately..."',
-      generated: '2024-12-28 14:30',
-      wordCount: 2340
-    },
-    {
-      id: 'RPT002',
-      title: 'Relationship Analysis - Sarah Chen',
-      customer: 'Sarah Chen',
-      source: 'Mazu Fortune #83',
-      question: '"My relationship feels stagnant..."',
-      generated: '2024-12-20 09:15',
-      wordCount: 1890
-    }
-  ];
-
-  const mockFAQs: FAQ[] = [
-    {
-      id: 'FAQ001',
-      question: 'How do divine coins work?',
-      category: 'General',
-      status: 'published',
-      views: 347,
-      lastUpdated: '2024-12-15'
-    },
-    {
-      id: 'FAQ002',
-      question: 'Are readings accurate?',
-      category: 'General',
-      status: 'published',
-      views: 289,
-      lastUpdated: '2024-12-10'
-    },
-    {
-      id: 'FAQ003',
-      question: 'Can I get a refund?',
-      category: 'Payment',
-      status: 'published',
-      views: 156,
-      lastUpdated: '2024-12-08'
-    }
-  ];
 
   const mockPendingFAQs: PendingFAQ[] = [
     {
@@ -584,6 +588,80 @@ const AdminPage: React.FC = () => {
     setActiveSection(sectionKey);
   };
 
+  const handleCustomerAction = async (userId: number, action: string) => {
+    try {
+      if (action === 'edit') {
+        // Navigate to edit page or open modal
+        console.log('Edit customer:', userId);
+      } else {
+        const reason = prompt(`Enter reason for ${action}:`);
+        if (reason) {
+          await adminService.performCustomerAction(userId, action, reason);
+          // Reload customers data
+          const response = await adminService.getCustomers({
+            page: customerPage,
+            limit: 20,
+            search: customerSearch || undefined,
+            status_filter: customerStatus || undefined,
+            sort_by: 'created_at',
+            sort_order: 'desc'
+          });
+          setCustomers(response.customers);
+        }
+      }
+    } catch (err) {
+      console.error(`Error performing ${action} on customer ${userId}:`, err);
+      setError(`Failed to ${action} customer`);
+    }
+  };
+
+  const handleFAQAction = async (faqId: number | string, action: string) => {
+    try {
+      if (action === 'edit') {
+        // Open FAQ edit modal or navigate to edit page
+        console.log('Edit FAQ:', faqId);
+      } else if (action === 'delete') {
+        const confirm = window.confirm('Are you sure you want to delete this FAQ?');
+        if (confirm) {
+          await adminService.deleteFAQ(Number(faqId));
+          // Reload FAQs
+          const response = await adminService.getFAQs({
+            category: faqCategory || undefined,
+            page: 1,
+            limit: 50
+          });
+          setFaqs(response.faqs);
+        }
+      }
+    } catch (err) {
+      console.error(`Error performing ${action} on FAQ ${faqId}:`, err);
+      setError(`Failed to ${action} FAQ`);
+    }
+  };
+
+  const handleReportAction = async (reportId: string, action: string) => {
+    try {
+      if (action === 'delete') {
+        const confirm = window.confirm('Are you sure you want to delete this report?');
+        if (confirm) {
+          await adminService.deleteReport(reportId);
+          // Reload reports
+          const response = await adminService.getReports({
+            page: 1,
+            limit: 20,
+            user_search: reportSearch || undefined,
+            deity_filter: reportDeity || undefined,
+            date_filter: reportDate || undefined
+          });
+          setReports(response.reports);
+        }
+      }
+    } catch (err) {
+      console.error(`Error performing ${action} on report ${reportId}:`, err);
+      setError(`Failed to ${action} report`);
+    }
+  };
+
   return (
     <Layout>
       <AdminContainer>
@@ -591,24 +669,36 @@ const AdminPage: React.FC = () => {
           <PageContent>
           <DashboardHeader>
             <DashboardTitle>🛠️ Admin Dashboard</DashboardTitle>
+            {error && (
+              <div style={{
+                color: '#dc3545',
+                backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                padding: '0.75rem 1rem',
+                borderRadius: '4px',
+                marginTop: '1rem',
+                border: '1px solid rgba(220, 53, 69, 0.3)'
+              }}>
+                ⚠️ {error}
+              </div>
+            )}
           </DashboardHeader>
           
           <DashboardStats>
             <StatItem>
-              <StatValue>1,247</StatValue>
+              <StatValue>{dashboardData?.users?.total?.toLocaleString() || '...'}</StatValue>
               <StatLabel>Total Users</StatLabel>
             </StatItem>
             <StatItem>
-              <StatValue>3,892</StatValue>
-              <StatLabel>Total Orders</StatLabel>
+              <StatValue>{dashboardData?.revenue?.total_transactions?.toLocaleString() || '...'}</StatValue>
+              <StatLabel>Total Transactions</StatLabel>
             </StatItem>
             <StatItem>
-              <StatValue>156</StatValue>
-              <StatLabel>Active Reports</StatLabel>
+              <StatValue>{dashboardData?.engagement?.fortune_readings?.toLocaleString() || '...'}</StatValue>
+              <StatLabel>Fortune Readings</StatLabel>
             </StatItem>
             <StatItem>
-              <StatValue>23</StatValue>
-              <StatLabel>Pending FAQs</StatLabel>
+              <StatValue>{dashboardData?.engagement?.chat_sessions?.toLocaleString() || '...'}</StatValue>
+              <StatLabel>Chat Sessions</StatLabel>
             </StatItem>
           </DashboardStats>
 
@@ -636,12 +726,19 @@ const AdminPage: React.FC = () => {
             </SectionHeader>
 
             <SearchFilterBar>
-              <SearchInput placeholder="🔍 Search customers by name, email, or ID..." />
-              <FilterSelect>
+              <SearchInput
+                placeholder="🔍 Search customers by name, email, or ID..."
+                value={customerSearch}
+                onChange={(e) => setCustomerSearch(e.target.value)}
+              />
+              <FilterSelect
+                value={customerStatus}
+                onChange={(e) => setCustomerStatus(e.target.value)}
+              >
                 <option value="">All Status</option>
                 <option value="active">Active</option>
-                <option value="premium">Premium</option>
-                <option value="inactive">Inactive</option>
+                <option value="suspended">Suspended</option>
+                <option value="banned">Banned</option>
               </FilterSelect>
               <FilterSelect>
                 <option value="">All Time</option>
@@ -664,25 +761,30 @@ const AdminPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {mockCustomers.map((customer) => (
-                  <tr key={customer.id}>
-                    <td>{customer.id}</td>
-                    <td>{customer.name}</td>
+                {customers.length > 0 ? customers.map((customer) => (
+                  <tr key={customer.user_id}>
+                    <td>DW{customer.user_id.toString().padStart(3, '0')}</td>
+                    <td>{customer.full_name || customer.email.split('@')[0]}</td>
                     <td>{customer.email}</td>
                     <td>
                       <StatusBadge status={customer.status}>
-                        {customer.status === 'premium' ? 'Premium' : 
-                         customer.status === 'active' ? 'Active' : 'Inactive'}
+                        {customer.status.charAt(0).toUpperCase() + customer.status.slice(1)}
                       </StatusBadge>
                     </td>
-                    <td>{customer.balance}</td>
-                    <td>{customer.joinDate}</td>
+                    <td>{customer.wallet_balance} Coins</td>
+                    <td>{new Date(customer.created_at).toLocaleDateString()}</td>
                     <td>
-                      <CardBtn edit onClick={() => console.log('Edit customer', customer.id)}>✏️ Edit</CardBtn>
-                      <CardBtn delete onClick={() => console.log('Reset password', customer.id)}>🔑 Reset PWD</CardBtn>
+                      <CardBtn edit onClick={() => handleCustomerAction(customer.user_id, 'edit')}>✏️ Edit</CardBtn>
+                      <CardBtn onClick={() => handleCustomerAction(customer.user_id, 'reset_password')}>🔑 Reset PWD</CardBtn>
                     </td>
                   </tr>
-                ))}
+                )) : (
+                  <tr>
+                    <td colSpan={7} style={{ textAlign: 'center', padding: '2rem', color: 'rgba(255,255,255,0.6)' }}>
+                      {loading ? 'Loading customers...' : 'No customers found'}
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </AdminTable>
           </DashboardSection>
@@ -698,35 +800,47 @@ const AdminPage: React.FC = () => {
             </SectionHeader>
 
             <SearchFilterBar>
-              <SearchInput placeholder="🔍 Search poems by title, deity, or fortune number..." />
-              <FilterSelect>
+              <SearchInput
+                placeholder="🔍 Search poems by title, deity, or fortune number..."
+                value={poemSearch}
+                onChange={(e) => setPoemSearch(e.target.value)}
+              />
+              <FilterSelect
+                value={poemDeity}
+                onChange={(e) => setPoemDeity(e.target.value)}
+              >
                 <option value="">All Deities</option>
-                <option value="guanyin">Guan Yin</option>
-                <option value="mazu">Mazu</option>
-                <option value="guanyu">Guan Yu</option>
-                <option value="yuelao">Yue Lao</option>
-                <option value="asakusa">Asakusa</option>
+                <option value="GuanYin">Guan Yin</option>
+                <option value="Mazu">Mazu</option>
+                <option value="GuanYu">Guan Yu</option>
+                <option value="YueLao">Yue Lao</option>
+                <option value="Asakusa">Asakusa</option>
               </FilterSelect>
             </SearchFilterBar>
 
             <PoemsGrid>
-              {mockPoems.map((poem) => (
+              {poems.length > 0 ? poems.map((poem) => (
                 <AdminCard key={poem.id}>
                   <CardHeader>
                     <CardTitle>{poem.title}</CardTitle>
                     <CardActions>
-                      <CardBtn edit onClick={() => console.log('Edit poem', poem.id)}>✏️ Edit</CardBtn>
-                      <CardBtn delete onClick={() => console.log('Delete poem', poem.id)}>🗑️ Delete</CardBtn>
+                      <CardBtn edit onClick={() => console.log('Edit poem', poem.id)}>✏️ View</CardBtn>
+                      <CardBtn onClick={() => console.log('Analyze poem', poem.id)}>📊 Analyze</CardBtn>
                     </CardActions>
                   </CardHeader>
                   <div style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.5 }}>
-                    <strong>Chinese:</strong> {poem.chinese}<br />
-                    <strong>Analysis Topics:</strong> {poem.topics}<br />
-                    <strong>Last Modified:</strong> {poem.lastModified}<br />
-                    <strong>Usage Count:</strong> {poem.usageCount} times
+                    <strong>Deity:</strong> {poem.deity}<br />
+                    <strong>Chinese:</strong> {poem.chinese || 'N/A'}<br />
+                    <strong>User Question:</strong> {poem.user_question || 'N/A'}<br />
+                    <strong>Last Modified:</strong> {new Date(poem.last_modified).toLocaleDateString()}<br />
+                    <strong>Status:</strong> <StatusBadge status={poem.status}>{poem.status}</StatusBadge>
                   </div>
                 </AdminCard>
-              ))}
+              )) : (
+                <div style={{ textAlign: 'center', padding: '2rem', color: 'rgba(255,255,255,0.6)' }}>
+                  {loading ? 'Loading poems...' : 'No poems found'}
+                </div>
+              )}
             </PoemsGrid>
           </DashboardSection>
 
@@ -802,15 +916,26 @@ const AdminPage: React.FC = () => {
             </SectionHeader>
 
             <SearchFilterBar>
-              <SearchInput placeholder="🔍 Search reports by customer, deity, or keywords..." />
-              <FilterSelect>
+              <SearchInput
+                placeholder="🔍 Search reports by customer, deity, or keywords..."
+                value={reportSearch}
+                onChange={(e) => setReportSearch(e.target.value)}
+              />
+              <FilterSelect
+                value={reportDeity}
+                onChange={(e) => setReportDeity(e.target.value)}
+              >
                 <option value="">All Deities</option>
-                <option value="guanyin">Guan Yin</option>
-                <option value="mazu">Mazu</option>
-                <option value="guanyu">Guan Yu</option>
-                <option value="yuelao">Yue Lao</option>
+                <option value="GuanYin">Guan Yin</option>
+                <option value="Mazu">Mazu</option>
+                <option value="GuanYu">Guan Yu</option>
+                <option value="YueLao">Yue Lao</option>
+                <option value="Asakusa">Asakusa</option>
               </FilterSelect>
-              <FilterSelect>
+              <FilterSelect
+                value={reportDate}
+                onChange={(e) => setReportDate(e.target.value)}
+              >
                 <option value="">All Time</option>
                 <option value="today">Today</option>
                 <option value="week">This Week</option>
@@ -819,25 +944,30 @@ const AdminPage: React.FC = () => {
             </SearchFilterBar>
 
             <PoemsGrid>
-              {mockReports.map((report) => (
+              {reports.length > 0 ? reports.map((report) => (
                 <AdminCard key={report.id}>
                   <CardHeader>
                     <CardTitle>{report.title}</CardTitle>
                     <CardActions>
                       <CardBtn onClick={() => console.log('View report', report.id)}>👁️ View</CardBtn>
                       <CardBtn edit onClick={() => console.log('Edit report', report.id)}>✏️ Edit</CardBtn>
-                      <CardBtn delete onClick={() => console.log('Delete report', report.id)}>🗑️ Delete</CardBtn>
+                      <CardBtn delete onClick={() => handleReportAction(report.id, 'delete')}>🗑️ Delete</CardBtn>
                     </CardActions>
                   </CardHeader>
                   <div style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.5 }}>
                     <strong>ID:</strong> {report.id}<br />
+                    <strong>Customer:</strong> {report.customer}<br />
                     <strong>Source:</strong> {report.source}<br />
-                    <strong>Question:</strong> {report.question}<br />
+                    <strong>Question:</strong> {report.question?.substring(0, 100) || 'N/A'}{report.question?.length > 100 ? '...' : ''}<br />
                     <strong>Generated:</strong> {report.generated}<br />
-                    <strong>Word Count:</strong> {report.wordCount.toLocaleString()} words
+                    <strong>Word Count:</strong> {report.word_count.toLocaleString()} words
                   </div>
                 </AdminCard>
-              ))}
+              )) : (
+                <div style={{ textAlign: 'center', padding: '2rem', color: 'rgba(255,255,255,0.6)' }}>
+                  {loading ? 'Loading reports...' : 'No reports found'}
+                </div>
+              )}
             </PoemsGrid>
           </DashboardSection>
 
@@ -904,23 +1034,35 @@ const AdminPage: React.FC = () => {
                   <th>Question</th>
                   <th>Category</th>
                   <th>Views</th>
+                  <th>Status</th>
                   <th>Last Updated</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {mockFAQs.map((faq) => (
+                {faqs.length > 0 ? faqs.map((faq) => (
                   <tr key={faq.id}>
                     <td>{faq.question}</td>
                     <td>{faq.category}</td>
-                    <td>{faq.views}</td>
-                    <td>{faq.lastUpdated}</td>
+                    <td>{faq.view_count}</td>
                     <td>
-                      <CardBtn edit onClick={() => console.log('Edit FAQ', faq.id)}>✏️ Edit</CardBtn>
-                      <CardBtn delete onClick={() => console.log('Deactivate FAQ', faq.id)}>🔒 Deactivate</CardBtn>
+                      <StatusBadge status={faq.is_published ? 'published' : 'draft'}>
+                        {faq.is_published ? 'Published' : 'Draft'}
+                      </StatusBadge>
+                    </td>
+                    <td>{new Date(faq.updated_at).toLocaleDateString()}</td>
+                    <td>
+                      <CardBtn edit onClick={() => handleFAQAction(faq.id, 'edit')}>✏️ Edit</CardBtn>
+                      <CardBtn delete onClick={() => handleFAQAction(faq.id, 'delete')}>🗑️ Delete</CardBtn>
                     </td>
                   </tr>
-                ))}
+                )) : (
+                  <tr>
+                    <td colSpan={6} style={{ textAlign: 'center', padding: '2rem', color: 'rgba(255,255,255,0.6)' }}>
+                      {loading ? 'Loading FAQs...' : 'No FAQs found'}
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </AdminTable>
           </DashboardSection>

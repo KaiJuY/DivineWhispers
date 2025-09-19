@@ -417,8 +417,8 @@ class ApiClient {
     return response.data;
   }
 
-  async delete(url: string): Promise<any> {
-    const response = await this.client.delete(url);
+  async delete(url: string, data?: any): Promise<any> {
+    const response = await this.client.delete(url, data ? { data } : undefined);
     return response.data;
   }
 }

@@ -361,7 +361,7 @@ const Header: React.FC<HeaderProps> = ({ isLanding = false }) => {
       <HeaderContainer isLanding={isLanding}>
         <NavContainer>
           <Logo onClick={() => handleNavClick('/')}>
-            <HeaderLogo src="/assets/divine whispers logo.png" alt="Divine Whispers" />
+            <HeaderLogo src="/assets/divine_whispers_logo.png" alt="Divine Whispers" />
           </Logo>
 
           <MainNav isLanding={isLanding}>

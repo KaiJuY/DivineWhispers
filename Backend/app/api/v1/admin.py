@@ -14,6 +14,9 @@ from app.models.faq import FAQ
 from app.schemas.faq import FAQCreate, FAQUpdate, FAQResponse
 
 import re
+import logging
+
+logger = logging.getLogger(__name__)
 from app.utils.deps import get_db, get_current_user
 from app.utils.rbac import (
     RequirePermission,
@@ -2016,3 +2019,218 @@ async def export_admin_report(
     except Exception as e:
         logger.error(f"Error exporting {report_type} report: {e}")
         raise HTTPException(status_code=500, detail="Failed to export report")
+
+
+# Poem/Fortune Management
+@router.get("/poems")
+async def get_poem_analytics(
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+    deity_filter: Optional[str] = Query(None),
+    search: Optional[str] = Query(None),
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get poem analytics and usage statistics"""
+    try:
+        from app.models.fortune_job import FortuneJob
+
+        # Get fortune job statistics as proxy for poem usage
+        query = select(FortuneJob)
+        count_query = select(func.count(FortuneJob.id))
+
+        # Apply filters if provided
+        if deity_filter:
+            # This would filter by deity in job data
+            query = query.where(FortuneJob.job_data["deity"].astext == deity_filter)
+            count_query = count_query.where(FortuneJob.job_data["deity"].astext == deity_filter)
+
+        if search:
+            # Search in job data
+            query = query.where(FortuneJob.job_data["question"].astext.ilike(f"%{search}%"))
+            count_query = count_query.where(FortuneJob.job_data["question"].astext.ilike(f"%{search}%"))
+
+        # Get total count
+        total_count = await db.scalar(count_query)
+
+        # Apply pagination and ordering
+        offset = (page - 1) * limit
+        query = query.offset(offset).limit(limit).order_by(desc(FortuneJob.created_at))
+
+        result = await db.execute(query)
+        jobs = result.scalars().all()
+
+        # Format response
+        poems_data = []
+        for job in jobs:
+            poems_data.append({
+                "id": f"job-{job.id}",
+                "title": job.job_data.get("title", "Unknown Fortune") if job.job_data else "Unknown Fortune",
+                "deity": job.job_data.get("deity", "Unknown") if job.job_data else "Unknown",
+                "chinese": job.job_data.get("poem", "") if job.job_data else "",
+                "topics": "Fortune Analysis",
+                "last_modified": job.created_at.isoformat(),
+                "usage_count": 1,
+                "status": job.status.value,
+                "user_question": job.job_data.get("question", "") if job.job_data else ""
+            })
+
+        return {
+            "poems": poems_data,
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total": total_count or 0,
+                "pages": ((total_count or 0) + limit - 1) // limit
+            },
+            "filters": {
+                "deity": deity_filter,
+                "search": search
+            },
+            "summary": {
+                "total_jobs": total_count or 0,
+                "active_deities": ["GuanYin", "Mazu", "GuanYu", "YueLao", "Asakusa"]
+            }
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting poem analytics: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve poem analytics")
+
+
+@router.get("/reports")
+async def get_reports_storage(
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+    user_search: Optional[str] = Query(None),
+    deity_filter: Optional[str] = Query(None),
+    date_filter: Optional[str] = Query(None),
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get stored fortune reading reports"""
+    try:
+        from app.models.fortune_job import FortuneJob, JobStatus
+
+        # Build query for completed jobs (which have reports)
+        query = select(FortuneJob).where(FortuneJob.status == JobStatus.COMPLETED)
+        count_query = select(func.count(FortuneJob.id)).where(FortuneJob.status == JobStatus.COMPLETED)
+
+        # Join with User for filtering
+        if user_search:
+            query = query.join(User, FortuneJob.user_id == User.user_id)
+            query = query.where(User.email.ilike(f"%{user_search}%"))
+            count_query = count_query.join(User, FortuneJob.user_id == User.user_id)
+            count_query = count_query.where(User.email.ilike(f"%{user_search}%"))
+
+        # Apply deity filter
+        if deity_filter:
+            query = query.where(FortuneJob.job_data["deity"].astext == deity_filter)
+            count_query = count_query.where(FortuneJob.job_data["deity"].astext == deity_filter)
+
+        # Apply date filter
+        if date_filter:
+            if date_filter == "today":
+                today = datetime.utcnow().date()
+                query = query.where(func.date(FortuneJob.created_at) == today)
+                count_query = count_query.where(func.date(FortuneJob.created_at) == today)
+            elif date_filter == "week":
+                week_ago = datetime.utcnow() - timedelta(days=7)
+                query = query.where(FortuneJob.created_at >= week_ago)
+                count_query = count_query.where(FortuneJob.created_at >= week_ago)
+            elif date_filter == "month":
+                month_ago = datetime.utcnow() - timedelta(days=30)
+                query = query.where(FortuneJob.created_at >= month_ago)
+                count_query = count_query.where(FortuneJob.created_at >= month_ago)
+
+        # Get total count
+        total_count = await db.scalar(count_query)
+
+        # Apply pagination and ordering
+        offset = (page - 1) * limit
+        query = query.offset(offset).limit(limit).order_by(desc(FortuneJob.created_at))
+
+        result = await db.execute(query)
+        jobs = result.scalars().all()
+
+        # Get user emails for jobs
+        reports_data = []
+        for job in jobs:
+            user_result = await db.execute(select(User).where(User.user_id == job.user_id))
+            user = user_result.scalar_one_or_none()
+
+            # Calculate word count from job result
+            word_count = 0
+            if hasattr(job, 'job_result') and job.job_result:
+                result_text = job.job_result.result_data.get("analysis", "") if job.job_result.result_data else ""
+                word_count = len(result_text.split()) if result_text else 0
+
+            reports_data.append({
+                "id": f"RPT{job.id:03d}",
+                "title": f"Fortune Reading Report - {user.email if user else 'Unknown User'}",
+                "customer": user.email if user else "Unknown User",
+                "source": job.job_data.get("deity", "Unknown") if job.job_data else "Unknown",
+                "question": job.job_data.get("question", "") if job.job_data else "",
+                "generated": job.completed_at.strftime("%Y-%m-%d %H:%M") if job.completed_at else "N/A",
+                "word_count": word_count,
+                "status": job.status.value
+            })
+
+        return {
+            "reports": reports_data,
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total": total_count or 0,
+                "pages": ((total_count or 0) + limit - 1) // limit
+            },
+            "filters": {
+                "user_search": user_search,
+                "deity": deity_filter,
+                "date_filter": date_filter
+            },
+            "summary": {
+                "total_reports": total_count or 0,
+                "avg_word_count": 2000  # Placeholder
+            }
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting reports storage: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve reports storage")
+
+
+@router.delete("/reports/{report_id}")
+async def delete_report(
+    report_id: str,
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Delete a fortune reading report"""
+    try:
+        # Extract job ID from report ID (format: RPT001 -> 1)
+        job_id = int(report_id.replace("RPT", "").lstrip("0"))
+
+        from app.models.fortune_job import FortuneJob
+        job = await db.scalar(select(FortuneJob).where(FortuneJob.id == job_id))
+
+        if not job:
+            raise HTTPException(status_code=404, detail="Report not found")
+
+        # Delete associated job result first
+        if hasattr(job, 'job_result') and job.job_result:
+            await db.delete(job.job_result)
+
+        # Delete the job
+        await db.delete(job)
+        await db.commit()
+
+        logger.info(f"Admin {current_user.user_id} deleted report {report_id}")
+
+        return {"message": "Report deleted successfully", "report_id": report_id}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting report {report_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to delete report")
