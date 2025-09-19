@@ -24,6 +24,8 @@ class UnifiedRAGHandler:
     def _initialize_chromadb_with_retry(self):
         """Initialize ChromaDB with retry logic and cleanup."""
         import gc
+        import time
+        import os
 
         for attempt in range(3):
             try:
@@ -33,33 +35,103 @@ class UnifiedRAGHandler:
                         self.client.reset()
                     except:
                         pass
+                    del self.client
                     self.client = None
 
-                # Force garbage collection
+                # Clear collection reference
+                if hasattr(self, 'collection'):
+                    self.collection = None
+
+                # Force garbage collection and clear ChromaDB internal state
                 gc.collect()
+
+                # Clear any ChromaDB cached clients
+                try:
+                    if hasattr(chromadb, '_client_cache'):
+                        chromadb._client_cache.clear()
+                    if hasattr(chromadb, 'get_client'):
+                        # Clear internal client registry if it exists
+                        pass
+                except:
+                    pass
+
+                # Wait a bit longer for cleanup on retry attempts
+                if attempt > 0:
+                    wait_time = attempt * 1.0  # 1s, 2s for subsequent attempts
+                    self.logger.info(f"Waiting {wait_time}s for cleanup before retry...")
+                    time.sleep(wait_time)
 
                 # Create new client
                 self.logger.info(f"ChromaDB initialization attempt {attempt + 1}/3")
+                self.logger.info(f"Attempting to connect to: {os.path.abspath(self.persist_path)}")
+
                 self.client = chromadb.PersistentClient(path=self.persist_path)
                 self.collection = self.client.get_or_create_collection(
                     name=self.collection_name,
                     metadata={"hnsw:space": "cosine"}
                 )
-                self.logger.info(f"Connected to ChromaDB collection: {self.collection_name}")
+                self.logger.info(f"SUCCESS: Connected to ChromaDB collection: {self.collection_name}")
                 return
 
             except Exception as e:
+                error_msg = str(e).lower()
                 self.logger.warning(f"ChromaDB init attempt {attempt + 1} failed: {e}")
+
+                # If it's a schema error, try more aggressive cleanup
+                if "schema" in error_msg or "column" in error_msg or "sqlite" in error_msg:
+                    self.logger.warning("Detected schema/SQLite error - possibly ChromaDB version mismatch")
+
+                    # Check ChromaDB version
+                    chroma_version = getattr(chromadb, '__version__', 'unknown')
+                    self.logger.warning(f"Current ChromaDB version: {chroma_version}")
+
+                    if "collections.topic" in error_msg:
+                        self.logger.error("CRITICAL: ChromaDB version mismatch detected!")
+                        self.logger.error("Database was created with ChromaDB 1.0.21+ but current version is older")
+                        self.logger.error("Solutions:")
+                        self.logger.error("1. Upgrade ChromaDB: pip install --upgrade chromadb==1.0.21")
+                        self.logger.error("2. Or recreate database with current version")
+
+                    # Force cleanup of any lingering SQLite connections
+                    try:
+                        import sqlite3
+                        # Close any potential lingering connections
+                        gc.collect()
+                    except:
+                        pass
+
                 if attempt == 2:  # Last attempt
-                    self.logger.error(f"Failed to initialize ChromaDB after 3 attempts: {e}")
+                    self.logger.error(f"FAILED: Failed to initialize ChromaDB after 3 attempts: {e}")
+                    self.logger.error(f"ChromaDB path: {os.path.abspath(self.persist_path)}")
+                    self.logger.error("Try restarting the application or recreating the ChromaDB")
                     raise
 
                 # Clean up before retry
                 if hasattr(self, 'client'):
                     self.client = None
+                if hasattr(self, 'collection'):
+                    self.collection = None
+
                 gc.collect()
-                import time
-                time.sleep(0.5)
+
+    def cleanup(self):
+        """Clean up ChromaDB resources."""
+        try:
+            if hasattr(self, 'client') and self.client:
+                self.client.reset()
+                self.client = None
+            if hasattr(self, 'collection'):
+                self.collection = None
+            self.logger.info("ChromaDB resources cleaned up")
+        except Exception as e:
+            self.logger.warning(f"Error during cleanup: {e}")
+
+    def __del__(self):
+        """Destructor to ensure cleanup."""
+        try:
+            self.cleanup()
+        except:
+            pass
     
     def _sanitize_metadata(self, metadata: Dict) -> Dict:
         """Sanitize metadata to ensure all values are ChromaDB-compatible primitive types."""

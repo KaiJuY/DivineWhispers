@@ -191,6 +191,34 @@ class PoemService:
             success = await self.initialize_system()
             if not success:
                 raise RuntimeError("Failed to initialize poem service")
+
+    def cleanup(self):
+        """Clean up service resources"""
+        try:
+            if hasattr(self, 'rag_handler') and self.rag_handler:
+                if hasattr(self.rag_handler, 'cleanup'):
+                    self.rag_handler.cleanup()
+                self.rag_handler = None
+
+            if hasattr(self, 'fortune_system') and self.fortune_system:
+                self.fortune_system = None
+
+            # Clear cache
+            if hasattr(self, 'cache'):
+                self.cache.clear()
+
+            self._initialized = False
+            logger.info("Poem service resources cleaned up")
+
+        except Exception as e:
+            logger.warning(f"Error during poem service cleanup: {e}")
+
+    def __del__(self):
+        """Destructor to ensure cleanup"""
+        try:
+            self.cleanup()
+        except:
+            pass
     
     async def get_random_poem(self, temple_preference: Optional[str] = None) -> PoemData:
         """
