@@ -980,6 +980,8 @@ class PoemService:
             # Initialize analysis with proper structure
             analysis = {"zh": "", "en": "", "jp": ""}
             poem_text = ""
+            rag_analysis = ""
+            llm_meta = {}
 
             # Look for original analysis in the chunk metadata
             # The original JSON structure should be preserved in chunk metadata
@@ -1039,6 +1041,9 @@ class PoemService:
                         analysis["en"] = content.replace("EN Analysis:", "").strip()
                     elif content.startswith("JP Analysis:"):
                         analysis["jp"] = content.replace("JP Analysis:", "").strip()
+                    # Extract RAG Analysis content
+                    elif content.startswith("RAG Analysis:"):
+                        rag_analysis = content.replace("RAG Analysis:", "").strip()
                     # Also check for pattern in combined content
                     elif "Analysis:" in content and not content.startswith("RAG Analysis:"):
                         # Try to detect language from content after "Analysis:"
@@ -1054,6 +1059,17 @@ class PoemService:
                             elif not analysis["en"]:  # Fallback to English if not detected as CJK
                                 analysis["en"] = content_after_analysis
 
+                # Extract LLM metadata from chunk metadata
+                metadata = chunk_data.get("metadata", {})
+                if "llm_meta_json" in metadata and not llm_meta:
+                    try:
+                        import json
+                        llm_meta = json.loads(metadata["llm_meta_json"])
+                    except (json.JSONDecodeError, TypeError):
+                        logger.warning(f"[CREATE_POEM] Failed to parse llm_meta_json: {metadata.get('llm_meta_json')}")
+                elif "llm_meta" in metadata and not llm_meta:
+                    llm_meta = metadata["llm_meta"]
+
                 logger.debug(f"[CREATE_POEM] Final poem data - temple: {chunk.get('temple')}, poem_id: {chunk.get('poem_id')}")
                 logger.debug(f"[CREATE_POEM] Analysis keys filled: {[k for k, v in analysis.items() if v]}")
                 logger.debug(f"[CREATE_POEM] Poem text length: {len(poem_text)} characters")
@@ -1065,7 +1081,9 @@ class PoemService:
                     title=chunk.get("title", ""),
                     fortune=chunk.get("fortune", ""),
                     poem=poem_text or str(chunk.get("poem", "")),
-                    analysis=analysis
+                    analysis=analysis,
+                    rag_analysis=rag_analysis if rag_analysis else None,
+                    llm_meta=llm_meta if llm_meta else None
                 )
                 logger.debug(f"[CREATE_POEM] Successfully created PoemData for {poem_data.temple}#{poem_data.poem_id}")
                 return poem_data
@@ -1084,7 +1102,9 @@ class PoemService:
             title=poem_info.get("title", ""),
             fortune=poem_info.get("fortune", ""),
             poem="",  # Will be filled by chunks if available
-            analysis={"zh": "", "en": "", "jp": ""}
+            analysis={"zh": "", "en": "", "jp": ""},
+            rag_analysis=None,
+            llm_meta=None
         )
     
     async def _generate_fallback_interpretation(

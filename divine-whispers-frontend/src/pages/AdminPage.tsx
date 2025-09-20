@@ -356,17 +356,143 @@ const ChartPlaceholder = styled.div`
   padding: 3rem;
   text-align: center;
   margin-bottom: 2rem;
-  
+
   .chart-text {
     font-size: 1.2rem;
     color: ${colors.primary};
     margin-bottom: 0.5rem;
   }
-  
+
   .chart-note {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
   }
+`;
+
+const Modal = styled.div<{ show: boolean }>`
+  display: ${props => props.show ? 'flex' : 'none'};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+`;
+
+const ModalContent = styled.div`
+  background: ${gradients.heroSection};
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 900px;
+  width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  color: ${colors.white};
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 1rem;
+`;
+
+const ModalTitle = styled.h2`
+  color: ${colors.primary};
+  margin: 0;
+  font-size: 1.5rem;
+`;
+
+const CloseBtn = styled.button`
+  background: none;
+  border: none;
+  color: ${colors.white};
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: ${colors.primary};
+  }
+`;
+
+const ModalBody = styled.div`
+  line-height: 1.6;
+
+  .poem-section {
+    margin-bottom: 1.5rem;
+
+    h4 {
+      color: ${colors.primary};
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .poem-text {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 3px solid ${colors.primary};
+      font-family: serif;
+      line-height: 1.8;
+    }
+
+    .fortune-badge {
+      display: inline-block;
+      background: ${colors.primary};
+      color: ${colors.black};
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+`;
+
+// Pagination styled components
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
+`;
+
+const PaginationButton = styled.button<{ active?: boolean; disabled?: boolean }>`
+  padding: 0.5rem 0.75rem;
+  background: ${props => props.active ? colors.primary : 'rgba(255,255,255,0.1)'};
+  color: ${props => props.active ? colors.black : colors.white};
+  border: 1px solid ${props => props.active ? colors.primary : 'rgba(255,255,255,0.2)'};
+  border-radius: 6px;
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  font-weight: ${props => props.active ? '600' : '400'};
+  opacity: ${props => props.disabled ? '0.5' : '1'};
+  transition: all 0.3s ease;
+  min-width: 40px;
+
+  &:hover:not(:disabled) {
+    background: ${props => props.active ? colors.primary : 'rgba(255,255,255,0.2)'};
+    border-color: ${colors.primary};
+  }
+`;
+
+const PaginationInfo = styled.div`
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  margin: 0 1rem;
 `;
 
 // Legacy interfaces for mock data - keeping for orders only
@@ -398,6 +524,47 @@ interface PendingFAQ {
   category: string;
 }
 
+// Pagination helper functions
+const generatePageNumbers = (currentPage: number, totalPages: number) => {
+  const pages: (number | string)[] = [];
+  const showEllipsis = totalPages > 7;
+
+  if (!showEllipsis) {
+    // Show all pages if 7 or fewer
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
+  } else {
+    // Always show first page
+    pages.push(1);
+
+    if (currentPage > 4) {
+      pages.push('...');
+    }
+
+    // Show pages around current page
+    const start = Math.max(2, currentPage - 1);
+    const end = Math.min(totalPages - 1, currentPage + 1);
+
+    for (let i = start; i <= end; i++) {
+      if (!pages.includes(i)) {
+        pages.push(i);
+      }
+    }
+
+    if (currentPage < totalPages - 3) {
+      pages.push('...');
+    }
+
+    // Always show last page
+    if (totalPages > 1) {
+      pages.push(totalPages);
+    }
+  }
+
+  return pages;
+};
+
 const AdminPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState('customers');
   const [dashboardData, setDashboardData] = useState<DashboardOverview | null>(null);
@@ -405,6 +572,8 @@ const AdminPage: React.FC = () => {
   const [faqs, setFaqs] = useState<ApiFAQ[]>([]);
   const [poems, setPoems] = useState<any[]>([]);
   const [reports, setReports] = useState<any[]>([]);
+  const [selectedPoem, setSelectedPoem] = useState<any>(null);
+  const [showPoemModal, setShowPoemModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -418,6 +587,8 @@ const AdminPage: React.FC = () => {
   const [reportSearch, setReportSearch] = useState('');
   const [reportDeity, setReportDeity] = useState('');
   const [reportDate, setReportDate] = useState('');
+  const [poemPage, setPoemPage] = useState(1);
+  const [totalPoems, setTotalPoems] = useState(0);
 
   // Load dashboard data
   useEffect(() => {
@@ -487,12 +658,13 @@ const AdminPage: React.FC = () => {
     const loadPoems = async () => {
       try {
         const response = await adminService.getPoems({
-          page: 1,
-          limit: 20,
+          page: poemPage,
+          limit: 10,
           deity_filter: poemDeity || undefined,
           search: poemSearch || undefined
         });
         setPoems(response.poems);
+        setTotalPoems(response.pagination?.total || 0);
       } catch (err) {
         console.error('Error loading poems:', err);
         setError('Failed to load poems');
@@ -502,7 +674,12 @@ const AdminPage: React.FC = () => {
     if (activeSection === 'poems') {
       loadPoems();
     }
-  }, [activeSection, poemDeity, poemSearch]);
+  }, [activeSection, poemDeity, poemSearch, poemPage]);
+
+  // Reset poem page when filters change
+  useEffect(() => {
+    setPoemPage(1);
+  }, [poemDeity, poemSearch]);
 
   // Load reports data
   useEffect(() => {
@@ -662,6 +839,17 @@ const AdminPage: React.FC = () => {
     }
   };
 
+  const handleViewPoem = async (poemId: string) => {
+    try {
+      const poemDetails = await adminService.getPoemById(poemId);
+      setSelectedPoem(poemDetails);
+      setShowPoemModal(true);
+    } catch (err) {
+      console.error('Error fetching poem details:', err);
+      setError('Failed to load poem details');
+    }
+  };
+
   return (
     <Layout>
       <AdminContainer>
@@ -794,8 +982,7 @@ const AdminPage: React.FC = () => {
             <SectionHeader>
               <SectionTitle>Poems Analysis Management</SectionTitle>
               <SectionActions>
-                <AdminBtn onClick={() => console.log('Add poem')}>➕ Add Poem</AdminBtn>
-                <AdminBtn secondary onClick={() => console.log('Bulk update')}>🔄 Bulk Update</AdminBtn>
+                {/* Removed Add Poem and Bulk Update buttons as requested */}
               </SectionActions>
             </SectionHeader>
 
@@ -810,11 +997,12 @@ const AdminPage: React.FC = () => {
                 onChange={(e) => setPoemDeity(e.target.value)}
               >
                 <option value="">All Deities</option>
-                <option value="GuanYin">Guan Yin</option>
-                <option value="Mazu">Mazu</option>
-                <option value="GuanYu">Guan Yu</option>
-                <option value="YueLao">Yue Lao</option>
-                <option value="Asakusa">Asakusa</option>
+                <option value="GuanYin100">Guan Yin (觀音一百籤)</option>
+                <option value="Mazu">Mazu (媽祖六十甲子籤)</option>
+                <option value="GuanYu">Guan Yu (關聖帝君一百籤)</option>
+                <option value="YueLao">Yue Lao (月老聖籤一百籤)</option>
+                <option value="Tianhou">Tianhou (天后宮一百籤)</option>
+                <option value="Asakusa">Asakusa (日本淺草觀音寺一百籤)</option>
               </FilterSelect>
             </SearchFilterBar>
 
@@ -824,8 +1012,7 @@ const AdminPage: React.FC = () => {
                   <CardHeader>
                     <CardTitle>{poem.title}</CardTitle>
                     <CardActions>
-                      <CardBtn edit onClick={() => console.log('Edit poem', poem.id)}>✏️ View</CardBtn>
-                      <CardBtn onClick={() => console.log('Analyze poem', poem.id)}>📊 Analyze</CardBtn>
+                      <CardBtn edit onClick={() => handleViewPoem(poem.id)}>✏️ View</CardBtn>
                     </CardActions>
                   </CardHeader>
                   <div style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.5 }}>
@@ -842,7 +1029,146 @@ const AdminPage: React.FC = () => {
                 </div>
               )}
             </PoemsGrid>
+
+            {/* Poems Pagination */}
+            {poems.length > 0 && (
+              <PaginationContainer>
+                <PaginationButton
+                  disabled={poemPage === 1}
+                  onClick={() => setPoemPage(1)}
+                >
+                  ««
+                </PaginationButton>
+                <PaginationButton
+                  disabled={poemPage === 1}
+                  onClick={() => setPoemPage(poemPage - 1)}
+                >
+                  ‹
+                </PaginationButton>
+
+                {generatePageNumbers(poemPage, Math.ceil(totalPoems / 10)).map((page, index) => (
+                  <PaginationButton
+                    key={index}
+                    active={page === poemPage}
+                    disabled={page === '...'}
+                    onClick={() => typeof page === 'number' && setPoemPage(page)}
+                  >
+                    {page}
+                  </PaginationButton>
+                ))}
+
+                <PaginationButton
+                  disabled={poemPage >= Math.ceil(totalPoems / 10)}
+                  onClick={() => setPoemPage(poemPage + 1)}
+                >
+                  ›
+                </PaginationButton>
+                <PaginationButton
+                  disabled={poemPage >= Math.ceil(totalPoems / 10)}
+                  onClick={() => setPoemPage(Math.ceil(totalPoems / 10))}
+                >
+                  »»
+                </PaginationButton>
+
+                <PaginationInfo>
+                  Page {poemPage} of {Math.ceil(totalPoems / 10)} | {totalPoems} total poems
+                </PaginationInfo>
+              </PaginationContainer>
+            )}
           </DashboardSection>
+
+          {/* Poem Detail Modal */}
+          <Modal show={showPoemModal}>
+            <ModalContent>
+              <ModalHeader>
+                <ModalTitle>Poem Details</ModalTitle>
+                <CloseBtn onClick={() => {
+                  setShowPoemModal(false);
+                  setSelectedPoem(null);
+                }}>×</CloseBtn>
+              </ModalHeader>
+              {selectedPoem && (
+                <ModalBody>
+                  <div className="poem-section">
+                    <h4>Title</h4>
+                    <p>{selectedPoem.title}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Deity</h4>
+                    <p>{selectedPoem.deity}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Chinese Poem</h4>
+                    <div className="poem-text">
+                      {selectedPoem.chinese || 'N/A'}
+                    </div>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Fortune Level</h4>
+                    <span className="fortune-badge">{selectedPoem.fortune || 'Unknown'}</span>
+                  </div>
+
+                  {selectedPoem.analysis && (
+                    <div className="poem-section">
+                      <h4>Analysis</h4>
+                      <div className="poem-text">
+                        {typeof selectedPoem.analysis === 'object'
+                          ? JSON.stringify(selectedPoem.analysis, null, 2)
+                          : selectedPoem.analysis}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedPoem.topics && selectedPoem.topics.length > 0 && (
+                    <div className="poem-section">
+                      <h4>Topics</h4>
+                      <p>{selectedPoem.topics.join(', ')}</p>
+                    </div>
+                  )}
+
+                  {selectedPoem.rag_analysis && (
+                    <div className="poem-section">
+                      <h4>RAG Analysis</h4>
+                      <div className="poem-text">
+                        {selectedPoem.rag_analysis}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedPoem.llm_meta && (
+                    <div className="poem-section">
+                      <h4>LLM Metadata</h4>
+                      <div className="poem-text">
+                        <p><strong>Model:</strong> {selectedPoem.llm_meta.model || 'N/A'}</p>
+                        <p><strong>Timestamp:</strong> {selectedPoem.llm_meta.timestamp || 'N/A'}</p>
+                        <p><strong>Source File:</strong> {selectedPoem.llm_meta.source_file || 'N/A'}</p>
+                        {selectedPoem.llm_meta.raw_llm_response_preview && (
+                          <div>
+                            <strong>Response Preview:</strong>
+                            <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.5rem' }}>
+                              {selectedPoem.llm_meta.raw_llm_response_preview.substring(0, 200)}...
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="poem-section">
+                    <h4>Metadata</h4>
+                    <p><strong>ID:</strong> {selectedPoem.id}</p>
+                    <p><strong>Temple:</strong> {selectedPoem.metadata?.temple || 'N/A'}</p>
+                    <p><strong>Poem ID:</strong> {selectedPoem.metadata?.poem_id || 'N/A'}</p>
+                    <p><strong>Last Modified:</strong> {selectedPoem.metadata?.last_modified ? new Date(selectedPoem.metadata.last_modified).toLocaleString() : 'N/A'}</p>
+                    <p><strong>Usage Count:</strong> {selectedPoem.metadata?.usage_count || 0}</p>
+                  </div>
+                </ModalBody>
+              )}
+            </ModalContent>
+          </Modal>
 
           {/* Purchase Management Section */}
           <DashboardSection active={activeSection === 'purchases'}>

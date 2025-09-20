@@ -2454,6 +2454,8 @@ async def get_poem_details(
             "fortune": getattr(poem_data, "fortune", ""),
             "analysis": getattr(poem_data, "analysis", {}),
             "topics": getattr(poem_data, "topics", []),
+            "rag_analysis": getattr(poem_data, "rag_analysis", ""),
+            "llm_meta": getattr(poem_data, "llm_meta", {}),
             "metadata": {
                 "temple": temple,
                 "poem_id": numeric_id,

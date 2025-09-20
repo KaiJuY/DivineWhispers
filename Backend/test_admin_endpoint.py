@@ -23,7 +23,7 @@ async def test_admin_poem_endpoint():
         print("SUCCESS: Poem service initialized")
 
         # Test poem ID parsing and lookup
-        poem_id = "Tianhou_99"
+        poem_id = "YueLao_68"
         print(f"\nTesting with poem ID: {poem_id}")
 
         # Parse poem_id (same logic as admin endpoint)

@@ -16,6 +16,8 @@ class PoemData(BaseModel):
     fortune: str = Field(..., description="Fortune level (大吉, 中吉, etc.)")
     poem: str = Field(..., description="The actual poem text")
     analysis: Dict[str, str] = Field(..., description="Multi-language analysis")
+    rag_analysis: Optional[str] = Field(None, description="RAG-enhanced analysis for LLM context")
+    llm_meta: Optional[Dict] = Field(None, description="LLM metadata including model and generation info")
     
 
 class PoemSearchQuery(BaseModel):

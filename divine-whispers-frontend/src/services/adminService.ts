@@ -388,6 +388,10 @@ class AdminService {
     return await apiClient.get('/api/v1/admin/poems', params);
   }
 
+  async getPoemById(poemId: string): Promise<any> {
+    return await apiClient.get(`/api/v1/admin/poems/${poemId}`);
+  }
+
   // Reports Storage
   async getReports(params: {
     page?: number;
