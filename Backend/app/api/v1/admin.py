@@ -1321,12 +1321,321 @@ async def perform_customer_action(
             "timestamp": datetime.utcnow(),
             "reason": reason
         }
-        
+
     except HTTPException:
         raise
     except Exception as e:
         logger.error(f"Error performing customer action {action} on user {user_id}: {e}")
         raise HTTPException(status_code=500, detail="Failed to perform customer action")
+
+
+@router.put("/users/{user_id}/profile")
+async def update_user_profile(
+    user_id: int,
+    profile_data: Dict[str, Any],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Update user profile information"""
+    try:
+        # Get target user
+        target_user = await db.scalar(select(User).where(User.user_id == user_id))
+        if not target_user:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        # Allowed profile fields
+        allowed_fields = ["full_name", "phone", "birth_date", "location", "preferred_language"]
+        updated_fields = []
+
+        for field in allowed_fields:
+            if field in profile_data:
+                setattr(target_user, field, profile_data[field])
+                updated_fields.append(field)
+
+        if updated_fields:
+            target_user.updated_at = datetime.utcnow()
+            await db.commit()
+            await db.refresh(target_user)
+
+        # Create audit log
+        audit_log = AuditLog(
+            user_id=current_user.user_id,
+            action=ActionType.UPDATE,
+            resource_type="user_profile",
+            resource_id=str(user_id),
+            details={
+                "updated_fields": updated_fields,
+                "target_user": target_user.email,
+                "updated_by": current_user.email
+            }
+        )
+        db.add(audit_log)
+        await db.commit()
+
+        return {
+            "success": True,
+            "user_id": user_id,
+            "updated_fields": updated_fields,
+            "updated_by": current_user.email,
+            "updated_at": target_user.updated_at
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating user profile {user_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to update user profile")
+
+
+@router.post("/users/search")
+async def advanced_user_search(
+    search_criteria: Dict[str, Any],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Advanced user search with multiple criteria"""
+    try:
+        page = search_criteria.get("page", 1)
+        limit = min(search_criteria.get("limit", 20), 100)
+
+        query = select(User)
+        count_query = select(func.count(User.user_id))
+        conditions = []
+
+        # Email search
+        if search_criteria.get("email"):
+            conditions.append(User.email.ilike(f"%{search_criteria['email']}%"))
+
+        # Role filter
+        if search_criteria.get("role"):
+            try:
+                role_enum = UserRole(search_criteria["role"])
+                conditions.append(User.role == role_enum)
+            except ValueError:
+                pass
+
+        # Status filter
+        if search_criteria.get("status"):
+            try:
+                status_enum = UserStatus(search_criteria["status"])
+                conditions.append(User.status == status_enum)
+            except ValueError:
+                pass
+
+        # Points range
+        if search_criteria.get("min_points") is not None:
+            conditions.append(User.points_balance >= search_criteria["min_points"])
+        if search_criteria.get("max_points") is not None:
+            conditions.append(User.points_balance <= search_criteria["max_points"])
+
+        # Date range
+        if search_criteria.get("created_after"):
+            conditions.append(User.created_at >= search_criteria["created_after"])
+        if search_criteria.get("created_before"):
+            conditions.append(User.created_at <= search_criteria["created_before"])
+
+        # Name search
+        if search_criteria.get("name"):
+            conditions.append(User.full_name.ilike(f"%{search_criteria['name']}%"))
+
+        # Apply conditions
+        if conditions:
+            query = query.where(and_(*conditions))
+            count_query = count_query.where(and_(*conditions))
+
+        # Get total count
+        total_count = await db.scalar(count_query)
+
+        # Apply pagination
+        offset = (page - 1) * limit
+        query = query.offset(offset).limit(limit).order_by(desc(User.created_at))
+
+        result = await db.execute(query)
+        users = result.scalars().all()
+
+        users_data = []
+        for user in users:
+            users_data.append({
+                "user_id": user.user_id,
+                "email": user.email,
+                "full_name": user.full_name,
+                "role": user.role.value,
+                "status": user.status.value,
+                "points_balance": user.points_balance,
+                "created_at": user.created_at,
+                "updated_at": user.updated_at
+            })
+
+        return {
+            "users": users_data,
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total": total_count or 0,
+                "pages": ((total_count or 0) + limit - 1) // limit
+            },
+            "search_criteria": search_criteria,
+            "results_count": len(users_data)
+        }
+
+    except Exception as e:
+        logger.error(f"Error performing advanced user search: {e}")
+        raise HTTPException(status_code=500, detail="Failed to perform user search")
+
+
+@router.get("/users/{user_id}/activity")
+async def get_user_activity_log(
+    user_id: int,
+    page: int = Query(1, ge=1),
+    limit: int = Query(50, ge=1, le=200),
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get detailed activity log for a specific user"""
+    try:
+        # Check if user exists
+        target_user = await db.scalar(select(User).where(User.user_id == user_id))
+        if not target_user:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        # Get audit logs for this user
+        query = select(AuditLog).where(AuditLog.user_id == user_id)
+        count_query = select(func.count(AuditLog.log_id)).where(AuditLog.user_id == user_id)
+
+        total_count = await db.scalar(count_query)
+
+        offset = (page - 1) * limit
+        query = query.offset(offset).limit(limit).order_by(desc(AuditLog.timestamp))
+
+        result = await db.execute(query)
+        audit_logs = result.scalars().all()
+
+        activity_data = []
+        for log in audit_logs:
+            activity_data.append({
+                "log_id": log.log_id,
+                "action": log.action.value,
+                "resource_type": log.resource_type,
+                "resource_id": log.resource_id,
+                "timestamp": log.timestamp,
+                "ip_address": log.ip_address,
+                "details": log.details or {}
+            })
+
+        return {
+            "user_id": user_id,
+            "user_email": target_user.email,
+            "activity": activity_data,
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total": total_count or 0,
+                "pages": ((total_count or 0) + limit - 1) // limit
+            }
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting user activity for {user_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve user activity")
+
+
+@router.post("/users/bulk-action")
+async def bulk_user_action(
+    action_data: Dict[str, Any],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Perform bulk actions on multiple users"""
+    try:
+        user_ids = action_data.get("user_ids", [])
+        action = action_data.get("action")
+        reason = action_data.get("reason", "")
+
+        if not user_ids or not action:
+            raise HTTPException(status_code=400, detail="user_ids and action are required")
+
+        if len(user_ids) > 50:
+            raise HTTPException(status_code=400, detail="Bulk action limited to 50 users")
+
+        allowed_actions = ["suspend", "activate", "add_points", "deduct_points"]
+        if action not in allowed_actions:
+            raise HTTPException(status_code=400, detail=f"Invalid action. Allowed: {allowed_actions}")
+
+        successful_actions = 0
+        failed_actions = 0
+        errors = []
+
+        for user_id in user_ids:
+            try:
+                # Get user
+                user = await db.scalar(select(User).where(User.user_id == user_id))
+                if not user:
+                    errors.append(f"User {user_id} not found")
+                    failed_actions += 1
+                    continue
+
+                # Prevent acting on self
+                if user.user_id == current_user.user_id:
+                    errors.append(f"Cannot perform action on yourself (user {user_id})")
+                    failed_actions += 1
+                    continue
+
+                # Perform action
+                if action == "suspend":
+                    user.status = UserStatus.SUSPENDED
+                elif action == "activate":
+                    user.status = UserStatus.ACTIVE
+                elif action == "add_points":
+                    points = action_data.get("points", 0)
+                    user.points_balance += points
+                elif action == "deduct_points":
+                    points = action_data.get("points", 0)
+                    user.points_balance = max(0, user.points_balance - points)
+
+                user.updated_at = datetime.utcnow()
+                successful_actions += 1
+
+                # Create audit log
+                audit_log = AuditLog(
+                    user_id=current_user.user_id,
+                    action=ActionType.UPDATE,
+                    resource_type="user_bulk",
+                    resource_id=str(user_id),
+                    details={
+                        "bulk_action": action,
+                        "target_user": user.email,
+                        "reason": reason,
+                        "performed_by": current_user.email
+                    }
+                )
+                db.add(audit_log)
+
+            except Exception as e:
+                errors.append(f"Error processing user {user_id}: {str(e)}")
+                failed_actions += 1
+
+        await db.commit()
+
+        logger.info(f"Admin {current_user.user_id} performed bulk action '{action}': {successful_actions} successful, {failed_actions} failed")
+
+        return {
+            "success": True,
+            "action": action,
+            "total_users": len(user_ids),
+            "successful_actions": successful_actions,
+            "failed_actions": failed_actions,
+            "errors": errors[:10],  # Limit errors shown
+            "performed_by": current_user.email,
+            "performed_at": datetime.utcnow()
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error performing bulk user action: {e}")
+        raise HTTPException(status_code=500, detail="Failed to perform bulk user action")
 
 
 # FAQ Management System
@@ -2043,13 +2352,12 @@ async def get_poem_analytics(
     limit: int = Query(20, ge=1, le=100),
     deity_filter: Optional[str] = Query(None),
     search: Optional[str] = Query(None),
-    # current_user: User = Depends(require_admin),  # Temporarily disabled for testing
+    current_user: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db)
 ):
     """Get poem analytics and management data from ChromaDB"""
     try:
         logger.info(f"Admin poems request - page: {page}, limit: {limit}, deity: {deity_filter}, search: {search}")
-        logger.info("Testing ChromaDB integration without authentication")
 
         from app.services.poem_service import poem_service
         logger.info("Imported poem_service successfully")
@@ -2070,6 +2378,516 @@ async def get_poem_analytics(
     except Exception as e:
         logger.error(f"Error getting poem analytics from ChromaDB: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Failed to retrieve poem analytics from ChromaDB: {str(e)}")
+
+
+@router.get("/poems-test-detail/{poem_id}")
+async def get_poem_details_test(
+    poem_id: str,
+    db: AsyncSession = Depends(get_db)
+):
+    """Get detailed information about a specific poem (test endpoint without auth)"""
+    try:
+        from app.services.poem_service import poem_service
+
+        # Parse poem_id (format: temple_poemid)
+        if "_" in poem_id:
+            temple, numeric_id = poem_id.rsplit("_", 1)
+        else:
+            raise HTTPException(status_code=400, detail="Invalid poem ID format")
+
+        # Get poem details
+        poem_data = await poem_service.get_poem_by_id(f"{temple}_{numeric_id}")
+
+        if not poem_data:
+            raise HTTPException(status_code=404, detail="Poem not found")
+
+        return {
+            "id": poem_id,
+            "title": getattr(poem_data, "title", "Untitled"),
+            "deity": getattr(poem_data, "temple", temple),
+            "chinese": getattr(poem_data, "poem", ""),
+            "fortune": getattr(poem_data, "fortune", ""),
+            "analysis": getattr(poem_data, "analysis", {}),
+            "topics": getattr(poem_data, "topics", []),
+            "metadata": {
+                "temple": temple,
+                "poem_id": numeric_id,
+                "last_modified": datetime.utcnow().isoformat(),
+                "usage_count": 0  # Would need tracking system
+            }
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting poem details for {poem_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve poem details")
+
+
+@router.get("/poems/{poem_id}")
+async def get_poem_details(
+    poem_id: str,
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get detailed information about a specific poem"""
+    try:
+        from app.services.poem_service import poem_service
+
+        # Parse poem_id (format: temple_poemid)
+        if "_" in poem_id:
+            temple, numeric_id = poem_id.rsplit("_", 1)
+        else:
+            raise HTTPException(status_code=400, detail="Invalid poem ID format")
+
+        # Get poem details
+        poem_data = await poem_service.get_poem_by_id(f"{temple}_{numeric_id}")
+
+        if not poem_data:
+            raise HTTPException(status_code=404, detail="Poem not found")
+
+        return {
+            "id": poem_id,
+            "title": getattr(poem_data, "title", "Untitled"),
+            "deity": getattr(poem_data, "temple", temple),
+            "chinese": getattr(poem_data, "poem", ""),
+            "fortune": getattr(poem_data, "fortune", ""),
+            "analysis": getattr(poem_data, "analysis", {}),
+            "topics": getattr(poem_data, "topics", []),
+            "metadata": {
+                "temple": temple,
+                "poem_id": numeric_id,
+                "last_modified": datetime.utcnow().isoformat(),
+                "usage_count": 0  # Would need tracking system
+            }
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting poem details for {poem_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve poem details")
+
+
+@router.post("/poems", status_code=status.HTTP_201_CREATED)
+async def create_poem(
+    poem_data: Dict[str, Any],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Create a new poem in the system"""
+    try:
+        from app.services.poem_service import poem_service
+
+        # Validate required fields
+        required_fields = ["title", "deity", "chinese", "fortune"]
+        for field in required_fields:
+            if field not in poem_data:
+                raise HTTPException(status_code=400, detail=f"Missing required field: {field}")
+
+        # Create new poem entry
+        new_poem = {
+            "title": poem_data["title"],
+            "temple": poem_data["deity"],
+            "poem": poem_data["chinese"],
+            "fortune": poem_data["fortune"],
+            "analysis": poem_data.get("analysis", {}),
+            "created_by": current_user.user_id,
+            "created_at": datetime.utcnow().isoformat()
+        }
+
+        # Add to ChromaDB (this would need implementation in poem_service)
+        result = await poem_service.add_poem_to_system(new_poem)
+
+        # Create audit log
+        audit_log = AuditLog(
+            user_id=current_user.user_id,
+            action=ActionType.CREATE,
+            resource_type="poem",
+            resource_id=result.get("poem_id", "unknown"),
+            details={
+                "title": poem_data["title"],
+                "deity": poem_data["deity"],
+                "created_by": current_user.email
+            }
+        )
+        db.add(audit_log)
+        await db.commit()
+
+        logger.info(f"Admin {current_user.user_id} created new poem: {poem_data['title']}")
+
+        return {
+            "success": True,
+            "poem_id": result.get("poem_id"),
+            "message": "Poem created successfully",
+            "created_by": current_user.email,
+            "created_at": datetime.utcnow().isoformat()
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error creating poem: {e}")
+        raise HTTPException(status_code=500, detail="Failed to create poem")
+
+
+@router.put("/poems/{poem_id}")
+async def update_poem(
+    poem_id: str,
+    poem_data: Dict[str, Any],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Update an existing poem"""
+    try:
+        from app.services.poem_service import poem_service
+
+        # Parse poem_id
+        if "_" in poem_id:
+            temple, numeric_id = poem_id.rsplit("_", 1)
+            full_poem_id = f"{temple}_{numeric_id}"
+        else:
+            raise HTTPException(status_code=400, detail="Invalid poem ID format")
+
+        # Check if poem exists
+        existing_poem = await poem_service.get_poem_by_id(full_poem_id)
+        if not existing_poem:
+            raise HTTPException(status_code=404, detail="Poem not found")
+
+        # Update poem data
+        updated_poem = existing_poem.copy()
+        allowed_updates = ["title", "chinese", "fortune", "analysis"]
+
+        for field in allowed_updates:
+            if field in poem_data:
+                if field == "chinese":
+                    updated_poem["poem"] = poem_data[field]
+                else:
+                    updated_poem[field] = poem_data[field]
+
+        updated_poem["updated_by"] = current_user.user_id
+        updated_poem["updated_at"] = datetime.utcnow().isoformat()
+
+        # Update in ChromaDB (this would need implementation in poem_service)
+        result = await poem_service.update_poem_in_system(full_poem_id, updated_poem)
+
+        # Create audit log
+        audit_log = AuditLog(
+            user_id=current_user.user_id,
+            action=ActionType.UPDATE,
+            resource_type="poem",
+            resource_id=poem_id,
+            details={
+                "title": updated_poem.get("title"),
+                "updated_fields": list(poem_data.keys()),
+                "updated_by": current_user.email
+            }
+        )
+        db.add(audit_log)
+        await db.commit()
+
+        logger.info(f"Admin {current_user.user_id} updated poem: {poem_id}")
+
+        return {
+            "success": True,
+            "poem_id": poem_id,
+            "message": "Poem updated successfully",
+            "updated_by": current_user.email,
+            "updated_at": datetime.utcnow().isoformat(),
+            "updated_fields": list(poem_data.keys())
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating poem {poem_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to update poem")
+
+
+@router.delete("/poems/{poem_id}")
+async def delete_poem(
+    poem_id: str,
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Delete a poem from the system"""
+    try:
+        from app.services.poem_service import poem_service
+
+        # Parse poem_id
+        if "_" in poem_id:
+            temple, numeric_id = poem_id.rsplit("_", 1)
+            full_poem_id = f"{temple}_{numeric_id}"
+        else:
+            raise HTTPException(status_code=400, detail="Invalid poem ID format")
+
+        # Check if poem exists
+        existing_poem = await poem_service.get_poem_by_id(full_poem_id)
+        if not existing_poem:
+            raise HTTPException(status_code=404, detail="Poem not found")
+
+        # Delete from ChromaDB (this would need implementation in poem_service)
+        result = await poem_service.delete_poem_from_system(full_poem_id)
+
+        # Create audit log
+        audit_log = AuditLog(
+            user_id=current_user.user_id,
+            action=ActionType.DELETE,
+            resource_type="poem",
+            resource_id=poem_id,
+            details={
+                "title": existing_poem.get("title"),
+                "deity": existing_poem.get("temple"),
+                "deleted_by": current_user.email
+            }
+        )
+        db.add(audit_log)
+        await db.commit()
+
+        logger.info(f"Admin {current_user.user_id} deleted poem: {poem_id}")
+
+        return {
+            "success": True,
+            "poem_id": poem_id,
+            "message": "Poem deleted successfully",
+            "deleted_by": current_user.email,
+            "deleted_at": datetime.utcnow().isoformat()
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting poem {poem_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to delete poem")
+
+
+@router.get("/poems/categories")
+async def get_poem_categories(
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get all available poem categories/fortune types"""
+    try:
+        from app.services.poem_service import poem_service
+
+        categories = await poem_service.get_poem_categories()
+
+        return {
+            "categories": categories,
+            "total_categories": len(categories),
+            "total_poems": sum(categories.values())
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting poem categories: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve poem categories")
+
+
+@router.get("/poems/statistics")
+async def get_poem_statistics(
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get comprehensive poem statistics for admin dashboard"""
+    try:
+        from app.services.poem_service import poem_service
+
+        # Get all poems for statistics
+        all_poems_result = await poem_service.get_all_poems_for_admin(page=1, limit=10000)
+        all_poems = all_poems_result.get("poems", [])
+
+        # Calculate statistics
+        total_poems = len(all_poems)
+
+        # Group by deity/temple
+        deity_stats = {}
+        fortune_stats = {}
+
+        for poem in all_poems:
+            deity = poem.get("deity", "Unknown")
+            fortune = poem.get("fortune", "Unknown")
+
+            deity_stats[deity] = deity_stats.get(deity, 0) + 1
+            fortune_stats[fortune] = fortune_stats.get(fortune, 0) + 1
+
+        # Recent activity (mock data since we don't have real tracking)
+        recent_activity = {
+            "poems_added_today": 0,
+            "poems_updated_today": 0,
+            "most_accessed_poem": "GuanYu_001",
+            "least_accessed_poem": "YueLao_050"
+        }
+
+        return {
+            "overview": {
+                "total_poems": total_poems,
+                "active_deities": len(deity_stats),
+                "fortune_types": len(fortune_stats),
+                "avg_poems_per_deity": round(total_poems / max(len(deity_stats), 1), 1)
+            },
+            "deity_distribution": deity_stats,
+            "fortune_distribution": fortune_stats,
+            "recent_activity": recent_activity,
+            "top_deities": sorted(deity_stats.items(), key=lambda x: x[1], reverse=True)[:5],
+            "top_fortunes": sorted(fortune_stats.items(), key=lambda x: x[1], reverse=True)[:5]
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting poem statistics: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve poem statistics")
+
+
+@router.post("/poems/validate")
+async def validate_poem_data(
+    poem_data: Dict[str, Any],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Validate poem data before creation or update"""
+    try:
+        from app.services.poem_service import poem_service
+
+        validation_result = await poem_service.validate_poem_data(poem_data)
+
+        return {
+            "valid": validation_result["valid"],
+            "errors": validation_result["errors"],
+            "data": poem_data
+        }
+
+    except Exception as e:
+        logger.error(f"Error validating poem data: {e}")
+        raise HTTPException(status_code=500, detail="Failed to validate poem data")
+
+
+@router.post("/poems/bulk-import")
+async def bulk_import_poems(
+    poems_data: List[Dict[str, Any]],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Import multiple poems in bulk"""
+    try:
+        from app.services.poem_service import poem_service
+
+        if len(poems_data) > 100:
+            raise HTTPException(status_code=400, detail="Bulk import limited to 100 poems per request")
+
+        # Validate all poems first
+        validation_errors = []
+        for i, poem_data in enumerate(poems_data):
+            validation_result = await poem_service.validate_poem_data(poem_data)
+            if not validation_result["valid"]:
+                validation_errors.append(f"Poem {i+1}: {', '.join(validation_result['errors'])}")
+
+        if validation_errors:
+            return {
+                "success": False,
+                "validation_errors": validation_errors,
+                "message": "Validation failed for some poems"
+            }
+
+        # Perform bulk import
+        import_result = await poem_service.bulk_import_poems(poems_data)
+
+        # Create audit log
+        audit_log = AuditLog(
+            user_id=current_user.user_id,
+            action=ActionType.CREATE,
+            resource_type="poem_bulk",
+            resource_id=f"bulk_{int(time.time())}",
+            details={
+                "total_poems": len(poems_data),
+                "successful_imports": import_result["successful_imports"],
+                "failed_imports": import_result["failed_imports"],
+                "imported_by": current_user.email
+            }
+        )
+        db.add(audit_log)
+        await db.commit()
+
+        logger.info(f"Admin {current_user.user_id} performed bulk import: {import_result['successful_imports']} successful")
+
+        return import_result
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error during bulk import: {e}")
+        raise HTTPException(status_code=500, detail="Failed to perform bulk import")
+
+
+@router.get("/poems/{poem_id}/usage")
+async def get_poem_usage_stats(
+    poem_id: str,
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get usage statistics for a specific poem"""
+    try:
+        from app.services.poem_service import poem_service
+
+        usage_stats = await poem_service.get_poem_usage_statistics(poem_id)
+
+        return {
+            "poem_id": poem_id,
+            "usage_statistics": usage_stats,
+            "requested_by": current_user.email,
+            "requested_at": datetime.utcnow().isoformat()
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting poem usage stats for {poem_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve poem usage statistics")
+
+
+@router.post("/poems/search-admin")
+async def admin_search_poems(
+    search_data: Dict[str, Any],
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Advanced search functionality for admin users"""
+    try:
+        from app.services.poem_service import poem_service
+
+        query = search_data.get("query", "")
+        temple_filter = search_data.get("temple_filter")
+        top_k = min(search_data.get("top_k", 10), 50)  # Limit results
+
+        if not query:
+            raise HTTPException(status_code=400, detail="Search query is required")
+
+        search_results = await poem_service.search_similar_poems(
+            query=query,
+            top_k=top_k,
+            temple_filter=temple_filter
+        )
+
+        return {
+            "query": query,
+            "temple_filter": temple_filter,
+            "results_count": len(search_results),
+            "results": [
+                {
+                    "temple": result.temple,
+                    "poem_id": result.poem_id,
+                    "title": result.title,
+                    "fortune": result.fortune,
+                    "relevance_score": result.relevance_score,
+                    "snippet": result.snippet
+                }
+                for result in search_results
+            ],
+            "searched_by": current_user.email,
+            "searched_at": datetime.utcnow().isoformat()
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error performing admin poem search: {e}")
+        raise HTTPException(status_code=500, detail="Failed to perform poem search")
 
 
 @router.get("/reports")

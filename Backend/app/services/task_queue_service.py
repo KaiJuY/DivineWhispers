@@ -17,6 +17,12 @@ from app.utils.timeout_utils import (
     rag_circuit_breaker, llm_circuit_breaker, with_circuit_breaker
 )
 from app.services.task_worker_pool import TaskWorkerPool
+from app.utils.progress_tracker import (
+    create_progress_aware_task, progress_manager, StreamingProgressTracker
+)
+from app.utils.streaming_processor import (
+    create_streaming_processor, cleanup_streaming_processor
+)
 import uuid
 
 
@@ -143,10 +149,10 @@ class TaskQueueService:
                     if (task.task_id not in self.active_tasks and
                         not self.worker_pool.is_task_active(task.task_id)):
 
-                        # Submit task to worker pool
+                        # Submit task to worker pool with streaming processor
                         await self.worker_pool.submit_task(
                             task.task_id,
-                            self._process_task_with_timeout,
+                            self.process_task,
                             task.task_id
                         )
 
@@ -199,14 +205,24 @@ class TaskQueueService:
             logger.error(f"Error handling timeout for task {task_id}: {e}")
 
     async def process_task(self, task_id: str):
-        """Process a single task with improved error handling and timeouts"""
+        """Process a single task with true real-time streaming"""
         task = None
         start_time = time.time()
+        streaming_processor = None
 
         try:
+            # Create streaming processor for true real-time updates
+            streaming_processor = create_streaming_processor(
+                task_id,
+                self.send_sse_event,
+                smart=True
+            )
+
             # Create dedicated database session for this task
             async with get_async_session() as db:
                 # Get task with timeout
+                await streaming_processor.send_update("initializing", 2, "🔄 初始化任務...")
+
                 async with timeout_context(5.0, "task_retrieval"):
                     task = await self.get_task(task_id, db)
                     if not task:
@@ -220,21 +236,36 @@ class TaskQueueService:
                 self.active_tasks[task_id] = task
                 logger.info(f"Processing task {task_id}: {task.question[:50]}...")
 
-                # Update status to processing
+                # Step 1: Initial setup with streaming
+                await streaming_processor.send_update("processing", 5, "🚀 啟動處理流程...")
                 await self.update_task_progress(task, TaskStatus.PROCESSING, 10, "Starting analysis...", db)
 
-                # Step 1: Analyze RAG context with timeout
-                await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 30, "Analyzing fortune context...", db)
+                # Step 2: Stream RAG processing
+                await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 15, "Analyzing fortune context...", db)
 
-                poem_data = await self._get_poem_data_with_timeout(task)
+                poem_data = await streaming_processor.adaptive_stream_processing(
+                    self._get_poem_data_blocking,
+                    "RAG檢索",
+                    15, 50,
+                    "rag",
+                    task
+                )
 
-                # Step 2: Generate LLM response with timeout
-                await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 70, "Consulting divine wisdom...", db)
+                # Step 3: Stream LLM generation
+                await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 55, "Consulting divine wisdom...", db)
 
-                response_text = await self._generate_response_with_timeout(task, poem_data)
+                response_text = await streaming_processor.adaptive_stream_processing(
+                    self._generate_response_blocking,
+                    "LLM推理",
+                    55, 90,
+                    "llm",
+                    task, poem_data
+                )
+
                 confidence = 75 + (hash(task.question) % 25)  # Mock confidence 75-99
 
-                # Step 3: Complete
+                # Step 4: Finalization with streaming
+                await streaming_processor.send_update("finalizing", 95, "📝 完成最終處理...")
                 await self.update_task_progress(task, TaskStatus.COMPLETED, 100, "Response generated successfully", db)
 
                 # Set result
@@ -250,6 +281,9 @@ class TaskQueueService:
                 processing_time = int((time.time() - start_time) * 1000)
                 logger.info(f"Completed task {task_id} in {processing_time}ms")
 
+                # Final streaming update
+                await streaming_processor.send_update("completed", 100, "🎉 解釋生成完成！")
+
                 # Send completion event to SSE clients
                 await self.send_sse_event(task_id, {
                     "type": "complete",
@@ -264,9 +298,13 @@ class TaskQueueService:
 
         except TimeoutError as e:
             logger.error(f"Timeout processing task {task_id}: {e}")
+            if streaming_processor:
+                await streaming_processor.send_update("error", 0, f"⏰ 處理超時: {str(e)}")
             raise  # Re-raise to be handled by timeout wrapper
         except Exception as e:
             logger.error(f"Error processing task {task_id}: {e}")
+            if streaming_processor:
+                await streaming_processor.send_update("error", 0, f"❌ 處理錯誤: {str(e)}")
 
             # Update task with error using a new session
             try:
@@ -286,12 +324,17 @@ class TaskQueueService:
             except Exception as commit_error:
                 logger.error(f"Failed to save error state for task {task_id}: {commit_error}")
 
+        finally:
+            # Clean up streaming processor
+            if streaming_processor:
+                cleanup_streaming_processor(task_id)
+
     @with_circuit_breaker(rag_circuit_breaker, fallback_value=None)
-    async def _get_poem_data_with_timeout(self, task: ChatTask):
-        """Get poem data with timeout and circuit breaker protection"""
+    async def _get_poem_data_blocking(self, task: ChatTask):
+        """Blocking poem data retrieval (to be called by streaming processor)"""
         async with timeout_context(self.rag_timeout, "poem_data_retrieval"):
-            # Get fortune data for context using central deity mapping
             from app.services.deity_service import deity_service
+
             logger.info(f"[MAPPING] Original deity_id: '{task.deity_id}'")
             temple_name = deity_service.get_temple_name(task.deity_id) or task.deity_id
             logger.info(f"[MAPPING] Mapped temple_name: '{temple_name}'")
@@ -316,10 +359,11 @@ class TaskQueueService:
                 return poem_data
 
     @with_circuit_breaker(llm_circuit_breaker, fallback_value="I apologize, but I'm experiencing technical difficulties. Please try again later.")
-    async def _generate_response_with_timeout(self, task: ChatTask, poem_data) -> str:
-        """Generate response with timeout and circuit breaker protection"""
+    async def _generate_response_blocking(self, task: ChatTask, poem_data) -> str:
+        """Blocking response generation (to be called by streaming processor)"""
         async with timeout_context(self.llm_timeout, "llm_response_generation"):
-            return await self.generate_response(task, poem_data)
+            result = await self.generate_response(task, poem_data)
+            return result
 
     async def update_task_progress(
         self,

@@ -60,6 +60,20 @@ async def lifespan(app: FastAPI):
         cleanup_task = asyncio.create_task(cleanup_jobs())
         logger.info("Job cleanup task started")
 
+        # Start streaming processor cleanup task
+        async def cleanup_streaming_processors():
+            while True:
+                try:
+                    from app.utils.streaming_processor import cleanup_old_processors
+                    cleanup_old_processors(max_age_seconds=600)  # Clean processors older than 10 minutes
+                    await asyncio.sleep(300)  # Run every 5 minutes
+                except Exception as e:
+                    logger.error(f"Error in streaming processor cleanup: {e}")
+                    await asyncio.sleep(60)  # Wait 1 minute on error
+
+        streaming_cleanup_task = asyncio.create_task(cleanup_streaming_processors())
+        logger.info("Streaming processor cleanup task started")
+
     except Exception as e:
         logger.error(f"Error initializing services: {e}")
     
@@ -87,6 +101,14 @@ async def lifespan(app: FastAPI):
             logger.info("ChromaDB connection pool cleaned up")
         except Exception as cleanup_error:
             logger.warning(f"Error cleaning up ChromaDB pool: {cleanup_error}")
+
+        # Clean up streaming processors
+        try:
+            from app.utils.streaming_processor import cleanup_old_processors
+            cleanup_old_processors(max_age_seconds=0)  # Clean all
+            logger.info("Streaming processors cleaned up")
+        except Exception as cleanup_error:
+            logger.warning(f"Error cleaning up streaming processors: {cleanup_error}")
 
         logger.info("Services stopped")
     except Exception as e:
@@ -281,7 +303,7 @@ async def websocket_endpoint(websocket, user_id: str):
 
 
 # Include API routers
-from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact, async_chat, monitoring
+from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact, async_chat, monitoring, streaming_chat
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Administration"])
 app.include_router(fortune.router, prefix="/api/v1", tags=["Fortune"])
@@ -290,6 +312,7 @@ app.include_router(deities.router, prefix="/api/v1", tags=["Deities"])
 app.include_router(chat.router, prefix="/api/v1", tags=["Chat"])
 app.include_router(contact.router, prefix="/api/v1", tags=["Contact"])
 app.include_router(async_chat.router, prefix="/api/v1", tags=["Async Chat"])
+app.include_router(streaming_chat.router, prefix="/api/v1", tags=["Streaming Chat"])
 app.include_router(monitoring.router, prefix="/api/v1", tags=["System Monitoring"])
 
 

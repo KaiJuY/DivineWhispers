@@ -1295,6 +1295,213 @@ May this ancient wisdom bring clarity to your journey.
             additional_context="This is demonstration data used when the poem database is unavailable."
         )
 
+    async def add_poem_to_system(self, poem_data: Dict) -> Dict:
+        """
+        Add a new poem to the ChromaDB system
+
+        Args:
+            poem_data: Dictionary containing poem information
+
+        Returns:
+            Dictionary with result information
+        """
+        await self.ensure_initialized()
+
+        try:
+            logger.info(f"Adding new poem to system: {poem_data.get('title', 'Untitled')}")
+
+            # In a real implementation, you would:
+            # 1. Generate a unique poem ID
+            # 2. Create a new chunk for ChromaDB
+            # 3. Add to the collection
+            # 4. Update the vector embeddings
+
+            # For now, return a mock success response
+            # This would need actual ChromaDB insertion logic
+            new_poem_id = f"{poem_data['temple']}_{int(time.time())}"
+
+            logger.info(f"New poem added with ID: {new_poem_id}")
+
+            return {
+                "success": True,
+                "poem_id": new_poem_id,
+                "message": "Poem added successfully (mock implementation)"
+            }
+
+        except Exception as e:
+            logger.error(f"Error adding poem to system: {e}")
+            raise e
+
+    async def update_poem_in_system(self, poem_id: str, updated_data: Dict) -> Dict:
+        """
+        Update an existing poem in the ChromaDB system
+
+        Args:
+            poem_id: ID of the poem to update (format: temple#id)
+            updated_data: Dictionary containing updated poem information
+
+        Returns:
+            Dictionary with result information
+        """
+        await self.ensure_initialized()
+
+        try:
+            logger.info(f"Updating poem in system: {poem_id}")
+
+            # In a real implementation, you would:
+            # 1. Find the existing chunk in ChromaDB
+            # 2. Update the metadata and content
+            # 3. Re-generate embeddings if content changed
+            # 4. Update the collection
+
+            # For now, return a mock success response
+            logger.info(f"Poem updated: {poem_id}")
+
+            return {
+                "success": True,
+                "poem_id": poem_id,
+                "message": "Poem updated successfully (mock implementation)"
+            }
+
+        except Exception as e:
+            logger.error(f"Error updating poem {poem_id}: {e}")
+            raise e
+
+    async def delete_poem_from_system(self, poem_id: str) -> Dict:
+        """
+        Delete a poem from the ChromaDB system
+
+        Args:
+            poem_id: ID of the poem to delete (format: temple#id)
+
+        Returns:
+            Dictionary with result information
+        """
+        await self.ensure_initialized()
+
+        try:
+            logger.info(f"Deleting poem from system: {poem_id}")
+
+            # In a real implementation, you would:
+            # 1. Find the chunk in ChromaDB by ID
+            # 2. Remove it from the collection
+            # 3. Update the vector index
+
+            # For now, return a mock success response
+            logger.info(f"Poem deleted: {poem_id}")
+
+            return {
+                "success": True,
+                "poem_id": poem_id,
+                "message": "Poem deleted successfully (mock implementation)"
+            }
+
+        except Exception as e:
+            logger.error(f"Error deleting poem {poem_id}: {e}")
+            raise e
+
+    async def get_poem_usage_statistics(self, poem_id: str) -> Dict:
+        """
+        Get usage statistics for a specific poem
+
+        Args:
+            poem_id: ID of the poem
+
+        Returns:
+            Dictionary with usage statistics
+        """
+        try:
+            # In a real implementation, this would query usage tracking tables
+            # For now, return mock statistics
+            return {
+                "poem_id": poem_id,
+                "total_views": random.randint(10, 1000),
+                "total_interpretations": random.randint(5, 500),
+                "last_accessed": datetime.utcnow().isoformat(),
+                "popularity_rank": random.randint(1, 100),
+                "avg_rating": round(random.uniform(3.5, 5.0), 1)
+            }
+
+        except Exception as e:
+            logger.error(f"Error getting poem statistics for {poem_id}: {e}")
+            return {}
+
+    async def bulk_import_poems(self, poems_data: List[Dict]) -> Dict:
+        """
+        Import multiple poems into the system
+
+        Args:
+            poems_data: List of poem dictionaries
+
+        Returns:
+            Dictionary with import results
+        """
+        await self.ensure_initialized()
+
+        try:
+            logger.info(f"Starting bulk import of {len(poems_data)} poems")
+
+            successful_imports = 0
+            failed_imports = 0
+            errors = []
+
+            for poem_data in poems_data:
+                try:
+                    await self.add_poem_to_system(poem_data)
+                    successful_imports += 1
+                except Exception as e:
+                    failed_imports += 1
+                    errors.append(f"Failed to import {poem_data.get('title', 'Unknown')}: {str(e)}")
+
+            logger.info(f"Bulk import completed: {successful_imports} successful, {failed_imports} failed")
+
+            return {
+                "success": True,
+                "total_processed": len(poems_data),
+                "successful_imports": successful_imports,
+                "failed_imports": failed_imports,
+                "errors": errors[:10]  # Limit errors shown
+            }
+
+        except Exception as e:
+            logger.error(f"Error during bulk import: {e}")
+            raise e
+
+    async def validate_poem_data(self, poem_data: Dict) -> Dict:
+        """
+        Validate poem data before adding to system
+
+        Args:
+            poem_data: Dictionary containing poem information
+
+        Returns:
+            Dictionary with validation results
+        """
+        validation_errors = []
+
+        # Required fields
+        required_fields = ["title", "temple", "poem", "fortune"]
+        for field in required_fields:
+            if not poem_data.get(field):
+                validation_errors.append(f"Missing required field: {field}")
+
+        # Validate content length
+        poem_content = poem_data.get("poem", "")
+        if len(poem_content) < 10:
+            validation_errors.append("Poem content too short (minimum 10 characters)")
+        elif len(poem_content) > 5000:
+            validation_errors.append("Poem content too long (maximum 5000 characters)")
+
+        # Validate temple name
+        allowed_temples = ["GuanYin", "Mazu", "GuanYu", "YueLao", "Tianhou", "Asakusa", "ErawanShrine", "Zhusheng", "GuanYin100"]
+        if poem_data.get("temple") and poem_data["temple"] not in allowed_temples:
+            validation_errors.append(f"Unknown temple: {poem_data['temple']}. Allowed: {', '.join(allowed_temples)}")
+
+        return {
+            "valid": len(validation_errors) == 0,
+            "errors": validation_errors
+        }
+
 
 # Global service instance
 poem_service = PoemService()

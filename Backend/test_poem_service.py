@@ -28,6 +28,22 @@ async def test_poem_service():
         print(f"Total available: {result.get('pagination', {}).get('total', 0)}")
         print(f"Result structure: {list(result.keys())}")
 
+        # Test get_poem_by_id with known poem
+        print("\n--- Testing get_poem_by_id ---")
+        test_poem_id = "Tianhou_99"
+        print(f"Testing with poem ID: {test_poem_id}")
+
+        poem_result = await poem_service.get_poem_by_id(test_poem_id)
+        if poem_result:
+            print("SUCCESS: Poem found!")
+            print(f"  Type: {type(poem_result)}")
+            print(f"  Title: {getattr(poem_result, 'title', 'N/A')}")
+            print(f"  Temple: {getattr(poem_result, 'temple', 'N/A')}")
+            print(f"  Fortune: {getattr(poem_result, 'fortune', 'N/A')}")
+            print(f"  Attributes: {dir(poem_result)}")
+        else:
+            print("FAILED: Poem not found")
+
     except Exception as e:
         print(f"FAILED: {e}")
         import traceback
