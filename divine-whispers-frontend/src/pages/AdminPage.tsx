@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import adminService, { DashboardOverview, Customer as ApiCustomer, FAQ as ApiFAQ } from '../services/adminService';
+import apiClient from '../services/apiClient';
 
 const AdminContainer = styled.div`
   width: 100%;
@@ -384,8 +385,9 @@ const Modal = styled.div<{ show: boolean }>`
 `;
 
 const ModalContent = styled.div`
-  background: ${gradients.heroSection};
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, rgba(13, 13, 32, 0.95), rgba(20, 20, 40, 0.95));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
   border-radius: 12px;
   padding: 2rem;
   max-width: 900px;
@@ -394,7 +396,7 @@ const ModalContent = styled.div`
   overflow-y: auto;
   position: relative;
   color: ${colors.white};
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
 `;
 
 const ModalHeader = styled.div`
@@ -574,6 +576,14 @@ const AdminPage: React.FC = () => {
   const [reports, setReports] = useState<any[]>([]);
   const [selectedPoem, setSelectedPoem] = useState<any>(null);
   const [showPoemModal, setShowPoemModal] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState<any>(null);
+  const [showEditCustomerModal, setShowEditCustomerModal] = useState(false);
+  const [showResetPasswordModal, setShowResetPasswordModal] = useState(false);
+
+  // Edit customer form state
+  const [editFullName, setEditFullName] = useState('');
+  const [editStatus, setEditStatus] = useState('');
+  const [editWalletBalance, setEditWalletBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -608,25 +618,26 @@ const AdminPage: React.FC = () => {
     loadDashboardData();
   }, []);
 
+  // Load customers function - accessible from anywhere
+  const loadCustomers = async () => {
+    try {
+      const response = await adminService.getCustomers({
+        page: customerPage,
+        limit: 20,
+        search: customerSearch || undefined,
+        status_filter: customerStatus || undefined,
+        sort_by: 'created_at',
+        sort_order: 'desc'
+      });
+      setCustomers(response.customers);
+    } catch (err) {
+      console.error('Error loading customers:', err);
+      setError('Failed to load customers');
+    }
+  };
+
   // Load customers data
   useEffect(() => {
-    const loadCustomers = async () => {
-      try {
-        const response = await adminService.getCustomers({
-          page: customerPage,
-          limit: 20,
-          search: customerSearch || undefined,
-          status_filter: customerStatus || undefined,
-          sort_by: 'created_at',
-          sort_order: 'desc'
-        });
-        setCustomers(response.customers);
-      } catch (err) {
-        console.error('Error loading customers:', err);
-        setError('Failed to load customers');
-      }
-    };
-
     if (activeSection === 'customers') {
       loadCustomers();
     }
@@ -767,28 +778,78 @@ const AdminPage: React.FC = () => {
 
   const handleCustomerAction = async (userId: number, action: string) => {
     try {
+      const customer = customers.find(c => c.user_id === userId);
+      if (!customer) return;
+
+      setSelectedCustomer(customer);
+
       if (action === 'edit') {
-        // Navigate to edit page or open modal
-        console.log('Edit customer:', userId);
-      } else {
-        const reason = prompt(`Enter reason for ${action}:`);
-        if (reason) {
-          await adminService.performCustomerAction(userId, action, reason);
-          // Reload customers data
-          const response = await adminService.getCustomers({
-            page: customerPage,
-            limit: 20,
-            search: customerSearch || undefined,
-            status_filter: customerStatus || undefined,
-            sort_by: 'created_at',
-            sort_order: 'desc'
-          });
-          setCustomers(response.customers);
-        }
+        // Initialize form state with current customer data
+        setEditFullName(customer.full_name || '');
+        setEditStatus(customer.status || 'active');
+        setEditWalletBalance(customer.wallet_balance || 0);
+        setShowEditCustomerModal(true);
+      } else if (action === 'reset_password') {
+        setShowResetPasswordModal(true);
       }
     } catch (err) {
       console.error(`Error performing ${action} on customer ${userId}:`, err);
       setError(`Failed to ${action} customer`);
+    }
+  };
+
+  const handleSaveCustomerChanges = async () => {
+    if (!selectedCustomer) return;
+
+    try {
+      setLoading(true);
+
+      // Update profile (full_name) using apiClient directly
+      if (editFullName !== selectedCustomer.full_name) {
+        await apiClient.put(`/api/v1/admin/users/${selectedCustomer.user_id}/profile`, {
+          full_name: editFullName
+        });
+      }
+
+      // Update status if changed using adminService methods
+      if (editStatus !== selectedCustomer.status) {
+        if (editStatus === 'suspended') {
+          await adminService.suspendUser(selectedCustomer.user_id, {
+            target_user_id: selectedCustomer.user_id,
+            reason: 'Status updated by admin'
+          });
+        } else if (editStatus === 'active' && selectedCustomer.status === 'suspended') {
+          await adminService.activateUser(selectedCustomer.user_id, {
+            target_user_id: selectedCustomer.user_id,
+            reason: 'Status activated by admin'
+          });
+        }
+      }
+
+      // Update wallet balance if changed using adminService
+      if (editWalletBalance !== selectedCustomer.wallet_balance) {
+        const balanceDiff = editWalletBalance - selectedCustomer.wallet_balance;
+        await adminService.adjustUserPoints(selectedCustomer.user_id, {
+          target_user_id: selectedCustomer.user_id,
+          amount: balanceDiff,
+          reason: 'Balance adjusted by admin',
+          adjustment_type: balanceDiff > 0 ? 'add' : 'deduct'
+        });
+      }
+
+      // Refresh customer list
+      await loadCustomers();
+
+      // Close modal
+      setShowEditCustomerModal(false);
+      setSelectedCustomer(null);
+
+      alert('Customer updated successfully!');
+    } catch (error) {
+      console.error('Error updating customer:', error);
+      alert('Failed to update customer. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -907,10 +968,6 @@ const AdminPage: React.FC = () => {
           <DashboardSection active={activeSection === 'customers'}>
             <SectionHeader>
               <SectionTitle>Customer Management</SectionTitle>
-              <SectionActions>
-                <AdminBtn onClick={() => console.log('Add customer')}>➕ Add Customer</AdminBtn>
-                <AdminBtn secondary onClick={() => console.log('Export data')}>📤 Export Data</AdminBtn>
-              </SectionActions>
             </SectionHeader>
 
             <SearchFilterBar>
@@ -927,12 +984,6 @@ const AdminPage: React.FC = () => {
                 <option value="active">Active</option>
                 <option value="suspended">Suspended</option>
                 <option value="banned">Banned</option>
-              </FilterSelect>
-              <FilterSelect>
-                <option value="">All Time</option>
-                <option value="today">Today</option>
-                <option value="week">This Week</option>
-                <option value="month">This Month</option>
               </FilterSelect>
             </SearchFilterBar>
 
@@ -1164,6 +1215,173 @@ const AdminPage: React.FC = () => {
                     <p><strong>Poem ID:</strong> {selectedPoem.metadata?.poem_id || 'N/A'}</p>
                     <p><strong>Last Modified:</strong> {selectedPoem.metadata?.last_modified ? new Date(selectedPoem.metadata.last_modified).toLocaleString() : 'N/A'}</p>
                     <p><strong>Usage Count:</strong> {selectedPoem.metadata?.usage_count || 0}</p>
+                  </div>
+                </ModalBody>
+              )}
+            </ModalContent>
+          </Modal>
+
+          {/* Edit Customer Modal */}
+          <Modal show={showEditCustomerModal}>
+            <ModalContent>
+              <ModalHeader>
+                <ModalTitle>Edit Customer</ModalTitle>
+                <CloseBtn onClick={() => {
+                  setShowEditCustomerModal(false);
+                  setSelectedCustomer(null);
+                }}>×</CloseBtn>
+              </ModalHeader>
+              {selectedCustomer && (
+                <ModalBody>
+                  <div className="poem-section">
+                    <h4>Customer ID</h4>
+                    <p>DW{selectedCustomer.user_id.toString().padStart(3, '0')}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Email</h4>
+                    <p>{selectedCustomer.email}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Full Name</h4>
+                    <input
+                      type="text"
+                      value={editFullName}
+                      onChange={(e) => setEditFullName(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '0.5rem',
+                        borderRadius: '4px',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        background: 'rgba(0,0,0,0.3)',
+                        color: 'white'
+                      }}
+                    />
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Status</h4>
+                    <select
+                      value={editStatus}
+                      onChange={(e) => setEditStatus(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '0.5rem',
+                        borderRadius: '4px',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        background: 'rgba(0,0,0,0.3)',
+                        color: 'white'
+                      }}
+                    >
+                      <option value="active">Active</option>
+                      <option value="suspended">Suspended</option>
+                      <option value="banned">Banned</option>
+                    </select>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Wallet Balance</h4>
+                    <input
+                      type="number"
+                      value={editWalletBalance}
+                      onChange={(e) => setEditWalletBalance(parseInt(e.target.value) || 0)}
+                      style={{
+                        width: '100%',
+                        padding: '0.5rem',
+                        borderRadius: '4px',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        background: 'rgba(0,0,0,0.3)',
+                        color: 'white'
+                      }}
+                    />
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Member Since</h4>
+                    <p>{new Date(selectedCustomer.created_at).toLocaleDateString()}</p>
+                  </div>
+
+                  <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                    <AdminBtn onClick={handleSaveCustomerChanges}>
+                      💾 Save Changes
+                    </AdminBtn>
+                  </div>
+                </ModalBody>
+              )}
+            </ModalContent>
+          </Modal>
+
+          {/* Reset Password Modal */}
+          <Modal show={showResetPasswordModal}>
+            <ModalContent>
+              <ModalHeader>
+                <ModalTitle>Reset Password</ModalTitle>
+                <CloseBtn onClick={() => {
+                  setShowResetPasswordModal(false);
+                  setSelectedCustomer(null);
+                }}>×</CloseBtn>
+              </ModalHeader>
+              {selectedCustomer && (
+                <ModalBody>
+                  <div className="poem-section">
+                    <h4>Customer</h4>
+                    <p>DW{selectedCustomer.user_id.toString().padStart(3, '0')} - {selectedCustomer.email}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>New Password</h4>
+                    <input
+                      type="password"
+                      placeholder="Enter new password"
+                      style={{
+                        width: '100%',
+                        padding: '0.5rem',
+                        borderRadius: '4px',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        background: 'rgba(0,0,0,0.3)',
+                        color: 'white'
+                      }}
+                    />
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Confirm Password</h4>
+                    <input
+                      type="password"
+                      placeholder="Confirm new password"
+                      style={{
+                        width: '100%',
+                        padding: '0.5rem',
+                        borderRadius: '4px',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        background: 'rgba(0,0,0,0.3)',
+                        color: 'white'
+                      }}
+                    />
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Reset Reason</h4>
+                    <textarea
+                      placeholder="Enter reason for password reset..."
+                      style={{
+                        width: '100%',
+                        height: '80px',
+                        padding: '0.5rem',
+                        borderRadius: '4px',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        background: 'rgba(0,0,0,0.3)',
+                        color: 'white',
+                        resize: 'vertical'
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                    <AdminBtn onClick={() => console.log('Reset password')}>
+                      🔑 Reset Password
+                    </AdminBtn>
                   </div>
                 </ModalBody>
               )}

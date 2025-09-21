@@ -9,7 +9,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, and_, or_, desc, asc, delete
 from typing import List, Optional, Dict, Any
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from app.models.faq import FAQ
 from app.schemas.faq import FAQCreate, FAQUpdate, FAQResponse
 
@@ -979,9 +979,9 @@ async def get_admin_dashboard_overview(
         
         # Get wallet/transaction statistics
         from app.models.transaction import Transaction, TransactionType
-        total_transactions = await db.scalar(select(func.count(Transaction.transaction_id)))
+        total_transactions = await db.scalar(select(func.count(Transaction.txn_id)))
         total_revenue = await db.scalar(
-            select(func.sum(Transaction.amount)).where(Transaction.transaction_type == TransactionType.CREDIT)
+            select(func.sum(Transaction.amount)).where(Transaction.type == TransactionType.DEPOSIT)
         ) or 0
         
         # Get chat statistics
@@ -1333,11 +1333,15 @@ async def perform_customer_action(
 async def update_user_profile(
     user_id: int,
     profile_data: Dict[str, Any],
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
     """Update user profile information"""
     try:
+        # Check if current user has admin role
+        if current_user.role != UserRole.ADMIN:
+            raise HTTPException(status_code=403, detail="Admin role required")
+
         # Get target user
         target_user = await db.scalar(select(User).where(User.user_id == user_id))
         if not target_user:
@@ -1353,7 +1357,7 @@ async def update_user_profile(
                 updated_fields.append(field)
 
         if updated_fields:
-            target_user.updated_at = datetime.utcnow()
+            target_user.updated_at = datetime.now(timezone.utc)
             await db.commit()
             await db.refresh(target_user)
 
@@ -2012,13 +2016,13 @@ async def get_revenue_analytics(
         # Revenue metrics
         total_revenue = await db.scalar(
             select(func.sum(Transaction.amount))
-            .where(Transaction.transaction_type == TransactionType.CREDIT)
+            .where(Transaction.type == TransactionType.DEPOSIT)
         ) or 0
         
         period_revenue = await db.scalar(
             select(func.sum(Transaction.amount))
             .where(
-                Transaction.transaction_type == TransactionType.CREDIT,
+                Transaction.type == TransactionType.DEPOSIT,
                 Transaction.created_at >= start_date
             )
         ) or 0
@@ -2028,10 +2032,10 @@ async def get_revenue_analytics(
             select(
                 func.date(Transaction.created_at).label('date'),
                 func.sum(Transaction.amount).label('revenue'),
-                func.count(Transaction.transaction_id).label('transactions')
+                func.count(Transaction.txn_id).label('transactions')
             )
             .where(
-                Transaction.transaction_type == TransactionType.CREDIT,
+                Transaction.type == TransactionType.DEPOSIT,
                 Transaction.created_at >= start_date
             )
             .group_by(func.date(Transaction.created_at))
@@ -2051,7 +2055,7 @@ async def get_revenue_analytics(
         avg_transaction = await db.scalar(
             select(func.avg(Transaction.amount))
             .where(
-                Transaction.transaction_type == TransactionType.CREDIT,
+                Transaction.type == TransactionType.DEPOSIT,
                 Transaction.created_at >= start_date
             )
         ) or 0
@@ -2064,7 +2068,7 @@ async def get_revenue_analytics(
             )
             .join(Transaction, User.user_id == Transaction.user_id)
             .where(
-                Transaction.transaction_type == TransactionType.DEBIT,
+                Transaction.type == TransactionType.SPEND,
                 Transaction.created_at >= start_date
             )
             .group_by(User.user_id, User.email)
