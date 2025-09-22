@@ -29,7 +29,8 @@
       "Bash(npm run build:*)",
       "mcp__playwright__browser_network_requests",
       "Bash(time curl:*)",
-      "Bash(set PORT=3004)"
+      "Bash(set PORT=3004)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": [],

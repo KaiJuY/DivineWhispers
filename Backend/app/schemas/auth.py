@@ -121,7 +121,14 @@ class UserResponse(BaseModel):
     points_balance: int = Field(..., description="User points balance")
     created_at: datetime = Field(..., description="Account creation timestamp")
     updated_at: datetime = Field(..., description="Last update timestamp")
-    
+
+    # Profile fields (optional)
+    full_name: Optional[str] = Field(None, description="User's full name")
+    phone: Optional[str] = Field(None, description="Phone number")
+    birth_date: Optional[str] = Field(None, description="Birth date (YYYY-MM-DD format)")
+    location: Optional[str] = Field(None, description="User location")
+    preferred_language: Optional[str] = Field(None, description="Preferred language")
+
     class Config:
         from_attributes = True
         json_schema_extra = {
@@ -132,7 +139,12 @@ class UserResponse(BaseModel):
                 "status": "active",
                 "points_balance": 100,
                 "created_at": "2023-01-01T00:00:00",
-                "updated_at": "2023-01-01T00:00:00"
+                "updated_at": "2023-01-01T00:00:00",
+                "full_name": "John Doe",
+                "phone": "+1234567890",
+                "birth_date": "1990-01-01",
+                "location": "New York, USA",
+                "preferred_language": "en"
             }
         }
 

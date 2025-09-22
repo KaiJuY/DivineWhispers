@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { usePagesTranslation } from '../hooks/useTranslation';
+import { profileService, UserProfile, UserReport } from '../services/profileService';
 
 interface PurchaseRecord {
   id: string;
@@ -13,89 +14,6 @@ interface PurchaseRecord {
   date: string;
   status: 'Completed' | 'Pending';
 }
-
-interface AnalysisReport {
-  id: string;
-  title: string;
-  subtitle: string;
-  meta: string;
-}
-
-const purchaseRecords: PurchaseRecord[] = [
-  {
-    id: '1',
-    title: 'Premium Coin Package',
-    subtitle: '50 Divine Coins',
-    amount: '$19.99',
-    date: 'Dec 28, 2024',
-    status: 'Completed'
-  },
-  {
-    id: '2',
-    title: 'Standard Coin Package',
-    subtitle: '25 Divine Coins',
-    amount: '$9.99',
-    date: 'Dec 15, 2024',
-    status: 'Completed'
-  },
-  {
-    id: '3',
-    title: 'Basic Coin Package',
-    subtitle: '10 Divine Coins',
-    amount: '$4.99',
-    date: 'Dec 08, 2024',
-    status: 'Completed'
-  },
-  {
-    id: '4',
-    title: 'Premium Coin Package',
-    subtitle: '50 Divine Coins',
-    amount: '$19.99',
-    date: 'Nov 30, 2024',
-    status: 'Completed'
-  },
-  {
-    id: '5',
-    title: 'Standard Coin Package',
-    subtitle: '25 Divine Coins',
-    amount: '$9.99',
-    date: 'Nov 22, 2024',
-    status: 'Completed'
-  }
-];
-
-const analysisReports: AnalysisReport[] = [
-  {
-    id: '1',
-    title: 'Guan Yin Divine Guidance - Fortune #27',
-    subtitle: '"天道酬勤志不移，福星高照事如意" - Career & Life Path Analysis',
-    meta: 'Generated on Dec 28, 2024 • 2,340 words • Deep Analysis'
-  },
-  {
-    id: '2',
-    title: 'Mazu Sea Goddess - Fortune #83',
-    subtitle: '"風平浪靜渡難關，順水推舟到彼岸" - Relationship & Emotional Guidance',
-    meta: 'Generated on Dec 20, 2024 • 1,890 words • Deep Analysis'
-  },
-  {
-    id: '3',
-    title: 'Guan Yu War God - Fortune #42',
-    subtitle: '"刀山火海不足懼，勇者無敵立功名" - Business & Financial Analysis',
-    meta: 'Generated on Dec 15, 2024 • 2,120 words • Deep Analysis'
-  },
-  {
-    id: '4',
-    title: 'Yue Lao Marriage God - Fortune #91',
-    subtitle: '"紅線牽動有緣人，月老祝福結良緣" - Love & Marriage Guidance',
-    meta: 'Generated on Dec 10, 2024 • 1,650 words • Deep Analysis'
-  },
-  {
-    id: '5',
-    title: 'Asakusa Buddhist Temple - Fortune #18',
-    subtitle: '"佛光普照眾生心，慈悲為懷渡有情" - Spiritual & Personal Growth',
-    meta: 'Generated on Dec 5, 2024 • 2,050 words • Deep Analysis'
-  }
-];
 
 const AccountContainer = styled.div`
   width: 100%;
@@ -382,24 +300,6 @@ const ProfileSelect = styled.select`
   }
 `;
 
-const EditBtn = styled.button`
-  position: absolute;
-  right: 10px;
-  top: 32px;
-  background: none;
-  border: none;
-  color: ${colors.primary};
-  cursor: pointer;
-  font-size: 16px;
-  padding: 5px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: rgba(212, 175, 55, 0.2);
-  }
-`;
-
 // Account Status Styles
 const StatusInfo = styled.div`
   display: grid;
@@ -624,7 +524,7 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  
+
   ${props => {
     switch (props.variant) {
       case 'primary':
@@ -632,7 +532,7 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
           background: linear-gradient(135deg, ${colors.primary} 0%, #f4e99b 100%);
           color: #000;
           box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-          
+
           &:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
@@ -643,7 +543,7 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
           background: rgba(220, 53, 69, 0.2);
           border: 1px solid rgba(220, 53, 69, 0.4);
           color: #dc3545;
-          
+
           &:hover {
             background: rgba(220, 53, 69, 0.3);
             transform: translateY(-2px);
@@ -654,7 +554,7 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
           background: rgba(212, 175, 55, 0.2);
           border: 1px solid rgba(212, 175, 55, 0.4);
           color: ${colors.primary};
-          
+
           &:hover {
             background: rgba(212, 175, 55, 0.3);
             transform: translateY(-2px);
@@ -665,9 +565,17 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
 `;
 
 const AccountPage: React.FC = () => {
-  const { reports, userCoins, setSelectedReport, setCurrentPage } = useAppStore();
+  const { auth } = useAppStore();
   const { t } = usePagesTranslation();
-  // Removed editingFields - all fields are now directly editable
+
+  // State for user profile data
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [userReports, setUserReports] = useState<UserReport[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Derived profile data for form fields
   type ProfileData = {
     username: string;
     email: string;
@@ -677,16 +585,51 @@ const AccountPage: React.FC = () => {
   };
 
   const [profileData, setProfileData] = useState<ProfileData>({
-    username: 'DivineSeeker2024',
-    email: 'john.dao@example.com',
-    birthDate: '1990-03-15',
+    username: '',
+    email: '',
+    birthDate: '',
     gender: 'Male',
-    location: 'San Francisco, CA, USA'
+    location: ''
   });
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Removed individual field editing functions - using global save instead
+  // Load user data on component mount
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
+        // Fetch user profile
+        const profile = await profileService.getUserProfile();
+        setUserProfile(profile);
+
+        // Update form data
+        setProfileData({
+          username: profile.full_name || '',
+          email: profile.email,
+          birthDate: profile.birth_date || '',
+          gender: 'Male', // Default since backend doesn't have gender field
+          location: profile.location || ''
+        });
+
+        // Fetch user reports
+        const reportsData = await profileService.getUserReports();
+        setUserReports(reportsData.reports);
+
+      } catch (err: any) {
+        console.error('Failed to load user data:', err);
+        setError(err.message || 'Failed to load user data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (auth.isAuthenticated) {
+      loadUserData();
+    }
+  }, [auth.isAuthenticated]);
+
+  // Handle input changes
   const handleInputChange = (field: keyof ProfileData, value: string) => {
     setProfileData(prev => ({
       ...prev,
@@ -724,12 +667,30 @@ const AccountPage: React.FC = () => {
     }
   };
 
-  const handleSaveChanges = () => {
-    console.log('Saving changes:', profileData);
-    alert(t('account.profileUpdated'));
+  const handleSaveChanges = async () => {
+    if (!userProfile) return;
+
+    try {
+      console.log('Saving changes:', profileData);
+
+      const updateData = {
+        full_name: profileData.username,
+        birth_date: profileData.birthDate,
+        location: profileData.location,
+        preferred_language: 'zh' // Default to Chinese
+      };
+
+      const updatedProfile = await profileService.updateUserProfile(updateData);
+      setUserProfile(updatedProfile);
+      alert(t('account.profileUpdated'));
+
+    } catch (err: any) {
+      console.error('Failed to update profile:', err);
+      alert(`Failed to update profile: ${err.message}`);
+    }
   };
 
-  const handleChangePassword = () => {
+  const handleChangePassword = async () => {
     console.log('Change password requested');
     const currentPassword = prompt('請輸入當前密碼:');
     if (currentPassword) {
@@ -737,9 +698,13 @@ const AccountPage: React.FC = () => {
       if (newPassword && newPassword.length >= 6) {
         const confirmPassword = prompt('請確認新密碼:');
         if (confirmPassword === newPassword) {
-          // TODO: Implement actual password change API call
-          console.log('Password change request:', { currentPassword, newPassword });
-          alert('密碼更改成功！');
+          try {
+            await profileService.changePassword(currentPassword, newPassword);
+            alert('密碼更改成功！');
+          } catch (err: any) {
+            console.error('Password change failed:', err);
+            alert(`密碼更改失敗: ${err.message}`);
+          }
         } else {
           alert('密碼確認不匹配，請重試。');
         }
@@ -749,42 +714,101 @@ const AccountPage: React.FC = () => {
     }
   };
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
     console.log('Logging out...');
     const confirmLogout = window.confirm('確定要登出嗎？');
     if (confirmLogout) {
-      // TODO: Implement actual logout API call
-      // Clear any stored auth tokens
-      localStorage.removeItem('authToken');
-      sessionStorage.removeItem('user');
-
-      // Navigate to home page
-      window.location.href = '/';
-      alert('已成功登出。');
+      try {
+        await profileService.logoutUser();
+        // Navigate to home page
+        window.location.href = '/';
+      } catch (err: any) {
+        console.error('Logout error:', err);
+        // Still redirect even if API fails
+        window.location.href = '/';
+      }
     }
   };
 
   const handleViewReport = (reportId: string) => {
     console.log('Report view requested for:', reportId);
 
-    // Check if this is a mock report (real reports would come from API)
-    const report = reports.find(r => r.id === reportId);
-    if (report && (report.id.startsWith('mock-') || report.id.startsWith('report_'))) {
-      // This is mock data - show notification that feature isn't implemented
-      alert('報告系統正在開發中。此為示例數據，實際報告功能將於稍後推出。\n\nReport system is under development. This is sample data, actual report functionality will be available soon.');
-      return;
-    }
+    // Find the report in the fetched data
+    const report = userReports.find(r => r.id === reportId);
 
-    // Handle real reports
     if (report) {
-      setSelectedReport(report);
-      setCurrentPage('report');
-      // Use React Router for navigation
-      window.location.href = '/report';
+      // For now, show a summary since full report viewing might need more implementation
+      alert(`報告: ${report.title}\n\n摘要: ${report.summary}\n\n狀態: ${report.status}\n創建時間: ${new Date(report.created_at).toLocaleString()}`);
     } else {
       alert('報告未找到，請重試。\n\nReport not found, please try again.');
     }
   };
+
+  // Mock purchase records for demo - TODO: Replace with real wallet transaction data
+  const purchaseRecords: PurchaseRecord[] = [
+    {
+      id: '1',
+      title: 'Premium Coin Package',
+      subtitle: '50 Divine Coins',
+      amount: '$19.99',
+      date: 'Dec 28, 2024',
+      status: 'Completed'
+    }
+  ];
+
+  // Show loading state
+  if (loading) {
+    return (
+      <Layout>
+        <AccountContainer>
+          <AccountSection>
+            <AccountContent>
+              <AccountTitle>{t('account.title')}</AccountTitle>
+              <div style={{ textAlign: 'center', color: '#fff', padding: '40px' }}>
+                Loading...
+              </div>
+            </AccountContent>
+          </AccountSection>
+        </AccountContainer>
+      </Layout>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <Layout>
+        <AccountContainer>
+          <AccountSection>
+            <AccountContent>
+              <AccountTitle>{t('account.title')}</AccountTitle>
+              <div style={{ textAlign: 'center', color: '#ff6b6b', padding: '40px' }}>
+                Error: {error}
+              </div>
+            </AccountContent>
+          </AccountSection>
+        </AccountContainer>
+      </Layout>
+    );
+  }
+
+  // Show login required state
+  if (!auth.isAuthenticated) {
+    return (
+      <Layout>
+        <AccountContainer>
+          <AccountSection>
+            <AccountContent>
+              <AccountTitle>{t('account.title')}</AccountTitle>
+              <div style={{ textAlign: 'center', color: '#fff', padding: '40px' }}>
+                Please login to view your account.
+              </div>
+            </AccountContent>
+          </AccountSection>
+        </AccountContainer>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -796,10 +820,10 @@ const AccountPage: React.FC = () => {
             {/* Profile Information */}
             <AccountCard>
               <CardTitle>{t('account.profileInfo')}</CardTitle>
-              
+
               <ProfileAvatar>
                 <AvatarCircle>
-                  <AvatarText>JD</AvatarText>
+                  <AvatarText>{userProfile?.full_name ? userProfile.full_name.charAt(0).toUpperCase() : 'U'}</AvatarText>
                 </AvatarCircle>
                 <EditAvatarBtn onClick={handleAvatarUpload}>
                   {t('account.changeAvatar')}
@@ -829,6 +853,8 @@ const AccountPage: React.FC = () => {
                     type="email"
                     value={profileData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
+                    disabled // Email should not be editable
+                    style={{ opacity: 0.7 }}
                   />
                 </FieldGroup>
 
@@ -873,15 +899,15 @@ const AccountPage: React.FC = () => {
               <StatusInfo>
                 <StatusItem>
                   <StatusLabel>{t('account.currentBalance')}</StatusLabel>
-                  <StatusValue highlight>{userCoins} {t('account.coins')}</StatusValue>
+                  <StatusValue highlight>{userProfile?.points_balance || 0} {t('account.coins')}</StatusValue>
                 </StatusItem>
                 <StatusItem>
                   <StatusLabel>{t('account.membership')}</StatusLabel>
-                  <StatusValue highlight>{t('account.premiumMember')}</StatusValue>
+                  <StatusValue highlight>{userProfile?.role === 'admin' ? 'Admin' : t('account.premiumMember')}</StatusValue>
                 </StatusItem>
                 <StatusItem>
                   <StatusLabel>{t('account.memberSince')}</StatusLabel>
-                  <StatusValue>January 2024</StatusValue>
+                  <StatusValue>{userProfile ? new Date(userProfile.created_at).toLocaleDateString() : 'N/A'}</StatusValue>
                 </StatusItem>
               </StatusInfo>
             </AccountCard>
@@ -910,28 +936,28 @@ const AccountPage: React.FC = () => {
 
             {/* My Analysis Reports */}
             <AccountCard>
-              <CardTitle>{t('account.reportHistory', { count: reports.length })}</CardTitle>
-              {reports.length === 0 ? (
-                <div style={{ 
-                  textAlign: 'center', 
-                  padding: '40px', 
-                  color: 'rgba(255, 255, 255, 0.6)' 
+              <CardTitle>{t('account.reportHistory', { count: userReports.length })}</CardTitle>
+              {userReports.length === 0 ? (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '40px',
+                  color: 'rgba(255, 255, 255, 0.6)'
                 }}>
                   {t('account.noReports')}
                 </div>
               ) : (
-                reports.map((report) => (
-                  <AnalysisItem 
+                userReports.map((report) => (
+                  <AnalysisItem
                     key={report.id}
                     onClick={() => handleViewReport(report.id)}
                   >
                     <AnalysisInfo>
-                      <AnalysisTitle>{report.title} - {report.deity_name}</AnalysisTitle>
-                      <AnalysisSubtitle>"{report.question}" • Fortune #{report.fortune_number}</AnalysisSubtitle>
+                      <AnalysisTitle>{report.title}</AnalysisTitle>
+                      <AnalysisSubtitle>{report.summary}</AnalysisSubtitle>
                       <AnalysisMeta>
-                        Generated on {new Date(report.created_at).toLocaleDateString()} • 
-                        Cost: {report.cost} coins • 
-                        Status: {report.status === 'completed' ? t('account.statusLabels.completed') : t('account.statusLabels.generating')}
+                        Generated on {new Date(report.created_at).toLocaleDateString()} •
+                        Type: {report.type} •
+                        Status: {report.status}
                       </AnalysisMeta>
                     </AnalysisInfo>
                     <AnalysisAction>{t('account.viewReport')}</AnalysisAction>
