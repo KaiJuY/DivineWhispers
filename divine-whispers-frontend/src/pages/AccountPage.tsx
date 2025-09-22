@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
@@ -245,7 +245,6 @@ const ProfileInput = styled.input`
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 8px;
   padding: 12px;
-  padding-right: 40px;
   color: #fff;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -259,6 +258,55 @@ const ProfileInput = styled.input`
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
   }
+
+  /* Enhanced styling for date input */
+  &[type="date"] {
+    position: relative;
+    color: #fff;
+
+    &::-webkit-calendar-picker-indicator {
+      background-color: ${colors.primary};
+      border-radius: 4px;
+      padding: 4px;
+      cursor: pointer;
+      filter: invert(0);
+      margin-left: 8px;
+    }
+
+    &::-webkit-datetime-edit {
+      color: #fff;
+      padding: 2px;
+    }
+
+    &::-webkit-datetime-edit-text {
+      color: rgba(255, 255, 255, 0.7);
+      padding: 0 2px;
+    }
+
+    &::-webkit-datetime-edit-month-field,
+    &::-webkit-datetime-edit-day-field,
+    &::-webkit-datetime-edit-year-field {
+      color: #fff;
+      background: transparent;
+      border-radius: 3px;
+      padding: 2px 4px;
+
+      &:hover {
+        background: rgba(212, 175, 55, 0.2);
+      }
+
+      &:focus {
+        background: rgba(212, 175, 55, 0.3);
+        outline: none;
+      }
+    }
+
+    /* Style the calendar popup when it opens */
+    &::-webkit-calendar-picker-indicator:hover {
+      background-color: #f4e99b;
+      transform: scale(1.1);
+    }
+  }
 `;
 
 const ProfileSelect = styled.select`
@@ -266,19 +314,70 @@ const ProfileSelect = styled.select`
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 8px;
   padding: 12px;
-  padding-right: 40px;
   color: #fff;
   font-size: 1rem;
   transition: all 0.3s ease;
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%23d4af37" d="M6 8L0 0h12z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+  background-size: 12px 8px;
 
   &:focus {
     border-color: ${colors.primary};
     outline: none;
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
+
+    /* Rotate arrow when focused/opened */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%23f4e99b" d="M0 8L12 8L6 0z"/></svg>');
   }
 
+  &:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    background-color: rgba(212, 175, 55, 0.05);
+  }
+
+  /* Enhanced option styling */
   option {
     background: #1e2749;
+    color: #fff;
+    padding: 12px 16px;
+    border: none;
+    font-size: 1rem;
+
+    /* Add some spacing between options */
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+  }
+
+  option:checked {
+    background: linear-gradient(135deg, ${colors.primary} 0%, #f4e99b 100%);
+    color: #000;
+    font-weight: 600;
+  }
+
+  option:hover {
+    background: rgba(212, 175, 55, 0.2);
+    color: ${colors.primary};
+  }
+
+  /* Style the dropdown when it's opened */
+  &:focus option {
+    background: #1e2749;
+    color: #fff;
+  }
+
+  &:focus option:checked {
+    background: linear-gradient(135deg, ${colors.primary} 0%, #f4e99b 100%);
+    color: #000;
+  }
+
+  &:focus option:hover {
+    background: rgba(212, 175, 55, 0.3);
     color: #fff;
   }
 `;
@@ -568,51 +667,122 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
 const AccountPage: React.FC = () => {
   const { reports, userCoins, setSelectedReport, setCurrentPage } = useAppStore();
   const { t } = usePagesTranslation();
-  const [editingFields, setEditingFields] = useState<string[]>([]);
-  const [profileData, setProfileData] = useState({
+  // Removed editingFields - all fields are now directly editable
+  type ProfileData = {
+    username: string;
+    email: string;
+    birthDate: string;
+    gender: string;
+    location: string;
+  };
+
+  const [profileData, setProfileData] = useState<ProfileData>({
     username: 'DivineSeeker2024',
     email: 'john.dao@example.com',
     birthDate: '1990-03-15',
     gender: 'Male',
     location: 'San Francisco, CA, USA'
   });
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const toggleEdit = (field: string) => {
-    setEditingFields(prev => 
-      prev.includes(field) 
-        ? prev.filter(f => f !== field)
-        : [...prev, field]
-    );
-  };
+  // Removed individual field editing functions - using global save instead
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: keyof ProfileData, value: string) => {
     setProfileData(prev => ({
       ...prev,
       [field]: value
     }));
   };
 
+  const handleAvatarUpload = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        alert('請選擇圖片檔案。');
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('檔案大小不能超過 5MB。');
+        return;
+      }
+
+      // TODO: Implement actual file upload to server
+      console.log('Avatar upload:', file.name, file.size, file.type);
+      alert(`頭像上傳成功：${file.name}`);
+
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
+
   const handleSaveChanges = () => {
     console.log('Saving changes:', profileData);
-    setEditingFields([]);
     alert(t('account.profileUpdated'));
   };
 
   const handleChangePassword = () => {
     console.log('Change password requested');
-    alert(t('account.passwordChangePrompt'));
+    const currentPassword = prompt('請輸入當前密碼:');
+    if (currentPassword) {
+      const newPassword = prompt('請輸入新密碼:');
+      if (newPassword && newPassword.length >= 6) {
+        const confirmPassword = prompt('請確認新密碼:');
+        if (confirmPassword === newPassword) {
+          // TODO: Implement actual password change API call
+          console.log('Password change request:', { currentPassword, newPassword });
+          alert('密碼更改成功！');
+        } else {
+          alert('密碼確認不匹配，請重試。');
+        }
+      } else {
+        alert('新密碼必須至少6個字符。');
+      }
+    }
   };
 
   const handleLogOut = () => {
     console.log('Logging out...');
-    alert(t('account.logoutPrompt'));
+    const confirmLogout = window.confirm('確定要登出嗎？');
+    if (confirmLogout) {
+      // TODO: Implement actual logout API call
+      // Clear any stored auth tokens
+      localStorage.removeItem('authToken');
+      sessionStorage.removeItem('user');
+
+      // Navigate to home page
+      window.location.href = '/';
+      alert('已成功登出。');
+    }
   };
 
   const handleViewReport = (reportId: string) => {
+    console.log('Report view requested for:', reportId);
+
+    // Check if this is a mock report (real reports would come from API)
     const report = reports.find(r => r.id === reportId);
+    if (report && (report.id.startsWith('mock-') || report.id.startsWith('report_'))) {
+      // This is mock data - show notification that feature isn't implemented
+      alert('報告系統正在開發中。此為示例數據，實際報告功能將於稍後推出。\n\nReport system is under development. This is sample data, actual report functionality will be available soon.');
+      return;
+    }
+
+    // Handle real reports
     if (report) {
       setSelectedReport(report);
       setCurrentPage('report');
+      // Use React Router for navigation
+      window.location.href = '/report';
+    } else {
+      alert('報告未找到，請重試。\n\nReport not found, please try again.');
     }
   };
 
@@ -631,7 +801,16 @@ const AccountPage: React.FC = () => {
                 <AvatarCircle>
                   <AvatarText>JD</AvatarText>
                 </AvatarCircle>
-                <EditAvatarBtn>{t('account.changeAvatar')}</EditAvatarBtn>
+                <EditAvatarBtn onClick={handleAvatarUpload}>
+                  {t('account.changeAvatar')}
+                </EditAvatarBtn>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                />
               </ProfileAvatar>
 
               <ProfileFields>
@@ -640,10 +819,8 @@ const AccountPage: React.FC = () => {
                   <ProfileInput
                     type="text"
                     value={profileData.username}
-                    disabled={!editingFields.includes('username')}
                     onChange={(e) => handleInputChange('username', e.target.value)}
                   />
-                  <EditBtn onClick={() => toggleEdit('username')}>✏️</EditBtn>
                 </FieldGroup>
 
                 <FieldGroup>
@@ -651,10 +828,8 @@ const AccountPage: React.FC = () => {
                   <ProfileInput
                     type="email"
                     value={profileData.email}
-                    disabled={!editingFields.includes('email')}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                   />
-                  <EditBtn onClick={() => toggleEdit('email')}>✏️</EditBtn>
                 </FieldGroup>
 
                 <FieldRow>
@@ -663,17 +838,14 @@ const AccountPage: React.FC = () => {
                     <ProfileInput
                       type="date"
                       value={profileData.birthDate}
-                      disabled={!editingFields.includes('birthDate')}
                       onChange={(e) => handleInputChange('birthDate', e.target.value)}
                     />
-                    <EditBtn onClick={() => toggleEdit('birthDate')}>✏️</EditBtn>
                   </FieldGroup>
 
                   <FieldGroup>
                     <FieldLabel>{t('account.gender')}</FieldLabel>
                     <ProfileSelect
                       value={profileData.gender}
-                      disabled={!editingFields.includes('gender')}
                       onChange={(e) => handleInputChange('gender', e.target.value)}
                     >
                       <option value="Male">{t('account.genderOptions.male')}</option>
@@ -681,7 +853,6 @@ const AccountPage: React.FC = () => {
                       <option value="Non-binary">{t('account.genderOptions.nonBinary')}</option>
                       <option value="Prefer not to say">{t('account.genderOptions.preferNotToSay')}</option>
                     </ProfileSelect>
-                    <EditBtn onClick={() => toggleEdit('gender')}>✏️</EditBtn>
                   </FieldGroup>
                 </FieldRow>
 
@@ -690,10 +861,8 @@ const AccountPage: React.FC = () => {
                   <ProfileInput
                     type="text"
                     value={profileData.location}
-                    disabled={!editingFields.includes('location')}
                     onChange={(e) => handleInputChange('location', e.target.value)}
                   />
-                  <EditBtn onClick={() => toggleEdit('location')}>✏️</EditBtn>
                 </FieldGroup>
               </ProfileFields>
             </AccountCard>

@@ -33,7 +33,7 @@ export const mockDeities = [
     chinese_name: "觀音",
     description: ["The Goddess", "of", "Mercy"],
     templateMapping: "GuanYin100",
-    imageUrl: "/GuanYin.jpg",
+    imageUrl: "/assets/GuanYin.jpg",
     isActive: true,
     totalPoems: 100,
     collections: [
@@ -53,7 +53,7 @@ export const mockDeities = [
     chinese_name: "媽祖",
     description: ["The Goddess", "of", "The sea"],
     templateMapping: "Mazu",
-    imageUrl: "/Mazu.png",
+    imageUrl: "/assets/Mazu.png",
     isActive: true,
     totalPoems: 163,
     collections: [
@@ -80,7 +80,7 @@ export const mockDeities = [
     name: "Guan Yu",
     description: ["The God", "of", "War and Wealth"],
     templateMapping: "GuanYu",
-    imageUrl: "/GuanYu.jpg",
+    imageUrl: "/assets/GuanYu.jpg",
     isActive: true,
     totalPoems: 100,
     collections: [
@@ -99,7 +99,7 @@ export const mockDeities = [
     name: "Yue Lao",
     description: ["The God", "of", "Marriage"],
     templateMapping: "YueLao",
-    imageUrl: "/YueLao.png",
+    imageUrl: "/assets/YueLao.png",
     isActive: true,
     totalPoems: 100,
     collections: [
@@ -118,7 +118,7 @@ export const mockDeities = [
     name: "Zhu sheng",
     description: ["The Goddess", "of", "Child Birth"],
     templateMapping: "ZhuSheng",
-    imageUrl: "/TheGoddessofChildBirth.jpg",
+    imageUrl: "/assets/TheGoddessofChildBirth.jpg",
     isActive: true,
     totalPoems: 100,
     collections: [
@@ -137,7 +137,7 @@ export const mockDeities = [
     name: "Asakusa Kannon",
     description: ["Buddhist Temple"],
     templateMapping: "Asakusa",
-    imageUrl: "/Asakusa.jpg",
+    imageUrl: "/assets/Asakusa.jpg",
     isActive: true,
     totalPoems: 100,
     collections: [
@@ -156,7 +156,7 @@ export const mockDeities = [
     name: "Erawan Shrine",
     description: ["Buddhist Temple"],
     templateMapping: "ErawanShrine",
-    imageUrl: "/ErawanShrine.jpg",
+    imageUrl: "/assets/ErawanShrine.jpg",
     isActive: true,
     totalPoems: 100,
     collections: [
