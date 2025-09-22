@@ -91,7 +91,7 @@ class FortuneService {
   // Fetch daily fortune (free endpoint)
   async getDailyFortune() {
     try {
-      const response: DailyFortuneApiResponse = await apiClient.get('/api/v1/fortune/fortune/daily');
+      const response: DailyFortuneApiResponse = await apiClient.get('/api/v1/fortune/daily');
       
       return {
         id: response.poem.id,

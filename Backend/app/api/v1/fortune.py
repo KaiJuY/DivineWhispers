@@ -614,7 +614,7 @@ async def get_deity_fortune_by_number(deity_id: str, number: int):
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
-@router.get("/fortune/daily")
+@router.get("/daily")
 async def get_daily_fortune():
     """
     Get today's daily fortune (free endpoint, no auth required)

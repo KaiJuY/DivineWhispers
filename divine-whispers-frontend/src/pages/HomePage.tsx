@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { breathe, borderBreathe, glowPulse, skewFadeIn, floatUp, colors, gradients, media, cardStyles } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { mockTodaysWhisper, mockDeities, mockDemoReport } from '../utils/mockData';
 import { usePagesTranslation } from '../hooks/useTranslation';
+import fortuneService from '../services/fortuneService';
+import deityService from '../services/deityService';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -254,85 +256,137 @@ const TryNowButton = styled.button`
   font-size: 14px;
   width: 100%;
 
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
 
 
 const HomePage: React.FC = () => {
   const [whisperExpanded, setWhisperExpanded] = useState(false);
+  const [dailyFortune, setDailyFortune] = useState<any>(null);
+  const [fortuneLoading, setFortuneLoading] = useState(true);
   const { setCurrentPage, setSelectedDeity, setSelectedCollection, setSelectedFortuneNumber, setCurrentConsultation, setSelectedReport } = useAppStore();
   const { t } = usePagesTranslation();
 
+  // Fetch daily fortune on component mount
+  useEffect(() => {
+    const fetchDailyFortune = async () => {
+      try {
+        setFortuneLoading(true);
+        console.log('Fetching daily fortune...');
+        const fortune = await fortuneService.getDailyFortune();
+        console.log('Daily fortune received:', fortune);
+        setDailyFortune(fortune);
+      } catch (error) {
+        console.error('Failed to fetch daily fortune:', error);
+        // Fall back to mock data if API fails
+        setDailyFortune({
+          id: 'fallback_daily',
+          title: 'Daily Guidance',
+          poem: mockTodaysWhisper.poem.chinese,
+          fortuneLevel: 'Good Fortune',
+          analysis: mockTodaysWhisper.interpretation.overview,
+          deity: { id: 'guan_yin', name: 'Guan Yin' },
+          number: 1,
+          date: new Date().toISOString().split('T')[0],
+          message: 'Today\'s guidance from the divine'
+        });
+      } finally {
+        setFortuneLoading(false);
+      }
+    };
+
+    fetchDailyFortune();
+  }, []);
+
   const handleTryNow = () => {
-    // Create a mock consultation based on today's whisper
-    const randomDeity = mockDeities[Math.floor(Math.random() * mockDeities.length)];
-    const randomCollection = randomDeity.collections[0]; // Use first collection
-    const randomNumber = Math.floor(Math.random() * randomCollection.maxNumber) + 1;
-    
-    // Create a consultation response based on today's whisper
-    const todaysConsultation = {
-      id: `today_${Date.now()}`,
-      deity_id: randomDeity.id,
-      deity_name: randomDeity.name,
-      question: "Your Divine Whisper Reading",
+    console.log('=== handleTryNow called ===');
+    console.log('dailyFortune:', dailyFortune);
+
+    if (!dailyFortune) {
+      console.log('No dailyFortune data, returning early');
+      return;
+    }
+
+    console.log('Daily fortune data exists, proceeding with navigation...');
+
+    // Find the deity from our data, or use a default one
+    const deity = mockDeities.find(d => d.id === dailyFortune.deity.id) || mockDeities[0];
+    const collection = deity.collections[0];
+
+    console.log('Found deity:', deity);
+    console.log('Found collection:', collection);
+
+    // Set the state to show the daily fortune analysis
+    setSelectedDeity(deity);
+    setSelectedCollection(collection);
+    setSelectedFortuneNumber(dailyFortune.number);
+
+    // Set current consultation data for the analysis page
+    setCurrentConsultation({
+      id: `daily-${dailyFortune.number}-${new Date().toISOString().split('T')[0]}`,
+      deity_id: dailyFortune.deity.id,
+      deity_name: dailyFortune.deity.name,
+      question: 'Daily Fortune Guidance',
       selected_poem: {
-        id: randomNumber,
-        title: `Divine Whisper #${randomNumber}`,
-        fortune: "Your Blessing",
-        poem: mockTodaysWhisper.poem.chinese,
+        id: dailyFortune.number,
+        title: dailyFortune.title || 'Daily Fortune',
+        fortune: dailyFortune.fortuneLevel || 'Good Fortune',
+        poem: dailyFortune.poem,
         analysis: {
           zh: {
-            overview: mockTodaysWhisper.interpretation.overview,
-            spiritual_aspect: mockTodaysWhisper.interpretation.advice,
-            career_aspect: "專注於內心平靜和善行，將為你的事業帶來正面能量。",
-            relationship_aspect: "保持心境平和，有助於改善人際關係。",
-            health_aspect: "身心平衡是今日的重點。",
-            financial_aspect: "善行會帶來意想不到的財富。"
+            overview: dailyFortune.analysis || 'Today brings opportunities for growth and reflection.',
+            spiritual_aspect: 'Trust in the divine guidance you receive today',
+            career_aspect: 'Professional opportunities may present themselves',
+            relationship_aspect: 'Harmony in relationships is favored',
+            health_aspect: 'Maintain balance in all aspects of life',
+            financial_aspect: 'Be mindful of your resources and opportunities'
           },
           en: {
-            overview: mockTodaysWhisper.interpretation.overview,
-            spiritual_aspect: mockTodaysWhisper.interpretation.advice,
-            career_aspect: "Focus on inner peace and good deeds to bring positive energy to your career.",
-            relationship_aspect: "Maintaining tranquility will help improve relationships.",
-            health_aspect: "Physical and mental balance is today's focus.",
-            financial_aspect: "Good deeds will bring unexpected wealth."
+            overview: dailyFortune.analysis || 'Today brings opportunities for growth and reflection.',
+            spiritual_aspect: 'Trust in the divine guidance you receive today',
+            career_aspect: 'Professional opportunities may present themselves',
+            relationship_aspect: 'Harmony in relationships is favored',
+            health_aspect: 'Maintain balance in all aspects of life',
+            financial_aspect: 'Be mindful of your resources and opportunities'
           },
           jp: {
-            overview: mockTodaysWhisper.interpretation.overview,
-            spiritual_aspect: mockTodaysWhisper.interpretation.advice,
-            career_aspect: "内なる平和と善行に集中することで、キャリアにポジティブなエネルギーをもたらします。",
-            relationship_aspect: "心の平穏を保つことが人間関係の改善に役立ちます。",
-            health_aspect: "心身のバランスが今日の焦点です。",
-            financial_aspect: "善行は予期しない富をもたらすでしょう。"
+            overview: dailyFortune.analysis || 'Today brings opportunities for growth and reflection.',
+            spiritual_aspect: 'Trust in the divine guidance you receive today',
+            career_aspect: 'Professional opportunities may present themselves',
+            relationship_aspect: 'Harmony in relationships is favored',
+            health_aspect: 'Maintain balance in all aspects of life',
+            financial_aspect: 'Be mindful of your resources and opportunities'
           }
         }
       },
       ai_interpretation: {
-        summary: mockTodaysWhisper.interpretation.overview,
+        summary: dailyFortune.analysis || 'Today brings opportunities for growth and reflection.',
         detailed_analysis: {
-          spiritual: mockTodaysWhisper.interpretation.advice,
-          career: "Your professional path benefits from maintaining inner harmony and ethical practices.",
-          relationship: "Peaceful energy attracts positive connections and strengthens existing bonds.",
-          health: "Balance is key - nurture both body and spirit for optimal wellbeing.",
-          financial: "Virtuous actions create a foundation for abundance and prosperity."
+          spiritual: 'Trust in the divine guidance you receive today',
+          career: 'Professional opportunities may present themselves',
+          relationship: 'Harmony in relationships is favored',
+          health: 'Maintain balance in all aspects of life',
+          financial: 'Be mindful of your resources and opportunities'
         },
-        advice: mockTodaysWhisper.interpretation.advice,
-        lucky_elements: mockTodaysWhisper.interpretation.lucky_elements,
-        cautions: ["Avoid rushed decisions", "Stay centered in challenging moments"]
+        advice: 'Follow your intuition and remain open to new possibilities',
+        lucky_elements: ['Water', 'Wood', 'East Direction'],
+        cautions: ['Avoid hasty decisions', 'Be patient with others']
       },
       created_at: new Date().toISOString(),
-      status: 'active' as const
-    };
-    
-    // Set the state to show this consultation
-    setSelectedDeity(randomDeity);
-    setSelectedCollection(randomCollection);
-    setSelectedFortuneNumber(randomNumber);
-    setCurrentConsultation(todaysConsultation);
-    setCurrentPage('fortune-analysis');
+      status: 'active'
+    });
+
+    console.log('Navigating to fortune-analysis page...');
+    window.location.href = '/fortune-analysis';
+    console.log('Navigation triggered!');
   };
 
   const toggleWhisper = () => {
@@ -367,17 +421,27 @@ const HomePage: React.FC = () => {
               </MoonContainer>
               
               <WhisperCollapsed expanded={whisperExpanded}>
-                {mockTodaysWhisper.preview}
+                {fortuneLoading
+                  ? "Loading today's divine guidance..."
+                  : dailyFortune?.message || mockTodaysWhisper.preview
+                }
               </WhisperCollapsed>
-              
+
               <WhisperExpanded expanded={whisperExpanded}>
-                <WhisperPoem>
-                  <PoemChinese>{mockTodaysWhisper.poem.chinese}</PoemChinese>
-                  <PoemEnglish>{mockTodaysWhisper.poem.english}</PoemEnglish>
-                </WhisperPoem>
-                <TryNowButton onClick={handleTryNow}>
-                  {t('home.readWhisper')}
-                </TryNowButton>
+                {fortuneLoading ? (
+                  <div style={{ textAlign: 'center', padding: '20px', color: colors.primary }}>
+                    Loading your daily fortune...
+                  </div>
+                ) : (
+                  <>
+                    <WhisperPoem>
+                      <PoemChinese>{dailyFortune?.poem || mockTodaysWhisper.poem.chinese}</PoemChinese>
+                    </WhisperPoem>
+                    <TryNowButton onClick={handleTryNow} disabled={!dailyFortune}>
+                      {t('home.readWhisper')}
+                    </TryNowButton>
+                  </>
+                )}
               </WhisperExpanded>
             </TodaysWhisper>
           </HeroContent>
