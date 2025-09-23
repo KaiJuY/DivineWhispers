@@ -483,6 +483,7 @@ interface ChatMessage {
   reportId?: string;
   progress?: number;
   status?: string;
+  reportOfferQuestion?: string;
 }
 
 const FortuneAnalysisPage: React.FC = () => {
@@ -655,7 +656,21 @@ const FortuneAnalysisPage: React.FC = () => {
             let structuredReportHandled = false;
             // Try to parse structured JSON report from response first
             try {
-              const parsed = JSON.parse(progressData.result.response || '{}');
+              const raw = progressData.result.response || '';
+              const extractJsonObject = (text: string): string | null => {
+                let cleaned = text.trim();
+                if (cleaned.startsWith('```')) {
+                  const firstBrace = cleaned.indexOf('{');
+                  const lastBrace = cleaned.lastIndexOf('}');
+                  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+                    cleaned = cleaned.slice(firstBrace, lastBrace + 1);
+                  }
+                }
+                const match = cleaned.match(/\{[\s\S]*\}/);
+                return match ? match[0] : null;
+              };
+              const jsonStr = extractJsonObject(raw);
+              const parsed = jsonStr ? JSON.parse(jsonStr) : null;
               const requiredKeys = [
                 'OverallDevelopment',
                 'PositiveFactors',
@@ -664,7 +679,7 @@ const FortuneAnalysisPage: React.FC = () => {
                 'SupplementaryNotes',
                 'Conclusion'
               ];
-              const hasAll = requiredKeys.every(k => typeof parsed?.[k] === 'string');
+              const hasAll = parsed && requiredKeys.every(k => typeof parsed?.[k] === 'string');
               if (hasAll && selectedDeity && selectedFortuneNumber) {
                 const reportId = `report_${Date.now()}`;
                 const newReport: Report = {
@@ -722,23 +737,20 @@ const FortuneAnalysisPage: React.FC = () => {
               };
               setMessages(prev => [...prev, responseMessage]);
 
-              // Occasionally offer to generate a report only in fallback mode
+              // Offer to generate a report in fallback mode (always when allowed)
               if (progressData.result.can_generate_report) {
-                setTimeout(() => {
-                  setMessages(prev => {
-                    const count = prev.length;
-                    if ((count + 1) % 3 === 0) {
-                      const reportOfferMessage: ChatMessage = {
-                        id: `msg_${Date.now() + 1}`,
-                        type: 'system',
-                        message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
-                        timestamp: new Date().toISOString()
-                      };
-                      return [...prev, reportOfferMessage];
-                    }
-                    return prev;
-                  });
-                }, 1200);
+                setMessages(prev => {
+                  const lastUser = [...prev].reverse().find(m => m.type === 'user');
+                  const userQ = lastUser?.message || '';
+                  const reportOfferMessage: ChatMessage = {
+                    id: `msg_${Date.now() + 1}`,
+                    type: 'system',
+                    message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
+                    timestamp: new Date().toISOString(),
+                    reportOfferQuestion: userQ
+                  };
+                  return [...prev, reportOfferMessage];
+                });
               }
             }
 
@@ -978,6 +990,27 @@ const FortuneAnalysisPage: React.FC = () => {
                             </ReportTitle>
                             <ReportButton onClick={() => handleViewReport(message.reportId!)}>
                               {t('fortuneAnalysis.viewReportButton')}
+                            </ReportButton>
+                          </ReportHeader>
+                          <div style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                            {message.message}
+                          </div>
+                        </ReportMessage>
+                      </div>
+                    );
+                  }
+
+                  // Offer card to generate a report
+                  if (message.type === 'system' && message.reportOfferQuestion) {
+                    return (
+                      <div key={message.id}>
+                        <ReportMessage>
+                          <ReportHeader>
+                            <ReportTitle>
+                              {t('fortuneAnalysis.reportOfferTitle', { defaultValue: 'Personal Report Offer' })}
+                            </ReportTitle>
+                            <ReportButton onClick={() => handleGenerateReport(message.reportOfferQuestion!)}>
+                              {t('fortuneAnalysis.generateReport', { defaultValue: 'Generate Report' })}
                             </ReportButton>
                           </ReportHeader>
                           <div style={{ color: 'rgba(255, 255, 255, 0.9)' }}>

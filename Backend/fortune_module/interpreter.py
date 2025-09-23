@@ -360,7 +360,7 @@ class PoemInterpreter(BaseInterpreter):
     def _get_language_instruction(self, user_language: str) -> str:
         """Get language-specific instruction for the LLM."""
         if user_language == "zh":
-            return "請用中文回答，保持傳統占卜的智慧和文化背景"
+            return "請用繁體中文回答，保持傳統占卜的智慧和文化背景"
         elif user_language == "jp":
             return "日本語で回答してください。伝統的な占いの知恵と文化的背景を保持してください"
         else:
