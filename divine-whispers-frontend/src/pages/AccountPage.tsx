@@ -79,55 +79,6 @@ const CardTitle = styled.h3`
 `;
 
 // Profile Information Styles
-const ProfileAvatar = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-
-  ${media.mobile} {
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-  }
-`;
-
-const AvatarCircle = styled.div`
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #d4af37 0%, #f4e99b 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-`;
-
-const AvatarText = styled.div`
-  color: #000;
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
-
-const EditAvatarBtn = styled.button`
-  background: rgba(212, 175, 55, 0.2);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  color: ${colors.primary};
-  padding: 8px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-
-  &:hover {
-    background: rgba(212, 175, 55, 0.3);
-    transform: translateY(-2px);
-  }
-`;
-
 const ProfileFields = styled.div`
   display: flex;
   flex-direction: column;
@@ -725,7 +676,6 @@ const AccountPage: React.FC = () => {
   const [purchaseRecords, setPurchaseRecords] = useState<PurchaseRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // State for Change Password modal
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -817,35 +767,6 @@ const AccountPage: React.FC = () => {
     }));
   };
 
-  const handleAvatarUpload = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      // Validate file type
-      if (!file.type.startsWith('image/')) {
-        alert('請選擇圖片檔案。');
-        return;
-      }
-
-      // Validate file size (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert('檔案大小不能超過 5MB。');
-        return;
-      }
-
-      // TODO: Implement actual file upload to server
-      console.log('Avatar upload:', file.name, file.size, file.type);
-      alert(`頭像上傳成功：${file.name}`);
-
-      // Reset file input
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
-    }
-  };
 
   const handleSaveChanges = async () => {
     if (!userProfile) return;
@@ -1045,21 +966,6 @@ const AccountPage: React.FC = () => {
             <AccountCard>
               <CardTitle>{t('account.profileInfo')}</CardTitle>
 
-              <ProfileAvatar>
-                <AvatarCircle>
-                  <AvatarText>{userProfile?.full_name ? userProfile.full_name.charAt(0).toUpperCase() : 'U'}</AvatarText>
-                </AvatarCircle>
-                <EditAvatarBtn onClick={handleAvatarUpload}>
-                  {t('account.changeAvatar')}
-                </EditAvatarBtn>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                />
-              </ProfileAvatar>
 
               <ProfileFields>
                 <FieldGroup>
