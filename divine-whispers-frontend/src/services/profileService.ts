@@ -116,10 +116,10 @@ class ProfileService {
       await apiClient.put('/api/v1/auth/change-password', {
         current_password: currentPassword,
         new_password: newPassword,
-        confirm_password: newPassword
+        confirm_new_password: newPassword
       });
     } catch (error: any) {
-      throw new Error(error.response?.data?.detail || `Failed to change password: ${error.message}`);
+      throw new Error('Failed to change password');
     }
   }
 
