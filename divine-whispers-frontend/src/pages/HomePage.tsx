@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { breathe, borderBreathe, glowPulse, skewFadeIn, floatUp, colors, gradients, media, cardStyles } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
-import { mockTodaysWhisper, mockDeities, mockDemoReport } from '../utils/mockData';
+import { mockTodaysWhisper, mockDeities } from '../utils/mockData';
 import { usePagesTranslation } from '../hooks/useTranslation';
 import fortuneService from '../services/fortuneService';
 import deityService from '../services/deityService';
@@ -67,41 +67,7 @@ const HeroImage = styled.img`
   margin: 0 auto;
 `;
 
-const DemoReportButton = styled.button`
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
-  background: rgba(212, 175, 55, 0.1);
-  border: 2px solid rgba(212, 175, 55, 0.3);
-  color: ${colors.primary};
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(15px);
-
-  &:hover {
-    background: rgba(212, 175, 55, 0.2);
-    border-color: ${colors.primary};
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-  }
-
-  ${media.tablet} {
-    bottom: 45px;
-    right: 15px;
-    padding: 10px 16px;
-    font-size: 0.9rem;
-  }
-
-  ${media.mobile} {
-    bottom: 30px;
-    right: 10px;
-    padding: 8px 14px;
-    font-size: 0.85rem;
-  }
-`;
+// Demo Report button removed; reports now come from backend
 
 
 const TodaysWhisper = styled.div<{ expanded: boolean }>`
@@ -393,11 +359,7 @@ const HomePage: React.FC = () => {
     setWhisperExpanded(!whisperExpanded);
   };
 
-  const handleDemoReport = () => {
-    // Set the demo report as selected and navigate to report page
-    setSelectedReport(mockDemoReport);
-    setCurrentPage('report');
-  };
+  // Demo report flow removed
 
 
   return (
@@ -407,9 +369,6 @@ const HomePage: React.FC = () => {
           <HeroContent>
             <HeroText>
               <HeroImage src="/assets/HOME_MASK.png" alt="Divine Whispers Hero" />
-              <DemoReportButton onClick={handleDemoReport}>
-                {t('home.knowYourFate')}
-              </DemoReportButton>
             </HeroText>
             
             <TodaysWhisper expanded={whisperExpanded} onClick={toggleWhisper}>
