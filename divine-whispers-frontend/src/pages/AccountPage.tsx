@@ -564,6 +564,157 @@ const ActionButton = styled.button<{ variant?: 'primary' | 'secondary' | 'danger
   }}
 `;
 
+// Change Password Modal Styled Components
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+`;
+
+const ModalContainer = styled.div`
+  background: ${gradients.heroSection};
+  border-radius: 20px;
+  padding: 40px;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+`;
+
+const ModalTitle = styled.h2`
+  color: ${colors.primary};
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+`;
+
+const PasswordForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const PasswordField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const PasswordLabel = styled.label`
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+`;
+
+const PasswordInput = styled.input`
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: ${colors.primary};
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+`;
+
+const ErrorMessage = styled.div`
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+`;
+
+const ModalActions = styled.div`
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+`;
+
+const ModalButton = styled.button<{ variant?: 'primary' | 'secondary' }>`
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+
+  ${props => props.variant === 'primary' ? `
+    background: linear-gradient(135deg, ${colors.primary} 0%, #f4e99b 100%);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  ` : `
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+  `}
+`;
+
 const AccountPage: React.FC = () => {
   const { auth } = useAppStore();
   const { t } = usePagesTranslation();
@@ -575,6 +726,16 @@ const AccountPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // State for Change Password modal
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordForm, setPasswordForm] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   // Derived profile data for form fields
   type ProfileData = {
@@ -709,28 +870,83 @@ const AccountPage: React.FC = () => {
     }
   };
 
-  const handleChangePassword = async () => {
+  const handleChangePassword = () => {
     console.log('Change password requested');
-    const currentPassword = prompt('請輸入當前密碼:');
-    if (currentPassword) {
-      const newPassword = prompt('請輸入新密碼:');
-      if (newPassword && newPassword.length >= 6) {
-        const confirmPassword = prompt('請確認新密碼:');
-        if (confirmPassword === newPassword) {
-          try {
-            await profileService.changePassword(currentPassword, newPassword);
-            alert('密碼更改成功！');
-          } catch (err: any) {
-            console.error('Password change failed:', err);
-            alert(`密碼更改失敗: ${err.message}`);
-          }
-        } else {
-          alert('密碼確認不匹配，請重試。');
-        }
-      } else {
-        alert('新密碼必須至少6個字符。');
-      }
+    setShowPasswordModal(true);
+    setPasswordError(null);
+    setPasswordForm({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    });
+  };
+
+  const handlePasswordFormChange = (field: string, value: string) => {
+    setPasswordForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    setPasswordError(null);
+  };
+
+  const handlePasswordSubmit = async () => {
+    const { currentPassword, newPassword, confirmPassword } = passwordForm;
+
+    // Validation
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setPasswordError('All fields are required');
+      return;
     }
+
+    if (newPassword.length < 6) {
+      setPasswordError('New password must be at least 6 characters long');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setPasswordError('New password and confirmation do not match');
+      return;
+    }
+
+    try {
+      setIsChangingPassword(true);
+      await profileService.changePassword(currentPassword, newPassword);
+      setShowPasswordModal(false);
+      alert('Password changed successfully!');
+    } catch (err: any) {
+      console.error('Password change failed:', err);
+
+      // Extract meaningful error message from different error formats
+      let errorMessage = 'Failed to change password';
+
+      if (typeof err === 'string') {
+        errorMessage = err;
+      } else if (err?.message) {
+        errorMessage = err.message;
+      } else if (err?.response?.data?.detail) {
+        errorMessage = err.response.data.detail;
+      } else if (err?.response?.data?.message) {
+        errorMessage = err.response.data.message;
+      } else if (err?.detail) {
+        errorMessage = err.detail;
+      } else if (err?.error) {
+        errorMessage = typeof err.error === 'string' ? err.error : err.error.message || 'Unknown error';
+      }
+
+      setPasswordError(errorMessage);
+    } finally {
+      setIsChangingPassword(false);
+    }
+  };
+
+  const handlePasswordModalClose = () => {
+    setShowPasswordModal(false);
+    setPasswordError(null);
+    setPasswordForm({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    });
   };
 
   const handleLogOut = async () => {
@@ -1004,6 +1220,69 @@ const AccountPage: React.FC = () => {
           </AccountContent>
         </AccountSection>
       </AccountContainer>
+
+      {/* Change Password Modal */}
+      {showPasswordModal && (
+        <ModalOverlay onClick={handlePasswordModalClose}>
+          <ModalContainer onClick={(e) => e.stopPropagation()}>
+            <ModalHeader>
+              <ModalTitle>Change Password</ModalTitle>
+              <CloseButton onClick={handlePasswordModalClose}>
+                ×
+              </CloseButton>
+            </ModalHeader>
+
+            <PasswordForm>
+              <PasswordField>
+                <PasswordLabel>Current Password</PasswordLabel>
+                <PasswordInput
+                  type="password"
+                  placeholder="Enter your current password"
+                  value={passwordForm.currentPassword}
+                  onChange={(e) => handlePasswordFormChange('currentPassword', e.target.value)}
+                />
+              </PasswordField>
+
+              <PasswordField>
+                <PasswordLabel>New Password</PasswordLabel>
+                <PasswordInput
+                  type="password"
+                  placeholder="Enter your new password (min 6 characters)"
+                  value={passwordForm.newPassword}
+                  onChange={(e) => handlePasswordFormChange('newPassword', e.target.value)}
+                />
+              </PasswordField>
+
+              <PasswordField>
+                <PasswordLabel>Confirm New Password</PasswordLabel>
+                <PasswordInput
+                  type="password"
+                  placeholder="Confirm your new password"
+                  value={passwordForm.confirmPassword}
+                  onChange={(e) => handlePasswordFormChange('confirmPassword', e.target.value)}
+                />
+              </PasswordField>
+
+              {passwordError && (
+                <ErrorMessage>{passwordError}</ErrorMessage>
+              )}
+
+              <ModalActions>
+                <ModalButton variant="secondary" onClick={handlePasswordModalClose}>
+                  Cancel
+                </ModalButton>
+                <ModalButton
+                  variant="primary"
+                  onClick={handlePasswordSubmit}
+                  disabled={isChangingPassword}
+                >
+                  {isChangingPassword ? 'Changing...' : 'Change Password'}
+                </ModalButton>
+              </ModalActions>
+            </PasswordForm>
+          </ModalContainer>
+        </ModalOverlay>
+      )}
     </Layout>
   );
 };
