@@ -12,6 +12,12 @@ export const API_ENDPOINTS = {
     VERIFY: '/api/v1/auth/verify-token',
     ME: '/api/v1/auth/me'
   },
+  WALLET: {
+    BALANCE: '/api/v1/balance',
+    TRANSACTIONS: '/api/v1/transactions',
+    PURCHASES: '/api/v1/purchases',
+    OVERVIEW: '/api/v1'
+  },
   REPORTS: '/api/v1/auth/profile/reports',
   HEALTH: '/health'
 };

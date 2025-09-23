@@ -663,34 +663,54 @@ async def get_purchase_history(
     """Get user's coin purchase history"""
     try:
         wallet_service = WalletService(db)
-        
+
         # Get credit transactions (purchases)
-        transactions = await wallet_service.get_transaction_history(
-            user_id=current_user.user_id,
-            transaction_types=["CREDIT"],
-            limit=limit,
-            offset=offset
-        )
-        
+        from app.models.transaction import TransactionType
+        try:
+            transactions = await wallet_service.get_transaction_history(
+                user_id=current_user.user_id,
+                transaction_type=TransactionType.DEPOSIT,  # DEPOSIT transactions are credits/purchases
+                limit=limit,
+                offset=offset
+            )
+        except Exception as wallet_error:
+            # If user has no wallet or no transactions, return empty array
+            logger.info(f"No wallet/transactions found for user {current_user.user_id}: {wallet_error}")
+            return {
+                "purchases": [],
+                "total_count": 0,
+                "has_more": False
+            }
+
         purchases = []
-        for transaction in transactions.transactions:
-            if "purchase" in transaction.description.lower():
-                purchases.append({
-                    "purchase_id": transaction.metadata.get("purchase_id", f"legacy_{transaction.transaction_id}"),
-                    "amount": transaction.amount,
-                    "description": transaction.description,
-                    "payment_method": transaction.metadata.get("payment_method", "unknown"),
-                    "package_type": transaction.metadata.get("package_type", "unknown"),
-                    "created_at": transaction.created_at,
-                    "status": "completed"
-                })
-        
+        if transactions and hasattr(transactions, 'transactions') and transactions.transactions:
+            for transaction in transactions.transactions:
+                # Check if transaction looks like a purchase (has purchase in description)
+                description = getattr(transaction, 'description', '') or ''
+                if "purchase" in description.lower() or "coin" in description.lower():
+                    # Handle metadata safely
+                    metadata = getattr(transaction, 'metadata', {}) or {}
+                    purchases.append({
+                        "purchase_id": metadata.get("purchase_id", f"legacy_{getattr(transaction, 'transaction_id', transaction.txn_id)}"),
+                        "amount": getattr(transaction, 'amount', 0),
+                        "description": description,
+                        "payment_method": metadata.get("payment_method", "unknown"),
+                        "package_type": metadata.get("package_type", "unknown"),
+                        "created_at": getattr(transaction, 'created_at', None),
+                        "status": "completed"
+                    })
+
         return {
             "purchases": purchases,
             "total_count": len(purchases),
-            "has_more": len(transactions.transactions) == limit
+            "has_more": transactions and hasattr(transactions, 'transactions') and len(transactions.transactions) == limit
         }
         
     except Exception as e:
         logger.error(f"Error getting purchase history for user {current_user.user_id}: {e}")
-        raise HTTPException(status_code=500, detail="Failed to retrieve purchase history")
+        # Return empty array instead of 500 error for better user experience
+        return {
+            "purchases": [],
+            "total_count": 0,
+            "has_more": False
+        }

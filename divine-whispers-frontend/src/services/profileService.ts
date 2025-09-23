@@ -38,6 +38,48 @@ export interface ReportsResponse {
   has_more: boolean;
 }
 
+export interface Transaction {
+  txn_id: number;
+  amount: number;
+  type: 'deposit' | 'spend' | 'refund' | 'transfer';
+  status: 'pending' | 'success' | 'failed';
+  description: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TransactionHistoryResponse {
+  transactions: Transaction[];
+  total_count: number;
+  page_info: {
+    current_page: number;
+    total_pages: number;
+    has_next: boolean;
+    has_previous: boolean;
+  };
+  summary: {
+    total_spent: number;
+    total_deposited: number;
+    net_balance_change: number;
+  };
+}
+
+export interface PurchaseHistoryResponse {
+  purchases: PurchaseRecord[];
+  total_count: number;
+  has_more: boolean;
+}
+
+export interface PurchaseRecord {
+  purchase_id: string;
+  amount: number;
+  description: string;
+  payment_method: string;
+  package_type: string;
+  created_at: string;
+  status: string;
+}
+
 class ProfileService {
   async getUserProfile(): Promise<UserProfile> {
     try {
@@ -87,6 +129,30 @@ class ProfileService {
     } catch (error: any) {
       console.error('Logout error:', error);
       // apiClient.logout() already handles token cleanup
+    }
+  }
+
+  async getTransactionHistory(limit: number = 10, offset: number = 0): Promise<TransactionHistoryResponse> {
+    try {
+      const response = await apiClient.get('/api/v1/transactions', {
+        limit: limit.toString(),
+        offset: offset.toString()
+      });
+      return response;
+    } catch (error: any) {
+      throw new Error(`Failed to fetch transaction history: ${error.message}`);
+    }
+  }
+
+  async getPurchaseHistory(limit: number = 10, offset: number = 0): Promise<PurchaseHistoryResponse> {
+    try {
+      const response = await apiClient.get('/api/v1/purchases', {
+        limit: limit.toString(),
+        offset: offset.toString()
+      });
+      return response;
+    } catch (error: any) {
+      throw new Error(`Failed to fetch purchase history: ${error.message}`);
     }
   }
 }

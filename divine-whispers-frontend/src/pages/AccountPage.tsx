@@ -4,7 +4,7 @@ import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { usePagesTranslation } from '../hooks/useTranslation';
-import { profileService, UserProfile, UserReport } from '../services/profileService';
+import { profileService, UserProfile, UserReport, PurchaseRecord as APIPurchaseRecord } from '../services/profileService';
 
 interface PurchaseRecord {
   id: string;
@@ -571,6 +571,7 @@ const AccountPage: React.FC = () => {
   // State for user profile data
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [userReports, setUserReports] = useState<UserReport[]>([]);
+  const [purchaseRecords, setPurchaseRecords] = useState<PurchaseRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -615,6 +616,24 @@ const AccountPage: React.FC = () => {
         // Fetch user reports
         const reportsData = await profileService.getUserReports();
         setUserReports(reportsData.reports);
+
+        // Fetch purchase history and convert to display format
+        try {
+          const purchaseData = await profileService.getPurchaseHistory(5); // Recent 5 purchases
+          const convertedPurchases: PurchaseRecord[] = purchaseData.purchases.map(purchase => ({
+            id: purchase.purchase_id,
+            title: purchase.description,
+            subtitle: purchase.package_type,
+            amount: `${purchase.amount} coins`,
+            date: new Date(purchase.created_at).toLocaleDateString(),
+            status: purchase.status === 'completed' ? 'Completed' : 'Pending'
+          }));
+          setPurchaseRecords(convertedPurchases);
+        } catch (purchaseError) {
+          console.warn('Failed to load purchase history:', purchaseError);
+          // Keep empty array if purchase history fails to load
+          setPurchaseRecords([]);
+        }
 
       } catch (err: any) {
         console.error('Failed to load user data:', err);
@@ -744,17 +763,6 @@ const AccountPage: React.FC = () => {
     }
   };
 
-  // Mock purchase records for demo - TODO: Replace with real wallet transaction data
-  const purchaseRecords: PurchaseRecord[] = [
-    {
-      id: '1',
-      title: 'Premium Coin Package',
-      subtitle: '50 Divine Coins',
-      amount: '$19.99',
-      date: 'Dec 28, 2024',
-      status: 'Completed'
-    }
-  ];
 
   // Show loading state
   if (loading) {
@@ -903,7 +911,11 @@ const AccountPage: React.FC = () => {
                 </StatusItem>
                 <StatusItem>
                   <StatusLabel>{t('account.membership')}</StatusLabel>
-                  <StatusValue highlight>{userProfile?.role === 'admin' ? 'Admin' : t('account.premiumMember')}</StatusValue>
+                  <StatusValue highlight>
+                    {userProfile?.role === 'admin' ? 'Admin' :
+                     userProfile?.role === 'moderator' ? 'Moderator' :
+                     userProfile?.role === 'user' ? 'User' : 'User'}
+                  </StatusValue>
                 </StatusItem>
                 <StatusItem>
                   <StatusLabel>{t('account.memberSince')}</StatusLabel>
@@ -915,23 +927,34 @@ const AccountPage: React.FC = () => {
             {/* Recent Purchase Records */}
             <AccountCard>
               <CardTitle>{t('account.purchaseRecords')}</CardTitle>
-              <RecordsList>
-                {purchaseRecords.map((record) => (
-                  <RecordItem key={record.id}>
-                    <RecordLeft>
-                      <RecordTitle>{record.title}</RecordTitle>
-                      <RecordSubtitle>{record.subtitle}</RecordSubtitle>
-                    </RecordLeft>
-                    <RecordRight>
-                      <RecordAmount>{record.amount}</RecordAmount>
-                      <RecordDate>{record.date}</RecordDate>
-                      <RecordStatus status={record.status}>
-                        {record.status}
-                      </RecordStatus>
-                    </RecordRight>
-                  </RecordItem>
-                ))}
-              </RecordsList>
+              {purchaseRecords.length === 0 ? (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '40px',
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: '16px'
+                }}>
+                  No purchase records available
+                </div>
+              ) : (
+                <RecordsList>
+                  {purchaseRecords.map((record) => (
+                    <RecordItem key={record.id}>
+                      <RecordLeft>
+                        <RecordTitle>{record.title}</RecordTitle>
+                        <RecordSubtitle>{record.subtitle}</RecordSubtitle>
+                      </RecordLeft>
+                      <RecordRight>
+                        <RecordAmount>{record.amount}</RecordAmount>
+                        <RecordDate>{record.date}</RecordDate>
+                        <RecordStatus status={record.status}>
+                          {record.status}
+                        </RecordStatus>
+                      </RecordRight>
+                    </RecordItem>
+                  ))}
+                </RecordsList>
+              )}
             </AccountCard>
 
             {/* My Analysis Reports */}
