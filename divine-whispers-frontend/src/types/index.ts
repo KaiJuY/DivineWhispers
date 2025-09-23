@@ -187,13 +187,12 @@ export interface Report {
   status: 'generating' | 'completed';
   created_at: string;
   analysis: {
-    overview: string;
-    career_analysis: string;
-    relationship_analysis: string;
-    health_analysis: string;
-    lucky_elements: string[];
-    cautions: string[];
-    advice: string;
+    OverallDevelopment: string;
+    PositiveFactors: string;
+    Challenges: string;
+    SuggestedActions: string;
+    SupplementaryNotes: string;
+    Conclusion: string;
   };
 }
 

@@ -213,7 +213,7 @@ async def stream_task_progress(
             # Send initial status
             current_task = await task_queue_service.get_task(task_id, db)
             # Advise client on reconnection delay if needed
-            yield f"retry: 2000\n\n"
+            yield f"retry setting: 2000\n\n"
 
             if current_task:
                 initial_data = {

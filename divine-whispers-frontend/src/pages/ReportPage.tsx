@@ -227,13 +227,7 @@ const ReportPage: React.FC = () => {
   }, []);
 
   const handleBackClick = () => {
-    // If it's the demo report, go back to home page
-    if (selectedReport?.id === 'demo_report') {
-      setCurrentPage('home');
-    } else {
-      // For regular reports, go back to account page
-      setCurrentPage('account');
-    }
+    setCurrentPage('account');
   };
 
   if (!selectedReport) {
@@ -241,17 +235,14 @@ const ReportPage: React.FC = () => {
     return null;
   }
 
-  // Check if this is the demo report to adjust UI accordingly
-  const isDemoReport = selectedReport.id === 'demo_report';
+  // Always treat as a regular report
 
   return (
     <Layout>
       <ReportContainer>
         <ReportSection>
           <ReportContent>
-            <BackButton onClick={handleBackClick}>
-              {isDemoReport ? t('report.backToHome') : t('report.backToAccount')}
-            </BackButton>
+            <BackButton onClick={handleBackClick}>{t('report.backToAccount')}</BackButton>
             
             <ReportCard>
               <ReportHeader>
@@ -278,55 +269,34 @@ const ReportPage: React.FC = () => {
               </ReportQuestion>
 
               <AnalysisSection>
-                <AnalysisTitle>{t('report.divineAnalysisOverview')}</AnalysisTitle>
-                <AnalysisContent>{selectedReport.analysis.overview}</AnalysisContent>
+                <AnalysisTitle>{t('report.overallDevelopment') || 'Overall Development'}</AnalysisTitle>
+                <AnalysisContent>{selectedReport.analysis.OverallDevelopment}</AnalysisContent>
               </AnalysisSection>
 
               <ElementsList>
                 <ElementCard>
-                  <ElementTitle>{t('report.careerAnalysis')}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.career_analysis}</ElementContent>
+                  <ElementTitle>{t('report.positiveFactors') || 'Positive Factors'}</ElementTitle>
+                  <ElementContent>{selectedReport.analysis.PositiveFactors}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.relationshipAnalysis')}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.relationship_analysis}</ElementContent>
+                  <ElementTitle>{t('report.challenges') || 'Challenges'}</ElementTitle>
+                  <ElementContent>{selectedReport.analysis.Challenges}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.healthAnalysis')}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.health_analysis}</ElementContent>
+                  <ElementTitle>{t('report.suggestedActions') || 'Suggested Actions'}</ElementTitle>
+                  <ElementContent>{selectedReport.analysis.SuggestedActions}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.luckyElements')}</ElementTitle>
-                  <ElementContent>
-                    <TagList>
-                      {selectedReport.analysis.lucky_elements.map((element, index) => (
-                        <Tag key={index}>{element}</Tag>
-                      ))}
-                    </TagList>
-                  </ElementContent>
-                </ElementCard>
-
-                <ElementCard>
-                  <ElementTitle>{t('report.cautions')}</ElementTitle>
-                  <ElementContent>
-                    <TagList>
-                      {selectedReport.analysis.cautions.map((caution, index) => (
-                        <Tag key={index} style={{ 
-                          background: 'linear-gradient(135deg, #ff6b6b 0%, #ffa8a8 100%)' 
-                        }}>
-                          {caution}
-                        </Tag>
-                      ))}
-                    </TagList>
-                  </ElementContent>
+                  <ElementTitle>{t('report.supplementaryNotes') || 'Supplementary Notes'}</ElementTitle>
+                  <ElementContent>{selectedReport.analysis.SupplementaryNotes}</ElementContent>
                 </ElementCard>
 
                 <ElementCard style={{ gridColumn: '1 / -1' }}>
-                  <ElementTitle>{t('report.divineAdvice')}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.advice}</ElementContent>
+                  <ElementTitle>{t('report.conclusion') || 'Conclusion'}</ElementTitle>
+                  <ElementContent>{selectedReport.analysis.Conclusion}</ElementContent>
                 </ElementCard>
               </ElementsList>
             </ReportCard>

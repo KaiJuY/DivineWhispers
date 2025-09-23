@@ -644,27 +644,7 @@ export const mockTodaysWhisper = {
   }
 };
 
-// Demo Report for showcasing report style
-export const mockDemoReport = {
-  id: "demo_report",
-  title: "Divine Guidance Demo Report",
-  question: "What does the future hold for my personal growth and happiness?",
-  deity_id: "guan_yin",
-  deity_name: "Guan Yin",
-  fortune_number: 88,
-  cost: 5,
-  status: "completed" as const,
-  created_at: "2024-12-28T10:00:00Z",
-  analysis: {
-    overview: "The goddess of mercy, Guan Yin, reveals that your path toward personal growth is illuminated with divine blessing. Your sincere desire for self-improvement and genuine happiness resonates with the cosmic energies. This fortune speaks of transformation, inner wisdom, and the blossoming of your true potential.",
-    career_analysis: "Your professional journey is entering a phase of remarkable growth. The divine energies suggest that your authentic self-expression and compassionate approach will open new doors. Consider roles that allow you to help others while fulfilling your own aspirations. Leadership opportunities may present themselves in the coming months.",
-    relationship_analysis: "Harmony in relationships flows from inner peace. Your growing self-awareness will naturally improve your connections with others. Be open to deep, meaningful conversations that can heal old wounds and strengthen bonds. A significant relationship may undergo positive transformation.",
-    health_analysis: "Balance is key to your wellbeing. Pay attention to both physical and mental health through mindful practices. Regular meditation, gentle exercise, and connecting with nature will support your energy levels. Listen to your body's wisdom and honor its needs for rest and nourishment.",
-    lucky_elements: ["Lotus", "White Light", "Morning Dew", "Gentle Breeze", "Compassionate Heart"],
-    cautions: ["Avoid self-doubt", "Don't rush major decisions", "Be patient with change", "Trust your intuition"],
-    advice: "Like a lotus blooming from muddy waters, your greatest growth often comes through challenges. Trust in your inherent wisdom and the divine support that surrounds you. Your journey toward happiness is not a destination but a beautiful unfolding of your soul's purpose."
-  }
-};
+// Demo report removed; reports are now provided by backend
 
 // Reports Mock Data
 export const mockReports = [
@@ -678,15 +658,14 @@ export const mockReports = [
     cost: 5,
     status: "completed" as const,
     created_at: "2024-12-28T14:30:00Z",
-    analysis: {
-      overview: "Your career path shows promising developments ahead. The divine guidance suggests focusing on collaboration and building meaningful professional relationships. You are at a crossroads in your professional journey, with multiple opportunities presenting themselves.",
-      career_analysis: "Your professional endeavors are blessed with strong communication skills and natural leadership qualities. Focus on networking and building genuine professional relationships. Consider taking on mentorship roles to develop leadership skills further. The next 3-6 months are particularly favorable for career advancement.",
-      relationship_analysis: "Professional relationships will be key to your success. Your ability to inspire others will open new doors and create valuable connections in your field.",
-      health_analysis: "Balance between ambition and patience is crucial. Don't neglect work-life balance as you pursue career goals. Regular breaks and stress management will support your professional journey.",
-      lucky_elements: ["Metal", "White", "West Direction"],
-      cautions: ["Avoid rushing major decisions", "Be patient with slow progress", "Don't neglect work-life balance"],
-      advice: "Trust your instincts when making career decisions. Seek opportunities that align with your values and long-term goals. Your natural leadership qualities will guide you to success."
-    }
+  analysis: {
+      OverallDevelopment: "Your career path shows promising developments, with steady momentum in the short term and strong opportunities in the long term.",
+      PositiveFactors: "Communication strengths, leadership potential, and supportive networks help your advancement.",
+      Challenges: "Avoid rushing decisions and neglecting balance; impatience may cloud judgment.",
+      SuggestedActions: "Focus on networking, mentorship, and sustainable routines. Verify details before committing.",
+      SupplementaryNotes: "Consider roles that emphasize collaboration and people development. Align projects with values.",
+      Conclusion: "Stay focused and patient—career progress is within reach."
+  }
   },
   {
     id: "report_002", 
@@ -698,15 +677,14 @@ export const mockReports = [
     cost: 5,
     status: "completed" as const,
     created_at: "2024-12-27T16:45:00Z",
-    analysis: {
-      overview: "Family relationships require patience and understanding. The sea goddess Mazu advises flowing like water - adapting while maintaining your core values. There are some underlying tensions that need gentle attention and care to resolve.",
-      career_analysis: "Your strong sense of responsibility and willingness to make sacrifices will be valued in professional settings. These family relationship skills will enhance your workplace collaborations.",
-      relationship_analysis: "Practice active listening without immediately offering solutions. Express appreciation for family members more frequently. Create regular family gathering opportunities and address conflicts with compassion rather than defensiveness. Family harmony will improve significantly in the coming months with consistent effort.",
-      health_analysis: "Emotional well-being through improved family relationships will positively impact your overall health. Reduced family stress will lead to better sleep and mental clarity.",
-      lucky_elements: ["Water", "Blue", "North Direction"],
-      cautions: ["Don't try to control others", "Avoid bringing up past grievances", "Be patient with change"],
-      advice: "Flow like water in your relationships - be flexible while maintaining your core values. Deep love for family and willingness to make sacrifices are your greatest strengths in healing these bonds."
-    }
+  analysis: {
+      OverallDevelopment: "Family relationships are stabilizing; gentle efforts lead to lasting harmony.",
+      PositiveFactors: "Empathy, patience, and consistent appreciation foster healing.",
+      Challenges: "Controlling tendencies or revisiting past grievances can delay progress.",
+      SuggestedActions: "Practice active listening, express gratitude routinely, and create calm spaces to talk.",
+      SupplementaryNotes: "Balance personal boundaries with kindness; seek shared activities that rebuild trust.",
+      Conclusion: "Move like water—soft yet persistent. Peace grows with steady care."
+  }
   },
   {
     id: "report_003",
@@ -718,15 +696,14 @@ export const mockReports = [
     cost: 5,
     status: "completed" as const,
     created_at: "2024-12-26T11:20:00Z",
-    analysis: {
-      overview: "Your health requires a balanced approach combining physical activity, mental wellness, and spiritual practices. The warrior god emphasizes discipline and consistency. Your body and mind need more attention and care, as there are signs of stress that should be addressed.",
-      career_analysis: "Your strong willpower and ability to maintain routines will serve you well in establishing healthy work habits. Better health will significantly improve your professional performance and decision-making abilities.",
-      relationship_analysis: "Improved health and reduced stress will enhance your relationships. When you feel better physically, you'll have more patience and energy for meaningful connections with others.",
-      health_analysis: "Establish a consistent sleep schedule of 7-8 hours nightly. Incorporate regular physical exercise, even light walking. Practice stress-reduction techniques like meditation or deep breathing. Focus on nutritious, balanced meals rather than quick fixes. Health improvements will be noticeable within 30-60 days of consistent practice.",
-      lucky_elements: ["Fire", "Red", "South Direction"],
-      cautions: ["Don't overexert yourself initially", "Avoid extreme diet changes", "Listen to your body's signals"],
-      advice: "Like a disciplined warrior, approach your health with consistency and determination. Your strong willpower and awareness of health's importance are your greatest assets in this journey toward wellness."
-    }
+  analysis: {
+      OverallDevelopment: "Your health improves with consistent routines; short-term reset leads to long-term resilience.",
+      PositiveFactors: "Strong willpower, simple habits, and supportive environments amplify progress.",
+      Challenges: "Overexertion and extreme changes risk setbacks; stress can disrupt sleep.",
+      SuggestedActions: "Prioritize sleep, gentle exercise, mindful breathing, and balanced meals.",
+      SupplementaryNotes: "Track small wins weekly; adjust gradually. Seek accountability if helpful.",
+      Conclusion: "Steady discipline brings lasting strength. Care builds vitality."
+  }
   }
 ];
 
@@ -743,7 +720,6 @@ export default {
   mockFortuneHistory,
   mockAnalysisReports,
   mockReports,
-  mockDemoReport,
   mockChatMessages,
   mockAdminStats,
   mockAdminUsers,

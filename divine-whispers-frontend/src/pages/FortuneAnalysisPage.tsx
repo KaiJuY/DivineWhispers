@@ -661,7 +661,55 @@ const FortuneAnalysisPage: React.FC = () => {
 
             setMessages(prev => [...prev, responseMessage]);
 
-            // Occasionally offer to generate a report
+            // Try to parse structured JSON report from response
+            try {
+              const parsed = JSON.parse(progressData.result.response);
+              const requiredKeys = [
+                'OverallDevelopment',
+                'PositiveFactors',
+                'Challenges',
+                'SuggestedActions',
+                'SupplementaryNotes',
+                'Conclusion'
+              ];
+              const hasAll = requiredKeys.every(k => typeof parsed?.[k] === 'string');
+              if (hasAll && selectedDeity && selectedFortuneNumber) {
+                const reportId = `report_${Date.now()}`;
+                const newReport: Report = {
+                  id: reportId,
+                  title: `Personal Reading Report`,
+                  question: inputMessage || '',
+                  deity_id: selectedDeity.id,
+                  deity_name: selectedDeity.name,
+                  fortune_number: selectedFortuneNumber,
+                  cost: 0,
+                  status: 'completed',
+                  created_at: new Date().toISOString(),
+                  analysis: {
+                    OverallDevelopment: parsed.OverallDevelopment,
+                    PositiveFactors: parsed.PositiveFactors,
+                    Challenges: parsed.Challenges,
+                    SuggestedActions: parsed.SuggestedActions,
+                    SupplementaryNotes: parsed.SupplementaryNotes,
+                    Conclusion: parsed.Conclusion
+                  }
+                };
+                setReports([...reports, newReport]);
+
+                const reportMessage: ChatMessage = {
+                  id: `msg_${Date.now() + 1}`,
+                  type: 'report',
+                  message: 'Your detailed report is ready. View now?',
+                  timestamp: new Date().toISOString(),
+                  reportId
+                };
+                setMessages(prev => [...prev, reportMessage]);
+              }
+            } catch (e) {
+              // not a JSON report, ignore
+            }
+
+            // Occasionally offer to generate a report (fallback UI)
             if (messages.length > 0 && (messages.length + 1) % 3 === 0 && progressData.result.can_generate_report) {
               setTimeout(() => {
                 const reportOfferMessage: ChatMessage = {
@@ -750,13 +798,12 @@ const FortuneAnalysisPage: React.FC = () => {
       status: 'completed',
       created_at: new Date().toISOString(),
       analysis: {
-        overview: `Based on your question "${userQuestion}" and the divine wisdom of ${selectedDeity!.name}, this comprehensive analysis reveals key insights for your path forward.`,
-        career_analysis: `Your professional endeavors are blessed with divine guidance. The fortune suggests that your dedication and hard work will soon bear fruit. Trust in your abilities and remain focused on your goals.`,
-        relationship_analysis: `In matters of the heart, balance and understanding are key. The divine wisdom suggests that open communication and patience will strengthen your bonds with others.`,
-        health_analysis: `Your physical and spiritual well-being require attention. Take time for self-care and meditation to maintain harmony between body and soul.`,
-        lucky_elements: ['Water', 'East Direction', 'Green Color', 'Number 7', 'Morning Hours'],
-        cautions: ['Avoid hasty decisions', 'Be mindful of negative energy', 'Trust your intuition'],
-        advice: `The divine message emphasizes the importance of patience and perseverance. Your question shows wisdom in seeking guidance, and the answer lies within your own inner strength combined with divine blessing.`
+        OverallDevelopment: `Based on your question "${userQuestion}" and the divine wisdom of ${selectedDeity!.name}, your current situation is stabilizing with a gradual positive trend. Short-term progress appears steady, with longer-term development favored by consistent effort and clear intentions.`,
+        PositiveFactors: `Support from kind people and mentors, opportunities through collaboration, and your persistence strengthen outcomes. Clear communication and maintaining balance draw favorable conditions.`,
+        Challenges: `Avoid rushing or overcommitting. Emotional fluctuations and external distractions can slow progress. Be mindful of overthinking and self-doubt during key decisions.`,
+        SuggestedActions: `Set achievable milestones, communicate openly, and practice patience. Maintain steady routines, take restorative breaks, and trust your intuition while verifying details before acting.`,
+        SupplementaryNotes: `If about career, focus on teamwork and mentorship. If about relationships, practice empathy and calm dialogue. For health, prioritize rest and gentle movement. For finances, proceed conservatively and avoid speculation.`,
+        Conclusion: `Stay patient and centered—the opportunity is near. Keep moving forward step by step; progress will come.`
       }
     };
 
