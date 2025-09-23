@@ -435,6 +435,14 @@ class TaskQueueService:
         import json
         event_data = f"data: {json.dumps(data)}\n\n"
 
+        try:
+            # Lightweight debug log to trace timing of outbound SSE
+            logger.debug(
+                f"SSE send -> task={task_id} type={data.get('type')} at {datetime.now().isoformat()} to {len(self.sse_connections.get(task_id, []))} clients"
+            )
+        except Exception:
+            pass
+
         # Send to all connected clients
         for response_obj in self.sse_connections[task_id][:]:  # Copy list to avoid modification during iteration
             try:

@@ -185,6 +185,7 @@ async def enhanced_streaming_endpoint(
         """Enhanced event generator with detailed progress tracking"""
         import asyncio
         import json
+        from app.core.database import get_async_session
 
         # Create event queue for enhanced SSE
         event_queue = asyncio.Queue()
@@ -207,6 +208,9 @@ async def enhanced_streaming_endpoint(
         try:
             # Add connection to task queue service
             task_queue_service.add_sse_connection(task_id, response_obj)
+
+            # Initial prelude to defeat proxy/browser buffering
+            yield ":" + (" " * 2048) + "\n\n"
 
             # Check if we have a progress tracker for this task
             progress_tracker = progress_manager.get_tracker(task_id)
@@ -233,6 +237,9 @@ async def enhanced_streaming_endpoint(
                 progress_tracker.subscribe(progress_callback)
 
             # Send initial status with enhanced info
+            # Suggest client reconnection backoff and send initial status
+            yield f"retry: 2000\n\n"
+
             current_task = await task_queue_service.get_task(task_id, db)
             if current_task:
                 initial_data = {
@@ -332,8 +339,9 @@ async def enhanced_streaming_endpoint(
                         }
                         yield f"data: {json.dumps(ping_data)}\\n\\n"
 
-                    # Check if task is completed (fallback with enhanced info)
-                    current_task = await task_queue_service.get_task(task_id, db)
+                    # Check if task is completed (fallback with enhanced info) using short-lived DB session
+                    async with get_async_session() as _db:
+                        current_task = await task_queue_service.get_task(task_id, _db)
                     if current_task and current_task.status in [TaskStatus.COMPLETED, TaskStatus.FAILED]:
                         # Send enhanced final event
                         if current_task.status == TaskStatus.COMPLETED:
@@ -384,12 +392,14 @@ async def enhanced_streaming_endpoint(
 
     return StreamingResponse(
         enhanced_event_generator(),
-        media_type="text/event-stream",
+        media_type="text/event-stream; charset=utf-8",
         headers={
-            "Cache-Control": "no-cache",
+            # Prevent proxy buffering (e.g., Nginx) so events flush immediately
+            "X-Accel-Buffering": "no",
+            # Stronger no-cache to avoid intermediary caching/buffering
+            "Cache-Control": "no-cache, no-store, must-revalidate, no-transform",
+            "Pragma": "no-cache",
             "Connection": "keep-alive",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "Cache-Control",
             "X-Streaming-Version": "v2-enhanced"
         }
     )

@@ -184,6 +184,7 @@ async def stream_task_progress(
     async def event_generator():
         import asyncio
         import json
+        from app.core.database import get_async_session
 
         # Create a response object for SSE
         class SSEResponse:
@@ -206,8 +207,14 @@ async def stream_task_progress(
             # Add connection to task queue service
             task_queue_service.add_sse_connection(task_id, response_obj)
 
+            # Initial prelude to defeat proxy/browser buffering
+            yield ":" + (" " * 2048) + "\n\n"
+
             # Send initial status
             current_task = await task_queue_service.get_task(task_id, db)
+            # Advise client on reconnection delay if needed
+            yield f"retry: 2000\n\n"
+
             if current_task:
                 initial_data = {
                     "type": "status",
@@ -272,8 +279,9 @@ async def stream_task_progress(
                     if timeout_counter % ping_interval == 0:  # Every 30 seconds
                         yield f"data: {json.dumps({'type': 'ping'})}\n\n"
 
-                    # Check if task is completed (fallback)
-                    current_task = await task_queue_service.get_task(task_id, db)
+                    # Check if task is completed (fallback) with short-lived DB session
+                    async with get_async_session() as _db:
+                        current_task = await task_queue_service.get_task(task_id, _db)
                     if current_task and current_task.status in [TaskStatus.COMPLETED, TaskStatus.FAILED]:
                         # Send final event if not already sent
                         if current_task.status == TaskStatus.COMPLETED:
@@ -314,12 +322,14 @@ async def stream_task_progress(
 
     return StreamingResponse(
         event_generator(),
-        media_type="text/event-stream",
+        media_type="text/event-stream; charset=utf-8",
         headers={
-            "Cache-Control": "no-cache",
-            "Connection": "keep-alive",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "Cache-Control"
+            # Prevent proxy buffering (e.g., Nginx) so events flush immediately
+            "X-Accel-Buffering": "no",
+            # Stronger no-cache to avoid intermediary caching/buffering
+            "Cache-Control": "no-cache, no-store, must-revalidate, no-transform",
+            "Pragma": "no-cache",
+            "Connection": "keep-alive"
         }
     )
 
