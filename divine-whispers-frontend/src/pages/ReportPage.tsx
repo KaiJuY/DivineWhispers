@@ -164,7 +164,7 @@ const AnalysisContent = styled.div`
 
 const ElementsList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
   margin-top: 30px;
 
@@ -269,33 +269,33 @@ const ReportPage: React.FC = () => {
               </ReportQuestion>
 
               <AnalysisSection>
-                <AnalysisTitle>{t('report.overallDevelopment') || 'Overall Development'}</AnalysisTitle>
+                <AnalysisTitle>{t('report.overallDevelopment', { defaultValue: 'Overall Development' })}</AnalysisTitle>
                 <AnalysisContent>{selectedReport.analysis.OverallDevelopment}</AnalysisContent>
               </AnalysisSection>
 
               <ElementsList>
                 <ElementCard>
-                  <ElementTitle>{t('report.positiveFactors') || 'Positive Factors'}</ElementTitle>
+                  <ElementTitle>{t('report.positiveFactors', { defaultValue: 'Positive Factors' })}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.PositiveFactors}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.challenges') || 'Challenges'}</ElementTitle>
+                  <ElementTitle>{t('report.challenges', { defaultValue: 'Challenges' })}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.Challenges}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.suggestedActions') || 'Suggested Actions'}</ElementTitle>
+                  <ElementTitle>{t('report.suggestedActions', { defaultValue: 'Suggested Actions' })}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.SuggestedActions}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.supplementaryNotes') || 'Supplementary Notes'}</ElementTitle>
+                  <ElementTitle>{t('report.supplementaryNotes', { defaultValue: 'Supplementary Notes' })}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.SupplementaryNotes}</ElementContent>
                 </ElementCard>
 
-                <ElementCard style={{ gridColumn: '1 / -1' }}>
-                  <ElementTitle>{t('report.conclusion') || 'Conclusion'}</ElementTitle>
+                <ElementCard>
+                  <ElementTitle>{t('report.conclusion', { defaultValue: 'Conclusion' })}</ElementTitle>
                   <ElementContent>{selectedReport.analysis.Conclusion}</ElementContent>
                 </ElementCard>
               </ElementsList>

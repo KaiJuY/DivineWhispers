@@ -649,21 +649,13 @@ const FortuneAnalysisPage: React.FC = () => {
                 : msg
             ));
           } else if (progressData.type === 'complete' && progressData.result) {
-            // Remove progress message and add response
+            // Remove the progress message
             setMessages(prev => prev.filter(msg => msg.id !== `progress_${taskResponse.task_id}`));
 
-            const responseMessage: ChatMessage = {
-              id: `msg_${Date.now()}`,
-              type: 'assistant',
-              message: progressData.result.response,
-              timestamp: new Date().toISOString()
-            };
-
-            setMessages(prev => [...prev, responseMessage]);
-
-            // Try to parse structured JSON report from response
+            let structuredReportHandled = false;
+            // Try to parse structured JSON report from response first
             try {
-              const parsed = JSON.parse(progressData.result.response);
+              const parsed = JSON.parse(progressData.result.response || '{}');
               const requiredKeys = [
                 'OverallDevelopment',
                 'PositiveFactors',
@@ -694,8 +686,19 @@ const FortuneAnalysisPage: React.FC = () => {
                     Conclusion: parsed.Conclusion
                   }
                 };
+                // Save report (store function expects full array, not an updater)
                 setReports([...reports, newReport]);
 
+                // Add a concise completion status message (no raw JSON)
+                const statusMessage: ChatMessage = {
+                  id: `msg_${Date.now()}`,
+                  type: 'assistant',
+                  message: parsed.Conclusion || 'Analysis complete. Your detailed report is ready.',
+                  timestamp: new Date().toISOString()
+                };
+                setMessages(prev => [...prev, statusMessage]);
+
+                // Add report link card
                 const reportMessage: ChatMessage = {
                   id: `msg_${Date.now() + 1}`,
                   type: 'report',
@@ -704,22 +707,39 @@ const FortuneAnalysisPage: React.FC = () => {
                   reportId
                 };
                 setMessages(prev => [...prev, reportMessage]);
-              }
-            } catch (e) {
-              // not a JSON report, ignore
-            }
 
-            // Occasionally offer to generate a report (fallback UI)
-            if (messages.length > 0 && (messages.length + 1) % 3 === 0 && progressData.result.can_generate_report) {
-              setTimeout(() => {
-                const reportOfferMessage: ChatMessage = {
-                  id: `msg_${Date.now() + 1}`,
-                  type: 'system',
-                  message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
-                  timestamp: new Date().toISOString()
-                };
-                setMessages(prev => [...prev, reportOfferMessage]);
-              }, 1500);
+                structuredReportHandled = true;
+              }
+            } catch {}
+
+            // Fallback: if not structured JSON, show regular assistant text
+            if (!structuredReportHandled) {
+              const responseMessage: ChatMessage = {
+                id: `msg_${Date.now()}`,
+                type: 'assistant',
+                message: progressData.result.response,
+                timestamp: new Date().toISOString()
+              };
+              setMessages(prev => [...prev, responseMessage]);
+
+              // Occasionally offer to generate a report only in fallback mode
+              if (progressData.result.can_generate_report) {
+                setTimeout(() => {
+                  setMessages(prev => {
+                    const count = prev.length;
+                    if ((count + 1) % 3 === 0) {
+                      const reportOfferMessage: ChatMessage = {
+                        id: `msg_${Date.now() + 1}`,
+                        type: 'system',
+                        message: `Would you like a detailed personal report based on our conversation? This comprehensive analysis costs 5 coins and includes specific guidance for your situation.`,
+                        timestamp: new Date().toISOString()
+                      };
+                      return [...prev, reportOfferMessage];
+                    }
+                    return prev;
+                  });
+                }, 1200);
+              }
             }
 
             setIsLoading(false);
