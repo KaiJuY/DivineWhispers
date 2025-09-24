@@ -324,10 +324,15 @@ class PoemInterpreter(BaseInterpreter):
         8. {language_instruction}
 
         OUTPUT FORMAT REQUIREMENTS:
-        - Always return a JSON object with exactly 6 keys: 
+        - The response must start with a section called "LineByLineInterpretation", which provides a detailed explanation of the selected poem line by line, explicitly connecting each line's imagery to the user's question.
+        - After that, always return a JSON object with exactly 6 keys: 
         "OverallDevelopment", "PositiveFactors", "Challenges", "SuggestedActions", "SupplementaryNotes", "Conclusion".
-        - Each key must contain a string of 4–5 sentences, grounded in the selected poem and user’s question.
+        - Each JSON key must contain a string of 4–5 sentences, grounded in the selected poem and user’s question.
         - The structure must be consistent and machine-readable.
+
+        OUTPUT STRUCTURE:
+        1. LineByLineInterpretation (free text, multi-paragraph)
+        2. JSON Block (strictly follow the schema)
 
         JSON SCHEMA:
         {{
@@ -340,7 +345,8 @@ class PoemInterpreter(BaseInterpreter):
         }}
 
         FINAL INSTRUCTION:
-        Please analyze the selected fortune poem and provide your interpretation strictly in the above JSON format.
+        Please analyze the selected fortune poem step by step, provide the "LineByLineInterpretation" first, 
+        and then output the structured JSON according to the schema above.
         """
 
 

@@ -15,6 +15,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 from cachetools import TTLCache
+import re
+import difflib
 
 from app.core.config import settings
 from app.utils.logging_config import get_logger
@@ -764,11 +766,21 @@ class PoemService:
 
                         logger.debug(f"[INTERPRET] Final additional_sources: {additional_sources} (type: {type(additional_sources)})")
 
-                        # Create FortuneResult
-                        logger.debug(f"[INTERPRET] Creating FortuneResult object")
+                        # Normalize interpretation to guaranteed six-key JSON
+                        logger.debug(f"[INTERPRET] Normalizing interpretation to JSON")
+                        normalized_json = self._ensure_json_report(
+                            result.interpretation,
+                            question=question,
+                            temple=poem_data.temple,
+                            poem_id=poem_data.poem_id,
+                            language=language,
+                            max_retries=2
+                        )
+
+                        logger.debug(f"[INTERPRET] Creating FortuneResult object (normalized)")
                         fortune_result = FortuneResult(
                             poem=poem_data,
-                            interpretation=result.interpretation,
+                            interpretation=json.dumps(normalized_json, ensure_ascii=False),
                             confidence=result.confidence,
                             additional_sources=additional_sources,
                             temple_sources=result.temple_sources,
@@ -796,10 +808,20 @@ class PoemService:
                 )
                 logger.debug(f"[INTERPRET] Fallback interpretation length: {len(interpretation)} characters")
 
+                logger.debug(f"[INTERPRET] Normalizing fallback interpretation to JSON")
+                normalized_json = self._ensure_json_report(
+                    interpretation,
+                    question=question,
+                    temple=poem_data.temple,
+                    poem_id=poem_data.poem_id,
+                    language=language,
+                    max_retries=0
+                )
+
                 logger.debug(f"[INTERPRET] Creating fallback FortuneResult object")
                 fallback_result = FortuneResult(
                     poem=poem_data,
-                    interpretation=interpretation,
+                    interpretation=json.dumps(normalized_json, ensure_ascii=False),
                     confidence=0.7,
                     additional_sources=[],
                     temple_sources=[poem_data.temple],
@@ -815,7 +837,13 @@ class PoemService:
             # Return emergency fallback
             return FortuneResult(
                 poem=poem_data,
-                interpretation="I apologize, but the interpretation is taking longer than expected. Please try again.",
+                interpretation=json.dumps(self._build_minimal_json(
+                    "I apologize, but the interpretation is taking longer than expected. Please try again.",
+                    question,
+                    poem_data.temple,
+                    poem_data.poem_id,
+                    language
+                ), ensure_ascii=False),
                 confidence=0.5,
                 additional_sources=[],
                 temple_sources=[poem_data.temple],
@@ -827,6 +855,147 @@ class PoemService:
             logger.error(f"[INTERPRET] Critical error in generate_fortune_interpretation: {e}", exc_info=True)
             logger.error(f"[INTERPRET] Failed parameters - temple: {poem_data.temple}, poem_id: {poem_data.poem_id}, question: '{question[:100]}...'")
             raise RuntimeError(f"Failed to generate interpretation: {str(e)}")
+
+    # ---------------- Structured JSON Enforcement Utilities ---------------- #
+    def _ensure_json_report(self, text: str, question: str, temple: str, poem_id: int, language: str, max_retries: int = 1) -> Dict[str, str]:
+        """Ensure interpretation is a six-key JSON. Use fuzzy key mapping and limited retries."""
+        parsed = self._try_parse_json_object(text)
+        mapped = self._map_keys_fuzzy(parsed) if isinstance(parsed, dict) else None
+
+        attempts = 0
+        while (not self._has_any_keys(mapped) or not self._has_all_keys(mapped)) and attempts < max_retries and self.fortune_system:
+            try:
+                result = self.fortune_system.ask_fortune(
+                    question=question,
+                    temple=temple,
+                    poem_id=poem_id,
+                    additional_context=True
+                )
+                parsed = self._try_parse_json_object(result.interpretation)
+                mapped = self._map_keys_fuzzy(parsed) if isinstance(parsed, dict) else None
+            except Exception:
+                break
+            attempts += 1
+
+        if not self._has_all_keys(mapped):
+            return self._build_from_partial_or_fallback(mapped if isinstance(mapped, dict) else {}, question, temple, poem_id, language)
+        return self._fill_defaults(mapped)
+
+    def _try_parse_json_object(self, text: str):
+        if not text:
+            return None
+        s = text.strip()
+        # Direct parse
+        try:
+            obj = json.loads(s)
+            if isinstance(obj, str):
+                try:
+                    return json.loads(obj)
+                except Exception:
+                    return None
+            return obj
+        except Exception:
+            pass
+        # Strip code fences
+        if s.startswith('```'):
+            first = s.find('{')
+            last = s.rfind('}')
+            if first != -1 and last != -1 and last > first:
+                s = s[first:last+1]
+                try:
+                    return json.loads(s)
+                except Exception:
+                    pass
+        # Extract first {...}
+        m = re.search(r"\{[\s\S]*\}", s)
+        if m:
+            block = m.group(0)
+            try:
+                return json.loads(block)
+            except Exception:
+                return None
+        return None
+
+    def _map_keys_fuzzy(self, data: Dict[str, str]) -> Dict[str, str]:
+        if not isinstance(data, dict):
+            return {}
+        canonical = {
+            'overalldevelopment': 'OverallDevelopment',
+            'positivefactors': 'PositiveFactors',
+            'challenges': 'Challenges',
+            'suggestedactions': 'SuggestedActions',
+            'supplementarynotes': 'SupplementaryNotes',
+            'conclusion': 'Conclusion',
+        }
+        aliases = {
+            'overalldevelopment': ['overall', 'overalltrend', 'development', 'overall_dev', 'overalldevelopement'],
+            'positivefactors': ['positives', 'supportingfactors', 'advantages', 'helpfulfactors', 'strengths'],
+            'challenges': ['risks', 'obstacles', 'difficulties', 'issues'],
+            'suggestedactions': ['advice', 'actions', 'recommendations', 'whattodo', 'guidance'],
+            'supplementarynotes': ['notes', 'extras', 'additionalnotes', 'contextnotes'],
+            'conclusion': ['summary', 'final', 'closing', 'wrapup']
+        }
+        def norm(k: str) -> str:
+            return re.sub(r"[^a-z]", "", k.lower())
+        out: Dict[str, str] = {}
+        for k, v in data.items():
+            nk = norm(str(k))
+            if nk in canonical:
+                out[canonical[nk]] = str(v)
+                continue
+            best = None
+            best_score = 0.0
+            for base, ckey in canonical.items():
+                if nk in aliases.get(base, []):
+                    best = ckey
+                    best_score = 1.0
+                    break
+                ratio = difflib.SequenceMatcher(None, nk, base).ratio()
+                if ratio > best_score:
+                    best = ckey
+                    best_score = ratio
+            if best_score >= 0.75 and best:
+                out[best] = str(v)
+        return out
+
+    def _has_any_keys(self, data: Optional[Dict[str, str]]) -> bool:
+        if not isinstance(data, dict):
+            return False
+        required = {'OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion'}
+        return any(k in data and isinstance(data[k], str) and data[k].strip() for k in required)
+
+    def _has_all_keys(self, data: Optional[Dict[str, str]]) -> bool:
+        if not isinstance(data, dict):
+            return False
+        required = ['OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
+        return all(k in data and isinstance(data[k], str) and data[k].strip() for k in required)
+
+    def _fill_defaults(self, data: Dict[str, str]) -> Dict[str, str]:
+        required = ['OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
+        return {k: (data.get(k, '') or '') for k in required}
+
+    def _build_from_partial_or_fallback(self, partial: Dict[str, str], question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:
+        base = self._fill_defaults(partial)
+        if language.startswith('zh'):
+            base['OverallDevelopment'] = base['OverallDevelopment'] or f"根據您提出的問題「{question}」，結合{temple}第{poem_id}籤的意涵，整體走勢逐步趨穩，短期以調整步調為宜，長期可望漸進改善。"
+            base['PositiveFactors'] = base['PositiveFactors'] or "貴人助力、團隊協作與自我覺察皆為助益；保持溝通順暢與節奏平衡可引入良機。"
+            base['Challenges'] = base['Challenges'] or "避免操之過急或情緒用事；外界雜訊與過度擔憂可能拖慢進度。"
+            base['SuggestedActions'] = base['SuggestedActions'] or "設定可達成的小目標，穩定步伐；先確認關鍵細節再行動，並保有耐心。"
+            base['SupplementaryNotes'] = base['SupplementaryNotes'] or "感情議題重視真誠傾聽；職涯著重協作與學習；健康留意休息與規律；財務保守而不冒進。"
+            base['Conclusion'] = base['Conclusion'] or "保持耐心與定力，機會將在不遠處浮現。"
+        else:
+            base['OverallDevelopment'] = base['OverallDevelopment'] or f"Based on your question '{question}' and the wisdom of {temple} #{poem_id}, the overall trend is stabilizing; short-term steadying supports gradual long-term improvement."
+            base['PositiveFactors'] = base['PositiveFactors'] or "Helpful allies, collaborative opportunities, and your persistence provide tailwinds; clear communication and balanced pacing invite better conditions."
+            base['Challenges'] = base['Challenges'] or "Avoid rushing or overcommitting; emotional swings and distractions can slow progress."
+            base['SuggestedActions'] = base['SuggestedActions'] or "Set achievable milestones, verify details before acting, and maintain patient, steady routines."
+            base['SupplementaryNotes'] = base['SupplementaryNotes'] or "For relationships, practice empathy and calm dialogue; for career, focus on teamwork; for health, prioritize rest; for finances, proceed conservatively."
+            base['Conclusion'] = base['Conclusion'] or "Stay patient; the opportunity is near. Keep moving step by step."
+        return base
+
+    def _build_minimal_json(self, text: str, question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:
+        base = self._build_from_partial_or_fallback({}, question, temple, poem_id, language)
+        base['OverallDevelopment'] = text
+        return base
     
     async def health_check(self) -> FortuneSystemHealthResponse:
         """

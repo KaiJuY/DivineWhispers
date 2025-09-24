@@ -654,10 +654,22 @@ const FortuneAnalysisPage: React.FC = () => {
             setMessages(prev => prev.filter(msg => msg.id !== `progress_${taskResponse.task_id}`));
 
             let structuredReportHandled = false;
-            // Try to parse structured JSON report from response first
+            // Try to parse structured JSON report from response first (robust)
             try {
               const raw = progressData.result.response || '';
-              const extractJsonObject = (text: string): string | null => {
+
+              const parseMaybeJson = (text: string): any => {
+                // 1) Try direct parse
+                try {
+                  const direct = JSON.parse(text);
+                  // If it parsed to a string, try to parse that string again (double-encoded JSON)
+                  if (typeof direct === 'string') {
+                    try { return JSON.parse(direct); } catch {}
+                  }
+                  return direct;
+                } catch {}
+
+                // 2) Strip markdown code fences
                 let cleaned = text.trim();
                 if (cleaned.startsWith('```')) {
                   const firstBrace = cleaned.indexOf('{');
@@ -666,11 +678,16 @@ const FortuneAnalysisPage: React.FC = () => {
                     cleaned = cleaned.slice(firstBrace, lastBrace + 1);
                   }
                 }
+
+                // 3) Extract first JSON object block
                 const match = cleaned.match(/\{[\s\S]*\}/);
-                return match ? match[0] : null;
+                if (match) {
+                  try { return JSON.parse(match[0]); } catch {}
+                }
+                return null;
               };
-              const jsonStr = extractJsonObject(raw);
-              const parsed = jsonStr ? JSON.parse(jsonStr) : null;
+
+              const parsed = parseMaybeJson(raw);
               const requiredKeys = [
                 'OverallDevelopment',
                 'PositiveFactors',
@@ -679,8 +696,8 @@ const FortuneAnalysisPage: React.FC = () => {
                 'SupplementaryNotes',
                 'Conclusion'
               ];
-              const hasAll = parsed && requiredKeys.every(k => typeof parsed?.[k] === 'string');
-              if (hasAll && selectedDeity && selectedFortuneNumber) {
+              const hasAny = parsed && requiredKeys.some(k => typeof parsed?.[k] === 'string');
+              if (hasAny && selectedDeity && selectedFortuneNumber) {
                 const reportId = `report_${Date.now()}`;
                 const newReport: Report = {
                   id: reportId,
@@ -693,12 +710,12 @@ const FortuneAnalysisPage: React.FC = () => {
                   status: 'completed',
                   created_at: new Date().toISOString(),
                   analysis: {
-                    OverallDevelopment: parsed.OverallDevelopment,
-                    PositiveFactors: parsed.PositiveFactors,
-                    Challenges: parsed.Challenges,
-                    SuggestedActions: parsed.SuggestedActions,
-                    SupplementaryNotes: parsed.SupplementaryNotes,
-                    Conclusion: parsed.Conclusion
+                    OverallDevelopment: parsed.OverallDevelopment || '',
+                    PositiveFactors: parsed.PositiveFactors || '',
+                    Challenges: parsed.Challenges || '',
+                    SuggestedActions: parsed.SuggestedActions || '',
+                    SupplementaryNotes: parsed.SupplementaryNotes || '',
+                    Conclusion: parsed.Conclusion || ''
                   }
                 };
                 // Save report (store function expects full array, not an updater)
