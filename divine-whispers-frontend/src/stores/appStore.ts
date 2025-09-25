@@ -203,7 +203,7 @@ const useAppStore = create<AppStore>()(
           set({ consultationHistory: history }),
 
         // Reports
-        reports: mockReports,
+        reports: (mockReports as any[]).map((r) => ({...r, analysis: { LineByLineInterpretation: r?.analysis?.LineByLineInterpretation || '', OverallDevelopment: r?.analysis?.OverallDevelopment || '', PositiveFactors: r?.analysis?.PositiveFactors || '', Challenges: r?.analysis?.Challenges || '', SuggestedActions: r?.analysis?.SuggestedActions || '', SupplementaryNotes: r?.analysis?.SupplementaryNotes || '', Conclusion: r?.analysis?.Conclusion || '' }})),
         setReports: (reports: Report[]) => set({ reports }),
 
         selectedReport: null,

@@ -774,7 +774,7 @@ class PoemService:
                             temple=poem_data.temple,
                             poem_id=poem_data.poem_id,
                             language=language,
-                            max_retries=2
+                            max_retries=4
                         )
 
                         logger.debug(f"[INTERPRET] Creating FortuneResult object (normalized)")
@@ -863,7 +863,7 @@ class PoemService:
         mapped = self._map_keys_fuzzy(parsed) if isinstance(parsed, dict) else None
 
         attempts = 0
-        while (not self._has_any_keys(mapped) or not self._has_all_keys(mapped)) and attempts < max_retries and self.fortune_system:
+        while (not self._has_all_keys(mapped)) and attempts < max_retries and self.fortune_system:
             try:
                 result = self.fortune_system.ask_fortune(
                     question=question,
@@ -920,6 +920,7 @@ class PoemService:
         if not isinstance(data, dict):
             return {}
         canonical = {
+            'linebylineinterpretation': 'LineByLineInterpretation',
             'overalldevelopment': 'OverallDevelopment',
             'positivefactors': 'PositiveFactors',
             'challenges': 'Challenges',
@@ -928,6 +929,7 @@ class PoemService:
             'conclusion': 'Conclusion',
         }
         aliases = {
+            'linebylineinterpretation': ['linebyline', 'lbl', 'lineinterp', 'lineinterpretation', 'lbi', 'interpretation'],
             'overalldevelopment': ['overall', 'overalltrend', 'development', 'overall_dev', 'overalldevelopement'],
             'positivefactors': ['positives', 'supportingfactors', 'advantages', 'helpfulfactors', 'strengths'],
             'challenges': ['risks', 'obstacles', 'difficulties', 'issues'],
@@ -961,17 +963,17 @@ class PoemService:
     def _has_any_keys(self, data: Optional[Dict[str, str]]) -> bool:
         if not isinstance(data, dict):
             return False
-        required = {'OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion'}
+        required = {'LineByLineInterpretation','OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion'}
         return any(k in data and isinstance(data[k], str) and data[k].strip() for k in required)
 
     def _has_all_keys(self, data: Optional[Dict[str, str]]) -> bool:
         if not isinstance(data, dict):
             return False
-        required = ['OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
+        required = ['LineByLineInterpretation','OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
         return all(k in data and isinstance(data[k], str) and data[k].strip() for k in required)
 
     def _fill_defaults(self, data: Dict[str, str]) -> Dict[str, str]:
-        required = ['OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
+        required = ['LineByLineInterpretation','OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
         return {k: (data.get(k, '') or '') for k in required}
 
     def _build_from_partial_or_fallback(self, partial: Dict[str, str], question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:

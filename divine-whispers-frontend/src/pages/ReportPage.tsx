@@ -269,6 +269,11 @@ const ReportPage: React.FC = () => {
               </ReportQuestion>
 
               <AnalysisSection>
+                <AnalysisTitle>{t('report.lineByLineInterpretation', { defaultValue: 'Line-by-Line Interpretation' })}</AnalysisTitle>
+                <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.LineByLineInterpretation}</AnalysisContent>
+              </AnalysisSection>
+
+              <AnalysisSection>
                 <AnalysisTitle>{t('report.overallDevelopment', { defaultValue: 'Overall Development' })}</AnalysisTitle>
                 <AnalysisContent>{selectedReport.analysis.OverallDevelopment}</AnalysisContent>
               </AnalysisSection>

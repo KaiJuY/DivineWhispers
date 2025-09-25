@@ -687,8 +687,34 @@ const FortuneAnalysisPage: React.FC = () => {
                 return null;
               };
 
-              const parsed = parseMaybeJson(raw);
+              const parsedRaw = parseMaybeJson(raw) as any;
+              // Fuzzy map keys by first 3 letters (lowercased, alpha-only)
+              const canonMap: Record<string, string> = {
+                lin: 'LineByLineInterpretation',
+                ove: 'OverallDevelopment',
+                pos: 'PositiveFactors',
+                cha: 'Challenges',
+                sug: 'SuggestedActions',
+                sup: 'SupplementaryNotes',
+                con: 'Conclusion',
+              };
+              const normalizeKeys = (obj: any) => {
+                const out: any = {};
+                if (obj && typeof obj === 'object') {
+                  for (const [k, v] of Object.entries(obj)) {
+                    const nk = String(k).toLowerCase().replace(/[^a-z]/g, '');
+                    const pref = nk.slice(0, 3) as keyof typeof canonMap;
+                    const mapped = (canonMap as any)[pref] || null;
+                    if (mapped) out[mapped] = String(v);
+                    else out[k] = v as any;
+                  }
+                }
+                return out;
+              };
+
+              const parsed = normalizeKeys(parsedRaw);
               const requiredKeys = [
+                'LineByLineInterpretation',
                 'OverallDevelopment',
                 'PositiveFactors',
                 'Challenges',
@@ -710,6 +736,7 @@ const FortuneAnalysisPage: React.FC = () => {
                   status: 'completed',
                   created_at: new Date().toISOString(),
                   analysis: {
+                    LineByLineInterpretation: parsed.LineByLineInterpretation || '',
                     OverallDevelopment: parsed.OverallDevelopment || '',
                     PositiveFactors: parsed.PositiveFactors || '',
                     Challenges: parsed.Challenges || '',
@@ -847,6 +874,7 @@ const FortuneAnalysisPage: React.FC = () => {
       status: 'completed',
       created_at: new Date().toISOString(),
       analysis: {
+        LineByLineInterpretation: `[Line-by-Line | ${selectedDeity!.name} #${selectedFortuneNumber!}]\n1) Imagery mapping: how each line reflects your situation.\n2) Context linkage: connect poem phrases to your question.\n3) Transformation cue: practical mindset and action adjustments.`,
         OverallDevelopment: `Based on your question "${userQuestion}" and the divine wisdom of ${selectedDeity!.name}, your current situation is stabilizing with a gradual positive trend. Short-term progress appears steady, with longer-term development favored by consistent effort and clear intentions.`,
         PositiveFactors: `Support from kind people and mentors, opportunities through collaboration, and your persistence strengthen outcomes. Clear communication and maintaining balance draw favorable conditions.`,
         Challenges: `Avoid rushing or overcommitting. Emotional fluctuations and external distractions can slow progress. Be mindful of overthinking and self-doubt during key decisions.`,

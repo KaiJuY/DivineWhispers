@@ -343,7 +343,7 @@ class PoemInterpreter(BaseInterpreter):
         - Ensure the JSON is valid and machine-readable (properly escaped, use double quotes for keys and strings).
 
         JSON SCHEMA (example descriptions only — output must follow these keys exactly):
-        {
+        {{
         "LineByLineInterpretation": "Multi-paragraph line-by-line interpretation. Must label lines and connect imagery to the user's question. Include temple name and poem number.",
         "OverallDevelopment": "Describe the current situation or atmosphere, and explain the future trend or possible direction (short-term vs long-term). (4–5 sentences.)",
         "PositiveFactors": "Mention conditions, people, or resources that may help. Highlight internal strengths or external opportunities. (4–5 sentences.)",
@@ -351,7 +351,7 @@ class PoemInterpreter(BaseInterpreter):
         "SuggestedActions": "Practical advice: specific actions that can be taken. Mindset advice: attitudes to maintain (patience, courage, letting go, etc.). (4–5 sentences.)",
         "SupplementaryNotes": "If relevant, add extra insights depending on the type of question (e.g., love, career, health, wealth). (4–5 sentences.)",
         "Conclusion": "End with a short, reassuring message. (4–5 sentences.)"
-        }
+        }}
 
         FINAL INSTRUCTION:
         Analyze the selected fortune poem step by step. Produce **only** the single JSON object described above (with "LineByLineInterpretation" as the first key) and follow the specified format exactly otherwise you will be *penalized*. Do not output any commentary or section headers outside the JSON.

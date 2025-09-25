@@ -187,6 +187,7 @@ export interface Report {
   status: 'generating' | 'completed';
   created_at: string;
   analysis: {
+    LineByLineInterpretation: string;
     OverallDevelopment: string;
     PositiveFactors: string;
     Challenges: string;
