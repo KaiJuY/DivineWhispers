@@ -76,13 +76,13 @@ const ReportHeader = styled.div`
 
 const ReportTitle = styled.h1`
   color: ${colors.primary};
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 15px;
   line-height: 1.2;
 
   ${media.mobile} {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 `;
 
@@ -134,7 +134,7 @@ const AnalysisSection = styled.div`
 
 const AnalysisTitle = styled.h3`
   color: ${colors.primary};
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 20px;
   display: flex;
@@ -142,7 +142,7 @@ const AnalysisTitle = styled.h3`
   gap: 10px;
 
   ${media.mobile} {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 `;
 
@@ -187,12 +187,16 @@ const ElementCard = styled.div`
 
 const ElementTitle = styled.h4`
   color: ${colors.primary};
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
+
+  ${media.mobile} {
+    font-size: 1rem;
+  }
 `;
 
 const ElementContent = styled.div`
@@ -269,39 +273,39 @@ const ReportPage: React.FC = () => {
               </ReportQuestion>
 
               <AnalysisSection>
-                <AnalysisTitle>{t('report.lineByLineInterpretation', { defaultValue: 'Line-by-Line Interpretation' })}</AnalysisTitle>
-                <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.LineByLineInterpretation}</AnalysisContent>
+                <AnalysisTitle>{t('report.lineByLineInterpretation')}</AnalysisTitle>
+                <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.LineByLineInterpretation?.replace(/\\n/g, '\n') || ''}</AnalysisContent>
               </AnalysisSection>
 
               <AnalysisSection>
-                <AnalysisTitle>{t('report.overallDevelopment', { defaultValue: 'Overall Development' })}</AnalysisTitle>
-                <AnalysisContent>{selectedReport.analysis.OverallDevelopment}</AnalysisContent>
+                <AnalysisTitle>{t('report.overallDevelopment')}</AnalysisTitle>
+                <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.OverallDevelopment?.replace(/\\n/g, '\n') || ''}</AnalysisContent>
               </AnalysisSection>
 
               <ElementsList>
                 <ElementCard>
-                  <ElementTitle>{t('report.positiveFactors', { defaultValue: 'Positive Factors' })}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.PositiveFactors}</ElementContent>
+                  <ElementTitle>{t('report.positiveFactors')}</ElementTitle>
+                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.PositiveFactors?.replace(/\\n/g, '\n') || ''}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.challenges', { defaultValue: 'Challenges' })}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.Challenges}</ElementContent>
+                  <ElementTitle>{t('report.challenges')}</ElementTitle>
+                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.Challenges?.replace(/\\n/g, '\n') || ''}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.suggestedActions', { defaultValue: 'Suggested Actions' })}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.SuggestedActions}</ElementContent>
+                  <ElementTitle>{t('report.suggestedActions')}</ElementTitle>
+                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.SuggestedActions?.replace(/\\n/g, '\n') || ''}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.supplementaryNotes', { defaultValue: 'Supplementary Notes' })}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.SupplementaryNotes}</ElementContent>
+                  <ElementTitle>{t('report.supplementaryNotes')}</ElementTitle>
+                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.SupplementaryNotes?.replace(/\\n/g, '\n') || ''}</ElementContent>
                 </ElementCard>
 
                 <ElementCard>
-                  <ElementTitle>{t('report.conclusion', { defaultValue: 'Conclusion' })}</ElementTitle>
-                  <ElementContent>{selectedReport.analysis.Conclusion}</ElementContent>
+                  <ElementTitle>{t('report.conclusion')}</ElementTitle>
+                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.Conclusion?.replace(/\\n/g, '\n') || ''}</ElementContent>
                 </ElementCard>
               </ElementsList>
             </ReportCard>
