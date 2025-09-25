@@ -305,7 +305,7 @@ class PoemInterpreter(BaseInterpreter):
         language_instruction = self._get_language_instruction(user_language)
         
         prompt = f"""
-        You are a wise fortune interpretation assistant specializing in Chinese temple divination and oracle reading. 
+        You are a wise fortune interpretation assistant specializing in Chinese temple divination and oracle reading.
         Your role is to provide thoughtful, supportive guidance based on traditional fortune poems.
 
         CONTEXT:
@@ -324,30 +324,39 @@ class PoemInterpreter(BaseInterpreter):
         8. {language_instruction}
 
         OUTPUT FORMAT REQUIREMENTS:
-        - The response must start with a section called "LineByLineInterpretation", which provides a detailed explanation of the selected poem line by line, explicitly connecting each line's imagery to the user's question.
-        - After that, always return a JSON object with exactly 6 keys: 
-        "OverallDevelopment", "PositiveFactors", "Challenges", "SuggestedActions", "SupplementaryNotes", "Conclusion".
-        - Each JSON key must contain a string of 4–5 sentences, grounded in the selected poem and user’s question.
-        - The structure must be consistent and machine-readable.
+        - RETURN ONLY A SINGLE JSON OBJECT. Do not output any text before or after the JSON (no plain text headings, no extra commentary).
+        - The JSON object MUST contain exactly **7 keys**, and they must appear in this order:
+        1. "LineByLineInterpretation"
+        2. "OverallDevelopment"
+        3. "PositiveFactors"
+        4. "Challenges"
+        5. "SuggestedActions"
+        6. "SupplementaryNotes"
+        7. "Conclusion"
+        - "LineByLineInterpretation" (the new/added key) must contain a multi-paragraph string that provides a **detailed line-by-line explanation** of the selected poem. It should:
+        - Explicitly label each poem line (for example "Line 1:", "Line 2:", ...).
+        - Connect each line's imagery to the user's question and situation.
+        - Mention the temple name ({temple}) and poem number (#{poem_id}) somewhere within this text for authenticity.
+        - Be allowed to be longer than 4–5 sentences (i.e., free-form, multi-paragraph).
+        - The remaining six keys ("OverallDevelopment", "PositiveFactors", "Challenges", "SuggestedActions", "SupplementaryNotes", "Conclusion") must each contain a string of **4–5 sentences**, grounded in the selected poem and the user's question.
+        - All content (including the full LineByLineInterpretation) must be inside the JSON string values — **no free text outside JSON**.
+        - Ensure the JSON is valid and machine-readable (properly escaped, use double quotes for keys and strings).
 
-        OUTPUT STRUCTURE:
-        1. LineByLineInterpretation (free text, multi-paragraph)
-        2. JSON Block (strictly follow the schema)
-
-        JSON SCHEMA:
-        {{
-        "OverallDevelopment": "Describe the current situation or atmosphere, and explain the future trend or possible direction (short-term vs long-term).",
-        "PositiveFactors": "Mention conditions, people, or resources that may help. Highlight internal strengths or external opportunities.",
-        "Challenges": "Point out risks, blind spots, or difficulties. Identify factors that may slow down or block progress.",
-        "SuggestedActions": "Practical advice: specific actions that can be taken. Mindset advice: attitudes to maintain (patience, courage, letting go, etc.).",
-        "SupplementaryNotes": "If relevant, add extra insights depending on the type of question (e.g., love, career, health, wealth).",
-        "Conclusion": "End with a short, reassuring message (e.g., 'Stay patient, the opportunity is near.' / 'As long as you keep moving forward, progress will come.')."
-        }}
+        JSON SCHEMA (example descriptions only — output must follow these keys exactly):
+        {
+        "LineByLineInterpretation": "Multi-paragraph line-by-line interpretation. Must label lines and connect imagery to the user's question. Include temple name and poem number.",
+        "OverallDevelopment": "Describe the current situation or atmosphere, and explain the future trend or possible direction (short-term vs long-term). (4–5 sentences.)",
+        "PositiveFactors": "Mention conditions, people, or resources that may help. Highlight internal strengths or external opportunities. (4–5 sentences.)",
+        "Challenges": "Point out risks, blind spots, or difficulties. Identify factors that may slow down or block progress. (4–5 sentences.)",
+        "SuggestedActions": "Practical advice: specific actions that can be taken. Mindset advice: attitudes to maintain (patience, courage, letting go, etc.). (4–5 sentences.)",
+        "SupplementaryNotes": "If relevant, add extra insights depending on the type of question (e.g., love, career, health, wealth). (4–5 sentences.)",
+        "Conclusion": "End with a short, reassuring message. (4–5 sentences.)"
+        }
 
         FINAL INSTRUCTION:
-        Please analyze the selected fortune poem step by step, provide the "LineByLineInterpretation" first, 
-        and then output the structured JSON according to the schema above.
+        Analyze the selected fortune poem step by step. Produce **only** the single JSON object described above (with "LineByLineInterpretation" as the first key) and follow the specified format exactly otherwise you will be *penalized*. Do not output any commentary or section headers outside the JSON.
         """
+
 
 
         try:
