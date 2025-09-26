@@ -435,7 +435,7 @@ const AnalysisMeta = styled.div`
   font-size: 0.8rem;
 `;
 
-const AnalysisAction = styled.div`
+const AnalysisAction = styled.button`
   color: ${colors.primary};
   font-size: 0.9rem;
   font-weight: 600;
@@ -444,6 +444,7 @@ const AnalysisAction = styled.div`
   border-radius: 8px;
   background: rgba(212, 175, 55, 0.1);
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background: rgba(212, 175, 55, 0.2);
@@ -1125,20 +1126,17 @@ const AccountPage: React.FC = () => {
                 </div>
               ) : (
                 userReports.map((report) => (
-                  <AnalysisItem
-                    key={report.id}
-                    onClick={() => handleViewReport(report.id)}
-                  >
+                  <AnalysisItem key={report.id}>
                     <AnalysisInfo>
-                      <AnalysisTitle>{report.title}</AnalysisTitle>
-                      <AnalysisSubtitle>{report.summary}</AnalysisSubtitle>
+                      <AnalysisTitle>Report ID: {report.id.substring(0, 8)}</AnalysisTitle>
+                      <AnalysisSubtitle>Question: {report.summary}</AnalysisSubtitle>
                       <AnalysisMeta>
-                        Generated on {new Date(report.created_at).toLocaleDateString()} •
-                        Type: {report.type} •
-                        Status: {report.status}
+                        Generated: {new Date(report.created_at).toLocaleDateString()}
                       </AnalysisMeta>
                     </AnalysisInfo>
-                    <AnalysisAction>{t('account.viewReport')}</AnalysisAction>
+                    <AnalysisAction onClick={() => handleViewReport(report.id)}>
+                      {t('account.viewReport')}
+                    </AnalysisAction>
                   </AnalysisItem>
                 ))
               )}

@@ -440,43 +440,51 @@ async def get_user_reports(
     db: AsyncSession = Depends(get_db)
 ):
     """Get user's fortune consultation reports"""
-    # Query chat_tasks for completed reports
-    from app.services.task_queue_service import task_queue_service
-
     try:
-        # Get user's completed chat tasks
-        chat_tasks = await task_queue_service.get_user_tasks(
-            user_id=current_user.user_id,
-            limit=limit,
-            offset=offset,
-            db=db
-        )
+        # Simple approach: Query the chat_tasks table directly with raw SQL
+        from sqlalchemy import text
+
+        query = text("""
+            SELECT task_id, question, created_at, status, response_text
+            FROM chat_tasks
+            WHERE user_id = :user_id AND status = 'COMPLETED' AND response_text IS NOT NULL
+            ORDER BY created_at DESC
+            LIMIT :limit OFFSET :offset
+        """)
+
+        result = await db.execute(query, {
+            "user_id": current_user.user_id,
+            "limit": limit,
+            "offset": offset
+        })
+
+        rows = result.fetchall()
 
         reports = []
-        for task in chat_tasks:
-            if task.status.value == "completed" and task.response_text:
-                # Create a summary from response text
-                summary = task.response_text[:200] + "..." if len(task.response_text) > 200 else task.response_text
+        for row in rows:
+            task_id, question, created_at, status, response_text = row
 
-                reports.append({
-                    "id": task.task_id,
-                    "created_at": task.created_at.isoformat() if task.created_at else None,
-                    "type": "fortune",
-                    "title": f"Fortune Reading #{task.task_id[:8]}",
-                    "summary": summary,
-                    "status": "completed"
-                })
+            reports.append({
+                "id": task_id,
+                "created_at": created_at,
+                "type": "fortune",
+                "title": f"Fortune Reading #{task_id[:8]}",
+                "summary": question,
+                "status": "completed"
+            })
 
         return {
             "reports": reports,
             "total_count": len(reports),
-            "has_more": len(chat_tasks) == limit
+            "has_more": len(rows) == limit
         }
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to retrieve reports"
+            detail=f"Failed to retrieve reports: {str(e)}"
         )
 
 
@@ -496,57 +504,103 @@ async def get_user_report_details(
     db: AsyncSession = Depends(get_db)
 ):
     """Get detailed data for a single user report"""
-    from app.services.task_queue_service import task_queue_service
-
     try:
-        # Get the specific chat task
-        chat_task = await task_queue_service.get_task_by_id(report_id, db)
+        # Query the chat_tasks table directly with raw SQL
+        from sqlalchemy import text
 
-        if not chat_task or chat_task.user_id != current_user.user_id:
+        query = text("""
+            SELECT task_id, user_id, deity_id, fortune_number, question,
+                   response_text, status, created_at
+            FROM chat_tasks
+            WHERE task_id = :task_id AND user_id = :user_id
+        """)
+
+        result = await db.execute(query, {
+            "task_id": report_id,
+            "user_id": current_user.user_id
+        })
+
+        row = result.fetchone()
+
+        if not row:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Report not found"
             )
 
-        if chat_task.status.value != "completed" or not chat_task.response_text:
+        (task_id, user_id, deity_id, fortune_number, question,
+         response_text, status, created_at) = row
+
+        if status != "COMPLETED" or not response_text:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Report not completed or has no data"
             )
 
         # Parse the response text to create structured analysis
-        # For now, use the response text as the main content
-        response_text = chat_task.response_text or ""
+        def parse_response_to_sections(text: str) -> dict:
+            """Parse plain text response into structured sections for better display"""
 
-        # Try to extract structured information from response text
-        # This is a simple parsing - could be enhanced with better structure
-        lines = response_text.split('\n')
-        analysis_parts = {
-            "LineByLineInterpretation": response_text,
-            "OverallDevelopment": "Overall development insights based on your fortune consultation.",
-            "PositiveFactors": "Positive aspects revealed in your reading.",
-            "Challenges": "Challenges and areas to be mindful of.",
-            "SuggestedActions": "Recommended actions based on your fortune.",
-            "SupplementaryNotes": "Additional insights and considerations.",
-            "Conclusion": "Summary and final guidance from your reading."
-        }
+            # First, try to parse as JSON in case some responses are structured
+            import json
+            try:
+                parsed_json = json.loads(text)
+                if isinstance(parsed_json, dict) and "LineByLineInterpretation" in parsed_json:
+                    return parsed_json
+            except (json.JSONDecodeError, TypeError):
+                pass
+
+            # If not JSON, create structured sections from plain text
+            lines = text.split('\n')
+            paragraphs = [p.strip() for p in text.split('\n\n') if p.strip()]
+
+            # Simple heuristic-based parsing
+            full_text = text.strip()
+
+            # Split text into logical sections
+            if len(paragraphs) >= 4:
+                # Multiple paragraphs - distribute across sections
+                return {
+                    "LineByLineInterpretation": paragraphs[0] if paragraphs else full_text[:len(full_text)//2],
+                    "OverallDevelopment": paragraphs[1] if len(paragraphs) > 1 else "This reading provides guidance for your current situation and path forward.",
+                    "PositiveFactors": paragraphs[2] if len(paragraphs) > 2 else "Focus on the opportunities and strengths revealed in this consultation.",
+                    "Challenges": "Be mindful of obstacles and areas requiring careful attention in your journey.",
+                    "SuggestedActions": paragraphs[3] if len(paragraphs) > 3 else "Take thoughtful action based on the wisdom shared in this reading.",
+                    "SupplementaryNotes": "Additional insights: Consider the timing and context of your question for deeper understanding.",
+                    "Conclusion": full_text[-200:] if len(full_text) > 200 else full_text
+                }
+            else:
+                # Short text - use as main interpretation with generated supporting sections
+                return {
+                    "LineByLineInterpretation": full_text,
+                    "OverallDevelopment": "This fortune reading addresses your question with traditional wisdom and guidance.",
+                    "PositiveFactors": "Look for the opportunities and positive aspects highlighted in your consultation.",
+                    "Challenges": "Consider the challenges and areas requiring thoughtful attention.",
+                    "SuggestedActions": "Apply the guidance provided to make informed decisions moving forward.",
+                    "SupplementaryNotes": f"Your question: '{question}' has been addressed through the wisdom of {deity_id}.",
+                    "Conclusion": "Trust in the guidance provided and take appropriate action with wisdom and patience."
+                }
+
+        analysis_parts = parse_response_to_sections(response_text)
 
         return {
-            "id": chat_task.task_id,
-            "title": f"Fortune Reading #{chat_task.task_id[:8]}",
-            "question": chat_task.question,
-            "deity_name": chat_task.deity_id,
-            "fortune_number": chat_task.fortune_number,
+            "id": task_id,
+            "title": f"Fortune Reading #{task_id[:8]}",
+            "question": question,
+            "deity_name": deity_id,
+            "fortune_number": fortune_number,
             "cost": 10,
             "status": "completed",
-            "created_at": chat_task.created_at.isoformat() if chat_task.created_at else None,
+            "created_at": created_at,
             "analysis": analysis_parts
         }
 
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to retrieve report details"
+            detail=f"Failed to retrieve report details: {str(e)}"
         )
