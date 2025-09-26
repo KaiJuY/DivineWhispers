@@ -4,6 +4,7 @@ import { colors, gradients, media, skewFadeIn } from '../assets/styles/globalSty
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { usePagesTranslation } from '../hooks/useTranslation';
+import { useAppNavigate } from '../contexts/RouterContext';
 
 const ReportContainer = styled.div`
   width: 100%;
@@ -303,19 +304,20 @@ const IncompleteSection = styled.div`
 `;
 
 const ReportPage: React.FC = () => {
-  const { selectedReport, setCurrentPage } = useAppStore();
+  const { selectedReport } = useAppStore();
   const { t } = usePagesTranslation();
+  const navigate = useAppNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const handleBackClick = () => {
-    setCurrentPage('account');
+    navigate('/account');
   };
 
   if (!selectedReport) {
-    setCurrentPage('account');
+    navigate('/account');
     return null;
   }
 
