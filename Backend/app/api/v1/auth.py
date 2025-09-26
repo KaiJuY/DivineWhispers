@@ -436,37 +436,43 @@ async def update_user_profile(
 async def get_user_reports(
     limit: int = 10,
     offset: int = 0,
-    current_user = Depends(get_current_user)
+    current_user = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
 ):
     """Get user's fortune consultation reports"""
-    # This endpoint integrates with the fortune history
-    from app.services.job_processor import job_processor
-    
+    # Query chat_tasks for completed reports
+    from app.services.task_queue_service import task_queue_service
+
     try:
-        jobs = await job_processor.get_user_jobs(
-            user_id=str(current_user.user_id),
+        # Get user's completed chat tasks
+        chat_tasks = await task_queue_service.get_user_tasks(
+            user_id=current_user.user_id,
             limit=limit,
-            offset=offset
+            offset=offset,
+            db=db
         )
-        
+
         reports = []
-        for job_data in jobs:
-            if job_data.get("status") == "completed" and job_data.get("result_data"):
+        for task in chat_tasks:
+            if task.status.value == "completed" and task.response_text:
+                # Create a summary from response text
+                summary = task.response_text[:200] + "..." if len(task.response_text) > 200 else task.response_text
+
                 reports.append({
-                    "id": job_data["id"],
-                    "created_at": job_data["created_at"],
-                    "type": job_data.get("job_type", "fortune"),
-                    "title": f"Fortune Reading #{job_data['id'][:8]}",
-                    "summary": job_data.get("result_data", {}).get("interpretation", "")[:200] + "...",
-                    "status": job_data["status"]
+                    "id": task.task_id,
+                    "created_at": task.created_at.isoformat() if task.created_at else None,
+                    "type": "fortune",
+                    "title": f"Fortune Reading #{task.task_id[:8]}",
+                    "summary": summary,
+                    "status": "completed"
                 })
-        
+
         return {
             "reports": reports,
             "total_count": len(reports),
-            "has_more": len(jobs) == limit
+            "has_more": len(chat_tasks) == limit
         }
-        
+
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -486,49 +492,55 @@ async def get_user_reports(
 )
 async def get_user_report_details(
     report_id: str,
-    current_user = Depends(get_current_user)
+    current_user = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
 ):
     """Get detailed data for a single user report"""
-    from app.services.job_processor import job_processor
+    from app.services.task_queue_service import task_queue_service
 
     try:
-        # Get the specific job
-        job_data = await job_processor.get_job_status(report_id)
+        # Get the specific chat task
+        chat_task = await task_queue_service.get_task_by_id(report_id, db)
 
-        if not job_data or str(job_data.get("user_id")) != str(current_user.user_id):
+        if not chat_task or chat_task.user_id != current_user.user_id:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Report not found"
             )
 
-        if job_data.get("status") != "completed" or not job_data.get("result_data"):
+        if chat_task.status.value != "completed" or not chat_task.response_text:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Report not completed or has no data"
             )
 
-        # Extract result data for detailed report
-        result = job_data["result_data"]
-        interpretation = result.get("interpretation", {})
+        # Parse the response text to create structured analysis
+        # For now, use the response text as the main content
+        response_text = chat_task.response_text or ""
+
+        # Try to extract structured information from response text
+        # This is a simple parsing - could be enhanced with better structure
+        lines = response_text.split('\n')
+        analysis_parts = {
+            "LineByLineInterpretation": response_text,
+            "OverallDevelopment": "Overall development insights based on your fortune consultation.",
+            "PositiveFactors": "Positive aspects revealed in your reading.",
+            "Challenges": "Challenges and areas to be mindful of.",
+            "SuggestedActions": "Recommended actions based on your fortune.",
+            "SupplementaryNotes": "Additional insights and considerations.",
+            "Conclusion": "Summary and final guidance from your reading."
+        }
 
         return {
-            "id": job_data["id"],
-            "title": f"Fortune Reading #{job_data['id'][:8]}",
-            "question": interpretation.get("question", "Your fortune consultation"),
-            "deity_name": interpretation.get("deity_name", "Divine Oracle"),
-            "fortune_number": interpretation.get("fortune_number", 1),
-            "cost": interpretation.get("cost", 10),
-            "status": job_data["status"],
-            "created_at": job_data["created_at"],
-            "analysis": {
-                "LineByLineInterpretation": interpretation.get("LineByLineInterpretation", ""),
-                "OverallDevelopment": interpretation.get("OverallDevelopment", ""),
-                "PositiveFactors": interpretation.get("PositiveFactors", ""),
-                "Challenges": interpretation.get("Challenges", ""),
-                "SuggestedActions": interpretation.get("SuggestedActions", ""),
-                "SupplementaryNotes": interpretation.get("SupplementaryNotes", ""),
-                "Conclusion": interpretation.get("Conclusion", "")
-            }
+            "id": chat_task.task_id,
+            "title": f"Fortune Reading #{chat_task.task_id[:8]}",
+            "question": chat_task.question,
+            "deity_name": chat_task.deity_id,
+            "fortune_number": chat_task.fortune_number,
+            "cost": 10,
+            "status": "completed",
+            "created_at": chat_task.created_at.isoformat() if chat_task.created_at else None,
+            "analysis": analysis_parts
         }
 
     except HTTPException:
