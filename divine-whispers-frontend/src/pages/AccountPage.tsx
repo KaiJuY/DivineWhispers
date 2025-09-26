@@ -5,6 +5,7 @@ import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { usePagesTranslation } from '../hooks/useTranslation';
 import { profileService, UserProfile, UserReport, PurchaseRecord as APIPurchaseRecord } from '../services/profileService';
+import { useAppNavigate } from '../contexts/RouterContext';
 
 interface PurchaseRecord {
   id: string;
@@ -667,8 +668,9 @@ const ModalButton = styled.button<{ variant?: 'primary' | 'secondary' }>`
 `;
 
 const AccountPage: React.FC = () => {
-  const { auth } = useAppStore();
+  const { auth, setSelectedReport } = useAppStore();
   const { t } = usePagesTranslation();
+  const navigate = useAppNavigate();
 
   // State for user profile data
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -886,15 +888,46 @@ const AccountPage: React.FC = () => {
     }
   };
 
-  const handleViewReport = (reportId: string) => {
+  const handleViewReport = async (reportId: string) => {
     console.log('Report view requested for:', reportId);
 
     // Find the report in the fetched data
-    const report = userReports.find(r => r.id === reportId);
+    const userReport = userReports.find(r => r.id === reportId);
 
-    if (report) {
-      // For now, show a summary since full report viewing might need more implementation
-      alert(`報告: ${report.title}\n\n摘要: ${report.summary}\n\n狀態: ${report.status}\n創建時間: ${new Date(report.created_at).toLocaleString()}`);
+    if (userReport) {
+      try {
+        // Fetch the full report details from the backend
+        const reportDetails = await profileService.getReportDetails(reportId);
+
+        // Transform backend data to Report format for the ReportPage
+        const transformedReport = {
+          id: reportDetails.id,
+          title: reportDetails.title,
+          question: reportDetails.question || "Your fortune consultation",
+          deity_id: "default", // Backend doesn't provide deity_id yet
+          deity_name: reportDetails.deity_name || "Divine Oracle",
+          fortune_number: reportDetails.fortune_number || Math.floor(Math.random() * 100) + 1,
+          cost: reportDetails.cost || 10,
+          status: (reportDetails.status === 'completed' ? 'completed' : 'generating') as 'completed' | 'generating',
+          created_at: reportDetails.created_at,
+          analysis: {
+            LineByLineInterpretation: reportDetails.analysis?.LineByLineInterpretation || "Analysis is being prepared...",
+            OverallDevelopment: reportDetails.analysis?.OverallDevelopment || "Overall development analysis will appear here.",
+            PositiveFactors: reportDetails.analysis?.PositiveFactors || "Positive factors will be listed here.",
+            Challenges: reportDetails.analysis?.Challenges || "Challenges and obstacles will be analyzed here.",
+            SuggestedActions: reportDetails.analysis?.SuggestedActions || "Recommended actions will be provided here.",
+            SupplementaryNotes: reportDetails.analysis?.SupplementaryNotes || "Additional notes and observations.",
+            Conclusion: reportDetails.analysis?.Conclusion || "Summary and final thoughts."
+          }
+        };
+
+        // Set the selected report in the store and navigate to report page
+        setSelectedReport(transformedReport);
+        navigate('/report');
+      } catch (error) {
+        console.error('Error fetching report details:', error);
+        alert('無法獲取報告詳情，請重試。\n\nUnable to fetch report details, please try again.');
+      }
     } else {
       alert('報告未找到，請重試。\n\nReport not found, please try again.');
     }

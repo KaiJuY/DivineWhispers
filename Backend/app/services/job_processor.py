@@ -191,7 +191,8 @@ class JobProcessor:
                     "status": job.status.value,
                     "created_at": job.created_at,
                     "completed_at": job.completed_at,
-                    "has_result": bool(job.result_data)
+                    "has_result": bool(job.result_data),
+                    "result_data": job.result_data
                 }
                 for job in jobs
             ]

@@ -472,3 +472,69 @@ async def get_user_reports(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to retrieve reports"
         )
+
+
+@router.get(
+    "/profile/reports/{report_id}",
+    summary="Get single user fortune report",
+    description="Get detailed data for a specific user's fortune consultation report",
+    responses={
+        200: {"description": "Report retrieved successfully"},
+        401: {"description": "Authentication required"},
+        404: {"description": "Report not found"}
+    }
+)
+async def get_user_report_details(
+    report_id: str,
+    current_user = Depends(get_current_user)
+):
+    """Get detailed data for a single user report"""
+    from app.services.job_processor import job_processor
+
+    try:
+        # Get the specific job
+        job_data = await job_processor.get_job_status(report_id)
+
+        if not job_data or str(job_data.get("user_id")) != str(current_user.user_id):
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Report not found"
+            )
+
+        if job_data.get("status") != "completed" or not job_data.get("result_data"):
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Report not completed or has no data"
+            )
+
+        # Extract result data for detailed report
+        result = job_data["result_data"]
+        interpretation = result.get("interpretation", {})
+
+        return {
+            "id": job_data["id"],
+            "title": f"Fortune Reading #{job_data['id'][:8]}",
+            "question": interpretation.get("question", "Your fortune consultation"),
+            "deity_name": interpretation.get("deity_name", "Divine Oracle"),
+            "fortune_number": interpretation.get("fortune_number", 1),
+            "cost": interpretation.get("cost", 10),
+            "status": job_data["status"],
+            "created_at": job_data["created_at"],
+            "analysis": {
+                "LineByLineInterpretation": interpretation.get("LineByLineInterpretation", ""),
+                "OverallDevelopment": interpretation.get("OverallDevelopment", ""),
+                "PositiveFactors": interpretation.get("PositiveFactors", ""),
+                "Challenges": interpretation.get("Challenges", ""),
+                "SuggestedActions": interpretation.get("SuggestedActions", ""),
+                "SupplementaryNotes": interpretation.get("SupplementaryNotes", ""),
+                "Conclusion": interpretation.get("Conclusion", "")
+            }
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to retrieve report details"
+        )

@@ -155,6 +155,15 @@ class ProfileService {
       throw new Error(`Failed to fetch purchase history: ${error.message}`);
     }
   }
+
+  async getReportDetails(reportId: string): Promise<any> {
+    try {
+      const response = await apiClient.get(`/api/v1/auth/profile/reports/${reportId}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(`Failed to fetch report details: ${error.message}`);
+    }
+  }
 }
 
 export const profileService = new ProfileService();
