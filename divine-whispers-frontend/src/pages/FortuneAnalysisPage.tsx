@@ -571,27 +571,47 @@ const FortuneAnalysisPage: React.FC = () => {
     const initializeChat = () => {
       if (!fortune || !selectedDeity || !selectedFortuneNumber || !auth.user) return;
 
-      // Add initial assistant message
-      const initialMessage: ChatMessage = {
-        id: 'initial_001',
-        type: 'assistant',
-        message: `Welcome! I'm here to help you understand the wisdom of ${selectedDeity.name}'s fortune #${selectedFortuneNumber}. Feel free to ask me anything about this divine guidance - its meaning, how it applies to your life, or any specific questions you have.`,
-        timestamp: new Date().toISOString()
-      };
+      // Only initialize if messages are empty to avoid infinite loop
+      setMessages(prevMessages => {
+        // If we already have the initial message, don't update
+        if (prevMessages.length > 0 && prevMessages[0].id === 'initial_001') {
+          // Update the message content for language change but keep the same structure
+          const updatedMessage = {
+            ...prevMessages[0],
+            message: t('fortuneAnalysis.chatWelcomeMessage', { deityName: selectedDeity.name, fortuneNumber: selectedFortuneNumber })
+          };
+          return [updatedMessage, ...prevMessages.slice(1)];
+        }
 
-      setMessages([initialMessage]);
+        // Add initial assistant message
+        const initialMessage: ChatMessage = {
+          id: 'initial_001',
+          type: 'assistant',
+          message: t('fortuneAnalysis.chatWelcomeMessage', { deityName: selectedDeity.name, fortuneNumber: selectedFortuneNumber }),
+          timestamp: new Date().toISOString()
+        };
+
+        return [initialMessage];
+      });
     };
 
     initializeChat();
 
-    // Cleanup on unmount
+    // Comprehensive cleanup on unmount - this is crucial for preventing navigation issues
     return () => {
+      console.log('🧹 FortuneAnalysisPage cleanup: clearing all async operations');
+
+      // Clean up SSE connections
       if (sseCleanupRef.current) {
         sseCleanupRef.current();
         sseCleanupRef.current = null;
       }
+
+      // Reset loading states to prevent interference
+      setIsLoading(false);
+      setCurrentTaskId(null);
     };
-  }, [fortune, selectedDeity, selectedFortuneNumber, auth.user]);
+  }, [fortune, selectedDeity, selectedFortuneNumber, auth.user, currentLanguage]);
 
   const handleBackClick = () => {
     navigate('/fortune-selection');
@@ -599,6 +619,8 @@ const FortuneAnalysisPage: React.FC = () => {
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
+
+    console.log('🚀 Starting message send process...');
 
     const userQuestion = inputMessage.trim();
     const newMessage: ChatMessage = {
@@ -612,6 +634,12 @@ const FortuneAnalysisPage: React.FC = () => {
     setInputMessage('');
     setIsLoading(true);
 
+    console.log('📤 Sending question to async chat service:', {
+      deity_id: selectedDeity!.id,
+      fortune_number: selectedFortuneNumber!,
+      question: userQuestion
+    });
+
     try {
       // Submit question to async chat service
       const taskResponse = await asyncChatService.askQuestion({
@@ -623,6 +651,8 @@ const FortuneAnalysisPage: React.FC = () => {
           deity_name: selectedDeity!.name
         }
       });
+
+      console.log('✅ Successfully received task response:', taskResponse);
 
       setCurrentTaskId(taskResponse.task_id);
 
@@ -817,15 +847,35 @@ const FortuneAnalysisPage: React.FC = () => {
           }
         },
         (error) => {
-          console.error('SSE error:', error);
+          console.error('❌ SSE ERROR:', error);
+          console.error('❌ SSE Error type:', typeof error);
+          console.error('❌ SSE Error message:', error instanceof Error ? error.message : String(error));
           setIsLoading(false);
           setCurrentTaskId(null);
+
+          // Check if SSE error is authentication-related
+          const errorMsg = error instanceof Error ? error.message : String(error);
+          const isAuthError =
+            errorMsg.includes('Authentication failed, please log in again') ||
+            errorMsg.includes('401') ||
+            errorMsg.includes('Authorization') ||
+            errorMsg.includes('Unauthorized');
+
+          if (isAuthError) {
+            console.log('🔐 SSE Authentication error detected, cleaning up');
+
+            // Additional cleanup for SSE auth errors
+            setCurrentTaskId(null);
+          }
 
           const errorMessage: ChatMessage = {
             id: `msg_${Date.now()}`,
             type: 'system',
-            message: 'Connection lost. Please try again.',
-            timestamp: new Date().toISOString()
+            message: isAuthError
+              ? t('fortuneAnalysis.authExpired')
+              : 'Connection lost. Please try again.',
+            timestamp: new Date().toISOString(),
+            reportOfferQuestion: isAuthError ? 'LOGIN_REDIRECT' : undefined
           };
           setMessages(prev => [...prev, errorMessage]);
         }
@@ -835,15 +885,63 @@ const FortuneAnalysisPage: React.FC = () => {
       sseCleanupRef.current = cleanup;
 
     } catch (error) {
-      console.error('Failed to submit question:', error);
+      console.error('❌ ERROR in handleSendMessage:', error);
+      console.error('❌ Error type:', typeof error);
+      console.error('❌ Error constructor:', error?.constructor?.name);
+      console.error('❌ Error code:', (error as any)?.code);
+      console.error('❌ Error message:', error instanceof Error ? error.message : String(error));
+      console.error('❌ Error response:', (error as any)?.response);
+      console.error('❌ Full error object:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
       setIsLoading(false);
 
-      const errorMessage: ChatMessage = {
-        id: `msg_${Date.now()}`,
-        type: 'system',
-        message: error instanceof Error ? error.message : 'Failed to submit your question. Please try again.',
-        timestamp: new Date().toISOString()
-      };
+      // Check if it's an authentication error
+      let errorMessage: ChatMessage;
+      const errorCode = (error as any)?.code;
+      const errorMsg = error instanceof Error ? error.message : String(error);
+      const errorResponse = (error as any)?.response;
+
+      // Check for various authentication error patterns
+      const isAuthError =
+        errorCode === 'AUTH_FAILED' ||
+        errorMsg.includes('Authentication failed, please log in again') ||
+        errorMsg.includes('401') ||
+        errorMsg.includes('Authorization') ||
+        errorMsg.includes('Unauthorized') ||
+        errorResponse?.status === 401 ||
+        errorResponse?.data?.error?.code === 401 ||
+        errorMsg.includes('Authorization header missing');
+
+      if (isAuthError) {
+        // Authentication error - cleanup and show login message
+        console.log('🔐 Authentication error detected, cleaning up chat state');
+
+        // Stop any ongoing operations
+        setIsLoading(false);
+        setCurrentTaskId(null);
+
+        // Clean up SSE connections
+        if (sseCleanupRef.current) {
+          sseCleanupRef.current();
+          sseCleanupRef.current = null;
+        }
+
+        errorMessage = {
+          id: `msg_${Date.now()}`,
+          type: 'system',
+          message: t('fortuneAnalysis.authExpired'),
+          timestamp: new Date().toISOString(),
+          reportOfferQuestion: 'LOGIN_REDIRECT' // Special flag for login button
+        };
+      } else {
+        // General error
+        errorMessage = {
+          id: `msg_${Date.now()}`,
+          type: 'system',
+          message: error instanceof Error ? error.message : 'Failed to submit your question. Please try again.',
+          timestamp: new Date().toISOString()
+        };
+      }
+
       setMessages(prev => [...prev, errorMessage]);
     }
   };
@@ -917,8 +1015,54 @@ const FortuneAnalysisPage: React.FC = () => {
     }
   };
 
+  const handleLoginRedirect = async () => {
+    // Clear authentication state and navigate to login
+    try {
+      console.log('🔐 Clearing authentication state due to session expiry');
+
+      // Clear the auth state in the store
+      const { logout } = useAppStore.getState();
+      await logout();
+
+      // Navigate to landing/login page
+      navigate('/');
+    } catch (error) {
+      console.error('Error during login redirect:', error);
+      // Force navigation even if logout fails
+      navigate('/');
+    }
+  };
+
+  // Global cleanup when component unmounts (for navigation)
+  useEffect(() => {
+    return () => {
+      console.log('🧹 FortuneAnalysisPage: Global unmount cleanup');
+
+      // Ensure all loading states are cleared
+      setIsLoading(false);
+      setCurrentTaskId(null);
+
+      // Clear any remaining SSE connections
+      if (sseCleanupRef.current) {
+        try {
+          sseCleanupRef.current();
+        } catch (e) {
+          console.warn('Error during SSE cleanup:', e);
+        }
+        sseCleanupRef.current = null;
+      }
+    };
+  }, []); // Empty deps = only runs on unmount
+
+  // Handle missing deity or fortune number
+  useEffect(() => {
+    if (!selectedDeity || !selectedFortuneNumber) {
+      console.log('⚠️ Missing deity or fortune number, redirecting to deities page');
+      navigate('/deities');
+    }
+  }, [selectedDeity, selectedFortuneNumber, navigate]);
+
   if (!selectedDeity || !selectedFortuneNumber) {
-    navigate('/deities');
     return null;
   }
 
@@ -1045,25 +1189,55 @@ const FortuneAnalysisPage: React.FC = () => {
                     );
                   }
 
-                  // Offer card to generate a report
+                  // Offer card to generate a report or handle login redirect
                   if (message.type === 'system' && message.reportOfferQuestion) {
-                    return (
-                      <div key={message.id}>
-                        <ReportMessage>
-                          <ReportHeader>
-                            <ReportTitle>
-                              {t('fortuneAnalysis.reportOfferTitle', { defaultValue: 'Personal Report Offer' })}
-                            </ReportTitle>
-                            <ReportButton onClick={() => handleGenerateReport(message.reportOfferQuestion!)}>
-                              {t('fortuneAnalysis.generateReport', { defaultValue: 'Generate Report' })}
-                            </ReportButton>
-                          </ReportHeader>
-                          <div style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                            {message.message}
-                          </div>
-                        </ReportMessage>
-                      </div>
-                    );
+                    if (message.reportOfferQuestion === 'LOGIN_REDIRECT') {
+                      // Authentication error - show login redirect
+                      return (
+                        <div key={message.id}>
+                          <ReportMessage style={{
+                            background: 'linear-gradient(135deg, rgba(255, 100, 100, 0.2) 0%, rgba(200, 50, 50, 0.1) 100%)',
+                            border: '2px solid rgba(255, 100, 100, 0.4)'
+                          }}>
+                            <ReportHeader>
+                              <ReportTitle style={{ color: 'rgba(255, 200, 200, 0.9)' }}>
+                                🔐 Session Expired
+                              </ReportTitle>
+                              <ReportButton
+                                onClick={handleLoginRedirect}
+                                style={{
+                                  background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'
+                                }}
+                              >
+                                {t('fortuneAnalysis.loginButton')}
+                              </ReportButton>
+                            </ReportHeader>
+                            <div style={{ color: 'rgba(255, 200, 200, 0.9)' }}>
+                              {message.message}
+                            </div>
+                          </ReportMessage>
+                        </div>
+                      );
+                    } else {
+                      // Regular report offer
+                      return (
+                        <div key={message.id}>
+                          <ReportMessage>
+                            <ReportHeader>
+                              <ReportTitle>
+                                {t('fortuneAnalysis.reportOfferTitle', { defaultValue: 'Personal Report Offer' })}
+                              </ReportTitle>
+                              <ReportButton onClick={() => handleGenerateReport(message.reportOfferQuestion!)}>
+                                {t('fortuneAnalysis.generateReport', { defaultValue: 'Generate Report' })}
+                              </ReportButton>
+                            </ReportHeader>
+                            <div style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                              {message.message}
+                            </div>
+                          </ReportMessage>
+                        </div>
+                      );
+                    }
                   }
 
                   if (message.type === 'progress') {

@@ -151,12 +151,15 @@ const enTranslations = {
       chatTitle: "In-Depth Interpretation",
       chatSubtitle: "Based on your personal situation, a detailed discussion of the meaning this divination poem brings",
       chatPlaceholder: "Ask about this fortune...",
+      chatWelcomeMessage: "Welcome! I'm here to help you understand the wisdom of {{deityName}}'s fortune #{{fortuneNumber}}. Feel free to ask me anything about this divine guidance - its meaning, how it applies to your life, or any specific questions you have.",
       sendButton: "Send",
       reportGenerated: "📊 Report Generated",
       viewReportButton: "View Report",
       reportMessage: "Your personalized report has been generated successfully! Click below to view your detailed divine analysis.",
       generatingReport: "🔮 Generating your personalized report...",
-      insufficientCoins: "⚠️ You need at least 5 coins to generate a detailed report. Please purchase more coins or ask a general question that doesn't require report generation."
+      insufficientCoins: "⚠️ You need at least 5 coins to generate a detailed report. Please purchase more coins or ask a general question that doesn't require report generation.",
+      authExpired: "🔐 Your session has expired. Please log in again to continue.",
+      loginButton: "Go to Login"
     },
     account: {
       title: "My Account",
@@ -535,12 +538,15 @@ const zhTranslations = {
       chatTitle: "深度解析",
       chatSubtitle: "根據您個人情況，深入討論此籤詩帶來的意義",
       chatPlaceholder: "詢問關於這個籤詩...",
+      chatWelcomeMessage: "歡迎！我在這裡幫助您理解{{deityName}}第{{fortuneNumber}}號籤詩的智慧。請隨時詢問關於這份神聖指引的任何問題 - 它的含義、如何應用於您的生活，或您有的任何具體問題。",
       sendButton: "發送",
       reportGenerated: "📊 報告已生成",
       viewReportButton: "查看報告",
       reportMessage: "您的個人化報告已成功生成！點擊下方查看您的詳細神聖分析。",
       generatingReport: "🔮 正在生成您的個人化報告...",
-      insufficientCoins: "⚠️ 您需要至少 5 個錢幣才能生成詳細報告。"
+      insufficientCoins: "⚠️ 您需要至少 5 個錢幣才能生成詳細報告。",
+      authExpired: "🔐 您的登入會話已過期。請重新登入以繼續。",
+      loginButton: "前往登入"
     },
     account: {
       title: "我的帳戶",
@@ -796,12 +802,15 @@ const jpTranslations = {
       chatTitle: "深層的な解釈",
       chatSubtitle: "あなたの個人状況に基づき、この籤詩がもたらす意味を深く議論する",
       chatPlaceholder: "この運勢について質問する...",
+      chatWelcomeMessage: "ようこそ！私は{{deityName}}の運勢#{{fortuneNumber}}の知恵を理解するお手伝いをします。この神聖なガイダンスについて何でもお気軽にお聞きください - その意味、あなたの人生への適用方法、または具体的なご質問など。",
       sendButton: "送信",
       reportGenerated: "📊 レポート生成完了",
       viewReportButton: "レポートを見る",
       reportMessage: "パーソナライズされたレポートが正常に生成されました！下のボタンをクリックして詳細な神聖分析をご覧ください。",
       generatingReport: "🔮 パーソナライズされたレポートを生成中...",
-      insufficientCoins: "⚠️ 詳細レポートを生成するには最低5コインが必要です。コインを購入するか、レポート生成を必要としない一般的な質問をしてください。"
+      insufficientCoins: "⚠️ 詳細レポートを生成するには最低5コインが必要です。コインを購入するか、レポート生成を必要としない一般的な質問をしてください。",
+      authExpired: "🔐 セッションが期限切れです。続行するには再度ログインしてください。",
+      loginButton: "ログインへ"
     },
     account: {
       title: "マイアカウント",

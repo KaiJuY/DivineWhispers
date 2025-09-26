@@ -83,14 +83,41 @@ export class AsyncChatService {
     };
 
     try {
-      return await apiClient.post(`${this.baseUrl}/ask-question`, mappedRequest);
+      console.log('🔄 AsyncChatService: Sending request to backend...');
+      const response = await apiClient.post(`${this.baseUrl}/ask-question`, mappedRequest);
+      console.log('✅ AsyncChatService: Successfully got response from backend');
+      return response;
     } catch (error: any) {
+      console.error('❌ AsyncChatService ERROR:', error);
+      console.error('❌ AsyncChatService Error code:', error?.code);
+      console.error('❌ AsyncChatService Error response:', error?.response);
+      console.error('❌ AsyncChatService Error response data:', error?.response?.data);
+
       // Handle authentication errors specifically
       if (error.code === 'AUTH_FAILED') {
+        console.log('🔐 AsyncChatService: Detected AUTH_FAILED error');
         throw new Error('Authentication failed, please log in again');
       }
 
-      const errorMessage = error.response?.data?.detail || error.message || 'Failed to submit question';
+      // Check HTTP response for auth errors
+      if (error.response?.status === 401) {
+        console.log('🔐 AsyncChatService: Detected HTTP 401 error');
+        throw new Error('Authentication failed, please log in again');
+      }
+
+      // Check for specific auth error messages
+      const errorData = error.response?.data;
+      if (errorData?.error?.message?.includes('Authorization header missing')) {
+        console.log('🔐 AsyncChatService: Detected authorization header missing');
+        throw new Error('Authentication failed, please log in again');
+      }
+
+      const errorMessage = error.response?.data?.detail ||
+                          error.response?.data?.error?.message ||
+                          error.message ||
+                          'Failed to submit question';
+
+      console.log('❌ AsyncChatService: Throwing error with message:', errorMessage);
       throw new Error(errorMessage);
     }
   }
