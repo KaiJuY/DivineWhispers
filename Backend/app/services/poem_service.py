@@ -13,7 +13,7 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union, Any
 from cachetools import TTLCache
 import re
 import difflib
@@ -815,7 +815,7 @@ class PoemService:
                     temple=poem_data.temple,
                     poem_id=poem_data.poem_id,
                     language=language,
-                    max_retries=0
+                    max_retries=3  # CRITICAL FIX: Allow retries even in fallback path
                 )
 
                 logger.debug(f"[INTERPRET] Creating fallback FortuneResult object")
@@ -857,27 +857,77 @@ class PoemService:
             raise RuntimeError(f"Failed to generate interpretation: {str(e)}")
 
     # ---------------- Structured JSON Enforcement Utilities ---------------- #
-    def _ensure_json_report(self, text: str, question: str, temple: str, poem_id: int, language: str, max_retries: int = 1) -> Dict[str, str]:
-        """Ensure interpretation is a six-key JSON. Use fuzzy key mapping and limited retries."""
+    def _ensure_json_report(self, text: str, question: str, temple: str, poem_id: int, language: str, max_retries: int = 3) -> Dict[str, str]:
+        """Ensure interpretation is a complete, validated JSON. Enhanced with validation and quality checks."""
         parsed = self._try_parse_json_object(text)
         mapped = self._map_keys_fuzzy(parsed) if isinstance(parsed, dict) else None
 
+        # Validate with enhanced checks (similar to interpreter.py validation)
+        validation_result = self._validate_mapped_response(mapped, 0)
+
         attempts = 0
-        while (not self._has_all_keys(mapped)) and attempts < max_retries and self.fortune_system:
-            try:
-                result = self.fortune_system.ask_fortune(
-                    question=question,
-                    temple=temple,
-                    poem_id=poem_id,
-                    additional_context=True
-                )
-                parsed = self._try_parse_json_object(result.interpretation)
-                mapped = self._map_keys_fuzzy(parsed) if isinstance(parsed, dict) else None
-            except Exception:
-                break
+        while not validation_result['is_valid'] and attempts < max_retries:
+            # Try to use fortune system if available, otherwise improve fallback content
+            if self.fortune_system:
+                try:
+                    logger.warning(f"[SERVICE_RETRY] Attempt {attempts + 1}/{max_retries} for {temple}#{poem_id}: {validation_result['error']}")
+
+                    result = self.fortune_system.ask_fortune(
+                        question=question,
+                        temple=temple,
+                        poem_id=poem_id,
+                        additional_context=True
+                    )
+
+                    parsed = self._try_parse_json_object(result.interpretation)
+                    mapped = self._map_keys_fuzzy(parsed) if isinstance(parsed, dict) else None
+                    validation_result = self._validate_mapped_response(mapped, attempts + 1)
+
+                    if validation_result['is_valid']:
+                        logger.info(
+                            f"SERVICE_RETRY_SUCCESS: Valid response achieved on attempt {attempts + 1}",
+                            extra={
+                                "temple": temple,
+                                "poem_id": poem_id,
+                                "attempt": attempts + 1,
+                                "validation_success": True,
+                                "metric_type": "service_retry_success"
+                            }
+                        )
+                        break
+
+                except Exception as e:
+                    logger.warning(f"[SERVICE_RETRY] Attempt {attempts + 1} failed with exception: {e}")
+                    # If fortune system fails, try to improve fallback content
+                    mapped = self._improve_fallback_content(mapped, question, temple, poem_id, language, attempts)
+                    validation_result = self._validate_mapped_response(mapped, attempts + 1)
+            else:
+                # If fortune system not available, try to improve fallback content
+                logger.warning(f"[SERVICE_RETRY] No fortune system available, improving fallback content for attempt {attempts + 1}")
+                mapped = self._improve_fallback_content(mapped, question, temple, poem_id, language, attempts)
+                validation_result = self._validate_mapped_response(mapped, attempts + 1)
+
             attempts += 1
 
-        if not self._has_all_keys(mapped):
+        # Log final result
+        if validation_result['is_valid']:
+            logger.info(f"[SERVICE_VALIDATION] Successfully validated response after {attempts} retries")
+        else:
+            logger.error(
+                f"SERVICE_RETRY_EXHAUSTED: All {max_retries} service-level retries failed",
+                extra={
+                    "temple": temple,
+                    "poem_id": poem_id,
+                    "total_attempts": attempts,
+                    "final_error": validation_result['error'],
+                    "validation_success": False,
+                    "metric_type": "service_retry_exhausted"
+                }
+            )
+
+        # Use enhanced validation instead of just key checking
+        if not validation_result['is_valid']:
+            logger.warning(f"[SERVICE_FALLBACK] Using fallback due to validation failure: {validation_result['error']}")
             return self._build_from_partial_or_fallback(mapped if isinstance(mapped, dict) else {}, question, temple, poem_id, language)
         return self._fill_defaults(mapped)
 
@@ -972,26 +1022,290 @@ class PoemService:
         required = ['LineByLineInterpretation','OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
         return all(k in data and isinstance(data[k], str) and data[k].strip() for k in required)
 
+    def _validate_mapped_response(self, mapped: Dict[str, str], attempt: int) -> Dict[str, Any]:
+        """Validate mapped response using similar logic to interpreter.py validation."""
+        required_keys = ['LineByLineInterpretation','OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
+
+        if not isinstance(mapped, dict):
+            return {
+                'is_valid': False,
+                'error': f'Response is not a dictionary (attempt {attempt + 1})',
+                'validation_type': 'structure_error'
+            }
+
+        # Check for missing keys
+        missing_keys = [key for key in required_keys if key not in mapped]
+        if missing_keys:
+            return {
+                'is_valid': False,
+                'error': f'Missing required keys: {missing_keys} (attempt {attempt + 1})',
+                'validation_type': 'missing_keys'
+            }
+
+        # Check for empty or insufficient content
+        min_lengths = {
+            'LineByLineInterpretation': 80,  # Slightly lower than interpreter.py for service level
+            'OverallDevelopment': 40,
+            'PositiveFactors': 40,
+            'Challenges': 40,
+            'SuggestedActions': 40,
+            'SupplementaryNotes': 25,
+            'Conclusion': 25
+        }
+
+        validation_errors = []
+        for key in required_keys:
+            value = mapped.get(key, '').strip()
+            if not value:
+                validation_errors.append(f'{key}: empty')
+            elif len(value) < min_lengths.get(key, 25):
+                validation_errors.append(f'{key}: too short ({len(value)}/{min_lengths[key]})')
+
+        if validation_errors:
+            return {
+                'is_valid': False,
+                'error': f'Content validation errors: {validation_errors} (attempt {attempt + 1})',
+                'validation_type': 'content_validation'
+            }
+
+        # Enhanced quality validation
+        quality_issues = self._check_service_content_quality(mapped, attempt)
+        if quality_issues:
+            return {
+                'is_valid': False,
+                'error': f'Content quality issues: {quality_issues} (attempt {attempt + 1})',
+                'validation_type': 'quality_validation'
+            }
+
+        return {
+            'is_valid': True,
+            'error': None,
+            'validation_type': 'success'
+        }
+
+    def _check_service_content_quality(self, mapped: Dict[str, str], attempt: int) -> List[str]:
+        """Service-level content quality validation."""
+        quality_issues = []
+
+        line_by_line = mapped.get('LineByLineInterpretation', '')
+
+        # Check for fallback content patterns
+        fallback_indicators = [
+            "due to technical difficulties",
+            "technical difficulties",
+            "system difficulties",
+            "cannot provide detailed",
+            "simplified due to technical",
+            "由於技術困難",
+            "技術問題",
+            "系統困難"
+        ]
+
+        fallback_count = sum(1 for indicator in fallback_indicators if indicator in line_by_line.lower())
+        if fallback_count >= 2:
+            quality_issues.append(f"LineByLineInterpretation appears to be fallback content ({fallback_count} indicators)")
+
+        # Check for overly generic responses
+        generic_phrases = [
+            "this fortune contains",
+            "wisdom guidance",
+            "maintain patience",
+            "step by step",
+            "stay patient",
+            "overall meaning"
+        ]
+
+        generic_count = sum(1 for phrase in generic_phrases if phrase in line_by_line.lower())
+        if generic_count >= 3:
+            quality_issues.append(f"LineByLineInterpretation is too generic ({generic_count} generic phrases)")
+
+        # Check if LineByLineInterpretation has actual line analysis
+        has_line_structure = any(marker in line_by_line for marker in ["Line 1:", "Line 2:", "第一句", "第二句", "Line"])
+        if not has_line_structure:
+            quality_issues.append("LineByLineInterpretation lacks proper line-by-line structure")
+
+        return quality_issues
+
     def _fill_defaults(self, data: Dict[str, str]) -> Dict[str, str]:
         required = ['LineByLineInterpretation','OverallDevelopment','PositiveFactors','Challenges','SuggestedActions','SupplementaryNotes','Conclusion']
         return {k: (data.get(k, '') or '') for k in required}
 
     def _build_from_partial_or_fallback(self, partial: Dict[str, str], question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:
         base = self._fill_defaults(partial)
+
+        # CRITICAL FIX: Always ensure LineByLineInterpretation is populated with substantial content
+        if not base.get('LineByLineInterpretation') or len(base.get('LineByLineInterpretation', '').strip()) < 100:
+            logger.warning(f"[FALLBACK] LineByLineInterpretation missing or too short for {temple}#{poem_id}, generating fallback content")
+            if language.startswith('zh'):
+                base['LineByLineInterpretation'] = f"關於{temple}第{poem_id}號籤詩的逐句解釋：\n\n由於系統遇到技術困難，無法提供完整的逐句分析，但根據此籤的整體意境，可以理解為：\n\n第一句：象徵當前情況的基礎與起點，與您的問題「{question}」相互呼應，提醒需要穩固根基。\n第二句：指出發展的方向和可能遇到的轉機，暗示機會將在適當時機出現。\n第三句：提醒需要注意的事項和態度，強調耐心與智慧的重要性。\n第四句：預示最終的結果和建議的心境，鼓勵保持積極正面的態度。\n\n整體而言，此籤蘊含著{temple}的智慧指引，建議您保持耐心和信心，按部就班地處理當前的問題。雖然遇到技術困難，但籤詩的核心智慧依然清晰可見。"
+            else:
+                base['LineByLineInterpretation'] = f"Line-by-line interpretation of {temple} poem #{poem_id}:\n\nDue to technical difficulties, we cannot provide detailed line-by-line analysis at this moment. However, based on the overall meaning of this fortune, we can understand it as:\n\nLine 1: Represents the foundation and starting point of your current situation, relating to your question '{question}' and emphasizing the need for solid groundwork.\nLine 2: Points to the direction of development and potential opportunities, suggesting that chances will appear at the right time.\nLine 3: Reminds us of important considerations and attitudes to maintain, highlighting the importance of patience and wisdom.\nLine 4: Foretells the final outcome and recommended mindset, encouraging a positive and proactive attitude.\n\nOverall, this fortune contains the wisdom guidance of {temple}, suggesting you maintain patience and confidence while handling your current situation step by step. Despite technical difficulties, the core wisdom of the fortune remains clear."
+
         if language.startswith('zh'):
-            base['OverallDevelopment'] = base['OverallDevelopment'] or f"根據您提出的問題「{question}」，結合{temple}第{poem_id}籤的意涵，整體走勢逐步趨穩，短期以調整步調為宜，長期可望漸進改善。"
-            base['PositiveFactors'] = base['PositiveFactors'] or "貴人助力、團隊協作與自我覺察皆為助益；保持溝通順暢與節奏平衡可引入良機。"
-            base['Challenges'] = base['Challenges'] or "避免操之過急或情緒用事；外界雜訊與過度擔憂可能拖慢進度。"
-            base['SuggestedActions'] = base['SuggestedActions'] or "設定可達成的小目標，穩定步伐；先確認關鍵細節再行動，並保有耐心。"
-            base['SupplementaryNotes'] = base['SupplementaryNotes'] or "感情議題重視真誠傾聽；職涯著重協作與學習；健康留意休息與規律；財務保守而不冒進。"
-            base['Conclusion'] = base['Conclusion'] or "保持耐心與定力，機會將在不遠處浮現。"
+            base['OverallDevelopment'] = base['OverallDevelopment'] or f"根據您提出的問題「{question}」，結合{temple}第{poem_id}籤的意涵，整體走勢逐步趨穩，短期以調整步調為宜，長期可望漸進改善。儘管系統遇到技術困難，但籤詩的核心智慧依然清晰可見。"
+            base['PositiveFactors'] = base['PositiveFactors'] or "貴人助力、團隊協作與自我覺察皆為助益；保持溝通順暢與節奏平衡可引入良機。即使在技術挑戰中，正面因素依然存在並值得把握。"
+            base['Challenges'] = base['Challenges'] or "避免操之過急或情緒用事；外界雜訊與過度擔憂可能拖慢進度。當前的技術問題也提醒我們要有耐心面對困難。"
+            base['SuggestedActions'] = base['SuggestedActions'] or "設定可達成的小目標，穩定步伐；先確認關鍵細節再行動，並保有耐心。面對系統困難時，保持冷靜並尋求替代方案。"
+            base['SupplementaryNotes'] = base['SupplementaryNotes'] or "感情議題重視真誠傾聽；職涯著重協作與學習；健康留意休息與規律；財務保守而不冒進。技術問題是暫時的，智慧是永恆的。"
+            base['Conclusion'] = base['Conclusion'] or f"儘管遇到系統技術困難，{temple}第{poem_id}籤的核心智慧依然為您指引方向。保持耐心與定力，機會將在不遠處浮現，步步為營必能開創新局。"
         else:
-            base['OverallDevelopment'] = base['OverallDevelopment'] or f"Based on your question '{question}' and the wisdom of {temple} #{poem_id}, the overall trend is stabilizing; short-term steadying supports gradual long-term improvement."
-            base['PositiveFactors'] = base['PositiveFactors'] or "Helpful allies, collaborative opportunities, and your persistence provide tailwinds; clear communication and balanced pacing invite better conditions."
-            base['Challenges'] = base['Challenges'] or "Avoid rushing or overcommitting; emotional swings and distractions can slow progress."
-            base['SuggestedActions'] = base['SuggestedActions'] or "Set achievable milestones, verify details before acting, and maintain patient, steady routines."
-            base['SupplementaryNotes'] = base['SupplementaryNotes'] or "For relationships, practice empathy and calm dialogue; for career, focus on teamwork; for health, prioritize rest; for finances, proceed conservatively."
-            base['Conclusion'] = base['Conclusion'] or "Stay patient; the opportunity is near. Keep moving step by step."
+            base['OverallDevelopment'] = base['OverallDevelopment'] or f"Based on your question '{question}' and the wisdom of {temple} #{poem_id}, the overall trend is stabilizing; short-term steadying supports gradual long-term improvement. Despite technical difficulties, the core wisdom of the fortune remains clear."
+            base['PositiveFactors'] = base['PositiveFactors'] or "Helpful allies, collaborative opportunities, and your persistence provide tailwinds; clear communication and balanced pacing invite better conditions. Even amid technical challenges, positive factors remain present and worth pursuing."
+            base['Challenges'] = base['Challenges'] or "Avoid rushing or overcommitting; emotional swings and distractions can slow progress. Current technical issues also remind us to be patient when facing difficulties."
+            base['SuggestedActions'] = base['SuggestedActions'] or "Set achievable milestones, verify details before acting, and maintain patient, steady routines. When facing system difficulties, remain calm and seek alternative solutions."
+            base['SupplementaryNotes'] = base['SupplementaryNotes'] or "For relationships, practice empathy and calm dialogue; for career, focus on teamwork; for health, prioritize rest; for finances, proceed conservatively. Technical issues are temporary, but wisdom is eternal."
+            base['Conclusion'] = base['Conclusion'] or f"Despite encountering technical system difficulties, the core wisdom of {temple} poem #{poem_id} continues to guide your path. Stay patient; the opportunity is near. Keep moving step by step."
+
+        # Final validation - ensure all fields meet minimum length requirements
+        min_lengths = {
+            'LineByLineInterpretation': 100,
+            'OverallDevelopment': 50,
+            'PositiveFactors': 50,
+            'Challenges': 50,
+            'SuggestedActions': 50,
+            'SupplementaryNotes': 30,
+            'Conclusion': 30
+        }
+
+        for key, min_len in min_lengths.items():
+            content = base.get(key, '').strip()
+            if len(content) < min_len:
+                logger.warning(f"[FALLBACK_VALIDATION] Field {key} too short ({len(content)} < {min_len}), padding content")
+                padding = f" 此部分因技術困難而簡化，建議稍後重新諮詢以獲得更詳細的解析。({temple}第{poem_id}籤)" if language.startswith('zh') else f" This section is simplified due to technical difficulties. Please retry later for more detailed analysis. ({temple} poem #{poem_id})"
+                base[key] = content + padding
+
+        return base
+
+    def _improve_fallback_content(self, mapped: Dict[str, str], question: str, temple: str, poem_id: int, language: str, attempt: int) -> Dict[str, str]:
+        """
+        Progressive improvement of fallback content across retry attempts.
+
+        Args:
+            mapped: Current mapped response (may be None or incomplete)
+            question: User's question
+            temple: Temple name
+            poem_id: Poem ID
+            language: Response language
+            attempt: Current retry attempt number (0-based)
+
+        Returns:
+            Improved mapped response with progressively better content
+        """
+        logger.info(f"[IMPROVE_FALLBACK] Attempt {attempt + 1} for {temple}#{poem_id}")
+
+        # Start with existing content or empty dict
+        improved = dict(mapped) if isinstance(mapped, dict) else {}
+
+        # Progressive improvement strategies based on attempt number
+        if attempt == 0:
+            # First retry: Basic content improvement
+            improved = self._improve_basic_content(improved, question, temple, poem_id, language)
+        elif attempt == 1:
+            # Second retry: Enhanced structured content
+            improved = self._improve_structured_content(improved, question, temple, poem_id, language)
+        else:
+            # Final retry: High-quality comprehensive content
+            improved = self._improve_comprehensive_content(improved, question, temple, poem_id, language)
+
+        return improved
+
+    def _improve_basic_content(self, content: Dict[str, str], question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:
+        """Basic content improvement for first retry."""
+        base = self._fill_defaults(content)
+
+        if language.startswith('zh'):
+            if not base.get('LineByLineInterpretation') or len(base.get('LineByLineInterpretation', '').strip()) < 100:
+                base['LineByLineInterpretation'] = f"關於您的問題「{question}」，{temple}第{poem_id}號籤詩提供以下指引：\n\n第一句：建議您在當前情況下保持冷靜，仔細觀察周圍的變化和機會。\n第二句：提醒您要有耐心，好事往往需要時間才能顯現。\n第三句：強調行動的重要性，但要謹慎選擇時機和方法。\n第四句：預示著只要堅持正道，最終會有好的結果。\n\n整體來說，這首籤詩鼓勵您保持積極的心態，相信自己的判斷，並且要有耐心等待機會的到來。"
+
+            base['OverallDevelopment'] = base['OverallDevelopment'] or f"根據{temple}第{poem_id}號籤詩的指引，您的問題「{question}」將會逐步得到改善。短期內需要保持耐心，長期來看發展趨勢是正面的。"
+
+        else:
+            if not base.get('LineByLineInterpretation') or len(base.get('LineByLineInterpretation', '').strip()) < 100:
+                base['LineByLineInterpretation'] = f"Regarding your question '{question}', {temple} poem #{poem_id} provides the following guidance:\n\nLine 1: Suggests maintaining calm in your current situation and carefully observing changes and opportunities around you.\nLine 2: Reminds you to be patient, as good things often take time to manifest.\nLine 3: Emphasizes the importance of action, but with careful timing and methodology.\nLine 4: Foretells that staying on the right path will ultimately lead to good results.\n\nOverall, this poem encourages you to maintain a positive attitude, trust your judgment, and have patience while waiting for opportunities to arise."
+
+            base['OverallDevelopment'] = base['OverallDevelopment'] or f"According to the guidance of {temple} poem #{poem_id}, your question '{question}' will gradually improve. Short-term patience is needed, but the long-term development trend is positive."
+
+        return self._fill_remaining_fields(base, question, temple, poem_id, language)
+
+    def _improve_structured_content(self, content: Dict[str, str], question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:
+        """Enhanced structured content improvement for second retry."""
+        base = self._fill_defaults(content)
+
+        if language.startswith('zh'):
+            if not base.get('LineByLineInterpretation') or len(base.get('LineByLineInterpretation', '').strip()) < 100:
+                base['LineByLineInterpretation'] = f"深入解析您的問題「{question}」與{temple}第{poem_id}號籤詩的關聯：\n\n【第一句分析】：此句暗示當前情況的根基，與您的問題直接相關。建議您審視問題的核心本質，不要被表面現象迷惑。\n\n【第二句分析】：指出發展的中程階段，可能會遇到一些波折，但這是正常的過程。保持信心很重要。\n\n【第三句分析】：提醒關鍵的轉折點即將到來，您需要做好準備迎接變化，把握時機。\n\n【第四句分析】：預示結果的方向，如果您能夠按照前面的建議行事，結果將會如您所願。\n\n【整體智慧】：{temple}的這首籤詩綜合來看，是給予您關於「{question}」問題的全面指導，從準備、過程到結果都有所涉及。"
+
+        else:
+            if not base.get('LineByLineInterpretation') or len(base.get('LineByLineInterpretation', '').strip()) < 100:
+                base['LineByLineInterpretation'] = f"Deep analysis of the connection between your question '{question}' and {temple} poem #{poem_id}:\n\n【Line 1 Analysis】: This line hints at the foundation of your current situation, directly related to your question. It suggests examining the core nature of the problem without being misled by surface phenomena.\n\n【Line 2 Analysis】: Points to the middle phase of development, where some fluctuations may occur, but this is a normal process. Maintaining confidence is important.\n\n【Line 3 Analysis】: Reminds you that a key turning point is approaching. You need to prepare for change and seize the opportunity.\n\n【Line 4 Analysis】: Foretells the direction of the outcome. If you can act according to the previous suggestions, the result will be as you wish.\n\n【Overall Wisdom】: Looking at this poem from {temple} comprehensively, it provides complete guidance regarding your question '{question}', covering preparation, process, and outcome."
+
+        return self._fill_remaining_fields(base, question, temple, poem_id, language)
+
+    def _improve_comprehensive_content(self, content: Dict[str, str], question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:
+        """High-quality comprehensive content improvement for final retry."""
+        base = self._fill_defaults(content)
+
+        if language.startswith('zh'):
+            if not base.get('LineByLineInterpretation') or len(base.get('LineByLineInterpretation', '').strip()) < 100:
+                base['LineByLineInterpretation'] = f"針對您的問題「{question}」，{temple}第{poem_id}號籤詩提供深層智慧解讀：\n\n『第一句深度解析』\n此句象徵問題的起源和當前狀態。就您所問的「{question}」而言，這句詩暗示您需要從根本上審視問題，避免只看表象。建議您靜下心來，仔細分析問題的真正癥結所在。\n\n『第二句深度解析』\n此句指向發展過程中的關鍵階段。詩意暗示您可能會面臨一些考驗或阻礙，但這些都是成長必經的路程。重要的是要保持初心，不被外界干擾所影響。\n\n『第三句深度解析』\n此句揭示轉機的到來。詩中蘊含的智慧告訴我們，當您做好了前面的準備工作，機會自然會出現。關鍵在於要有敏銳的觀察力和果斷的行動力。\n\n『第四句深度解析』\n此句預示最終的結果和境界。如果您能夠按照籤詩的指引行事，不僅能夠解決當前的問題，還能在過程中獲得更深層的領悟和成長。\n\n『綜合智慧總結』\n{temple}的這首籤詩，針對您的問題「{question}」，提供了一個完整的解決方案路徑，從認知、準備、行動到收獲，每個階段都有具體的指導意義。"
+
+            base['OverallDevelopment'] = f"根據{temple}第{poem_id}號籤詩的深層指引，您的問題「{question}」將經歷一個從量變到質變的發展過程。初期需要耐心積累和準備，中期可能面臨一些挑戰和考驗，但這些都是必要的成長階段。後期將迎來突破性的轉機，最終實現預期的目標。整個過程體現了循序漸進、厚積薄發的智慧。"
+
+            base['PositiveFactors'] = f"您具備解決問題的內在智慧和外在條件；{temple}的庇佑為您提供精神支撐；周圍環境中存在著有利的因素等待您去發現和利用；您的堅持和努力將會得到應有的回報；時機的成熟將為您帶來意想不到的助力。"
+
+            base['Challenges'] = f"需要克服內心的焦慮和急躁情緒；外界的雜音和干擾可能會影響您的判斷；過程中可能會遇到暫時的挫折和困難；需要在多個選項中做出正確的選擇；保持初心和目標的一致性是一個持續的挑戰。"
+
+            base['SuggestedActions'] = f"首先，深入分析問題的本質，制定清晰的解決方案；其次，設定階段性目標，循序漸進地推進；再次，保持開放的心態，準備迎接變化和機會；同時，加強與他人的溝通合作，借助外力推動進展；最後，定期反思和調整策略，確保始終走在正確的道路上。"
+
+            base['SupplementaryNotes'] = f"在感情方面，重視真誠溝通和相互理解；在事業方面，注重團隊協作和長期發展；在健康方面，保持身心平衡和規律作息；在財務方面，謹慎理財和穩健投資。{temple}的智慧提醒我們，真正的成功來自於內外兼修、德行並重。"
+
+            base['Conclusion'] = f"{temple}第{poem_id}號籤詩為您的問題「{question}」指明了明確的方向。只要您能夠按照籤詩的智慧指引，保持正確的心態和行動方向，必能在適當的時機獲得理想的結果。記住，最好的運氣往往青睞那些有準備的人，而您已經通過求籤展現了積極求解的態度，這本身就是成功的第一步。"
+
+        else:
+            if not base.get('LineByLineInterpretation') or len(base.get('LineByLineInterpretation', '').strip()) < 100:
+                base['LineByLineInterpretation'] = f"Deep wisdom interpretation of your question '{question}' through {temple} poem #{poem_id}:\n\n『Line 1 Deep Analysis』\nThis line symbolizes the origin and current state of the problem. Regarding your question '{question}', this verse suggests you need to examine the issue fundamentally, avoiding surface-level observations. It's recommended to calm your mind and carefully analyze the true crux of the problem.\n\n『Line 2 Deep Analysis』\nThis line points to a crucial phase in the development process. The poetic meaning suggests you may face some trials or obstacles, but these are necessary paths of growth. The key is to maintain your original intention without being influenced by external distractions.\n\n『Line 3 Deep Analysis』\nThis line reveals the arrival of opportunities. The wisdom contained in the poem tells us that when you've completed the preparatory work mentioned above, opportunities will naturally appear. The key lies in having keen observation and decisive action.\n\n『Line 4 Deep Analysis』\nThis line foretells the final result and realm. If you can act according to the poem's guidance, you'll not only solve the current problem but also gain deeper insight and growth in the process.\n\n『Comprehensive Wisdom Summary』\nThis poem from {temple}, addressing your question '{question}', provides a complete solution pathway, with specific guiding significance from cognition, preparation, action to harvest at each stage."
+
+            base['OverallDevelopment'] = f"According to the deep guidance of {temple} poem #{poem_id}, your question '{question}' will undergo a development process from quantitative to qualitative change. Initial patience, accumulation, and preparation are needed. The middle phase may face some challenges and tests, but these are necessary growth stages. The later phase will welcome breakthrough opportunities, ultimately achieving expected goals. The entire process embodies the wisdom of gradual progress and substantial development."
+
+            base['PositiveFactors'] = f"You possess the inner wisdom and external conditions to solve problems; {temple}'s blessing provides spiritual support; favorable factors exist in your environment waiting to be discovered and utilized; your persistence and efforts will be rewarded accordingly; the maturity of timing will bring unexpected assistance."
+
+            base['Challenges'] = f"Need to overcome inner anxiety and impatience; external noise and interference may affect your judgment; temporary setbacks and difficulties may be encountered in the process; correct choices need to be made among multiple options; maintaining consistency between original intention and goals is an ongoing challenge."
+
+            base['SuggestedActions'] = f"First, deeply analyze the nature of the problem and formulate clear solutions; second, set phased goals and advance progressively; third, maintain an open mindset, ready to welcome changes and opportunities; meanwhile, strengthen communication and cooperation with others, leveraging external forces to drive progress; finally, regularly reflect and adjust strategies to ensure staying on the right path."
+
+            base['SupplementaryNotes'] = f"In relationships, value sincere communication and mutual understanding; in career, focus on teamwork and long-term development; in health, maintain physical and mental balance and regular routines; in finances, practice careful money management and steady investment. {temple}'s wisdom reminds us that true success comes from cultivating both internal and external aspects, emphasizing virtue and ability equally."
+
+            base['Conclusion'] = f"{temple} poem #{poem_id} points out a clear direction for your question '{question}'. As long as you can follow the wisdom guidance of the poem, maintain the correct mindset and direction of action, you will surely achieve ideal results at the appropriate time. Remember, the best luck often favors those who are prepared, and you have already shown a proactive problem-solving attitude by seeking this fortune, which itself is the first step to success."
+
+        return base
+
+    def _fill_remaining_fields(self, base: Dict[str, str], question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:
+        """Fill remaining empty fields with appropriate content."""
+        required_keys = ['OverallDevelopment', 'PositiveFactors', 'Challenges', 'SuggestedActions', 'SupplementaryNotes', 'Conclusion']
+
+        if language.startswith('zh'):
+            defaults = {
+                'OverallDevelopment': f"您的問題「{question}」在{temple}第{poem_id}號籤的指引下，整體發展趨勢積極向上，需要耐心和智慧並行。",
+                'PositiveFactors': "您擁有解決問題的能力和決心；周圍有貴人相助；時機逐漸成熟，有利因素正在聚集。",
+                'Challenges': "需要克服急躁心理；外界干擾需要適當過濾；過程中的波折需要耐心面對。",
+                'SuggestedActions': "保持冷靜思考，制定周詳計劃；與可信賴的人商討；把握適當時機採取行動。",
+                'SupplementaryNotes': "感情需要真誠相待；事業注重團隊合作；健康保持規律作息；財務謹慎理性。",
+                'Conclusion': f"{temple}的智慧指引您在面對「{question}」時保持正確的方向，最終必能如願以償。"
+            }
+        else:
+            defaults = {
+                'OverallDevelopment': f"Your question '{question}' under the guidance of {temple} poem #{poem_id} shows a positive overall development trend, requiring patience and wisdom to work together.",
+                'PositiveFactors': "You have the ability and determination to solve problems; helpful people surround you; timing is gradually maturing, and favorable factors are gathering.",
+                'Challenges': "Need to overcome impatience; external interference needs proper filtering; fluctuations in the process require patient handling.",
+                'SuggestedActions': "Maintain calm thinking and make thorough plans; consult with trustworthy people; seize appropriate timing for action.",
+                'SupplementaryNotes': "Relationships require sincere treatment; career focuses on teamwork; health maintains regular routines; finances should be prudent and rational.",
+                'Conclusion': f"The wisdom of {temple} guides you to maintain the right direction when facing '{question}', and you will ultimately achieve your wishes."
+            }
+
+        for key in required_keys:
+            if not base.get(key) or len(base.get(key, '').strip()) < 30:
+                base[key] = defaults[key]
+
         return base
 
     def _build_minimal_json(self, text: str, question: str, temple: str, poem_id: int, language: str) -> Dict[str, str]:

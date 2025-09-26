@@ -48,37 +48,145 @@ async def get_monitoring_dashboard(
         task_statistics = await task_queue_service.get_task_statistics(db, hours)
 
         # Get circuit breaker status
-        circuit_breakers = get_circuit_breaker_status()
-
-        # Get poem service health
-        poem_health = await poem_service.health_check()
-
-        # Get system resource info
-        system_info = get_system_info()
-
-        return {
-            "dashboard": {
-                "generated_at": datetime.now().isoformat(),
-                "period_hours": hours,
-                "admin_user": admin_user.username
+        circuit_breaker_status = {
+            "rag_circuit_breaker": {
+                "state": rag_circuit_breaker.state,
+                "failure_count": rag_circuit_breaker.failure_count,
+                "last_failure": rag_circuit_breaker.last_failure_time.isoformat() if rag_circuit_breaker.last_failure_time else None
             },
+            "llm_circuit_breaker": {
+                "state": llm_circuit_breaker.state,
+                "failure_count": llm_circuit_breaker.failure_count,
+                "last_failure": llm_circuit_breaker.last_failure_time.isoformat() if llm_circuit_breaker.last_failure_time else None
+            },
+            "chromadb_circuit_breaker": {
+                "state": chromadb_circuit_breaker.state,
+                "failure_count": chromadb_circuit_breaker.failure_count,
+                "last_failure": chromadb_circuit_breaker.last_failure_time.isoformat() if chromadb_circuit_breaker.last_failure_time else None
+            }
+        }
+
+        # Get report quality metrics (new)
+        report_quality_metrics = await get_report_quality_metrics(db, hours)
+
+        dashboard_data = {
+            "monitoring_period_hours": hours,
+            "generated_at": datetime.now().isoformat(),
             "service_metrics": service_metrics,
             "task_statistics": task_statistics,
-            "circuit_breakers": circuit_breakers,
-            "poem_service_health": {
-                "chroma_db_status": poem_health.chroma_db_status,
-                "total_poems": poem_health.total_poems,
-                "total_temples": poem_health.total_temples,
-                "last_updated": poem_health.last_updated.isoformat() if poem_health.last_updated else None,
-                "cache_status": poem_health.cache_status,
-                "system_load": poem_health.system_load
-            },
-            "system_info": system_info
+            "circuit_breakers": circuit_breaker_status,
+            "report_quality": report_quality_metrics,
+            "system_health": {
+                "overall_health": "healthy" if task_statistics.get('success_rate', 0) > 90 else "degraded",
+                "critical_issues": [],
+                "warnings": []
+            }
         }
+
+        # Add warnings based on metrics
+        if task_statistics.get('success_rate', 0) < 95:
+            dashboard_data["system_health"]["warnings"].append(f"Success rate below 95%: {task_statistics.get('success_rate', 0)}%")
+
+        if report_quality_metrics.get('invalid_reports_count', 0) > 0:
+            dashboard_data["system_health"]["warnings"].append(f"Invalid reports detected: {report_quality_metrics.get('invalid_reports_count', 0)}")
+
+        return dashboard_data
 
     except Exception as e:
         logger.error(f"Error generating monitoring dashboard: {e}")
-        raise HTTPException(status_code=500, detail="Failed to generate monitoring dashboard")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+async def get_report_quality_metrics(db: AsyncSession, hours: int = 24) -> Dict[str, Any]:
+    """Get report quality and validation metrics from logs and database."""
+    try:
+        from sqlalchemy import select, func, text
+        from app.models.chat_task import ChatTask, TaskStatus
+
+        cutoff_time = datetime.now() - timedelta(hours=hours)
+
+        # Get basic report generation stats
+        result = await db.execute(
+            select(
+                func.count(ChatTask.task_id).label('total_reports'),
+                func.count().filter(ChatTask.status == TaskStatus.COMPLETED).label('completed_reports'),
+                func.count().filter(ChatTask.status == TaskStatus.FAILED).label('failed_reports'),
+                func.avg(ChatTask.processing_time_ms).label('avg_processing_time')
+            ).where(ChatTask.created_at >= cutoff_time)
+        )
+
+        stats = result.first()
+
+        # Calculate derived metrics
+        total_reports = stats.total_reports or 0
+        completed_reports = stats.completed_reports or 0
+        failed_reports = stats.failed_reports or 0
+
+        success_rate = (completed_reports / max(1, total_reports)) * 100
+        failure_rate = (failed_reports / max(1, total_reports)) * 100
+
+        # Get error patterns from recent failed tasks
+        error_query = select(
+            func.substring(ChatTask.error_message, 1, 100).label('error_pattern'),
+            func.count(ChatTask.task_id).label('error_count')
+        ).where(
+            ChatTask.status == TaskStatus.FAILED,
+            ChatTask.created_at >= cutoff_time,
+            ChatTask.error_message.isnot(None)
+        ).group_by(
+            func.substring(ChatTask.error_message, 1, 100)
+        ).limit(10)
+
+        error_result = await db.execute(error_query)
+        error_patterns = [{
+            'pattern': row.error_pattern,
+            'count': row.error_count
+        } for row in error_result]
+
+        # Count validation-related errors
+        validation_errors = 0
+        for pattern in error_patterns:
+            if 'validation' in pattern['pattern'].lower() or 'empty' in pattern['pattern'].lower():
+                validation_errors += pattern['count']
+
+        return {
+            'period_hours': hours,
+            'total_reports_generated': total_reports,
+            'completed_reports': completed_reports,
+            'failed_reports': failed_reports,
+            'success_rate': round(success_rate, 2),
+            'failure_rate': round(failure_rate, 2),
+            'avg_processing_time_ms': round(stats.avg_processing_time or 0, 2),
+            'validation_related_failures': validation_errors,
+            'invalid_reports_count': validation_errors,  # For backwards compatibility
+            'error_patterns': error_patterns,
+            'quality_score': max(0, 100 - (failure_rate * 2) - (validation_errors / max(1, total_reports) * 100)),
+            'generated_at': datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting report quality metrics: {e}")
+        return {
+            'error': str(e),
+            'period_hours': hours,
+            'generated_at': datetime.now().isoformat()
+        }
+
+
+@router.get("/report-quality")
+async def get_report_quality_dashboard(
+    hours: int = 24,
+    admin_user: User = Depends(get_current_admin_user),
+    db: AsyncSession = Depends(get_db_session)
+):
+    """Get detailed report quality metrics (admin only)"""
+    try:
+        logger.info(f"Admin {admin_user.user_id} requested report quality dashboard")
+        return await get_report_quality_metrics(db, hours)
+
+    except Exception as e:
+        logger.error(f"Error generating report quality dashboard: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/circuit-breakers")

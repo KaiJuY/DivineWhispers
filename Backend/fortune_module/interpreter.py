@@ -4,6 +4,8 @@ from typing import Optional, List, Dict, Any
 import uuid
 import re
 import logging
+import json
+import time
 from .models import InterpretationResult, ChunkType, SelectedPoem
 from .unified_rag import UnifiedRAGHandler
 from .llm_client import BaseLLMClient
@@ -297,13 +299,282 @@ class PoemInterpreter(BaseInterpreter):
         
         return "\n\n".join(context_parts)
     
+    def _validate_interpretation_response(self, response: str, question: str = "", attempt: int = 0) -> tuple[bool, dict, str]:
+        """Validate LLM interpretation response for completeness and quality.
+
+        Args:
+            response: The LLM response to validate
+            question: The original question (for quality checks)
+            attempt: The current attempt number
+
+        Returns:
+            (is_valid, parsed_data, error_message)
+        """
+        required_keys = [
+            "LineByLineInterpretation",
+            "OverallDevelopment",
+            "PositiveFactors",
+            "Challenges",
+            "SuggestedActions",
+            "SupplementaryNotes",
+            "Conclusion"
+        ]
+
+        min_lengths = {
+            "LineByLineInterpretation": 100,  # Detailed line-by-line needs more content
+            "OverallDevelopment": 50,
+            "PositiveFactors": 50,
+            "Challenges": 50,
+            "SuggestedActions": 50,
+            "SupplementaryNotes": 30,
+            "Conclusion": 30
+        }
+
+        try:
+            # Step 1: Parse JSON
+            response_clean = response.strip()
+            if not response_clean.startswith('{') or not response_clean.endswith('}'):
+                return False, {}, f"Response is not a valid JSON object (attempt {attempt + 1})"
+
+            try:
+                parsed = json.loads(response_clean)
+            except json.JSONDecodeError as e:
+                return False, {}, f"JSON parsing failed: {str(e)} (attempt {attempt + 1})"
+
+            # Step 2: Check structure
+            if not isinstance(parsed, dict):
+                return False, {}, f"Response is not a JSON object (attempt {attempt + 1})"
+
+            # Step 3: Check required keys
+            missing_keys = [key for key in required_keys if key not in parsed]
+            if missing_keys:
+                return False, {}, f"Missing required keys: {missing_keys} (attempt {attempt + 1})"
+
+            # Step 4: Check for empty or invalid values
+            validation_errors = []
+            for key in required_keys:
+                value = parsed[key]
+
+                # Check if value exists and is string
+                if not isinstance(value, str):
+                    validation_errors.append(f"{key}: not a string")
+                    continue
+
+                # Check if value is empty or whitespace
+                if not value.strip():
+                    validation_errors.append(f"{key}: empty or whitespace only")
+                    continue
+
+                # Check minimum length
+                if len(value.strip()) < min_lengths[key]:
+                    validation_errors.append(f"{key}: too short ({len(value.strip())} chars, min {min_lengths[key]})")
+                    continue
+
+            if validation_errors:
+                return False, {}, f"Validation errors: {'; '.join(validation_errors)} (attempt {attempt + 1})"
+
+            # Step 5: Enhanced Quality checks
+            quality_issues = self._check_content_quality(parsed, question, attempt)
+            if quality_issues:
+                return False, {}, f"Content quality issues: {'; '.join(quality_issues)} (attempt {attempt + 1})"
+
+            if validation_errors:
+                return False, {}, f"Validation errors: {'; '.join(validation_errors)} (attempt {attempt + 1})"
+
+            # Log detailed validation success metrics
+            content_stats = {key: len(str(parsed.get(key, ""))) for key in required_keys}
+            line_by_line = parsed.get("LineByLineInterpretation", "")
+            self.logger.info(
+                f"VALIDATION_SUCCESS: Response passed all validation checks",
+                extra={
+                    "attempt": attempt + 1,
+                    "content_stats": content_stats,
+                    "total_content_length": sum(content_stats.values()),
+                    "has_line_structure": "Line 1:" in line_by_line or "第一句:" in line_by_line,
+                    "metric_type": "validation_success"
+                }
+            )
+            return True, parsed, ""
+
+        except Exception as e:
+            self.logger.error(f"Validation error on attempt {attempt + 1}: {e}")
+            return False, {}, f"Validation exception: {str(e)} (attempt {attempt + 1})"
+
+    def _check_content_quality(self, parsed: dict, question: str, attempt: int) -> List[str]:
+        """Enhanced content quality validation to detect generic/fallback content."""
+        quality_issues = []
+
+        line_by_line = parsed.get("LineByLineInterpretation", "")
+
+        # Check for actual line-by-line structure
+        if "Line 1:" not in line_by_line and "第一句:" not in line_by_line and "Line" not in line_by_line:
+            quality_issues.append("LineByLineInterpretation: missing proper line-by-line structure")
+
+        # Detect fallback/generic content patterns
+        fallback_indicators = [
+            "Due to technical difficulties",
+            "technical difficulties",
+            "system difficulties",
+            "cannot provide detailed",
+            "simplified due to technical",
+            "由於技術困難",
+            "技術問題",
+            "系統困難"
+        ]
+
+        fallback_count = sum(1 for indicator in fallback_indicators if indicator in line_by_line.lower())
+        if fallback_count >= 2:  # Multiple fallback indicators suggest generic content
+            quality_issues.append(f"LineByLineInterpretation: appears to be fallback content ({fallback_count} indicators)")
+
+        # Language consistency check
+        question_lang = self._detect_language(question)
+        response_lang = self._detect_language(line_by_line[:200])  # Check first 200 chars
+
+        if question_lang != response_lang:
+            quality_issues.append(f"Language mismatch: question in {question_lang}, response in {response_lang}")
+
+        # Check for overly generic content
+        generic_phrases = [
+            "this fortune contains",
+            "wisdom guidance",
+            "maintain patience",
+            "step by step",
+            "stay patient"
+        ]
+
+        generic_count = sum(1 for phrase in generic_phrases if phrase in line_by_line.lower())
+        if generic_count >= 3:  # Too many generic phrases
+            quality_issues.append(f"LineByLineInterpretation: overly generic content ({generic_count} generic phrases)")
+
+        # Check other sections for fallback content
+        for key in ["OverallDevelopment", "PositiveFactors", "Challenges", "SuggestedActions"]:
+            content = parsed.get(key, "")
+            fallback_in_section = sum(1 for indicator in fallback_indicators if indicator in content.lower())
+            if fallback_in_section >= 1:
+                quality_issues.append(f"{key}: contains fallback content")
+
+        return quality_issues
+
     def _generate_interpretation(self, question: str, context: str, temple: str, poem_id: int) -> str:
-        """Generate interpretation using LLM."""
-        
+        """Generate interpretation using LLM with validation and auto-retry."""
+
         # Detect user's language for response
         user_language = self._detect_language(question)
         language_instruction = self._get_language_instruction(user_language)
-        
+
+        max_attempts = 3
+        last_error = ""
+
+        for attempt in range(max_attempts):
+            try:
+                # Generate prompt with increasing strictness for retries
+                prompt = self._create_interpretation_prompt(
+                    question, context, temple, poem_id,
+                    language_instruction, attempt
+                )
+
+                self.logger.info(f"LLM generation attempt {attempt + 1}/{max_attempts}")
+
+                # Generate response with timeout
+                response = self.llm.generate(
+                    prompt,
+                    temperature=0.7 - (attempt * 0.1),  # Reduce temperature for retries
+                    max_tokens=2500 + (attempt * 500)  # Increase tokens for retries
+                )
+
+                # Validate response
+                is_valid, parsed_data, error_msg = self._validate_interpretation_response(response, question, attempt)
+
+                if is_valid:
+                    # Log success metrics
+                    self.logger.info(
+                        f"SUCCESS: Valid interpretation generated",
+                        extra={
+                            "attempt": attempt + 1,
+                            "temple": temple,
+                            "poem_id": poem_id,
+                            "question_length": len(question),
+                            "response_length": len(response),
+                            "user_language": user_language,
+                            "validation_success": True,
+                            "metric_type": "interpretation_success"
+                        }
+                    )
+                    return response
+                else:
+                    last_error = error_msg
+                    # Log validation failure metrics
+                    self.logger.warning(
+                        f"VALIDATION_FAILURE: Attempt {attempt + 1} failed validation",
+                        extra={
+                            "attempt": attempt + 1,
+                            "temple": temple,
+                            "poem_id": poem_id,
+                            "error_message": error_msg,
+                            "response_length": len(response) if response else 0,
+                            "user_language": user_language,
+                            "validation_success": False,
+                            "metric_type": "validation_failure"
+                        }
+                    )
+
+                    # Exponential backoff between retries
+                    if attempt < max_attempts - 1:
+                        wait_time = 2 ** attempt  # 1s, 2s, 4s
+                        self.logger.info(f"Waiting {wait_time}s before retry...")
+                        time.sleep(wait_time)
+
+            except Exception as e:
+                last_error = f"LLM generation failed: {str(e)}"
+                self.logger.error(f"LLM generation failed on attempt {attempt + 1}: {e}")
+
+                if attempt < max_attempts - 1:
+                    wait_time = 2 ** attempt
+                    time.sleep(wait_time)
+
+        # All attempts failed - return structured fallback
+        self.logger.error(
+            f"CRITICAL_FAILURE: All {max_attempts} interpretation attempts failed",
+            extra={
+                "temple": temple,
+                "poem_id": poem_id,
+                "question_length": len(question),
+                "total_attempts": max_attempts,
+                "final_error": last_error,
+                "user_language": user_language,
+                "fallback_used": True,
+                "metric_type": "interpretation_critical_failure"
+            }
+        )
+        return self._create_fallback_response(question, temple, poem_id, user_language)
+
+    def _create_interpretation_prompt(self, question: str, context: str, temple: str,
+                                    poem_id: int, language_instruction: str, attempt: int) -> str:
+        """Create interpretation prompt with increasing strictness for retries."""
+
+        # Base strictness increases with attempts
+        strictness_levels = [
+            "CRITICAL REQUIREMENT",
+            "ABSOLUTELY MANDATORY REQUIREMENT",
+            "FINAL STRICT REQUIREMENT - NO EXCEPTIONS"
+        ]
+
+        strictness = strictness_levels[min(attempt, 2)]
+
+        # Add extra validation reminders for retries
+        extra_validation = ""
+        if attempt > 0:
+            extra_validation = f"""
+
+        {strictness}: This is attempt #{attempt + 1}. Previous attempts failed validation.
+        - ALL 7 keys must be present and non-empty
+        - LineByLineInterpretation must be detailed (100+ characters) with "Line 1:", "Line 2:" format
+        - Each section must have substantial content (50+ characters minimum)
+        - JSON must be perfectly valid and parseable
+        - NO empty strings or whitespace-only content
+        FAILURE TO MEET THESE REQUIREMENTS WILL RESULT IN SYSTEM ERROR.
+        """
+
         prompt = f"""
         You are a wise fortune interpretation assistant specializing in Chinese temple divination and oracle reading.
         Your role is to provide thoughtful, supportive guidance based on traditional fortune poems.
@@ -322,6 +593,8 @@ class PoemInterpreter(BaseInterpreter):
         6. Connect the poem's imagery and meaning to the user's specific question.
         7. Mention the temple name and poem number in your response for authenticity.
         8. {language_instruction}
+
+        {extra_validation}
 
         OUTPUT FORMAT REQUIREMENTS:
         - RETURN ONLY A SINGLE JSON OBJECT. Do not output any text before or after the JSON (no plain text headings, no extra commentary).
@@ -357,20 +630,47 @@ class PoemInterpreter(BaseInterpreter):
         Analyze the selected fortune poem step by step. Produce **only** the single JSON object described above (with "LineByLineInterpretation" as the first key) and follow the specified format exactly otherwise you will be *penalized*. Do not output any commentary or section headers outside the JSON.
         """
 
+        return prompt
 
+    def _create_fallback_response(self, question: str, temple: str, poem_id: int, language: str) -> str:
+        """Create a structured fallback response when all LLM attempts fail."""
 
-        try:
-            interpretation = self.llm.generate(
-                prompt,
-                temperature=0.7,
-                max_tokens=2000
-            )
-            
-            return interpretation
-            
-        except Exception as e:
-            self.logger.error(f"LLM generation failed: {e}")
-            return f"I apologize, but I'm experiencing technical difficulties providing an interpretation right now. The {temple} temple poem #{poem_id} you've selected is significant and deserves proper attention. Please try again in a moment."
+        fallback_content = {
+            "zh": {
+                "line_by_line": f"關於{temple}第{poem_id}號籤詩的逐句解釋：由於技術問題，我們無法提供詳細的逐句分析。請稍後重試獲得完整解讀。",
+                "overall": "目前系統遇到技術困難，無法提供完整的運勢分析。建議您稍後重新諮詢，以獲得更準確的神明指引。",
+                "positive": "儘管遇到技術問題，您尋求神明指引的誠心必將獲得回應。保持耐心和信心，答案終將顯現。",
+                "challenges": "當前的挑戰包括技術系統的暫時性問題，但這不會影響神明對您的關愛和指引。",
+                "actions": "建議稍後重新進行占卜諮詢。在等待期間，可以靜心思考您的問題，準備更清晰的提問。",
+                "notes": "技術問題是暫時的，但神明的智慧是永恆的。請保持信心，稍後重試將獲得完整的指引。",
+                "conclusion": "雖然遇到暫時困難，但您的問題很重要，值得完整的解答。請稍後重試，神明的智慧將為您指明道路。"
+            },
+            "en": {
+                "line_by_line": f"Regarding the line-by-line interpretation of {temple} poem #{poem_id}: Due to technical difficulties, we cannot provide detailed line-by-line analysis at this moment. Please try again later for a complete reading.",
+                "overall": "The system is currently experiencing technical difficulties preventing a complete fortune analysis. We recommend consulting again later for more accurate divine guidance.",
+                "positive": "Despite technical issues, your sincere desire for divine guidance will be answered. Maintain patience and faith - answers will manifest in time.",
+                "challenges": "Current challenges include temporary system issues, but these won't affect the divine care and guidance meant for you.",
+                "actions": "We recommend retrying your divination consultation later. During this waiting period, contemplate your question quietly to prepare clearer inquiries.",
+                "notes": "Technical issues are temporary, but divine wisdom is eternal. Please maintain faith and retry later for complete guidance.",
+                "conclusion": "Though facing temporary difficulties, your question is important and deserves a complete answer. Please try again later - divine wisdom will illuminate your path."
+            }
+        }
+
+        content = fallback_content.get(language, fallback_content["en"])
+
+        fallback_response = {
+            "LineByLineInterpretation": content["line_by_line"],
+            "OverallDevelopment": content["overall"],
+            "PositiveFactors": content["positive"],
+            "Challenges": content["challenges"],
+            "SuggestedActions": content["actions"],
+            "SupplementaryNotes": content["notes"],
+            "Conclusion": content["conclusion"]
+        }
+
+        return json.dumps(fallback_response, ensure_ascii=False, indent=2)
+        
+        # This method is now implemented above with comprehensive validation and retry logic
     
     def _get_language_instruction(self, user_language: str) -> str:
         """Get language-specific instruction for the LLM."""

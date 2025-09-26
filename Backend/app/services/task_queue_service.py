@@ -24,6 +24,7 @@ from app.utils.streaming_processor import (
     create_streaming_processor, cleanup_streaming_processor
 )
 import uuid
+import json
 
 
 logger = logging.getLogger(__name__)
@@ -264,7 +265,46 @@ class TaskQueueService:
 
                 confidence = 75 + (hash(task.question) % 25)  # Mock confidence 75-99
 
-                # Step 4: Finalization with streaming
+                # Step 4: Pre-save validation (Database Protection Layer)
+                await streaming_processor.send_update("validating", 90, "🔍 驗證報告完整性...")
+                validation_result = await self._validate_response_before_save(task_id, response_text)
+
+                if not validation_result["is_valid"]:
+                    error_msg = f"Response validation failed: {validation_result['error']}"
+
+                    # Log database validation failure with detailed metrics
+                    logger.error(
+                        f"DATABASE_VALIDATION_FAILURE: Report failed final validation",
+                        extra={
+                            "task_id": task_id,
+                            "user_id": task.user_id,
+                            "deity_id": task.deity_id,
+                            "fortune_number": task.fortune_number,
+                            "validation_type": validation_result.get('validation_type', 'unknown'),
+                            "error_details": validation_result.get('error', ''),
+                            "empty_fields": validation_result.get('empty_fields', []),
+                            "missing_keys": validation_result.get('missing_keys', []),
+                            "processing_time_ms": int((time.time() - start_time) * 1000),
+                            "metric_type": "database_validation_failure",
+                            "should_refund": True
+                        }
+                    )
+
+                    # Mark task as failed and potentially refund coins
+                    task.set_error(error_msg)
+                    await db.commit()
+
+                    await streaming_processor.send_update("error", 0, f"❌ 報告驗證失敗: {validation_result['error']}")
+
+                    await self.send_sse_event(task_id, {
+                        "type": "error",
+                        "error": error_msg,
+                        "retry_allowed": True,
+                        "should_refund": True  # Signal that coins should be refunded
+                    })
+                    return
+
+                # Step 5: Finalization with streaming
                 await streaming_processor.send_update("finalizing", 95, "📝 完成最終處理...")
                 await self.update_task_progress(task, TaskStatus.COMPLETED, 100, "Response generated successfully", db)
 
@@ -279,7 +319,24 @@ class TaskQueueService:
                 await db.commit()
 
                 processing_time = int((time.time() - start_time) * 1000)
-                logger.info(f"Completed task {task_id} in {processing_time}ms")
+
+                # Log successful completion with comprehensive metrics
+                logger.info(
+                    f"TASK_SUCCESS: Report generation completed successfully",
+                    extra={
+                        "task_id": task_id,
+                        "user_id": task.user_id,
+                        "deity_id": task.deity_id,
+                        "fortune_number": task.fortune_number,
+                        "question_length": len(task.question),
+                        "response_length": len(response_text),
+                        "processing_time_ms": processing_time,
+                        "confidence": confidence,
+                        "validation_stats": validation_result.get('content_stats', {}),
+                        "sources_used": task.sources_used,
+                        "metric_type": "task_success"
+                    }
+                )
 
                 # Final streaming update
                 await streaming_processor.send_update("completed", 100, "🎉 解釋生成完成！")
@@ -450,6 +507,171 @@ class TaskQueueService:
             except Exception as e:
                 logger.warning(f"Failed to send SSE event to client: {e}")
                 self.remove_sse_connection(task_id, response_obj)
+
+    async def _validate_response_before_save(self, task_id: str, response_text: str) -> Dict[str, Any]:
+        """Final validation before saving to database - Database Protection Layer."""
+        required_keys = [
+            "LineByLineInterpretation",
+            "OverallDevelopment",
+            "PositiveFactors",
+            "Challenges",
+            "SuggestedActions",
+            "SupplementaryNotes",
+            "Conclusion"
+        ]
+
+        try:
+            # Parse JSON
+            try:
+                parsed_response = json.loads(response_text)
+            except json.JSONDecodeError as e:
+                return {
+                    "is_valid": False,
+                    "error": f"Invalid JSON structure: {str(e)}",
+                    "validation_type": "json_parse_error"
+                }
+
+            # Check structure
+            if not isinstance(parsed_response, dict):
+                return {
+                    "is_valid": False,
+                    "error": "Response is not a JSON object",
+                    "validation_type": "structure_error"
+                }
+
+            # Check required keys
+            missing_keys = [key for key in required_keys if key not in parsed_response]
+            if missing_keys:
+                return {
+                    "is_valid": False,
+                    "error": f"Missing required keys: {missing_keys}",
+                    "validation_type": "missing_keys",
+                    "missing_keys": missing_keys
+                }
+
+            # Check for empty values
+            empty_fields = []
+            for key in required_keys:
+                value = parsed_response.get(key, "")
+                if not isinstance(value, str) or not value.strip():
+                    empty_fields.append(key)
+
+            if empty_fields:
+                return {
+                    "is_valid": False,
+                    "error": f"Empty or invalid fields: {empty_fields}",
+                    "validation_type": "empty_fields",
+                    "empty_fields": empty_fields
+                }
+
+            # Check minimum content length
+            short_fields = []
+            min_lengths = {
+                "LineByLineInterpretation": 50,  # Reduced for database layer
+                "OverallDevelopment": 30,
+                "PositiveFactors": 30,
+                "Challenges": 30,
+                "SuggestedActions": 30,
+                "SupplementaryNotes": 20,
+                "Conclusion": 20
+            }
+
+            for key, min_length in min_lengths.items():
+                value = parsed_response.get(key, "")
+                if len(value.strip()) < min_length:
+                    short_fields.append(f"{key} ({len(value.strip())}/{min_length})")
+
+            if short_fields:
+                return {
+                    "is_valid": False,
+                    "error": f"Fields too short: {short_fields}",
+                    "validation_type": "content_too_short",
+                    "short_fields": short_fields
+                }
+
+            # Enhanced quality checks
+            quality_issues = await self._check_database_content_quality(parsed_response, task_id)
+            if quality_issues:
+                return {
+                    "is_valid": False,
+                    "error": f"Content quality issues: {quality_issues}",
+                    "validation_type": "quality_validation",
+                    "quality_issues": quality_issues
+                }
+
+            # Log successful database validation with metrics
+            content_stats = {
+                "total_length": len(response_text),
+                "field_lengths": {key: len(str(parsed_response.get(key, ""))) for key in required_keys}
+            }
+
+            logger.info(
+                f"DATABASE_VALIDATION_SUCCESS: Report passed final validation",
+                extra={
+                    "task_id": task_id,
+                    "total_content_length": content_stats["total_length"],
+                    "field_lengths": content_stats["field_lengths"],
+                    "min_field_length": min(content_stats["field_lengths"].values()),
+                    "max_field_length": max(content_stats["field_lengths"].values()),
+                    "avg_field_length": sum(content_stats["field_lengths"].values()) / len(content_stats["field_lengths"]),
+                    "metric_type": "database_validation_success"
+                }
+            )
+
+            return {
+                "is_valid": True,
+                "error": None,
+                "validation_type": "success",
+                "content_stats": content_stats
+            }
+
+        except Exception as e:
+            logger.error(f"Database validation error for task {task_id}: {e}")
+            return {
+                "is_valid": False,
+                "error": f"Validation exception: {str(e)}",
+                "validation_type": "validation_exception"
+            }
+
+    async def _check_database_content_quality(self, parsed_response: dict, task_id: str) -> List[str]:
+        """Database-level content quality validation (final check)."""
+        quality_issues = []
+
+        line_by_line = parsed_response.get("LineByLineInterpretation", "")
+
+        # Check for fallback content (most critical)
+        critical_fallback_indicators = [
+            "due to technical difficulties",
+            "cannot provide detailed",
+            "simplified due to technical",
+            "由於技術困難",
+            "技術問題"
+        ]
+
+        fallback_count = sum(1 for indicator in critical_fallback_indicators if indicator in line_by_line.lower())
+        if fallback_count >= 1:
+            quality_issues.append(f"Contains fallback/technical difficulty content ({fallback_count} indicators)")
+            logger.warning(f"[DB_QUALITY] Task {task_id} contains fallback content: {line_by_line[:200]}...")
+
+        # Check for proper line structure (critical for line-by-line interpretation)
+        has_proper_lines = any(marker in line_by_line for marker in ["Line 1:", "Line 2:", "Line 3:", "第一句:", "第二句:"])
+        if not has_proper_lines:
+            quality_issues.append("LineByLineInterpretation lacks proper line-by-line structure")
+
+        # Check for excessive generic content
+        generic_phrases = [
+            "wisdom guidance",
+            "this fortune contains",
+            "maintain patience",
+            "step by step",
+            "overall meaning"
+        ]
+
+        generic_count = sum(1 for phrase in generic_phrases if phrase in line_by_line.lower())
+        if generic_count >= 4:  # Very high threshold for database level
+            quality_issues.append(f"Overly generic content ({generic_count} generic phrases)")
+
+        return quality_issues
 
     def get_service_metrics(self) -> Dict[str, Any]:
         """Get comprehensive service metrics"""

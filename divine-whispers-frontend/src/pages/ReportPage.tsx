@@ -222,6 +222,86 @@ const Tag = styled.span`
   font-weight: 500;
 `;
 
+const QualityWarning = styled.div`
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  color: #ffc107;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+interface QualityIndicatorProps {
+  quality: 'high' | 'medium' | 'low';
+}
+
+const QualityIndicator = styled.div<QualityIndicatorProps>`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: ${props => {
+    switch(props.quality) {
+      case 'high': return 'rgba(40, 167, 69, 0.2)';
+      case 'medium': return 'rgba(255, 193, 7, 0.2)';
+      case 'low': return 'rgba(220, 53, 69, 0.2)';
+      default: return 'rgba(108, 117, 125, 0.2)';
+    }
+  }};
+  border: 1px solid ${props => {
+    switch(props.quality) {
+      case 'high': return 'rgba(40, 167, 69, 0.5)';
+      case 'medium': return 'rgba(255, 193, 7, 0.5)';
+      case 'low': return 'rgba(220, 53, 69, 0.5)';
+      default: return 'rgba(108, 117, 125, 0.5)';
+    }
+  }};
+  color: ${props => {
+    switch(props.quality) {
+      case 'high': return '#28a745';
+      case 'medium': return '#ffc107';
+      case 'low': return '#dc3545';
+      default: return '#6c757d';
+    }
+  }};
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+
+  ${media.mobile} {
+    position: static;
+    margin: 10px 0;
+    align-self: flex-start;
+  }
+`;
+
+const EmptySection = styled.div`
+  background: rgba(108, 117, 125, 0.1);
+  border: 1px dashed rgba(108, 117, 125, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+`;
+
+const IncompleteSection = styled.div`
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 12px;
+  padding: 15px;
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
 const ReportPage: React.FC = () => {
   const { selectedReport, setCurrentPage } = useAppStore();
   const { t } = usePagesTranslation();
@@ -239,6 +319,88 @@ const ReportPage: React.FC = () => {
     return null;
   }
 
+  // Calculate report quality and completeness
+  const calculateReportQuality = () => {
+    const requiredFields = ['LineByLineInterpretation', 'OverallDevelopment', 'PositiveFactors', 'Challenges', 'SuggestedActions', 'SupplementaryNotes', 'Conclusion'];
+    const analysis = selectedReport.analysis;
+
+    let emptyFields = 0;
+    let shortFields = 0;
+    let totalLength = 0;
+    const minLengths = {
+      'LineByLineInterpretation': 100,
+      'OverallDevelopment': 50,
+      'PositiveFactors': 50,
+      'Challenges': 50,
+      'SuggestedActions': 50,
+      'SupplementaryNotes': 30,
+      'Conclusion': 30
+    };
+
+    requiredFields.forEach(field => {
+      const content = analysis[field as keyof typeof analysis] || '';
+      const cleanContent = content.replace(/\\n/g, '\n').trim();
+
+      if (!cleanContent) {
+        emptyFields++;
+      } else if (cleanContent.length < (minLengths[field as keyof typeof minLengths] || 30)) {
+        shortFields++;
+      }
+      totalLength += cleanContent.length;
+    });
+
+    const completionRate = ((requiredFields.length - emptyFields) / requiredFields.length) * 100;
+    const qualityScore = Math.max(0, 100 - (emptyFields * 20) - (shortFields * 10));
+
+    let quality: 'high' | 'medium' | 'low' = 'high';
+    if (emptyFields > 0 || qualityScore < 60) quality = 'low';
+    else if (shortFields > 2 || qualityScore < 80) quality = 'medium';
+
+    return {
+      quality,
+      completionRate,
+      qualityScore,
+      emptyFields,
+      shortFields,
+      totalLength,
+      hasIssues: emptyFields > 0 || shortFields > 2
+    };
+  };
+
+  const renderSectionContent = (content: string | undefined, sectionName: string, minLength: number = 30) => {
+    const cleanContent = content?.replace(/\\n/g, '\n')?.trim() || '';
+
+    if (!cleanContent) {
+      return (
+        <>
+          <EmptySection>
+            ⚠️ This section appears to be empty. The report may be incomplete.
+          </EmptySection>
+          <IncompleteSection>
+            🔄 Please try generating a new report for complete analysis
+          </IncompleteSection>
+        </>
+      );
+    }
+
+    if (cleanContent.length < minLength) {
+      return (
+        <>
+          <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{cleanContent}</AnalysisContent>
+          <IncompleteSection>
+            ⚠️ This section may be incomplete ({cleanContent.length} characters). Consider regenerating for more detailed analysis.
+          </IncompleteSection>
+        </>
+      );
+    }
+
+    return (
+      <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{cleanContent}</AnalysisContent>
+    );
+  };
+
+  const reportQuality = calculateReportQuality();
+
   // Always treat as a regular report
 
   return (
@@ -249,6 +411,12 @@ const ReportPage: React.FC = () => {
             <BackButton onClick={handleBackClick}>{t('report.backToAccount')}</BackButton>
             
             <ReportCard>
+              <QualityIndicator quality={reportQuality.quality}>
+                {reportQuality.quality === 'high' && '✅ Complete'}
+                {reportQuality.quality === 'medium' && '⚠️ Partial'}
+                {reportQuality.quality === 'low' && '❌ Incomplete'}
+              </QualityIndicator>
+
               <ReportHeader>
                 <ReportTitle>{selectedReport.title}</ReportTitle>
                 <ReportSubtitle>
@@ -267,6 +435,18 @@ const ReportPage: React.FC = () => {
                 </ReportSubtitle>
               </ReportHeader>
 
+              {reportQuality.hasIssues && (
+                <QualityWarning>
+                  <span>⚠️</span>
+                  <div>
+                    <strong>Report Quality Notice:</strong> This report may be incomplete.
+                    {reportQuality.emptyFields > 0 && `${reportQuality.emptyFields} section(s) are empty. `}
+                    {reportQuality.shortFields > 0 && `${reportQuality.shortFields} section(s) may need more detail. `}
+                    Consider regenerating for a complete analysis.
+                  </div>
+                </QualityWarning>
+              )}
+
               <ReportQuestion>
                 <QuestionLabel>{t('report.yourQuestion')}</QuestionLabel>
                 <QuestionText>"{selectedReport.question}"</QuestionText>
@@ -274,38 +454,38 @@ const ReportPage: React.FC = () => {
 
               <AnalysisSection>
                 <AnalysisTitle>{t('report.lineByLineInterpretation')}</AnalysisTitle>
-                <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.LineByLineInterpretation?.replace(/\\n/g, '\n') || ''}</AnalysisContent>
+                {renderSectionContent(selectedReport.analysis.LineByLineInterpretation, 'LineByLineInterpretation', 100)}
               </AnalysisSection>
 
               <AnalysisSection>
                 <AnalysisTitle>{t('report.overallDevelopment')}</AnalysisTitle>
-                <AnalysisContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.OverallDevelopment?.replace(/\\n/g, '\n') || ''}</AnalysisContent>
+                {renderSectionContent(selectedReport.analysis.OverallDevelopment, 'OverallDevelopment', 50)}
               </AnalysisSection>
 
               <ElementsList>
                 <ElementCard>
                   <ElementTitle>{t('report.positiveFactors')}</ElementTitle>
-                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.PositiveFactors?.replace(/\\n/g, '\n') || ''}</ElementContent>
+                  {renderSectionContent(selectedReport.analysis.PositiveFactors, 'PositiveFactors', 50)}
                 </ElementCard>
 
                 <ElementCard>
                   <ElementTitle>{t('report.challenges')}</ElementTitle>
-                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.Challenges?.replace(/\\n/g, '\n') || ''}</ElementContent>
+                  {renderSectionContent(selectedReport.analysis.Challenges, 'Challenges', 50)}
                 </ElementCard>
 
                 <ElementCard>
                   <ElementTitle>{t('report.suggestedActions')}</ElementTitle>
-                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.SuggestedActions?.replace(/\\n/g, '\n') || ''}</ElementContent>
+                  {renderSectionContent(selectedReport.analysis.SuggestedActions, 'SuggestedActions', 50)}
                 </ElementCard>
 
                 <ElementCard>
                   <ElementTitle>{t('report.supplementaryNotes')}</ElementTitle>
-                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.SupplementaryNotes?.replace(/\\n/g, '\n') || ''}</ElementContent>
+                  {renderSectionContent(selectedReport.analysis.SupplementaryNotes, 'SupplementaryNotes', 30)}
                 </ElementCard>
 
                 <ElementCard>
                   <ElementTitle>{t('report.conclusion')}</ElementTitle>
-                  <ElementContent style={{ whiteSpace: 'pre-wrap' }}>{selectedReport.analysis.Conclusion?.replace(/\\n/g, '\n') || ''}</ElementContent>
+                  {renderSectionContent(selectedReport.analysis.Conclusion, 'Conclusion', 30)}
                 </ElementCard>
               </ElementsList>
             </ReportCard>
