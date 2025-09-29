@@ -600,6 +600,13 @@ const AdminPage: React.FC = () => {
   const [poemPage, setPoemPage] = useState(1);
   const [totalPoems, setTotalPoems] = useState(0);
 
+  // Purchase Management state
+  const [purchases, setPurchases] = useState<any[]>([]);
+  const [purchaseSearch, setPurchaseSearch] = useState('');
+  const [purchaseStatus, setPurchaseStatus] = useState('');
+  const [purchasePage, setPurchasePage] = useState(1);
+  const [totalPurchases, setTotalPurchases] = useState(0);
+
   // Load dashboard data
   useEffect(() => {
     const loadDashboardData = async () => {
@@ -715,26 +722,58 @@ const AdminPage: React.FC = () => {
     }
   }, [activeSection, reportSearch, reportDeity, reportDate]);
 
-  // Mock data for sections not yet fully implemented
+  // Load purchase data
+  useEffect(() => {
+    const loadPurchases = async () => {
+      try {
+        const response = await adminService.getPurchases({
+          page: purchasePage,
+          limit: 20,
+          search: purchaseSearch || undefined,
+          status_filter: purchaseStatus || undefined
+        });
+        setPurchases(response.purchases || []);
+        setTotalPurchases(response.pagination?.total || 0);
+      } catch (err) {
+        console.error('Error loading purchases:', err);
+        setError('Failed to load purchases');
+        // Fallback to empty array
+        setPurchases([]);
+        setTotalPurchases(0);
+      }
+    };
 
-  const mockOrders: Order[] = [
-    {
-      id: 'ORD001',
-      customer: 'John Dao',
-      package: 'Premium Coin Package (50 Coins)',
-      amount: '$19.99',
-      status: 'completed',
-      date: '2024-12-28'
-    },
-    {
-      id: 'ORD002',
-      customer: 'Sarah Chen',
-      package: 'Standard Coin Package (25 Coins)',
-      amount: '$9.99',
-      status: 'pending',
-      date: '2024-12-29'
+    if (activeSection === 'purchases') {
+      loadPurchases();
     }
-  ];
+  }, [activeSection, purchasePage, purchaseSearch, purchaseStatus]);
+
+  // Handle purchase refund
+  const handleRefundPurchase = async (transactionId: number, orderName: string) => {
+    const reason = window.prompt(`Enter refund reason for ${orderName}:`);
+    if (!reason) return;
+
+    try {
+      await adminService.refundPurchase(transactionId, { reason });
+      alert('Refund processed successfully');
+      // Reload purchases to reflect changes
+      if (activeSection === 'purchases') {
+        const response = await adminService.getPurchases({
+          page: purchasePage,
+          limit: 20,
+          search: purchaseSearch || undefined,
+          status_filter: purchaseStatus || undefined
+        });
+        setPurchases(response.purchases || []);
+        setTotalPurchases(response.pagination?.total || 0);
+      }
+    } catch (err) {
+      console.error('Error processing refund:', err);
+      alert('Failed to process refund');
+    }
+  };
+
+  // Mock data for sections not yet fully implemented
 
 
   const mockPendingFAQs: PendingFAQ[] = [
@@ -1404,11 +1443,19 @@ const AdminPage: React.FC = () => {
             </ChartPlaceholder>
 
             <SearchFilterBar>
-              <SearchInput placeholder="🔍 Search orders by ID, customer, or amount..." />
-              <FilterSelect>
+              <SearchInput
+                placeholder="🔍 Search orders by ID, customer, or amount..."
+                value={purchaseSearch}
+                onChange={(e) => setPurchaseSearch(e.target.value)}
+              />
+              <FilterSelect
+                value={purchaseStatus}
+                onChange={(e) => setPurchaseStatus(e.target.value)}
+              >
                 <option value="">All Status</option>
                 <option value="completed">Completed</option>
                 <option value="pending">Pending</option>
+                <option value="failed">Failed</option>
                 <option value="refunded">Refunded</option>
               </FilterSelect>
             </SearchFilterBar>
@@ -1426,27 +1473,69 @@ const AdminPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {mockOrders.map((order) => (
-                  <tr key={order.id}>
-                    <td>{order.id}</td>
-                    <td>{order.customer}</td>
-                    <td>{order.package}</td>
-                    <td>{order.amount}</td>
-                    <td>
-                      <StatusBadge status={order.status}>
-                        {order.status === 'completed' ? 'Completed' : 
-                         order.status === 'pending' ? 'Pending' : 'Refunded'}
-                      </StatusBadge>
-                    </td>
-                    <td>{order.date}</td>
-                    <td>
-                      <CardBtn edit onClick={() => console.log('Edit order', order.id)}>✏️ Edit</CardBtn>
-                      <CardBtn delete onClick={() => console.log('Refund order', order.id)}>↩️ Refund</CardBtn>
+                {purchases.length > 0 ? (
+                  purchases.map((purchase) => (
+                    <tr key={purchase.order_id || purchase.transaction_id}>
+                      <td>{purchase.order_id}</td>
+                      <td>{purchase.customer_name || purchase.customer_email}</td>
+                      <td>{purchase.package_name}</td>
+                      <td>{purchase.amount}</td>
+                      <td>
+                        <StatusBadge status={purchase.status.toLowerCase()}>
+                          {purchase.status}
+                        </StatusBadge>
+                      </td>
+                      <td>{purchase.date}</td>
+                      <td>
+                        <CardBtn
+                          edit
+                          onClick={() => console.log('View order details', purchase.order_id)}
+                          title="View Details"
+                        >
+                          👁️ View
+                        </CardBtn>
+                        {purchase.status === 'Completed' && (
+                          <CardBtn
+                            delete
+                            onClick={() => handleRefundPurchase(purchase.transaction_id, purchase.package_name)}
+                            title="Process Refund"
+                          >
+                            ↩️ Refund
+                          </CardBtn>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={7} style={{ textAlign: 'center', padding: '2rem', color: 'rgba(255,255,255,0.6)' }}>
+                      {loading ? 'Loading purchases...' : 'No purchases found'}
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </AdminTable>
+
+            {/* Pagination for purchases */}
+            {totalPurchases > 20 && (
+              <PaginationContainer>
+                <PaginationButton
+                  disabled={purchasePage === 1}
+                  onClick={() => setPurchasePage(purchasePage - 1)}
+                >
+                  Previous
+                </PaginationButton>
+                <PaginationInfo>
+                  Page {purchasePage} of {Math.ceil(totalPurchases / 20)} ({totalPurchases} total)
+                </PaginationInfo>
+                <PaginationButton
+                  disabled={purchasePage >= Math.ceil(totalPurchases / 20)}
+                  onClick={() => setPurchasePage(purchasePage + 1)}
+                >
+                  Next
+                </PaginationButton>
+              </PaginationContainer>
+            )}
           </DashboardSection>
 
           {/* Reports Storage Section */}

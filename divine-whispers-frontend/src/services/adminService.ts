@@ -406,6 +406,22 @@ class AdminService {
   async deleteReport(reportId: string): Promise<any> {
     return await apiClient.delete(`/api/v1/admin/reports/${reportId}`);
   }
+
+  // Purchase Management
+  async getPurchases(params: {
+    page?: number;
+    limit?: number;
+    search?: string;
+    status_filter?: string;
+  } = {}): Promise<any> {
+    return await apiClient.get('/api/v1/admin/purchases', params);
+  }
+
+  async refundPurchase(transactionId: number, refundData: {
+    reason: string;
+  }): Promise<any> {
+    return await apiClient.post(`/api/v1/admin/purchases/${transactionId}/refund`, refundData);
+  }
 }
 
 // Create singleton instance

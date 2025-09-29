@@ -3055,3 +3055,146 @@ async def delete_report(
     except Exception as e:
         logger.error(f"Error deleting report {report_id}: {e}")
         raise HTTPException(status_code=500, detail="Failed to delete report")
+
+
+# Purchase Management
+
+@router.get("/purchases")
+async def get_all_purchases(
+    page: int = Query(1, ge=1, description="Page number"),
+    limit: int = Query(20, ge=1, le=100, description="Items per page"),
+    search: str = Query(None, description="Search by order ID or customer email"),
+    status_filter: str = Query(None, description="Filter by purchase status"),
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get all purchase records for admin management"""
+    try:
+        from app.models.transaction import Transaction, TransactionType, TransactionStatus
+        from app.models.wallet import Wallet
+
+        # Build base query - get DEPOSIT transactions that look like purchases
+        query = (
+            select(Transaction, User.email, User.full_name)
+            .join(Wallet, Wallet.wallet_id == Transaction.wallet_id)
+            .join(User, User.user_id == Wallet.user_id)
+            .where(
+                Transaction.type == TransactionType.DEPOSIT,
+                or_(
+                    Transaction.description.like('%purchase%'),
+                    Transaction.description.like('%coin%')
+                )
+            )
+        )
+
+        # Count query for pagination
+        count_query = (
+            select(func.count(Transaction.txn_id))
+            .join(Wallet, Wallet.wallet_id == Transaction.wallet_id)
+            .join(User, User.user_id == Wallet.user_id)
+            .where(
+                Transaction.type == TransactionType.DEPOSIT,
+                or_(
+                    Transaction.description.like('%purchase%'),
+                    Transaction.description.like('%coin%')
+                )
+            )
+        )
+
+        # Apply search filter
+        if search:
+            search_condition = or_(
+                Transaction.reference_id.like(f'%{search}%'),
+                User.email.like(f'%{search}%'),
+                Transaction.description.like(f'%{search}%')
+            )
+            query = query.where(search_condition)
+            count_query = count_query.where(search_condition)
+
+        # Apply status filter
+        if status_filter and status_filter.lower() != "all status":
+            status_mapping = {
+                "completed": TransactionStatus.SUCCESS,
+                "pending": TransactionStatus.PENDING,
+                "failed": TransactionStatus.FAILED
+            }
+            if status_filter.lower() in status_mapping:
+                query = query.where(Transaction.status == status_mapping[status_filter.lower()])
+                count_query = count_query.where(Transaction.status == status_mapping[status_filter.lower()])
+
+        # Get total count
+        total_count = await db.scalar(count_query) or 0
+
+        # Apply pagination and ordering
+        offset = (page - 1) * limit
+        query = query.offset(offset).limit(limit).order_by(desc(Transaction.created_at))
+
+        # Execute query
+        result = await db.execute(query)
+        purchases_raw = result.all()
+
+        # Format purchase records
+        purchases = []
+        for transaction, user_email, user_name in purchases_raw:
+            # Generate order ID from transaction data
+            order_id = transaction.reference_id or f"ORD{transaction.txn_id:06d}"
+
+            # Extract package info from description
+            description = transaction.description or ""
+            package_name = "Unknown Package"
+
+            if "starter_pack" in description:
+                package_name = "Starter Coin Package (5 Coins)"
+            elif "premium_pack" in description:
+                package_name = "Premium Coin Package (100 Coins)"
+            elif "value_pack" in description:
+                package_name = "Value Coin Package (25 Coins)"
+            elif "coin" in description.lower():
+                # Try to extract coin amount from description
+                import re
+                coin_match = re.search(r'(\d+)', description)
+                if coin_match:
+                    coin_amount = coin_match.group(1)
+                    package_name = f"Coin Package ({coin_amount} Coins)"
+                else:
+                    package_name = "Coin Package"
+
+            # Map transaction status to display status
+            status_mapping = {
+                TransactionStatus.SUCCESS: "Completed",
+                TransactionStatus.PENDING: "Pending",
+                TransactionStatus.FAILED: "Failed"
+            }
+            display_status = status_mapping.get(transaction.status, "Unknown")
+
+            purchases.append({
+                "order_id": order_id,
+                "customer_name": user_name or "Unknown",
+                "customer_email": user_email,
+                "package_name": package_name,
+                "amount": f"${transaction.amount / 100:.2f}" if transaction.amount > 100 else f"${transaction.amount:.2f}",  # Assume cents if > 100
+                "coins_amount": transaction.amount,
+                "status": display_status,
+                "date": transaction.created_at.strftime("%Y-%m-%d") if transaction.created_at else "Unknown",
+                "transaction_id": transaction.txn_id,
+                "reference_id": transaction.reference_id,
+                "description": description
+            })
+
+        return {
+            "purchases": purchases,
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total": total_count,
+                "pages": (total_count + limit - 1) // limit
+            },
+            "filters": {
+                "search": search,
+                "status": status_filter
+            }
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting admin purchase list: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve purchases")
