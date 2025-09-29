@@ -20,7 +20,7 @@ class Wallet(Base):
     
     # Primary Key
     wallet_id: Mapped[int] = mapped_column(
-        BigInteger,
+        Integer,
         primary_key=True,
         autoincrement=True,
         comment="錢包唯一 ID"

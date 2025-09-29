@@ -30,7 +30,12 @@
       "mcp__playwright__browser_network_requests",
       "Bash(time curl:*)",
       "Bash(set PORT=3004)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "mcp__playwright__browser_fill_form",
+      "Bash(.venvScriptspython -m pip install stripe httpx)",
+      "Bash(.venv/Scripts/python:*)",
+      "Bash(..//.venv/Scripts/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload)",
+      "Bash(../.venv/Scripts/python -c \"\nimport sqlite3\nconn = sqlite3.connect(''divine_whispers.db'')\ncursor = conn.cursor()\ncursor.execute(''PRAGMA table_info(wallets)'')\nprint(''Wallets table schema:'')\nfor row in cursor.fetchall():\n    print(row)\ncursor.execute(''SELECT name FROM sqlite_master WHERE type=\"\"table\"\" AND name=\"\"wallets\"\"'')\nresult = cursor.fetchone()\nif result:\n    cursor.execute(''SELECT sql FROM sqlite_master WHERE type=\"\"table\"\" AND name=\"\"wallets\"\"'')\n    print(''\\nCreate statement:'')\n    print(cursor.fetchone()[0])\nconn.close()\n\")"
     ],
     "deny": [],
     "ask": [],

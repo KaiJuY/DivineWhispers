@@ -203,16 +203,33 @@ export type Language = 'en' | 'zh' | 'jp';
 // Navigation Types - Updated for all pages
 export type PageType = 'landing' | 'home' | 'deities' | 'deity-selection' | 'fortune-selection' | 'fortune-analysis' | 'purchase' | 'account' | 'admin' | 'contact' | 'report' | 'auth-test';
 
+// Wallet and Purchase Types
+export interface WalletState {
+  balance: number;
+  available_balance: number;
+  pending_amount: number;
+  loading: boolean;
+  error: string | null;
+  last_updated: string | null;
+}
+
+export interface PurchaseState {
+  loading: boolean;
+  error: string | null;
+  currentSession: any | null;
+  packages: any[];
+}
+
 // Store Types
 export interface AppStore {
   currentPage: PageType;
   setCurrentPage: (page: PageType) => void;
   navigateToPage: (page: PageType, navigate?: (path: string) => void) => void;
-  
+
   // Language
   currentLanguage: Language;
   setCurrentLanguage: (language: Language) => void;
-  
+
   auth: AuthState;
   setAuth: (auth: Partial<AuthState>) => void;
   login: (credentials: LoginCredentials) => Promise<AuthState>;
@@ -233,6 +250,18 @@ export interface AppStore {
   setReports: (reports: Report[]) => void;
   selectedReport: Report | null;
   setSelectedReport: (report: Report | null) => void;
+
+  // Wallet & Purchase State
+  wallet: WalletState;
+  purchase: PurchaseState;
+  setWallet: (walletUpdates: Partial<WalletState>) => void;
+  setPurchase: (purchaseUpdates: Partial<PurchaseState>) => void;
+  refreshWalletBalance: () => Promise<void>;
+  loadCoinPackages: () => Promise<void>;
+  initiatePurchase: (packageId: string, paymentMethod: string) => Promise<any>;
+  completePurchase: (purchaseId: string, paymentConfirmation?: any) => Promise<any>;
+
+  // Legacy coin support
   userCoins: number;
   setUserCoins: (coins: number) => void;
 }

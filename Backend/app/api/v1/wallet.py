@@ -545,7 +545,7 @@ async def get_coin_packages():
     return {
         "packages": packages,
         "currency": "USD",
-        "payment_methods": ["credit_card", "paypal", "apple_pay", "google_pay"]
+        "payment_methods": ["card", "paypal", "apple-pay", "google-pay"]
     }
 
 

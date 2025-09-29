@@ -3,6 +3,7 @@ import { devtools, persist } from 'zustand/middleware';
 import type { AppStore, AuthState, Deity, PoemCollection, ConsultationResponse, PageType, Report, Language, LoginCredentials, RegisterCredentials } from '../types';
 import { mockReports } from '../utils/mockData';
 import authService from '../services/authService';
+import purchaseService, { type WalletBalance, type PurchaseSession, type PurchaseCompletion, type CoinPackage } from '../services/purchaseService';
 
 // Language detection function
 const detectInitialLanguage = (): Language => {
@@ -209,9 +210,199 @@ const useAppStore = create<AppStore>()(
         selectedReport: null,
         setSelectedReport: (report: Report | null) => set({ selectedReport: report }),
 
-        // User Coins
-        userCoins: 50, // Start with 50 coins for demo
-        setUserCoins: (coins: number) => set({ userCoins: coins }),
+        // Wallet State
+        wallet: {
+          balance: 0,
+          available_balance: 0,
+          pending_amount: 0,
+          loading: false,
+          error: null,
+          last_updated: null
+        } as {
+          balance: number;
+          available_balance: number;
+          pending_amount: number;
+          loading: boolean;
+          error: string | null;
+          last_updated: string | null;
+        },
+
+        // Purchase State
+        purchase: {
+          loading: false,
+          error: null,
+          currentSession: null,
+          packages: []
+        } as {
+          loading: boolean;
+          error: string | null;
+          currentSession: PurchaseSession | null;
+          packages: CoinPackage[];
+        },
+
+        // Wallet Actions
+        setWallet: (walletUpdates: any) =>
+          set((state) => ({
+            wallet: { ...state.wallet, ...walletUpdates }
+          })),
+
+        setPurchase: (purchaseUpdates: any) =>
+          set((state) => ({
+            purchase: { ...state.purchase, ...purchaseUpdates }
+          })),
+
+        // Refresh wallet balance from API
+        refreshWalletBalance: async () => {
+          set((state) => ({
+            wallet: { ...state.wallet, loading: true, error: null }
+          }));
+
+          try {
+            const walletBalance = await purchaseService.getWalletBalance();
+            set((state) => ({
+              wallet: {
+                ...state.wallet,
+                balance: walletBalance.balance,
+                available_balance: walletBalance.available_balance,
+                pending_amount: walletBalance.pending_amount,
+                last_updated: walletBalance.last_updated,
+                loading: false,
+                error: null
+              }
+            }));
+          } catch (error: any) {
+            console.error('Failed to refresh wallet balance:', error);
+            set((state) => ({
+              wallet: {
+                ...state.wallet,
+                loading: false,
+                error: error.message || 'Failed to load wallet balance'
+              }
+            }));
+          }
+        },
+
+        // Load coin packages
+        loadCoinPackages: async () => {
+          set((state) => ({
+            purchase: { ...state.purchase, loading: true, error: null }
+          }));
+
+          try {
+            const packagesResponse = await purchaseService.getPackages();
+            // Developer aid: log packages API response for verification
+            try {
+              console.log('Packages API response:', {
+                packages: packagesResponse.packages,
+                currency: packagesResponse.currency,
+                payment_methods: packagesResponse.payment_methods
+              });
+            } catch (_) {
+              // no-op
+            }
+            set((state) => ({
+              purchase: {
+                ...state.purchase,
+                packages: packagesResponse.packages,
+                loading: false,
+                error: null
+              }
+            }));
+          } catch (error: any) {
+            console.error('Failed to load coin packages:', error);
+            set((state) => ({
+              purchase: {
+                ...state.purchase,
+                loading: false,
+                error: error.message || 'Failed to load coin packages'
+              }
+            }));
+          }
+        },
+
+        // Initiate purchase
+        initiatePurchase: async (packageId: string, paymentMethod: string) => {
+          set((state) => ({
+            purchase: { ...state.purchase, loading: true, error: null }
+          }));
+
+          try {
+            const purchaseSession = await purchaseService.initiatePurchase(packageId, paymentMethod);
+            set((state) => ({
+              purchase: {
+                ...state.purchase,
+                currentSession: purchaseSession,
+                loading: false,
+                error: null
+              }
+            }));
+            return purchaseSession;
+          } catch (error: any) {
+            console.error('Failed to initiate purchase:', error);
+            set((state) => ({
+              purchase: {
+                ...state.purchase,
+                loading: false,
+                error: error.message || 'Failed to initiate purchase'
+              }
+            }));
+            throw error;
+          }
+        },
+
+        // Complete purchase
+        completePurchase: async (purchaseId: string, paymentConfirmation: any = {}) => {
+          set((state) => ({
+            purchase: { ...state.purchase, loading: true, error: null }
+          }));
+
+          try {
+            const completion = await purchaseService.completePurchase(purchaseId, paymentConfirmation);
+
+            // Update wallet balance with new amount
+            set((state) => ({
+              wallet: {
+                ...state.wallet,
+                balance: completion.new_balance,
+                available_balance: completion.new_balance
+              },
+              purchase: {
+                ...state.purchase,
+                loading: false,
+                error: null,
+                currentSession: null // Clear session after completion
+              }
+            }));
+
+            return completion;
+          } catch (error: any) {
+            console.error('Failed to complete purchase:', error);
+            set((state) => ({
+              purchase: {
+                ...state.purchase,
+                loading: false,
+                error: error.message || 'Failed to complete purchase'
+              }
+            }));
+            throw error;
+          }
+        },
+
+        // Legacy userCoins getter for backward compatibility
+        get userCoins() {
+          return get().wallet.available_balance;
+        },
+
+        // Legacy setUserCoins for backward compatibility
+        setUserCoins: (coins: number) => {
+          set((state) => ({
+            wallet: {
+              ...state.wallet,
+              balance: coins,
+              available_balance: coins
+            }
+          }));
+        },
       }),
       {
         name: 'divine-whispers-store',
@@ -222,6 +413,12 @@ const useAppStore = create<AppStore>()(
           selectedDeity: state.selectedDeity,
           selectedFortuneNumber: state.selectedFortuneNumber,
           selectedCollection: state.selectedCollection,
+          wallet: {
+            balance: state.wallet.balance,
+            available_balance: state.wallet.available_balance,
+            pending_amount: state.wallet.pending_amount,
+            last_updated: state.wallet.last_updated
+          },
         }),
       }
     ),

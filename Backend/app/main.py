@@ -303,7 +303,7 @@ async def websocket_endpoint(websocket, user_id: str):
 
 
 # Include API routers
-from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact, async_chat, monitoring, streaming_chat
+from app.api.v1 import auth, admin, fortune, wallet, deities, chat, contact, async_chat, monitoring, streaming_chat, webhooks
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Administration"])
 app.include_router(fortune.router, prefix="/api/v1", tags=["Fortune"])
@@ -314,6 +314,7 @@ app.include_router(contact.router, prefix="/api/v1", tags=["Contact"])
 app.include_router(async_chat.router, prefix="/api/v1", tags=["Async Chat"])
 app.include_router(streaming_chat.router, prefix="/api/v1", tags=["Streaming Chat"])
 app.include_router(monitoring.router, prefix="/api/v1", tags=["System Monitoring"])
+app.include_router(webhooks.router, prefix="/api/v1/webhooks", tags=["Payment Webhooks"])
 
 
 if __name__ == "__main__":

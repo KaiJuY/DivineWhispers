@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { colors, gradients, media, skewFadeIn, floatUp } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import useAppStore from '../stores/appStore';
 import { usePagesTranslation } from '../hooks/useTranslation';
+import purchaseService, { type CoinPackage } from '../services/purchaseService';
 
-interface CoinPackage {
-  id: string;
-  coins: number;
-  price: number;
-  badge?: string;
-  pricePerCoin: number;
-}
 
 interface PaymentMethod {
   id: string;
@@ -29,47 +23,43 @@ const getPaymentMethods = (t: (key: string) => string): PaymentMethod[] => [
   },
   {
     id: 'paypal',
-    name: t('purchase.paymentMethods.paypal.name'),
+    name: `${t('purchase.paymentMethods.paypal.name')} (Coming Soon)`,
     icon: '🅿️',
-    description: t('purchase.paymentMethods.paypal.description')
+    description: 'PayPal payments will be available in the next version'
   },
   {
     id: 'apple-pay',
-    name: t('purchase.paymentMethods.applePay.name'),
+    name: `${t('purchase.paymentMethods.applePay.name')} (Coming Soon)`,
     icon: '🍎',
-    description: t('purchase.paymentMethods.applePay.description')
+    description: 'Apple Pay will be available in the next version'
   },
   {
     id: 'google-pay',
-    name: t('purchase.paymentMethods.googlePay.name'),
+    name: `${t('purchase.paymentMethods.googlePay.name')} (Coming Soon)`,
     icon: '🟢',
-    description: t('purchase.paymentMethods.googlePay.description')
+    description: 'Google Pay will be available in the next version'
   }
 ];
 
-const getCoinPackages = (t: (key: string) => string): CoinPackage[] => [
-  {
-    id: 'small',
-    coins: 5,
-    price: 1,
-    badge: t('purchase.packages.small.badge'),
-    pricePerCoin: 1
-  },
-  {
-    id: 'popular',
-    coins: 25,
-    price: 4,
-    badge: t('purchase.packages.popular.badge'),
-    pricePerCoin: 0.8
-  },
-  {
-    id: 'best',
-    coins: 100,
-    price: 10,
-    badge: t('purchase.packages.best.badge'),
-    pricePerCoin: 0.5
-  }
-];
+const mapPackageToDisplay = (pkg: CoinPackage, t: (key: string) => string) => {
+  // Map backend package data to display format
+  const badges: { [key: string]: string } = {
+    'starter_pack': t('purchase.packages.small.badge'),
+    'value_pack': t('purchase.packages.popular.badge'),
+    'premium_pack': t('purchase.packages.best.badge'),
+  };
+
+  const totalCoins = pkg.coins + (pkg.bonus_coins || 0);
+
+  return {
+    id: pkg.id,
+    coins: totalCoins,
+    price: pkg.price_usd,
+    badge: badges[pkg.id] || '',
+    pricePerCoin: totalCoins > 0 ? pkg.price_usd / totalCoins : 0,
+    originalPackage: pkg // Keep reference to original for API calls
+  };
+};
 
 const PurchaseContainer = styled.div`
   width: 100%;
@@ -478,15 +468,22 @@ const PaymentMethodGrid = styled.div`
   margin-bottom: 20px;
 `;
 
-const PaymentMethodOption = styled.div<{ selected?: boolean }>`
+const PaymentMethodOption = styled.div<{ selected?: boolean; disabled?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px 16px;
-  border: 2px solid ${props => props.selected ? colors.primary : 'rgba(255, 255, 255, 0.2)'};
+  border: 2px solid ${props =>
+    props.disabled ? 'rgba(255, 255, 255, 0.1)' :
+    props.selected ? colors.primary : 'rgba(255, 255, 255, 0.2)'
+  };
   border-radius: 6px;
-  background: ${props => props.selected ? 'rgba(212, 175, 55, 0.1)' : 'rgba(255, 255, 255, 0.05)'};
-  cursor: pointer;
+  background: ${props =>
+    props.disabled ? 'rgba(255, 255, 255, 0.02)' :
+    props.selected ? 'rgba(212, 175, 55, 0.1)' : 'rgba(255, 255, 255, 0.05)'
+  };
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  opacity: ${props => props.disabled ? 0.5 : 1};
   transition: all 0.3s ease;
   text-align: center;
   flex: 1;
@@ -527,34 +524,112 @@ const PolicyAnnouncement = styled.div`
 `;
 
 const PurchasePage: React.FC = () => {
-  const { auth } = useAppStore();
+  const {
+    auth,
+    wallet,
+    purchase,
+    refreshWalletBalance,
+    loadCoinPackages,
+    initiatePurchase,
+    completePurchase
+  } = useAppStore();
+
   const { t } = usePagesTranslation();
-  const [selectedPackage, setSelectedPackage] = useState<string>('popular');
+  const [selectedPackage, setSelectedPackage] = useState<string>('value_pack');
   const [selectedPayment, setSelectedPayment] = useState<string>('card');
-  const currentCoins = 100; // Mock current coins
-  
+  const [purchaseLoading, setPurchaseLoading] = useState(false);
+  const [purchaseError, setPurchaseError] = useState<string | null>(null);
+  const [purchaseSuccess, setPurchaseSuccess] = useState<boolean>(false);
+
   const paymentMethods = getPaymentMethods(t);
-  const coinPackages = getCoinPackages(t);
+
+  // Map backend packages to display format
+  const coinPackages = purchase.packages.map(pkg => mapPackageToDisplay(pkg, t));
+
+  // Load initial data on component mount
+  useEffect(() => {
+    // Always load coin packages (they're public)
+    loadCoinPackages();
+
+    // Only load wallet balance if authenticated
+    if (auth.isAuthenticated) {
+      refreshWalletBalance();
+    }
+  }, [auth.isAuthenticated, refreshWalletBalance, loadCoinPackages]);
 
   const handlePackageSelect = (packageId: string) => {
     setSelectedPackage(packageId);
+    setPurchaseError(null); // Clear any previous errors
   };
 
   const handlePaymentSelect = (paymentId: string) => {
-    setSelectedPayment(paymentId);
+    // Phase 2: Only allow credit card payments
+    if (paymentId === 'card') {
+      setSelectedPayment(paymentId);
+    }
+    // Other payment methods are disabled in Phase 2
   };
 
-  const handlePurchase = () => {
-    // TODO: Implement actual payment processing
-    console.log('Purchase initiated for package:', selectedPackage, 'with payment method:', selectedPayment);
-    alert(`${t('purchase.processingPayment')} ${paymentMethods.find(p => p.id === selectedPayment)?.name}. ${t('purchase.demoNotice')}`);
+  const handlePurchase = async () => {
+    if (!auth.isAuthenticated) {
+      // Phase 2 behavior: quietly no-op if unauthenticated
+      // (authentication handled elsewhere; no visible error here)
+      return;
+    }
+
+    // Validate purchase data
+    const validation = purchaseService.validatePurchaseData(selectedPackage, selectedPayment);
+    if (!validation.isValid) {
+      setPurchaseError(validation.error || 'Invalid purchase data');
+      return;
+    }
+
+    setPurchaseLoading(true);
+    setPurchaseError(null);
+    setPurchaseSuccess(false);
+
+    try {
+      // Step 1: Initiate purchase
+      console.log('Initiating purchase for package:', selectedPackage, 'with payment method:', selectedPayment);
+      const purchaseSession = await initiatePurchase(selectedPackage, selectedPayment);
+
+      // Step 2: Simulate payment processing (In Phase 2, this will be real payment gateway)
+      console.log('Processing payment for purchase:', purchaseSession.purchase_id);
+
+      // Mock payment confirmation (replace with real payment gateway in Phase 2)
+      const paymentConfirmation = {
+        payment_id: `mock_payment_${Date.now()}`,
+        method: selectedPayment,
+        status: 'completed',
+        amount: purchaseSession.total_amount
+      };
+
+      // Step 3: Complete purchase
+      const completion = await completePurchase(purchaseSession.purchase_id, paymentConfirmation);
+
+      console.log('Purchase completed successfully:', completion);
+
+      // Show success message
+      setPurchaseSuccess(true);
+      alert(`🎉 ${completion.message}\n\nCoins Added: ${completion.coins_added}\nNew Balance: ${completion.new_balance} coins`);
+
+      // Refresh wallet balance to ensure UI is up to date
+      await refreshWalletBalance();
+
+    } catch (error: any) {
+      console.error('Purchase failed:', error);
+      setPurchaseError(error.message || 'Purchase failed. Please try again.');
+    } finally {
+      setPurchaseLoading(false);
+    }
   };
 
   const getSelectedPackage = () => {
-    return coinPackages.find(pkg => pkg.id === selectedPackage) || coinPackages[1];
+    return coinPackages.find(pkg => pkg.id === selectedPackage) || coinPackages[0];
   };
 
   const selectedPkg = getSelectedPackage();
+  const currentCoins = wallet.available_balance || 0;
 
   return (
     <Layout>
@@ -568,55 +643,77 @@ const PurchasePage: React.FC = () => {
               </PurchaseSubtitle>
 
               <CoinPackagesList>
-                {coinPackages.map((pkg, index) => (
-                  <CoinPackageItem
-                    key={pkg.id}
-                    selected={selectedPackage === pkg.id}
-                    onClick={() => handlePackageSelect(pkg.id)}
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                  >
-                    {pkg.badge && <PackageBadge>{pkg.badge}</PackageBadge>}
-                    
-                    <PackageHeader>
-                      <CoinCount>{pkg.coins} {t('purchase.coins')}</CoinCount>
-                    </PackageHeader>
+                {purchase.loading ? (
+                  <div style={{ textAlign: 'center', padding: '40px', color: colors.white }}>
+                    {t('common.loading')}
+                  </div>
+                ) : purchase.error ? (
+                  <div style={{ textAlign: 'center', padding: '40px', color: 'red' }}>
+                    Error loading packages: {purchase.error}
+                  </div>
+                ) : coinPackages.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '40px', color: colors.white }}>
+                    No packages available
+                  </div>
+                ) : (
+                  coinPackages.map((pkg, index) => (
+                    <CoinPackageItem
+                      key={pkg.id}
+                      selected={selectedPackage === pkg.id}
+                      onClick={() => handlePackageSelect(pkg.id)}
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    >
+                      {pkg.badge && <PackageBadge>{pkg.badge}</PackageBadge>}
 
-                    <PackageDetails>
-                      <PackagePrice>${pkg.price}</PackagePrice>
-                    </PackageDetails>
+                      <PackageHeader>
+                        <CoinCount>{pkg.coins} {t('purchase.coins')}</CoinCount>
+                      </PackageHeader>
 
-                    <PackageRate>${pkg.pricePerCoin.toFixed(2)} / {t('purchase.perTime')}</PackageRate>
-                  </CoinPackageItem>
-                ))}
+                      <PackageDetails>
+                        <PackagePrice>${pkg.price}</PackagePrice>
+                      </PackageDetails>
+
+                      <PackageRate>${pkg.pricePerCoin.toFixed(2)} / {t('purchase.perTime')}</PackageRate>
+                    </CoinPackageItem>
+                  ))
+                )}
               </CoinPackagesList>
             </LeftSection>
 
             <RightSection>
               <PurchaseSummary>
-                <SummaryTitle>{selectedPkg.coins} {t('purchase.coins')}</SummaryTitle>
-                
-                <SummaryDetails>
-                  <SummaryRow>
-                    <span>{t('purchase.summary.coinsToReceive')}:</span>
-                    <span>{selectedPkg.coins} {t('purchase.coins')}</span>
-                  </SummaryRow>
-                  <SummaryRow>
-                    <span>{t('purchase.summary.coinsAfter')}:</span>
-                    <span>{currentCoins + selectedPkg.coins} {t('purchase.coins')}</span>
-                  </SummaryRow>
-                  <SummaryRow>
-                    <span>{t('purchase.summary.currentCoins')}:</span>
-                    <span>{currentCoins} {t('purchase.coins')}</span>
-                  </SummaryRow>
-                  <SummaryRow>
-                    <span>{t('purchase.summary.transactionCost')}:</span>
-                    <span>${selectedPkg.price}</span>
-                  </SummaryRow>
-                  <SummaryRow className="total">
-                    <span>{t('purchase.summary.coinCurrencyRate')}:</span>
-                    <span>${(selectedPkg.price / selectedPkg.coins).toFixed(2)} / {t('purchase.coin')}</span>
-                  </SummaryRow>
-                </SummaryDetails>
+                {selectedPkg ? (
+                  <>
+                    <SummaryTitle>{selectedPkg.coins} {t('purchase.coins')}</SummaryTitle>
+
+                    <SummaryDetails>
+                      <SummaryRow>
+                        <span>{t('purchase.summary.coinsToReceive')}:</span>
+                        <span>{selectedPkg.coins} {t('purchase.coins')}</span>
+                      </SummaryRow>
+                      <SummaryRow>
+                        <span>{t('purchase.summary.coinsAfter')}:</span>
+                        <span>{currentCoins + selectedPkg.coins} {t('purchase.coins')}</span>
+                      </SummaryRow>
+                      <SummaryRow>
+                        <span>{t('purchase.summary.currentCoins')}:</span>
+                        <span>
+                          {wallet.loading ? t('common.loading') : `${currentCoins} ${t('purchase.coins')}`}
+                        </span>
+                      </SummaryRow>
+                      <SummaryRow>
+                        <span>{t('purchase.summary.transactionCost')}:</span>
+                        <span>${selectedPkg.price}</span>
+                      </SummaryRow>
+                      <SummaryRow className="total">
+                        <span>{t('purchase.summary.coinCurrencyRate')}:</span>
+                        <span>${(selectedPkg.price / selectedPkg.coins).toFixed(2)} / {t('purchase.coin')}</span>
+                      </SummaryRow>
+                    </SummaryDetails>
+                  </>
+                ) : (
+                  <SummaryTitle>{t('common.loading')}</SummaryTitle>
+                )}
 
                 <PaymentMethodSection>
                   <PaymentMethodTitle>{t('purchase.choosePaymentMethod')}</PaymentMethodTitle>
@@ -625,6 +722,7 @@ const PurchasePage: React.FC = () => {
                       <PaymentMethodOption
                         key={method.id}
                         selected={selectedPayment === method.id}
+                        disabled={method.id !== 'card'}
                         onClick={() => handlePaymentSelect(method.id)}
                       >
                         <PaymentName selected={selectedPayment === method.id}>
@@ -635,9 +733,43 @@ const PurchasePage: React.FC = () => {
                   </PaymentMethodGrid>
                 </PaymentMethodSection>
 
-                <PurchaseBtn onClick={handlePurchase}>
-                  {t('purchase.purchaseWith', { method: paymentMethods.find(p => p.id === selectedPayment)?.name })}
+                <PurchaseBtn
+                  onClick={handlePurchase}
+                  disabled={purchaseLoading || purchase.loading || !selectedPkg}
+                >
+                  {purchaseLoading
+                    ? t('purchase.processingPayment')
+                    : t('purchase.purchaseWith', { method: paymentMethods.find(p => p.id === selectedPayment)?.name })
+                  }
                 </PurchaseBtn>
+
+                {purchaseError && (
+                  <div style={{
+                    marginTop: '15px',
+                    padding: '10px',
+                    backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                    border: '1px solid rgba(255, 0, 0, 0.3)',
+                    borderRadius: '8px',
+                    color: 'red',
+                    fontSize: '0.9rem'
+                  }}>
+                    ⚠️ {purchaseError}
+                  </div>
+                )}
+
+                {purchaseSuccess && (
+                  <div style={{
+                    marginTop: '15px',
+                    padding: '10px',
+                    backgroundColor: 'rgba(0, 255, 0, 0.1)',
+                    border: '1px solid rgba(0, 255, 0, 0.3)',
+                    borderRadius: '8px',
+                    color: 'green',
+                    fontSize: '0.9rem'
+                  }}>
+                    ✅ Purchase completed successfully!
+                  </div>
+                )}
 
                 <PolicyAnnouncement>
                   <p>

@@ -575,15 +575,15 @@ class WalletService:
             select(Wallet).where(Wallet.user_id == user_id)
         )
         wallet = result.scalar_one_or_none()
-        
+
         if not wallet:
             # Create new wallet
             wallet = Wallet(user_id=user_id, balance=0)
             self.db.add(wallet)
             await self.db.flush()  # Get the wallet ID
-            
+
             logger.info(f"Created new wallet {wallet.wallet_id} for user {user_id}")
-        
+
         return wallet
     
     async def _get_recent_transactions(self, user_id: int, hours: int = 1) -> List[Transaction]:

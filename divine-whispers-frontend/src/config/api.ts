@@ -16,7 +16,10 @@ export const API_ENDPOINTS = {
     BALANCE: '/api/v1/balance',
     TRANSACTIONS: '/api/v1/transactions',
     PURCHASES: '/api/v1/purchases',
-    OVERVIEW: '/api/v1'
+    PACKAGES: '/api/v1/packages',
+    PURCHASE: '/api/v1/purchase',
+    OVERVIEW: '/api/v1/',
+    STATISTICS: '/api/v1/statistics'
   },
   REPORTS: '/api/v1/auth/profile/reports',
   HEALTH: '/health'
