@@ -1083,12 +1083,32 @@ async def get_customer_list(
         # Enhance user data with additional info
         customer_list = []
         for user in users:
-            # Get wallet info
-            wallet_result = await db.execute(
-                select(Wallet).where(Wallet.user_id == user.user_id)
-            )
-            wallet = wallet_result.scalar_one_or_none()
-            
+            # Get wallet-based balance via service (creates wallet if missing)
+            from app.services.wallet_service import WalletService
+            wallet_service = WalletService(db)
+            balance_info = await wallet_service.get_balance(user.user_id)
+            wallet_balance = balance_info.available_balance
+
+            # Compute total spent (sum of successful SPEND transactions)
+            from app.models.transaction import Transaction, TransactionType, TransactionStatus
+            try:
+                spent_query = (
+                    select(func.coalesce(func.sum(func.abs(Transaction.amount)), 0))
+                    .select_from(Transaction)
+                    .join(Wallet, Wallet.wallet_id == Transaction.wallet_id)
+                    .where(
+                        and_(
+                            Wallet.user_id == user.user_id,
+                            Transaction.type == TransactionType.SPEND,
+                            Transaction.status == TransactionStatus.SUCCESS
+                        )
+                    )
+                )
+                total_spent = await db.scalar(spent_query)
+                total_spent = int(total_spent or 0)
+            except Exception:
+                total_spent = 0
+
             # Get recent activity
             recent_activity = await db.scalar(
                 select(func.max(AuditLog.timestamp)).where(AuditLog.user_id == user.user_id)
@@ -1103,8 +1123,8 @@ async def get_customer_list(
                 "created_at": user.created_at,
                 "updated_at": user.updated_at,
                 "last_login": getattr(user, 'last_login', None),
-                "wallet_balance": wallet.available_balance if wallet else 0,
-                "total_spent": wallet.total_spent if hasattr(wallet, 'total_spent') else 0,
+                "wallet_balance": wallet_balance,
+                "total_spent": total_spent,
                 "recent_activity": recent_activity
             }
             customer_list.append(customer_info)
@@ -1149,11 +1169,12 @@ async def get_customer_details(
         )
         wallet = wallet_result.scalar_one_or_none()
         
-        # Get transaction history
+        # Get transaction history (join via wallet)
         from app.models.transaction import Transaction
         transactions_result = await db.execute(
             select(Transaction)
-            .where(Transaction.user_id == user_id)
+            .join(Wallet, Wallet.wallet_id == Transaction.wallet_id)
+            .where(Wallet.user_id == user_id)
             .order_by(desc(Transaction.created_at))
             .limit(10)
         )

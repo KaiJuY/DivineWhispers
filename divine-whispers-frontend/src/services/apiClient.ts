@@ -80,29 +80,44 @@ class ApiClient {
   }
 
   private initializeTokenRefresh() {
-    // Check for existing token on startup and schedule refresh if valid
-    const token = this.getStoredToken();
-    if (token) {
-      const payload = this.decodeJWT(token);
-      if (payload && payload.exp) {
-        const now = Math.floor(Date.now() / 1000);
-        const timeUntilExpiry = payload.exp - now;
+    // Check for existing tokens on startup and schedule/refresh as needed
+    const accessToken = this.getStoredToken();
+    const refreshToken = this.getStoredRefreshToken();
 
-        if (timeUntilExpiry > 300) { // Only schedule if more than 5 minutes left
-          this.scheduleTokenRefresh(timeUntilExpiry);
-          console.log('Existing token found, scheduled automatic refresh');
-        } else if (timeUntilExpiry > 0) {
-          // Token expires soon, try to refresh immediately
-          console.log('Token expires soon, attempting immediate refresh');
-          this.refreshToken().catch(() => {
-            console.warn('Failed to refresh token on startup');
-          });
-        } else {
-          // Token already expired, clear it
-          console.log('Found expired token, clearing...');
-          this.clearTokens();
-        }
+    if (!accessToken && !refreshToken) return;
+
+    const payload = accessToken ? this.decodeJWT(accessToken) : null;
+    if (payload && payload.exp) {
+      const now = Math.floor(Date.now() / 1000);
+      const timeUntilExpiry = payload.exp - now;
+
+      if (timeUntilExpiry > 300) {
+        this.scheduleTokenRefresh(timeUntilExpiry);
+        console.log('Existing token found, scheduled automatic refresh');
+        return;
       }
+
+      if (refreshToken) {
+        const isExpired = timeUntilExpiry <= 0;
+        console.log(isExpired ? 'Access token expired, attempting refresh' : 'Token expires soon, attempting immediate refresh');
+        this.refreshToken().catch(() => {
+          console.warn('Failed to refresh token on startup');
+          this.clearTokens();
+        });
+        return;
+      }
+
+      console.log('No refresh token available, clearing tokens');
+      this.clearTokens();
+      return;
+    }
+
+    // If cannot decode but have refresh token, attempt refresh once
+    if (refreshToken && accessToken) {
+      console.log('Unable to decode access token; attempting refresh');
+      this.refreshToken().catch(() => {
+        this.clearTokens();
+      });
     }
   }
 

@@ -155,7 +155,7 @@ const useAppStore = create<AppStore>()(
           }));
 
           try {
-            const user = await authService.getCurrentUser();
+            let user = await authService.getCurrentUser();
             set({ 
               auth: {
                 user,
@@ -169,16 +169,35 @@ const useAppStore = create<AppStore>()(
               }
             });
             return true;
-          } catch (error) {
-            set({ 
-              auth: {
-                user: null,
-                tokens: null,
-                isAuthenticated: false,
-                loading: false
-              }
-            });
-            return false;
+          } catch (error: any) {
+            // If unauthorized, attempt a token refresh once and retry
+            try {
+              await authService.refreshToken();
+              const user = await authService.getCurrentUser();
+              set({ 
+                auth: {
+                  user,
+                  tokens: {
+                    access_token: authService.getStoredToken() || '',
+                    refresh_token: localStorage.getItem('divine-whispers-refresh-token') || '',
+                    expires_in: 3600
+                  },
+                  isAuthenticated: true,
+                  loading: false
+                }
+              });
+              return true;
+            } catch (refreshError) {
+              set({ 
+                auth: {
+                  user: null,
+                  tokens: null,
+                  isAuthenticated: false,
+                  loading: false
+                }
+              });
+              return false;
+            }
           }
         },
 
