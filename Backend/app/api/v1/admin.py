@@ -590,20 +590,23 @@ async def adjust_user_points(
             detail="User not found"
         )
     
-    old_balance = target_user.points_balance
-    new_balance = old_balance + adjustment_data.amount
-    
-    if new_balance < 0:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Adjustment would result in negative balance"
-        )
-    
     try:
-        # Update balance
-        target_user.points_balance = new_balance
-        target_user.updated_at = datetime.utcnow()
-        
+        # Use wallet service to adjust points atomically
+        from app.services.wallet_service import WalletService
+        wallet_service = WalletService(db)
+
+        txn = await wallet_service.admin_adjust_points(
+            user_id=target_user.user_id,
+            amount=int(adjustment_data.amount),
+            reason=adjustment_data.reason or "Admin adjustment",
+            admin_user_id=current_user.user_id
+        )
+
+        # Get updated balances from wallet
+        balance_info = await wallet_service.get_balance(target_user.user_id)
+        old_balance = max(0, balance_info.balance - int(adjustment_data.amount)) if adjustment_data.amount else balance_info.balance
+        new_balance = balance_info.balance
+
         # Create audit log
         audit_log = AuditLog(
             user_id=current_user.user_id,
@@ -619,11 +622,10 @@ async def adjust_user_points(
                 "adjustment_type": adjustment_data.adjustment_type
             }
         )
-        
+
         db.add(audit_log)
         await db.commit()
-        await db.refresh(target_user)
-        
+
         return PointAdjustmentResponse(
             user_id=target_user.user_id,
             user_email=target_user.email,
@@ -632,7 +634,7 @@ async def adjust_user_points(
             adjustment_amount=adjustment_data.amount,
             reason=adjustment_data.reason,
             adjusted_by=current_user.user_id,
-            adjusted_at=target_user.updated_at
+            adjusted_at=txn.created_at if hasattr(txn, 'created_at') else target_user.updated_at
         )
         
     except Exception as e:

@@ -66,8 +66,44 @@ async def register(
     
     try:
         user, tokens = await AuthService.register_user(db, user_data, client_ip)
-        user_response = UserResponse.model_validate(user)
-        
+
+        # Ensure wallet is initialized with default points for new user
+        try:
+            from app.services.wallet_service import WalletService
+            from app.core.config import settings
+            wallet_service = WalletService(db)
+            if getattr(settings, 'DEFAULT_USER_POINTS', 0) > 0:
+                await wallet_service.deposit_points(
+                    user_id=user.user_id,
+                    amount=int(settings.DEFAULT_USER_POINTS),
+                    reference_id=f"signup_{user.user_id}",
+                    description="Signup bonus"
+                )
+        except Exception:
+            pass
+
+        # Build user response with wallet-based balance
+        try:
+            wallet_service = WalletService(db)
+            balance_info = await wallet_service.get_balance(user.user_id)
+            wallet_points = int(getattr(balance_info, 'available_balance', balance_info.balance))
+        except Exception:
+            wallet_points = user.points_balance
+
+        user_response = UserResponse(
+            user_id=user.user_id,
+            email=user.email,
+            role=user.role,
+            status=user.status,
+            points_balance=wallet_points,
+            created_at=user.created_at,
+            updated_at=user.updated_at,
+            full_name=user.full_name,
+            phone=user.phone,
+            birth_date=user.birth_date,
+            location=user.location,
+            preferred_language=user.preferred_language
+        )
         return LoginResponse(user=user_response, tokens=tokens)
         
     except HTTPException:
@@ -210,10 +246,32 @@ async def logout(
     }
 )
 async def get_current_user_info(
-    current_user = Depends(get_current_user)
+    current_user = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
 ):
-    """Get current user information"""
-    return UserResponse.model_validate(current_user)
+    """Get current user information, with wallet-based points balance"""
+    try:
+        from app.services.wallet_service import WalletService
+        wallet_service = WalletService(db)
+        balance_info = await wallet_service.get_balance(current_user.user_id)
+        wallet_points = int(getattr(balance_info, 'available_balance', balance_info.balance))
+    except Exception:
+        wallet_points = current_user.points_balance
+
+    return UserResponse(
+        user_id=current_user.user_id,
+        email=current_user.email,
+        role=current_user.role,
+        status=current_user.status,
+        points_balance=wallet_points,
+        created_at=current_user.created_at,
+        updated_at=current_user.updated_at,
+        full_name=current_user.full_name,
+        phone=current_user.phone,
+        birth_date=current_user.birth_date,
+        location=current_user.location,
+        preferred_language=current_user.preferred_language
+    )
 
 
 @router.put(

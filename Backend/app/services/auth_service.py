@@ -196,8 +196,28 @@ class AuthService:
         db.add(audit_log)
         await db.commit()
         
-        # Create response objects
-        user_response = UserResponse.model_validate(user)
+        # Create response objects with wallet-based points balance
+        try:
+            from app.services.wallet_service import WalletService
+            wallet_service = WalletService(db)
+            balance_info = await wallet_service.get_balance(user.user_id)
+            wallet_points = int(getattr(balance_info, 'available_balance', balance_info.balance))
+        except Exception:
+            wallet_points = user.points_balance
+        user_response = UserResponse(
+            user_id=user.user_id,
+            email=user.email,
+            role=user.role,
+            status=user.status,
+            points_balance=wallet_points,
+            created_at=user.created_at,
+            updated_at=user.updated_at,
+            full_name=user.full_name,
+            phone=user.phone,
+            birth_date=user.birth_date,
+            location=user.location,
+            preferred_language=user.preferred_language
+        )
         tokens = TokenResponse(
             access_token=access_token,
             refresh_token=refresh_token,
