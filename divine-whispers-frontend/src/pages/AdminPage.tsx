@@ -293,7 +293,7 @@ const StatusBadge = styled.span<{ status: string }>`
   color: ${props => props.status === 'premium' || props.status === 'pending' ? colors.black : colors.white};
 `;
 
-const CardBtn = styled.button<{ edit?: boolean; delete?: boolean }>`
+const CardBtn = styled.button<{ edit?: boolean; delete?: boolean; secondary?: boolean }>`
   padding: 0.5rem 1rem;
   margin-right: 0.5rem;
   border: none;
@@ -301,7 +301,11 @@ const CardBtn = styled.button<{ edit?: boolean; delete?: boolean }>`
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  background: ${props => props.delete ? '#dc3545' : props.edit ? colors.primary : '#6c757d'};
+  background: ${props =>
+    props.delete ? '#dc3545' :
+    props.edit ? colors.primary :
+    props.secondary ? '#6c757d' :
+    colors.primary};
   color: ${props => props.edit ? colors.black : colors.white};
   
   &:hover {
@@ -748,30 +752,6 @@ const AdminPage: React.FC = () => {
     }
   }, [activeSection, purchasePage, purchaseSearch, purchaseStatus]);
 
-  // Handle purchase refund
-  const handleRefundPurchase = async (transactionId: number, orderName: string) => {
-    const reason = window.prompt(`Enter refund reason for ${orderName}:`);
-    if (!reason) return;
-
-    try {
-      await adminService.refundPurchase(transactionId, { reason });
-      alert('Refund processed successfully');
-      // Reload purchases to reflect changes
-      if (activeSection === 'purchases') {
-        const response = await adminService.getPurchases({
-          page: purchasePage,
-          limit: 20,
-          search: purchaseSearch || undefined,
-          status_filter: purchaseStatus || undefined
-        });
-        setPurchases(response.purchases || []);
-        setTotalPurchases(response.pagination?.total || 0);
-      }
-    } catch (err) {
-      console.error('Error processing refund:', err);
-      alert('Failed to process refund');
-    }
-  };
 
   // Mock data for sections not yet fully implemented
 
@@ -1433,7 +1413,6 @@ const AdminPage: React.FC = () => {
               <SectionTitle>Purchase Management</SectionTitle>
               <SectionActions>
                 <AdminBtn onClick={() => console.log('Generate report')}>📈 Generate Report</AdminBtn>
-                <AdminBtn secondary onClick={() => console.log('Process refund')}>💸 Process Refund</AdminBtn>
               </SectionActions>
             </SectionHeader>
 
@@ -1456,7 +1435,6 @@ const AdminPage: React.FC = () => {
                 <option value="completed">Completed</option>
                 <option value="pending">Pending</option>
                 <option value="failed">Failed</option>
-                <option value="refunded">Refunded</option>
               </FilterSelect>
             </SearchFilterBar>
 
@@ -1494,15 +1472,6 @@ const AdminPage: React.FC = () => {
                         >
                           👁️ View
                         </CardBtn>
-                        {purchase.status === 'Completed' && (
-                          <CardBtn
-                            delete
-                            onClick={() => handleRefundPurchase(purchase.transaction_id, purchase.package_name)}
-                            title="Process Refund"
-                          >
-                            ↩️ Refund
-                          </CardBtn>
-                        )}
                       </td>
                     </tr>
                   ))

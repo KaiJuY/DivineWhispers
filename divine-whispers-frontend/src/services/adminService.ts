@@ -416,12 +416,6 @@ class AdminService {
   } = {}): Promise<any> {
     return await apiClient.get('/api/v1/admin/purchases', params);
   }
-
-  async refundPurchase(transactionId: number, refundData: {
-    reason: string;
-  }): Promise<any> {
-    return await apiClient.post(`/api/v1/admin/purchases/${transactionId}/refund`, refundData);
-  }
 }
 
 // Create singleton instance
