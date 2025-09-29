@@ -425,20 +425,34 @@ const useAppStore = create<AppStore>()(
       }),
       {
         name: 'divine-whispers-store',
-        partialize: (state) => ({
-          currentLanguage: state.currentLanguage,
-          auth: state.auth,
-          consultationHistory: state.consultationHistory,
-          selectedDeity: state.selectedDeity,
-          selectedFortuneNumber: state.selectedFortuneNumber,
-          selectedCollection: state.selectedCollection,
-          wallet: {
-            balance: state.wallet.balance,
-            available_balance: state.wallet.available_balance,
-            pending_amount: state.wallet.pending_amount,
-            last_updated: state.wallet.last_updated
-          },
-        }),
+        partialize: (state) => {
+          const persistedState = {
+            currentLanguage: state.currentLanguage,
+            auth: state.auth,
+            consultationHistory: state.consultationHistory,
+            selectedDeity: state.selectedDeity,
+            selectedFortuneNumber: state.selectedFortuneNumber,
+            selectedCollection: state.selectedCollection,
+            wallet: {
+              balance: state.wallet.balance,
+              available_balance: state.wallet.available_balance,
+              pending_amount: state.wallet.pending_amount,
+              last_updated: state.wallet.last_updated
+            },
+          };
+          console.log('Persisting state:', persistedState);
+          return persistedState;
+        },
+        onRehydrateStorage: (state) => {
+          console.log('Rehydrating state:', state);
+          return (state, error) => {
+            if (error) {
+              console.error('An error occurred during rehydration', error);
+            } else {
+              console.log('Rehydration complete', state);
+            }
+          };
+        },
       }
     ),
     { name: 'divine-whispers' }

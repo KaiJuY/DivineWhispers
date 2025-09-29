@@ -251,10 +251,12 @@ async def get_current_user_info(
 ):
     """Get current user information, with wallet-based points balance"""
     try:
-        from app.services.wallet_service import WalletService
-        wallet_service = WalletService(db)
-        balance_info = await wallet_service.get_balance(current_user.user_id)
-        wallet_points = int(getattr(balance_info, 'available_balance', balance_info.balance))
+        # Query wallet balance directly to avoid greenlet context issues
+        from app.models.wallet import Wallet
+        from sqlalchemy import select
+        wallet_result = await db.execute(select(Wallet).where(Wallet.user_id == current_user.user_id))
+        wallet = wallet_result.scalar_one_or_none()
+        wallet_points = wallet.balance if wallet else current_user.points_balance
     except Exception:
         wallet_points = current_user.points_balance
 

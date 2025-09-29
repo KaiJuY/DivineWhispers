@@ -83,16 +83,13 @@ async def get_current_user(
             detail="Inactive user"
         )
     
+    # Refresh the user object to ensure all attributes are loaded within the current session
+    await db.refresh(user)
+
     # Synchronize legacy user.points_balance with wallet balance for consistency
-    try:
-        from app.services.wallet_service import WalletService
-        wallet_service = WalletService(db)
-        balance_info = await wallet_service.get_balance(user.user_id)
-        # Reflect wallet available balance on the user model for downstream reads
-        user.points_balance = int(getattr(balance_info, 'available_balance', balance_info.balance))
-    except Exception:
-        # If wallet is unavailable, keep existing value to avoid breaking requests
-        pass
+    # Temporarily completely disabled to prevent authentication failures due to greenlet context issues
+    # TODO: Fix the async context mixing in WalletService and re-enable
+    pass  # Disabled wallet sync to isolate greenlet issue
     
     return user
 
