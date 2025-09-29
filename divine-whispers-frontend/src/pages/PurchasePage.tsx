@@ -56,7 +56,7 @@ const mapPackageToDisplay = (pkg: CoinPackage, t: (key: string) => string) => {
     coins: totalCoins,
     price: pkg.price_usd,
     badge: badges[pkg.id] || '',
-    pricePerCoin: totalCoins > 0 ? pkg.price_usd / totalCoins : 0,
+    pricePerCoin: totalCoins > 0 ? pkg.price_usd / (totalCoins / 5) : 0,
     originalPackage: pkg // Keep reference to original for API calls
   };
 };

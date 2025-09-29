@@ -507,8 +507,8 @@ async def get_coin_packages():
         {
             "id": "starter_pack",
             "name": "Starter Pack",
-            "coins": 50,
-            "price_usd": 4.99,
+            "coins": 5,
+            "price_usd": 1.5,
             "bonus_coins": 0,
             "description": "Perfect for trying out fortune readings",
             "popular": False
@@ -516,28 +516,19 @@ async def get_coin_packages():
         {
             "id": "value_pack", 
             "name": "Value Pack",
-            "coins": 120,
-            "price_usd": 9.99,
-            "bonus_coins": 20,
+            "coins": 25,
+            "price_usd": 7.5,
+            "bonus_coins": 5,
             "description": "Most popular choice with bonus coins",
             "popular": True
         },
         {
             "id": "premium_pack",
             "name": "Premium Pack", 
-            "coins": 300,
-            "price_usd": 19.99,
-            "bonus_coins": 80,
+            "coins": 100,
+            "price_usd": 30,
+            "bonus_coins": 50,
             "description": "Best value for frequent users",
-            "popular": False
-        },
-        {
-            "id": "mega_pack",
-            "name": "Mega Pack",
-            "coins": 650,
-            "price_usd": 39.99,
-            "bonus_coins": 200,
-            "description": "Ultimate package for dedicated users",
             "popular": False
         }
     ]
