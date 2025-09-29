@@ -572,8 +572,8 @@ const PurchasePage: React.FC = () => {
 
   const handlePurchase = async () => {
     if (!auth.isAuthenticated) {
-      // Phase 2 behavior: quietly no-op if unauthenticated
-      // (authentication handled elsewhere; no visible error here)
+      // Notify user instead of silent no-op
+      setPurchaseError('Please log in to make a purchase');
       return;
     }
 
@@ -601,7 +601,8 @@ const PurchasePage: React.FC = () => {
         payment_id: `mock_payment_${Date.now()}`,
         method: selectedPayment,
         status: 'completed',
-        amount: purchaseSession.total_amount
+        amount: purchaseSession.total_amount,
+        package_id: selectedPackage
       };
 
       // Step 3: Complete purchase

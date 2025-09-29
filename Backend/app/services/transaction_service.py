@@ -85,6 +85,17 @@ class TransactionService:
                 description=description
             )
             
+            # Fallback: pre-assign primary key to avoid SQLite AUTOINCREMENT edge cases
+            # seen as NOT NULL constraint failures on txn_id
+            try:
+                result = await self.db.execute(select(func.max(Transaction.txn_id)))
+                max_id = result.scalar() or 0
+                # Only pre-assign if txn_id is falsy
+                if not getattr(transaction, 'txn_id', None):
+                    transaction.txn_id = int(max_id) + 1
+            except Exception as _pre_id_err:
+                logger.warning(f"Pre-assign txn_id failed (will rely on DB autoincrement): {_pre_id_err}")
+
             self.db.add(transaction)
             await self.db.flush()  # Get the transaction ID without committing
             

@@ -595,6 +595,43 @@ async def complete_coin_purchase(
 ):
     """Complete coin purchase after successful payment"""
     try:
+        # Load available packages to resolve coin amounts
+        packages_response = await get_coin_packages()
+        packages = packages_response.get("packages", [])
+
+        # Helper to find package by id
+        def find_by_id(pid: str):
+            return next((p for p in packages if p.get("id") == pid), None)
+
+        # Determine selected package from confirmation payload or amount
+        selected_package = None
+        if isinstance(payment_confirmation, dict):
+            pkg_id = payment_confirmation.get("package_id") or payment_confirmation.get("package")
+            if isinstance(pkg_id, str):
+                selected_package = find_by_id(pkg_id)
+
+            if not selected_package:
+                # Try match by amount to package price (tolerance for rounding)
+                try:
+                    amt = float(payment_confirmation.get("amount"))
+                    # choose the closest price within small tolerance
+                    tolerance = 0.01
+                    candidates = [
+                        (abs(float(p.get("price_usd", 0.0)) - amt), p) for p in packages
+                    ]
+                    if candidates:
+                        candidates.sort(key=lambda x: x[0])
+                        if candidates[0][0] <= tolerance or amt > 0:
+                            selected_package = candidates[0][1]
+                except Exception:
+                    pass
+
+        # Fallback to value_pack if still unknown
+        if not selected_package:
+            selected_package = find_by_id("value_pack") or (packages[1] if len(packages) > 1 else (packages[0] if packages else None))
+
+        if not selected_package:
+            raise HTTPException(status_code=400, detail="Unable to resolve selected package for completion")
         # In a real implementation, you would:
         # 1. Verify payment with payment provider
         # 2. Check purchase record exists and belongs to user
@@ -603,22 +640,19 @@ async def complete_coin_purchase(
         
         # Mock successful purchase completion
         wallet_service = WalletService(db)
-        
-        # For demo purposes, assume successful payment for 120 coins (Value Pack)
-        coins_purchased = 120
-        bonus_coins = 20
+
+        # Compute coins based on selected package
+        coins_purchased = int(selected_package.get("coins", 0))
+        bonus_coins = int(selected_package.get("bonus_coins", 0))
         total_coins = coins_purchased + bonus_coins
-        
-        # Add coins to wallet
-        transaction = await wallet_service.credit_points(
+
+        # Add coins to wallet using WalletService.deposit_points
+        # Use purchase_id as reference_id for idempotency
+        transaction = await wallet_service.deposit_points(
             user_id=current_user.user_id,
             amount=total_coins,
-            description=f"Coin purchase: {coins_purchased} + {bonus_coins} bonus",
-            transaction_metadata={
-                "purchase_id": purchase_id,
-                "payment_method": payment_confirmation.get("method", "credit_card"),
-                "package_type": "value_pack"
-            }
+            reference_id=purchase_id,
+            description=f"Coin purchase: {coins_purchased} + {bonus_coins} bonus ({selected_package.get('id')})"
         )
         
         # Get updated balance
@@ -635,7 +669,7 @@ async def complete_coin_purchase(
                 "bonus": bonus_coins
             },
             "new_balance": balance_info.available_balance,
-            "transaction_id": transaction.transaction_id,
+            "transaction_id": getattr(transaction, "txn_id", None),
             "message": f"Successfully added {total_coins} coins to your account!"
         }
         

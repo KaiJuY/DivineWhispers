@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { GlobalStyle } from './assets/styles/globalStyles';
@@ -42,6 +42,17 @@ const theme = {
 };
 
 const App: React.FC = () => {
+  const { auth, verifyAuth } = useAppStore();
+
+  // Restore auth state on initial load if a valid session exists
+  useEffect(() => {
+    verifyAuth().catch(() => {
+      // swallow errors; UI will remain logged out
+    });
+    // We intentionally run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <RouterProvider>

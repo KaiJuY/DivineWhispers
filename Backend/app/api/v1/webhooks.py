@@ -181,19 +181,12 @@ async def process_payment_result(payment_result, db: AsyncSession):
             # For now, assume 1 coin per $0.10 USD or equivalent
             coins_to_add = payment_result.amount // 10  # Convert cents to coins
 
-            # Create credit transaction
-            transaction = await wallet_service.credit_points(
+            # Create credit transaction (deposit) with reference id for idempotency
+            transaction = await wallet_service.deposit_points(
                 user_id=user_id,
                 amount=coins_to_add,
-                description=f"Coin purchase via {payment_result.provider.value}: {package_id}",
-                transaction_metadata={
-                    "payment_id": payment_result.payment_id,
-                    "payment_provider": payment_result.provider.value,
-                    "transaction_id": payment_result.transaction_id,
-                    "package_id": package_id,
-                    "payment_amount": payment_result.amount,
-                    "payment_currency": payment_result.currency
-                }
+                reference_id=payment_result.payment_id,
+                description=f"Coin purchase via {payment_result.provider.value}: {package_id}"
             )
 
             logger.info(
