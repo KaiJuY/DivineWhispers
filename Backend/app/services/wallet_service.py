@@ -157,17 +157,19 @@ class WalletService:
         user_id: int,
         amount: int,
         reference_id: Optional[str] = None,
-        description: Optional[str] = None
+        description: Optional[str] = None,
+        payment_method: Optional[str] = None
     ) -> Transaction:
         """
         Atomically deposit points to user wallet
-        
+
         Args:
             user_id: User ID
             amount: Points to deposit
             reference_id: Payment reference ID
             description: Transaction description
-            
+            payment_method: Payment method used (e.g., 'credit_card', 'paypal')
+
         Returns:
             Transaction object
             
@@ -196,7 +198,8 @@ class WalletService:
                     transaction_type=TransactionType.DEPOSIT,
                     amount=amount,  # Positive for deposit
                     reference_id=reference_id,
-                    description=description or f"Deposit of {amount} points"
+                    description=description or f"Deposit of {amount} points",
+                    payment_method=payment_method
                 )
                 
                 # Add points to wallet

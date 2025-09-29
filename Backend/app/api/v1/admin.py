@@ -3106,6 +3106,7 @@ async def get_all_purchases(
             search_condition = or_(
                 Transaction.reference_id.like(f'%{search}%'),
                 User.email.like(f'%{search}%'),
+                User.full_name.like(f'%{search}%'),
                 Transaction.description.like(f'%{search}%')
             )
             query = query.where(search_condition)
@@ -3167,6 +3168,40 @@ async def get_all_purchases(
             }
             display_status = status_mapping.get(transaction.status, "Unknown")
 
+            # Use real payment method from transaction with user-friendly display names
+            payment_method = "N/A"
+
+            if hasattr(transaction, 'payment_method') and transaction.payment_method:
+                # Map internal payment method values to user-friendly display names
+                payment_method_mapping = {
+                    "card": "Credit Card",
+                    "credit_card": "Credit Card",
+                    "paypal": "PayPal",
+                    "apple_pay": "Apple Pay",
+                    "google_pay": "Google Pay",
+                    "bank_transfer": "Bank Transfer",
+                }
+                # Use the actual payment method stored in the transaction with proper display name
+                raw_payment_method = transaction.payment_method.lower()
+                payment_method = payment_method_mapping.get(raw_payment_method, transaction.payment_method.title())
+            else:
+                # For legacy transactions without payment method, try to infer from reference_id
+                reference_id = transaction.reference_id or ""
+                if reference_id.startswith("stripe_"):
+                    payment_method = "Credit Card (Stripe)"
+                elif reference_id.startswith("paypal_"):
+                    payment_method = "PayPal"
+                elif reference_id.startswith("apple_pay_"):
+                    payment_method = "Apple Pay"
+                elif reference_id.startswith("google_pay_"):
+                    payment_method = "Google Pay"
+                elif reference_id.startswith("purchase_"):
+                    payment_method = "Credit Card"  # Default for legacy purchases
+                elif transaction.type == TransactionType.DEPOSIT:
+                    payment_method = "Bank Transfer"
+                else:
+                    payment_method = "Admin Manual"
+
             purchases.append({
                 "order_id": order_id,
                 "customer_name": user_name or "Unknown",
@@ -3178,7 +3213,10 @@ async def get_all_purchases(
                 "date": transaction.created_at.strftime("%Y-%m-%d") if transaction.created_at else "Unknown",
                 "transaction_id": transaction.txn_id,
                 "reference_id": transaction.reference_id,
-                "description": description
+                "description": description,
+                "payment_method": payment_method,
+                "created_at": transaction.created_at.strftime("%Y-%m-%d %H:%M:%S") if transaction.created_at else "Unknown",
+                "updated_at": transaction.updated_at.strftime("%Y-%m-%d %H:%M:%S") if transaction.updated_at else "Unknown"
             })
 
         return {

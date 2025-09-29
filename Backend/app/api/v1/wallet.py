@@ -4,7 +4,7 @@ User wallet API endpoints
 
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Dict, Any
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from fastapi.responses import JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -41,6 +41,10 @@ from app.utils.financial import (
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+
+# Temporary in-memory store for purchase sessions (for development/testing)
+# In production, this should be stored in Redis or database
+_purchase_sessions: Dict[str, Dict[str, Any]] = {}
 
 
 @router.get("/balance", response_model=WalletBalanceResponse)
@@ -561,7 +565,16 @@ async def initiate_coin_purchase(
         
         # Create pending purchase record (placeholder)
         purchase_id = f"purchase_{current_user.user_id}_{datetime.utcnow().timestamp()}"
-        
+
+        # Store purchase session with payment method for completion
+        _purchase_sessions[purchase_id] = {
+            "user_id": current_user.user_id,
+            "package_id": package_id,
+            "payment_method": payment_method,
+            "created_at": datetime.utcnow().isoformat(),
+            "status": "pending"
+        }
+
         # In a real implementation, you would:
         # 1. Create payment session with Stripe/PayPal
         # 2. Store purchase intent in database
@@ -595,6 +608,14 @@ async def complete_coin_purchase(
 ):
     """Complete coin purchase after successful payment"""
     try:
+        # Retrieve purchase session to get payment method
+        purchase_session = _purchase_sessions.get(purchase_id)
+        if not purchase_session:
+            raise HTTPException(status_code=404, detail="Purchase session not found")
+
+        if purchase_session["user_id"] != current_user.user_id:
+            raise HTTPException(status_code=403, detail="Purchase session does not belong to current user")
+
         # Load available packages to resolve coin amounts
         packages_response = await get_coin_packages()
         packages = packages_response.get("packages", [])
@@ -652,12 +673,18 @@ async def complete_coin_purchase(
             user_id=current_user.user_id,
             amount=total_coins,
             reference_id=purchase_id,
-            description=f"Coin purchase: {coins_purchased} + {bonus_coins} bonus ({selected_package.get('id')})"
+            description=f"Coin purchase: {coins_purchased} + {bonus_coins} bonus ({selected_package.get('id')})",
+            payment_method=purchase_session["payment_method"]
         )
         
         # Get updated balance
         balance_info = await wallet_service.get_balance(current_user.user_id)
-        
+
+        # Mark purchase session as completed and clean up
+        _purchase_sessions[purchase_id]["status"] = "completed"
+        # Optional: Remove completed sessions after some time to prevent memory leaks
+        # del _purchase_sessions[purchase_id]
+
         logger.info(f"Successfully completed coin purchase for user {current_user.user_id}: +{total_coins} coins")
         
         return {

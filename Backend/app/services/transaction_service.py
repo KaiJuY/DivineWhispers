@@ -42,18 +42,20 @@ class TransactionService:
         transaction_type: TransactionType,
         amount: int,
         reference_id: Optional[str] = None,
-        description: Optional[str] = None
+        description: Optional[str] = None,
+        payment_method: Optional[str] = None
     ) -> Transaction:
         """
         Create a pending transaction record
-        
+
         Args:
             wallet_id: Wallet ID
             transaction_type: Type of transaction
             amount: Transaction amount (positive for credits, negative for debits)
             reference_id: Optional reference ID
             description: Transaction description
-            
+            payment_method: Optional payment method (e.g., 'credit_card', 'paypal')
+
         Returns:
             Created transaction object
             
@@ -82,7 +84,8 @@ class TransactionService:
                 amount=amount,
                 reference_id=reference_id,
                 status=TransactionStatus.PENDING,
-                description=description
+                description=description,
+                payment_method=payment_method
             )
             
             # Fallback: pre-assign primary key to avoid SQLite AUTOINCREMENT edge cases

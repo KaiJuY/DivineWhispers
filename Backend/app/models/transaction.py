@@ -80,6 +80,12 @@ class Transaction(BaseModel):
         nullable=True,
         comment="交易描述"
     )
+
+    payment_method: Mapped[Optional[str]] = mapped_column(
+        String(100),
+        nullable=True,
+        comment="付款方式 (credit_card, paypal, apple_pay, google_pay, etc.)"
+    )
     
     # Relationships
     wallet: Mapped["Wallet"] = relationship(

@@ -610,6 +610,8 @@ const AdminPage: React.FC = () => {
   const [purchaseStatus, setPurchaseStatus] = useState('');
   const [purchasePage, setPurchasePage] = useState(1);
   const [totalPurchases, setTotalPurchases] = useState(0);
+  const [selectedPurchase, setSelectedPurchase] = useState<any>(null);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
   // Load dashboard data
   useEffect(() => {
@@ -927,6 +929,17 @@ const AdminPage: React.FC = () => {
     } catch (err) {
       console.error('Error fetching poem details:', err);
       setError('Failed to load poem details');
+    }
+  };
+
+  const handleViewPurchase = async (purchase: any) => {
+    try {
+      // Set the selected purchase with all available data
+      setSelectedPurchase(purchase);
+      setShowPurchaseModal(true);
+    } catch (err) {
+      console.error('Error viewing purchase details:', err);
+      setError('Failed to load purchase details');
     }
   };
 
@@ -1407,6 +1420,51 @@ const AdminPage: React.FC = () => {
             </ModalContent>
           </Modal>
 
+          {/* Purchase Detail Modal */}
+          <Modal show={showPurchaseModal}>
+            <ModalContent>
+              <ModalHeader>
+                <ModalTitle>Purchase Details</ModalTitle>
+                <CloseBtn onClick={() => {
+                  setShowPurchaseModal(false);
+                  setSelectedPurchase(null);
+                }}>×</CloseBtn>
+              </ModalHeader>
+              {selectedPurchase && (
+                <ModalBody>
+                  <div className="poem-section">
+                    <h4>Order Information</h4>
+                    <p><strong>Order ID:</strong> {selectedPurchase.order_id}</p>
+                    <p><strong>Transaction ID:</strong> {selectedPurchase.transaction_id}</p>
+                    <p><strong>Purchase Date:</strong> {selectedPurchase.date}</p>
+                    <p><strong>Status:</strong> {selectedPurchase.status}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Customer Information</h4>
+                    <p><strong>Customer:</strong> {selectedPurchase.customer_name || selectedPurchase.customer_email}</p>
+                    <p><strong>Email:</strong> {selectedPurchase.customer_email}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Package Details</h4>
+                    <p><strong>Package:</strong> {selectedPurchase.package_name}</p>
+                    <p><strong>Amount:</strong> {selectedPurchase.amount}</p>
+                    <p><strong>Description:</strong> {selectedPurchase.description || 'N/A'}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Payment Information</h4>
+                    <p><strong>Payment Method:</strong> {selectedPurchase.payment_method || 'N/A'}</p>
+                    <p><strong>Reference ID:</strong> {selectedPurchase.reference_id || selectedPurchase.order_id}</p>
+                    <p><strong>Created:</strong> {selectedPurchase.created_at || selectedPurchase.date}</p>
+                    <p><strong>Updated:</strong> {selectedPurchase.updated_at || 'N/A'}</p>
+                  </div>
+                </ModalBody>
+              )}
+            </ModalContent>
+          </Modal>
+
           {/* Purchase Management Section */}
           <DashboardSection active={activeSection === 'purchases'}>
             <SectionHeader>
@@ -1467,7 +1525,7 @@ const AdminPage: React.FC = () => {
                       <td>
                         <CardBtn
                           edit
-                          onClick={() => console.log('View order details', purchase.order_id)}
+                          onClick={() => handleViewPurchase(purchase)}
                           title="View Details"
                         >
                           👁️ View
