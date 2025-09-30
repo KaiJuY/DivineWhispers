@@ -2931,71 +2931,106 @@ async def get_reports_storage(
 ):
     """Get stored fortune reading reports"""
     try:
-        from app.models.fortune_job import FortuneJob, JobStatus
+        import json
+        from sqlalchemy import text
 
-        # Build query for completed jobs (which have reports)
-        query = select(FortuneJob).where(FortuneJob.status == JobStatus.COMPLETED)
-        count_query = select(func.count(FortuneJob.id)).where(FortuneJob.status == JobStatus.COMPLETED)
+        # Build raw SQL query using real customer reports from chat_tasks table
+        base_query = """
+            SELECT ct.task_id, ct.user_id, ct.question, ct.created_at, ct.status, ct.response_text,
+                   u.email
+            FROM chat_tasks ct
+            LEFT JOIN users u ON ct.user_id = u.user_id
+            WHERE ct.status = 'COMPLETED' AND ct.response_text IS NOT NULL
+        """
 
-        # Join with User for filtering
+        count_query = "SELECT COUNT(*) FROM chat_tasks WHERE status = 'COMPLETED' AND response_text IS NOT NULL"
+
+        # Add filters
+        where_conditions = []
+        query_params = {}
+
         if user_search:
-            query = query.join(User, FortuneJob.user_id == User.user_id)
-            query = query.where(User.email.ilike(f"%{user_search}%"))
-            count_query = count_query.join(User, FortuneJob.user_id == User.user_id)
-            count_query = count_query.where(User.email.ilike(f"%{user_search}%"))
+            where_conditions.append("u.email LIKE :user_search")
+            query_params['user_search'] = f"%{user_search}%"
 
-        # Apply deity filter
         if deity_filter:
-            query = query.where(FortuneJob.job_data["deity"].astext == deity_filter)
-            count_query = count_query.where(FortuneJob.job_data["deity"].astext == deity_filter)
+            # For chat_tasks, we can filter by question content mentioning deity names
+            deity_keywords = {
+                'GuanYin': ['觀音', 'guanyin', 'guan yin'],
+                'Mazu': ['媽祖', 'mazu', 'ma zu'],
+                'GuanYu': ['關聖帝君', 'guanyu', 'guan yu'],
+                'YueLao': ['月老', 'yuelao', 'yue lao'],
+                'Asakusa': ['淺草', 'asakusa']
+            }
+            if deity_filter in deity_keywords:
+                keywords = deity_keywords[deity_filter]
+                deity_conditions = []
+                for i, keyword in enumerate(keywords):
+                    deity_conditions.append(f"ct.question LIKE :deity_keyword_{i}")
+                    query_params[f'deity_keyword_{i}'] = f"%{keyword}%"
+                where_conditions.append(f"({' OR '.join(deity_conditions)})")
 
-        # Apply date filter
         if date_filter:
             if date_filter == "today":
-                today = datetime.utcnow().date()
-                query = query.where(func.date(FortuneJob.created_at) == today)
-                count_query = count_query.where(func.date(FortuneJob.created_at) == today)
+                where_conditions.append("DATE(ct.created_at) = DATE('now')")
             elif date_filter == "week":
-                week_ago = datetime.utcnow() - timedelta(days=7)
-                query = query.where(FortuneJob.created_at >= week_ago)
-                count_query = count_query.where(FortuneJob.created_at >= week_ago)
+                where_conditions.append("ct.created_at >= datetime('now', '-7 days')")
             elif date_filter == "month":
-                month_ago = datetime.utcnow() - timedelta(days=30)
-                query = query.where(FortuneJob.created_at >= month_ago)
-                count_query = count_query.where(FortuneJob.created_at >= month_ago)
+                where_conditions.append("ct.created_at >= datetime('now', '-30 days')")
+
+        if where_conditions:
+            base_query += " AND " + " AND ".join(where_conditions)
+            count_query += " AND " + " AND ".join([c.replace("u.email", "1") for c in where_conditions if "u.email" not in c])
 
         # Get total count
-        total_count = await db.scalar(count_query)
+        count_result = await db.execute(text(count_query), query_params)
+        total_count = count_result.scalar()
 
         # Apply pagination and ordering
         offset = (page - 1) * limit
-        query = query.offset(offset).limit(limit).order_by(desc(FortuneJob.created_at))
+        base_query += f" ORDER BY ct.created_at DESC LIMIT {limit} OFFSET {offset}"
 
-        result = await db.execute(query)
-        jobs = result.scalars().all()
+        result = await db.execute(text(base_query), query_params)
+        rows = result.fetchall()
 
-        # Get user emails for jobs
+        # Process results
         reports_data = []
-        for job in jobs:
-            user_result = await db.execute(select(User).where(User.user_id == job.user_id))
-            user = user_result.scalar_one_or_none()
+        for row in rows:
+            try:
+                task_id, user_id, question, created_at, status, response_text, email = row
 
-            # Calculate word count from job result
-            word_count = 0
-            if hasattr(job, 'job_result') and job.job_result:
-                result_text = job.job_result.result_data.get("analysis", "") if job.job_result.result_data else ""
-                word_count = len(result_text.split()) if result_text else 0
+                # Calculate word count from response_text
+                word_count = 0
+                if response_text:
+                    word_count = len(response_text.split())
 
-            reports_data.append({
-                "id": f"RPT{job.id:03d}",
-                "title": f"Fortune Reading Report - {user.email if user else 'Unknown User'}",
-                "customer": user.email if user else "Unknown User",
-                "source": job.job_data.get("deity", "Unknown") if job.job_data else "Unknown",
-                "question": job.job_data.get("question", "") if job.job_data else "",
-                "generated": job.completed_at.strftime("%Y-%m-%d %H:%M") if job.completed_at else "N/A",
-                "word_count": word_count,
-                "status": job.status.value
-            })
+                # Determine source/deity from question content
+                source = "General"
+                question_lower = question.lower() if question else ""
+                if any(keyword in question for keyword in ['觀音', 'guanyin']):
+                    source = "GuanYin"
+                elif any(keyword in question for keyword in ['媽祖', 'mazu']):
+                    source = "Mazu"
+                elif any(keyword in question for keyword in ['關聖帝君', 'guanyu']):
+                    source = "GuanYu"
+                elif any(keyword in question for keyword in ['月老', 'yuelao']):
+                    source = "YueLao"
+                elif any(keyword in question for keyword in ['淺草', 'asakusa']):
+                    source = "Asakusa"
+
+                reports_data.append({
+                    "id": task_id,
+                    "title": f"Fortune Reading #{task_id[:8]}",
+                    "customer": email if email else "Unknown User",
+                    "source": source,
+                    "question": question[:100] + "..." if question and len(question) > 100 else question or "",
+                    "generated": str(created_at)[:16] if created_at else "N/A",
+                    "word_count": word_count,
+                    "status": "completed"
+                })
+            except Exception as e:
+                logger.warning(f"Error processing report row: {e}")
+                continue
 
         return {
             "reports": reports_data,
