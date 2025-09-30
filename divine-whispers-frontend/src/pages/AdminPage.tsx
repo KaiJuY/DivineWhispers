@@ -1685,9 +1685,9 @@ const AdminPage: React.FC = () => {
                     <strong>ID:</strong> {report.id}<br />
                     <strong>Customer:</strong> {report.customer}<br />
                     <strong>Source:</strong> {report.source}<br />
-                    <strong>Question:</strong> {report.question?.substring(0, 100) || 'N/A'}{report.question?.length > 100 ? '...' : ''}<br />
-                    <strong>Generated:</strong> {report.generated}<br />
-                    <strong>Word Count:</strong> {report.word_count.toLocaleString()} words
+                    <strong>Question:</strong> {report.question || 'N/A'}<br />
+                    <strong>Response:</strong> {report.response_preview || 'N/A'}<br />
+                    <strong>Generated:</strong> {report.generated}
                   </div>
                 </AdminCard>
               )) : (

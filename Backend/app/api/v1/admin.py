@@ -2937,7 +2937,7 @@ async def get_reports_storage(
         # Build raw SQL query using real customer reports from chat_tasks table
         base_query = """
             SELECT ct.task_id, ct.user_id, ct.question, ct.created_at, ct.status, ct.response_text,
-                   u.email
+                   u.email, ct.deity_id, ct.fortune_number
             FROM chat_tasks ct
             LEFT JOIN users u ON ct.user_id = u.user_id
             WHERE ct.status = 'COMPLETED' AND ct.response_text IS NOT NULL
@@ -3008,26 +3008,41 @@ async def get_reports_storage(
         reports_data = []
         for row in rows:
             try:
-                task_id, user_id, question, created_at, status, response_text, email = row
+                task_id, user_id, question, created_at, status, response_text, email, deity_id, fortune_number = row
 
-                # Calculate word count from response_text
-                word_count = 0
-                if response_text:
-                    word_count = len(response_text.split())
-
-                # Determine source/deity from question content
+                # Build source from deity_id and fortune_number
                 source = "General"
-                question_lower = question.lower() if question else ""
-                if any(keyword in question for keyword in ['觀音', 'guanyin']):
-                    source = "GuanYin"
-                elif any(keyword in question for keyword in ['媽祖', 'mazu']):
-                    source = "Mazu"
-                elif any(keyword in question for keyword in ['關聖帝君', 'guanyu']):
-                    source = "GuanYu"
-                elif any(keyword in question for keyword in ['月老', 'yuelao']):
-                    source = "YueLao"
-                elif any(keyword in question for keyword in ['淺草', 'asakusa']):
-                    source = "Asakusa"
+                if deity_id and fortune_number:
+                    # Map deity_id to readable temple names
+                    deity_names = {
+                        'GuanYin': 'GuanYin Temple',
+                        'Mazu': 'Mazu Temple',
+                        'GuanYu': 'GuanYu Temple',
+                        'YueLao': 'YueLao Temple',
+                        'Asakusa': 'Asakusa Temple',
+                        'Tianhou': 'Tianhou Temple',
+                        'ErawanShrine': 'Erawan Shrine',
+                        'Zhusheng': 'Zhusheng Temple'
+                    }
+                    temple_name = deity_names.get(deity_id, deity_id)
+                    source = f"{temple_name} #{fortune_number}"
+                elif deity_id:
+                    deity_names = {
+                        'GuanYin': 'GuanYin Temple',
+                        'Mazu': 'Mazu Temple',
+                        'GuanYu': 'GuanYu Temple',
+                        'YueLao': 'YueLao Temple',
+                        'Asakusa': 'Asakusa Temple',
+                        'Tianhou': 'Tianhou Temple',
+                        'ErawanShrine': 'Erawan Shrine',
+                        'Zhusheng': 'Zhusheng Temple'
+                    }
+                    source = deity_names.get(deity_id, deity_id)
+
+                # Truncate response for display (show first 150 chars)
+                response_preview = ""
+                if response_text:
+                    response_preview = response_text[:150] + "..." if len(response_text) > 150 else response_text
 
                 reports_data.append({
                     "id": task_id,
@@ -3035,8 +3050,8 @@ async def get_reports_storage(
                     "customer": email if email else "Unknown User",
                     "source": source,
                     "question": question[:100] + "..." if question and len(question) > 100 else question or "",
+                    "response_preview": response_preview,
                     "generated": str(created_at)[:16] if created_at else "N/A",
-                    "word_count": word_count,
                     "status": "completed"
                 })
             except Exception as e:
@@ -3073,26 +3088,21 @@ async def delete_report(
     current_user: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db)
 ):
-    """Delete a fortune reading report"""
+    """Delete a fortune reading report from chat_tasks"""
     try:
-        # Extract job ID from report ID (format: RPT001 -> 1)
-        job_id = int(report_id.replace("RPT", "").lstrip("0"))
+        from app.models.chat_task import ChatTask
 
-        from app.models.fortune_job import FortuneJob
-        job = await db.scalar(select(FortuneJob).where(FortuneJob.id == job_id))
+        # The report_id is actually the task_id (UUID)
+        task = await db.scalar(select(ChatTask).where(ChatTask.task_id == report_id))
 
-        if not job:
+        if not task:
             raise HTTPException(status_code=404, detail="Report not found")
 
-        # Delete associated job result first
-        if hasattr(job, 'job_result') and job.job_result:
-            await db.delete(job.job_result)
-
-        # Delete the job
-        await db.delete(job)
+        # Delete the chat task (this will affect user's history)
+        await db.delete(task)
         await db.commit()
 
-        logger.info(f"Admin {current_user.user_id} deleted report {report_id}")
+        logger.info(f"Admin {current_user.user_id} deleted report {report_id} (task_id: {report_id})")
 
         return {"message": "Report deleted successfully", "report_id": report_id}
 
@@ -3101,6 +3111,91 @@ async def delete_report(
     except Exception as e:
         logger.error(f"Error deleting report {report_id}: {e}")
         raise HTTPException(status_code=500, detail="Failed to delete report")
+
+
+@router.put("/reports/{report_id}")
+async def update_report(
+    report_id: str,
+    report_data: dict,
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Update a fortune reading report in chat_tasks"""
+    try:
+        from app.models.chat_task import ChatTask
+
+        # The report_id is actually the task_id (UUID)
+        task = await db.scalar(select(ChatTask).where(ChatTask.task_id == report_id))
+
+        if not task:
+            raise HTTPException(status_code=404, detail="Report not found")
+
+        # Update allowed fields
+        if "question" in report_data:
+            task.question = report_data["question"]
+
+        if "response_text" in report_data:
+            task.response_text = report_data["response_text"]
+
+        await db.commit()
+        await db.refresh(task)
+
+        logger.info(f"Admin {current_user.user_id} updated report {report_id}")
+
+        return {"message": "Report updated successfully", "report_id": report_id}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating report {report_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to update report")
+
+
+@router.get("/reports/{report_id}")
+async def get_report_details(
+    report_id: str,
+    current_user: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get detailed report information for editing"""
+    try:
+        from app.models.chat_task import ChatTask
+        from sqlalchemy import text
+
+        # Get the full report details
+        query = text("""
+            SELECT ct.task_id, ct.user_id, ct.question, ct.created_at, ct.status,
+                   ct.response_text, ct.updated_at, u.email, u.full_name
+            FROM chat_tasks ct
+            LEFT JOIN users u ON ct.user_id = u.user_id
+            WHERE ct.task_id = :task_id
+        """)
+
+        result = await db.execute(query, {"task_id": report_id})
+        row = result.fetchone()
+
+        if not row:
+            raise HTTPException(status_code=404, detail="Report not found")
+
+        task_id, user_id, question, created_at, status, response_text, updated_at, email, full_name = row
+
+        return {
+            "id": task_id,
+            "user_id": user_id,
+            "customer": email or "Unknown User",
+            "customer_name": full_name,
+            "question": question,
+            "response_text": response_text,
+            "status": status,
+            "created_at": str(created_at) if created_at else None,
+            "updated_at": str(updated_at) if updated_at else None
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting report details {report_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get report details")
 
 
 # Purchase Management

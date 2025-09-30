@@ -407,6 +407,17 @@ class AdminService {
     return await apiClient.delete(`/api/v1/admin/reports/${reportId}`);
   }
 
+  async getReportDetails(reportId: string): Promise<any> {
+    return await apiClient.get(`/api/v1/admin/reports/${reportId}`);
+  }
+
+  async updateReport(reportId: string, reportData: {
+    question?: string;
+    response_text?: string;
+  }): Promise<any> {
+    return await apiClient.put(`/api/v1/admin/reports/${reportId}`, reportData);
+  }
+
   // Purchase Management
   async getPurchases(params: {
     page?: number;
