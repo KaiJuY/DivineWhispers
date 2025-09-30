@@ -1470,9 +1470,6 @@ const AdminPage: React.FC = () => {
           <DashboardSection active={activeSection === 'purchases'}>
             <SectionHeader>
               <SectionTitle>Purchase Management</SectionTitle>
-              <SectionActions>
-                <AdminBtn onClick={() => console.log('Generate report')}>📈 Generate Report</AdminBtn>
-              </SectionActions>
             </SectionHeader>
 
             <SalesChart />

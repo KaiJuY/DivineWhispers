@@ -3140,25 +3140,54 @@ async def get_all_purchases(
             # Generate order ID from transaction data
             order_id = transaction.reference_id or f"ORD{transaction.txn_id:06d}"
 
-            # Extract package info from description
+            # Extract package info and calculate coin amounts from description
             description = transaction.description or ""
             package_name = "Unknown Package"
+            coins_amount = 0
+
+            # Parse description like "Coin purchase: 100 + 50 bonus (premium_pack)"
+            import re
 
             if "starter_pack" in description:
                 package_name = "Starter Coin Package (5 Coins)"
+                coins_amount = 5
             elif "premium_pack" in description:
                 package_name = "Premium Coin Package (100 Coins)"
+                coins_amount = 100
+                # Extract bonus from description if present
+                bonus_match = re.search(r'(\d+) \+ (\d+) bonus', description)
+                if bonus_match:
+                    base_coins = int(bonus_match.group(1))
+                    bonus_coins = int(bonus_match.group(2))
+                    coins_amount = base_coins + bonus_coins
+                    package_name = f"Premium Coin Package ({base_coins} + {bonus_coins} bonus)"
             elif "value_pack" in description:
                 package_name = "Value Coin Package (25 Coins)"
+                coins_amount = 25
+                # Extract bonus from description if present
+                bonus_match = re.search(r'(\d+) \+ (\d+) bonus', description)
+                if bonus_match:
+                    base_coins = int(bonus_match.group(1))
+                    bonus_coins = int(bonus_match.group(2))
+                    coins_amount = base_coins + bonus_coins
+                    package_name = f"Value Coin Package ({base_coins} + {bonus_coins} bonus)"
             elif "coin" in description.lower():
                 # Try to extract coin amount from description
-                import re
-                coin_match = re.search(r'(\d+)', description)
-                if coin_match:
-                    coin_amount = coin_match.group(1)
-                    package_name = f"Coin Package ({coin_amount} Coins)"
+                # Look for pattern like "100 + 50 bonus" or just "25"
+                bonus_match = re.search(r'(\d+) \+ (\d+) bonus', description)
+                if bonus_match:
+                    base_coins = int(bonus_match.group(1))
+                    bonus_coins = int(bonus_match.group(2))
+                    coins_amount = base_coins + bonus_coins
+                    package_name = f"Coin Package ({base_coins} + {bonus_coins} bonus)"
                 else:
-                    package_name = "Coin Package"
+                    coin_match = re.search(r'(\d+)', description)
+                    if coin_match:
+                        coins_amount = int(coin_match.group(1))
+                        package_name = f"Coin Package ({coins_amount} Coins)"
+                    else:
+                        package_name = "Coin Package"
+                        coins_amount = transaction.amount  # Fallback
 
             # Map transaction status to display status
             status_mapping = {
@@ -3207,8 +3236,8 @@ async def get_all_purchases(
                 "customer_name": user_name or "Unknown",
                 "customer_email": user_email,
                 "package_name": package_name,
-                "amount": f"${transaction.amount / 100:.2f}" if transaction.amount > 100 else f"${transaction.amount:.2f}",  # Assume cents if > 100
-                "coins_amount": transaction.amount,
+                "amount": f"${transaction.amount:.2f}",  # Transaction amount is already in dollars
+                "coins_amount": coins_amount,  # Use calculated coin amount from description parsing
                 "status": display_status,
                 "date": transaction.created_at.strftime("%Y-%m-%d") if transaction.created_at else "Unknown",
                 "transaction_id": transaction.txn_id,
@@ -3252,23 +3281,26 @@ async def get_sales_chart_data(
         end_date = datetime.utcnow().date()
         start_date = end_date - timedelta(days=days)
 
-        # Query daily sales data from successful DEPOSIT transactions (purchases)
+        # Import required modules
         from sqlalchemy import func, cast, Date
         from app.models.transaction import Transaction, TransactionType, TransactionStatus
+        from datetime import time
 
-        query = (
+        # Use the simplified approach that worked during debugging - no date filtering initially
+        # Just get all purchase transactions without date filtering to see if they exist
+        all_purchases_query = (
             select(
-                cast(Transaction.created_at, Date).label('date'),
-                func.count(Transaction.txn_id).label('transaction_count'),
-                func.sum(Transaction.amount).label('total_amount')
+                Transaction.txn_id,
+                Transaction.amount,
+                Transaction.created_at,
+                Transaction.description,
+                Transaction.reference_id
             )
             .join(Wallet, Transaction.wallet_id == Wallet.wallet_id)
             .where(
                 and_(
                     Transaction.type == TransactionType.DEPOSIT,
                     Transaction.status == TransactionStatus.SUCCESS,
-                    cast(Transaction.created_at, Date) >= start_date,
-                    cast(Transaction.created_at, Date) <= end_date,
                     # Filter for purchase transactions
                     or_(
                         Transaction.description.like('%purchase%'),
@@ -3277,19 +3309,28 @@ async def get_sales_chart_data(
                     )
                 )
             )
-            .group_by(cast(Transaction.created_at, Date))
-            .order_by(cast(Transaction.created_at, Date))
+            .order_by(Transaction.created_at.desc())
         )
 
-        result = await db.execute(query)
-        daily_data = result.fetchall()
+        all_purchases_result = await db.execute(all_purchases_query)
+        all_purchases = all_purchases_result.fetchall()
+
+        # Filter manually for the date range and group by date
+        sales_by_date = {}
+        for tx in all_purchases:
+            tx_date = tx.created_at.date()
+
+            # Apply date filtering manually
+            if start_date <= tx_date <= end_date:
+                if tx_date not in sales_by_date:
+                    sales_by_date[tx_date] = {"amount": 0.0, "transactions": 0}
+
+                sales_by_date[tx_date]["amount"] += float(tx.amount)
+                sales_by_date[tx_date]["transactions"] += 1
 
         # Create complete date range with zero values for missing dates
         chart_data = []
         current_date = start_date
-
-        # Convert query results to dict for easy lookup
-        sales_by_date = {row.date: {"count": row.transaction_count, "amount": float(row.total_amount)} for row in daily_data}
 
         while current_date <= end_date:
             date_str = current_date.strftime('%Y-%m-%d')
@@ -3297,7 +3338,7 @@ async def get_sales_chart_data(
                 chart_data.append({
                     "date": date_str,
                     "amount": sales_by_date[current_date]["amount"],
-                    "transactions": sales_by_date[current_date]["count"]
+                    "transactions": sales_by_date[current_date]["transactions"]
                 })
             else:
                 chart_data.append({
@@ -3327,10 +3368,10 @@ async def get_sales_chart_data(
                     "days": days
                 },
                 "peak_day": {
-                    "date": peak_day["date"] if peak_day else None,
-                    "amount": peak_day["amount"] if peak_day else 0,
-                    "transactions": peak_day["transactions"] if peak_day else 0
-                } if peak_day else None
+                    "date": peak_day["date"] if peak_day and peak_day["amount"] > 0 else None,
+                    "amount": peak_day["amount"] if peak_day and peak_day["amount"] > 0 else 0,
+                    "transactions": peak_day["transactions"] if peak_day and peak_day["amount"] > 0 else 0
+                } if peak_day and peak_day["amount"] > 0 else None
             }
         }
 
