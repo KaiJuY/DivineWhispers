@@ -10,7 +10,8 @@
       "mcp__playwright__browser_handle_dialog",
       "mcp__playwright__browser_console_messages",
       "Bash(python:*)",
-      "mcp__playwright__browser_press_key"
+      "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_network_requests"
     ],
     "deny": [],
     "ask": [],

@@ -2943,14 +2943,25 @@ async def get_reports_storage(
             WHERE ct.status = 'COMPLETED' AND ct.response_text IS NOT NULL
         """
 
-        count_query = "SELECT COUNT(*) FROM chat_tasks WHERE status = 'COMPLETED' AND response_text IS NOT NULL"
+        count_query = """
+            SELECT COUNT(*)
+            FROM chat_tasks ct
+            LEFT JOIN users u ON ct.user_id = u.user_id
+            WHERE ct.status = 'COMPLETED' AND ct.response_text IS NOT NULL
+        """
 
         # Add filters
         where_conditions = []
         query_params = {}
 
         if user_search:
-            where_conditions.append("u.email LIKE :user_search")
+            # Search in user email, question text, and response text
+            search_conditions = [
+                "u.email LIKE :user_search",
+                "ct.question LIKE :user_search",
+                "ct.response_text LIKE :user_search"
+            ]
+            where_conditions.append(f"({' OR '.join(search_conditions)})")
             query_params['user_search'] = f"%{user_search}%"
 
         if deity_filter:
@@ -2980,7 +2991,7 @@ async def get_reports_storage(
 
         if where_conditions:
             base_query += " AND " + " AND ".join(where_conditions)
-            count_query += " AND " + " AND ".join([c.replace("u.email", "1") for c in where_conditions if "u.email" not in c])
+            count_query += " AND " + " AND ".join(where_conditions)
 
         # Get total count
         count_result = await db.execute(text(count_query), query_params)

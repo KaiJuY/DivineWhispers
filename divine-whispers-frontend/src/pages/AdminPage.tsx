@@ -1640,10 +1640,6 @@ const AdminPage: React.FC = () => {
           <DashboardSection active={activeSection === 'reports'}>
             <SectionHeader>
               <SectionTitle>Reports Storage Manager</SectionTitle>
-              <SectionActions>
-                <AdminBtn onClick={() => console.log('Bulk export')}>📦 Bulk Export</AdminBtn>
-                <AdminBtn secondary onClick={() => console.log('Cleanup old')}>🧹 Cleanup Old</AdminBtn>
-              </SectionActions>
             </SectionHeader>
 
             <SearchFilterBar>
