@@ -602,6 +602,9 @@ const AdminPage: React.FC = () => {
   const [reportSearch, setReportSearch] = useState('');
   const [reportDeity, setReportDeity] = useState('');
   const [reportDate, setReportDate] = useState('');
+  const [reportPage, setReportPage] = useState(1);
+  const [totalReports, setTotalReports] = useState(0);
+  const [totalCustomers, setTotalCustomers] = useState(0);
   const [poemPage, setPoemPage] = useState(1);
   const [totalPoems, setTotalPoems] = useState(0);
 
@@ -644,6 +647,7 @@ const AdminPage: React.FC = () => {
         sort_order: 'desc'
       });
       setCustomers(response.customers);
+      setTotalCustomers(response.pagination.total);
     } catch (err) {
       console.error('Error loading customers:', err);
       setError('Failed to load customers');
@@ -711,13 +715,14 @@ const AdminPage: React.FC = () => {
     const loadReports = async () => {
       try {
         const response = await adminService.getReports({
-          page: 1,
+          page: reportPage,
           limit: 20,
           user_search: reportSearch || undefined,
           deity_filter: reportDeity || undefined,
           date_filter: reportDate || undefined
         });
         setReports(response.reports);
+        setTotalReports(response.total_count || response.pagination?.total || response.reports.length);
       } catch (err) {
         console.error('Error loading reports:', err);
         setError('Failed to load reports');
@@ -727,7 +732,7 @@ const AdminPage: React.FC = () => {
     if (activeSection === 'reports') {
       loadReports();
     }
-  }, [activeSection, reportSearch, reportDeity, reportDate]);
+  }, [activeSection, reportPage, reportSearch, reportDeity, reportDate]);
 
   // Load purchase data
   useEffect(() => {
@@ -1059,6 +1064,52 @@ const AdminPage: React.FC = () => {
                 )}
               </tbody>
             </AdminTable>
+
+            {/* Customer Pagination */}
+            {customers.length > 0 && (
+              <PaginationContainer>
+                <PaginationButton
+                  disabled={customerPage === 1}
+                  onClick={() => setCustomerPage(1)}
+                >
+                  ««
+                </PaginationButton>
+                <PaginationButton
+                  disabled={customerPage === 1}
+                  onClick={() => setCustomerPage(customerPage - 1)}
+                >
+                  ‹
+                </PaginationButton>
+
+                {generatePageNumbers(customerPage, Math.ceil(totalCustomers / 20)).map((page, index) => (
+                  <PaginationButton
+                    key={index}
+                    active={page === customerPage}
+                    disabled={page === '...'}
+                    onClick={() => typeof page === 'number' && setCustomerPage(page)}
+                  >
+                    {page}
+                  </PaginationButton>
+                ))}
+
+                <PaginationButton
+                  disabled={customerPage >= Math.ceil(totalCustomers / 20)}
+                  onClick={() => setCustomerPage(customerPage + 1)}
+                >
+                  ›
+                </PaginationButton>
+                <PaginationButton
+                  disabled={customerPage >= Math.ceil(totalCustomers / 20)}
+                  onClick={() => setCustomerPage(Math.ceil(totalCustomers / 20))}
+                >
+                  »»
+                </PaginationButton>
+
+                <PaginationInfo>
+                  Page {customerPage} of {Math.ceil(totalCustomers / 20)} | {totalCustomers} total customers
+                </PaginationInfo>
+              </PaginationContainer>
+            )}
           </DashboardSection>
 
           {/* Poems Analysis Section */}
@@ -1538,24 +1589,49 @@ const AdminPage: React.FC = () => {
               </tbody>
             </AdminTable>
 
-            {/* Pagination for purchases */}
-            {totalPurchases > 20 && (
+            {/* Purchase Pagination */}
+            {purchases.length > 0 && (
               <PaginationContainer>
+                <PaginationButton
+                  disabled={purchasePage === 1}
+                  onClick={() => setPurchasePage(1)}
+                >
+                  ««
+                </PaginationButton>
                 <PaginationButton
                   disabled={purchasePage === 1}
                   onClick={() => setPurchasePage(purchasePage - 1)}
                 >
-                  Previous
+                  ‹
                 </PaginationButton>
-                <PaginationInfo>
-                  Page {purchasePage} of {Math.ceil(totalPurchases / 20)} ({totalPurchases} total)
-                </PaginationInfo>
+
+                {generatePageNumbers(purchasePage, Math.ceil(totalPurchases / 20)).map((page, index) => (
+                  <PaginationButton
+                    key={index}
+                    active={page === purchasePage}
+                    disabled={page === '...'}
+                    onClick={() => typeof page === 'number' && setPurchasePage(page)}
+                  >
+                    {page}
+                  </PaginationButton>
+                ))}
+
                 <PaginationButton
                   disabled={purchasePage >= Math.ceil(totalPurchases / 20)}
                   onClick={() => setPurchasePage(purchasePage + 1)}
                 >
-                  Next
+                  ›
                 </PaginationButton>
+                <PaginationButton
+                  disabled={purchasePage >= Math.ceil(totalPurchases / 20)}
+                  onClick={() => setPurchasePage(Math.ceil(totalPurchases / 20))}
+                >
+                  »»
+                </PaginationButton>
+
+                <PaginationInfo>
+                  Page {purchasePage} of {Math.ceil(totalPurchases / 20)} | {totalPurchases} total purchases
+                </PaginationInfo>
               </PaginationContainer>
             )}
           </DashboardSection>
@@ -1624,6 +1700,52 @@ const AdminPage: React.FC = () => {
                 </div>
               )}
             </PoemsGrid>
+
+            {/* Reports Pagination */}
+            {reports.length > 0 && (
+              <PaginationContainer>
+                <PaginationButton
+                  disabled={reportPage === 1}
+                  onClick={() => setReportPage(1)}
+                >
+                  ««
+                </PaginationButton>
+                <PaginationButton
+                  disabled={reportPage === 1}
+                  onClick={() => setReportPage(reportPage - 1)}
+                >
+                  ‹
+                </PaginationButton>
+
+                {generatePageNumbers(reportPage, Math.ceil(totalReports / 20)).map((page, index) => (
+                  <PaginationButton
+                    key={index}
+                    active={page === reportPage}
+                    disabled={page === '...'}
+                    onClick={() => typeof page === 'number' && setReportPage(page)}
+                  >
+                    {page}
+                  </PaginationButton>
+                ))}
+
+                <PaginationButton
+                  disabled={reportPage >= Math.ceil(totalReports / 20)}
+                  onClick={() => setReportPage(reportPage + 1)}
+                >
+                  ›
+                </PaginationButton>
+                <PaginationButton
+                  disabled={reportPage >= Math.ceil(totalReports / 20)}
+                  onClick={() => setReportPage(Math.ceil(totalReports / 20))}
+                >
+                  »»
+                </PaginationButton>
+
+                <PaginationInfo>
+                  Page {reportPage} of {Math.ceil(totalReports / 20)} | {totalReports} total reports
+                </PaginationInfo>
+              </PaginationContainer>
+            )}
           </DashboardSection>
 
           {/* FAQ Management Section */}
