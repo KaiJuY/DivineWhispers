@@ -4,6 +4,7 @@ import { colors, gradients, media } from '../assets/styles/globalStyles';
 import Layout from '../components/layout/Layout';
 import adminService, { DashboardOverview, Customer as ApiCustomer, FAQ as ApiFAQ } from '../services/adminService';
 import apiClient from '../services/apiClient';
+import SalesChart from '../components/admin/SalesChart';
 
 const AdminContainer = styled.div`
   width: 100%;
@@ -1474,10 +1475,7 @@ const AdminPage: React.FC = () => {
               </SectionActions>
             </SectionHeader>
 
-            <ChartPlaceholder>
-              <div className="chart-text">📊 Sales Chart Placeholder</div>
-              <div className="chart-note">Integration with Chart.js or similar library needed</div>
-            </ChartPlaceholder>
+            <SalesChart />
 
             <SearchFilterBar>
               <SearchInput

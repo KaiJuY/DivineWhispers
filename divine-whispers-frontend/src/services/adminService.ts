@@ -416,6 +416,11 @@ class AdminService {
   } = {}): Promise<any> {
     return await apiClient.get('/api/v1/admin/purchases', params);
   }
+
+  // Sales Chart Data
+  async getSalesChartData(days: number = 30): Promise<any> {
+    return await apiClient.get('/api/v1/admin/sales-chart', { days });
+  }
 }
 
 // Create singleton instance

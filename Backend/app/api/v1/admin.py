@@ -17,7 +17,7 @@ import re
 import logging
 
 logger = logging.getLogger(__name__)
-from app.utils.deps import get_db, get_current_user
+from app.utils.deps import get_db, get_current_user, get_current_admin_user
 from app.utils.rbac import (
     RequirePermission,
     RequireRole,
@@ -3236,3 +3236,104 @@ async def get_all_purchases(
     except Exception as e:
         logger.error(f"Error getting admin purchase list: {e}")
         raise HTTPException(status_code=500, detail="Failed to retrieve purchases")
+
+
+@router.get("/sales-chart")
+async def get_sales_chart_data(
+    days: int = Query(30, ge=1, le=365, description="Number of days to include in chart"),
+    current_admin: User = Depends(get_current_admin_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Get daily sales data for chart visualization
+    """
+    try:
+        # Calculate date range
+        end_date = datetime.utcnow().date()
+        start_date = end_date - timedelta(days=days)
+
+        # Query daily sales data from successful DEPOSIT transactions (purchases)
+        from sqlalchemy import func, cast, Date
+        from app.models.transaction import Transaction, TransactionType, TransactionStatus
+
+        query = (
+            select(
+                cast(Transaction.created_at, Date).label('date'),
+                func.count(Transaction.txn_id).label('transaction_count'),
+                func.sum(Transaction.amount).label('total_amount')
+            )
+            .join(Wallet, Transaction.wallet_id == Wallet.wallet_id)
+            .where(
+                and_(
+                    Transaction.type == TransactionType.DEPOSIT,
+                    Transaction.status == TransactionStatus.SUCCESS,
+                    cast(Transaction.created_at, Date) >= start_date,
+                    cast(Transaction.created_at, Date) <= end_date,
+                    # Filter for purchase transactions
+                    or_(
+                        Transaction.description.like('%purchase%'),
+                        Transaction.description.like('%coin%'),
+                        Transaction.reference_id.like('purchase_%')
+                    )
+                )
+            )
+            .group_by(cast(Transaction.created_at, Date))
+            .order_by(cast(Transaction.created_at, Date))
+        )
+
+        result = await db.execute(query)
+        daily_data = result.fetchall()
+
+        # Create complete date range with zero values for missing dates
+        chart_data = []
+        current_date = start_date
+
+        # Convert query results to dict for easy lookup
+        sales_by_date = {row.date: {"count": row.transaction_count, "amount": float(row.total_amount)} for row in daily_data}
+
+        while current_date <= end_date:
+            date_str = current_date.strftime('%Y-%m-%d')
+            if current_date in sales_by_date:
+                chart_data.append({
+                    "date": date_str,
+                    "amount": sales_by_date[current_date]["amount"],
+                    "transactions": sales_by_date[current_date]["count"]
+                })
+            else:
+                chart_data.append({
+                    "date": date_str,
+                    "amount": 0.0,
+                    "transactions": 0
+                })
+            current_date += timedelta(days=1)
+
+        # Calculate summary statistics
+        total_revenue = sum(item["amount"] for item in chart_data)
+        total_transactions = sum(item["transactions"] for item in chart_data)
+        avg_daily_revenue = total_revenue / len(chart_data) if chart_data else 0
+
+        # Find peak day
+        peak_day = max(chart_data, key=lambda x: x["amount"]) if chart_data else None
+
+        return {
+            "chart_data": chart_data,
+            "summary": {
+                "total_revenue": round(total_revenue, 2),
+                "total_transactions": total_transactions,
+                "avg_daily_revenue": round(avg_daily_revenue, 2),
+                "date_range": {
+                    "start": start_date.strftime('%Y-%m-%d'),
+                    "end": end_date.strftime('%Y-%m-%d'),
+                    "days": days
+                },
+                "peak_day": {
+                    "date": peak_day["date"] if peak_day else None,
+                    "amount": peak_day["amount"] if peak_day else 0,
+                    "transactions": peak_day["transactions"] if peak_day else 0
+                } if peak_day else None
+            }
+        }
+
+    except Exception as e:
+        logger.error(f"Error getting sales chart data: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve sales data")
