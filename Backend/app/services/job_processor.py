@@ -242,10 +242,7 @@ class JobProcessor:
                 # Mark as processing to avoid double processing
                 job.mark_started()
                 await db.commit()
-            else:
-                # Explicitly commit even when no job found to avoid rollback noise
-                await db.commit()
-                
+
             return job
     
     async def _process_job(self, job: FortuneJob):
