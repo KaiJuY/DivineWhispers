@@ -963,7 +963,7 @@ async def check_permissions_bulk(
 
 @router.get("/dashboard/overview")
 async def get_admin_dashboard_overview(
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Get comprehensive dashboard overview for admins"""
@@ -986,16 +986,27 @@ async def get_admin_dashboard_overview(
             select(func.sum(Transaction.amount)).where(Transaction.type == TransactionType.DEPOSIT)
         ) or 0
         
-        # Get chat statistics
-        from app.models.chat_message import ChatSession, ChatMessage
-        total_chat_sessions = await db.scalar(select(func.count(ChatSession.id)))
-        total_chat_messages = await db.scalar(select(func.count(ChatMessage.id)))
-        
-        # Get job statistics (fortune readings)
-        from app.models.fortune_job import FortuneJob, JobStatus
-        total_fortune_jobs = await db.scalar(select(func.count(FortuneJob.id)))
-        completed_jobs = await db.scalar(
-            select(func.count(FortuneJob.id)).where(FortuneJob.status == JobStatus.COMPLETED)
+        # Get chat task statistics (async fortune readings)
+        from app.models.chat_task import ChatTask, TaskStatus
+        total_chat_tasks = await db.scalar(select(func.count(ChatTask.task_id)))
+        completed_tasks = await db.scalar(
+            select(func.count(ChatTask.task_id)).where(ChatTask.status == TaskStatus.COMPLETED)
+        )
+        failed_tasks = await db.scalar(
+            select(func.count(ChatTask.task_id)).where(ChatTask.status == TaskStatus.FAILED)
+        )
+
+        # Get active users today (users who made requests today)
+        today_start = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        active_users_today = await db.scalar(
+            select(func.count(func.distinct(ChatTask.user_id))).where(
+                ChatTask.created_at >= today_start
+            )
+        )
+
+        # Get unique active users (all time)
+        active_users_count = await db.scalar(
+            select(func.count(func.distinct(ChatTask.user_id)))
         )
         
         return {
@@ -1011,15 +1022,15 @@ async def get_admin_dashboard_overview(
                 "currency": "USD"
             },
             "engagement": {
-                "chat_sessions": total_chat_sessions or 0,
-                "chat_messages": total_chat_messages or 0,
-                "fortune_readings": completed_jobs or 0,
-                "success_rate": round((completed_jobs / max(total_fortune_jobs, 1)) * 100, 1) if total_fortune_jobs else 0
+                "chat_sessions": active_users_today or 0,  # Active users today (daily engagement)
+                "chat_messages": active_users_count or 0,  # Total unique users (all time)
+                "fortune_readings": completed_tasks or 0,  # Successfully completed readings
+                "success_rate": round((completed_tasks / max(total_chat_tasks, 1)) * 100, 1) if total_chat_tasks else 0.0
             },
             "system": {
-                "uptime": "99.9%",  # Placeholder
-                "api_calls_today": 1500,  # Placeholder
-                "error_rate": "0.1%"  # Placeholder
+                "uptime": "N/A",
+                "api_calls_today": total_chat_tasks or 0,  # Total API requests (fortune readings)
+                "error_rate": f"{round((failed_tasks / max(total_chat_tasks, 1)) * 100, 1)}%" if total_chat_tasks else "0.0%"  # Real failure rate
             }
         }
         
