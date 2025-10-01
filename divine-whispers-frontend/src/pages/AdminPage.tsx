@@ -397,7 +397,7 @@ const ModalContent = styled.div`
   padding: 2rem;
   max-width: 900px;
   width: 90vw;
-  max-height: 90vh;
+  height: 85vh;
   overflow-y: auto;
   position: relative;
   color: ${colors.white};
@@ -1596,7 +1596,7 @@ const AdminPage: React.FC = () => {
                       onChange={(e) => setEditReportQuestion(e.target.value)}
                       style={{
                         width: '100%',
-                        minHeight: '120px',
+                        minHeight: '200px',
                         background: 'rgba(0,0,0,0.3)',
                         border: '1px solid rgba(212, 175, 55, 0.5)',
                         borderRadius: '8px',
@@ -1616,7 +1616,7 @@ const AdminPage: React.FC = () => {
                       onChange={(e) => setEditReportResponse(e.target.value)}
                       style={{
                         width: '100%',
-                        minHeight: '200px',
+                        minHeight: '500px',
                         background: 'rgba(0,0,0,0.3)',
                         border: '1px solid rgba(212, 175, 55, 0.5)',
                         borderRadius: '8px',
