@@ -47,12 +47,12 @@ class RequirePermission(RBACDependency):
         self.allow_owner = allow_owner
         self.resource_owner_key = resource_owner_key
     
-    def __call__(
+    async def __call__(
         self,
         current_user: User = Depends(get_current_user),
         db: AsyncSession = Depends(get_db)
     ) -> User:
-        return self._check_permission(current_user, db)
+        return await self._check_permission(current_user, db)
     
     async def _check_permission(self, user: User, db: AsyncSession) -> User:
         """Check if user has the required permission"""
@@ -78,7 +78,7 @@ class RequirePermission(RBACDependency):
 class RequireAnyPermission(RBACDependency):
     """
     Dependency to require any of the specified permissions for endpoint access.
-    
+
     Usage:
         @router.get("/moderate-content")
         async def moderate_endpoint(
@@ -89,7 +89,7 @@ class RequireAnyPermission(RBACDependency):
         ):
             return {"message": "Moderation access granted"}
     """
-    
+
     def __init__(
         self,
         permissions: List[Permission],
@@ -97,13 +97,13 @@ class RequireAnyPermission(RBACDependency):
     ):
         super().__init__(log_access)
         self.permissions = permissions
-    
-    def __call__(
+
+    async def __call__(
         self,
         current_user: User = Depends(get_current_user),
         db: AsyncSession = Depends(get_db)
     ) -> User:
-        return self._check_permissions(current_user, db)
+        return await self._check_permissions(current_user, db)
     
     async def _check_permissions(self, user: User, db: AsyncSession) -> User:
         """Check if user has any of the required permissions"""
@@ -134,7 +134,7 @@ class RequireAnyPermission(RBACDependency):
 class RequireAllPermissions(RBACDependency):
     """
     Dependency to require all of the specified permissions for endpoint access.
-    
+
     Usage:
         @router.delete("/critical-operation")
         async def critical_endpoint(
@@ -145,7 +145,7 @@ class RequireAllPermissions(RBACDependency):
         ):
             return {"message": "Critical operation access granted"}
     """
-    
+
     def __init__(
         self,
         permissions: List[Permission],
@@ -153,13 +153,13 @@ class RequireAllPermissions(RBACDependency):
     ):
         super().__init__(log_access)
         self.permissions = permissions
-    
-    def __call__(
+
+    async def __call__(
         self,
         current_user: User = Depends(get_current_user),
         db: AsyncSession = Depends(get_db)
     ) -> User:
-        return self._check_permissions(current_user, db)
+        return await self._check_permissions(current_user, db)
     
     async def _check_permissions(self, user: User, db: AsyncSession) -> User:
         """Check if user has all of the required permissions"""
@@ -205,12 +205,12 @@ class RequireRole(RBACDependency):
         super().__init__(log_access)
         self.role = role
     
-    def __call__(
+    async def __call__(
         self,
         current_user: User = Depends(get_current_user),
         db: AsyncSession = Depends(get_db)
     ) -> User:
-        return self._check_role(current_user, db)
+        return await self._check_role(current_user, db)
     
     async def _check_role(self, user: User, db: AsyncSession) -> User:
         """Check if user has the required role"""
@@ -264,7 +264,7 @@ class ResourceOwnerOrPermission(RBACDependency):
         self.permission = permission
         self.resource_owner_id_param = resource_owner_id_param
     
-    def __call__(
+    async def __call__(
         self,
         current_user: User = Depends(get_current_user),
         db: AsyncSession = Depends(get_db),
@@ -274,8 +274,8 @@ class ResourceOwnerOrPermission(RBACDependency):
         resource_owner_id = None
         if self.resource_owner_id_param and self.resource_owner_id_param in kwargs:
             resource_owner_id = kwargs[self.resource_owner_id_param]
-        
-        return self._check_access(current_user, db, resource_owner_id)
+
+        return await self._check_access(current_user, db, resource_owner_id)
     
     async def _check_access(
         self,
@@ -428,15 +428,15 @@ def create_resource_access_dependency(
     class CustomResourceAccess(RBACDependency):
         def __init__(self, log_access: bool = True):
             super().__init__(log_access)
-        
-        def __call__(
+
+        async def __call__(
             self,
             current_user: User = Depends(get_current_user),
             db: AsyncSession = Depends(get_db),
             **kwargs
         ) -> User:
             resource_owner_id = kwargs.get(resource_owner_field)
-            return self._check_access(current_user, db, resource_owner_id)
+            return await self._check_access(current_user, db, resource_owner_id)
         
         async def _check_access(
             self,

@@ -11,7 +11,9 @@
       "mcp__playwright__browser_console_messages",
       "Bash(python:*)",
       "mcp__playwright__browser_press_key",
-      "mcp__playwright__browser_network_requests"
+      "mcp__playwright__browser_network_requests",
+      "mcp__playwright__browser_evaluate",
+      "Bash(curl -X PUT \"http://localhost:8000/api/v1/admin/reports/b5e4e741-3c7e-45a4-b8f9-1b8374c9e85d\" -H \"Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqb2hhbndheTIzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyNzY5Njg0NX0.l_l0QLDgAmLGg4aL5UGSVHd0QP1E9ZLb9RD7y5Fb3g8\" -H \"Content-Type: application/json\" -d '{\"\"question\"\": \"\"Updated question test\"\", \"\"response_text\"\": \"\"Updated response test\"\"}')"
     ],
     "deny": [],
     "ask": [],

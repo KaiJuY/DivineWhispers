@@ -3085,7 +3085,7 @@ async def get_reports_storage(
 @router.delete("/reports/{report_id}")
 async def delete_report(
     report_id: str,
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Delete a fortune reading report from chat_tasks"""
@@ -3117,7 +3117,7 @@ async def delete_report(
 async def update_report(
     report_id: str,
     report_data: dict,
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Update a fortune reading report in chat_tasks"""

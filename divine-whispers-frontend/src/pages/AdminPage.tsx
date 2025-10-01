@@ -617,6 +617,12 @@ const AdminPage: React.FC = () => {
   const [selectedPurchase, setSelectedPurchase] = useState<any>(null);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
+  // Report edit modal state
+  const [selectedReport, setSelectedReport] = useState<any>(null);
+  const [showEditReportModal, setShowEditReportModal] = useState(false);
+  const [editReportQuestion, setEditReportQuestion] = useState('');
+  const [editReportResponse, setEditReportResponse] = useState('');
+
   // Load dashboard data
   useEffect(() => {
     const loadDashboardData = async () => {
@@ -912,18 +918,63 @@ const AdminPage: React.FC = () => {
           await adminService.deleteReport(reportId);
           // Reload reports
           const response = await adminService.getReports({
-            page: 1,
+            page: reportPage,
             limit: 20,
             user_search: reportSearch || undefined,
             deity_filter: reportDeity || undefined,
             date_filter: reportDate || undefined
           });
           setReports(response.reports);
+          setTotalReports(response.total_count || response.pagination?.total || response.reports.length);
         }
       }
     } catch (err) {
       console.error(`Error performing ${action} on report ${reportId}:`, err);
       setError(`Failed to ${action} report`);
+    }
+  };
+
+  const handleEditReport = async (reportId: string) => {
+    try {
+      // Get full report details
+      const reportDetails = await adminService.getReportDetails(reportId);
+      setSelectedReport(reportDetails);
+      setEditReportQuestion(reportDetails.question || '');
+      setEditReportResponse(reportDetails.response_text || '');
+      setShowEditReportModal(true);
+    } catch (err) {
+      console.error(`Error loading report details ${reportId}:`, err);
+      setError('Failed to load report details');
+    }
+  };
+
+  const handleSaveReportEdit = async () => {
+    try {
+      if (!selectedReport) return;
+
+      await adminService.updateReport(selectedReport.id, {
+        question: editReportQuestion,
+        response_text: editReportResponse
+      });
+
+      // Close modal and reload reports
+      setShowEditReportModal(false);
+      setSelectedReport(null);
+      setEditReportQuestion('');
+      setEditReportResponse('');
+
+      // Reload reports
+      const response = await adminService.getReports({
+        page: reportPage,
+        limit: 20,
+        user_search: reportSearch || undefined,
+        deity_filter: reportDeity || undefined,
+        date_filter: reportDate || undefined
+      });
+      setReports(response.reports);
+    } catch (err) {
+      console.error('Error saving report:', err);
+      setError('Failed to save report');
     }
   };
 
@@ -1517,6 +1568,77 @@ const AdminPage: React.FC = () => {
             </ModalContent>
           </Modal>
 
+          {/* Edit Report Modal */}
+          <Modal show={showEditReportModal}>
+            <ModalContent style={{ maxWidth: '800px', maxHeight: '90vh', overflow: 'auto' }}>
+              <ModalHeader>
+                <ModalTitle>Edit Report</ModalTitle>
+                <CloseBtn onClick={() => {
+                  setShowEditReportModal(false);
+                  setSelectedReport(null);
+                  setEditReportQuestion('');
+                  setEditReportResponse('');
+                }}>×</CloseBtn>
+              </ModalHeader>
+              {selectedReport && (
+                <ModalBody>
+                  <div className="poem-section">
+                    <h4>Report Information</h4>
+                    <p><strong>Report ID:</strong> {selectedReport.id}</p>
+                    <p><strong>Customer:</strong> {selectedReport.customer}</p>
+                    <p><strong>Created:</strong> {selectedReport.created_at}</p>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Question</h4>
+                    <textarea
+                      value={editReportQuestion}
+                      onChange={(e) => setEditReportQuestion(e.target.value)}
+                      style={{
+                        width: '100%',
+                        minHeight: '120px',
+                        background: 'rgba(0,0,0,0.3)',
+                        border: '1px solid rgba(212, 175, 55, 0.5)',
+                        borderRadius: '8px',
+                        color: 'white',
+                        padding: '12px',
+                        fontSize: '14px',
+                        resize: 'vertical'
+                      }}
+                      placeholder="Enter the user's question..."
+                    />
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Response Content</h4>
+                    <textarea
+                      value={editReportResponse}
+                      onChange={(e) => setEditReportResponse(e.target.value)}
+                      style={{
+                        width: '100%',
+                        minHeight: '200px',
+                        background: 'rgba(0,0,0,0.3)',
+                        border: '1px solid rgba(212, 175, 55, 0.5)',
+                        borderRadius: '8px',
+                        color: 'white',
+                        padding: '12px',
+                        fontSize: '14px',
+                        resize: 'vertical'
+                      }}
+                      placeholder="Enter the fortune reading response..."
+                    />
+                  </div>
+
+                  <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                    <AdminBtn onClick={handleSaveReportEdit}>
+                      💾 Save Changes
+                    </AdminBtn>
+                  </div>
+                </ModalBody>
+              )}
+            </ModalContent>
+          </Modal>
+
           {/* Purchase Management Section */}
           <DashboardSection active={activeSection === 'purchases'}>
             <SectionHeader>
@@ -1676,8 +1798,7 @@ const AdminPage: React.FC = () => {
                   <CardHeader>
                     <CardTitle>{report.title}</CardTitle>
                     <CardActions>
-                      <CardBtn onClick={() => console.log('View report', report.id)}>👁️ View</CardBtn>
-                      <CardBtn edit onClick={() => console.log('Edit report', report.id)}>✏️ Edit</CardBtn>
+                      <CardBtn edit onClick={() => handleEditReport(report.id)}>✏️ Edit</CardBtn>
                       <CardBtn delete onClick={() => handleReportAction(report.id, 'delete')}>🗑️ Delete</CardBtn>
                     </CardActions>
                   </CardHeader>
