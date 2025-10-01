@@ -591,6 +591,7 @@ const AdminPage: React.FC = () => {
   const [editWalletBalance, setEditWalletBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   // Pagination and filters
   const [customerPage, setCustomerPage] = useState(1);
@@ -622,6 +623,14 @@ const AdminPage: React.FC = () => {
   const [showEditReportModal, setShowEditReportModal] = useState(false);
   const [editReportQuestion, setEditReportQuestion] = useState('');
   const [editReportResponse, setEditReportResponse] = useState('');
+
+  // FAQ edit modal state
+  const [editingFAQ, setEditingFAQ] = useState<any>(null);
+  const [showEditFAQModal, setShowEditFAQModal] = useState(false);
+  const [editFAQQuestion, setEditFAQQuestion] = useState('');
+  const [editFAQAnswer, setEditFAQAnswer] = useState('');
+  const [editFAQCategory, setEditFAQCategory] = useState('');
+  const [editFAQPublished, setEditFAQPublished] = useState(false);
 
   // Load dashboard data
   useEffect(() => {
@@ -770,32 +779,7 @@ const AdminPage: React.FC = () => {
   // Mock data for sections not yet fully implemented
 
 
-  const mockPendingFAQs: PendingFAQ[] = [
-    {
-      id: 'PFAQ001',
-      question: 'How accurate are the fortune readings?',
-      userQuestion: 'I\'m wondering about the accuracy of these readings. Are they based on real traditional methods or just random generated content?',
-      userEmail: 'john.dao@example.com',
-      received: '2024-12-29 10:30',
-      category: 'General'
-    },
-    {
-      id: 'PFAQ002',
-      question: 'Can I get a refund for divine coins?',
-      userQuestion: 'I purchased coins but haven\'t used them yet. Is it possible to get a refund if I change my mind?',
-      userEmail: 'sarah.chen@example.com',
-      received: '2024-12-29 15:45',
-      category: 'Payment'
-    },
-    {
-      id: 'PFAQ003',
-      question: 'How do I interpret the Chinese poems?',
-      userQuestion: 'The poems are beautiful but I don\'t understand Chinese. Will there always be English translations and explanations?',
-      userEmail: 'mike.j@example.com',
-      received: '2024-12-28 20:12',
-      category: 'Usage'
-    }
-  ];
+  const mockPendingFAQs: PendingFAQ[] = [];
 
   const navItems = [
     { key: 'customers', label: '👥 Customer Management' },
@@ -889,8 +873,40 @@ const AdminPage: React.FC = () => {
   const handleFAQAction = async (faqId: number | string, action: string) => {
     try {
       if (action === 'edit') {
-        // Open FAQ edit modal or navigate to edit page
-        console.log('Edit FAQ:', faqId);
+        // Find the FAQ and open edit modal
+        const faq = faqs.find(f => f.id === faqId);
+        if (faq) {
+          setEditingFAQ(faq);
+          setEditFAQQuestion(faq.question);
+          setEditFAQAnswer(faq.answer);
+          setEditFAQCategory(faq.category);
+          setEditFAQPublished(faq.is_published);
+          setShowEditFAQModal(true);
+        }
+      } else if (action === 'approve') {
+        // Quick approve - set is_published to true
+        await adminService.updateFAQ(Number(faqId), { is_published: true });
+        // Reload FAQs
+        const response = await adminService.getFAQs({
+          category: faqCategory || undefined,
+          page: 1,
+          limit: 50
+        });
+        setFaqs(response.faqs);
+        setSuccessMessage('✅ FAQ approved and added to reference pool');
+        setTimeout(() => setSuccessMessage(null), 3000);
+      } else if (action === 'unpublish') {
+        // Quick unpublish - set is_published to false
+        await adminService.updateFAQ(Number(faqId), { is_published: false });
+        // Reload FAQs
+        const response = await adminService.getFAQs({
+          category: faqCategory || undefined,
+          page: 1,
+          limit: 50
+        });
+        setFaqs(response.faqs);
+        setSuccessMessage('📦 FAQ unpublished and removed from reference pool');
+        setTimeout(() => setSuccessMessage(null), 3000);
       } else if (action === 'delete') {
         const confirm = window.confirm('Are you sure you want to delete this FAQ?');
         if (confirm) {
@@ -907,6 +923,34 @@ const AdminPage: React.FC = () => {
     } catch (err) {
       console.error(`Error performing ${action} on FAQ ${faqId}:`, err);
       setError(`Failed to ${action} FAQ`);
+    }
+  };
+
+  const handleSaveFAQ = async () => {
+    if (!editingFAQ) return;
+
+    try {
+      await adminService.updateFAQ(editingFAQ.id, {
+        question: editFAQQuestion,
+        answer: editFAQAnswer,
+        category: editFAQCategory,
+        is_published: editFAQPublished
+      });
+
+      // Reload FAQs
+      const response = await adminService.getFAQs({
+        category: faqCategory || undefined,
+        page: 1,
+        limit: 50
+      });
+      setFaqs(response.faqs);
+
+      // Close modal
+      setShowEditFAQModal(false);
+      setEditingFAQ(null);
+    } catch (err) {
+      console.error('Error saving FAQ:', err);
+      setError('⚠️ Failed to save FAQ');
     }
   };
 
@@ -1017,6 +1061,18 @@ const AdminPage: React.FC = () => {
                 border: '1px solid rgba(220, 53, 69, 0.3)'
               }}>
                 ⚠️ {error}
+              </div>
+            )}
+            {successMessage && (
+              <div style={{
+                color: '#4ade80',
+                backgroundColor: 'rgba(74, 222, 128, 0.1)',
+                padding: '0.75rem 1rem',
+                borderRadius: '4px',
+                marginTop: '1rem',
+                border: '1px solid rgba(74, 222, 128, 0.3)'
+              }}>
+                {successMessage}
               </div>
             )}
           </DashboardHeader>
@@ -1639,6 +1695,92 @@ const AdminPage: React.FC = () => {
             </ModalContent>
           </Modal>
 
+          {/* FAQ Edit Modal */}
+          <Modal show={showEditFAQModal}>
+            <ModalContent style={{ maxWidth: '800px', maxHeight: '72vh', overflow: 'auto' }}>
+              <ModalHeader>
+                <ModalTitle>Edit FAQ</ModalTitle>
+                <CloseBtn onClick={() => {
+                  setShowEditFAQModal(false);
+                  setEditingFAQ(null);
+                  setEditFAQQuestion('');
+                  setEditFAQAnswer('');
+                  setEditFAQCategory('');
+                  setEditFAQPublished(false);
+                }}>×</CloseBtn>
+              </ModalHeader>
+              {editingFAQ && (
+                <ModalBody>
+                  <div className="poem-section">
+                    <h4>FAQ Information</h4>
+                    <p><strong>FAQ ID:</strong> {editingFAQ.id}</p>
+                    <p><strong>Category:</strong> {editingFAQ.category}</p>
+                    <p><strong>View Count:</strong> {editingFAQ.view_count}</p>
+                    <div style={{ marginTop: '1rem' }}>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                        <input
+                          type="checkbox"
+                          checked={editFAQPublished}
+                          onChange={(e) => setEditFAQPublished(e.target.checked)}
+                          style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+                        />
+                        <strong style={{ color: editFAQPublished ? '#4ade80' : '#fbbf24' }}>
+                          {editFAQPublished ? '✅ Published (Visible to users)' : '⏳ Draft (Admin only)'}
+                        </strong>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Question</h4>
+                    <textarea
+                      value={editFAQQuestion}
+                      onChange={(e) => setEditFAQQuestion(e.target.value)}
+                      style={{
+                        width: '100%',
+                        minHeight: '100px',
+                        background: 'rgba(0,0,0,0.3)',
+                        border: '1px solid rgba(212, 175, 55, 0.5)',
+                        borderRadius: '8px',
+                        color: 'white',
+                        padding: '12px',
+                        fontSize: '14px',
+                        resize: 'vertical'
+                      }}
+                      placeholder="Enter the FAQ question..."
+                    />
+                  </div>
+
+                  <div className="poem-section">
+                    <h4>Answer</h4>
+                    <textarea
+                      value={editFAQAnswer}
+                      onChange={(e) => setEditFAQAnswer(e.target.value)}
+                      style={{
+                        width: '100%',
+                        minHeight: '350px',
+                        background: 'rgba(0,0,0,0.3)',
+                        border: '1px solid rgba(212, 175, 55, 0.5)',
+                        borderRadius: '8px',
+                        color: 'white',
+                        padding: '12px',
+                        fontSize: '14px',
+                        resize: 'vertical'
+                      }}
+                      placeholder="Enter the FAQ answer..."
+                    />
+                  </div>
+
+                  <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                    <AdminBtn onClick={handleSaveFAQ}>
+                      💾 Save Changes
+                    </AdminBtn>
+                  </div>
+                </ModalBody>
+              )}
+            </ModalContent>
+          </Modal>
+
           {/* Purchase Management Section */}
           <DashboardSection active={activeSection === 'purchases'}>
             <SectionHeader>
@@ -1869,49 +2011,49 @@ const AdminPage: React.FC = () => {
           <DashboardSection active={activeSection === 'faqs'}>
             <SectionHeader>
               <SectionTitle>FAQ Management System</SectionTitle>
-              <SectionActions>
-                <AdminBtn onClick={() => console.log('Add FAQ')}>➕ Add FAQ</AdminBtn>
-                <AdminBtn secondary onClick={() => console.log('Export FAQs')}>📤 Export FAQs</AdminBtn>
-              </SectionActions>
             </SectionHeader>
 
-            <h3 style={{ 
-              color: 'rgba(255, 175, 55, 1)', 
-              fontSize: '1.3rem', 
-              marginBottom: '1.5rem',
-              fontWeight: 'bold'
-            }}>
-              ⏳ Pending FAQ Queue
-            </h3>
-            
-            <PoemsGrid style={{ marginBottom: '3rem' }}>
-              {mockPendingFAQs.map((pendingFaq) => (
-                <AdminCard key={pendingFaq.id}>
-                  <CardHeader>
-                    <CardTitle>{pendingFaq.question}</CardTitle>
-                  </CardHeader>
-                  <div style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.5, marginBottom: '1rem' }}>
-                    <strong>User Question:</strong> "{pendingFaq.userQuestion}"
-                  </div>
-                  <div style={{ 
-                    display: 'flex', 
-                    gap: '1rem', 
-                    marginBottom: '1rem', 
-                    fontSize: '0.9rem', 
-                    color: 'rgba(255,255,255,0.7)' 
-                  }}>
-                    <div><strong>Asked by:</strong> {pendingFaq.userEmail}</div>
-                    <div><strong>Received:</strong> {pendingFaq.received}</div>
-                    <div><strong>Category:</strong> {pendingFaq.category}</div>
-                  </div>
-                  <CardActions>
-                    <AdminBtn onClick={() => console.log('Approve FAQ', pendingFaq.id)}>✅ Approve & Add</AdminBtn>
-                    <AdminBtn secondary onClick={() => console.log('Edit draft', pendingFaq.id)}>✏️ Edit Draft</AdminBtn>
-                    <AdminBtn danger onClick={() => console.log('Reject FAQ', pendingFaq.id)}>❌ Reject</AdminBtn>
-                  </CardActions>
-                </AdminCard>
-              ))}
-            </PoemsGrid>
+            {mockPendingFAQs.length > 0 && (
+              <>
+                <h3 style={{
+                  color: 'rgba(255, 175, 55, 1)',
+                  fontSize: '1.3rem',
+                  marginBottom: '1.5rem',
+                  fontWeight: 'bold'
+                }}>
+                  ⏳ Pending FAQ Queue
+                </h3>
+
+                <PoemsGrid style={{ marginBottom: '3rem' }}>
+                  {mockPendingFAQs.map((pendingFaq) => (
+                    <AdminCard key={pendingFaq.id}>
+                      <CardHeader>
+                        <CardTitle>{pendingFaq.question}</CardTitle>
+                      </CardHeader>
+                      <div style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.5, marginBottom: '1rem' }}>
+                        <strong>User Question:</strong> "{pendingFaq.userQuestion}"
+                      </div>
+                      <div style={{
+                        display: 'flex',
+                        gap: '1rem',
+                        marginBottom: '1rem',
+                        fontSize: '0.9rem',
+                        color: 'rgba(255,255,255,0.7)'
+                      }}>
+                        <div><strong>Asked by:</strong> {pendingFaq.userEmail}</div>
+                        <div><strong>Received:</strong> {pendingFaq.received}</div>
+                        <div><strong>Category:</strong> {pendingFaq.category}</div>
+                      </div>
+                      <CardActions>
+                        <AdminBtn onClick={() => console.log('Approve FAQ', pendingFaq.id)}>✅ Approve & Add</AdminBtn>
+                        <AdminBtn secondary onClick={() => console.log('Edit draft', pendingFaq.id)}>✏️ Edit Draft</AdminBtn>
+                        <AdminBtn danger onClick={() => console.log('Reject FAQ', pendingFaq.id)}>❌ Reject</AdminBtn>
+                      </CardActions>
+                    </AdminCard>
+                  ))}
+                </PoemsGrid>
+              </>
+            )}
 
             <h3 style={{ 
               color: 'rgba(255, 175, 55, 1)', 
@@ -1946,6 +2088,21 @@ const AdminPage: React.FC = () => {
                     </td>
                     <td>{new Date(faq.updated_at).toLocaleDateString()}</td>
                     <td>
+                      {!faq.is_published ? (
+                        <CardBtn
+                          style={{ background: 'rgba(74, 222, 128, 0.2)', color: '#4ade80' }}
+                          onClick={() => handleFAQAction(faq.id, 'approve')}
+                        >
+                          ✅ Approve
+                        </CardBtn>
+                      ) : (
+                        <CardBtn
+                          style={{ background: 'rgba(251, 191, 36, 0.2)', color: '#fbbf24' }}
+                          onClick={() => handleFAQAction(faq.id, 'unpublish')}
+                        >
+                          📦 Unpublish
+                        </CardBtn>
+                      )}
                       <CardBtn edit onClick={() => handleFAQAction(faq.id, 'edit')}>✏️ Edit</CardBtn>
                       <CardBtn delete onClick={() => handleFAQAction(faq.id, 'delete')}>🗑️ Delete</CardBtn>
                     </td>

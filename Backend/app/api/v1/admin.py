@@ -1673,7 +1673,7 @@ async def get_admin_faqs(
     published_only: bool = Query(False),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Get FAQs for admin management"""
@@ -1733,7 +1733,7 @@ async def get_admin_faqs(
 @router.post("/faq", status_code=status.HTTP_201_CREATED)
 async def create_faq(
     faq_data: "FAQCreate",
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Create a new FAQ"""
@@ -1778,8 +1778,8 @@ async def create_faq(
 @router.put("/faq/{faq_id}")
 async def update_faq(
     faq_id: int,
-    faq_data: "FAQUpdate", 
-    current_user: User = Depends(require_admin),
+    faq_data: "FAQUpdate",
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Update an existing FAQ"""
@@ -1829,7 +1829,7 @@ async def update_faq(
 @router.delete("/faq/{faq_id}")
 async def delete_faq(
     faq_id: int,
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Delete an FAQ"""
@@ -1864,7 +1864,7 @@ async def delete_faq(
 
 @router.get("/faq/analytics")
 async def get_faq_analytics(
-    current_user: User = Depends(require_admin),
+    current_user: User = Depends(require_admin()),
     db: AsyncSession = Depends(get_db)
 ):
     """Get FAQ analytics and metrics"""

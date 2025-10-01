@@ -8,7 +8,7 @@ import time
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, update
+from sqlalchemy import select, update, func
 from app.models.chat_task import ChatTask, TaskStatus
 from app.services.poem_service import poem_service
 from app.core.database import get_database_session, get_async_session
@@ -317,6 +317,12 @@ class TaskQueueService:
 
                 # Save final result
                 await db.commit()
+
+                # Auto-generate FAQ from completed task
+                try:
+                    await self._auto_generate_faq(task, db)
+                except Exception as faq_error:
+                    logger.error(f"Failed to auto-generate FAQ for task {task_id}: {faq_error}")
 
                 processing_time = int((time.time() - start_time) * 1000)
 
@@ -763,6 +769,73 @@ class TaskQueueService:
                 'period_hours': hours,
                 'generated_at': datetime.now().isoformat()
             }
+
+    async def _auto_generate_faq(self, task: ChatTask, db: AsyncSession):
+        """Auto-generate FAQ from completed chat task"""
+        try:
+            from app.models.faq import FAQ, FAQCategory
+            import re
+            import hashlib
+
+            # Only create FAQ if response is good quality (has content and no errors)
+            if not task.response_text or task.error_message:
+                logger.debug(f"Skipping FAQ generation for task {task.task_id} - no response or has errors")
+                return
+
+            # Generate FAQ from task
+            question = task.question
+            answer = task.response_text[:5000]  # Limit answer length
+
+            # Determine category based on deity
+            category_mapping = {
+                'guan_yin': FAQCategory.FORTUNE_READING,
+                'guan_yu': FAQCategory.FORTUNE_READING,
+                'mazu': FAQCategory.FORTUNE_READING,
+                'yue_lao': FAQCategory.FORTUNE_READING,
+                'asakusa': FAQCategory.FORTUNE_READING,
+                'tianhou': FAQCategory.FORTUNE_READING,
+                'zhusheng': FAQCategory.FORTUNE_READING,
+                'erawan_shrine': FAQCategory.FORTUNE_READING
+            }
+            category = category_mapping.get(task.deity_id.lower(), FAQCategory.GENERAL)
+
+            # Generate unique slug from question
+            slug = re.sub(r'[^\w\s-]', '', question.lower())
+            slug = re.sub(r'[-\s]+', '-', slug)[:200]
+
+            # Make slug unique using hash
+            content_hash = hashlib.md5(f"{question}{answer}".encode()).hexdigest()[:8]
+            slug = f"{slug}-{content_hash}"
+
+            # Ensure slug is unique
+            base_slug = slug
+            counter = 1
+            while await db.scalar(select(FAQ).where(FAQ.slug == slug)):
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            # Create FAQ
+            faq = FAQ(
+                category=category,
+                question=question,
+                answer=answer,
+                slug=slug,
+                tags=f"{task.deity_id},fortune_reading,poem_{task.fortune_number}",
+                display_order=0,
+                is_published=False,  # Require admin approval before publishing
+                created_by=task.user_id,
+                view_count=0,
+                helpful_votes=0
+            )
+
+            db.add(faq)
+            await db.commit()
+
+            logger.info(f"Auto-generated FAQ {faq.id} from task {task.task_id}")
+
+        except Exception as e:
+            logger.error(f"Error auto-generating FAQ from task {task.task_id}: {e}")
+            # Don't raise - FAQ generation failure shouldn't break task completion
 
 
 # Global instance
