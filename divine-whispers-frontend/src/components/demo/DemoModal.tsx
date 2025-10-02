@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { colors, gradients, media } from '../../assets/styles/globalStyles';
 
 const fadeIn = keyframes`
@@ -310,120 +311,138 @@ interface DemoModalProps {
 }
 
 const DemoModal: React.FC<DemoModalProps> = ({ onClose }) => {
+  const { t } = useTranslation('pages');
   const [currentStep, setCurrentStep] = useState(0);
 
   const steps = [
     {
-      icon: '👋',
-      title: 'Welcome to Divine Whispers',
+      icon: t('demo.steps.overview.icon'),
+      title: t('demo.steps.overview.title'),
       content: (
         <>
           <ChatText style={{ textAlign: 'center', marginBottom: '30px' }}>
-            Discover how our AI-powered fortune-telling system combines ancient wisdom with modern technology to provide personalized guidance.
+            {t('demo.steps.overview.description')}
           </ChatText>
           <FeatureList>
-            <FeatureItem>800+ authentic temple fortune poems from 8+ deities</FeatureItem>
-            <FeatureItem>AI-powered personalized interpretations</FeatureItem>
-            <FeatureItem>Multilingual support (Chinese, English, Japanese)</FeatureItem>
-            <FeatureItem>Comprehensive life aspect analysis</FeatureItem>
+            <FeatureItem>{t('demo.steps.overview.features.chooseDeity')}</FeatureItem>
+            <FeatureItem>{t('demo.steps.overview.features.drawNumber')}</FeatureItem>
+            <FeatureItem>{t('demo.steps.overview.features.receivePoem')}</FeatureItem>
+            <FeatureItem>{t('demo.steps.overview.features.getInterpretation')}</FeatureItem>
           </FeatureList>
         </>
       )
     },
     {
-      icon: '💬',
-      title: 'Step 1: Ask Your Question',
+      icon: t('demo.steps.selectDeity.icon'),
+      title: t('demo.steps.selectDeity.title'),
       content: (
         <>
           <ChatText style={{ marginBottom: '20px', color: colors.white, opacity: 0.8 }}>
-            Start by asking a question about your life, career, relationships, or any aspect you seek guidance on.
+            {t('demo.steps.selectDeity.description')}
+          </ChatText>
+          <ReportMockup>
+            <ReportSection>
+              <ReportLabel>{t('demo.steps.selectDeity.deityLabel')}</ReportLabel>
+              <ReportContent dangerouslySetInnerHTML={{ __html: t('demo.steps.selectDeity.deityList') }} />
+            </ReportSection>
+          </ReportMockup>
+          <ChatText style={{ textAlign: 'center', color: colors.primary, fontSize: '14px', marginTop: '20px' }}>
+            {t('demo.steps.selectDeity.note')}
+          </ChatText>
+        </>
+      )
+    },
+    {
+      icon: t('demo.steps.drawNumber.icon'),
+      title: t('demo.steps.drawNumber.title'),
+      content: (
+        <>
+          <ChatText style={{ marginBottom: '20px', color: colors.white, opacity: 0.8 }}>
+            {t('demo.steps.drawNumber.description')}
+          </ChatText>
+          <ReportMockup>
+            <ReportSection>
+              <ReportLabel>{t('demo.steps.drawNumber.numberLabel')}</ReportLabel>
+              <ReportContent style={{ textAlign: 'center', fontSize: '24px', padding: '30px' }}>
+                {t('demo.steps.drawNumber.numberRange')}
+              </ReportContent>
+            </ReportSection>
+          </ReportMockup>
+          <ChatText style={{ textAlign: 'center', color: colors.primary, fontSize: '14px', marginTop: '20px' }}>
+            {t('demo.steps.drawNumber.note')}
+          </ChatText>
+        </>
+      )
+    },
+    {
+      icon: t('demo.steps.readPoem.icon'),
+      title: t('demo.steps.readPoem.title'),
+      content: (
+        <>
+          <ChatText style={{ marginBottom: '20px', color: colors.white, opacity: 0.8 }}>
+            {t('demo.steps.readPoem.description')}
+          </ChatText>
+          <ReportMockup>
+            <ReportSection>
+              <ReportLabel>{t('demo.steps.readPoem.poemLabel')}</ReportLabel>
+              <ReportContent dangerouslySetInnerHTML={{ __html: t('demo.steps.readPoem.poemExample') }} />
+            </ReportSection>
+            <ReportSection>
+              <ReportLabel>{t('demo.steps.readPoem.fortuneLabel')}</ReportLabel>
+              <ReportContent>{t('demo.steps.readPoem.fortuneLevel')}</ReportContent>
+            </ReportSection>
+            <ReportSection>
+              <ReportLabel>{t('demo.steps.readPoem.interpretationLabel')}</ReportLabel>
+              <ReportContent>
+                {t('demo.steps.readPoem.interpretationText')}
+              </ReportContent>
+            </ReportSection>
+          </ReportMockup>
+        </>
+      )
+    },
+    {
+      icon: t('demo.steps.askAi.icon'),
+      title: t('demo.steps.askAi.title'),
+      content: (
+        <>
+          <ChatText style={{ marginBottom: '20px', color: colors.white, opacity: 0.8 }}>
+            {t('demo.steps.askAi.description')}
           </ChatText>
           <ChatBubble isUser>
-            <ChatLabel>You</ChatLabel>
+            <ChatLabel>{t('demo.steps.askAi.userLabel')}</ChatLabel>
             <ChatText>
-              "I'm considering a career change. Should I take the new job offer or stay in my current position?"
+              {t('demo.steps.askAi.userMessage')}
+            </ChatText>
+          </ChatBubble>
+          <ChatBubble>
+            <ChatLabel>{t('demo.steps.askAi.aiLabel')}</ChatLabel>
+            <ChatText>
+              {t('demo.steps.askAi.aiMessage')}
             </ChatText>
           </ChatBubble>
           <ChatText style={{ textAlign: 'center', color: colors.primary, fontSize: '14px', marginTop: '20px' }}>
-            Our system uses semantic search to find the most relevant fortune poem for your situation
+            {t('demo.steps.askAi.note')}
           </ChatText>
         </>
       )
     },
     {
-      icon: '🎴',
-      title: 'Step 2: Receive Your Fortune',
-      content: (
-        <>
-          <ChatBubble>
-            <ChatLabel>Divine Whispers AI</ChatLabel>
-            <ChatText>
-              Based on your question, I've selected Fortune #42 from Guan Yin (觀音籤第四十二籤) - 上上籤 (Superior Fortune)
-            </ChatText>
-          </ChatBubble>
-          <ReportMockup>
-            <ReportSection>
-              <ReportLabel>📜 Fortune Poem</ReportLabel>
-              <ReportContent>
-                天邊明月照人間 / 四海五湖皆照見 /
-                萬里無雲天正朗 / 有如明鏡掛當空
-              </ReportContent>
-            </ReportSection>
-            <ReportSection>
-              <ReportLabel>🌟 Fortune Level</ReportLabel>
-              <ReportContent>上上籤 (Superior Fortune) - Highly auspicious</ReportContent>
-            </ReportSection>
-          </ReportMockup>
-        </>
-      )
-    },
-    {
-      icon: '📊',
-      title: 'Step 3: AI-Powered Analysis',
-      content: (
-        <>
-          <ChatText style={{ marginBottom: '20px', color: colors.white, opacity: 0.8 }}>
-            Our AI analyzes the fortune poem in the context of your specific question and provides detailed guidance across multiple life aspects.
-          </ChatText>
-          <ReportMockup>
-            <ReportSection>
-              <ReportLabel>💼 Career Aspect</ReportLabel>
-              <ReportContent>
-                The moon illuminating all lands suggests clarity and visibility. This is an excellent time for career advancement. The new opportunity will bring recognition and success.
-              </ReportContent>
-            </ReportSection>
-            <ReportSection>
-              <ReportLabel>🎯 Recommendation</ReportLabel>
-              <ReportContent>
-                Take the new position with confidence. Like the bright moon clearing away darkness, this change will bring clarity to your professional path.
-              </ReportContent>
-            </ReportSection>
-            <ReportSection>
-              <ReportLabel>⚠️ Caution</ReportLabel>
-              <ReportContent>
-                Ensure thorough preparation. The "cloudless sky" reminds you to maintain transparency and honesty in negotiations.
-              </ReportContent>
-            </ReportSection>
-          </ReportMockup>
-        </>
-      )
-    },
-    {
-      icon: '🎉',
-      title: 'Ready to Try?',
+      icon: t('demo.steps.ready.icon'),
+      title: t('demo.steps.ready.title'),
       content: (
         <>
           <ChatText style={{ textAlign: 'center', marginBottom: '30px' }}>
-            Experience the power of AI-enhanced ancient wisdom for yourself!
+            {t('demo.steps.ready.description')}
           </ChatText>
           <FeatureList>
-            <FeatureItem>Get started with free daily fortune reading</FeatureItem>
-            <FeatureItem>Ask unlimited questions with premium account</FeatureItem>
-            <FeatureItem>Save and review your consultation history</FeatureItem>
-            <FeatureItem>Access detailed reports and insights</FeatureItem>
+            <FeatureItem>{t('demo.steps.ready.features.dailyFortune')}</FeatureItem>
+            <FeatureItem>{t('demo.steps.ready.features.poemsCount')}</FeatureItem>
+            <FeatureItem>{t('demo.steps.ready.features.aiInterpretation')}</FeatureItem>
+            <FeatureItem>{t('demo.steps.ready.features.history')}</FeatureItem>
           </FeatureList>
           <ChatText style={{ textAlign: 'center', marginTop: '30px', color: colors.primary, fontWeight: 600 }}>
-            Click "Get Started" below to begin your journey! ✨
+            {t('demo.steps.ready.callToAction')}
           </ChatText>
         </>
       )
@@ -456,8 +475,8 @@ const DemoModal: React.FC<DemoModalProps> = ({ onClose }) => {
       <ModalContainer onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose}>×</CloseButton>
 
-        <Title>How Divine Whispers Works</Title>
-        <Subtitle>Discover personalized fortune-telling powered by AI</Subtitle>
+        <Title>{t('demo.title')}</Title>
+        <Subtitle>{t('demo.subtitle')}</Subtitle>
 
         <StepIndicator>
           {steps.map((_, index) => (
@@ -479,15 +498,15 @@ const DemoModal: React.FC<DemoModalProps> = ({ onClose }) => {
 
         <ButtonGroup>
           <NavButton onClick={handlePrev} disabled={currentStep === 0}>
-            ← Previous
+            {t('demo.previous')}
           </NavButton>
           {currentStep < steps.length - 1 ? (
             <NavButton primary onClick={handleNext}>
-              Next →
+              {t('demo.next')}
             </NavButton>
           ) : (
             <NavButton primary onClick={handleGetStarted}>
-              Get Started ✨
+              {t('demo.getStarted')}
             </NavButton>
           )}
         </ButtonGroup>

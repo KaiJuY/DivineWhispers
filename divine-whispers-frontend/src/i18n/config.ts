@@ -58,8 +58,78 @@ const enTranslations = {
       knowYourFate: "Know Your Fate",
       readWhisper: "Read Your Whisper",
       demoReport: "Demo Report",
+      seeHowItWorks: "How to Know Your Fortune",
       welcomeBack: "Welcome back, {{username}}",
       selectDeity: "Select a Deity to Begin"
+    },
+    demo: {
+      title: "How Divine Whispers Works",
+      subtitle: "Explore in-depth personalized fortune poem divination",
+      previous: "← Previous",
+      next: "Next →",
+      getStarted: "Get Started ✨",
+      steps: {
+        overview: {
+          icon: "🔮",
+          title: "How to Know Your Fortune",
+          description: "Follow these simple steps to receive divine guidance and discover what the ancient wisdom holds for your future.",
+          features: {
+            chooseDeity: "Choose a deity that resonates with your question",
+            drawNumber: "Draw a fortune number guided by intuition",
+            receivePoem: "Receive an authentic temple fortune poem",
+            getInterpretation: "Get in-depth personalized interpretation"
+          }
+        },
+        selectDeity: {
+          icon: "🏛️",
+          title: "Step 1: Select Your Deity",
+          description: "Choose from 8 divine guides, each specializing in different aspects of life. Trust your intuition or select based on your question.",
+          deityLabel: "🙏 Available Deities",
+          deityList: "• Guan Yin - Compassion & Relationships<br/>• Guan Yu - Career & Success<br/>• Mazu - Protection & Travel<br/>• Yue Lao - Love & Marriage<br/>...and other beliefs",
+          note: "Each deity holds fortune poems from authentic temples"
+        },
+        drawNumber: {
+          icon: "🎲",
+          title: "Step 2: Determine Your Fortune Number",
+          description: "You can select the corresponding number based on the fortune drawn at a temple, or use the random draw feature on the homepage.",
+          numberLabel: "🔢 Select Your Number",
+          numberRange: "1 ~ 100",
+          note: "Traditional fortune-telling believes the number you choose is destined"
+        },
+        readPoem: {
+          icon: "📜",
+          title: "Step 3: Read Your Fortune Poem and Basic Analysis",
+          description: "Receive an authentic fortune poem from ancient temples, written in classical Chinese with interpretations in your language.",
+          poemLabel: "📜 Fortune Poem (Chinese)",
+          poemExample: "天邊明月照人間<br/>四海五湖皆照見<br/>萬里無雲天正朗<br/>有如明鏡掛當空",
+          fortuneLabel: "🌟 Fortune Level",
+          fortuneLevel: "Superior Fortune - Highly auspicious",
+          interpretationLabel: "📖 Interpretation",
+          interpretationText: "Like the moon illuminating all lands with clarity, your path ahead is bright and clear. Great opportunities await."
+        },
+        askAi: {
+          icon: "💬",
+          title: "Step 4: Ask Us for Deeper Personalized Insights",
+          description: "Chat with us and ask your questions to understand how the fortune applies to your specific situation. Ask detailed questions for personalized guidance.",
+          userLabel: "You",
+          userMessage: "How does this fortune relate to my career decision?",
+          aiLabel: "Guidance",
+          aiMessage: "The poem suggests your path is clear like moonlight. For your career decision, this indicates the new opportunity will bring visibility and recognition. The \"cloudless sky\" means transparency in negotiations...",
+          note: "Analyze fortune poems based on your personal questions"
+        },
+        ready: {
+          icon: "🔮",
+          title: "Ready to Know Your Fortune?",
+          description: "Begin your journey of divine guidance today",
+          features: {
+            dailyFortune: "Free daily fortune available for all visitors",
+            poemsCount: "600+ authentic temple fortune poems",
+            aiInterpretation: "Support for replies in 3 languages",
+            history: "Save and review your fortune history"
+          },
+          callToAction: "Click \"Get Started\" to discover your fortune! ✨"
+        }
+      }
     },
     deities: {
       title: "Choose Your Deity",
@@ -438,8 +508,78 @@ const zhTranslations = {
       knowYourFate: "了解您的命運",
       readWhisper: "讀取您的神諭",
       demoReport: "示範報告",
+      seeHowItWorks: "如何知道您的運勢",
       welcomeBack: "歡迎回來，{{username}}",
       selectDeity: "選擇一位神明開始"
+    },
+    demo: {
+      title: "神明私語使用方式",
+      subtitle: "探索深度的客製化籤詩占卜",
+      previous: "← 上一步",
+      next: "下一步 →",
+      getStarted: "開始使用 ✨",
+      steps: {
+        overview: {
+          icon: "🔮",
+          title: "如何知道您的運勢",
+          description: "遵循這些簡單步驟，獲得神聖指引，發現古老智慧為您的未來所持有的啟示。",
+          features: {
+            chooseDeity: "選擇與您的問題產生共鳴的神明",
+            drawNumber: "憑直覺抽取籤詩號碼",
+            receivePoem: "接收真實寺廟籤詩",
+            getInterpretation: "獲得深度的客製化解析"
+          }
+        },
+        selectDeity: {
+          icon: "🏛️",
+          title: "步驟1：選擇您的神明",
+          description: "從8位神聖嚮導中選擇，每位專精於生活的不同方面。相信您的直覺或根據您的問題選擇。",
+          deityLabel: "🙏 可選神明",
+          deityList: "• 觀音 - 慈悲與關係<br/>• 關公 - 事業與成功<br/>• 媽祖 - 保護與旅行<br/>• 月老 - 愛情與婚姻<br/>...以及其他信仰",
+          note: "每位神明擁有來自真實寺廟的籤詩"
+        },
+        drawNumber: {
+          icon: "🎲",
+          title: "步驟2：決定您的籤詩號碼",
+          description: "可以根據寺廟中求取的籤詩，選擇對應的號碼或是透過首頁的隨機抽取功能。",
+          numberLabel: "🔢 選擇您的號碼",
+          numberRange: "1 ~ 100",
+          note: "傳統占卜相信您選擇的號碼是命中註定的"
+        },
+        readPoem: {
+          icon: "📜",
+          title: "步驟3：閱讀您的籤詩與基本分析",
+          description: "接收來自古老寺廟的真實籤詩，以文言文撰寫，並提供您語言的解釋。",
+          poemLabel: "📜 籤詩（中文）",
+          poemExample: "天邊明月照人間<br/>四海五湖皆照見<br/>萬里無雲天正朗<br/>有如明鏡掛當空",
+          fortuneLabel: "🌟 籤詩等級",
+          fortuneLevel: "上上籤 - 極為吉祥",
+          interpretationLabel: "📖 解析",
+          interpretationText: "如同明月清晰照亮大地，您前方的道路光明而清晰。偉大的機會正在等待。"
+        },
+        askAi: {
+          icon: "💬",
+          title: "步驟4：向我們提問獲得更深入的客製化解析",
+          description: "與我們聊天提出你的問題，了解籤詩如何應用於您的具體情況。提出詳細問題以獲得個人化指導。",
+          userLabel: "您",
+          userMessage: "這個籤詩與我的職業決定有什麼關係？",
+          aiLabel: "指引",
+          aiMessage: "詩中表明您的道路像月光一樣清晰。對於您的職業決定，這表示新機會將帶來可見度和認可。「萬里無雲」意味著談判中的透明度...",
+          note: "根據您的個人問題分析籤詩"
+        },
+        ready: {
+          icon: "🔮",
+          title: "準備好知道您的運勢了嗎？",
+          description: "今天開始您的神聖指引之旅",
+          features: {
+            dailyFortune: "為所有訪客提供免費每日籤詩",
+            poemsCount: "600+首真實寺廟籤詩",
+            aiInterpretation: "支援3種語言的回覆",
+            history: "保存並回顧您的籤詩歷史"
+          },
+          callToAction: "點擊「開始使用」來發現您的運勢！✨"
+        }
+      }
     },
     deities: {
       title: "選擇您的神明",
@@ -702,8 +842,78 @@ const jpTranslations = {
       knowYourFate: "あなたの運命を知る",
       readWhisper: "神託を読む",
       demoReport: "デモレポート",
+      seeHowItWorks: "運勢を知る方法",
       welcomeBack: "おかえりなさい、{{username}}さん",
       selectDeity: "神を選んで始める"
+    },
+    demo: {
+      title: "神々の囁きの使い方",
+      subtitle: "深層的でカスタマイズされたおみくじ占いを体験",
+      previous: "← 前へ",
+      next: "次へ →",
+      getStarted: "始める ✨",
+      steps: {
+        overview: {
+          icon: "🔮",
+          title: "運勢を知る方法",
+          description: "これらの簡単なステップに従って、神聖なガイダンスを受け取り、古代の知恵があなたの未来に何をもたらすかを発見してください。",
+          features: {
+            chooseDeity: "あなたの質問に共鳴する神を選ぶ",
+            drawNumber: "直感に導かれておみくじ番号を引く",
+            receivePoem: "本物の寺院のおみくじ詩を受け取る",
+            getInterpretation: "深層的でカスタマイズされた解釈を得る"
+          }
+        },
+        selectDeity: {
+          icon: "🏛️",
+          title: "ステップ1：神を選択",
+          description: "人生のさまざまな側面を専門とする8つの神聖なガイドから選択してください。直感を信じるか、質問に基づいて選択してください。",
+          deityLabel: "🙏 利用可能な神々",
+          deityList: "• 観音 - 慈悲と人間関係<br/>• 関羽 - キャリアと成功<br/>• 媽祖 - 保護と旅行<br/>• 月下老人 - 愛と結婚<br/>...そして他の信仰",
+          note: "各神は本物の寺院からおみくじ詩を保持しています"
+        },
+        drawNumber: {
+          icon: "🎲",
+          title: "ステップ2：おみくじ番号を決定",
+          description: "寺院で引いたおみくじに基づいて対応する番号を選択するか、ホームページのランダム抽選機能を使用できます。",
+          numberLabel: "🔢 番号を選択",
+          numberRange: "1 ~ 100",
+          note: "伝統的な占いでは、選ぶ番号は運命づけられていると信じられています"
+        },
+        readPoem: {
+          icon: "📜",
+          title: "ステップ3：おみくじ詩と基本分析を読む",
+          description: "古代の寺院から本物のおみくじ詩を受け取ります。文言で書かれ、あなたの言語での解釈が付いています。",
+          poemLabel: "📜 おみくじ詩（中国語）",
+          poemExample: "天邊明月照人間<br/>四海五湖皆照見<br/>萬里無雲天正朗<br/>有如明鏡掛當空",
+          fortuneLabel: "🌟 運勢レベル",
+          fortuneLevel: "上上籤 - 非常に縁起が良い",
+          interpretationLabel: "📖 解釈",
+          interpretationText: "明確さをもってすべての土地を照らす月のように、あなたの前方の道は明るく晴れています。素晴らしい機会があなたを待っています。"
+        },
+        askAi: {
+          icon: "💬",
+          title: "ステップ4：より深いカスタマイズされた洞察を尋ねる",
+          description: "私たちとチャットして質問をし、おみくじがあなたの特定の状況にどのように適用されるかを理解してください。個人向けのガイダンスのために詳細な質問をしてください。",
+          userLabel: "あなた",
+          userMessage: "このおみくじは私のキャリアの決定とどのように関係していますか？",
+          aiLabel: "ガイダンス",
+          aiMessage: "詩はあなたの道が月光のように明確であることを示唆しています。あなたのキャリアの決定について、これは新しい機会が可視性と認識をもたらすことを示しています。「雲のない空」は交渉における透明性を意味します...",
+          note: "あなたの個人的な質問に基づいておみくじ詩を分析します"
+        },
+        ready: {
+          icon: "🔮",
+          title: "運勢を知る準備はできましたか？",
+          description: "今日から神聖なガイダンスの旅を始めましょう",
+          features: {
+            dailyFortune: "すべての訪問者に無料の毎日のおみくじを提供",
+            poemsCount: "600以上の本物の寺院のおみくじ詩",
+            aiInterpretation: "3つの言語での返信をサポート",
+            history: "おみくじ履歴を保存して確認"
+          },
+          callToAction: "「始める」をクリックしてあなたの運勢を発見しましょう！✨"
+        }
+      }
     },
     deities: {
       title: "あなたの神を選択",

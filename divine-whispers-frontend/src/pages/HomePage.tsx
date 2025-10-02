@@ -413,7 +413,7 @@ const HomePage: React.FC = () => {
             <HeroText>
               <HeroImage src="/assets/HOME_MASK.png" alt="Divine Whispers Hero" />
               <DemoButton onClick={() => setShowDemoModal(true)}>
-                See How It Works
+                {t('home.seeHowItWorks')}
               </DemoButton>
             </HeroText>
 
