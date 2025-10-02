@@ -617,23 +617,16 @@ async def get_deity_fortune_by_number(deity_id: str, number: int):
 @router.get("/daily")
 async def get_daily_fortune():
     """
-    Get today's daily fortune (free endpoint, no auth required)
-    Returns a randomly selected fortune that changes daily
+    Get a random fortune (free endpoint, no auth required)
+    Returns a different random fortune on each request
     """
     try:
-        import hashlib
         from datetime import date
-        
-        # Create deterministic seed based on today's date
-        today = date.today().isoformat()
-        seed_hash = hashlib.md5(today.encode()).hexdigest()
-        seed = int(seed_hash[:8], 16) % 1000
-        
-        # Use seed to select a consistent daily fortune
         import random
-        random.seed(seed)
-        
-        # Get random deity and number for today
+
+        today = date.today().isoformat()
+
+        # Get truly random deity and number (no seed, different each time)
         deity_ids = list(deity_service.deity_info.keys())
         daily_deity_id = random.choice(deity_ids)
         daily_number = random.randint(1, 100)

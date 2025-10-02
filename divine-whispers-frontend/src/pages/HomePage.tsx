@@ -7,6 +7,7 @@ import { mockTodaysWhisper, mockDeities } from '../utils/mockData';
 import { usePagesTranslation } from '../hooks/useTranslation';
 import fortuneService from '../services/fortuneService';
 import deityService from '../services/deityService';
+import { useAppNavigate } from '../contexts/RouterContext';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -240,6 +241,7 @@ const HomePage: React.FC = () => {
   const [fortuneLoading, setFortuneLoading] = useState(true);
   const { setCurrentPage, setSelectedDeity, setSelectedCollection, setSelectedFortuneNumber, setCurrentConsultation, setSelectedReport } = useAppStore();
   const { t } = usePagesTranslation();
+  const navigate = useAppNavigate();
 
   // Fetch daily fortune on component mount
   useEffect(() => {
@@ -290,14 +292,14 @@ const HomePage: React.FC = () => {
     console.log('Found deity:', deity);
     console.log('Found collection:', collection);
 
-    // Set the state to show the daily fortune analysis
+    // Set the state for fortune analysis page
     setSelectedDeity(deity);
     setSelectedCollection(collection);
     setSelectedFortuneNumber(dailyFortune.number);
 
     // Set current consultation data for the analysis page
     setCurrentConsultation({
-      id: `daily-${dailyFortune.number}-${new Date().toISOString().split('T')[0]}`,
+      id: `daily-${dailyFortune.number}-${dailyFortune.deity.id}`,
       deity_id: dailyFortune.deity.id,
       deity_name: dailyFortune.deity.name,
       question: 'Daily Fortune Guidance',
@@ -350,8 +352,9 @@ const HomePage: React.FC = () => {
       status: 'active'
     });
 
-    console.log('Navigating to fortune-analysis page...');
-    window.location.href = '/fortune-analysis';
+    console.log(`Navigating to fortune-analysis page with deity=${deity.id} and number=${dailyFortune.number}...`);
+    // Navigate to the fortune analysis page using React Router
+    navigate('/fortune-analysis');
     console.log('Navigation triggered!');
   };
 
