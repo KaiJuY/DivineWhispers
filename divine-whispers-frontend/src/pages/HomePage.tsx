@@ -8,6 +8,7 @@ import { usePagesTranslation } from '../hooks/useTranslation';
 import fortuneService from '../services/fortuneService';
 import deityService from '../services/deityService';
 import { useAppNavigate } from '../contexts/RouterContext';
+import DemoModal from '../components/demo/DemoModal';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -66,6 +67,44 @@ const HeroImage = styled.img`
   height: auto;
   display: block;
   margin: 0 auto;
+`;
+
+const DemoButton = styled.button`
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  background: transparent;
+  color: rgba(212, 175, 55, 0.9);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  padding: 15px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  &:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 1);
+    color: rgba(212, 175, 55, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+  }
+
+  ${media.tablet} {
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+
+  ${media.mobile} {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
 `;
 
 // Demo Report button removed; reports now come from backend
@@ -239,6 +278,7 @@ const HomePage: React.FC = () => {
   const [whisperExpanded, setWhisperExpanded] = useState(false);
   const [dailyFortune, setDailyFortune] = useState<any>(null);
   const [fortuneLoading, setFortuneLoading] = useState(true);
+  const [showDemoModal, setShowDemoModal] = useState(false);
   const { setCurrentPage, setSelectedDeity, setSelectedCollection, setSelectedFortuneNumber, setCurrentConsultation, setSelectedReport } = useAppStore();
   const { t } = usePagesTranslation();
   const navigate = useAppNavigate();
@@ -372,9 +412,12 @@ const HomePage: React.FC = () => {
           <HeroContent>
             <HeroText>
               <HeroImage src="/assets/HOME_MASK.png" alt="Divine Whispers Hero" />
+              <DemoButton onClick={() => setShowDemoModal(true)}>
+                See How It Works
+              </DemoButton>
             </HeroText>
-            
-            <TodaysWhisper expanded={whisperExpanded} onClick={toggleWhisper}>
+
+            <TodaysWhisper expanded={whisperExpanded} onClick={toggleWhisper} data-section="daily-fortune">
               <MoonContainer>
                 <MoonIcon>🌙</MoonIcon>
                 <WhisperTitle>
@@ -410,6 +453,8 @@ const HomePage: React.FC = () => {
         </HeroSection>
 
       </HomeContainer>
+
+      {showDemoModal && <DemoModal onClose={() => setShowDemoModal(false)} />}
     </Layout>
   );
 };
