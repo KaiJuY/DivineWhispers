@@ -306,6 +306,51 @@ const FeatureItem = styled.li`
   }
 `;
 
+const ThumbnailWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+`;
+
+const ThumbnailImage = styled.img`
+  width: 100px;
+  height: auto;
+  border: 2px solid ${colors.primary};
+  border-radius: 4px;
+  transition: transform 0.2s ease-in-out;
+
+  ${ThumbnailWrapper}:hover & {
+    transform: scale(1.1);
+  }
+`;
+
+const FullImagePreview = styled.img`
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 600px;
+  width: 600px;
+  height: auto;
+  border: 3px solid ${colors.primary};
+  border-radius: 8px;
+  z-index: 100;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.7);
+  animation: ${fadeIn} 0.3s ease-out;
+
+  ${ThumbnailWrapper}:hover & {
+    display: block;
+  }
+`;
+
+const ThumbnailsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+`;
+
 interface DemoModalProps {
   onClose: () => void;
 }
@@ -398,6 +443,12 @@ const DemoModal: React.FC<DemoModalProps> = ({ onClose }) => {
               </ReportContent>
             </ReportSection>
           </ReportMockup>
+          <ThumbnailsContainer>
+            <ThumbnailWrapper>
+              <ThumbnailImage src="/assets/POEM.png"  alt="Poem preview" />
+              <FullImagePreview src="/assets/POEM.png"  alt="Poem full view" />
+            </ThumbnailWrapper>
+          </ThumbnailsContainer>
         </>
       )
     },
@@ -424,6 +475,16 @@ const DemoModal: React.FC<DemoModalProps> = ({ onClose }) => {
           <ChatText style={{ textAlign: 'center', color: colors.primary, fontSize: '14px', marginTop: '20px' }}>
             {t('demo.steps.askAi.note')}
           </ChatText>
+          <ThumbnailsContainer>
+            <ThumbnailWrapper>
+              <ThumbnailImage src="/assets/CHAT.png" alt="Chat preview" />
+              <FullImagePreview src="/assets/CHAT.png" alt="Chat full view" />
+            </ThumbnailWrapper>
+            <ThumbnailWrapper>
+              <ThumbnailImage src="/assets/REPORT.png" alt="Report preview" />
+              <FullImagePreview src="/assets/REPORT.png" alt="Report full view" />
+            </ThumbnailWrapper>
+          </ThumbnailsContainer>
         </>
       )
     },
