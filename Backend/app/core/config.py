@@ -17,24 +17,24 @@ class Settings(BaseSettings):
     HOST: str = "0.0.0.0"
     PORT: int = 8000
     
-    # CORS settings - simplified
-    ALLOWED_HOSTS: List[str] = ["*"]
-    
-    # Database settings - use environment variables directly
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:password@db:5432/divine_whispers"
-    
-    # Security settings
-    SECRET_KEY: str = "your-super-secret-key-change-in-production-please"
+    # CORS settings - restrict to specific domains (override in .env)
+    ALLOWED_HOSTS: List[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+
+    # Database settings - MUST use environment variables
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./divine_whispers.db")
+
+    # Security settings - MUST override SECRET_KEY in production
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "INSECURE_DEFAULT_DO_NOT_USE_IN_PRODUCTION")
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
-    
-    # Password validation settings
-    PASSWORD_MIN_LENGTH: int = 8
-    PASSWORD_REQUIRE_UPPERCASE: bool = False
-    PASSWORD_REQUIRE_LOWERCASE: bool = False
-    PASSWORD_REQUIRE_NUMBERS: bool = False
-    PASSWORD_REQUIRE_SYMBOLS: bool = False
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 3
+
+    # Password validation settings - ENABLED for security
+    PASSWORD_MIN_LENGTH: int = 12
+    PASSWORD_REQUIRE_UPPERCASE: bool = True
+    PASSWORD_REQUIRE_LOWERCASE: bool = True
+    PASSWORD_REQUIRE_NUMBERS: bool = True
+    PASSWORD_REQUIRE_SYMBOLS: bool = True
     
     # Payment system
     DEFAULT_USER_POINTS: int = 100
