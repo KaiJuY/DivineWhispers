@@ -17,7 +17,11 @@
       "Bash(cat:*)",
       "mcp__sequential-thinking__sequentialthinking",
       "mcp__playwright__browser_take_screenshot",
-      "mcp__playwright__browser_close"
+      "mcp__playwright__browser_close",
+      "Bash(awk:*)",
+      "Bash(curl -X POST \"http://localhost:8000/api/v1/auth/register\" -H \"Content-Type: application/json\" -d '{\"\"email\"\": \"\"perftest@example.com\"\", \"\"password\"\": \"\"PerfTest@123!\"\"}')",
+      "Bash(curl -X POST \"http://localhost:8000/api/v1/auth/login\" -H \"Content-Type: application/json\" -d \"{\"\"email\"\": \"\"perftest@example.com\"\", \"\"password\"\": \"\"PerfTest@123!\"\"}\")",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": [],

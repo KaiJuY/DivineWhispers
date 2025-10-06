@@ -1,6 +1,6 @@
 # interpreter.py
 from abc import ABC, abstractmethod
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Callable
 import uuid
 import re
 import logging
@@ -60,14 +60,81 @@ class BaseInterpreter(ABC):
         
         self.logger.info(f"Interpretation completed for {temple} poem #{poem_id}")
         return result
-    
+
+    def interpret_with_streaming(self, question: str, temple: str, poem_id: int,
+                                 streaming_callback: Optional[Callable[[str], None]] = None,
+                                 additional_context_k: int = None, capture_faq: bool = None) -> InterpretationResult:
+        """Template method with streaming support for better UX.
+
+        Args:
+            question: User's question
+            temple: Temple name
+            poem_id: Poem ID
+            streaming_callback: Optional callback for streaming LLM tokens
+            additional_context_k: Number of additional context poems
+            capture_faq: Whether to capture FAQ
+
+        Returns:
+            InterpretationResult
+        """
+
+        additional_context_k = additional_context_k or self.config.max_poems_per_query
+        capture_faq = capture_faq if capture_faq is not None else self.config.auto_capture_faq
+
+        self.logger.info(f"Starting streaming interpretation for {temple} poem #{poem_id}")
+
+        # Step 1: Validate inputs
+        self._validate_inputs(question, temple, poem_id)
+
+        # Step 2: Retrieve the selected poem
+        selected_poem_chunks = self._retrieve_selected_poem(temple, poem_id)
+
+        # Step 3: Get additional context via RAG
+        additional_chunks = self._get_additional_context(question, temple, poem_id, additional_context_k)
+
+        # Step 4: Prepare context for LLM
+        context = self._prepare_context(selected_poem_chunks, additional_chunks, temple, poem_id)
+
+        # Step 5: Generate interpretation with streaming
+        interpretation = self._generate_interpretation_with_streaming(
+            question, context, temple, poem_id, streaming_callback
+        )
+
+        # Step 6: Post-process interpretation
+        interpretation = self._post_process_interpretation(interpretation, question)
+
+        # Step 7: Build result
+        result = self._build_result(interpretation, temple, poem_id, selected_poem_chunks, additional_chunks, question)
+
+        # Step 8: Capture FAQ if enabled
+        if capture_faq:
+            self._capture_faq_interaction(question, result)
+
+        self.logger.info(f"Streaming interpretation completed for {temple} poem #{poem_id}")
+        return result
+
+    def _generate_interpretation_with_streaming(self, question: str, context: str,
+                                                temple: str, poem_id: int,
+                                                streaming_callback: Optional[Callable[[str], None]] = None) -> str:
+        """Default implementation calls regular method. Subclasses can override for streaming."""
+        # If subclass has streaming support, use it
+        if hasattr(self, '_generate_interpretation') and callable(self._generate_interpretation):
+            try:
+                # Try to call with streaming callback (PoemInterpreter supports this)
+                return self._generate_interpretation(question, context, temple, poem_id, streaming_callback)
+            except TypeError:
+                # Fallback if signature doesn't support streaming
+                return self._generate_interpretation(question, context, temple, poem_id)
+        else:
+            raise NotImplementedError("Subclass must implement _generate_interpretation")
+
     # Abstract methods - subclasses must implement these
     @abstractmethod
-    def _prepare_context(self, selected_chunks: List[Dict], additional_chunks: List[Dict], 
+    def _prepare_context(self, selected_chunks: List[Dict], additional_chunks: List[Dict],
                         temple: str, poem_id: int) -> str:
         """Prepare the context string for LLM generation."""
         pass
-    
+
     @abstractmethod
     def _generate_interpretation(self, question: str, context: str, temple: str, poem_id: int) -> str:
         """Generate the interpretation using LLM."""
@@ -455,8 +522,20 @@ class PoemInterpreter(BaseInterpreter):
 
         return quality_issues
 
-    def _generate_interpretation(self, question: str, context: str, temple: str, poem_id: int) -> str:
-        """Generate interpretation using LLM with validation and auto-retry."""
+    def _generate_interpretation(self, question: str, context: str, temple: str, poem_id: int,
+                                 streaming_callback: Optional[Callable[[str], None]] = None) -> str:
+        """Generate interpretation using LLM with validation and auto-retry.
+
+        Args:
+            question: User's question
+            context: RAG context
+            temple: Temple name
+            poem_id: Poem ID
+            streaming_callback: Optional callback for streaming tokens (for UX improvement)
+
+        Returns:
+            Complete generated interpretation
+        """
 
         # Detect user's language for response
         user_language = self._detect_language(question)
@@ -475,12 +554,20 @@ class PoemInterpreter(BaseInterpreter):
 
                 self.logger.info(f"LLM generation attempt {attempt + 1}/{max_attempts}")
 
-                # Generate response with timeout
-                response = self.llm.generate(
-                    prompt,
-                    temperature=0.7 - (attempt * 0.1),  # Reduce temperature for retries
-                    max_tokens=2500 + (attempt * 500)  # Increase tokens for retries
-                )
+                # Generate response (with streaming if callback provided)
+                if streaming_callback:
+                    response = self.llm.generate_stream(
+                        prompt,
+                        callback=streaming_callback,
+                        temperature=0.7 - (attempt * 0.1),
+                        max_tokens=2500 + (attempt * 500)
+                    )
+                else:
+                    response = self.llm.generate(
+                        prompt,
+                        temperature=0.7 - (attempt * 0.1),  # Reduce temperature for retries
+                        max_tokens=2500 + (attempt * 500)  # Increase tokens for retries
+                    )
 
                 # Validate response
                 is_valid, parsed_data, error_msg = self._validate_interpretation_response(response, question, attempt)

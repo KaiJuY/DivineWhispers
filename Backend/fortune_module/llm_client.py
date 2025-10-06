@@ -1,6 +1,6 @@
 # llm_client.py
 from abc import ABC, abstractmethod
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Iterator, Callable
 from .models import LLMProvider
 from .config import SystemConfig
 import logging
@@ -9,16 +9,35 @@ import json
 # Strategy Pattern - Base class for LLM clients
 class BaseLLMClient(ABC):
     """Abstract base class for LLM clients using Strategy pattern."""
-    
+
     def __init__(self, config: Dict[str, Any]):
         self.config = config
         self.logger = logging.getLogger(self.__class__.__name__)
-    
+
     @abstractmethod
     def generate(self, prompt: str, **kwargs) -> str:
         """Generate response from LLM."""
         pass
-    
+
+    def generate_stream(self, prompt: str, callback: Optional[Callable[[str], None]] = None, **kwargs) -> str:
+        """
+        Generate response with streaming support (optional).
+        Default implementation falls back to non-streaming.
+
+        Args:
+            prompt: The input prompt
+            callback: Optional callback function called with each token/chunk
+            **kwargs: Additional generation parameters
+
+        Returns:
+            Complete generated text
+        """
+        # Default: fallback to non-streaming
+        result = self.generate(prompt, **kwargs)
+        if callback:
+            callback(result)  # Send entire result at once
+        return result
+
     @abstractmethod
     def validate_config(self) -> bool:
         """Validate the configuration for this client."""
@@ -67,20 +86,54 @@ class OpenAIClient(BaseLLMClient):
                 "temperature": kwargs.get("temperature", 0.7),
                 "max_tokens": kwargs.get("max_tokens", 1000)
             }
-            
+
             # Add any additional kwargs
             for key, value in kwargs.items():
                 if key not in ["temperature", "max_tokens"] and value is not None:
                     params[key] = value
-            
+
             response = self.client.chat.completions.create(**params)
             generated_text = response.choices[0].message.content
-            
+
             self.logger.debug(f"Generated response length: {len(generated_text)}")
             return generated_text
-            
+
         except Exception as e:
             self.logger.error(f"OpenAI generation failed: {e}")
+            raise
+
+    def generate_stream(self, prompt: str, callback: Optional[Callable[[str], None]] = None, **kwargs) -> str:
+        """Generate response with streaming using OpenAI API."""
+        try:
+            # Set default parameters
+            params = {
+                "model": self.model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": kwargs.get("temperature", 0.7),
+                "max_tokens": kwargs.get("max_tokens", 1000),
+                "stream": True  # Enable streaming
+            }
+
+            # Add any additional kwargs
+            for key, value in kwargs.items():
+                if key not in ["temperature", "max_tokens", "stream"] and value is not None:
+                    params[key] = value
+
+            response_stream = self.client.chat.completions.create(**params)
+
+            full_response = ""
+            for chunk in response_stream:
+                if chunk.choices[0].delta.content:
+                    token = chunk.choices[0].delta.content
+                    full_response += token
+                    if callback:
+                        callback(token)
+
+            self.logger.debug(f"Streamed response length: {len(full_response)}")
+            return full_response
+
+        except Exception as e:
+            self.logger.error(f"OpenAI streaming failed: {e}")
             raise
 
 class OllamaClient(BaseLLMClient):
@@ -130,25 +183,25 @@ class OllamaClient(BaseLLMClient):
                     "num_predict": kwargs.get("max_tokens", 1000)
                 }
             }
-            
+
             # Add any additional options
             for key, value in kwargs.items():
                 if key not in ["temperature", "max_tokens"] and value is not None:
                     payload["options"][key] = value
-            
+
             response = self.requests.post(
                 f"{self.base_url}/api/generate",
                 json=payload,
                 timeout=180  # 3 minute timeout for generation
             )
             response.raise_for_status()
-            
+
             response_data = response.json()
             generated_text = response_data.get("response", "")
-            
+
             self.logger.debug(f"Generated response length: {len(generated_text)}")
             return generated_text
-            
+
         except self.requests.exceptions.RequestException as e:
             self.logger.error(f"Ollama request failed: {e}")
             raise
@@ -157,6 +210,62 @@ class OllamaClient(BaseLLMClient):
             raise
         except Exception as e:
             self.logger.error(f"Ollama generation failed: {e}")
+            raise
+
+    def generate_stream(self, prompt: str, callback: Optional[Callable[[str], None]] = None, **kwargs) -> str:
+        """Generate response with streaming using Ollama API."""
+        try:
+            # Prepare request payload
+            payload = {
+                "model": self.model,
+                "prompt": prompt,
+                "stream": True,  # Enable streaming
+                "options": {
+                    "temperature": kwargs.get("temperature", 0.7),
+                    "num_predict": kwargs.get("max_tokens", 1000)
+                }
+            }
+
+            # Add any additional options
+            for key, value in kwargs.items():
+                if key not in ["temperature", "max_tokens", "stream"] and value is not None:
+                    payload["options"][key] = value
+
+            response = self.requests.post(
+                f"{self.base_url}/api/generate",
+                json=payload,
+                stream=True,  # Enable streaming in requests
+                timeout=180
+            )
+            response.raise_for_status()
+
+            full_response = ""
+            # Process streaming response line by line
+            for line in response.iter_lines():
+                if line:
+                    try:
+                        chunk_data = json.loads(line)
+                        token = chunk_data.get("response", "")
+                        if token:
+                            full_response += token
+                            if callback:
+                                callback(token)
+
+                        # Check if generation is complete
+                        if chunk_data.get("done", False):
+                            break
+                    except json.JSONDecodeError:
+                        # Skip malformed lines
+                        continue
+
+            self.logger.debug(f"Streamed response length: {len(full_response)}")
+            return full_response
+
+        except self.requests.exceptions.RequestException as e:
+            self.logger.error(f"Ollama streaming failed: {e}")
+            raise
+        except Exception as e:
+            self.logger.error(f"Ollama streaming failed: {e}")
             raise
 
 class MockLLMClient(BaseLLMClient):

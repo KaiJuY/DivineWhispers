@@ -13,7 +13,7 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Union, Any
+from typing import Dict, List, Optional, Union, Any, Callable
 from cachetools import TTLCache
 import re
 import difflib
@@ -64,6 +64,10 @@ class PoemService:
         self.cache = TTLCache(maxsize=1000, ttl=settings.FORTUNE_CACHE_TIMEOUT_SECONDS)
         self._initialized = False
         self._lock = asyncio.Lock()
+
+        # Cache metrics
+        self._cache_hits = 0
+        self._cache_misses = 0
         
     @with_circuit_breaker(chromadb_circuit_breaker, fallback_value=False)
     async def initialize_system(self) -> bool:
@@ -226,9 +230,28 @@ class PoemService:
                 logger.error("Poem service initialization timed out")
                 raise RuntimeError("Poem service initialization timed out")
 
+    def get_cache_stats(self) -> dict:
+        """Get cache performance statistics"""
+        total_requests = self._cache_hits + self._cache_misses
+        hit_rate = (self._cache_hits / total_requests * 100) if total_requests > 0 else 0
+        return {
+            "cache_hits": self._cache_hits,
+            "cache_misses": self._cache_misses,
+            "total_requests": total_requests,
+            "hit_rate_percent": round(hit_rate, 2),
+            "cache_size": len(self.cache),
+            "cache_maxsize": self.cache.maxsize,
+            "estimated_time_saved_seconds": self._cache_hits * 1.0  # 1s per cache hit
+        }
+
     def cleanup(self):
         """Clean up service resources"""
         try:
+            # Log final cache stats before cleanup
+            if hasattr(self, '_cache_hits'):
+                stats = self.get_cache_stats()
+                logger.info(f"[CACHE_STATS] Final stats: {stats}")
+
             if hasattr(self, 'rag_handler') and self.rag_handler:
                 if hasattr(self.rag_handler, 'cleanup'):
                     self.rag_handler.cleanup()
@@ -328,8 +351,12 @@ class PoemService:
 
         cache_key = f"poem_{poem_id}"
         if cache_key in self.cache:
-            logger.debug(f"[GET_POEM] Found poem in cache: {poem_id}")
+            self._cache_hits += 1
+            cache_hit_rate = (self._cache_hits / (self._cache_hits + self._cache_misses)) * 100
+            logger.info(f"[CACHE_HIT] Poem {poem_id} (hit rate: {cache_hit_rate:.1f}%, saves ~1s)")
             return self.cache[cache_key]
+
+        self._cache_misses += 1
 
         try:
             async with timeout_context(15.0, f"get_poem_by_id_{poem_id}"):
@@ -692,7 +719,8 @@ class PoemService:
         poem_data: PoemData,
         question: str,
         language: str = "zh",
-        user_context: Optional[str] = None
+        user_context: Optional[str] = None,
+        streaming_callback: Optional[Callable[[str], None]] = None
     ) -> FortuneResult:
         """
         Generate personalized fortune interpretation with timeout protection
@@ -702,13 +730,14 @@ class PoemService:
             question: User's question
             language: Target language
             user_context: Additional user context
+            streaming_callback: Optional callback for LLM streaming (for better UX)
 
         Returns:
             FortuneResult with interpretation
         """
         # Input validation and logging
         logger.info(f"[INTERPRET] Starting interpretation for {poem_data.temple} poem #{poem_data.poem_id}")
-        logger.debug(f"[INTERPRET] Input parameters: question='{question[:50]}...', language='{language}', user_context={bool(user_context)}")
+        logger.debug(f"[INTERPRET] Input parameters: question='{question[:50]}...', language='{language}', user_context={bool(user_context)}, streaming={streaming_callback is not None}")
 
         await self.ensure_initialized()
 
@@ -726,14 +755,24 @@ class PoemService:
                         loop = asyncio.get_event_loop()
 
                         def call_fortune_system():
-                            return self.fortune_system.ask_fortune(
-                                question=question,
-                                temple=poem_data.temple,
-                                poem_id=poem_data.poem_id,
-                                additional_context=bool(user_context)
-                            )
+                            # Use streaming version if callback provided
+                            if streaming_callback:
+                                return self.fortune_system.ask_fortune_streaming(
+                                    question=question,
+                                    temple=poem_data.temple,
+                                    poem_id=poem_data.poem_id,
+                                    streaming_callback=streaming_callback,
+                                    additional_context=bool(user_context)
+                                )
+                            else:
+                                return self.fortune_system.ask_fortune(
+                                    question=question,
+                                    temple=poem_data.temple,
+                                    poem_id=poem_data.poem_id,
+                                    additional_context=bool(user_context)
+                                )
 
-                        logger.debug(f"[INTERPRET] Calling fortune_system.ask_fortune with temple='{poem_data.temple}', poem_id={poem_data.poem_id}")
+                        logger.debug(f"[INTERPRET] Calling fortune_system.ask_fortune{'_streaming' if streaming_callback else ''} with temple='{poem_data.temple}', poem_id={poem_data.poem_id}")
                         result = await asyncio.wait_for(
                             loop.run_in_executor(None, call_fortune_system),
                             timeout=40.0

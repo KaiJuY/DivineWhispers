@@ -33,7 +33,7 @@ from .interpreter import PoemInterpreter, InterpreterFactory
 from .faq_pipeline import FAQPipeline
 from .config import SystemConfig
 from .models import *
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Callable
 import logging
 import os
 
@@ -150,17 +150,54 @@ class FortuneSystem:
             self.logger.error(f"Fortune consultation failed: {e}")
             raise
     
-    def ask_fortune_with_poem(self, question: str, selected_poem: SelectedPoem, 
+    def ask_fortune_streaming(self, question: str, temple: str, poem_id: int,
+                             streaming_callback: Optional[Callable[[str], None]] = None,
+                             additional_context: bool = True, capture_faq: bool = None) -> InterpretationResult:
+        """
+        Fortune consultation with LLM streaming support for better UX.
+
+        Args:
+            question: User's question for fortune interpretation
+            temple: Temple name (e.g., "GuanYin", "Mazu")
+            poem_id: Specific poem ID number
+            streaming_callback: Optional callback function for LLM token streaming
+            additional_context: Whether to include additional RAG context
+            capture_faq: Whether to capture this interaction for FAQ (uses config default if None)
+
+        Returns:
+            InterpretationResult containing interpretation and metadata
+        """
+        try:
+            context_k = self.config.max_poems_per_query if additional_context else 0
+            capture = capture_faq if capture_faq is not None else self.config.auto_capture_faq
+
+            result = self.interpreter.interpret_with_streaming(
+                question=question,
+                temple=temple,
+                poem_id=poem_id,
+                streaming_callback=streaming_callback,
+                additional_context_k=context_k,
+                capture_faq=capture
+            )
+
+            self.logger.info(f"Streaming fortune consultation completed for {temple} poem #{poem_id}")
+            return result
+
+        except Exception as e:
+            self.logger.error(f"Streaming fortune consultation failed: {e}")
+            raise
+
+    def ask_fortune_with_poem(self, question: str, selected_poem: SelectedPoem,
                             additional_context: bool = True, capture_faq: bool = None) -> InterpretationResult:
         """
         Alternative interface using SelectedPoem object.
-        
+
         Args:
             question: User's question for fortune interpretation
             selected_poem: SelectedPoem object with temple and poem_id
             additional_context: Whether to include additional RAG context
             capture_faq: Whether to capture this interaction for FAQ
-            
+
         Returns:
             InterpretationResult containing interpretation and metadata
         """

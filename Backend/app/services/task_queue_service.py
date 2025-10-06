@@ -37,9 +37,12 @@ class TaskQueueService:
         self.active_tasks: Dict[str, ChatTask] = {}
         self.sse_connections: Dict[str, List] = {}  # task_id -> list of response objects
         self.is_processing = False
-        self.task_timeout = 120.0  # 2 minutes timeout per task
+        self.task_timeout = 360.0  # 6 minutes timeout per task (allows for retries)
         self.rag_timeout = 30.0  # 30 seconds for RAG operations
         self.llm_timeout = 60.0  # 1 minute for LLM operations
+
+        # Event-driven task queue (no polling delay!)
+        self.task_event_queue: asyncio.Queue = asyncio.Queue()
 
         # Worker pool for concurrent processing
         self.worker_pool = TaskWorkerPool(
@@ -70,7 +73,10 @@ class TaskQueueService:
             await db.commit()
             await db.refresh(task)
 
-        logger.info(f"Created task {task.task_id} for user {user_id}")
+        # Immediately notify dispatcher (no polling delay!)
+        await self.task_event_queue.put(task.task_id)
+
+        logger.info(f"Created task {task.task_id} for user {user_id} (event-driven queue)")
         return task
 
     async def get_task(self, task_id: str, db: AsyncSession) -> Optional[ChatTask]:
@@ -112,14 +118,45 @@ class TaskQueueService:
         logger.info("Task queue processor started successfully")
 
     async def _task_dispatcher(self):
-        """Dispatch tasks to the worker pool"""
+        """Dispatch tasks to the worker pool (event-driven, no polling!)"""
+        logger.info("Task dispatcher starting (event-driven mode)")
         while self.is_processing:
             try:
-                await self.process_queued_tasks()
-                await asyncio.sleep(2)  # Check for new tasks every 2 seconds
+                # Wait for task event (no polling delay!)
+                task_id = await asyncio.wait_for(
+                    self.task_event_queue.get(),
+                    timeout=5.0  # Heartbeat check every 5s
+                )
+
+                logger.info(f"[EVENT] Task {task_id} received immediately")
+
+                # Process the task
+                async for db in get_database_session():
+                    try:
+                        task = await self.get_task(task_id, db)
+                        if task and task.status == TaskStatus.QUEUED:
+                            if (task_id not in self.active_tasks and
+                                not self.worker_pool.is_task_active(task_id)):
+
+                                # Submit to worker pool
+                                await self.worker_pool.submit_task(
+                                    task_id,
+                                    self.process_task,
+                                    task_id
+                                )
+
+                                self.active_tasks[task_id] = task
+                                logger.info(f"Submitted task {task_id} to worker pool (0s delay)")
+                        break
+                    except Exception as e:
+                        logger.error(f"Error dispatching task {task_id}: {e}")
+
+            except asyncio.TimeoutError:
+                # Just a heartbeat, continue
+                continue
             except Exception as e:
                 logger.error(f"Error in task dispatcher: {e}")
-                await asyncio.sleep(5)  # Wait longer on error
+                await asyncio.sleep(1)  # Brief pause on error
 
     async def stop_processing(self):
         """Stop the background task processor and worker pool"""
@@ -132,7 +169,12 @@ class TaskQueueService:
         logger.info("Task queue processor stopped")
 
     async def process_queued_tasks(self):
-        """Process queued tasks using worker pool"""
+        """
+        DEPRECATED: Old polling-based method. Kept for potential rollback.
+        Now using event-driven dispatcher in _task_dispatcher().
+        """
+        # DISABLED: This method is no longer used with event-driven queue
+        return
         # Get database session
         async for db in get_database_session():
             try:
@@ -211,6 +253,17 @@ class TaskQueueService:
         start_time = time.time()
         streaming_processor = None
 
+        # Timing markers for performance analysis
+        timings = {
+            "start": start_time,
+            "rag_start": None,
+            "rag_end": None,
+            "llm_start": None,
+            "llm_end": None,
+            "validation_start": None,
+            "validation_end": None
+        }
+
         try:
             # Create streaming processor for true real-time updates
             streaming_processor = create_streaming_processor(
@@ -235,7 +288,7 @@ class TaskQueueService:
                         return
 
                 self.active_tasks[task_id] = task
-                logger.info(f"Processing task {task_id}: {task.question[:50]}...")
+                logger.info(f"[PERF] Processing task {task_id}: {task.question[:50]}...")
 
                 # Step 1: Initial setup with streaming
                 await streaming_processor.send_update("processing", 5, "🚀 啟動處理流程...")
@@ -244,6 +297,7 @@ class TaskQueueService:
                 # Step 2: Stream RAG processing
                 await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 15, "Analyzing fortune context...", db)
 
+                timings["rag_start"] = time.time()
                 poem_data = await streaming_processor.adaptive_stream_processing(
                     self._get_poem_data_blocking,
                     "RAG檢索",
@@ -251,10 +305,14 @@ class TaskQueueService:
                     "rag",
                     task
                 )
+                timings["rag_end"] = time.time()
+                rag_time_ms = int((timings["rag_end"] - timings["rag_start"]) * 1000)
+                logger.info(f"[PERF] RAG retrieval completed in {rag_time_ms}ms")
 
                 # Step 3: Stream LLM generation
                 await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 55, "Consulting divine wisdom...", db)
 
+                timings["llm_start"] = time.time()
                 response_text = await streaming_processor.adaptive_stream_processing(
                     self._generate_response_blocking,
                     "LLM推理",
@@ -262,12 +320,19 @@ class TaskQueueService:
                     "llm",
                     task, poem_data
                 )
+                timings["llm_end"] = time.time()
+                llm_time_ms = int((timings["llm_end"] - timings["llm_start"]) * 1000)
+                logger.info(f"[PERF] LLM generation completed in {llm_time_ms}ms")
 
                 confidence = 75 + (hash(task.question) % 25)  # Mock confidence 75-99
 
                 # Step 4: Pre-save validation (Database Protection Layer)
                 await streaming_processor.send_update("validating", 90, "🔍 驗證報告完整性...")
+                timings["validation_start"] = time.time()
                 validation_result = await self._validate_response_before_save(task_id, response_text)
+                timings["validation_end"] = time.time()
+                validation_time_ms = int((timings["validation_end"] - timings["validation_start"]) * 1000)
+                logger.info(f"[PERF] Validation completed in {validation_time_ms}ms")
 
                 if not validation_result["is_valid"]:
                     error_msg = f"Response validation failed: {validation_result['error']}"
@@ -326,6 +391,13 @@ class TaskQueueService:
 
                 processing_time = int((time.time() - start_time) * 1000)
 
+                # Calculate time percentages
+                rag_percent = (rag_time_ms / processing_time * 100) if processing_time > 0 else 0
+                llm_percent = (llm_time_ms / processing_time * 100) if processing_time > 0 else 0
+                validation_percent = (validation_time_ms / processing_time * 100) if processing_time > 0 else 0
+                other_time_ms = processing_time - (rag_time_ms + llm_time_ms + validation_time_ms)
+                other_percent = (other_time_ms / processing_time * 100) if processing_time > 0 else 0
+
                 # Log successful completion with comprehensive metrics
                 logger.info(
                     f"TASK_SUCCESS: Report generation completed successfully",
@@ -340,8 +412,29 @@ class TaskQueueService:
                         "confidence": confidence,
                         "validation_stats": validation_result.get('content_stats', {}),
                         "sources_used": task.sources_used,
-                        "metric_type": "task_success"
+                        "metric_type": "task_success",
+                        # Performance breakdown
+                        "perf_breakdown": {
+                            "rag_ms": rag_time_ms,
+                            "rag_percent": round(rag_percent, 1),
+                            "llm_ms": llm_time_ms,
+                            "llm_percent": round(llm_percent, 1),
+                            "validation_ms": validation_time_ms,
+                            "validation_percent": round(validation_percent, 1),
+                            "other_ms": other_time_ms,
+                            "other_percent": round(other_percent, 1)
+                        }
                     }
+                )
+
+                # Also log a simple readable summary
+                logger.info(
+                    f"[PERF_SUMMARY] Task {task_id}: "
+                    f"Total={processing_time}ms | "
+                    f"RAG={rag_time_ms}ms ({rag_percent:.0f}%) | "
+                    f"LLM={llm_time_ms}ms ({llm_percent:.0f}%) | "
+                    f"Validation={validation_time_ms}ms ({validation_percent:.0f}%) | "
+                    f"Other={other_time_ms}ms ({other_percent:.0f}%)"
                 )
 
                 # Final streaming update
@@ -459,10 +552,37 @@ class TaskQueueService:
             except Exception:
                 pass
 
+            # Create streaming callback to send LLM tokens via SSE for better UX
+            accumulated_tokens = []
+            token_count = [0]  # Use list to allow modification in nested function
+            loop = asyncio.get_event_loop()  # Get event loop for thread safety
+
+            def llm_token_callback(token: str):
+                """Callback for streaming LLM tokens to frontend"""
+                try:
+                    accumulated_tokens.append(token)
+                    token_count[0] += 1
+
+                    # Send every 5 tokens or if it's a complete sentence
+                    if token_count[0] % 5 == 0 or token.endswith(('.', '!', '?', '\n')):
+                        # Schedule SSE event in the event loop (thread-safe)
+                        asyncio.run_coroutine_threadsafe(
+                            self.send_sse_event(task.task_id, {
+                                "type": "llm_streaming",
+                                "token": token,
+                                "partial_text": ''.join(accumulated_tokens[-50:]),  # Last 50 tokens
+                                "total_tokens": token_count[0]
+                            }),
+                            loop
+                        )
+                except Exception as e:
+                    logger.error(f"Error in LLM streaming callback: {e}")
+
             result = await poem_service.generate_fortune_interpretation(
                 poem_data=poem_data,
                 question=task.question,
-                language=language
+                language=language,
+                streaming_callback=llm_token_callback  # Enable streaming!
             )
             return result.interpretation
         except Exception as e:
