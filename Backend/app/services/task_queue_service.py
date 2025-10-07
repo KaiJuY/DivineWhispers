@@ -385,6 +385,50 @@ class TaskQueueService:
                 # Save final result
                 await db.commit()
 
+                # Deduct 5 coins from user after successful report generation
+                try:
+                    from app.services.transaction_service import TransactionService
+                    from app.models.transaction import TransactionType, TransactionStatus
+                    from app.models.wallet import Wallet
+                    from sqlalchemy import select
+
+                    # Get user's wallet
+                    wallet_result = await db.execute(
+                        select(Wallet).where(Wallet.user_id == task.user_id).with_for_update()
+                    )
+                    wallet = wallet_result.scalar_one_or_none()
+
+                    if wallet:
+                        # Check if user has enough balance
+                        if wallet.balance >= 5:
+                            # Create transaction for coin deduction
+                            transaction_service = TransactionService(db)
+                            transaction = await transaction_service.create_pending_transaction(
+                                wallet_id=wallet.wallet_id,
+                                transaction_type=TransactionType.SPEND,
+                                amount=-5,  # Negative for deduction
+                                reference_id=f"chat_task_{task_id}",
+                                description=f"Fortune interpretation for {task.deity_id} #{task.fortune_number}"
+                            )
+
+                            # Update wallet balance
+                            wallet.balance -= 5
+                            db.add(wallet)
+
+                            # Complete the transaction
+                            await transaction_service.complete_transaction(transaction.txn_id, TransactionStatus.SUCCESS)
+                            await db.commit()
+
+                            logger.info(f"Successfully deducted 5 coins from user {task.user_id} for task {task_id} (new balance: {wallet.balance})")
+                        else:
+                            logger.warning(f"User {task.user_id} has insufficient balance ({wallet.balance} coins) for task {task_id}")
+                    else:
+                        logger.warning(f"Wallet not found for user {task.user_id} for task {task_id}")
+                except Exception as coin_error:
+                    logger.error(f"Failed to deduct coins for task {task_id}: {coin_error}", exc_info=True)
+                    # Don't rollback as the task result was already committed
+                    # Just log the error and continue
+
                 # Auto-generate FAQ from completed task
                 try:
                     await self._auto_generate_faq(task, db)

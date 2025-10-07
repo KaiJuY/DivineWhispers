@@ -276,6 +276,8 @@ async def stream_task_progress(
                     try:
                         event_json = json.loads(event_data.replace("data: ", "").strip())
                         if event_json.get("type") in ["complete", "error"]:
+                            # Add delay to ensure client receives the completion event before connection closes
+                            await asyncio.sleep(0.5)
                             break
                     except (json.JSONDecodeError, AttributeError):
                         pass

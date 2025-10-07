@@ -777,7 +777,7 @@ const FortuneAnalysisPage: React.FC = () => {
                   deity_id: selectedDeity.id,
                   deity_name: selectedDeity.name,
                   fortune_number: selectedFortuneNumber,
-                  cost: 0,
+                  cost: 5,
                   status: 'completed',
                   created_at: new Date().toISOString(),
                   analysis: {

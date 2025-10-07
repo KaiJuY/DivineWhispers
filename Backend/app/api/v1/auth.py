@@ -434,10 +434,34 @@ async def cleanup_expired_tokens(
     }
 )
 async def get_user_profile(
-    current_user = Depends(get_current_user)
+    current_user = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
 ):
-    """Get user profile information"""
-    return UserResponse.model_validate(current_user)
+    """Get user profile information with wallet-based points balance"""
+    try:
+        # Query wallet balance to get accurate coin amount
+        from app.models.wallet import Wallet
+        from sqlalchemy import select
+        wallet_result = await db.execute(select(Wallet).where(Wallet.user_id == current_user.user_id))
+        wallet = wallet_result.scalar_one_or_none()
+        wallet_points = wallet.balance if wallet else current_user.points_balance
+    except Exception:
+        wallet_points = current_user.points_balance
+
+    return UserResponse(
+        user_id=current_user.user_id,
+        email=current_user.email,
+        role=current_user.role,
+        status=current_user.status,
+        points_balance=wallet_points,
+        created_at=current_user.created_at,
+        updated_at=current_user.updated_at,
+        full_name=current_user.full_name,
+        phone=current_user.phone,
+        birth_date=current_user.birth_date,
+        location=current_user.location,
+        preferred_language=current_user.preferred_language
+    )
 
 
 @router.put(
@@ -649,7 +673,7 @@ async def get_user_report_details(
             "question": question,
             "deity_name": deity_id,
             "fortune_number": fortune_number,
-            "cost": 10,
+            "cost": 5,
             "status": "completed",
             "created_at": created_at,
             "analysis": analysis_parts
