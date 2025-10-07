@@ -116,6 +116,9 @@ class TaskQueueService:
         # Start the task dispatcher
         asyncio.create_task(self._task_dispatcher())
 
+        # Start the cleanup job
+        asyncio.create_task(self._cleanup_stuck_tasks())
+
         logger.info("Task queue processor started successfully")
 
     async def _task_dispatcher(self):
@@ -158,6 +161,58 @@ class TaskQueueService:
             except Exception as e:
                 logger.error(f"Error in task dispatcher: {e}")
                 await asyncio.sleep(1)  # Brief pause on error
+
+    async def _cleanup_stuck_tasks(self):
+        """Background job to clean up stuck tasks and refund coins"""
+        logger.info("Cleanup job started - will check for stuck tasks every 5 minutes")
+
+        while self.is_processing:
+            try:
+                await asyncio.sleep(300)  # Check every 5 minutes
+
+                async with get_async_session() as db:
+                    from datetime import datetime, timedelta
+                    from sqlalchemy import select, or_
+
+                    # Find tasks stuck for more than 10 minutes
+                    ten_minutes_ago = datetime.utcnow() - timedelta(minutes=10)
+
+                    stuck_tasks_result = await db.execute(
+                        select(ChatTask).where(
+                            ChatTask.created_at < ten_minutes_ago,
+                            or_(
+                                ChatTask.status == TaskStatus.QUEUED,
+                                ChatTask.status == TaskStatus.PROCESSING,
+                                ChatTask.status == TaskStatus.ANALYZING_RAG,
+                                ChatTask.status == TaskStatus.GENERATING_LLM
+                            )
+                        )
+                    )
+                    stuck_tasks = stuck_tasks_result.scalars().all()
+
+                    if stuck_tasks:
+                        logger.warning(f"Found {len(stuck_tasks)} stuck tasks to clean up")
+
+                        for task in stuck_tasks:
+                            try:
+                                # Mark task as failed
+                                task.set_error("Task timeout - exceeded 10 minutes")
+                                await db.commit()
+
+                                # Refund coins if they were deducted
+                                await self._refund_coins(task.task_id, "Task cleanup - exceeded 10 minutes")
+
+                                logger.info(f"Cleaned up stuck task {task.task_id}")
+                            except Exception as e:
+                                logger.error(f"Error cleaning up task {task.task_id}: {e}")
+                                await db.rollback()
+
+            except asyncio.CancelledError:
+                logger.info("Cleanup job cancelled")
+                break
+            except Exception as e:
+                logger.error(f"Error in cleanup job: {e}")
+                await asyncio.sleep(60)  # Wait 1 minute before retrying on error
 
     async def stop_processing(self):
         """Stop the background task processor and worker pool"""
@@ -248,6 +303,85 @@ class TaskQueueService:
         except Exception as e:
             logger.error(f"Error handling timeout for task {task_id}: {e}")
 
+    async def _refund_coins(self, task_id: str, reason: str):
+        """Refund coins when task fails (with safety checks)"""
+        try:
+            async with get_async_session() as db:
+                from app.services.transaction_service import TransactionService
+                from app.models.transaction import TransactionType, TransactionStatus, Transaction
+                from app.models.wallet import Wallet
+                from sqlalchemy import select
+
+                # Get task to verify status
+                task = await self.get_task(task_id, db)
+                if not task:
+                    logger.warning(f"Cannot refund: Task {task_id} not found")
+                    return
+
+                # SAFETY CHECK 1: Only refund if task actually failed
+                if task.status == TaskStatus.COMPLETED:
+                    logger.warning(f"Cannot refund: Task {task_id} completed successfully (status: {task.status})")
+                    return
+
+                # SAFETY CHECK 2: Verify deduction transaction exists
+                deduction_check = await db.execute(
+                    select(Transaction).where(
+                        Transaction.reference_id == f"chat_task_{task_id}",
+                        Transaction.type == TransactionType.SPEND
+                    )
+                )
+                deduction_transaction = deduction_check.scalar_one_or_none()
+
+                if not deduction_transaction:
+                    logger.warning(f"Cannot refund: No deduction transaction found for task {task_id}")
+                    return
+
+                # SAFETY CHECK 3: Check if refund already exists (prevent double refund)
+                refund_check = await db.execute(
+                    select(Transaction).where(
+                        Transaction.reference_id == f"refund_task_{task_id}",
+                        Transaction.type == TransactionType.REFUND
+                    )
+                )
+                existing_refund = refund_check.scalar_one_or_none()
+
+                if existing_refund:
+                    logger.warning(f"Cannot refund: Refund already processed for task {task_id}")
+                    return
+
+                # Get user's wallet with row lock
+                wallet_result = await db.execute(
+                    select(Wallet).where(Wallet.user_id == task.user_id).with_for_update()
+                )
+                wallet = wallet_result.scalar_one_or_none()
+
+                if not wallet:
+                    logger.error(f"Cannot refund: Wallet not found for user {task.user_id}")
+                    return
+
+                # Create refund transaction
+                transaction_service = TransactionService(db)
+                transaction = await transaction_service.create_pending_transaction(
+                    wallet_id=wallet.wallet_id,
+                    transaction_type=TransactionType.REFUND,
+                    amount=5,  # Positive for refund
+                    reference_id=f"refund_task_{task_id}",
+                    description=f"Refund for failed task: {reason[:100]}"
+                )
+
+                # Update wallet balance
+                wallet.balance += 5
+                db.add(wallet)
+
+                # Complete the transaction
+                await transaction_service.complete_transaction(transaction.txn_id, TransactionStatus.SUCCESS)
+                await db.commit()
+
+                logger.info(f"Refunded 5 coins to user {task.user_id} for failed task {task_id} (new balance: {wallet.balance})")
+
+        except Exception as refund_error:
+            logger.error(f"Failed to refund coins for task {task_id}: {refund_error}", exc_info=True)
+
     async def process_task(self, task_id: str):
         """Process a single task with true real-time streaming"""
         task = None
@@ -287,6 +421,61 @@ class TaskQueueService:
                 # Verify task status
                 if task.status != TaskStatus.QUEUED:
                     logger.warning(f"Task {task_id} is not queued (status: {task.status})")
+                    return
+
+                # Deduct coins NOW (when processing actually starts)
+                try:
+                    from app.services.transaction_service import TransactionService
+                    from app.models.transaction import TransactionType, TransactionStatus
+                    from app.models.wallet import Wallet
+                    from sqlalchemy import select
+
+                    # Get user's wallet with row lock
+                    wallet_result = await db.execute(
+                        select(Wallet).where(Wallet.user_id == task.user_id).with_for_update()
+                    )
+                    wallet = wallet_result.scalar_one_or_none()
+
+                    if not wallet or wallet.balance < 5:
+                        error_msg = "Insufficient coins" if wallet else "Wallet not found"
+                        task.set_error(error_msg)
+                        await db.commit()
+                        await self.send_sse_event(task_id, {
+                            "type": "error",
+                            "error": error_msg,
+                            "retry_allowed": False
+                        })
+                        return
+
+                    # Create transaction for coin deduction
+                    transaction_service = TransactionService(db)
+                    transaction = await transaction_service.create_pending_transaction(
+                        wallet_id=wallet.wallet_id,
+                        transaction_type=TransactionType.SPEND,
+                        amount=-5,
+                        reference_id=f"chat_task_{task_id}",
+                        description=f"Fortune interpretation for {task.deity_id} #{task.fortune_number}"
+                    )
+
+                    # Update wallet balance
+                    wallet.balance -= 5
+                    db.add(wallet)
+
+                    # Complete the transaction
+                    await transaction_service.complete_transaction(transaction.txn_id, TransactionStatus.SUCCESS)
+                    await db.commit()
+
+                    logger.info(f"Deducted 5 coins from user {task.user_id} for task {task_id} (new balance: {wallet.balance})")
+
+                except Exception as coin_error:
+                    logger.error(f"Failed to deduct coins for task {task_id}: {coin_error}", exc_info=True)
+                    task.set_error("Payment processing failed")
+                    await db.commit()
+                    await self.send_sse_event(task_id, {
+                        "type": "error",
+                        "error": "Payment processing failed. Please try again.",
+                        "retry_allowed": True
+                    })
                     return
 
                 self.active_tasks[task_id] = task
@@ -357,9 +546,12 @@ class TaskQueueService:
                         }
                     )
 
-                    # Mark task as failed and potentially refund coins
+                    # Mark task as failed and refund coins
                     task.set_error(error_msg)
                     await db.commit()
+
+                    # Refund coins for validation failure
+                    await self._refund_coins(task_id, error_msg)
 
                     await streaming_processor.send_update(TaskStatusCode.ERROR, 0)
 
@@ -385,49 +577,8 @@ class TaskQueueService:
                 # Save final result
                 await db.commit()
 
-                # Deduct 5 coins from user after successful report generation
-                try:
-                    from app.services.transaction_service import TransactionService
-                    from app.models.transaction import TransactionType, TransactionStatus
-                    from app.models.wallet import Wallet
-                    from sqlalchemy import select
-
-                    # Get user's wallet
-                    wallet_result = await db.execute(
-                        select(Wallet).where(Wallet.user_id == task.user_id).with_for_update()
-                    )
-                    wallet = wallet_result.scalar_one_or_none()
-
-                    if wallet:
-                        # Check if user has enough balance
-                        if wallet.balance >= 5:
-                            # Create transaction for coin deduction
-                            transaction_service = TransactionService(db)
-                            transaction = await transaction_service.create_pending_transaction(
-                                wallet_id=wallet.wallet_id,
-                                transaction_type=TransactionType.SPEND,
-                                amount=-5,  # Negative for deduction
-                                reference_id=f"chat_task_{task_id}",
-                                description=f"Fortune interpretation for {task.deity_id} #{task.fortune_number}"
-                            )
-
-                            # Update wallet balance
-                            wallet.balance -= 5
-                            db.add(wallet)
-
-                            # Complete the transaction
-                            await transaction_service.complete_transaction(transaction.txn_id, TransactionStatus.SUCCESS)
-                            await db.commit()
-
-                            logger.info(f"Successfully deducted 5 coins from user {task.user_id} for task {task_id} (new balance: {wallet.balance})")
-                        else:
-                            logger.warning(f"User {task.user_id} has insufficient balance ({wallet.balance} coins) for task {task_id}")
-                    else:
-                        logger.warning(f"Wallet not found for user {task.user_id} for task {task_id}")
-                except Exception as coin_error:
-                    logger.error(f"Failed to deduct coins for task {task_id}: {coin_error}", exc_info=True)
-                    # Don't rollback as the task result was already committed
-                    # Just log the error and continue
+                # Note: Coins were already deducted when task was queued
+                # No need to deduct again on success
 
                 # Auto-generate FAQ from completed task
                 try:
@@ -507,11 +658,17 @@ class TaskQueueService:
             logger.error(f"Timeout processing task {task_id}: {e}")
             if streaming_processor:
                 await streaming_processor.send_update(TaskStatusCode.TIMEOUT, 0)
+
+            # Refund coins on timeout
+            await self._refund_coins(task_id, "Task timeout")
             raise  # Re-raise to be handled by timeout wrapper
         except Exception as e:
             logger.error(f"Error processing task {task_id}: {e}")
             if streaming_processor:
                 await streaming_processor.send_update(TaskStatusCode.ERROR, 0)
+
+            # Refund coins on error
+            await self._refund_coins(task_id, str(e))
 
             # Update task with error using a new session
             try:

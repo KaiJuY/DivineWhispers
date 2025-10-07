@@ -75,7 +75,52 @@ async def ask_fortune_question(
         if not deity_service.get_temple_name(request.deity_id):
             raise HTTPException(status_code=400, detail="Invalid deity ID")
 
-        # Create task
+        # Check if user already has an active task created in last 10 minutes (prevent spam)
+        from app.models.chat_task import TaskStatus
+        from sqlalchemy import select, or_
+        from app.models.chat_task import ChatTask
+        from datetime import datetime, timedelta
+
+        # Only block if task was created in last 10 minutes (avoid stuck tasks blocking forever)
+        ten_minutes_ago = datetime.utcnow() - timedelta(minutes=10)
+
+        active_task_result = await db.execute(
+            select(ChatTask).where(
+                ChatTask.user_id == current_user.user_id,
+                ChatTask.created_at >= ten_minutes_ago,
+                or_(
+                    ChatTask.status == TaskStatus.QUEUED,
+                    ChatTask.status == TaskStatus.PROCESSING,
+                    ChatTask.status == TaskStatus.ANALYZING_RAG,
+                    ChatTask.status == TaskStatus.GENERATING_LLM
+                )
+            )
+        )
+        active_task = active_task_result.scalars().first()
+
+        if active_task:
+            raise HTTPException(
+                status_code=409,
+                detail="You already have a report being generated. Please wait for it to complete before requesting another."
+            )
+
+        # Check if user has enough balance (no deduction yet, just validation)
+        from app.models.wallet import Wallet
+        wallet_result = await db.execute(
+            select(Wallet).where(Wallet.user_id == current_user.user_id)
+        )
+        wallet = wallet_result.scalar_one_or_none()
+
+        if not wallet:
+            raise HTTPException(status_code=400, detail="Wallet not found")
+
+        if wallet.balance < 5:
+            raise HTTPException(
+                status_code=402,
+                detail="Insufficient coins. You need 5 coins to generate a report."
+            )
+
+        # Create task (coins will be deducted when processing actually starts)
         task = await task_queue_service.create_task(
             user_id=current_user.user_id,
             deity_id=request.deity_id,
@@ -85,7 +130,7 @@ async def ask_fortune_question(
             db=db
         )
 
-        logger.info(f"Created task {task.task_id} for user {current_user.user_id}")
+        logger.info(f"Created task {task.task_id} for user {current_user.user_id} (coins will be deducted when processing starts)")
 
         return TaskResponse(
             task_id=task.task_id,
