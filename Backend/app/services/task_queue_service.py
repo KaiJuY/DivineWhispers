@@ -23,6 +23,7 @@ from app.utils.progress_tracker import (
 from app.utils.streaming_processor import (
     create_streaming_processor, cleanup_streaming_processor
 )
+from app.constants.task_status_codes import TaskStatusCode
 import uuid
 import json
 
@@ -267,31 +268,21 @@ class TaskQueueService:
         try:
             # Create dedicated database session for this task
             async with get_async_session() as db:
-                # Get task first to determine language
+                # Get task
                 task = await self.get_task(task_id, db)
                 if not task:
                     logger.error(f"Task {task_id} not found")
                     return
 
-                # Detect language from task context
-                language = "zh"  # Default to Chinese
-                try:
-                    if isinstance(task.context, dict) and task.context.get("language"):
-                        language = str(task.context.get("language"))
-                except Exception:
-                    pass
-
-                # Create streaming processor with detected language
+                # Create streaming processor
                 streaming_processor = create_streaming_processor(
                     task_id,
                     self.send_sse_event,
-                    smart=True,
-                    language=language
+                    smart=True
                 )
 
                 # Send initial update
-                from app.i18n import get_message
-                await streaming_processor.send_update("initializing", 2, get_message(language, "initializing"))
+                await streaming_processor.send_update(TaskStatusCode.INITIALIZING, 2)
 
                 # Verify task status
                 if task.status != TaskStatus.QUEUED:
@@ -302,11 +293,11 @@ class TaskQueueService:
                 logger.info(f"[PERF] Processing task {task_id}: {task.question[:50]}...")
 
                 # Step 1: Initial setup with streaming
-                await streaming_processor.send_update("processing", 5, get_message(language, "processing"))
-                await self.update_task_progress(task, TaskStatus.PROCESSING, 10, get_message(language, "processing"), db)
+                await streaming_processor.send_update(TaskStatusCode.PROCESSING, 5)
+                await self.update_task_progress(task, TaskStatus.PROCESSING, 10, TaskStatusCode.PROCESSING, db)
 
                 # Step 2: Stream RAG processing
-                await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 15, get_message(language, "rag_start"), db)
+                await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 15, TaskStatusCode.RAG_START, db)
 
                 timings["rag_start"] = time.time()
                 poem_data = await streaming_processor.adaptive_stream_processing(
@@ -321,7 +312,7 @@ class TaskQueueService:
                 logger.info(f"[PERF] RAG retrieval completed in {rag_time_ms}ms")
 
                 # Step 3: Stream LLM generation
-                await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 55, get_message(language, "llm_start"), db)
+                await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 55, TaskStatusCode.LLM_START, db)
 
                 timings["llm_start"] = time.time()
                 response_text = await streaming_processor.adaptive_stream_processing(
@@ -338,7 +329,7 @@ class TaskQueueService:
                 confidence = 75 + (hash(task.question) % 25)  # Mock confidence 75-99
 
                 # Step 4: Pre-save validation (Database Protection Layer)
-                await streaming_processor.send_update("validating", 90, "🔍 驗證報告完整性...")
+                await streaming_processor.send_update(TaskStatusCode.VALIDATING, 90)
                 timings["validation_start"] = time.time()
                 validation_result = await self._validate_response_before_save(task_id, response_text)
                 timings["validation_end"] = time.time()
@@ -370,7 +361,7 @@ class TaskQueueService:
                     task.set_error(error_msg)
                     await db.commit()
 
-                    await streaming_processor.send_update("error", 0, f"❌ 報告驗證失敗: {validation_result['error']}")
+                    await streaming_processor.send_update(TaskStatusCode.ERROR, 0)
 
                     await self.send_sse_event(task_id, {
                         "type": "error",
@@ -381,8 +372,8 @@ class TaskQueueService:
                     return
 
                 # Step 5: Finalization with streaming
-                await streaming_processor.send_update("finalizing", 95, get_message(language, "finalizing"))
-                await self.update_task_progress(task, TaskStatus.COMPLETED, 100, get_message(language, "completed"), db)
+                await streaming_processor.send_update(TaskStatusCode.FINALIZING, 95)
+                await self.update_task_progress(task, TaskStatus.COMPLETED, 100, TaskStatusCode.COMPLETED, db)
 
                 # Set result
                 task.set_result(
@@ -449,9 +440,13 @@ class TaskQueueService:
                 )
 
                 # Final streaming update
-                await streaming_processor.send_update("completed", 100, get_message(language, "completed"))
+                await streaming_processor.send_update(TaskStatusCode.SUCCESS, 100)
+
+                # Small delay to ensure SUCCESS status is received before complete event
+                await asyncio.sleep(0.1)
 
                 # Send completion event to SSE clients
+                logger.info(f"Sending completion event for task {task_id} with can_generate_report=True")
                 await self.send_sse_event(task_id, {
                     "type": "complete",
                     "result": {
@@ -462,16 +457,17 @@ class TaskQueueService:
                         "can_generate_report": True
                     }
                 })
+                logger.info(f"Completion event sent for task {task_id}")
 
         except TimeoutError as e:
             logger.error(f"Timeout processing task {task_id}: {e}")
             if streaming_processor:
-                await streaming_processor.send_update("error", 0, f"⏰ 處理超時: {str(e)}")
+                await streaming_processor.send_update(TaskStatusCode.TIMEOUT, 0)
             raise  # Re-raise to be handled by timeout wrapper
         except Exception as e:
             logger.error(f"Error processing task {task_id}: {e}")
             if streaming_processor:
-                await streaming_processor.send_update("error", 0, f"❌ 處理錯誤: {str(e)}")
+                await streaming_processor.send_update(TaskStatusCode.ERROR, 0)
 
             # Update task with error using a new session
             try:
@@ -537,19 +533,20 @@ class TaskQueueService:
         task: ChatTask,
         status: TaskStatus,
         progress: int,
-        message: str,
+        status_code: int,
         db: AsyncSession
     ):
-        """Update task progress and notify SSE clients"""
-        task.update_progress(status, progress, message)
+        """Update task progress and notify SSE clients with status code"""
+        # Store status code as message for database compatibility
+        task.update_progress(status, progress, f"status_code:{status_code}")
         await db.commit()
 
-        # Send progress event to SSE clients
+        # Send progress event to SSE clients with status code
         await self.send_sse_event(task.task_id, {
-            "type": "progress",
+            "type": "status",
             "status": status.value,
             "progress": progress,
-            "message": message
+            "status_code": status_code
         })
 
     async def generate_response(self, task: ChatTask, poem_data) -> str:

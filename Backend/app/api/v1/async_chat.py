@@ -216,11 +216,19 @@ async def stream_task_progress(
             yield f"retry setting: 2000\n\n"
 
             if current_task:
+                # Extract status_code from status_message (format: "status_code:20")
+                status_code = None
+                if current_task.status_message and current_task.status_message.startswith("status_code:"):
+                    try:
+                        status_code = int(current_task.status_message.split(":")[1])
+                    except (IndexError, ValueError):
+                        pass
+
                 initial_data = {
                     "type": "status",
                     "status": current_task.status.value,
                     "progress": current_task.progress,
-                    "message": current_task.status_message
+                    "status_code": status_code
                 }
                 yield f"data: {json.dumps(initial_data)}\n\n"
 

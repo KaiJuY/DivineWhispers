@@ -230,10 +230,63 @@ const enTranslations = {
       insufficientCoins: "⚠️ You need at least 5 coins to generate a detailed report. Please purchase more coins or ask a general question that doesn't require report generation.",
       authExpired: "🔐 Your session has expired. Please log in again to continue.",
       loginButton: "Go to Login",
+      // Legacy status labels (kept for backwards compatibility)
       statusAnalyzingRag: "Analyzing fortune context...",
-      statusGeneratingLlm: "Consulting divine wisdom...",
+      statusGeneratingLlm: "Starting analysis...",
       statusProcessing: "Processing your question...",
-      statusPreparing: "Preparing response..."
+      statusPreparing: "Preparing response...",
+      status: {
+        // Queue & Initialization
+        queued: "Queued for processing...",
+        initializing: "Initializing task...",
+        processing: "Starting processing...",
+
+        // RAG Processing
+        ragStart: "Retrieving poem data...",
+        ragConnecting: "Connecting to database...",
+        ragVectorizing: "Generating query vectors...",
+        ragSearching: "Searching similar content...",
+        ragScoring: "Calculating similarity scores...",
+        ragSorting: "Sorting search results...",
+        ragPreparing: "Preparing context data...",
+        ragComplete: "Poem data retrieved",
+
+        // LLM Processing
+        llmStart: "Starting analysis...",
+        llmLoading: "Loading model...",
+        llmAnalyzing: "Analyzing poem content...",
+        llmContext: "Building context...",
+        llmGenerating: "Generating response...",
+        llmOptimizing: "Optimizing expression...",
+        llmWisdom: "Incorporating wisdom...",
+        llmChecking: "Checking consistency...",
+        llmPolishing: "Polishing response...",
+        llmFormatting: "Formatting output...",
+        llmFinalCheck: "Final quality check...",
+        llmComplete: "Analysis complete",
+
+        // LLM Streaming Progress
+        llmStreaming: "Generating interpretation...",
+        llmStreamingEarly: "Processing... (just started)",
+        llmStreamingMiddle: "Processing... (going well)",
+        llmStreamingLate: "Processing... (almost done)",
+        llmStreamingOvertime: "Processing... (taking longer)",
+
+        // Validation
+        validating: "Validating integrity...",
+        validationComplete: "Validation passed",
+
+        // Completion
+        finalizing: "Finalizing...",
+        completed: "Complete!",
+        success: "Successfully generated",
+
+        // Error states
+        error: "Error occurred",
+        timeout: "Request timeout",
+        failed: "Task failed",
+        unknown: "Processing..."
+      }
     },
     account: {
       title: "My Account",
@@ -691,10 +744,63 @@ const zhTranslations = {
       insufficientCoins: "⚠️ 您需要至少 5 個錢幣才能生成詳細報告。",
       authExpired: "🔐 您的登入會話已過期。請重新登入以繼續。",
       loginButton: "前往登入",
+      // Legacy status labels (kept for backwards compatibility)
       statusAnalyzingRag: "正在分析籤詩內容...",
-      statusGeneratingLlm: "正在諮詢神明智慧...",
+      statusGeneratingLlm: "開始分析籤詩...",
       statusProcessing: "正在處理您的問題...",
-      statusPreparing: "正在準備回應..."
+      statusPreparing: "正在準備回應...",
+      status: {
+        // Queue & Initialization
+        queued: "排隊處理中...",
+        initializing: "初始化任務...",
+        processing: "啟動處理流程...",
+
+        // RAG Processing
+        ragStart: "開始檢索籤詩資料...",
+        ragConnecting: "連接向量資料庫...",
+        ragVectorizing: "生成查詢向量...",
+        ragSearching: "搜索相似內容...",
+        ragScoring: "計算相似度分數...",
+        ragSorting: "排序搜索結果...",
+        ragPreparing: "準備上下文資料...",
+        ragComplete: "籤詩資料檢索完成",
+
+        // LLM Processing
+        llmStart: "開始分析籤詩...",
+        llmLoading: "載入模型...",
+        llmAnalyzing: "分析籤詩內容...",
+        llmContext: "建立上下文關聯...",
+        llmGenerating: "生成初步回應...",
+        llmOptimizing: "優化表達方式...",
+        llmWisdom: "結合傳統智慧...",
+        llmChecking: "檢查邏輯一致性...",
+        llmPolishing: "潤飾最終回應...",
+        llmFormatting: "格式化輸出...",
+        llmFinalCheck: "最終品質檢查...",
+        llmComplete: "分析完成",
+
+        // LLM Streaming Progress
+        llmStreaming: "正在生成解籤內容...",
+        llmStreamingEarly: "處理中... (剛開始)",
+        llmStreamingMiddle: "處理中... (進展順利)",
+        llmStreamingLate: "處理中... (即將完成)",
+        llmStreamingOvertime: "處理中... (比預期稍長)",
+
+        // Validation
+        validating: "驗證報告完整性...",
+        validationComplete: "驗證通過",
+
+        // Completion
+        finalizing: "完成最終處理...",
+        completed: "解籤完成！",
+        success: "成功生成您的解籤報告",
+
+        // Error states
+        error: "發生錯誤",
+        timeout: "請求超時",
+        failed: "任務失敗",
+        unknown: "處理中..."
+      }
     },
     account: {
       title: "我的帳戶",
@@ -1032,7 +1138,60 @@ const jpTranslations = {
       statusAnalyzingRag: "運勢の内容を分析中...",
       statusGeneratingLlm: "神聖な知恵を参照中...",
       statusProcessing: "質問を処理中...",
-      statusPreparing: "応答を準備中..."
+      statusPreparing: "応答を準備中...",
+      // Task Status Codes
+      status: {
+        // Queue & Initialization
+        queued: "処理待ち中...",
+        initializing: "タスクを初期化中...",
+        processing: "処理を開始しています...",
+
+        // RAG Processing
+        ragStart: "おみくじデータを検索中...",
+        ragConnecting: "データベースに接続中...",
+        ragVectorizing: "データをベクトル化中...",
+        ragSearching: "類似コンテンツを検索中...",
+        ragScoring: "関連性をスコア計算中...",
+        ragSorting: "最適な結果をソート中...",
+        ragPreparing: "データを準備中...",
+        ragComplete: "おみくじデータ取得完了",
+
+        // LLM Processing
+        llmStart: "分析を開始中...",
+        llmLoading: "モデルをロード中...",
+        llmAnalyzing: "おみくじ内容を分析中...",
+        llmContext: "文脈を理解中...",
+        llmGenerating: "応答を生成中...",
+        llmOptimizing: "応答を最適化中...",
+        llmWisdom: "神聖な知恵を適用中...",
+        llmChecking: "品質チェック中...",
+        llmPolishing: "応答を磨き上げ中...",
+        llmFormatting: "フォーマット処理中...",
+        llmFinalCheck: "最終確認中...",
+        llmComplete: "分析完了",
+
+        // LLM Streaming Progress
+        llmStreaming: "処理中...",
+        llmStreamingEarly: "処理中... (開始したばかり)",
+        llmStreamingMiddle: "処理中... (順調に進行中)",
+        llmStreamingLate: "処理中... (もうすぐ完了)",
+        llmStreamingOvertime: "処理中... (予想より長くかかっています)",
+
+        // Validation
+        validating: "整合性を検証中...",
+        validationComplete: "検証完了",
+
+        // Completion
+        finalizing: "最終処理中...",
+        completed: "完了！",
+        success: "正常に生成されました",
+
+        // Error states
+        error: "エラーが発生しました",
+        timeout: "リクエストがタイムアウトしました",
+        failed: "タスクが失敗しました",
+        unknown: "処理中..."
+      }
     },
     account: {
       title: "マイアカウント",

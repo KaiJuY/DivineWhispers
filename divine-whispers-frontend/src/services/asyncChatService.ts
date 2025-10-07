@@ -29,12 +29,17 @@ export interface TaskResult {
 }
 
 export interface TaskProgress {
-  type: 'status' | 'progress' | 'complete' | 'error' | 'ping';
+  type: 'status' | 'progress' | 'streaming_progress' | 'complete' | 'error' | 'ping';
   status?: string;
   progress?: number;
-  message?: string;
+  status_code?: number;  // Backend sends numeric status code
+  message?: string;      // Deprecated: kept for backward compatibility
   result?: TaskResult;
   error?: string;
+  task_id?: string;      // For streaming_progress events
+  data?: any;            // Additional data from streaming_progress
+  timestamp?: string;    // Timestamp from streaming_progress
+  elapsed_seconds?: number; // Elapsed time from streaming_progress
 }
 
 export interface ChatHistoryItem {

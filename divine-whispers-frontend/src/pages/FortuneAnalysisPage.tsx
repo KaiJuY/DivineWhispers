@@ -8,6 +8,7 @@ import fortuneService from '../services/fortuneService';
 import { asyncChatService, type TaskProgress, type ChatHistoryItem } from '../services/asyncChatService';
 import type { Report } from '../types';
 import { usePagesTranslation } from '../hooks/useTranslation';
+import { getStatusI18nKey } from '../constants/taskStatusCodes';
 
 // Animation for typing indicator
 const pulse = keyframes`
@@ -483,6 +484,7 @@ interface ChatMessage {
   reportId?: string;
   progress?: number;
   status?: string;
+  status_code?: number;  // Store status code for reactive translation
   reportOfferQuestion?: string;
 }
 
@@ -681,11 +683,15 @@ const FortuneAnalysisPage: React.FC = () => {
       const cleanup = asyncChatService.subscribeToProgress(
         taskResponse.task_id,
         (progressData: TaskProgress) => {
-          if (progressData.type === 'progress') {
-            // Update progress message
+          if (progressData.type === 'progress' || progressData.type === 'status' || progressData.type === 'streaming_progress') {
+            // Store status_code for reactive translation (updates when language changes)
             setMessages(prev => prev.map(msg =>
               msg.id === `progress_${taskResponse.task_id}`
-                ? { ...msg, message: progressData.message || 'Processing...', progress: progressData.progress }
+                ? {
+                    ...msg,
+                    status_code: progressData.status_code,
+                    progress: progressData.progress || msg.progress
+                  }
                 : msg
             ));
           } else if (progressData.type === 'complete' && progressData.result) {
@@ -1260,14 +1266,12 @@ const FortuneAnalysisPage: React.FC = () => {
                           }}
                         >
                           <ProgressMessage>
-                            <span>{message.message}</span>
+                            <span>
+                              {message.status_code
+                                ? t(getStatusI18nKey(message.status_code))
+                                : message.message || t('fortuneAnalysis.status.unknown')}
+                            </span>
                             <ProgressBar progress={message.progress || 0} />
-                            <small style={{ opacity: 0.7 }}>
-                              {message.status === 'analyzing_rag' && t('fortuneAnalysis.statusAnalyzingRag')}
-                              {message.status === 'generating_llm' && t('fortuneAnalysis.statusGeneratingLlm')}
-                              {message.status === 'processing' && t('fortuneAnalysis.statusProcessing')}
-                              {!message.status && t('fortuneAnalysis.statusPreparing')}
-                            </small>
                           </ProgressMessage>
                         </MessageBubble>
                       </Message>

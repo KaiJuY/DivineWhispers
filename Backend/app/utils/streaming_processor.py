@@ -7,7 +7,7 @@ import logging
 import time
 from typing import Dict, List, Optional, Callable, Any
 from datetime import datetime
-from app.i18n import get_message
+from app.constants.task_status_codes import TaskStatusCode, get_status_name
 
 logger = logging.getLogger(__name__)
 
@@ -17,51 +17,57 @@ class StreamingProcessor:
     Processor that provides real-time updates during long-running operations
     """
 
-    def __init__(self, task_id: str, progress_callback: Callable, language: str = "zh"):
+    def __init__(self, task_id: str, progress_callback: Callable):
         self.task_id = task_id
         self.progress_callback = progress_callback
-        self.language = language
         self.current_stage = "initialized"
         self.current_progress = 0
         self.start_time = time.time()
         self.is_cancelled = False
 
-    async def send_update(self, stage: str, progress: int, message: str, data: Optional[Dict] = None):
-        """Send progress update via callback"""
-        self.current_stage = stage
+    async def send_update(self, status_code: int, progress: int, data: Optional[Dict] = None):
+        """
+        Send progress update via callback with status code
+
+        Args:
+            status_code: Numeric status code from TaskStatusCode
+            progress: Progress percentage (0-100)
+            data: Optional additional data
+        """
+        self.current_stage = get_status_name(status_code)
         self.current_progress = progress
 
         update_data = {
             "type": "streaming_progress",
             "task_id": self.task_id,
-            "stage": stage,
+            "status_code": status_code,
             "progress": progress,
-            "message": message,
-            "data": data,
+            "data": data or {},
             "timestamp": datetime.now().isoformat(),
             "elapsed_seconds": round(time.time() - self.start_time, 2)
         }
 
         try:
             await self.progress_callback(self.task_id, update_data)
+            logger.info(f"Task {self.task_id}: {get_status_name(status_code)} ({progress}%)")
         except Exception as e:
             logger.error(f"Error sending streaming update: {e}")
 
     async def stream_rag_processing(self, rag_function: Callable, *args, **kwargs):
         """Stream RAG processing with real-time updates"""
-        await self.send_update("rag_start", 20, get_message(self.language, "rag_start"))
+        await self.send_update(TaskStatusCode.RAG_START, 20)
 
         # Create background task for RAG processing
         rag_task = asyncio.create_task(rag_function(*args, **kwargs))
 
         # Simulate streaming progress while RAG is running
         progress_steps = [
-            (25, get_message(self.language, "rag_processing_connect")),
-            (30, get_message(self.language, "rag_processing_vector")),
-            (35, get_message(self.language, "rag_processing_search")),
-            (40, get_message(self.language, "rag_processing_score")),
-            (45, get_message(self.language, "rag_processing_sort")),
-            (48, get_message(self.language, "rag_processing_prepare"))
+            (25, TaskStatusCode.RAG_CONNECTING),
+            (30, TaskStatusCode.RAG_VECTORIZING),
+            (35, TaskStatusCode.RAG_SEARCHING),
+            (40, TaskStatusCode.RAG_SCORING),
+            (45, TaskStatusCode.RAG_SORTING),
+            (48, TaskStatusCode.RAG_PREPARING)
         ]
 
         step_index = 0
@@ -69,8 +75,8 @@ class StreamingProcessor:
 
         while not rag_task.done() and not self.is_cancelled:
             if step_index < len(progress_steps):
-                progress, message = progress_steps[step_index]
-                await self.send_update("rag_processing", progress, message)
+                progress, status_code = progress_steps[step_index]
+                await self.send_update(status_code, progress)
                 step_index += 1
 
             try:
@@ -82,7 +88,7 @@ class StreamingProcessor:
                 continue
 
         if rag_task.done():
-            await self.send_update("rag_complete", 50, get_message(self.language, "rag_complete"))
+            await self.send_update(TaskStatusCode.RAG_COMPLETE, 50)
             return await rag_task
         else:
             # Handle cancellation
@@ -91,23 +97,23 @@ class StreamingProcessor:
 
     async def stream_llm_processing(self, llm_function: Callable, *args, **kwargs):
         """Stream LLM processing with real-time updates"""
-        await self.send_update("llm_start", 55, get_message(self.language, "llm_start"))
+        await self.send_update(TaskStatusCode.LLM_START, 55)
 
         # Create background task for LLM processing
         llm_task = asyncio.create_task(llm_function(*args, **kwargs))
 
         # More detailed LLM progress simulation
         progress_steps = [
-            (60, get_message(self.language, "llm_processing_load")),
-            (65, get_message(self.language, "llm_processing_analyze")),
-            (68, get_message(self.language, "llm_processing_context")),
-            (72, get_message(self.language, "llm_processing_generate")),
-            (75, get_message(self.language, "llm_processing_optimize")),
-            (78, get_message(self.language, "llm_processing_wisdom")),
-            (82, get_message(self.language, "llm_processing_check")),
-            (85, get_message(self.language, "llm_processing_polish")),
-            (88, get_message(self.language, "llm_processing_format")),
-            (90, get_message(self.language, "llm_processing_final"))
+            (60, TaskStatusCode.LLM_LOADING),
+            (65, TaskStatusCode.LLM_ANALYZING),
+            (68, TaskStatusCode.LLM_CONTEXT),
+            (72, TaskStatusCode.LLM_GENERATING),
+            (75, TaskStatusCode.LLM_OPTIMIZING),
+            (78, TaskStatusCode.LLM_WISDOM),
+            (82, TaskStatusCode.LLM_CHECKING),
+            (85, TaskStatusCode.LLM_POLISHING),
+            (88, TaskStatusCode.LLM_FORMATTING),
+            (90, TaskStatusCode.LLM_FINAL_CHECK)
         ]
 
         step_index = 0
@@ -115,8 +121,8 @@ class StreamingProcessor:
 
         while not llm_task.done() and not self.is_cancelled:
             if step_index < len(progress_steps):
-                progress, message = progress_steps[step_index]
-                await self.send_update("llm_processing", progress, message)
+                progress, status_code = progress_steps[step_index]
+                await self.send_update(status_code, progress)
                 step_index += 1
 
             try:
@@ -128,7 +134,7 @@ class StreamingProcessor:
                 continue
 
         if llm_task.done():
-            await self.send_update("llm_complete", 92, get_message(self.language, "llm_complete"))
+            await self.send_update(TaskStatusCode.LLM_COMPLETE, 92)
             return await llm_task
         else:
             # Handle cancellation
@@ -191,8 +197,8 @@ class SmartStreamingProcessor(StreamingProcessor):
     Enhanced streaming processor with adaptive timing
     """
 
-    def __init__(self, task_id: str, progress_callback: Callable, language: str = "zh"):
-        super().__init__(task_id, progress_callback, language)
+    def __init__(self, task_id: str, progress_callback: Callable):
+        super().__init__(task_id, progress_callback)
         self.operation_history: List[Dict] = []
 
     async def adaptive_stream_processing(self, operation_function: Callable, stage_name: str,
@@ -205,8 +211,9 @@ class SmartStreamingProcessor(StreamingProcessor):
 
         # Estimate duration based on operation type
         estimated_duration = self._estimate_duration(operation_type)
-        await self.send_update(f"{stage_name}_start", start_progress,
-                               f"🎯 開始 {stage_name} (預計 {estimated_duration:.1f}s)")
+        await self.send_update(TaskStatusCode.LLM_START, start_progress, {
+            "estimated_duration": estimated_duration
+        })
 
         # Create the actual operation task
         operation_task = asyncio.create_task(operation_function(*args, **kwargs))
@@ -233,8 +240,8 @@ class SmartStreamingProcessor(StreamingProcessor):
 
             # Send update if enough time has passed
             if current_time - last_update_time >= update_interval:
-                message = self._get_adaptive_message(stage_name, elapsed, estimated_duration)
-                await self.send_update(f"{stage_name}_processing", actual_progress, message, {
+                status_code = self._get_adaptive_status_code(elapsed, estimated_duration)
+                await self.send_update(status_code, actual_progress, {
                     "elapsed": round(elapsed, 1),
                     "estimated_duration": estimated_duration,
                     "progress_rate": round(estimated_progress, 1)
@@ -260,8 +267,9 @@ class SmartStreamingProcessor(StreamingProcessor):
         })
 
         if operation_task.done():
-            await self.send_update(f"{stage_name}_complete", end_progress,
-                                   f"✅ {stage_name} 完成 ({actual_duration:.1f}s)")
+            await self.send_update(TaskStatusCode.LLM_COMPLETE, end_progress, {
+                "actual_duration": round(actual_duration, 1)
+            })
             return await operation_task
         else:
             operation_task.cancel()
@@ -286,16 +294,16 @@ class SmartStreamingProcessor(StreamingProcessor):
             }
             return defaults.get(operation_type, 5.0)
 
-    def _get_adaptive_message(self, stage_name: str, elapsed: float, estimated: float) -> str:
-        """Generate adaptive progress message"""
+    def _get_adaptive_status_code(self, elapsed: float, estimated: float) -> int:
+        """Get adaptive status code based on timing"""
         if elapsed < estimated * 0.3:
-            return get_message(self.language, "progress_early", stage_name=stage_name)
+            return TaskStatusCode.LLM_STREAMING_EARLY
         elif elapsed < estimated * 0.7:
-            return get_message(self.language, "progress_middle", stage_name=stage_name)
+            return TaskStatusCode.LLM_STREAMING_MIDDLE
         elif elapsed < estimated:
-            return get_message(self.language, "progress_late", stage_name=stage_name)
+            return TaskStatusCode.LLM_STREAMING_LATE
         else:
-            return get_message(self.language, "progress_overtime", stage_name=stage_name)
+            return TaskStatusCode.LLM_STREAMING_OVERTIME
 
 
 # Global processor registry
@@ -303,12 +311,12 @@ _active_processors: Dict[str, StreamingProcessor] = {}
 
 
 def create_streaming_processor(task_id: str, progress_callback: Callable,
-                               smart: bool = True, language: str = "zh") -> StreamingProcessor:
+                               smart: bool = True) -> StreamingProcessor:
     """Create and register a streaming processor"""
     if smart:
-        processor = SmartStreamingProcessor(task_id, progress_callback, language)
+        processor = SmartStreamingProcessor(task_id, progress_callback)
     else:
-        processor = StreamingProcessor(task_id, progress_callback, language)
+        processor = StreamingProcessor(task_id, progress_callback)
 
     _active_processors[task_id] = processor
     return processor
