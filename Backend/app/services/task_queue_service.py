@@ -265,37 +265,48 @@ class TaskQueueService:
         }
 
         try:
-            # Create streaming processor for true real-time updates
-            streaming_processor = create_streaming_processor(
-                task_id,
-                self.send_sse_event,
-                smart=True
-            )
-
             # Create dedicated database session for this task
             async with get_async_session() as db:
-                # Get task with timeout
-                await streaming_processor.send_update("initializing", 2, "🔄 初始化任務...")
+                # Get task first to determine language
+                task = await self.get_task(task_id, db)
+                if not task:
+                    logger.error(f"Task {task_id} not found")
+                    return
 
-                async with timeout_context(5.0, "task_retrieval"):
-                    task = await self.get_task(task_id, db)
-                    if not task:
-                        logger.warning(f"Task {task_id} not found")
-                        return
+                # Detect language from task context
+                language = "zh"  # Default to Chinese
+                try:
+                    if isinstance(task.context, dict) and task.context.get("language"):
+                        language = str(task.context.get("language"))
+                except Exception:
+                    pass
 
-                    if task.status != TaskStatus.QUEUED:
-                        logger.warning(f"Task {task_id} is not queued (status: {task.status})")
-                        return
+                # Create streaming processor with detected language
+                streaming_processor = create_streaming_processor(
+                    task_id,
+                    self.send_sse_event,
+                    smart=True,
+                    language=language
+                )
+
+                # Send initial update
+                from app.i18n import get_message
+                await streaming_processor.send_update("initializing", 2, get_message(language, "initializing"))
+
+                # Verify task status
+                if task.status != TaskStatus.QUEUED:
+                    logger.warning(f"Task {task_id} is not queued (status: {task.status})")
+                    return
 
                 self.active_tasks[task_id] = task
                 logger.info(f"[PERF] Processing task {task_id}: {task.question[:50]}...")
 
                 # Step 1: Initial setup with streaming
-                await streaming_processor.send_update("processing", 5, "🚀 啟動處理流程...")
-                await self.update_task_progress(task, TaskStatus.PROCESSING, 10, "Starting analysis...", db)
+                await streaming_processor.send_update("processing", 5, get_message(language, "processing"))
+                await self.update_task_progress(task, TaskStatus.PROCESSING, 10, get_message(language, "processing"), db)
 
                 # Step 2: Stream RAG processing
-                await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 15, "Analyzing fortune context...", db)
+                await self.update_task_progress(task, TaskStatus.ANALYZING_RAG, 15, get_message(language, "rag_start"), db)
 
                 timings["rag_start"] = time.time()
                 poem_data = await streaming_processor.adaptive_stream_processing(
@@ -310,7 +321,7 @@ class TaskQueueService:
                 logger.info(f"[PERF] RAG retrieval completed in {rag_time_ms}ms")
 
                 # Step 3: Stream LLM generation
-                await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 55, "Consulting divine wisdom...", db)
+                await self.update_task_progress(task, TaskStatus.GENERATING_LLM, 55, get_message(language, "llm_start"), db)
 
                 timings["llm_start"] = time.time()
                 response_text = await streaming_processor.adaptive_stream_processing(
@@ -370,8 +381,8 @@ class TaskQueueService:
                     return
 
                 # Step 5: Finalization with streaming
-                await streaming_processor.send_update("finalizing", 95, "📝 完成最終處理...")
-                await self.update_task_progress(task, TaskStatus.COMPLETED, 100, "Response generated successfully", db)
+                await streaming_processor.send_update("finalizing", 95, get_message(language, "finalizing"))
+                await self.update_task_progress(task, TaskStatus.COMPLETED, 100, get_message(language, "completed"), db)
 
                 # Set result
                 task.set_result(
@@ -438,7 +449,7 @@ class TaskQueueService:
                 )
 
                 # Final streaming update
-                await streaming_processor.send_update("completed", 100, "🎉 解釋生成完成！")
+                await streaming_processor.send_update("completed", 100, get_message(language, "completed"))
 
                 # Send completion event to SSE clients
                 await self.send_sse_event(task_id, {

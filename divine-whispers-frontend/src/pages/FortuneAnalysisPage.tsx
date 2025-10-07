@@ -641,6 +641,14 @@ const FortuneAnalysisPage: React.FC = () => {
     });
 
     try {
+      // Map frontend language code to backend language code
+      const languageMapping: Record<string, string> = {
+        'zh': 'zh',
+        'en': 'en',
+        'jp': 'ja'  // Frontend uses 'jp', backend uses 'ja'
+      };
+      const backendLanguage = languageMapping[currentLanguage] || 'zh';
+
       // Submit question to async chat service
       const taskResponse = await asyncChatService.askQuestion({
         deity_id: selectedDeity!.id,
@@ -648,7 +656,8 @@ const FortuneAnalysisPage: React.FC = () => {
         question: userQuestion,
         context: {
           fortune_id: fortune.id,
-          deity_name: selectedDeity!.name
+          deity_name: selectedDeity!.name,
+          language: backendLanguage  // Pass language to backend
         }
       });
 
@@ -1254,10 +1263,10 @@ const FortuneAnalysisPage: React.FC = () => {
                             <span>{message.message}</span>
                             <ProgressBar progress={message.progress || 0} />
                             <small style={{ opacity: 0.7 }}>
-                              {message.status === 'analyzing_rag' && 'Analyzing fortune context...'}
-                              {message.status === 'generating_llm' && 'Consulting divine wisdom...'}
-                              {message.status === 'processing' && 'Processing your question...'}
-                              {!message.status && 'Preparing response...'}
+                              {message.status === 'analyzing_rag' && t('fortuneAnalysis.statusAnalyzingRag')}
+                              {message.status === 'generating_llm' && t('fortuneAnalysis.statusGeneratingLlm')}
+                              {message.status === 'processing' && t('fortuneAnalysis.statusProcessing')}
+                              {!message.status && t('fortuneAnalysis.statusPreparing')}
                             </small>
                           </ProgressMessage>
                         </MessageBubble>

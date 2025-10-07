@@ -7,6 +7,7 @@ import logging
 import time
 from typing import Dict, List, Optional, Callable, Any
 from datetime import datetime
+from app.i18n import get_message
 
 logger = logging.getLogger(__name__)
 
@@ -16,9 +17,10 @@ class StreamingProcessor:
     Processor that provides real-time updates during long-running operations
     """
 
-    def __init__(self, task_id: str, progress_callback: Callable):
+    def __init__(self, task_id: str, progress_callback: Callable, language: str = "zh"):
         self.task_id = task_id
         self.progress_callback = progress_callback
+        self.language = language
         self.current_stage = "initialized"
         self.current_progress = 0
         self.start_time = time.time()
@@ -47,19 +49,19 @@ class StreamingProcessor:
 
     async def stream_rag_processing(self, rag_function: Callable, *args, **kwargs):
         """Stream RAG processing with real-time updates"""
-        await self.send_update("rag_start", 20, "🔍 開始 RAG 檢索...")
+        await self.send_update("rag_start", 20, get_message(self.language, "rag_start"))
 
         # Create background task for RAG processing
         rag_task = asyncio.create_task(rag_function(*args, **kwargs))
 
         # Simulate streaming progress while RAG is running
         progress_steps = [
-            (25, "📡 連接向量資料庫..."),
-            (30, "🧮 生成查詢向量..."),
-            (35, "🔎 搜索相似內容..."),
-            (40, "📊 計算相似度分數..."),
-            (45, "📋 排序搜索結果..."),
-            (48, "📝 準備上下文資料...")
+            (25, get_message(self.language, "rag_processing_connect")),
+            (30, get_message(self.language, "rag_processing_vector")),
+            (35, get_message(self.language, "rag_processing_search")),
+            (40, get_message(self.language, "rag_processing_score")),
+            (45, get_message(self.language, "rag_processing_sort")),
+            (48, get_message(self.language, "rag_processing_prepare"))
         ]
 
         step_index = 0
@@ -80,7 +82,7 @@ class StreamingProcessor:
                 continue
 
         if rag_task.done():
-            await self.send_update("rag_complete", 50, "✅ RAG 檢索完成")
+            await self.send_update("rag_complete", 50, get_message(self.language, "rag_complete"))
             return await rag_task
         else:
             # Handle cancellation
@@ -89,23 +91,23 @@ class StreamingProcessor:
 
     async def stream_llm_processing(self, llm_function: Callable, *args, **kwargs):
         """Stream LLM processing with real-time updates"""
-        await self.send_update("llm_start", 55, "🤖 啟動 LLM 推理引擎...")
+        await self.send_update("llm_start", 55, get_message(self.language, "llm_start"))
 
         # Create background task for LLM processing
         llm_task = asyncio.create_task(llm_function(*args, **kwargs))
 
         # More detailed LLM progress simulation
         progress_steps = [
-            (60, "🧠 載入語言模型..."),
-            (65, "📖 分析籤詩內容..."),
-            (68, "🔗 建立上下文關聯..."),
-            (72, "💭 生成初步回應..."),
-            (75, "🎨 優化表達方式..."),
-            (78, "📚 結合傳統智慧..."),
-            (82, "🔍 檢查邏輯一致性..."),
-            (85, "✨ 潤飾最終回應..."),
-            (88, "📋 格式化輸出..."),
-            (90, "🔍 最終品質檢查...")
+            (60, get_message(self.language, "llm_processing_load")),
+            (65, get_message(self.language, "llm_processing_analyze")),
+            (68, get_message(self.language, "llm_processing_context")),
+            (72, get_message(self.language, "llm_processing_generate")),
+            (75, get_message(self.language, "llm_processing_optimize")),
+            (78, get_message(self.language, "llm_processing_wisdom")),
+            (82, get_message(self.language, "llm_processing_check")),
+            (85, get_message(self.language, "llm_processing_polish")),
+            (88, get_message(self.language, "llm_processing_format")),
+            (90, get_message(self.language, "llm_processing_final"))
         ]
 
         step_index = 0
@@ -126,7 +128,7 @@ class StreamingProcessor:
                 continue
 
         if llm_task.done():
-            await self.send_update("llm_complete", 92, "✅ LLM 推理完成")
+            await self.send_update("llm_complete", 92, get_message(self.language, "llm_complete"))
             return await llm_task
         else:
             # Handle cancellation
@@ -139,7 +141,8 @@ class StreamingProcessor:
         """
         Stream any operation with heartbeat updates
         """
-        await self.send_update(f"{stage_name}_start", start_progress, f"🚀 開始 {base_message}...")
+        start_msg = get_message(self.language, "progress_start", operation=base_message)
+        await self.send_update(f"{stage_name}_start", start_progress, start_msg)
 
         # Create background task
         operation_task = asyncio.create_task(operation_function(*args, **kwargs))
@@ -155,10 +158,9 @@ class StreamingProcessor:
         while not operation_task.done() and not self.is_cancelled:
             if step < max_steps:
                 current_progress = int(start_progress + (step * step_size))
-                dots = "." * ((step % 3) + 1)
-                message = f"⏳ {base_message}中{dots}"
+                processing_msg = get_message(self.language, "progress_processing", operation=base_message)
 
-                await self.send_update(f"{stage_name}_processing", current_progress, message, {
+                await self.send_update(f"{stage_name}_processing", current_progress, processing_msg, {
                     "step": step + 1,
                     "max_steps": max_steps,
                     "operation": stage_name
@@ -172,7 +174,8 @@ class StreamingProcessor:
                 continue
 
         if operation_task.done():
-            await self.send_update(f"{stage_name}_complete", end_progress, f"✅ {base_message}完成")
+            complete_msg = get_message(self.language, "progress_complete", operation=base_message)
+            await self.send_update(f"{stage_name}_complete", end_progress, complete_msg)
             return await operation_task
         else:
             operation_task.cancel()
@@ -188,8 +191,8 @@ class SmartStreamingProcessor(StreamingProcessor):
     Enhanced streaming processor with adaptive timing
     """
 
-    def __init__(self, task_id: str, progress_callback: Callable):
-        super().__init__(task_id, progress_callback)
+    def __init__(self, task_id: str, progress_callback: Callable, language: str = "zh"):
+        super().__init__(task_id, progress_callback, language)
         self.operation_history: List[Dict] = []
 
     async def adaptive_stream_processing(self, operation_function: Callable, stage_name: str,
@@ -286,13 +289,13 @@ class SmartStreamingProcessor(StreamingProcessor):
     def _get_adaptive_message(self, stage_name: str, elapsed: float, estimated: float) -> str:
         """Generate adaptive progress message"""
         if elapsed < estimated * 0.3:
-            return f"🚀 {stage_name} 進行中... (剛開始)"
+            return get_message(self.language, "progress_early", stage_name=stage_name)
         elif elapsed < estimated * 0.7:
-            return f"⚡ {stage_name} 進行中... (進展順利)"
+            return get_message(self.language, "progress_middle", stage_name=stage_name)
         elif elapsed < estimated:
-            return f"🔄 {stage_name} 進行中... (即將完成)"
+            return get_message(self.language, "progress_late", stage_name=stage_name)
         else:
-            return f"⏰ {stage_name} 進行中... (比預期稍長)"
+            return get_message(self.language, "progress_overtime", stage_name=stage_name)
 
 
 # Global processor registry
@@ -300,12 +303,12 @@ _active_processors: Dict[str, StreamingProcessor] = {}
 
 
 def create_streaming_processor(task_id: str, progress_callback: Callable,
-                               smart: bool = True) -> StreamingProcessor:
+                               smart: bool = True, language: str = "zh") -> StreamingProcessor:
     """Create and register a streaming processor"""
     if smart:
-        processor = SmartStreamingProcessor(task_id, progress_callback)
+        processor = SmartStreamingProcessor(task_id, progress_callback, language)
     else:
-        processor = StreamingProcessor(task_id, progress_callback)
+        processor = StreamingProcessor(task_id, progress_callback, language)
 
     _active_processors[task_id] = processor
     return processor

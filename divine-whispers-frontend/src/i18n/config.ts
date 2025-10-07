@@ -229,7 +229,11 @@ const enTranslations = {
       generatingReport: "🔮 Generating your personalized report...",
       insufficientCoins: "⚠️ You need at least 5 coins to generate a detailed report. Please purchase more coins or ask a general question that doesn't require report generation.",
       authExpired: "🔐 Your session has expired. Please log in again to continue.",
-      loginButton: "Go to Login"
+      loginButton: "Go to Login",
+      statusAnalyzingRag: "Analyzing fortune context...",
+      statusGeneratingLlm: "Consulting divine wisdom...",
+      statusProcessing: "Processing your question...",
+      statusPreparing: "Preparing response..."
     },
     account: {
       title: "My Account",
@@ -686,7 +690,11 @@ const zhTranslations = {
       generatingReport: "🔮 正在生成您的個人化報告...",
       insufficientCoins: "⚠️ 您需要至少 5 個錢幣才能生成詳細報告。",
       authExpired: "🔐 您的登入會話已過期。請重新登入以繼續。",
-      loginButton: "前往登入"
+      loginButton: "前往登入",
+      statusAnalyzingRag: "正在分析籤詩內容...",
+      statusGeneratingLlm: "正在諮詢神明智慧...",
+      statusProcessing: "正在處理您的問題...",
+      statusPreparing: "正在準備回應..."
     },
     account: {
       title: "我的帳戶",
@@ -1020,7 +1028,11 @@ const jpTranslations = {
       generatingReport: "🔮 パーソナライズされたレポートを生成中...",
       insufficientCoins: "⚠️ 詳細レポートを生成するには最低5コインが必要です。コインを購入するか、レポート生成を必要としない一般的な質問をしてください。",
       authExpired: "🔐 セッションが期限切れです。続行するには再度ログインしてください。",
-      loginButton: "ログインへ"
+      loginButton: "ログインへ",
+      statusAnalyzingRag: "運勢の内容を分析中...",
+      statusGeneratingLlm: "神聖な知恵を参照中...",
+      statusProcessing: "質問を処理中...",
+      statusPreparing: "応答を準備中..."
     },
     account: {
       title: "マイアカウント",
