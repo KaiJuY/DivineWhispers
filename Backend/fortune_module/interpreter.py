@@ -522,6 +522,15 @@ class PoemInterpreter(BaseInterpreter):
 
         return quality_issues
 
+    def _should_use_structured_output(self) -> bool:
+        """Check if LLM client supports OpenAI structured output."""
+        from .models import LLMProvider
+        # Check if using OpenAI
+        if hasattr(self.llm, 'client') and hasattr(self.llm.client, 'chat'):
+            # It's an OpenAI client
+            return True
+        return False
+
     def _generate_interpretation(self, question: str, context: str, temple: str, poem_id: int,
                                  streaming_callback: Optional[Callable[[str], None]] = None) -> str:
         """Generate interpretation using LLM with validation and auto-retry.
@@ -543,31 +552,45 @@ class PoemInterpreter(BaseInterpreter):
 
         max_attempts = 3
         last_error = ""
+        use_structured_output = self._should_use_structured_output()
+
+        # Import schema if using structured output
+        if use_structured_output:
+            from .schemas import FortuneInterpretation
 
         for attempt in range(max_attempts):
             try:
                 # Generate prompt with increasing strictness for retries
                 prompt = self._create_interpretation_prompt(
                     question, context, temple, poem_id,
-                    language_instruction, attempt
+                    language_instruction, attempt, use_structured_output
                 )
 
-                self.logger.info(f"LLM generation attempt {attempt + 1}/{max_attempts}")
+                self.logger.info(
+                    f"LLM generation attempt {attempt + 1}/{max_attempts} "
+                    f"(structured_output={use_structured_output})"
+                )
+
+                # Prepare generation kwargs
+                gen_kwargs = {
+                    "temperature": 0.7 - (attempt * 0.1),
+                    "max_tokens": 2500 + (attempt * 500)
+                }
+
+                # Add structured output for OpenAI
+                if use_structured_output:
+                    gen_kwargs["response_format"] = FortuneInterpretation
 
                 # Generate response (with streaming if callback provided)
-                if streaming_callback:
+                if streaming_callback and not use_structured_output:
+                    # Note: Structured output doesn't support streaming yet
                     response = self.llm.generate_stream(
                         prompt,
                         callback=streaming_callback,
-                        temperature=0.7 - (attempt * 0.1),
-                        max_tokens=2500 + (attempt * 500)
+                        **gen_kwargs
                     )
                 else:
-                    response = self.llm.generate(
-                        prompt,
-                        temperature=0.7 - (attempt * 0.1),  # Reduce temperature for retries
-                        max_tokens=2500 + (attempt * 500)  # Increase tokens for retries
-                    )
+                    response = self.llm.generate(prompt, **gen_kwargs)
 
                 # Validate response
                 is_valid, parsed_data, error_msg = self._validate_interpretation_response(response, question, attempt)
@@ -636,8 +659,14 @@ class PoemInterpreter(BaseInterpreter):
         return self._create_fallback_response(question, temple, poem_id, user_language)
 
     def _create_interpretation_prompt(self, question: str, context: str, temple: str,
-                                    poem_id: int, language_instruction: str, attempt: int) -> str:
-        """Create interpretation prompt with increasing strictness for retries."""
+                                    poem_id: int, language_instruction: str, attempt: int,
+                                    use_structured_output: bool = False) -> str:
+        """Create interpretation prompt with increasing strictness for retries.
+
+        When use_structured_output=True (OpenAI), the prompt is simpler because
+        the schema enforces structure. When False (Ollama), includes detailed
+        JSON formatting instructions.
+        """
 
         # Base strictness increases with attempts
         strictness_levels = [
@@ -648,6 +677,13 @@ class PoemInterpreter(BaseInterpreter):
 
         strictness = strictness_levels[min(attempt, 2)]
 
+        # For structured output (OpenAI), we can simplify the prompt
+        if use_structured_output:
+            return self._create_structured_output_prompt(
+                question, context, temple, poem_id, language_instruction, attempt, strictness
+            )
+
+        # For non-structured output (Ollama), include detailed JSON formatting
         # Add extra validation reminders for retries
         extra_validation = ""
         if attempt > 0:
@@ -715,6 +751,54 @@ class PoemInterpreter(BaseInterpreter):
 
         FINAL INSTRUCTION:
         Analyze the selected fortune poem step by step. Produce **only** the single JSON object described above (with "LineByLineInterpretation" as the first key) and follow the specified format exactly otherwise you will be *penalized*. Do not output any commentary or section headers outside the JSON.
+        """
+
+        return prompt
+
+    def _create_structured_output_prompt(self, question: str, context: str, temple: str,
+                                        poem_id: int, language_instruction: str,
+                                        attempt: int, strictness: str) -> str:
+        """Create simplified prompt for OpenAI structured output.
+
+        When using response_format with Pydantic schema, OpenAI automatically
+        enforces the structure, so we don't need verbose JSON format instructions.
+        """
+
+        retry_note = ""
+        if attempt > 0:
+            retry_note = f"\n\n{strictness}: This is attempt #{attempt + 1}. Previous attempts failed validation. Please ensure all sections are complete and detailed.\n"
+
+        prompt = f"""
+        You are a wise fortune interpretation assistant specializing in Chinese temple divination and oracle reading.
+        Your role is to provide thoughtful, supportive guidance based on traditional fortune poems.
+
+        CONTEXT:
+        {context}
+
+        USER QUESTION: {question}
+
+        INTERPRETATION GUIDELINES:
+        1. Focus primarily on the SELECTED FORTUNE POEM from {temple} (Poem #{poem_id}) - this is the main oracle for the user.
+        2. Use the related poems and FAQs as supporting wisdom to enrich your interpretation.
+        3. Consider the fortune level and symbolic meanings in the poems.
+        4. Provide practical, constructive guidance that helps the user understand their situation.
+        5. Be supportive and encouraging while maintaining traditional wisdom.
+        6. Connect the poem's imagery and meaning to the user's specific question.
+        7. Mention the temple name and poem number in your response for authenticity.
+        8. {language_instruction}
+
+        {retry_note}
+
+        RESPONSE STRUCTURE (automatically enforced by schema):
+        - LineByLineInterpretation: Detailed multi-paragraph line-by-line explanation. Must label each line (e.g., "Line 1:", "Line 2:") and connect imagery to the user's question. Include temple name and poem number.
+        - OverallDevelopment: 4-5 sentences describing the current situation and future trends.
+        - PositiveFactors: 4-5 sentences highlighting strengths and opportunities.
+        - Challenges: 4-5 sentences identifying risks and difficulties.
+        - SuggestedActions: 4-5 sentences with practical advice and mindset guidance.
+        - SupplementaryNotes: 4-5 sentences with additional insights relevant to the question type.
+        - Conclusion: 4-5 sentences with a reassuring closing message.
+
+        Analyze the selected fortune poem and provide a complete interpretation following the structure above.
         """
 
         return prompt

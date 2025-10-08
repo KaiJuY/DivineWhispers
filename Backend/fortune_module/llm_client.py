@@ -77,7 +77,11 @@ class OpenAIClient(BaseLLMClient):
         return True
     
     def generate(self, prompt: str, **kwargs) -> str:
-        """Generate response using OpenAI API."""
+        """Generate response using OpenAI API.
+
+        Supports structured output with response_format parameter.
+        If response_format is a Pydantic model, returns JSON string.
+        """
         try:
             # Set default parameters
             params = {
@@ -87,15 +91,28 @@ class OpenAIClient(BaseLLMClient):
                 "max_tokens": kwargs.get("max_tokens", 1000)
             }
 
+            # Extract response_format if provided (Pydantic BaseModel)
+            response_format = kwargs.get("response_format")
+            use_structured_output = response_format is not None
+
             # Add any additional kwargs
             for key, value in kwargs.items():
                 if key not in ["temperature", "max_tokens"] and value is not None:
                     params[key] = value
 
             response = self.client.chat.completions.create(**params)
-            generated_text = response.choices[0].message.content
 
-            self.logger.debug(f"Generated response length: {len(generated_text)}")
+            # Handle structured output
+            if use_structured_output and hasattr(response.choices[0].message, 'parsed'):
+                # OpenAI returned parsed Pydantic object
+                parsed_obj = response.choices[0].message.parsed
+                generated_text = parsed_obj.model_dump_json(indent=2)
+                self.logger.debug(f"Generated structured response: {len(generated_text)} chars")
+            else:
+                # Regular text response
+                generated_text = response.choices[0].message.content
+                self.logger.debug(f"Generated response length: {len(generated_text)}")
+
             return generated_text
 
         except Exception as e:
