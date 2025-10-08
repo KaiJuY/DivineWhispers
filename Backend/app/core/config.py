@@ -61,6 +61,18 @@ class Settings(BaseSettings):
     LOG_DIR: str = "logs"
     LOG_MAX_BYTES: int = 10 * 1024 * 1024  # 10MB
     LOG_BACKUP_COUNT: int = 5
+
+    # Email/SMTP settings (Zoho)
+    SMTP_HOST: str = os.getenv("SMTP_HOST", "smtp.zoho.com")
+    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
+    SMTP_USER: str = os.getenv("SMTP_USER", "")
+    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
+    FROM_EMAIL: str = os.getenv("FROM_EMAIL", os.getenv("SMTP_USER", ""))
+    FROM_NAME: str = os.getenv("FROM_NAME", "Divine Whispers")
+    SUPPORT_EMAIL: str = os.getenv("SUPPORT_EMAIL", os.getenv("SMTP_USER", ""))
+
+    # Frontend URL for email links
+    FRONTEND_URL: str = os.getenv("FRONTEND_URL", "http://localhost:3000")
     
     # Use simple configuration
     class Config:

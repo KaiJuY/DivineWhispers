@@ -320,6 +320,94 @@ async def change_password(
 
 
 @router.post(
+    "/send-verification-email",
+    response_model=MessageResponse,
+    summary="Send verification email",
+    description="Send or resend email verification link",
+    responses={
+        200: {"description": "Verification email sent"},
+        401: {"description": "Authentication required"},
+        422: {"description": "Validation error"}
+    }
+)
+async def send_verification_email(
+    current_user = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Send verification email to current user"""
+    try:
+        # Create verification token
+        token = await AuthService.create_verification_token(
+            db=db,
+            user_id=current_user.user_id,
+            email=current_user.email
+        )
+
+        # Send verification email
+        from app.services.email_service import email_service
+        email_sent = email_service.send_verification_email(
+            to_email=current_user.email,
+            verification_token=token,
+            user_name=current_user.full_name or ""
+        )
+
+        if not email_sent:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Failed to send verification email"
+            )
+
+        return MessageResponse(
+            message="Verification email sent successfully. Please check your inbox."
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.error(f"Error sending verification email: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to send verification email"
+        )
+
+
+@router.get(
+    "/verify-email",
+    response_model=MessageResponse,
+    summary="Verify email address",
+    description="Verify email address using token from email",
+    responses={
+        200: {"description": "Email verified successfully"},
+        400: {"description": "Invalid or expired token"},
+        422: {"description": "Validation error"}
+    }
+)
+async def verify_email(
+    token: str,
+    db: AsyncSession = Depends(get_db)
+):
+    """Verify email address with token"""
+    try:
+        await AuthService.verify_email_token(db=db, token=token)
+        return MessageResponse(
+            message="Email verified successfully! Your account is now active."
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.error(f"Error verifying email: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Email verification failed"
+        )
+
+
+@router.post(
     "/forgot-password",
     response_model=MessageResponse,
     summary="Request password reset",

@@ -12,6 +12,7 @@ from .job_result import JobResult
 from .audit_log import AuditLog
 from .token_blacklist import TokenBlacklist, TokenType
 from .chat_task import ChatTask, TaskStatus
+from .email_verification import EmailVerificationToken
 
 # Export all models and enums for easy importing
 __all__ = [
@@ -29,6 +30,7 @@ __all__ = [
     "AuditLog",
     "TokenBlacklist",
     "ChatTask",
+    "EmailVerificationToken",
 
     # Enums
     "UserRole",

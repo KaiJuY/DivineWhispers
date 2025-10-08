@@ -62,38 +62,50 @@ async def submit_contact_form(
 ):
     """Submit a contact form message"""
     try:
-        # For now, we'll log the contact form submission
-        # In a real implementation, you'd save this to a database table
+        from app.core.config import settings
+        from app.services.email_service import email_service
+
+        # Prepare contact information
         contact_info = {
             "name": form_data.name,
             "email": form_data.email,
             "subject": form_data.subject,
             "message": form_data.message,
             "category": form_data.category,
-            "user_id": current_user.id if current_user else None,
+            "user_id": current_user.user_id if current_user else None,
             "submitted_at": datetime.utcnow().isoformat(),
             "ip_address": "unknown"  # Could be extracted from request
         }
-        
+
         logger.info(f"Contact form submission received: {contact_info}")
-        
-        # Here you would typically:
-        # 1. Save to database
-        # 2. Send email notification to support team
-        # 3. Send confirmation email to user
-        # 4. Create support ticket in external system
-        
-        # Simulate saving to database with a mock ID
-        mock_contact_id = hash(f"{form_data.email}_{datetime.utcnow().timestamp()}") % 10000
-        
-        # Send email notification (placeholder)
-        await _send_contact_form_notification(contact_info, mock_contact_id)
-        
+
+        # Send notification to support team
+        support_email = settings.SUPPORT_EMAIL
+        if support_email:
+            email_sent = email_service.send_contact_notification(
+                support_email=support_email,
+                contact_info=contact_info
+            )
+            if email_sent:
+                logger.info(f"Support notification sent to {support_email}")
+            else:
+                logger.warning(f"Failed to send support notification")
+
+        # Send acknowledgment email to user
+        acknowledgment_sent = email_service.send_contact_acknowledgment(
+            to_email=form_data.email,
+            contact_info=contact_info
+        )
+        if acknowledgment_sent:
+            logger.info(f"Acknowledgment email sent to {form_data.email}")
+        else:
+            logger.warning(f"Failed to send acknowledgment email to {form_data.email}")
+
         return MessageResponse(
             message=f"Thank you for your message! We have received your inquiry about '{form_data.subject}' and will respond within 24-48 hours.",
             success=True
         )
-        
+
     except Exception as e:
         logger.error(f"Error processing contact form: {e}")
         raise HTTPException(

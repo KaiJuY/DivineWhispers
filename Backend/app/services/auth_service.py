@@ -517,5 +517,73 @@ class AuthService:
         # Save changes
         await db.commit()
         await db.refresh(user)
-        
+
         return user
+
+    @staticmethod
+    async def create_verification_token(
+        db: AsyncSession,
+        user_id: int,
+        email: str
+    ) -> str:
+        """Create email verification token and save to database"""
+        from app.models.email_verification import EmailVerificationToken
+
+        # Generate token
+        token = EmailVerificationToken.generate_token()
+        expires_at = EmailVerificationToken.get_expiry_time(hours=24)
+
+        # Create token record
+        verification_token = EmailVerificationToken(
+            user_id=user_id,
+            email=email,
+            token=token,
+            expires_at=expires_at
+        )
+
+        db.add(verification_token)
+        await db.commit()
+
+        return token
+
+    @staticmethod
+    async def verify_email_token(
+        db: AsyncSession,
+        token: str
+    ) -> bool:
+        """Verify email token and mark user as verified"""
+        from app.models.email_verification import EmailVerificationToken
+
+        # Find token
+        result = await db.execute(
+            select(EmailVerificationToken).where(EmailVerificationToken.token == token)
+        )
+        verification_token = result.scalar_one_or_none()
+
+        if not verification_token:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid verification token"
+            )
+
+        if not verification_token.is_valid():
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Verification token has expired or already been used"
+            )
+
+        # Mark token as used
+        verification_token.is_used = True
+
+        # Update user status if needed
+        result = await db.execute(
+            select(User).where(User.user_id == verification_token.user_id)
+        )
+        user = result.scalar_one_or_none()
+
+        if user and user.status == UserStatus.INACTIVE:
+            user.status = UserStatus.ACTIVE
+
+        await db.commit()
+
+        return True
