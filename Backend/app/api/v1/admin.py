@@ -65,7 +65,11 @@ from app.schemas.rbac import (
     RoleInfo
 )
 
-router = APIRouter()
+# Router with admin-only access at the router level
+# This ensures ALL endpoints under /admin require admin authentication
+router = APIRouter(
+    dependencies=[Depends(get_current_admin_user)]
+)
 
 
 def get_client_ip(request: Request) -> str:
