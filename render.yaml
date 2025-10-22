@@ -75,8 +75,9 @@ services:
         value: fortune_knowledge
 
       # CORS (update after frontend deploys)
+      # Use comma-separated string for multiple hosts
       - key: ALLOWED_HOSTS
-        value: http://localhost:3000
+        value: "http://localhost:3000"
 
       # App settings
       - key: DEFAULT_USER_POINTS

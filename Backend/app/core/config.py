@@ -3,22 +3,32 @@ Application configuration using Pydantic settings - Simplified Version
 """
 
 from functools import lru_cache
-from typing import List, Optional
+from typing import List, Optional, Union
+from pydantic import field_validator
 from pydantic_settings import BaseSettings
 import os
 
 
 class Settings(BaseSettings):
     """Application settings - simplified to avoid startup issues"""
-    
+
     # Basic app settings
     APP_NAME: str = "Divine Whispers"
     DEBUG: bool = False
     HOST: str = "0.0.0.0"
     PORT: int = 8000
-    
+
     # CORS settings - restrict to specific domains (override in .env)
-    ALLOWED_HOSTS: List[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    ALLOWED_HOSTS: Union[str, List[str]] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+
+    @field_validator('ALLOWED_HOSTS', mode='before')
+    @classmethod
+    def parse_allowed_hosts(cls, v):
+        """Handle ALLOWED_HOSTS as either comma-separated string or list"""
+        if isinstance(v, str):
+            # Split by comma and strip whitespace
+            return [host.strip() for host in v.split(',') if host.strip()]
+        return v
 
     # Database settings - MUST use environment variables
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./divine_whispers.db")
