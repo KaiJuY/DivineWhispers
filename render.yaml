@@ -6,7 +6,7 @@ services:
     dockerfilePath: ./Backend/Dockerfile
     dockerContext: .
     region: oregon  # Change to your preferred region
-    plan: starter  # Free tier, upgrade to standard/pro as needed
+    plan: free  # Completely free, no credit card required
 
     # Branch to deploy from
     branch: main
@@ -101,7 +101,7 @@ databases:
     databaseName: divine_whispers
     user: divine_whispers_user
     region: oregon  # Same region as your web service
-    plan: starter  # Free tier, 1GB storage
+    plan: free  # Completely free, 256MB storage, no credit card required
 
     # PostgreSQL version
     ipAllowList: []  # Empty = public access (secured by password)
