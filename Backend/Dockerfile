@@ -30,15 +30,23 @@ RUN uv --version
 RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 # Copy project files
-COPY pyproject.toml .
-COPY requirements.txt .
+COPY Backend/pyproject.toml .
+COPY Backend/requirements.txt .
 
 # Install Python dependencies with uv (much faster than pip for the packages)
 RUN uv pip install --system --no-cache -r requirements.txt
 
 # Copy application code
-COPY ./app ./app
-COPY alembic.ini ./
+COPY Backend/app ./app
+COPY Backend/fortune_module ./fortune_module
+COPY Backend/alembic.ini ./
+COPY Backend/alembic ./alembic
+
+# Copy ChromaDB data (CRITICAL for RAG system)
+COPY Backend/chroma_db ./chroma_db
+
+# Copy Asset directory (for deity images, logos)
+COPY Asset ./Asset
 
 # Create necessary directories and set permissions
 RUN mkdir -p /app/logs /app/uploads \
