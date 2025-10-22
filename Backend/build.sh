@@ -8,6 +8,12 @@ set -o nounset  # Exit on undefined variable
 
 echo "🚀 Starting Divine Whispers build process..."
 
+# Change to Backend directory if we're in project root
+if [ -d "Backend" ]; then
+    echo "📂 Changing to Backend directory..."
+    cd Backend
+fi
+
 # 1. Install Python dependencies
 echo "📦 Installing Python dependencies..."
 pip install --upgrade pip

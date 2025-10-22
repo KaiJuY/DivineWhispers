@@ -12,7 +12,7 @@ services:
     branch: main
 
     # Build command (runs build.sh)
-    buildCommand: bash build.sh
+    buildCommand: bash Backend/build.sh
 
     # Health check endpoint
     healthCheckPath: /health
