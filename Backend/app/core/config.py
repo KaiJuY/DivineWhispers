@@ -32,8 +32,15 @@ class Settings(BaseSettings):
 
     # Database settings - MUST use environment variables
     # Render provides DATABASE_URL as postgresql://, but we need postgresql+asyncpg:// for async
-    _raw_database_url: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./divine_whispers.db")
-    DATABASE_URL: str = _raw_database_url.replace("postgresql://", "postgresql+asyncpg://") if _raw_database_url.startswith("postgresql://") else _raw_database_url
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./divine_whispers.db")
+
+    @field_validator('DATABASE_URL', mode='before')
+    @classmethod
+    def convert_postgres_url_to_asyncpg(cls, v):
+        """Convert postgresql:// to postgresql+asyncpg:// for async SQLAlchemy"""
+        if isinstance(v, str) and v.startswith("postgresql://"):
+            return v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return v
 
     # Security settings - MUST override SECRET_KEY in production
     SECRET_KEY: str = os.getenv("SECRET_KEY", "INSECURE_DEFAULT_DO_NOT_USE_IN_PRODUCTION")
