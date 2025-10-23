@@ -1,4 +1,30 @@
 services:
+  # Frontend Service
+  - type: web
+    name: divine-whispers-frontend
+    runtime: docker
+    dockerfilePath: ./divine-whispers-frontend/Dockerfile
+    dockerContext: .
+    region: oregon
+    plan: free
+
+    # Branch to deploy from
+    branch: main
+
+    # Build command
+    buildCommand: bash divine-whispers-frontend/build.sh
+
+    # Health check endpoint
+    healthCheckPath: /health
+
+    # Environment variables
+    envVars:
+      - key: BACKEND_URL
+        fromService:
+          name: divine-whispers-backend
+          type: web
+          property: host
+
   # Backend API Service
   - type: web
     name: divine-whispers-backend
@@ -74,10 +100,13 @@ services:
       - key: CHROMA_COLLECTION_NAME
         value: fortune_knowledge
 
-      # CORS (update after frontend deploys)
+      # CORS - automatically reference frontend service
       # Use comma-separated string for multiple hosts
       - key: ALLOWED_HOSTS
-        value: "http://localhost:3000"
+        fromService:
+          name: divine-whispers-frontend
+          type: web
+          property: host
 
       # App settings
       - key: DEFAULT_USER_POINTS
@@ -92,9 +121,12 @@ services:
       - key: LOG_LEVEL
         value: INFO
 
-      # Frontend URL (update after frontend deploys)
+      # Frontend URL - automatically reference frontend service
       - key: FRONTEND_URL
-        sync: false  # Set after frontend deploys
+        fromService:
+          name: divine-whispers-frontend
+          type: web
+          property: host
 
 # PostgreSQL Database
 databases:
