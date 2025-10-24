@@ -19,8 +19,21 @@ npm ci --legacy-peer-deps
 
 # 2. Create .env.production with backend URL
 echo "🔧 Creating .env.production..."
+
+# If BACKEND_URL doesn't have https://, add it
+if [ -n "${BACKEND_URL:-}" ]; then
+    # Check if BACKEND_URL already starts with http
+    if [[ "$BACKEND_URL" =~ ^https?:// ]]; then
+        FULL_BACKEND_URL="$BACKEND_URL"
+    else
+        FULL_BACKEND_URL="https://$BACKEND_URL"
+    fi
+else
+    FULL_BACKEND_URL="https://divine-whispers-backend.onrender.com"
+fi
+
 cat > .env.production <<EOF
-REACT_APP_API_URL=${BACKEND_URL:-https://divine-whispers-backend.onrender.com}
+REACT_APP_API_URL=$FULL_BACKEND_URL
 REACT_APP_ENV=production
 EOF
 
