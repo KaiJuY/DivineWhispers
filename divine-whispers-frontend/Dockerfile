@@ -2,6 +2,9 @@
 # Stage 1: Build the React app
 FROM node:18-alpine AS builder
 
+# Accept build argument
+ARG BACKEND_URL=https://divine-whispers-backend.onrender.com
+
 WORKDIR /app
 
 # Copy package files from frontend directory
@@ -12,6 +15,10 @@ RUN npm ci --legacy-peer-deps
 
 # Copy source code from frontend directory
 COPY divine-whispers-frontend/ ./
+
+# Set environment variable for React build
+ENV REACT_APP_API_BASE_URL=${BACKEND_URL}
+ENV REACT_APP_ENV=production
 
 # Build the React app for production
 RUN npm run build

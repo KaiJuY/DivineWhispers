@@ -11,19 +11,16 @@ services:
     # Branch to deploy from
     branch: main
 
-    # Build command
-    buildCommand: bash divine-whispers-frontend/build.sh
-
     # Health check endpoint
     healthCheckPath: /health
 
-    # Environment variables
+    # Docker build arguments (passed to Dockerfile ARG)
+    dockerCommand: docker build --build-arg BACKEND_URL=https://divine-whispers-backend.onrender.com -f divine-whispers-frontend/Dockerfile -t divine-whispers-frontend .
+
+    # Environment variables (not needed for build, but keeping for reference)
     envVars:
       - key: BACKEND_URL
-        fromService:
-          name: divine-whispers-backend
-          type: web
-          property: host
+        value: https://divine-whispers-backend.onrender.com
 
   # Backend API Service
   - type: web
