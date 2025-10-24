@@ -59,7 +59,11 @@ class ChatService {
     }
 
     this.currentUserId = userId;
-    const wsUrl = `ws://localhost:8000/ws/${userId}`;
+    // Get WebSocket URL from API base URL
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+    const wsProtocol = apiBaseUrl.startsWith('https') ? 'wss' : 'ws';
+    const wsHost = apiBaseUrl.replace(/^https?:\/\//, '');
+    const wsUrl = `${wsProtocol}://${wsHost}/ws/${userId}`;
     
     return new Promise((resolve, reject) => {
       this.websocket = new WebSocket(wsUrl);
