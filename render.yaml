@@ -14,14 +14,6 @@ services:
     # Health check endpoint
     healthCheckPath: /health
 
-    # Docker build arguments (passed to Dockerfile ARG)
-    dockerCommand: docker build --build-arg BACKEND_URL=https://divine-whispers-backend.onrender.com -f divine-whispers-frontend/Dockerfile -t divine-whispers-frontend .
-
-    # Environment variables (not needed for build, but keeping for reference)
-    envVars:
-      - key: BACKEND_URL
-        value: https://divine-whispers-backend.onrender.com
-
   # Backend API Service
   - type: web
     name: divine-whispers-backend
