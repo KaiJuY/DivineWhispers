@@ -33,7 +33,7 @@ else
 fi
 
 cat > .env.production <<EOF
-REACT_APP_API_URL=$FULL_BACKEND_URL
+REACT_APP_API_BASE_URL=$FULL_BACKEND_URL
 REACT_APP_ENV=production
 EOF
 
