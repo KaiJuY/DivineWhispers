@@ -29,14 +29,14 @@ else
     echo "⚠️  WARNING: No DATABASE_URL found, skipping migrations"
 fi
 
-# 3. Verify ChromaDB data exists
-echo "🔍 Verifying ChromaDB data..."
+# 3. Verify ChromaDB data exists (created during Docker build)
+echo "🔍 Checking ChromaDB status..."
 if [ -d "chroma_db" ]; then
-    echo "✅ ChromaDB directory found"
-    ls -lh chroma_db/ || true
+    echo "✅ ChromaDB directory found (initialized during Docker build)"
+    ls -lh chroma_db/ 2>/dev/null || echo "  (Directory exists but may be empty)"
 else
-    echo "⚠️  WARNING: ChromaDB directory not found!"
-    echo "   The RAG system may not work without fortune poem data."
+    echo "⚠️  ChromaDB directory not found"
+    echo "   Note: ChromaDB is initialized during Docker build from source data"
 fi
 
 # 4. Verify fortune_module exists

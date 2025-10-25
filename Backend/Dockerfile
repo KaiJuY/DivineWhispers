@@ -42,15 +42,24 @@ COPY Backend/fortune_module ./fortune_module
 COPY Backend/alembic.ini ./
 COPY Backend/alembic ./alembic
 
-# Copy ChromaDB data (CRITICAL for RAG system)
-COPY Backend/chroma_db ./chroma_db
+# Copy source data for ChromaDB initialization (instead of pre-built DB)
+COPY SourceCrawler/outputs ./SourceCrawler/outputs
+
+# Copy ChromaDB initialization script
+COPY Backend/init_chromadb_deployment.py ./
 
 # Copy Asset directory (for deity images, logos)
 COPY Asset ./Asset
 
 # Create necessary directories and set permissions
-RUN mkdir -p /app/logs /app/uploads \
+RUN mkdir -p /app/logs /app/uploads /app/chroma_db \
     && chown -R appuser:appuser /app
+
+# Initialize ChromaDB from source data (run as root before switching user)
+# Set SOURCE_DATA_PATH to match the copied location
+ENV SOURCE_DATA_PATH=/app/SourceCrawler/outputs
+RUN python init_chromadb_deployment.py \
+    && chown -R appuser:appuser /app/chroma_db
 
 # Switch to non-root user
 USER appuser

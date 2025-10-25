@@ -141,7 +141,8 @@ databases:
 # 2. Update ALLOWED_HOSTS after frontend deploys:
 #    https://your-frontend.onrender.com
 #
-# 3. ChromaDB data will be copied during Docker build
+# 3. ChromaDB is initialized during Docker build from source data
+#    The database is created fresh from SourceCrawler/outputs/ JSON files
 #    It's stored in the container filesystem (ephemeral on free tier)
 #    For persistent storage, upgrade to a paid plan with disk storage
 #
