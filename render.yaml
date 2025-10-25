@@ -82,9 +82,9 @@ services:
       - key: SUPPORT_EMAIL
         sync: false  # Set manually
 
-      # ChromaDB settings
+      # ChromaDB settings (must match Docker build path)
       - key: CHROMA_DB_PATH
-        value: /opt/render/project/src/chroma_db
+        value: /app/chroma_db
 
       - key: CHROMA_COLLECTION_NAME
         value: fortune_knowledge

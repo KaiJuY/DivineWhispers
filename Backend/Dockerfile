@@ -56,8 +56,9 @@ RUN mkdir -p /app/logs /app/uploads /app/chroma_db \
     && chown -R appuser:appuser /app
 
 # Initialize ChromaDB from source data (run as root before switching user)
-# Set SOURCE_DATA_PATH to match the copied location
-ENV SOURCE_DATA_PATH=/app/SourceCrawler/outputs
+# Set paths to match the copied locations
+ENV SOURCE_DATA_PATH=/app/SourceCrawler/outputs \
+    CHROMA_DB_PATH=/app/chroma_db
 RUN python init_chromadb_deployment.py \
     && chown -R appuser:appuser /app/chroma_db
 

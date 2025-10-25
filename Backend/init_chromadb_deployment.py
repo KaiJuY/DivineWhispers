@@ -21,6 +21,8 @@ def init_chromadb():
     """Initialize ChromaDB from source data for deployment"""
 
     logger.info("=== ChromaDB Deployment Initialization ===")
+    logger.info(f"Working directory: {os.getcwd()}")
+    logger.info(f"Python version: {sys.version}")
 
     try:
         # Import after adding to path
@@ -35,14 +37,26 @@ def init_chromadb():
 
         logger.info(f"ChromaDB path: {chroma_path.absolute()}")
         logger.info(f"Source data path: {source_path.absolute()}")
+        logger.info(f"CHROMA_DB_PATH env: {os.getenv('CHROMA_DB_PATH', 'not set')}")
+        logger.info(f"SOURCE_DATA_PATH env: {os.getenv('SOURCE_DATA_PATH', 'not set')}")
 
         # Check if source data exists
         if not source_path.exists():
-            logger.error(f"Source data path does not exist: {source_path.absolute()}")
+            logger.error(f"❌ Source data path does not exist: {source_path.absolute()}")
             logger.error("Available paths in current directory:")
-            for item in Path('.').iterdir():
-                logger.error(f"  {item}")
-            return False
+            for item in sorted(Path('.').iterdir()):
+                if item.is_dir():
+                    logger.error(f"  [DIR]  {item}")
+                else:
+                    logger.error(f"  [FILE] {item}")
+
+            # Try to find SourceCrawler directory
+            for root, dirs, files in os.walk('.'):
+                if 'SourceCrawler' in dirs:
+                    logger.error(f"Found SourceCrawler at: {os.path.join(root, 'SourceCrawler')}")
+                    break
+
+            raise FileNotFoundError(f"Source data not found at {source_path.absolute()}")
 
         # Check if ChromaDB already exists and is valid
         if chroma_path.exists():
@@ -80,8 +94,8 @@ def init_chromadb():
                 total_json_files += len(json_files)
 
         if total_json_files == 0:
-            logger.error("No JSON source files found!")
-            return False
+            logger.error("❌ No JSON source files found!")
+            raise FileNotFoundError("No source JSON files found in temple directories")
 
         logger.info(f"Total source files to ingest: {total_json_files}")
 
